@@ -400,3 +400,234 @@ ln -s /path/to/svelte-claude-skills/.claude/skills/svelte5-runes ~/.claude/skill
 ```
 
 Skills auto-activate in Svelte/SvelteKit projects with progressive disclosure from quick references to detailed docs.
+
+---
+
+## Content System
+
+Read `.content-ops/` for templates, queue, and detailed guidelines:
+- `QUEUE.md` - Articles to generate with data
+- `agents/writer-agent.md` - Full writing guidelines
+- `checklists/qa-checklist.md` - Pre-publish checklist
+
+---
+
+## Golden Rules: SEO + LLM Optimization
+
+### SEO (Get Ranked)
+- **Answer in first 50 words** - Direct answer, key stat, why it matters
+- **Question-based H2s** - "What is X?", "How do I fix X?", "Does Y protect against X?"
+- **Title: under 60 chars, keyword first** - `SQL Injection: Find & Fix...`
+- **5-10 internal links per page** - Link to related vulns, tools, stacks, fixes
+- **One topic = one page** - Each page targets one keyword cluster
+
+### LLM (Get Cited)
+- **Self-contained sections (75-225 words)** - Each H2 section must make sense alone
+- **Citable facts with attribution** - Always include source and date
+- **First sentence answers the H2** - LLMs extract this first
+- **FAQ with direct answers** - Start with YES/NO/the fact, then explain
+- **Specific numbers only** - `23.4%` never "about a quarter" or "many"
+
+---
+
+## Detailed Data Integrity Rules
+
+### Internal Data (Scanner)
+Always cite with this format:
+```
+According to VibeShip Scanner analysis of [N] repositories ([Month Year]), [finding].
+```
+
+Example:
+```
+According to VibeShip Scanner analysis of 10,847 repositories (December 2024),
+23.4% of Cursor-generated projects contain SQL injection vulnerabilities.
+```
+
+Rules:
+- Include exact sample size
+- Include date/month of data
+- Never round percentages (23.4% not ~25%)
+- Always specify which tool if tool-specific
+
+### External Data (Research & Standards)
+Link to authoritative sources. Prefer:
+
+| Source | Use For | Link Format |
+|--------|---------|-------------|
+| OWASP | Vulnerability categories, Top 10 | [OWASP Top 10](https://owasp.org/Top10/) |
+| CWE/MITRE | Vulnerability definitions, IDs | [CWE-89](https://cwe.mitre.org/data/definitions/89.html) |
+| NVD/NIST | CVE data, severity scores | [NVD](https://nvd.nist.gov/) |
+| Snyk | Vulnerability research | [Snyk Learn](https://learn.snyk.io/) |
+| PortSwigger | Technical deep-dives | [PortSwigger Web Security](https://portswigger.net/web-security) |
+| HackerOne | Real-world reports, stats | [HackerOne Reports](https://hackerone.com/hacktivity) |
+| Verizon DBIR | Breach statistics | [Verizon DBIR](https://www.verizon.com/business/resources/reports/dbir/) |
+| IBM Cost of Breach | Financial impact stats | [IBM Security](https://www.ibm.com/security/data-breach) |
+
+Citation format for external research:
+```
+According to the [Verizon 2024 Data Breach Investigations Report](https://www.verizon.com/business/resources/reports/dbir/),
+injection attacks account for 23% of web application breaches.
+```
+
+Rules:
+- Always link to the source
+- Include year/version of the report
+- Use official URLs, not summaries
+- Verify the stat exists at the source
+
+### Combining Sources
+When using multiple sources:
+```
+SQL injection remains the #3 vulnerability in the [OWASP Top 10 (2021)](https://owasp.org/Top10/A03_2021-Injection/).
+Our Scanner data shows it affects 23.4% of AI-generated codebases, higher than the
+[15% industry average reported by Snyk](https://snyk.io/reports/open-source-security/).
+```
+
+---
+
+## Required Citations by Content Type
+
+### Vulnerability Articles
+Must include:
+- [ ] CWE link: `[CWE-89](https://cwe.mitre.org/data/definitions/89.html)`
+- [ ] OWASP link: `[OWASP A03:2021](https://owasp.org/Top10/A03_2021-Injection/)`
+- [ ] Scanner stat with sample size and date (when available)
+- [ ] At least 1 external research citation (Verizon, HackerOne, etc.)
+
+### AI Tool Articles
+Must include:
+- [ ] Scanner stats for this tool vs others
+- [ ] Link to tool's official site
+- [ ] Link to any existing security research about the tool
+
+### Stack Guides
+Must include:
+- [ ] Framework security docs: `[Next.js Security](https://nextjs.org/docs/security)`
+- [ ] Database security docs: `[Supabase RLS](https://supabase.com/docs/guides/auth/row-level-security)`
+- [ ] Scanner stats for this stack (when available)
+
+---
+
+## Section Template
+
+Every H2 section should follow this pattern:
+
+```markdown
+## What is SQL injection?
+
+[DIRECT ANSWER - 1 sentence with key stat]
+SQL injection affects 23.4% of AI-generated codebases according to VibeShip Scanner
+analysis of 10,847 repositories (December 2024).
+
+[PLAIN ENGLISH - 2-3 sentences]
+It happens when user input is placed directly into database queries. Attackers can
+manipulate these queries to read, modify, or delete your entire database.
+
+[AUTHORITY REFERENCE - 1 sentence with link]
+It has remained in the [OWASP Top 10](https://owasp.org/Top10/) since the list began
+in 2003, currently ranked #3 under Injection attacks.
+
+[CONTEXT/IMPACT - 1-2 sentences]
+For vibe coders, this is critical because AI tools like Cursor generate vulnerable
+patterns by default.
+```
+
+- Word count: 75-150 words
+- Links: 1-2 per section minimum
+
+---
+
+## Outbound Link Guidelines
+
+### Do Link To
+- Official documentation (OWASP, CWE, framework docs)
+- Peer-reviewed research and reports
+- Authoritative security sources (NIST, SANS, PortSwigger)
+- Original research with methodology
+- Official tool/framework websites
+
+### Don't Link To
+- Random blog posts without sources
+- SEO content farms
+- Outdated resources (>3 years for stats)
+- Paywalled content (unless essential)
+- Competitors' content
+
+### Link Formatting
+```markdown
+<!-- Inline for flow -->
+...according to [OWASP](https://owasp.org/Top10/)...
+
+<!-- Reference style for multiple uses -->
+SQL injection is [CWE-89][cwe-89] in the MITRE database.
+
+[cwe-89]: https://cwe.mitre.org/data/definitions/89.html
+```
+
+---
+
+## Fact-Checking Checklist
+
+Before including any statistic:
+- [ ] Is the source authoritative?
+- [ ] Is the data current (within 2 years for stats)?
+- [ ] Can I link directly to the source?
+- [ ] Is the methodology sound?
+- [ ] Am I representing it accurately (not cherry-picking)?
+
+If you can't verify a stat, don't use it. Say "commonly cited" or find a better source.
+
+---
+
+## Quality Signals
+
+### Strong Content Has
+- Scanner data + external research (dual validation)
+- Links to CWE/OWASP for every vulnerability
+- Framework docs linked for every code recommendation
+- Specific numbers with dates
+- 2-3 outbound links per 500 words
+
+### Weak Content Has
+- Vague claims ("many projects have this issue")
+- No external validation of our data
+- Missing CWE/OWASP references
+- Outdated statistics
+- No links to authoritative sources
+
+---
+
+## Quick Reference: Key Sources
+
+```
+OWASP Top 10:     https://owasp.org/Top10/
+CWE Database:     https://cwe.mitre.org/data/definitions/
+NIST NVD:         https://nvd.nist.gov/
+Snyk Learn:       https://learn.snyk.io/
+PortSwigger:      https://portswigger.net/web-security
+HackerOne:        https://hackerone.com/hacktivity
+Verizon DBIR:     https://www.verizon.com/business/resources/reports/dbir/
+SANS:             https://www.sans.org/
+Next.js Security: https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy
+Supabase RLS:     https://supabase.com/docs/guides/auth/row-level-security
+Prisma Security:  https://www.prisma.io/docs/concepts/components/prisma-client/raw-database-access
+```
+
+---
+
+## Processing Queue Articles
+
+When processing from `.content-ops/QUEUE.md`:
+
+1. Read the article data from the queue
+2. Apply `writer-agent.md` guidelines
+3. Apply these CLAUDE.md rules for SEO/LLM/citations
+4. Include all required citations for the content type
+5. Output as Svelte component with frontmatter
+6. Verify against `qa-checklist.md` mentally
+
+**Start prompt:**
+```
+Process the next article from .content-ops/QUEUE.md
+```
