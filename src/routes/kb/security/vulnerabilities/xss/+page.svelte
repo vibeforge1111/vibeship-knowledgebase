@@ -123,15 +123,13 @@
 			<p class="text-secondary">How to find and fix script injection vulnerabilities in your web application</p>
 		</header>
 
-		<!-- Quick Answer -->
+		<!-- Quick Answer - MUST be under 50 words -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>XSS happens when attackers inject malicious scripts into your web pages.</strong>
-				When users visit the page, the script runs in their browser, stealing cookies, capturing keystrokes,
-				or redirecting to phishing sites. Modern frameworks like React, Vue, and Svelte auto-escape by default,
-				but AI tools often bypass this protection with <code>dangerouslySetInnerHTML</code>, <code>v-html</code>,
-				or <code>@html</code> when asked to render dynamic content.
+				<strong>XSS lets attackers inject malicious scripts into your web pages.</strong>
+				Scripts steal cookies, capture keystrokes, and hijack sessions. Classified under
+				<a href={owaspData.source}>OWASP A03:2021</a>. AI tools cause this with <code>dangerouslySetInnerHTML</code> and <code>v-html</code>.
 			</p>
 		</div>
 
@@ -162,10 +160,8 @@
 		<section class="article-section">
 			<h2>What is Cross-Site Scripting (XSS)?</h2>
 			<p>
-				XSS is a vulnerability where attackers inject malicious JavaScript into web pages viewed by other users.
-				Think of it like someone slipping a note into a book at the library. When the next person opens that page,
-				the note (malicious script) activates and can do anything: steal their library card, watch what they read,
-				or redirect them somewhere else entirely.
+				Cross-Site Scripting (XSS) is a vulnerability where attackers inject malicious JavaScript into web pages viewed by other users.
+				When a user visits the page, the script runs in their browser and can steal cookies, capture keystrokes, or redirect to phishing sites.
 			</p>
 			<p>
 				There are three types of XSS. <strong>Stored XSS</strong> saves the malicious script in your database
@@ -175,9 +171,7 @@
 			</p>
 			<p>
 				According to <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP</a>, injection attacks
-				(including XSS) rank #3 in the Top 10 Web Application Security Risks. XSS has been a persistent
-				threat since the early days of the web, and while modern frameworks provide protection, AI-generated
-				code often bypasses these safeguards.
+				(including XSS) rank #3 in the Top 10 Web Application Security Risks.
 			</p>
 		</section>
 
@@ -185,9 +179,8 @@
 		<section class="article-section">
 			<h2>How do AI tools cause XSS?</h2>
 			<p>
-				Modern frameworks like React, Vue, and Svelte escape output by default, which prevents most XSS.
-				But AI tools bypass this protection when you ask them to "render HTML content" or "display rich text."
-				They reach for the escape hatch: <code>dangerouslySetInnerHTML</code>, <code>v-html</code>, or <code>@html</code>.
+				AI tools cause XSS by generating code that bypasses framework escaping with <code>dangerouslySetInnerHTML</code>, <code>v-html</code>, or <code>@html</code>.
+				When you ask to "render HTML content" or "display rich text," AI reaches for these escape hatches because they work, not because they're safe.
 			</p>
 
 			<div class="tool-patterns-box">
@@ -228,7 +221,10 @@ function Comment({ content }) {
 
 		<!-- What Could Happen -->
 		<section class="article-section">
-			<h2>What could happen?</h2>
+			<h2>What could happen if I have XSS?</h2>
+			<p>
+				XSS can result in session hijacking, credential theft, malware distribution, and complete account takeover for every user who visits the affected page.
+			</p>
 			<ul class="consequences-list">
 				<li><strong>Session hijacking:</strong> Attackers steal session cookies and impersonate users, accessing their accounts without passwords</li>
 				<li><strong>Credential theft:</strong> Injected scripts capture login forms, sending usernames and passwords to attacker servers</li>
@@ -242,7 +238,7 @@ function Comment({ content }) {
 		<section class="article-section">
 			<h2>How do I detect XSS vulnerabilities?</h2>
 			<p>
-				Search your codebase for these dangerous patterns. Any matches need review.
+				Detect XSS vulnerabilities by searching for <code>dangerouslySetInnerHTML</code>, <code>v-html</code>, <code>@html</code>, <code>innerHTML</code>, and <code>document.write</code> in your codebase.
 			</p>
 
 			<div class="code-block">
@@ -299,6 +295,9 @@ javascript:`}</code></pre>
 		<!-- How to Fix -->
 		<section class="article-section">
 			<h2>How do I fix XSS vulnerabilities?</h2>
+			<p>
+				Fix XSS by removing dangerous HTML rendering patterns and letting your framework escape content, or sanitize with DOMPurify if you must render HTML.
+			</p>
 
 			<!-- AI Fix Prompt -->
 			<div class="fix-section">

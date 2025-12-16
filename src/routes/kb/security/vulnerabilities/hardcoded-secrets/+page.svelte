@@ -123,15 +123,13 @@
 			<p class="text-secondary">How to find and fix exposed API keys, passwords, and credentials in your codebase</p>
 		</header>
 
-		<!-- Quick Answer -->
+		<!-- Quick Answer - MUST be under 50 words -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Hardcoded secrets are credentials embedded directly in your source code</strong>: API keys,
-				database passwords, JWT secrets. Once pushed to a repository, they can be extracted by anyone
-				with access, including bots that scan GitHub for exposed keys. This is classified under
-				<strong><a href={owaspData.source}>OWASP A07:2021</a></strong> and is one of the most
-				common issues in AI-generated code.
+				<strong>Hardcoded secrets are API keys, passwords, and tokens embedded directly in code.</strong>
+				Bots scan GitHub and exploit exposed secrets within minutes. Classified under
+				<a href={owaspData.source}>OWASP A07:2021</a>. AI tools generate these constantly.
 			</p>
 		</div>
 
@@ -162,31 +160,26 @@
 		<section class="article-section">
 			<h2>What are hardcoded secrets?</h2>
 			<p>
-				Hardcoded secrets are sensitive credentials written directly into your source code instead of
-				being stored securely in environment variables or secret managers. Think of it like writing
-				your house key's code on a sticky note attached to your front door. Anyone who sees it can get in.
+				Hardcoded secrets are sensitive credentials (API keys, passwords, tokens) written directly into source code instead of environment variables or secret managers.
+				Common examples include Stripe/OpenAI/AWS API keys, database connection strings, JWT signing secrets, and OAuth client secrets.
 			</p>
 			<p>
-				Common examples include API keys (Stripe, OpenAI, AWS), database connection strings with
-				passwords, JWT signing secrets, OAuth client secrets, and encryption keys. When these end up
-				in your code, they get committed to version control, where they persist forever, even after
-				you "delete" them.
+				Once committed to version control, secrets persist in git history forever, even after you "delete" them.
+				Automated bots continuously scan public repositories and can exploit exposed secrets within minutes.
 			</p>
 			<p>
 				According to <a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">OWASP</a>,
 				identification and authentication failures (which includes exposed credentials) ranked #7 in
-				the Top 10 Web Application Security Risks. Automated bots continuously scan public repositories
-				for exposed secrets and can exploit them within minutes of exposure.
+				the Top 10 Web Application Security Risks.
 			</p>
 		</section>
 
 		<!-- AI Tool Patterns -->
 		<section class="article-section">
-			<h2>How do AI tools cause this?</h2>
+			<h2>How do AI tools cause hardcoded secrets?</h2>
 			<p>
-				AI coding tools generate hardcoded secrets because they prioritize complete, working examples.
-				When you ask for "add Stripe payment integration," the AI produces functional code, often with
-				placeholder keys that look real enough to forget to replace.
+				AI tools cause hardcoded secrets by generating complete, working examples with placeholder credentials that developers forget to replace.
+				When you ask for "Stripe integration," the AI produces functional code with inline API keys because that's what works immediately.
 			</p>
 
 			<div class="tool-patterns-box">
@@ -227,7 +220,10 @@ const JWT_SECRET = 'super-secret-key-change-me'`}</code></pre>
 
 		<!-- What Could Happen -->
 		<section class="article-section">
-			<h2>What could happen?</h2>
+			<h2>What could happen if I have hardcoded secrets?</h2>
+			<p>
+				Hardcoded secrets can result in financial damage, data breaches, service abuse, and account takeover within minutes of exposure.
+			</p>
 			<ul class="consequences-list">
 				<li><strong>Financial damage:</strong> Attackers use your AWS/GCP/Azure credentials to spin up crypto miners, running up thousands in charges</li>
 				<li><strong>Data breach:</strong> Database credentials expose all user data: emails, passwords, payment info, personal details</li>
@@ -241,7 +237,7 @@ const JWT_SECRET = 'super-secret-key-change-me'`}</code></pre>
 		<section class="article-section">
 			<h2>How do I detect hardcoded secrets?</h2>
 			<p>
-				Search your codebase for these patterns. Any matches need immediate attention.
+				Detect hardcoded secrets by searching for API key prefixes (sk_live_, AKIA, ghp_), database connection strings, and variable names like API_KEY, SECRET, or PASSWORD with inline values.
 			</p>
 
 			<div class="code-block">
@@ -290,6 +286,9 @@ const TOKEN = '....'
 		<!-- How to Fix -->
 		<section class="article-section">
 			<h2>How do I fix hardcoded secrets?</h2>
+			<p>
+				Fix hardcoded secrets by moving all credentials to environment variables and adding .env to your .gitignore before committing.
+			</p>
 
 			<!-- AI Fix Prompt -->
 			<div class="fix-section">

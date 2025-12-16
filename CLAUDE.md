@@ -412,21 +412,86 @@ Read `.content-ops/` for templates, queue, and detailed guidelines:
 
 ---
 
-## Golden Rules: SEO + LLM Optimization
+## Top 10 Rules for SEO + LLM Optimization
 
-### SEO (Get Ranked)
-- **Answer in first 50 words** - Direct answer, key stat, why it matters
-- **Question-based H2s** - "What is X?", "How do I fix X?", "Does Y protect against X?"
-- **Title: under 60 chars, keyword first** - `SQL Injection: Find & Fix...`
-- **5-10 internal links per page** - Link to related vulns, tools, stacks, fixes
-- **One topic = one page** - Each page targets one keyword cluster
+**MANDATORY CHECKLIST: Every article MUST pass all 10 rules before publishing.**
 
-### LLM (Get Cited)
-- **Self-contained sections (75-225 words)** - Each H2 section must make sense alone
-- **Citable facts with attribution** - Always include source and date
-- **First sentence answers the H2** - LLMs extract this first
-- **FAQ with direct answers** - Start with YES/NO/the fact, then explain
-- **Specific numbers only** - `23.4%` never "about a quarter" or "many"
+### SEO Rules (Get Ranked)
+
+| # | Rule | Requirement | Example |
+|---|------|-------------|---------|
+| 1 | **Answer in first 50 words** | Quick Answer box must be under 50 words and directly answer the query | "SQL injection is a vulnerability where attackers insert malicious code into database queries through user input, potentially stealing your entire database." (25 words) |
+| 2 | **Question-based H2s** | Every H2 should be a question matching search intent | "What is SQL injection?" not "SQL Injection Overview" |
+| 3 | **Title under 60 chars, keyword first** | Primary keyword at start, total under 60 characters | "SQL Injection: Find & Fix..." (47 chars) ✅ not "How to Find & Fix SQL Injection..." (65 chars) ❌ |
+| 4 | **5-10 internal links per page** | Link to related vulns, tools, stacks, fixes | Links to XSS, Cursor patterns, Next.js stack guide |
+| 5 | **One topic = one page** | Don't dilute. Each page targets one keyword cluster | SQL injection page only covers SQL injection |
+
+### LLM Rules (Get Cited)
+
+| # | Rule | Requirement | Example |
+|---|------|-------------|---------|
+| 6 | **Self-contained sections (75-225 words)** | Each H2 section must standalone without context | Each section readable by an LLM in isolation |
+| 7 | **Citable facts with attribution** | Stats must have source and date. If no Scanner data, use external sources with links | "According to [OWASP Top 10 (2021)](url), injection ranks #3..." |
+| 8 | **First sentence answers the H2** | First sentence after H2 MUST directly answer the question | "## What is XSS?" → "XSS (Cross-Site Scripting) is a vulnerability where..." |
+| 9 | **FAQ with direct answers** | FAQ answers start with YES/NO or the direct fact, then explain | "Does React protect from XSS?" → "Yes, React escapes values by default..." |
+| 10 | **Specific numbers, not vague claims** | Use exact figures. No "many", "about", "roughly" | "ranked #3" not "one of the top" |
+
+### The Golden Formula (H2 Section Template)
+
+```markdown
+## What is SQL injection?
+
+SQL injection is a vulnerability where attackers manipulate database queries by
+inserting malicious code through user input fields. [DIRECT ANSWER - first sentence]
+
+It allows attackers to read, modify, or delete your entire database. Think of it
+like a hotel where guests write their own room keys. [PLAIN ENGLISH + ANALOGY]
+
+According to [OWASP Top 10 (2021)](https://owasp.org/Top10/A03_2021-Injection/),
+injection attacks rank #3 in web application security risks. [CITABLE FACT]
+```
+
+Word count: ~70 words. Self-contained. Citable. Direct answer first.
+
+### Quick Answer Box Rules
+
+The Quick Answer at the top of every article MUST:
+- Be **under 50 words** (hard limit)
+- **Directly answer** the implied query
+- Include **one key fact** (OWASP ranking, CWE ID, or severity)
+- Link to **authoritative source**
+
+```html
+<!-- GOOD: 45 words -->
+<strong>SQL injection happens when user input is placed directly into database queries.</strong>
+Attackers can manipulate queries to steal or delete your database. Ranked
+<a href="https://owasp.org/Top10/A03_2021-Injection/">#3 on OWASP Top 10</a>.
+
+<!-- BAD: 72 words - TOO LONG -->
+<strong>SQL injection is one of the most dangerous...</strong> [continues for 70+ words]
+```
+
+### Pre-Publish Checklist
+
+Before publishing, verify EVERY item:
+
+```
+SEO RULES
+□ Rule 1: Quick Answer under 50 words
+□ Rule 2: All H2s are questions
+□ Rule 3: Title under 60 chars, keyword first
+□ Rule 4: 5-10 internal links present
+□ Rule 5: Single topic focus
+
+LLM RULES
+□ Rule 6: Each H2 section is 75-225 words
+□ Rule 7: All stats have attribution + links
+□ Rule 8: First sentence after each H2 directly answers it
+□ Rule 9: FAQ answers start with direct answer
+□ Rule 10: No vague claims ("many", "about", "roughly")
+```
+
+If ANY rule fails, fix it before publishing.
 
 ---
 

@@ -124,15 +124,13 @@
 			<p class="text-secondary">How to find and fix the vulnerability that lets attackers steal your entire database</p>
 		</header>
 
-		<!-- Quick Answer -->
+		<!-- Quick Answer - MUST be under 50 words -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>SQL injection happens when user input is placed directly into database queries.</strong>
-				An attacker can type special characters that manipulate your queries, potentially reading,
-				modifying, or deleting your entire database. Ranked <strong>#3 on the
-				<a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP Top 10</a></strong>, it's one of the
-				most exploited vulnerabilities, and AI coding tools frequently generate vulnerable patterns.
+				<strong>SQL injection is when attackers insert malicious code into database queries through user input.</strong>
+				They can steal or delete your entire database. Ranked <a href="https://owasp.org/Top10/A03_2021-Injection/">#3 on OWASP Top 10</a>.
+				AI tools frequently generate vulnerable patterns.
 			</p>
 		</div>
 
@@ -163,21 +161,16 @@
 		<section class="article-section">
 			<h2>What is SQL injection?</h2>
 			<p>
-				SQL injection is a vulnerability where attackers manipulate your database queries by inserting
-				malicious code through user input fields. Think of it like a hotel where guests write their own
-				room keys. Instead of getting key #203, a malicious guest writes "all rooms" and suddenly has
-				access to everything.
+				SQL injection is a vulnerability where attackers manipulate database queries by inserting malicious code through user input fields.
+				When your code concatenates user input directly into SQL strings, attackers inject their own commands to read, modify, or delete your entire database.
 			</p>
 			<p>
-				When your code builds database queries by concatenating user input directly into SQL strings,
-				attackers can inject their own SQL commands. The consequences are severe: complete database theft,
-				data modification, account takeovers, and in some cases, full server compromise.
+				Think of it like a hotel where guests write their own room keys. Instead of getting key #203, a malicious guest writes "all rooms" and gains access to everything.
 			</p>
 			<p>
-				SQL injection has been in the <a href="https://owasp.org/Top10/">OWASP Top 10</a> every year since
-				the list began in 2003. It's currently ranked #3 under "Injection" (<a href="https://owasp.org/Top10/A03_2021-Injection/">A03:2021</a>).
-				AI coding tools often generate vulnerable patterns because template literals are more readable than
-				parameterized queries, prioritizing developer experience over security.
+				According to <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP Top 10 (2021)</a>, injection attacks rank #3 in web application security risks.
+				SQL injection has appeared in every OWASP Top 10 since the list began in 2003.
+				AI tools generate vulnerable patterns because template literals are more readable than parameterized queries.
 			</p>
 		</section>
 
@@ -185,9 +178,8 @@
 		<section class="article-section">
 			<h2>How do AI tools cause SQL injection?</h2>
 			<p>
-				AI coding tools generate SQL injection vulnerabilities because they prioritize readable,
-				working code over secure code. Template literals (JavaScript's backtick strings) are cleaner
-				to read than parameterized queries, so AI defaults to them even though they're dangerous.
+				AI tools cause SQL injection by generating template literals instead of parameterized queries.
+				Template literals are more readable, so AI defaults to them even though they're dangerous.
 			</p>
 
 			<div class="tool-patterns-box">
@@ -224,7 +216,10 @@ const getUser = async (userId) => {
 
 		<!-- What Could Happen -->
 		<section class="article-section">
-			<h2>What could happen?</h2>
+			<h2>What could happen if I have SQL injection?</h2>
+			<p>
+				SQL injection can result in complete database theft, data manipulation, authentication bypass, and server compromise.
+			</p>
 			<ul class="consequences-list">
 				<li><strong>Complete database theft:</strong> Attackers can dump every table, including user credentials, payment info, and private data</li>
 				<li><strong>Data manipulation:</strong> Change prices to $0, grant admin privileges, modify records</li>
@@ -238,8 +233,8 @@ const getUser = async (userId) => {
 		<section class="article-section">
 			<h2>How do I detect SQL injection?</h2>
 			<p>
-				Search your codebase for these dangerous patterns. If you find any, you likely have SQL
-				injection vulnerabilities.
+				Detect SQL injection by searching for template literals or string concatenation in database queries.
+				Any query containing <code>${`\${variable}`}</code> or <code>+ variable</code> is likely vulnerable.
 			</p>
 
 			<div class="code-block">
@@ -274,6 +269,10 @@ prisma.$queryRaw(\`SELECT * FROM users WHERE email = '\${email}'\`)
 		<!-- How to Fix -->
 		<section class="article-section">
 			<h2>How do I fix SQL injection?</h2>
+			<p>
+				Fix SQL injection by using parameterized queries instead of string concatenation.
+				Pass user input as parameters, never concatenate it into query strings.
+			</p>
 
 			<!-- AI Fix Prompt -->
 			<div class="fix-section">
