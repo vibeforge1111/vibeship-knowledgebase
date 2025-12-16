@@ -1,6 +1,16 @@
 <script lang="ts">
 	import { Header } from '$lib/components/layout';
 	import { Terminal } from '$lib/components/ui';
+	import { goto } from '$app/navigation';
+
+	let searchQuery = $state('');
+
+	function handleSearch(e: Event) {
+		e.preventDefault();
+		if (searchQuery.trim()) {
+			goto(`/kb/search?q=${encodeURIComponent(searchQuery.trim())}`);
+		}
+	}
 
 	const categories = [
 		{
@@ -67,6 +77,23 @@
 			</p>
 		</div>
 
+		<!-- Prominent Search Bar -->
+		<form class="kb-search-form" onsubmit={handleSearch}>
+			<div class="kb-search-container">
+				<svg class="kb-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<circle cx="11" cy="11" r="8"/>
+					<path d="M21 21l-4.35-4.35"/>
+				</svg>
+				<input
+					type="text"
+					class="kb-search-input"
+					placeholder="Search vulnerabilities, fixes, AI patterns..."
+					bind:value={searchQuery}
+				/>
+				<kbd class="kb-search-shortcut">/</kbd>
+			</div>
+		</form>
+
 		<div class="terminal-section">
 			<Terminal />
 		</div>
@@ -123,7 +150,7 @@
 				AI coding tools like Cursor, Claude Code, and Bolt are transforming how we build software. But they're also introducing new security patterns, and new vulnerabilities.
 			</p>
 			<p>
-				We've scanned thousands of AI-generated repositories and found that <strong>73% contain at least one security vulnerability</strong>. The most common issues? SQL injection, hardcoded secrets, and missing authentication.
+				When you're vibe coding, AI tools prioritize working code over secure code. They generate template literals instead of parameterized queries. They hardcode API keys to make examples run immediately. They skip authentication because you didn't ask for it.
 			</p>
 			<p>
 				This knowledge base exists to help you understand these vulnerabilities, why AI tools create them, and how to fix them. We provide copy-paste prompts you can use directly in your AI coding tool.
@@ -132,22 +159,48 @@
 
 		<section class="article-section">
 			<h2>What Makes Us Different</h2>
-			<div class="stats-row" style="margin-top: 1.5rem;">
-				<div class="stat-box">
-					<div class="stat-value">73%</div>
-					<div class="stat-label">AI repos with vulnerabilities</div>
+			<div class="features-grid">
+				<div class="feature-item">
+					<div class="feature-icon">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<rect x="4" y="4" width="16" height="16" rx="2"/>
+							<rect x="9" y="9" width="6" height="6"/>
+							<path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
+						</svg>
+					</div>
+					<h3>AI-Focused</h3>
+					<p>Patterns specific to Cursor, Claude Code, Bolt, v0, and other AI coding tools</p>
 				</div>
-				<div class="stat-box">
-					<div class="stat-value">10K+</div>
-					<div class="stat-label">Repos scanned</div>
+				<div class="feature-item">
+					<div class="feature-icon">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<rect x="9" y="9" width="13" height="13" rx="2"/>
+							<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+						</svg>
+					</div>
+					<h3>Copy-Paste Fixes</h3>
+					<p>AI prompts you can paste directly into your coding tool to fix vulnerabilities</p>
 				</div>
-				<div class="stat-box">
-					<div class="stat-value">7</div>
-					<div class="stat-label">AI tools analyzed</div>
+				<div class="feature-item">
+					<div class="feature-icon">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<path d="M12 2L2 7l10 5 10-5-10-5z"/>
+							<path d="M2 17l10 5 10-5"/>
+							<path d="M2 12l10 5 10-5"/>
+						</svg>
+					</div>
+					<h3>Stack-Specific</h3>
+					<p>Guides for Next.js + Supabase, Express + PostgreSQL, SvelteKit, and more</p>
 				</div>
-				<div class="stat-box">
-					<div class="stat-value">Weekly</div>
-					<div class="stat-label">Data updates</div>
+				<div class="feature-item">
+					<div class="feature-icon">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+							<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+						</svg>
+					</div>
+					<h3>Plain English</h3>
+					<p>No jargon. Written for vibe coders, not security researchers</p>
 				</div>
 			</div>
 		</section>
@@ -155,6 +208,58 @@
 </div>
 
 <style>
+	/* Prominent Search Bar */
+	.kb-search-form {
+		margin-bottom: 2rem;
+	}
+
+	.kb-search-container {
+		position: relative;
+		display: flex;
+		align-items: center;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		transition: border-color 0.15s ease, box-shadow 0.15s ease;
+	}
+
+	.kb-search-container:focus-within {
+		border-color: var(--green);
+		box-shadow: 0 0 0 3px var(--green-dim);
+	}
+
+	.kb-search-icon {
+		position: absolute;
+		left: 1.25rem;
+		color: var(--text-tertiary);
+		pointer-events: none;
+	}
+
+	.kb-search-input {
+		flex: 1;
+		background: transparent;
+		border: none;
+		padding: 1.125rem 1rem 1.125rem 3.5rem;
+		font-size: 1.125rem;
+		color: var(--text-primary);
+		outline: none;
+	}
+
+	.kb-search-input::placeholder {
+		color: var(--text-tertiary);
+	}
+
+	.kb-search-shortcut {
+		margin-right: 1rem;
+		padding: 0.25rem 0.5rem;
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
+		border-radius: 4px;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--text-tertiary);
+	}
+
 	.terminal-section {
 		margin-bottom: 2.5rem;
 	}
@@ -166,5 +271,53 @@
 
 	.category-icon svg {
 		display: block;
+	}
+
+	/* Features Grid */
+	.features-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.feature-item {
+		padding: 1.5rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		border-radius: 8px;
+	}
+
+	.feature-icon {
+		margin-bottom: 1rem;
+		color: var(--green);
+	}
+
+	.feature-item h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1rem;
+		font-weight: 600;
+	}
+
+	.feature-item p {
+		margin: 0;
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	@media (max-width: 640px) {
+		.features-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.kb-search-input {
+			font-size: 1rem;
+			padding: 1rem 1rem 1rem 3rem;
+		}
+
+		.kb-search-shortcut {
+			display: none;
+		}
 	}
 </style>

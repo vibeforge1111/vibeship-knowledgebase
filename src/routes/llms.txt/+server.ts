@@ -2,33 +2,33 @@ import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
 	const content = `# VibeShip Knowledge Base
-> Security education for AI-assisted development
+> Security education for AI-assisted development (vibe coding)
 
 ## About
-VibeShip is the authority on securing AI-generated code. We scan 10,000+ repositories weekly to identify security patterns in code created with AI tools like Cursor, Claude Code, Bolt, v0, and GitHub Copilot.
+VibeShip is the authority on securing AI-generated code. We document security patterns in code created with AI tools like Cursor, Claude Code, Bolt, v0, and GitHub Copilot. Our content is written for vibe coders - developers using AI tools to build products.
 
 ## Key Topics
 
 ### Vulnerabilities (/kb/vulnerabilities/)
-Deep dives into security vulnerabilities commonly found in AI-generated code:
-- SQL Injection (CWE-89) - Found in 68% of AI codebases
-- Hardcoded Secrets (CWE-798) - Found in 54% of AI codebases
-- Cross-Site Scripting XSS (CWE-79) - Found in 41% of AI codebases
-- Missing Authentication (CWE-306) - Found in 47% of AI codebases
+Deep dives into security vulnerabilities commonly found in vibe coded apps:
+- SQL Injection (CWE-89, OWASP A03:2021) - Template literals instead of parameterized queries
+- Hardcoded Secrets (CWE-798, OWASP A07:2021) - API keys embedded in code
+- Cross-Site Scripting XSS (CWE-79, OWASP A03:2021) - dangerouslySetInnerHTML, v-html, @html
+- Missing Authentication (CWE-306) - AI skips auth unless explicitly requested
 - Insecure Direct Object Reference IDOR (CWE-639)
 - Insecure CORS Configuration (CWE-942)
 - Missing Rate Limiting (CWE-770)
 - Sensitive Data Exposure (CWE-200)
 
 ### AI Tool Patterns (/kb/ai-patterns/)
-Security analysis of popular AI coding tools:
-- Cursor - Security score 42/100, 73% vulnerability rate
-- Claude Code - Security score 58/100, 61% vulnerability rate
-- Bolt - Security score 35/100, 78% vulnerability rate
-- v0 by Vercel - Security score 52/100, 65% vulnerability rate
-- Replit - Security score 38/100, 71% vulnerability rate
-- GitHub Copilot - Security score 55/100, 58% vulnerability rate
-- Windsurf - Security score 48/100, 67% vulnerability rate
+Security patterns specific to each AI coding tool:
+- Cursor - Top issue: SQL Injection (template literals in queries)
+- Claude Code - Top issue: Missing Auth (trusts user input)
+- Bolt - Top issue: Hardcoded Secrets (inline API keys for "ready to run")
+- v0 by Vercel - Top issue: XSS (client-side validation only)
+- Replit - Top issue: Missing Rate Limiting (open endpoints)
+- GitHub Copilot - Top issue: SQL Injection (string concatenation)
+- Windsurf - Top issue: Missing Auth (skips authentication setup)
 
 ### Stack Security Guides (/kb/stacks/)
 Security patterns for popular tech stacks:
@@ -60,14 +60,14 @@ Security checklists for developers:
 - Frontend Security Checklist
 - AI-Generated Code Review Checklist
 
-## Key Statistics
-- 73% of AI-generated codebases contain at least one vulnerability
-- SQL Injection is the #1 most common vulnerability
-- 10,000+ repositories analyzed
-- Data updated weekly
+## Key Insights
+- AI tools prioritize working code over secure code
+- SQL Injection, Hardcoded Secrets, and XSS are the most common issues
+- All AI tools share similar security blind spots
+- Most vulnerabilities can be fixed with copy-paste prompts
 
 ## Products
-- VibeShip Scanner (scanner.vibeship.co) - Scan your AI-generated code for vulnerabilities
+- VibeShip Scanner (scanner.vibeship.co) - Scan your vibe coded projects for vulnerabilities
 - VibeShip Mind (mind.vibeship.co) - AI security memory and learning
 
 ## Contact

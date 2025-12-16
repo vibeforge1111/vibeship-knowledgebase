@@ -23,8 +23,8 @@
 		{ type: 'topic', text: '→ AI Tool Patterns', delay: 3000 },
 		{ type: 'topic', text: '→ Stack Security Guides', delay: 3200 },
 		{ type: 'output', text: '', delay: 3600 },
-		{ type: 'stat', text: '73% of AI repos have vulnerabilities', delay: 3800 },
-		{ type: 'cta', text: 'Let\'s fix that. Explore this knowledge base and use our free scanner.', delay: 4200 }
+		{ type: 'stat', text: 'AI tools generate insecure patterns by default', delay: 3800 },
+		{ type: 'cta', text: 'Learn what they miss. Explore this knowledge base and use our free scanner.', delay: 4200 }
 	];
 
 	let visibleLines: TerminalLine[] = $state([]);
