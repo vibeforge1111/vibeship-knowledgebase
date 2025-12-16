@@ -110,7 +110,7 @@
 				Our Unique Data
 			</div>
 			<p class="quick-answer-text">
-				This is data no one else has. We scan thousands of AI-generated repositories weekly to identify which tools produce the most secure code — and which vulnerabilities they commonly create.
+				This is data no one else has. We scan thousands of AI-generated repositories weekly to identify which tools produce the most secure code, and which vulnerabilities they commonly create.
 			</p>
 		</div>
 
@@ -184,20 +184,20 @@
 			<h2>Why AI Tools Create Vulnerabilities</h2>
 			<p>AI coding assistants generate security issues because of:</p>
 			<ul>
-				<li><strong>Training data bias</strong> — Many online examples prioritize simplicity over security</li>
-				<li><strong>Context limitations</strong> — AI may not understand that a variable contains untrusted user input</li>
-				<li><strong>Pattern matching</strong> — AI optimizes for "working code" not necessarily secure code</li>
-				<li><strong>Legacy patterns</strong> — Training on older code that predates modern security practices</li>
+				<li><strong>Training data bias:</strong> Many online examples prioritize simplicity over security</li>
+				<li><strong>Context limitations:</strong> AI may not understand that a variable contains untrusted user input</li>
+				<li><strong>Pattern matching:</strong> AI optimizes for "working code" not necessarily secure code</li>
+				<li><strong>Legacy patterns:</strong> Training on older code that predates modern security practices</li>
 			</ul>
 		</section>
 
 		<section class="article-section">
 			<h2>Using AI Tools Securely</h2>
 			<ol>
-				<li><strong>Always review generated code</strong> — Don't blindly accept AI suggestions</li>
-				<li><strong>Use security-focused prompts</strong> — Ask for secure, parameterized queries explicitly</li>
-				<li><strong>Scan before shipping</strong> — Run <a href="https://scanner.vibeship.co">VibeShip Scanner</a> on AI-generated code</li>
-				<li><strong>Learn the patterns</strong> — Understand what each tool gets wrong</li>
+				<li><strong>Always review generated code:</strong> Don't blindly accept AI suggestions</li>
+				<li><strong>Use security-focused prompts:</strong> Ask for secure, parameterized queries explicitly</li>
+				<li><strong>Scan before shipping:</strong> Run <a href="https://scanner.vibeship.co">VibeShip Scanner</a> on AI-generated code</li>
+				<li><strong>Learn the patterns:</strong> Understand what each tool gets wrong</li>
 			</ol>
 		</section>
 	</div>

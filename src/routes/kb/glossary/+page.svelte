@@ -134,7 +134,7 @@
 		<div class="article-header">
 			<h1>Security Glossary</h1>
 			<p class="text-secondary" style="font-size: 1.1rem; max-width: 650px;">
-				Plain English definitions of security terms. No jargon, no assumptions — just clear explanations for developers learning security.
+				Plain English definitions of security terms. No jargon, no assumptions. Just clear explanations for developers learning security.
 			</p>
 		</div>
 
@@ -202,9 +202,9 @@
 			<h2>How to Use This Glossary</h2>
 			<p>This glossary is designed for:</p>
 			<ul>
-				<li><strong>Quick lookups</strong> — Find definitions while reading security reports</li>
-				<li><strong>Learning</strong> — Each term links to detailed explanations with examples</li>
-				<li><strong>AI context</strong> — Copy definitions into AI prompts for better understanding</li>
+				<li><strong>Quick lookups:</strong> Find definitions while reading security reports</li>
+				<li><strong>Learning:</strong> Each term links to detailed explanations with examples</li>
+				<li><strong>AI context:</strong> Copy definitions into AI prompts for better understanding</li>
 			</ul>
 		</section>
 

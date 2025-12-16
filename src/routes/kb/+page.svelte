@@ -120,13 +120,13 @@
 		<section class="article-section">
 			<h2>Why This Knowledge Base?</h2>
 			<p>
-				AI coding tools like Cursor, Claude Code, and Bolt are transforming how we build software. But they're also introducing new security patterns — and new vulnerabilities.
+				AI coding tools like Cursor, Claude Code, and Bolt are transforming how we build software. But they're also introducing new security patterns, and new vulnerabilities.
 			</p>
 			<p>
 				We've scanned thousands of AI-generated repositories and found that <strong>73% contain at least one security vulnerability</strong>. The most common issues? SQL injection, hardcoded secrets, and missing authentication.
 			</p>
 			<p>
-				This knowledge base exists to help you understand these vulnerabilities, why AI tools create them, and how to fix them — with copy-paste prompts you can use directly in your AI coding tool.
+				This knowledge base exists to help you understand these vulnerabilities, why AI tools create them, and how to fix them. We provide copy-paste prompts you can use directly in your AI coding tool.
 			</p>
 		</section>
 

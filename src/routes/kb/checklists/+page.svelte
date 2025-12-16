@@ -80,7 +80,7 @@
 				Start Here
 			</div>
 			<p class="quick-answer-text">
-				New to security? Start with the <strong>Pre-Launch Security Checklist</strong> — it covers the most critical items every app needs before going live.
+				New to security? Start with the <strong>Pre-Launch Security Checklist</strong>. It covers the most critical items every app needs before going live.
 			</p>
 		</div>
 
@@ -138,10 +138,10 @@
 		<section class="article-section">
 			<h2>How to Use Checklists</h2>
 			<ol>
-				<li><strong>Pick the right checklist</strong> — Choose based on your role and what you're building</li>
-				<li><strong>Work through each item</strong> — Don't skip items even if they seem obvious</li>
-				<li><strong>Use linked resources</strong> — Each item links to explanations and fix prompts</li>
-				<li><strong>Run automated checks</strong> — Use <a href="https://scanner.vibeship.co">VibeShip Scanner</a> for automatic detection</li>
+				<li><strong>Pick the right checklist:</strong> Choose based on your role and what you're building</li>
+				<li><strong>Work through each item:</strong> Don't skip items even if they seem obvious</li>
+				<li><strong>Use linked resources:</strong> Each item links to explanations and fix prompts</li>
+				<li><strong>Run automated checks:</strong> Use <a href="https://scanner.vibeship.co">VibeShip Scanner</a> for automatic detection</li>
 			</ol>
 		</section>
 

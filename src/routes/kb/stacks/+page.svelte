@@ -160,10 +160,10 @@
 			<h2>Choosing a Secure Stack</h2>
 			<p>When starting a new project, consider these security factors:</p>
 			<ul>
-				<li><strong>Built-in protections</strong> — Django and Rails have CSRF protection by default; Express doesn't</li>
-				<li><strong>Type safety</strong> — TypeScript and Prisma catch errors before runtime</li>
-				<li><strong>Authentication</strong> — Supabase includes auth; Express requires manual implementation</li>
-				<li><strong>AI familiarity</strong> — AI tools generate more secure code for popular stacks they've seen more of</li>
+				<li><strong>Built-in protections:</strong> Django and Rails have CSRF protection by default; Express doesn't</li>
+				<li><strong>Type safety:</strong> TypeScript and Prisma catch errors before runtime</li>
+				<li><strong>Authentication:</strong> Supabase includes auth; Express requires manual implementation</li>
+				<li><strong>AI familiarity:</strong> AI tools generate more secure code for popular stacks they've seen more of</li>
 			</ul>
 		</section>
 	</div>

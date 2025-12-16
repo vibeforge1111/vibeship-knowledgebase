@@ -168,10 +168,10 @@
 			<h2>Writing Effective Fix Prompts</h2>
 			<p>When asking AI to fix security issues, be specific:</p>
 			<ol>
-				<li><strong>Name the vulnerability</strong> — "This has a SQL injection vulnerability" not "fix this"</li>
-				<li><strong>Specify the fix pattern</strong> — "Use parameterized queries" not "make it secure"</li>
-				<li><strong>Mention the library</strong> — "Use the pg library's $1 syntax" for concrete guidance</li>
-				<li><strong>Ask for explanation</strong> — "Explain why the original code was vulnerable"</li>
+				<li><strong>Name the vulnerability:</strong> "This has a SQL injection vulnerability" not "fix this"</li>
+				<li><strong>Specify the fix pattern:</strong> "Use parameterized queries" not "make it secure"</li>
+				<li><strong>Mention the library:</strong> "Use the pg library's $1 syntax" for concrete guidance</li>
+				<li><strong>Ask for explanation:</strong> "Explain why the original code was vulnerable"</li>
 			</ol>
 		</section>
 
@@ -181,7 +181,7 @@
 			<ul>
 				<li>Run <a href="https://scanner.vibeship.co">VibeShip Scanner</a> on the fixed code</li>
 				<li>Test with malicious inputs manually</li>
-				<li>Review the fix logic — does it make sense?</li>
+				<li>Review the fix logic. Does it make sense?</li>
 				<li>Check for regressions in functionality</li>
 			</ul>
 		</section>
