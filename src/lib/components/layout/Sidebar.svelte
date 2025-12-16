@@ -5,28 +5,28 @@
 		{
 			title: 'Knowledge Base',
 			items: [
-				{ href: '/kb', label: 'Overview', icon: '📚' },
-				{ href: '/kb/vulnerabilities', label: 'Vulnerabilities', icon: '🔓' },
-				{ href: '/kb/ai-patterns', label: 'AI Patterns', icon: '🤖' },
-				{ href: '/kb/stacks', label: 'Stacks', icon: '📦' },
-				{ href: '/kb/fixes', label: 'Fix Prompts', icon: '🔧' },
-				{ href: '/kb/glossary', label: 'Glossary', icon: '📖' },
-				{ href: '/kb/checklists', label: 'Checklists', icon: '✅' }
+				{ href: '/kb', label: 'Overview' },
+				{ href: '/kb/vulnerabilities', label: 'Vulnerabilities', badge: '25+' },
+				{ href: '/kb/ai-patterns', label: 'AI Patterns', badge: '7' },
+				{ href: '/kb/stacks', label: 'Stacks' },
+				{ href: '/kb/fixes', label: 'Fix Prompts', badge: '50+' },
+				{ href: '/kb/glossary', label: 'Glossary' },
+				{ href: '/kb/checklists', label: 'Checklists' }
 			]
 		},
 		{
 			title: 'Research',
 			items: [
-				{ href: '/research/vulnerability-index', label: 'Vulnerability Index', icon: '📊' },
-				{ href: '/research/ai-tool-comparison', label: 'AI Tool Comparison', icon: '⚖️' },
-				{ href: '/research/methodology', label: 'Methodology', icon: '🔬' }
+				{ href: '/research/vulnerability-index', label: 'Vulnerability Index', badge: 'NEW' },
+				{ href: '/research/ai-tool-comparison', label: 'AI Tool Comparison' },
+				{ href: '/research/methodology', label: 'Methodology' }
 			]
 		},
 		{
 			title: 'Resources',
 			items: [
-				{ href: '/blog', label: 'Blog', icon: '✍️' },
-				{ href: '/tools', label: 'Tools', icon: '🛠️' }
+				{ href: '/blog', label: 'Blog' },
+				{ href: '/tools', label: 'Tools' }
 			]
 		}
 	];
@@ -39,33 +39,40 @@
 	}
 </script>
 
-<aside class="sidebar">
-	<div class="sidebar-header">
-		<a href="/" class="sidebar-logo">
-			<span class="sidebar-logo-text">VibeShip KB</span>
+<aside class="app-sidebar">
+	<div class="sidebar-logo">
+		<a href="/" class="sidebar-logo-link">
+			<img src="/logo.png" alt="VibeShip" class="sidebar-logo-img" />
+			<span class="sidebar-logo-text">VibeShip</span>
+			<span class="sidebar-logo-badge">KB</span>
 		</a>
 	</div>
 
 	<div class="sidebar-search">
-		<svg class="sidebar-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-			<circle cx="11" cy="11" r="8"></circle>
-			<path d="m21 21-4.35-4.35"></path>
-		</svg>
-		<input type="text" class="search-input" placeholder="Search docs..." />
+		<div class="search-wrapper">
+			<svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<circle cx="11" cy="11" r="8"></circle>
+				<path d="m21 21-4.35-4.35"></path>
+			</svg>
+			<input type="text" class="search-input" placeholder="Search..." />
+			<span class="search-shortcut">⌘K</span>
+		</div>
 	</div>
 
 	<nav class="sidebar-nav">
 		{#each navSections as section}
-			<div class="nav-section">
-				<div class="nav-section-title">{section.title}</div>
+			<div class="sidebar-section">
+				<div class="sidebar-section-title">{section.title}</div>
 				{#each section.items as item}
 					<a
 						href={item.href}
-						class="nav-link"
+						class="sidebar-link"
 						class:active={isActive(item.href, $page.url.pathname)}
 					>
-						<span>{item.icon}</span>
 						<span>{item.label}</span>
+						{#if item.badge}
+							<span class="sidebar-badge">{item.badge}</span>
+						{/if}
 					</a>
 				{/each}
 			</div>
@@ -73,8 +80,215 @@
 	</nav>
 
 	<div class="sidebar-footer">
-		<a href="https://scanner.vibeship.co" class="btn btn-primary" style="width: 100%; justify-content: center;">
+		<a href="https://scanner.vibeship.co" class="btn btn-green sidebar-cta">
+			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<circle cx="12" cy="12" r="10"></circle>
+				<path d="M12 16v-4"></path>
+				<path d="M12 8h.01"></path>
+			</svg>
 			Scan Your Code
 		</a>
 	</div>
 </aside>
+
+<style>
+	.app-sidebar {
+		width: 260px;
+		background: var(--bg-secondary);
+		border-right: 1px solid var(--border);
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		z-index: 100;
+	}
+
+	.sidebar-logo {
+		height: 60px;
+		padding: 0 1.5rem;
+		border-bottom: 1px solid var(--border);
+		display: flex;
+		align-items: center;
+	}
+
+	.sidebar-logo-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		text-decoration: none;
+	}
+
+	.sidebar-logo-img {
+		width: 28px;
+		height: 28px;
+		object-fit: contain;
+		filter: invert(var(--logo-invert));
+	}
+
+	.sidebar-logo-text {
+		font-family: 'Instrument Serif', serif;
+		font-size: 1.35rem;
+		font-weight: 400;
+		color: var(--text-primary);
+		line-height: 1;
+		letter-spacing: -0.02em;
+	}
+
+	.sidebar-logo-badge {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
+		font-weight: 600;
+		padding: 0.15rem 0.4rem;
+		background: transparent;
+		border: 1px solid var(--green-dim);
+		color: var(--green-dim);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.sidebar-search {
+		padding: 1rem 1rem;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.search-wrapper {
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
+
+	.search-icon {
+		position: absolute;
+		left: 0.75rem;
+		color: var(--text-tertiary);
+		pointer-events: none;
+	}
+
+	.search-input {
+		width: 100%;
+		padding: 0.5rem 0.75rem;
+		padding-left: 2.25rem;
+		padding-right: 2.5rem;
+		background: var(--bg-primary);
+		border: 1px solid var(--border);
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.8rem;
+		color: var(--text-primary);
+		transition: border-color 0.15s;
+	}
+
+	.search-input:focus {
+		outline: none;
+		border-color: var(--text-primary);
+	}
+
+	.search-input::placeholder {
+		color: var(--text-tertiary);
+	}
+
+	.search-shortcut {
+		position: absolute;
+		right: 0.5rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
+		color: var(--text-tertiary);
+		background: var(--bg-secondary);
+		padding: 0.15rem 0.35rem;
+		border: 1px solid var(--border);
+	}
+
+	.sidebar-nav {
+		flex: 1;
+		padding: 1rem 0;
+		overflow-y: auto;
+	}
+
+	.sidebar-section {
+		margin-bottom: 1.5rem;
+	}
+
+	.sidebar-section-title {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--text-tertiary);
+		padding: 0 1.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.sidebar-link {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.6rem 1.5rem;
+		color: var(--text-secondary);
+		text-decoration: none;
+		font-size: 0.85rem;
+		transition: all 0.15s;
+		position: relative;
+	}
+
+	.sidebar-link:hover {
+		background: var(--bg-primary);
+		color: var(--text-primary);
+	}
+
+	.sidebar-link.active {
+		background: var(--bg-primary);
+		color: var(--green-dim);
+		font-weight: 500;
+	}
+
+	.sidebar-link.active::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 3px;
+		background: var(--green-dim);
+	}
+
+	.sidebar-badge {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.6rem;
+		font-weight: 600;
+		padding: 0.1rem 0.35rem;
+		background: transparent;
+		border: 1px solid var(--border);
+		color: var(--text-tertiary);
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+	}
+
+	.sidebar-link.active .sidebar-badge {
+		border-color: var(--green-dim);
+		color: var(--green-dim);
+	}
+
+	.sidebar-footer {
+		padding: 1rem 1rem;
+		border-top: 1px solid var(--border);
+	}
+
+	.sidebar-cta {
+		width: 100%;
+		justify-content: center;
+	}
+
+	/* Mobile responsive */
+	@media (max-width: 768px) {
+		.app-sidebar {
+			transform: translateX(-100%);
+			transition: transform 0.3s;
+		}
+
+		.app-sidebar.open {
+			transform: translateX(0);
+		}
+	}
+</style>
