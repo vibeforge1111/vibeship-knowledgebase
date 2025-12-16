@@ -640,3 +640,154 @@
   opacity: 1;
   visibility: visible;
 }
+
+/* ============================================
+   MOBILE RESPONSIVE - Components
+   ============================================ */
+@media (max-width: 768px) {
+  /* Code blocks - horizontal scroll on mobile */
+  .code-block pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .code-block pre code {
+    font-size: 0.75rem;
+  }
+
+  /* Fix prompt - smaller text on mobile */
+  .fix-prompt-content {
+    font-size: 0.7rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Stats row - 2 columns on mobile */
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.6rem;
+  }
+
+  /* Related grid - single column */
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Badges - smaller on mobile */
+  .badge {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  /* Alerts - tighter padding */
+  .alert {
+    padding: 0.75rem 1rem;
+  }
+
+  .alert-title {
+    font-size: 0.65rem;
+  }
+
+  .alert p {
+    font-size: 0.8rem;
+  }
+
+  /* Cards - tighter padding */
+  .card {
+    padding: 1rem;
+  }
+
+  /* Buttons - full width on mobile when needed */
+  .btn-mobile-full {
+    width: 100%;
+  }
+
+  /* Breadcrumbs - scrollable */
+  .breadcrumbs {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.75rem;
+  }
+
+  /* TOC - hidden on mobile (controlled in layout) */
+  .toc {
+    display: none;
+  }
+
+  /* Code block header - tighter */
+  .code-block-header {
+    padding: 0.4rem 0.75rem;
+  }
+
+  .code-block-lang {
+    font-size: 0.6rem;
+  }
+
+  /* Fix prompt header - tighter */
+  .fix-prompt-header {
+    padding: 0.5rem 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .fix-prompt-label {
+    font-size: 0.6rem;
+  }
+
+  /* Copy button - smaller on mobile */
+  .copy-btn {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.6rem;
+  }
+
+  /* Nav links - tighter */
+  .nav-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .nav-section-title {
+    padding: 0 1rem;
+    font-size: 0.6rem;
+  }
+
+  /* Tabs - scrollable on mobile */
+  .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+  }
+
+  .tab {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* Checklist - tighter */
+  .checklist-item {
+    padding: 0.5rem 0;
+    gap: 0.5rem;
+  }
+
+  .checklist-checkbox {
+    width: 18px;
+    height: 18px;
+  }
+
+  .checklist-title {
+    font-size: 0.9rem;
+  }
+
+  .checklist-description {
+    font-size: 0.8rem;
+  }
+}

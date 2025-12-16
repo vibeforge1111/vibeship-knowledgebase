@@ -341,6 +341,48 @@
   .mobile-menu-btn {
     display: flex;
   }
+
+  /* Article header - tighter on mobile */
+  .article-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .article-meta {
+    gap: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .article-meta-item {
+    font-size: 0.7rem;
+  }
+
+  .article-section {
+    margin-bottom: 2rem;
+  }
+
+  .article-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  /* Quick answer box - tighter mobile */
+  .quick-answer {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .quick-answer-label {
+    font-size: 0.65rem;
+  }
+
+  .quick-answer-text {
+    font-size: 0.9rem;
+  }
+
+  /* Stats row - already handled but ensure 2 columns */
+  .stats-row {
+    gap: 0.75rem;
+  }
 }
 
 /* Overlay for mobile */
