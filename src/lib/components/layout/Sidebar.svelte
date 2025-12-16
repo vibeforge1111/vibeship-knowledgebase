@@ -48,7 +48,7 @@
 
 <aside class="app-sidebar" class:open={isOpen}>
 	<div class="sidebar-logo">
-		<a href="/" class="sidebar-logo-link">
+		<a href="/kb" class="sidebar-logo-link">
 			<img src="/logo.png" alt="vibeship" class="sidebar-logo-img" />
 			<span class="sidebar-logo-text">vibeship</span>
 			<span class="sidebar-logo-product">kb</span>

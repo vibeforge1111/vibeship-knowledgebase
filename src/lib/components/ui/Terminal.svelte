@@ -1,43 +1,40 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	interface ScanLine {
-		type: 'command' | 'output' | 'critical' | 'high' | 'medium' | 'info' | 'success' | 'link';
+	interface TerminalLine {
+		type: 'command' | 'output' | 'welcome' | 'topic' | 'info' | 'status' | 'stat' | 'cta' | 'link';
 		text: string;
 		href?: string;
 		delay?: number;
 	}
 
-	const scanOutput: ScanLine[] = [
-		{ type: 'command', text: '$ vibeship scan ./my-vibe-project', delay: 0 },
-		{ type: 'output', text: '', delay: 300 },
-		{ type: 'info', text: 'Scanning 47 files...', delay: 600 },
-		{ type: 'output', text: '', delay: 1200 },
-		{ type: 'critical', text: '[CRITICAL] SQL Injection detected', delay: 1400 },
-		{ type: 'output', text: '  → src/api/users.ts:23', delay: 1600 },
-		{ type: 'link', text: '  → Learn more', href: '/kb/vulnerabilities/sql-injection', delay: 1800 },
+	const terminalContent: TerminalLine[] = [
+		{ type: 'command', text: '$ vibeship init --vibe-coder', delay: 0 },
+		{ type: 'output', text: '', delay: 400 },
+		{ type: 'welcome', text: 'Welcome to VibeShip Knowledge Base', delay: 700 },
+		{ type: 'info', text: 'Your guide to shipping secure AI-generated code', delay: 1000 },
+		{ type: 'output', text: '', delay: 1400 },
+		{ type: 'status', text: 'Loading topics...', delay: 1600 },
 		{ type: 'output', text: '', delay: 2000 },
-		{ type: 'high', text: '[HIGH] Hardcoded API Key', delay: 2200 },
-		{ type: 'output', text: '  → .env.local:5', delay: 2400 },
-		{ type: 'link', text: '  → Learn more', href: '/kb/vulnerabilities/hardcoded-secrets', delay: 2600 },
-		{ type: 'output', text: '', delay: 2800 },
-		{ type: 'medium', text: '[MEDIUM] Missing Rate Limiting', delay: 3000 },
-		{ type: 'output', text: '  → src/routes/api/login.ts', delay: 3200 },
-		{ type: 'link', text: '  → Learn more', href: '/kb/vulnerabilities/missing-rate-limiting', delay: 3400 },
+		{ type: 'topic', text: '→ SQL Injection', delay: 2200 },
+		{ type: 'topic', text: '→ Hardcoded Secrets', delay: 2400 },
+		{ type: 'topic', text: '→ XSS & Input Validation', delay: 2600 },
+		{ type: 'topic', text: '→ Auth & Access Control', delay: 2800 },
+		{ type: 'topic', text: '→ AI Tool Patterns', delay: 3000 },
+		{ type: 'topic', text: '→ Stack Security Guides', delay: 3200 },
 		{ type: 'output', text: '', delay: 3600 },
-		{ type: 'success', text: 'Scan complete: 3 issues found in 2.3s', delay: 3800 },
-		{ type: 'output', text: '', delay: 4000 },
-		{ type: 'info', text: 'Run a full scan at scanner.vibeship.co', delay: 4200 }
+		{ type: 'stat', text: '73% of AI repos have vulnerabilities', delay: 3800 },
+		{ type: 'cta', text: 'Let\'s fix that. Explore this knowledge base and use our free scanner.', delay: 4200 }
 	];
 
-	let visibleLines: ScanLine[] = $state([]);
+	let visibleLines: TerminalLine[] = $state([]);
 	let isComplete = $state(false);
 
 	onMount(() => {
-		scanOutput.forEach((line, index) => {
+		terminalContent.forEach((line, index) => {
 			setTimeout(() => {
 				visibleLines = [...visibleLines, line];
-				if (index === scanOutput.length - 1) {
+				if (index === terminalContent.length - 1) {
 					isComplete = true;
 				}
 			}, line.delay || 0);
@@ -47,11 +44,12 @@
 	function getLineClass(type: string): string {
 		switch (type) {
 			case 'command': return 'line-command';
-			case 'critical': return 'line-critical';
-			case 'high': return 'line-high';
-			case 'medium': return 'line-medium';
+			case 'welcome': return 'line-welcome';
+			case 'topic': return 'line-topic';
 			case 'info': return 'line-info';
-			case 'success': return 'line-success';
+			case 'status': return 'line-status';
+			case 'stat': return 'line-stat';
+			case 'cta': return 'line-cta';
 			case 'link': return 'line-link';
 			default: return '';
 		}
@@ -60,12 +58,20 @@
 
 <div class="terminal">
 	<div class="terminal-header">
-		<div class="terminal-dots">
-			<span class="dot dot-red"></span>
-			<span class="dot dot-yellow"></span>
-			<span class="dot dot-green"></span>
+		<div class="terminal-header-left">
+			<div class="terminal-dots">
+				<span class="dot dot-red"></span>
+				<span class="dot dot-yellow"></span>
+				<span class="dot dot-green"></span>
+			</div>
+			<span class="terminal-title">vibeship_kb()</span>
 		</div>
-		<span class="terminal-title">vibeship_scan()</span>
+		<a href="https://scanner.vibeship.co" class="terminal-cta">
+			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+				<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+			</svg>
+			Scan your code free
+		</a>
 	</div>
 	<div class="terminal-body">
 		{#each visibleLines as line}
@@ -78,14 +84,6 @@
 		{#if !isComplete}
 			<span class="cursor">_</span>
 		{/if}
-	</div>
-	<div class="terminal-footer">
-		<a href="https://scanner.vibeship.co" class="terminal-cta">
-			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-				<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-			</svg>
-			Scan your code free
-		</a>
 	</div>
 </div>
 
@@ -101,10 +99,16 @@
 	.terminal-header {
 		display: flex;
 		align-items: center;
-		gap: 0.75rem;
+		justify-content: space-between;
 		padding: 0.75rem 1rem;
 		background: var(--bg-secondary);
 		border-bottom: 1px solid var(--border);
+	}
+
+	.terminal-header-left {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
 	}
 
 	.terminal-dots {
@@ -129,8 +133,9 @@
 
 	.terminal-body {
 		padding: 1rem;
-		min-height: 280px;
+		height: 360px;
 		line-height: 1.6;
+		overflow: hidden;
 	}
 
 	.terminal-line {
@@ -139,30 +144,34 @@
 	}
 
 	.line-command {
-		color: var(--green);
+		color: var(--text-primary);
 	}
 
-	.line-critical {
-		color: var(--red);
+	.line-welcome {
+		color: var(--text-primary);
 		font-weight: 600;
+		font-size: 0.9rem;
 	}
 
-	.line-high {
-		color: var(--orange);
-		font-weight: 600;
-	}
-
-	.line-medium {
-		color: var(--blue);
-		font-weight: 600;
+	.line-topic {
+		color: var(--green-dim);
+		padding-left: 0.5rem;
 	}
 
 	.line-info {
 		color: var(--text-tertiary);
 	}
 
-	.line-success {
-		color: var(--green);
+	.line-status {
+		color: var(--text-primary);
+	}
+
+	.line-stat {
+		color: var(--text-primary);
+	}
+
+	.line-cta {
+		color: var(--green-dim);
 	}
 
 	.line-link {
@@ -186,30 +195,38 @@
 		50% { opacity: 0; }
 	}
 
-	.terminal-footer {
-		padding: 0.75rem 1rem;
-		border-top: 1px solid var(--border);
-		background: var(--bg-secondary);
-	}
-
 	.terminal-cta {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
 		color: var(--green-dim);
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 		text-decoration: none;
 		transition: color 0.15s;
 	}
 
 	.terminal-cta:hover {
 		color: var(--green);
+		text-decoration: none;
 	}
 
 	@media (max-width: 768px) {
 		.terminal-body {
-			min-height: 240px;
+			height: 340px;
 			font-size: 0.7rem;
+		}
+
+		.line-welcome {
+			font-size: 0.8rem;
+		}
+
+		.terminal-cta {
+			font-size: 0.6rem;
+		}
+
+		.terminal-cta svg {
+			width: 12px;
+			height: 12px;
 		}
 	}
 </style>
