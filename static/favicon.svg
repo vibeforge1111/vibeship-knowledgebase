@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <!-- Vibeship sailboat logo -->
-  <g stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Vibeship sailboat logo - dark strokes for favicon visibility -->
+  <g stroke="#1a1a1a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <!-- Flag at top -->
     <path d="M16 3c-2 0.5-3 1.5-2.5 3s1.5 1.5 2.5 1"/>
     <!-- Main sail (right) -->
