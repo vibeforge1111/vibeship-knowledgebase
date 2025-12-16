@@ -163,18 +163,18 @@
 				<div class="feature-item">
 					<div class="feature-icon">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-							<rect x="4" y="4" width="16" height="16" rx="2"/>
+							<rect x="4" y="4" width="16" height="16"/>
 							<rect x="9" y="9" width="6" height="6"/>
 							<path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
 						</svg>
 					</div>
-					<h3>AI-Focused</h3>
-					<p>Patterns specific to Cursor, Claude Code, Bolt, v0, and other AI coding tools</p>
+					<h3>Vibe Coding Friendly</h3>
+					<p>Cursor, Claude Code, Bolt, v0, Lovable, Replit, Windsurf, Copilot, Gemini, and more</p>
 				</div>
 				<div class="feature-item">
 					<div class="feature-icon">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-							<rect x="9" y="9" width="13" height="13" rx="2"/>
+							<rect x="9" y="9" width="13" height="13"/>
 							<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
 						</svg>
 					</div>
@@ -200,7 +200,7 @@
 						</svg>
 					</div>
 					<h3>Plain English</h3>
-					<p>No jargon. Written for vibe coders, not security researchers</p>
+					<p>Every term explained. SQL injection = "attackers type code into your forms"</p>
 				</div>
 			</div>
 		</section>
@@ -219,7 +219,6 @@
 		align-items: center;
 		background: var(--bg-secondary);
 		border: 1px solid var(--border);
-		border-radius: 8px;
 		transition: border-color 0.15s ease, box-shadow 0.15s ease;
 	}
 
@@ -254,7 +253,6 @@
 		padding: 0.25rem 0.5rem;
 		background: var(--bg-tertiary);
 		border: 1px solid var(--border);
-		border-radius: 4px;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		color: var(--text-tertiary);
@@ -285,7 +283,6 @@
 		padding: 1.5rem;
 		background: var(--bg-secondary);
 		border: 1px solid var(--border);
-		border-radius: 8px;
 	}
 
 	.feature-icon {
