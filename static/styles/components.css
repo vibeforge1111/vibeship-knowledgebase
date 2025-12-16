@@ -562,6 +562,11 @@
 
 .related-card {
   padding: 1.25rem;
+  text-decoration: none;
+}
+
+.related-card:hover {
+  text-decoration: none;
 }
 
 .related-card-category {
