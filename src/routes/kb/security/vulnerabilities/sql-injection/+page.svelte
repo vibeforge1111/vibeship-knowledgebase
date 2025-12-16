@@ -636,10 +636,13 @@ const getUser = async (userId) => {
 	}
 
 	.faq-item h3 {
-		font-size: 1rem;
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+		font-size: 1.0625rem;
 		font-weight: 600;
-		margin: 0 0 0.75rem;
+		margin: 0 0 0.5rem;
 		color: var(--text-primary);
+		line-height: 1.5;
+		letter-spacing: -0.01em;
 	}
 
 	.faq-item p {
@@ -647,6 +650,12 @@ const getUser = async (userId) => {
 		font-size: 0.9375rem;
 		line-height: 1.7;
 		color: var(--text-secondary);
+	}
+
+	@media (max-width: 768px) {
+		.faq-item h3 {
+			font-size: 1rem;
+		}
 	}
 
 	/* Final CTA */
