@@ -1,0 +1,310 @@
+/* ============================================
+   VIBESHIP KNOWLEDGE BASE - THEME
+   Adapted from vibeship-scanner with enhanced readability
+   ============================================ */
+
+/* ============================================
+   CSS RESET
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   LIGHT THEME (Default)
+   ============================================ */
+:root, [data-theme="light"] {
+  /* Backgrounds - Pure Monochrome */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f8f8;
+  --bg-tertiary: #f0f0f0;
+  --bg-inverse: #000000;
+
+  /* Text - High Contrast Monochrome */
+  --text-primary: #000000;
+  --text-secondary: #4a4a4a;
+  --text-tertiary: #6b6b6b;
+  --text-inverse: #ffffff;
+  --text-inverse-secondary: #b0b0b0;
+
+  /* Borders */
+  --border: #e0e0e0;
+  --border-strong: #c0c0c0;
+
+  /* Accent Colors - Vibeship Palette */
+  --green: #2ECC71;        /* Terminal Green - success/fixed */
+  --green-dim: #00C49A;    /* Vibe Teal - primary accent */
+  --orange: #FFB020;       /* Compile Amber - warning/running */
+  --orange-dim: #d97706;
+  --red: #FF4D4D;          /* Debug Red - error/critical */
+  --blue: #3399FF;         /* Docker Blue - general */
+  --violet: #9D8CFF;       /* Syntax Violet - analytics */
+  --pink: #FF66C4;         /* Hot Pink - high priority */
+
+  /* Gray Scale */
+  --gray-100: #f8f8f8;
+  --gray-200: #f0f0f0;
+  --gray-300: #e0e0e0;
+  --gray-400: #c0c0c0;
+  --gray-500: #9a9a9a;
+  --gray-600: #6b6b6b;
+  --gray-700: #4a4a4a;
+  --gray-800: #2a2a2a;
+  --gray-900: #1a1a1a;
+
+  /* Logo */
+  --logo-invert: 0;
+}
+
+/* ============================================
+   DARK THEME
+   ============================================ */
+[data-theme="dark"] {
+  /* Backgrounds - Bluish Black Tones */
+  --bg-primary: #0e1016;
+  --bg-secondary: #151820;
+  --bg-tertiary: #1c202a;
+  --bg-inverse: #ffffff;
+
+  /* Text - Softer, Easier on Eyes */
+  --text-primary: #e2e4e9;
+  --text-secondary: #9aa3b5;
+  --text-tertiary: #6b7489;
+  --text-inverse: #0c0e14;
+  --text-inverse-secondary: #4a4a4a;
+
+  /* Borders - More Visible */
+  --border: #2a3042;
+  --border-strong: #3d4558;
+
+  /* Accent Colors - Same as Light */
+  --green: #2ECC71;
+  --green-dim: #00C49A;
+  --orange: #FFB020;
+  --orange-dim: #d97706;
+  --red: #FF4D4D;
+  --blue: #3399FF;
+  --violet: #9D8CFF;
+  --pink: #FF66C4;
+
+  /* Gray Scale - Bluish Tints */
+  --gray-100: #0f1218;
+  --gray-200: #181c25;
+  --gray-300: #2a3142;
+  --gray-400: #3d4559;
+  --gray-500: #5a6478;
+  --gray-600: #8892a6;
+  --gray-700: #b8c0d0;
+  --gray-800: #dce1eb;
+  --gray-900: #f0f2f5;
+
+  /* Logo */
+  --logo-invert: 1;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+html {
+  font-size: 16px; /* Larger base for readability */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7; /* More generous for reading */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+::selection {
+  background: var(--green-dim);
+  color: var(--bg-primary);
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1.25rem;
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--green-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--green);
+  text-decoration: underline;
+}
+
+strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Lists */
+ul, ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+  color: var(--text-secondary);
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+li::marker {
+  color: var(--green-dim);
+}
+
+/* Code */
+code {
+  font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  background: var(--bg-tertiary);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--text-primary);
+}
+
+pre {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Blockquote */
+blockquote {
+  border-left: 3px solid var(--green-dim);
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.font-serif {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-orange { color: var(--orange); }
+.text-blue { color: var(--blue); }
+.text-violet { color: var(--violet); }
+.text-pink { color: var(--pink); }
+
+.bg-primary { background: var(--bg-primary); }
+.bg-secondary { background: var(--bg-secondary); }
+.bg-tertiary { background: var(--bg-tertiary); }
+
+/* Flexbox */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
+
+/* Gap */
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+
+/* Spacing */
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.p-2 { padding: 0.5rem; }
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-400);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-500);
+}
