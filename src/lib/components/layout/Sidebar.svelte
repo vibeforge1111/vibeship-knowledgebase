@@ -1,6 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
+	interface Props {
+		isOpen?: boolean;
+		onClose?: () => void;
+	}
+
+	let { isOpen = false, onClose }: Props = $props();
+
 	const navSections = [
 		{
 			title: 'Knowledge Base',
@@ -39,7 +46,7 @@
 	}
 </script>
 
-<aside class="app-sidebar">
+<aside class="app-sidebar" class:open={isOpen}>
 	<div class="sidebar-logo">
 		<a href="/" class="sidebar-logo-link">
 			<img src="/logo.png" alt="vibeship" class="sidebar-logo-img" />
@@ -68,6 +75,7 @@
 						href={item.href}
 						class="sidebar-link"
 						class:active={isActive(item.href, $page.url.pathname)}
+						onclick={onClose}
 					>
 						<span>{item.label}</span>
 						{#if item.badge}
