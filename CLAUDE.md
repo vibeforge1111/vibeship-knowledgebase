@@ -721,18 +721,160 @@ Prisma Security:  https://www.prisma.io/docs/concepts/components/prisma-client/r
 
 ---
 
+## Two-Agent Content Pipeline (MANDATORY)
+
+**All KB content MUST be created using the two-agent system.** This ensures consistent quality, proper research, and SEO/LLM optimization.
+
+### The Pipeline
+
+```
+┌──────────────┐      ┌──────────────┐      ┌──────────────┐
+│   AGENT 1    │      │   HANDOFF    │      │   AGENT 2    │
+│   Research   │ ───▶ │   Content    │ ───▶ │   Writer     │ ───▶ OUTPUT
+│              │      │   Brief      │      │              │
+└──────────────┘      └──────────────┘      └──────────────┘
+```
+
+### Agent 1: Research Agent
+
+**Role:** Security research analyst who gathers data and creates structured briefs.
+
+**What Agent 1 Does:**
+- Query and analyze Scanner database (when available)
+- Research competitors via web search
+- Identify keyword opportunities and PAA questions
+- Validate CWE/OWASP references
+- Create structured Content Briefs
+- Map internal linking opportunities
+
+**What Agent 1 Does NOT Do:**
+- Write article prose
+- Create AI fix prompts
+- Write FAQ answers
+- Apply brand voice
+- Create code examples
+
+**Agent 1 Prompt Template:**
+```
+You are the VibeShip Research Agent. Create a comprehensive content brief for:
+
+Topic: [TOPIC NAME]
+Type: [vulnerability/tool/stack]
+
+Include:
+1. Core data (CWE, OWASP, external sources)
+2. SEO strategy (keywords, search intent, PAA questions)
+3. Competitive analysis (top 3 results, gaps)
+4. Content structure (outline with word counts)
+5. Internal linking targets
+6. Unique angle
+
+Use the template from docs/.content-ops/templates/
+Output a complete Content Brief - do NOT write the article.
+```
+
+### Agent 2: Writer Agent
+
+**Role:** World-class security content writer using VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.
+
+**What Agent 2 Does:**
+- Transform briefs into publication-ready content
+- Apply VibeShip brand voice
+- Create AI fix prompts (200-400 words)
+- Write FAQ sections with schema
+- Generate before/after code examples
+- Optimize for SEO and LLM citation
+
+**What Agent 2 Does NOT Do:**
+- Research new data
+- Validate statistics
+- Analyze competitors
+- Query databases
+
+**Agent 2 Prompt Template:**
+```
+You are the VibeShip Security Writer. Using the guidelines from
+docs/.content-ops/strategies/VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md,
+create a complete article from this Content Brief:
+
+[PASTE CONTENT BRIEF FROM AGENT 1]
+
+Requirements:
+- Follow exact content formula
+- Use all data points from brief
+- Create complete AI fix prompt
+- Write 5 FAQ entries
+- Include all internal links specified
+```
+
+### How to Execute (Using Claude Code Task Tool)
+
+**Step 1: Dispatch Research Agent(s) in Parallel**
+```
+Use Task tool with subagent_type='general-purpose':
+- "Research Claude Code security patterns for KB article. Create Content Brief using docs/.content-ops/templates/tool-brief.md"
+- "Research Bolt security patterns for KB article..."
+- "Research Next.js + Supabase security for KB stack guide..."
+```
+
+**Step 2: Review Briefs**
+Check each brief for:
+- [ ] All data points have sources
+- [ ] Keywords identified
+- [ ] Competitor gaps specific
+- [ ] Internal links valid
+
+**Step 3: Dispatch Writer Agent(s) with Briefs**
+```
+Use Task tool with subagent_type='general-purpose':
+- Include full VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md
+- Include the Content Brief from Step 1
+- Request complete Svelte component output
+```
+
+**Step 4: QA and Publish**
+- Verify against qa-checklist.md
+- Create Svelte file
+- Commit and update QUEUE.md
+
+### Key Documents
+
+| Document | Location | Purpose |
+|----------|----------|---------|
+| Research Agent | `docs/.content-ops/agents/research-agent.md` | Agent 1 system prompt |
+| Writer Agent | `docs/.content-ops/agents/writer-agent.md` | Agent 2 system prompt |
+| Full Writer Skill | `docs/.content-ops/strategies/VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md` | Complete writer guidelines |
+| Pipeline Guide | `docs/.content-ops/PIPELINE.md` | Full two-agent workflow |
+| Vulnerability Brief | `docs/.content-ops/templates/vulnerability-brief.md` | Template for vuln research |
+| Tool Brief | `docs/.content-ops/templates/tool-brief.md` | Template for AI tool research |
+| Stack Brief | `docs/.content-ops/templates/stack-brief.md` | Template for stack guide research |
+
+### Why Two Agents?
+
+| Single Agent Problems | Two-Agent Solution |
+|-----------------------|-------------------|
+| Research + writing consumes too much context | Each agent focused on its task |
+| Quality degrades mixing research + writing | Clear separation of concerns |
+| Hard to iterate | Review briefs before writing |
+| Inconsistent output | Standardized briefs ensure consistency |
+
+---
+
 ## Processing Queue Articles
 
 When processing from `.content-ops/QUEUE.md`:
 
-1. Read the article data from the queue
-2. Apply `writer-agent.md` guidelines
-3. Apply these CLAUDE.md rules for SEO/LLM/citations
-4. Include all required citations for the content type
-5. Output as Svelte component with frontmatter
-6. Verify against `qa-checklist.md` mentally
+1. **Agent 1:** Create Content Brief using appropriate template
+2. **Review:** Verify brief completeness
+3. **Agent 2:** Write article using VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md
+4. **Apply:** CLAUDE.md rules for SEO/LLM/citations
+5. **Output:** Svelte component
+6. **Verify:** Against qa-checklist.md
+7. **Update:** QUEUE.md status
+
+**For parallel processing, dispatch multiple Agent 1 tasks simultaneously, then multiple Agent 2 tasks.**
 
 **Start prompt:**
 ```
-Process the next article from .content-ops/QUEUE.md
+Process the next article from .content-ops/QUEUE.md using the two-agent pipeline
 ```
