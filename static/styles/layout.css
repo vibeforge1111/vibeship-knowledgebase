@@ -187,6 +187,19 @@
   gap: 1rem;
 }
 
+.hub-grid a.card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hub-grid a.card:hover {
+  text-decoration: none;
+}
+
+.hub-grid a.card h3 {
+  color: var(--text-primary);
+}
+
 /* ============================================
    FOOTER
    ============================================ */

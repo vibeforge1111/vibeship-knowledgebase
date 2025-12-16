@@ -42,17 +42,17 @@
 <aside class="app-sidebar">
 	<div class="sidebar-logo">
 		<a href="/" class="sidebar-logo-link">
-			<img src="/logo.png" alt="VibeShip" class="sidebar-logo-img" />
-			<span class="sidebar-logo-text">VibeShip</span>
-			<span class="sidebar-logo-badge">KB</span>
+			<img src="/logo.png" alt="vibeship" class="sidebar-logo-img" />
+			<span class="sidebar-logo-text">vibeship</span>
+			<span class="sidebar-logo-product">kb</span>
 		</a>
 	</div>
 
 	<div class="sidebar-search">
 		<div class="search-wrapper">
-			<svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-				<circle cx="11" cy="11" r="8"></circle>
-				<path d="m21 21-4.35-4.35"></path>
+			<svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+				<circle cx="11" cy="11" r="8"/>
+				<path d="m21 21-4.35-4.35"/>
 			</svg>
 			<input type="text" class="search-input" placeholder="Search..." />
 			<span class="search-shortcut">⌘K</span>
@@ -81,10 +81,8 @@
 
 	<div class="sidebar-footer">
 		<a href="https://scanner.vibeship.co" class="btn btn-green sidebar-cta">
-			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-				<circle cx="12" cy="12" r="10"></circle>
-				<path d="M12 16v-4"></path>
-				<path d="M12 8h.01"></path>
+			<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+				<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
 			</svg>
 			Scan Your Code
 		</a>
@@ -121,9 +119,8 @@
 	}
 
 	.sidebar-logo-img {
-		width: 28px;
 		height: 28px;
-		object-fit: contain;
+		width: auto;
 		filter: invert(var(--logo-invert));
 	}
 
@@ -136,16 +133,14 @@
 		letter-spacing: -0.02em;
 	}
 
-	.sidebar-logo-badge {
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 0.65rem;
-		font-weight: 600;
-		padding: 0.15rem 0.4rem;
-		background: transparent;
-		border: 1px solid var(--green-dim);
+	.sidebar-logo-product {
+		font-family: 'Instrument Serif', serif;
+		font-size: 1.35rem;
+		font-weight: 400;
 		color: var(--green-dim);
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		margin-left: -0.15rem;
 	}
 
 	.sidebar-search {

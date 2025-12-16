@@ -69,18 +69,18 @@ Replace with parameterized queries using the appropriate syntax for my database 
 			<h1>SQL Injection</h1>
 			<div class="article-meta">
 				<span class="article-meta-item">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<circle cx="12" cy="12" r="10"></circle>
-						<polyline points="12 6 12 12 16 14"></polyline>
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+						<circle cx="12" cy="12" r="10"/>
+						<polyline points="12 6 12 12 16 14"/>
 					</svg>
 					8 min read
 				</span>
 				<span class="article-meta-item">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-						<line x1="16" y1="2" x2="16" y2="6"></line>
-						<line x1="8" y1="2" x2="8" y2="6"></line>
-						<line x1="3" y1="10" x2="21" y2="10"></line>
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+						<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+						<line x1="16" y1="2" x2="16" y2="6"/>
+						<line x1="8" y1="2" x2="8" y2="6"/>
+						<line x1="3" y1="10" x2="21" y2="10"/>
 					</svg>
 					Updated Dec 2024
 				</span>
@@ -89,7 +89,10 @@ Replace with parameterized queries using the appropriate syntax for my database 
 
 		<div class="quick-answer">
 			<div class="quick-answer-label">
-				<span>⚡</span> Quick Answer
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+					<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+				</svg>
+				Quick Answer
 			</div>
 			<p class="quick-answer-text">
 				SQL injection lets attackers run arbitrary database commands through your app. AI tools frequently generate vulnerable code by concatenating user input directly into SQL strings. <strong>Fix: Always use parameterized queries.</strong>
