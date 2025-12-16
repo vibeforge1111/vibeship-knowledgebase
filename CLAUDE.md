@@ -179,6 +179,8 @@ Every piece of security content must:
 
 ### Writing Rules
 
+**No Em Dashes:** Never use em dashes (—) in content. Use regular hyphens (-) or rewrite the sentence.
+
 **First-Sentence Rule:** First sentence after every H2 MUST directly answer the implied question.
 
 ```markdown

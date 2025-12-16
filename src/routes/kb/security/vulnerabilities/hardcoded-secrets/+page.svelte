@@ -32,19 +32,19 @@
 		},
 		{
 			question: 'Can\'t I just use a private GitHub repository?',
-			answer: 'Private repos don\'t protect you. Secrets in code can leak through: employees leaving, accidental repo visibility changes, compromised developer machines, CI/CD logs, error messages, and client-side bundles. The only safe approach is to never put secrets in code—use environment variables and secret managers instead.'
+			answer: 'Private repos don\'t protect you. Secrets in code can leak through: employees leaving, accidental repo visibility changes, compromised developer machines, CI/CD logs, error messages, and client-side bundles. The only safe approach is to never put secrets in code. Use environment variables and secret managers instead.'
 		},
 		{
 			question: 'How do I know if my secrets are already exposed?',
-			answer: 'Check your git history with tools like TruffleHog or GitLeaks—secrets persist in commits even after deletion. Search GitHub for your organization name plus common key patterns. Check haveibeenpwned.com for credential breaches. If you find exposed secrets, rotate them immediately—assume they\'re compromised.'
+			answer: 'Check your git history with tools like TruffleHog or GitLeaks. Secrets persist in commits even after deletion. Search GitHub for your organization name plus common key patterns. Check haveibeenpwned.com for credential breaches. If you find exposed secrets, rotate them immediately and assume they\'re compromised.'
 		},
 		{
 			question: 'Why do AI coding tools generate hardcoded secrets?',
-			answer: 'AI tools generate working code fast. When you ask for "Stripe integration," the AI produces a complete example—often with placeholder keys that look real. These examples get copied into production code without replacing the credentials. AI prioritizes "it works" over "it\'s secure."'
+			answer: 'AI tools generate working code fast. When you ask for "Stripe integration," the AI produces a complete example, often with placeholder keys that look real. These examples get copied into production code without replacing the credentials. AI prioritizes "it works" over "it\'s secure."'
 		},
 		{
 			question: 'What if I already pushed secrets to GitHub?',
-			answer: 'Act fast: 1) Rotate the compromised credentials immediately—this is your priority. 2) Remove secrets from your code and use environment variables. 3) Use git filter-branch or BFG Repo-Cleaner to purge secrets from history. 4) Force push the cleaned history. Note: GitHub caches commits, so always assume exposed secrets are compromised.'
+			answer: 'Act fast: 1) Rotate the compromised credentials immediately. This is your priority. 2) Remove secrets from your code and use environment variables. 3) Use git filter-branch or BFG Repo-Cleaner to purge secrets from history. 4) Force push the cleaned history. Note: GitHub caches commits, so always assume exposed secrets are compromised.'
 		}
 	];
 
@@ -127,7 +127,7 @@
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Hardcoded secrets are credentials embedded directly in your source code</strong>—API keys,
+				<strong>Hardcoded secrets are credentials embedded directly in your source code</strong>: API keys,
 				database passwords, JWT secrets. Once pushed to a repository, they can be extracted by anyone
 				with access, including bots that scan GitHub for exposed keys. This is classified under
 				<strong><a href={owaspData.source}>OWASP A07:2021</a></strong> and is one of the most
@@ -164,12 +164,12 @@
 			<p>
 				Hardcoded secrets are sensitive credentials written directly into your source code instead of
 				being stored securely in environment variables or secret managers. Think of it like writing
-				your house key's code on a sticky note attached to your front door—anyone who sees it can get in.
+				your house key's code on a sticky note attached to your front door. Anyone who sees it can get in.
 			</p>
 			<p>
 				Common examples include API keys (Stripe, OpenAI, AWS), database connection strings with
 				passwords, JWT signing secrets, OAuth client secrets, and encryption keys. When these end up
-				in your code, they get committed to version control, where they persist forever—even after
+				in your code, they get committed to version control, where they persist forever, even after
 				you "delete" them.
 			</p>
 			<p>
@@ -185,7 +185,7 @@
 			<h2>How do AI tools cause this?</h2>
 			<p>
 				AI coding tools generate hardcoded secrets because they prioritize complete, working examples.
-				When you ask for "add Stripe payment integration," the AI produces functional code—often with
+				When you ask for "add Stripe payment integration," the AI produces functional code, often with
 				placeholder keys that look real enough to forget to replace.
 			</p>
 
@@ -208,18 +208,18 @@ const JWT_SECRET = 'super-secret-key-change-me'`}</code></pre>
 				</div>
 				<p class="pattern-note">
 					This code <em>works</em> immediately, which is exactly what AI optimizes for. The security
-					problem comes later—when developers forget to externalize these values.
+					problem comes later when developers forget to externalize these values.
 				</p>
 			</div>
 
 			<p>
 				<strong>Why this happens:</strong> AI models are trained on code examples that often include
 				placeholder credentials for demonstration. The AI doesn't distinguish between "example code"
-				and "production code"—it generates what works.
+				and "production code". It generates what works.
 			</p>
 
 			<p>
-				<strong>All major AI coding tools</strong>—Cursor, Claude Code, Bolt, v0, and Copilot—can
+				<strong>All major AI coding tools</strong> (Cursor, Claude Code, Bolt, v0, and Copilot) can
 				generate these patterns. Bolt is particularly prone to this because its "ready to run"
 				philosophy prioritizes immediate functionality.
 			</p>
@@ -230,10 +230,10 @@ const JWT_SECRET = 'super-secret-key-change-me'`}</code></pre>
 			<h2>What could happen?</h2>
 			<ul class="consequences-list">
 				<li><strong>Financial damage:</strong> Attackers use your AWS/GCP/Azure credentials to spin up crypto miners, running up thousands in charges</li>
-				<li><strong>Data breach:</strong> Database credentials expose all user data—emails, passwords, payment info, personal details</li>
+				<li><strong>Data breach:</strong> Database credentials expose all user data: emails, passwords, payment info, personal details</li>
 				<li><strong>Service abuse:</strong> Your OpenAI/Stripe/Twilio API keys get used until rate limits hit or accounts are suspended</li>
 				<li><strong>Account takeover:</strong> OAuth and JWT secrets let attackers forge authentication tokens and impersonate any user</li>
-				<li><strong>Lateral movement:</strong> One exposed credential often leads to others—database access reveals more secrets stored in tables</li>
+				<li><strong>Lateral movement:</strong> One exposed credential often leads to others. Database access reveals more secrets stored in tables</li>
 			</ul>
 		</section>
 
@@ -361,7 +361,7 @@ For each secret found:
 2. Verify .env is in .gitignore
 3. Create .env.example with placeholder values
 4. List all files modified with before/after examples
-5. IMPORTANT: If secrets were ever committed, they need to be rotated—assume they're compromised
+5. IMPORTANT: If secrets were ever committed, they need to be rotated. Assume they're compromised
 
 Please proceed systematically through my codebase.`}</div>
 				</div>
@@ -414,7 +414,7 @@ const pool = new Pool({
 				<ol>
 					<li>Add <code>.env</code> to <code>.gitignore</code> (before committing!)</li>
 					<li>Create <code>.env.example</code> with placeholder values for documentation</li>
-					<li>If secrets were ever committed, <strong>rotate them immediately</strong>—assume compromised</li>
+					<li>If secrets were ever committed, <strong>rotate them immediately</strong>. Assume they're compromised</li>
 					<li>Set up secrets in your deployment platform (Vercel, Railway, AWS, etc.)</li>
 				</ol>
 			</div>

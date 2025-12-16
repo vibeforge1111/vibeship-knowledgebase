@@ -29,7 +29,7 @@
 	const faqs = [
 		{
 			question: 'Is SQL injection still a real threat in 2024?',
-			answer: 'Yes—SQL injection remains one of the most exploited vulnerabilities worldwide. It has been in the OWASP Top 10 every year since the list began in 2003 and is currently ranked #3 (A03:2021 - Injection). AI coding tools can generate vulnerable patterns because they prioritize readable code over secure code.'
+			answer: 'Yes. SQL injection remains one of the most exploited vulnerabilities worldwide. It has been in the OWASP Top 10 every year since the list began in 2003 and is currently ranked #3 (A03:2021 - Injection). AI coding tools can generate vulnerable patterns because they prioritize readable code over secure code.'
 		},
 		{
 			question: 'Does using Prisma protect me from SQL injection?',
@@ -37,7 +37,7 @@
 		},
 		{
 			question: 'Can SQL injection happen in NoSQL databases like MongoDB?',
-			answer: 'Yes—NoSQL databases have their own injection vulnerabilities called NoSQL injection. While the syntax differs, the concept is identical: unsanitized user input manipulating database queries. MongoDB queries using $where clauses or string-built queries are particularly vulnerable. The fix is the same: never concatenate user input into queries.'
+			answer: 'Yes. NoSQL databases have their own injection vulnerabilities called NoSQL injection. While the syntax differs, the concept is identical: unsanitized user input manipulating database queries. MongoDB queries using $where clauses or string-built queries are particularly vulnerable. The fix is the same: never concatenate user input into queries.'
 		},
 		{
 			question: 'Why do AI coding tools generate SQL injection vulnerabilities?',
@@ -45,7 +45,7 @@
 		},
 		{
 			question: 'How quickly can an attacker exploit SQL injection?',
-			answer: 'Within seconds. Automated tools like sqlmap can detect and exploit SQL injection vulnerabilities almost instantly. Once found, an attacker can dump your entire database, modify data, or even gain server access—all before you notice anything unusual. This is why prevention is critical: there\'s no time to react once you\'re targeted.'
+			answer: 'Within seconds. Automated tools like sqlmap can detect and exploit SQL injection vulnerabilities almost instantly. Once found, an attacker can dump your entire database, modify data, or even gain server access, all before you notice anything unusual. This is why prevention is critical: there\'s no time to react once you\'re targeted.'
 		}
 	];
 
@@ -132,7 +132,7 @@
 				An attacker can type special characters that manipulate your queries, potentially reading,
 				modifying, or deleting your entire database. Ranked <strong>#3 on the
 				<a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP Top 10</a></strong>, it's one of the
-				most exploited vulnerabilities—and AI coding tools frequently generate vulnerable patterns.
+				most exploited vulnerabilities, and AI coding tools frequently generate vulnerable patterns.
 			</p>
 		</div>
 
@@ -165,7 +165,7 @@
 			<p>
 				SQL injection is a vulnerability where attackers manipulate your database queries by inserting
 				malicious code through user input fields. Think of it like a hotel where guests write their own
-				room keys—instead of getting key #203, a malicious guest writes "all rooms" and suddenly has
+				room keys. Instead of getting key #203, a malicious guest writes "all rooms" and suddenly has
 				access to everything.
 			</p>
 			<p>
@@ -177,7 +177,7 @@
 				SQL injection has been in the <a href="https://owasp.org/Top10/">OWASP Top 10</a> every year since
 				the list began in 2003. It's currently ranked #3 under "Injection" (<a href="https://owasp.org/Top10/A03_2021-Injection/">A03:2021</a>).
 				AI coding tools often generate vulnerable patterns because template literals are more readable than
-				parameterized queries—prioritizing developer experience over security.
+				parameterized queries, prioritizing developer experience over security.
 			</p>
 		</section>
 
@@ -186,7 +186,7 @@
 			<h2>How do AI tools cause SQL injection?</h2>
 			<p>
 				AI coding tools generate SQL injection vulnerabilities because they prioritize readable,
-				working code over secure code. Template literals—JavaScript's backtick strings—are cleaner
+				working code over secure code. Template literals (JavaScript's backtick strings) are cleaner
 				to read than parameterized queries, so AI defaults to them even though they're dangerous.
 			</p>
 
@@ -203,7 +203,7 @@ const getUser = async (userId) => {
 }`}</code></pre>
 				</div>
 				<p class="pattern-note">
-					This code <em>works</em>—which is why AI generates it. But it's injectable because
+					This code <em>works</em>, which is why AI generates it. But it's injectable because
 					<code>userId</code> is concatenated directly into the query string.
 				</p>
 			</div>
@@ -211,12 +211,12 @@ const getUser = async (userId) => {
 			<p>
 				<strong>Why this happens:</strong> AI models are trained on millions of code examples, many of
 				which contain insecure patterns. Template literals are common in JavaScript codebases because
-				they're readable. When you ask for "a database query," AI produces what it's seen most often—which
+				they're readable. When you ask for "a database query," AI produces what it's seen most often, which
 				isn't always secure.
 			</p>
 
 			<p>
-				<strong>All major AI coding tools</strong>—Cursor, Claude Code, Bolt, v0, and GitHub Copilot—can
+				<strong>All major AI coding tools</strong> (Cursor, Claude Code, Bolt, v0, and GitHub Copilot) can
 				generate this pattern. The solution is the same regardless of which tool you use: always use
 				parameterized queries.
 			</p>
@@ -400,7 +400,7 @@ const getUser = async (userId) => {
 
 				<p>
 					<strong>What changed:</strong> The variable is now passed as a parameter (<code>$1</code>) instead of
-					being concatenated into the query string. The database treats it as data, not as SQL code—so
+					being concatenated into the query string. The database treats it as data, not as SQL code, so
 					malicious input becomes harmless text.
 				</p>
 			</div>
