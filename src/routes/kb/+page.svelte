@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Header } from '$lib/components/layout';
+	import { Terminal } from '$lib/components/ui';
 
 	const categories = [
 		{
@@ -66,16 +67,8 @@
 			</p>
 		</div>
 
-		<div class="quick-answer">
-			<div class="quick-answer-label">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-					<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-				</svg>
-				Quick Start
-			</div>
-			<p class="quick-answer-text">
-				New here? Start with our <a href="/kb/vulnerabilities/sql-injection">SQL Injection guide</a> — the #1 vulnerability in AI-generated code. Then check out <a href="/kb/checklists/pre-launch">the pre-launch checklist</a> before shipping.
-			</p>
+		<div class="terminal-section">
+			<Terminal />
 		</div>
 
 		<div class="hub-grid">
@@ -162,6 +155,10 @@
 </div>
 
 <style>
+	.terminal-section {
+		margin-bottom: 2.5rem;
+	}
+
 	.category-icon {
 		margin-bottom: 1rem;
 		color: var(--text-primary);

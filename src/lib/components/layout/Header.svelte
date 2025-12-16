@@ -11,14 +11,6 @@
 
 <header class="top-header">
 	<div class="top-header-left">
-		<button class="mobile-menu-btn" aria-label="Open menu">
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-				<line x1="3" y1="12" x2="21" y2="12"/>
-				<line x1="3" y1="6" x2="21" y2="6"/>
-				<line x1="3" y1="18" x2="21" y2="18"/>
-			</svg>
-		</button>
-
 		{#if breadcrumbs.length > 0}
 			<nav class="breadcrumbs">
 				<a href="/">Home</a>
@@ -57,6 +49,10 @@
 </header>
 
 <style>
+	.top-header {
+		display: flex;
+	}
+
 	.breadcrumbs {
 		margin-bottom: 0;
 	}
@@ -77,5 +73,12 @@
 		border-color: var(--text-primary);
 		color: var(--text-primary);
 		text-decoration: none;
+	}
+
+	/* Hide desktop header on mobile - mobile header in layout handles this */
+	@media (max-width: 768px) {
+		.top-header {
+			display: none;
+		}
 	}
 </style>
