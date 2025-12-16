@@ -3,8 +3,8 @@
 
 	// Page metadata
 	const meta = {
-		title: 'XSS: Protect Your Users from Script Injection | VibeShip',
-		description: 'Cross-Site Scripting (XSS) lets attackers inject malicious scripts into your pages. Ranked in OWASP Top 10. Get copy-paste fixes for React, Vue & Svelte.',
+		title: 'XSS in Vibe Coded Apps: Script Injection Fix | VibeShip',
+		description: 'Cross-Site Scripting (XSS) lets attackers inject scripts. Common when vibe coding. OWASP Top 10. Fix prompts for React, Vue & Svelte.',
 		url: '/kb/security/vulnerabilities/xss/'
 	};
 
@@ -40,7 +40,7 @@
 		},
 		{
 			question: 'Why do AI coding tools generate XSS vulnerabilities?',
-			answer: 'AI tools generate XSS vulnerabilities when asked to render dynamic HTML content. Requests like "display user-generated HTML" or "render markdown" lead AI to use dangerouslySetInnerHTML in React, v-html in Vue, or @html in Svelte. The AI provides what works without considering that the content might be malicious.'
+			answer: 'When vibe coding, AI tools generate XSS vulnerabilities whenever asked to render dynamic HTML. Requests like "display user-generated HTML" or "render markdown" lead to dangerouslySetInnerHTML in React, v-html in Vue, or @html in Svelte. The AI provides what works for vibe coders without considering malicious content.'
 		},
 		{
 			question: 'Is sanitizing HTML enough to prevent XSS?',
@@ -119,7 +119,7 @@
 				<span class="badge">{owaspData.cweId}</span>
 				<span class="badge">OWASP A03:2021</span>
 			</div>
-			<h1>XSS (Cross-Site Scripting) in AI-Generated Code</h1>
+			<h1>XSS (Cross-Site Scripting) in Vibe Coded Apps</h1>
 			<p class="text-secondary">How to find and fix script injection vulnerabilities in your web application</p>
 		</header>
 
@@ -171,7 +171,7 @@
 			</p>
 			<p>
 				According to <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP</a>, injection attacks
-				(including XSS) rank #3 in the Top 10 Web Application Security Risks.
+				(including XSS) rank #3 in the Top 10 Web Application Security Risks. Vibe coders are especially vulnerable when building features that display user content.
 			</p>
 		</section>
 
@@ -214,8 +214,8 @@ function Comment({ content }) {
 
 			<p>
 				<strong>All major AI coding tools</strong> (Cursor, Claude Code, Bolt, v0, and Copilot) can
-				generate these patterns. The common thread is requests involving dynamic HTML rendering,
-				markdown display, or rich text editing.
+				generate these patterns. Whether you're vibe coding a blog, comment system, or rich text editor,
+				watch for these dangerous HTML rendering patterns in your AI-generated code.
 			</p>
 		</section>
 

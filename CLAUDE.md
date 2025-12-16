@@ -65,6 +65,46 @@ npm run preview      # Preview production build
 
 ---
 
+## 🎯 VIBE CODING TERMINOLOGY (SEO CRITICAL)
+
+**Use "vibe coding" terminology throughout all content.** This is how our audience describes what they do.
+
+### Required Terms (Use Interchangeably)
+- **vibe coding** - The practice of building with AI tools
+- **vibe code** - Code generated this way
+- **vibe coded** - Past tense ("vibe coded apps")
+- **vibe coders** - The people doing it (our audience)
+- **AI-generated code** - More technical term (use alongside vibe coding)
+
+### Usage Requirements
+- **Every article must use "vibe coding" terms at least 3-5 times**
+- Mix with "AI-generated code" for variety
+- Use in titles, H2s, and body text where natural
+- Include in Quick Answer boxes when relevant
+
+### Example Usage
+```markdown
+✅ GOOD:
+"Vibe coding makes building apps fast, but AI tools often generate insecure patterns."
+"This vulnerability is common in vibe coded projects because AI prioritizes working code."
+"As a vibe coder, you need to check for SQL injection in AI-generated code."
+
+❌ BAD:
+"AI-assisted development..." (too formal, not how audience searches)
+"Code written with AI tools..." (misses the keyword)
+```
+
+### Search Intent
+People search for:
+- "vibe coding security"
+- "vibe code vulnerabilities"
+- "is vibe coding safe"
+- "vibe coding best practices"
+
+We want to rank for ALL of these.
+
+---
+
 ## 🚨 DATA INTEGRITY RULE (TOP PRIORITY)
 
 **NEVER hallucinate or fabricate data. This is the #1 rule above all else.**

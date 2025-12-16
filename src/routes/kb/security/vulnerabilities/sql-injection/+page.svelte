@@ -3,8 +3,8 @@
 
 	// Page metadata
 	const meta = {
-		title: 'SQL Injection: Find & Fix in AI-Generated Code | VibeShip',
-		description: 'SQL injection lets attackers steal your database. Ranked #3 on OWASP Top 10. Get copy-paste fixes for Cursor, Bolt & Claude Code.',
+		title: 'SQL Injection: Find & Fix in Vibe Coded Apps | VibeShip',
+		description: 'SQL injection lets attackers steal your database. Common in vibe coding. Ranked #3 OWASP Top 10. Fix prompts for Cursor, Bolt & Claude.',
 		url: '/kb/security/vulnerabilities/sql-injection/'
 	};
 
@@ -41,7 +41,7 @@
 		},
 		{
 			question: 'Why do AI coding tools generate SQL injection vulnerabilities?',
-			answer: 'AI tools prioritize readable, working code over secure code. Template literals like `SELECT * FROM users WHERE id = ${userId}` are cleaner to read than parameterized queries. Since most training data contains insecure patterns, and AI optimizes for developer experience rather than security, vulnerable code is often the default output.'
+			answer: 'AI tools prioritize readable, working code over secure code. When vibe coding, template literals like `SELECT * FROM users WHERE id = ${userId}` are cleaner to read than parameterized queries. Since most training data contains insecure patterns, and AI optimizes for developer experience rather than security, vibe coded apps often have these vulnerabilities by default.'
 		},
 		{
 			question: 'How quickly can an attacker exploit SQL injection?',
@@ -120,7 +120,7 @@
 				<span class="badge">CWE-89</span>
 				<span class="badge">OWASP A03:2021</span>
 			</div>
-			<h1>SQL Injection in AI-Generated Code</h1>
+			<h1>SQL Injection in Vibe Coded Apps</h1>
 			<p class="text-secondary">How to find and fix the vulnerability that lets attackers steal your entire database</p>
 		</header>
 
@@ -170,7 +170,7 @@
 			<p>
 				According to <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP Top 10 (2021)</a>, injection attacks rank #3 in web application security risks.
 				SQL injection has appeared in every OWASP Top 10 since the list began in 2003.
-				AI tools generate vulnerable patterns because template literals are more readable than parameterized queries.
+				For vibe coders, this is especially dangerous because AI tools generate vulnerable patterns by default.
 			</p>
 		</section>
 
@@ -209,8 +209,8 @@ const getUser = async (userId) => {
 
 			<p>
 				<strong>All major AI coding tools</strong> (Cursor, Claude Code, Bolt, v0, and GitHub Copilot) can
-				generate this pattern. The solution is the same regardless of which tool you use: always use
-				parameterized queries.
+				generate this pattern. Whether you're vibe coding a quick MVP or building production software,
+				the solution is the same: always use parameterized queries.
 			</p>
 		</section>
 

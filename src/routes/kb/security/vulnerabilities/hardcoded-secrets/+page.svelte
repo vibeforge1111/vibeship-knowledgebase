@@ -3,8 +3,8 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Hardcoded Secrets: API Keys in Your Code | VibeShip',
-		description: 'Hardcoded API keys let attackers access your services. Ranked in OWASP Top 10. Get copy-paste fixes for Cursor, Bolt & Claude Code.',
+		title: 'Hardcoded Secrets in Vibe Coded Apps | VibeShip',
+		description: 'Hardcoded API keys let attackers access your services. Common when vibe coding. Ranked OWASP Top 10. Fix prompts for Cursor, Bolt & Claude.',
 		url: '/kb/security/vulnerabilities/hardcoded-secrets/'
 	};
 
@@ -40,7 +40,7 @@
 		},
 		{
 			question: 'Why do AI coding tools generate hardcoded secrets?',
-			answer: 'AI tools generate working code fast. When you ask for "Stripe integration," the AI produces a complete example, often with placeholder keys that look real. These examples get copied into production code without replacing the credentials. AI prioritizes "it works" over "it\'s secure."'
+			answer: 'AI tools generate working code fast. When vibe coding a "Stripe integration," the AI produces a complete example, often with placeholder keys that look real. Vibe coders copy these examples into production without replacing the credentials. AI prioritizes "it works" over "it\'s secure."'
 		},
 		{
 			question: 'What if I already pushed secrets to GitHub?',
@@ -119,7 +119,7 @@
 				<span class="badge">{owaspData.cweId}</span>
 				<span class="badge">OWASP A07:2021</span>
 			</div>
-			<h1>Hardcoded Secrets in AI-Generated Code</h1>
+			<h1>Hardcoded Secrets in Vibe Coded Apps</h1>
 			<p class="text-secondary">How to find and fix exposed API keys, passwords, and credentials in your codebase</p>
 		</header>
 
@@ -170,7 +170,7 @@
 			<p>
 				According to <a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">OWASP</a>,
 				identification and authentication failures (which includes exposed credentials) ranked #7 in
-				the Top 10 Web Application Security Risks.
+				the Top 10 Web Application Security Risks. For vibe coders, this is the most common security mistake.
 			</p>
 		</section>
 
@@ -213,8 +213,8 @@ const JWT_SECRET = 'super-secret-key-change-me'`}</code></pre>
 
 			<p>
 				<strong>All major AI coding tools</strong> (Cursor, Claude Code, Bolt, v0, and Copilot) can
-				generate these patterns. Bolt is particularly prone to this because its "ready to run"
-				philosophy prioritizes immediate functionality.
+				generate these patterns. Whether you're vibe coding with Bolt (which is particularly prone due to its "ready to run"
+				philosophy) or any other AI tool, always check for hardcoded credentials before committing.
 			</p>
 		</section>
 
