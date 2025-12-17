@@ -340,7 +340,7 @@ app.use(cors({
 		<section class="article-section">
 			<h2>About Bolt.new</h2>
 			<p>
-				<a href="https://bolt.new/" target="_blank" rel="noopener">Bolt.new</a> is a web-based AI app builder created by StackBlitz that went from $0 to $20M ARR in approximately two months after launching in October 2024. It uses Claude 3.5 Sonnet to generate full-stack applications that run entirely in the browser using <a href="https://blog.stackblitz.com/posts/introducing-webcontainers/" target="_blank" rel="noopener">WebContainers</a>, a Node.js runtime built with WebAssembly.
+				<a href="https://bolt.new/" target="_blank" rel="noopener">Bolt.new</a> is a web-based AI app builder created by StackBlitz that went from $0 to $4M ARR within four weeks of launching with Claude, eventually reaching $20M ARR. It uses <a href="https://bolt.new/blog/we-ve-partnered-with-anthropic-to-bring-claude-sonnet-4-to-all-bolt-users" target="_blank" rel="noopener">Claude Sonnet 4.5</a> (with Opus and Haiku options) to generate full-stack applications that run entirely in the browser using <a href="https://blog.stackblitz.com/posts/introducing-webcontainers/" target="_blank" rel="noopener">WebContainers</a>, a Node.js runtime built with WebAssembly.
 			</p>
 			<p>
 				Bolt is designed for complete beginners and non-technical founders who want to ship apps fast. Its philosophy is "ready to run" - code that works immediately without configuration, environment setup, or security hardening. This makes it excellent for vibe coding and rapid prototyping, but vibe coded apps typically require significant security hardening before production deployment.
