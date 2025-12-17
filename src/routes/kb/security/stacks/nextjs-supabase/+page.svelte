@@ -751,16 +751,16 @@ List all files you modified with before/after snippets.`;
 		accent-color: var(--green);
 	}
 
-	.checklist-item span {
+	.checklist-item span:not(.critical-badge) {
 		flex: 1;
 	}
 
 	.critical-badge {
+		flex: none;
 		font-size: 0.7rem;
 		padding: 0.125rem 0.5rem;
 		background: var(--red);
 		color: white;
-		border-radius: 0.25rem;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 	}
