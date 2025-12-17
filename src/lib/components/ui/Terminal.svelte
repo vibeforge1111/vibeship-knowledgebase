@@ -140,7 +140,8 @@
 
 	.terminal-line {
 		display: block;
-		white-space: pre;
+		white-space: pre-wrap;
+		word-break: break-word;
 	}
 
 	.line-command {
@@ -211,13 +212,31 @@
 	}
 
 	@media (max-width: 768px) {
+		.terminal {
+			font-size: 0.75rem;
+		}
+
+		.terminal-header {
+			padding: 0.6rem 0.75rem;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+
 		.terminal-body {
-			height: 340px;
+			height: auto;
+			min-height: 280px;
+			max-height: 380px;
+			padding: 0.75rem;
 			font-size: 0.7rem;
+			overflow-y: auto;
 		}
 
 		.line-welcome {
 			font-size: 0.8rem;
+		}
+
+		.line-topic {
+			padding-left: 0.25rem;
 		}
 
 		.terminal-cta {
@@ -227,6 +246,41 @@
 		.terminal-cta svg {
 			width: 12px;
 			height: 12px;
+		}
+
+		.terminal-title {
+			font-size: 0.65rem;
+		}
+
+		.dot {
+			width: 8px;
+			height: 8px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.terminal-body {
+			padding: 0.6rem;
+			font-size: 0.65rem;
+			min-height: 250px;
+		}
+
+		.line-welcome {
+			font-size: 0.75rem;
+		}
+
+		.terminal-header {
+			padding: 0.5rem 0.6rem;
+		}
+
+		.terminal-cta {
+			font-size: 0.55rem;
+			gap: 0.3rem;
+		}
+
+		.terminal-cta svg {
+			width: 10px;
+			height: 10px;
 		}
 	}
 </style>
