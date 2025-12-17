@@ -134,6 +134,13 @@
 			severity: 'Critical',
 			owasp: 'A03:2021',
 			description: 'User input executed as system commands, giving attackers server access.'
+		},
+		{
+			slug: 'nosql-injection',
+			name: 'NoSQL Injection',
+			severity: 'High',
+			owasp: 'A03:2021',
+			description: 'Query operators injected into MongoDB/Firestore queries to bypass auth or extract data.'
 		}
 	];
 
@@ -181,7 +188,7 @@
 
 		<div class="stats-row">
 			<div class="stat-box">
-				<div class="stat-value">18</div>
+				<div class="stat-value">19</div>
 				<div class="stat-label">vulnerabilities covered</div>
 			</div>
 			<div class="stat-box">

@@ -265,13 +265,21 @@ Output a summary table:
 
 	// State for checklist
 	let checklistState = $state<Record<number, 'yes' | 'no' | 'na' | null>>({});
+	let expandedPrompt = $state<number | null>(null);
 	let copied = $state(false);
+	let promptCopied = $state(false);
 
 	function toggleItem(id: number, status: 'yes' | 'no' | 'na') {
 		if (checklistState[id] === status) {
 			checklistState[id] = null;
+			if (status === 'no') expandedPrompt = null;
 		} else {
 			checklistState[id] = status;
+			if (status === 'no') {
+				expandedPrompt = id;
+			} else {
+				if (expandedPrompt === id) expandedPrompt = null;
+			}
 		}
 	}
 
@@ -279,6 +287,12 @@ Output a summary table:
 		navigator.clipboard.writeText(masterAiPrompt);
 		copied = true;
 		setTimeout(() => copied = false, 2000);
+	}
+
+	function copyItemPrompt(prompt: string) {
+		navigator.clipboard.writeText(prompt);
+		promptCopied = true;
+		setTimeout(() => promptCopied = false, 2000);
 	}
 
 	function getCompletedCount() {
@@ -354,116 +368,108 @@ Output a summary table:
 	</script>`}
 </svelte:head>
 
-<Header />
+<Header {breadcrumbs} />
 
-<main class="article-container">
-	<!-- Breadcrumbs -->
-	<nav class="breadcrumbs" aria-label="Breadcrumb">
-		{#each breadcrumbs as crumb, i}
-			{#if i < breadcrumbs.length - 1}
-				<a href={crumb.href}>{crumb.label}</a>
-				<span class="separator">/</span>
-			{:else}
-				<span class="current">{crumb.label}</span>
-			{/if}
-		{/each}
-	</nav>
-
-	<article class="security-article">
+<div class="content-wrapper">
+	<article class="content-main content-wide">
+		<!-- Header -->
 		<header class="article-header">
-			<div class="time-badge">15-Minute Audit</div>
-			<h1>Pre-Launch Security Checklist for Vibe Coders</h1>
-			<p class="subtitle">15 essential security checks AI coding tools miss - with copy-paste fix prompts</p>
+			<h1>Pre-Launch Security Checklist</h1>
+			<p class="subtitle">15 essential checks AI coding tools miss - with copy-paste fix prompts</p>
+			<div class="article-meta">
+				<span class="article-meta-item">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<circle cx="12" cy="12" r="10"/>
+						<path d="M12 6v6l4 2"/>
+					</svg>
+					15 min audit
+				</span>
+				<span class="article-meta-item">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M9 11l3 3L22 4"/>
+						<path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+					</svg>
+					15 checks
+				</span>
+			</div>
 		</header>
 
-		<!-- Quick Answer Box -->
-		<section class="quick-answer">
-			<h2>Quick Answer</h2>
-			<p>
-				<strong>Before launching your vibe coded app, check 5 areas:</strong> authentication (login, passwords, sessions), authorization (who can access what), data protection (no hardcoded secrets), input/output (SQL injection, XSS), and infrastructure (CORS, rate limiting). This checklist catches what AI tools miss - based on the <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> and <a href="https://owasp.org/Top10/">OWASP Top 10</a> essentials.
+		<!-- Quick Answer -->
+		<div class="quick-answer">
+			<div class="quick-answer-label">Quick Answer</div>
+			<p class="quick-answer-text">
+				<strong>Before launching your vibe coded app, check 5 areas:</strong> authentication (login, passwords, sessions), authorization (who can access what), data protection (no hardcoded secrets), input/output (SQL injection, XSS), and infrastructure (CORS, rate limiting). Based on <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> essentials.
 			</p>
-		</section>
+		</div>
 
-		<!-- Progress Indicator -->
-		<section class="progress-section">
+		<!-- Progress -->
+		<div class="progress-box">
 			<div class="progress-stats">
-				<div class="stat">
-					<span class="stat-value">{getCompletedCount()}</span>
-					<span class="stat-label">/ 15 Checked</span>
+				<div class="progress-stat">
+					<span class="progress-value text-green">{getCompletedCount()}</span>
+					<span class="progress-label">/ 15 Checked</span>
 				</div>
-				<div class="stat issues">
-					<span class="stat-value">{getIssueCount()}</span>
-					<span class="stat-label">Issues Found</span>
+				<div class="progress-stat">
+					<span class="progress-value text-red">{getIssueCount()}</span>
+					<span class="progress-label">Issues Found</span>
 				</div>
 			</div>
 			<div class="progress-bar">
 				<div class="progress-fill" style="width: {(getCompletedCount() / 15) * 100}%"></div>
 			</div>
-		</section>
+		</div>
 
-		<!-- Why This Checklist -->
-		<section class="content-section">
-			<h2>Why This Checklist Exists</h2>
+		<!-- Intro -->
+		<section class="article-section">
+			<h2>Why this checklist?</h2>
 			<p>
-				AI coding tools generate working code, not secure code. The <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> has 300+ security requirements - overwhelming for a quick launch. This checklist covers the critical 15 items that <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> commonly miss - many aligning with the <a href="https://cwe.mitre.org/top25/archive/2024/2024_cwe_top25.html" target="_blank" rel="noopener">CWE Top 25</a> most dangerous software weaknesses.
-			</p>
-			<p>
-				Think of this as a 15-minute security gut-check before you ship your vibe coded MVP. Each item links to a detailed article if you need to dig deeper.
-			</p>
-		</section>
-
-		<!-- How to Use -->
-		<section class="content-section">
-			<h2>How to Use This Checklist</h2>
-			<p>
-				Go through each item and mark it: <strong>Yes</strong> (secure), <strong>No</strong> (needs fix), or <strong>N/A</strong> (not applicable). For any "No" items, use the AI fix prompt to automatically find and fix the issue. The master prompt at the bottom runs all checks at once.
+				AI coding tools generate working code, not secure code. The <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> has 300+ requirements - this checklist covers the critical 15 items that <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> commonly miss.
 			</p>
 		</section>
 
 		<!-- Checklist Categories -->
 		{#each categories as category}
-			<section class="checklist-category">
-				<div class="category-header">
-					<h2>{category.name}</h2>
-					<p class="category-description">{category.description}</p>
-				</div>
+			<section class="article-section">
+				<h2>{category.name}</h2>
+				<p class="category-desc">{category.description}</p>
 
-				<div class="checklist-items">
+				<div class="checklist-list">
 					{#each category.items as item}
-						<div class="checklist-item" class:checked={checklistState[item.id] === 'yes'} class:issue={checklistState[item.id] === 'no'} class:na={checklistState[item.id] === 'na'}>
-							<div class="item-header">
-								<span class="item-number">{item.id}</span>
-								<h3>{item.title}</h3>
-								<span class="severity-tag {item.severity.toLowerCase()}">{item.severity}</span>
-							</div>
-
-							<div class="item-content">
-								<div class="ai-miss">
-									<strong>AI Pattern:</strong> {item.aiMiss}
-								</div>
-								<div class="quick-check">
-									<strong>Quick Check:</strong> {item.quickCheck}
+						<div class="check-item" class:check-pass={checklistState[item.id] === 'yes'} class:check-fail={checklistState[item.id] === 'no'} class:check-skip={checklistState[item.id] === 'na'}>
+							<div class="check-header">
+								<span class="check-num">{item.id}</span>
+								<div class="check-title-wrap">
+									<h3 class="check-title">{item.title}</h3>
+									<span class="severity severity-{item.severity.toLowerCase()}">{item.severity}</span>
 								</div>
 							</div>
 
-							<div class="item-actions">
-								<div class="status-buttons">
+							<div class="check-body">
+								<p class="check-detail"><strong>AI Pattern:</strong> {item.aiMiss}</p>
+								<p class="check-detail"><strong>Quick Check:</strong> {item.quickCheck}</p>
+							</div>
+
+							<div class="check-actions">
+								<div class="check-buttons">
 									<button
-										class="status-btn yes"
+										type="button"
+										class="check-btn check-btn-yes"
 										class:active={checklistState[item.id] === 'yes'}
 										onclick={() => toggleItem(item.id, 'yes')}
 									>
-										✓ Yes
+										Yes
 									</button>
 									<button
-										class="status-btn no"
+										type="button"
+										class="check-btn check-btn-no"
 										class:active={checklistState[item.id] === 'no'}
 										onclick={() => toggleItem(item.id, 'no')}
 									>
-										✗ No
+										No
 									</button>
 									<button
-										class="status-btn na"
+										type="button"
+										class="check-btn check-btn-na"
 										class:active={checklistState[item.id] === 'na'}
 										onclick={() => toggleItem(item.id, 'na')}
 									>
@@ -471,498 +477,415 @@ Output a summary table:
 									</button>
 								</div>
 								{#if item.external}
-									<a href={item.link} target="_blank" rel="noopener" class="learn-more">
-										{item.linkText} →
-									</a>
+									<a href={item.link} target="_blank" rel="noopener" class="check-link">{item.linkText}</a>
 								{:else}
-									<a href={item.link} class="learn-more">{item.linkText} →</a>
+									<a href={item.link} class="check-link">{item.linkText}</a>
 								{/if}
 							</div>
-
-							{#if checklistState[item.id] === 'no'}
-								<div class="fix-prompt">
-									<strong>AI Fix Prompt:</strong>
-									<pre>{item.fixPrompt}</pre>
-								</div>
-							{/if}
 						</div>
+
+						<!-- AI Fix Prompt shown below the item when "No" is selected -->
+						{#if expandedPrompt === item.id}
+							<div class="fix-prompt-box">
+								<div class="fix-prompt-header">
+									<span class="fix-prompt-label">AI Fix Prompt</span>
+									<button type="button" class="copy-btn small" onclick={() => copyItemPrompt(item.fixPrompt)}>
+										{promptCopied ? 'Copied!' : 'Copy'}
+									</button>
+								</div>
+								<pre class="fix-prompt-content">{item.fixPrompt}</pre>
+							</div>
+						{/if}
 					{/each}
 				</div>
 			</section>
 		{/each}
 
 		<!-- Master AI Fix Prompt -->
-		<section class="content-section ai-fix-section">
-			<h2>Complete AI Security Audit Prompt</h2>
+		<section class="article-section">
+			<h2>Complete AI security audit prompt</h2>
 			<p>Copy this prompt to run all 15 checks at once in your AI coding tool:</p>
 
-			<div class="prompt-container">
-				<button class="copy-button" onclick={copyPrompt}>
-					{copied ? '✓ Copied!' : 'Copy Full Prompt'}
-				</button>
-				<pre class="ai-prompt">{masterAiPrompt}</pre>
+			<div class="prompt-box">
+				<div class="prompt-header">
+					<span class="prompt-label">AI Security Fix Prompt</span>
+					<button type="button" class="copy-btn" onclick={copyPrompt}>
+						{copied ? 'Copied!' : 'Copy prompt'}
+					</button>
+				</div>
+				<pre class="prompt-content">{masterAiPrompt}</pre>
 			</div>
 		</section>
 
-		<!-- FAQ Section -->
-		<section class="content-section faq-section">
-			<h2>Frequently Asked Questions</h2>
+		<!-- FAQ -->
+		<section class="article-section">
+			<h2>Frequently asked questions</h2>
 
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
-		<!-- Related Content -->
-		<section class="content-section related-section">
-			<h2>Deep-Dive Security Guides</h2>
+		<!-- Related -->
+		<section class="article-section">
+			<h2>Related guides</h2>
 
 			<div class="related-grid">
-				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
+				<a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive">
 					<h3>SQL Injection</h3>
 					<p>The #1 database vulnerability in AI-generated code</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/xss/" class="related-card">
-					<h3>Cross-Site Scripting (XSS)</h3>
+				<a href="/kb/security/vulnerabilities/xss/" class="card card-interactive">
+					<h3>Cross-Site Scripting</h3>
 					<p>When AI uses dangerouslySetInnerHTML without sanitization</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-card">
+				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="card card-interactive">
 					<h3>Hardcoded Secrets</h3>
 					<p>API keys and credentials committed to git</p>
 				</a>
-				<a href="/kb/security/stacks/nextjs-supabase/" class="related-card">
-					<h3>Next.js + Supabase Security</h3>
+				<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive">
+					<h3>Next.js + Supabase</h3>
 					<p>RLS, service keys, and authentication patterns</p>
-				</a>
-				<a href="/kb/security/stacks/nextjs-prisma/" class="related-card">
-					<h3>Next.js + Prisma Security</h3>
-					<p>ORM injection and query security</p>
-				</a>
-				<a href="/kb/security/vulnerabilities/insecure-cors/" class="related-card">
-					<h3>Insecure CORS</h3>
-					<p>Why origin: '*' is dangerous and how to fix it</p>
 				</a>
 			</div>
 		</section>
 
 		<!-- CTA -->
-		<section class="cta-section">
-			<h2>Automated Security Scanning for Vibe Coded Apps</h2>
+		<div class="final-cta">
+			<h2>Automated Security Scanning</h2>
 			<p>vibeship scanner runs these checks automatically and catches patterns specific to AI-generated code.</p>
-			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
-		</section>
+			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
+				Scan your code free
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M5 12h14M12 5l7 7-7 7"/>
+				</svg>
+			</a>
+		</div>
 	</article>
-</main>
+</div>
 
 <style>
-	.article-container {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem 1rem;
-	}
-
-	.breadcrumbs {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.875rem;
-		margin-bottom: 2rem;
-		color: var(--text-secondary);
-	}
-
-	.breadcrumbs a {
-		color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.breadcrumbs a:hover {
-		text-decoration: underline;
-	}
-
-	.breadcrumbs .separator {
-		color: var(--text-muted);
-	}
-
-	.breadcrumbs .current {
-		color: var(--text-primary);
-	}
-
-	.security-article {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border-color);
-		border-radius: 12px;
-		padding: 2rem;
-	}
-
-	.article-header {
-		margin-bottom: 2rem;
-		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border-color);
-	}
-
-	.time-badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		background: rgba(34, 197, 94, 0.2);
-		color: #22c55e;
+	/* Category description */
+	.category-desc {
+		color: var(--text-tertiary);
 		margin-bottom: 1rem;
+		font-size: 0.9375rem;
 	}
 
-	.article-header h1 {
-		font-size: 2rem;
-		font-weight: 700;
-		margin-bottom: 0.5rem;
-		line-height: 1.2;
-	}
-
-	.subtitle {
-		color: var(--text-secondary);
-		font-size: 1.125rem;
-	}
-
-	.quick-answer {
-		background: var(--bg-tertiary);
-		border-left: 4px solid var(--green);
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-		border-radius: 0 8px 8px 0;
-	}
-
-	.quick-answer h2 {
-		font-size: 1rem;
-		color: var(--green);
-		margin-bottom: 0.75rem;
-	}
-
-	.quick-answer p {
-		margin: 0;
-		line-height: 1.6;
-	}
-
-	.quick-answer a {
-		color: var(--green-dim);
-	}
-
-	.progress-section {
-		background: var(--bg-tertiary);
-		padding: 1.5rem;
-		border-radius: 8px;
+	/* Progress Box */
+	.progress-box {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
 		margin-bottom: 2rem;
 	}
 
 	.progress-stats {
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 1rem;
+		margin-bottom: 0.75rem;
 	}
 
-	.stat {
+	.progress-stat {
 		display: flex;
 		align-items: baseline;
-		gap: 0.5rem;
+		gap: 0.35rem;
 	}
 
-	.stat-value {
+	.progress-value {
 		font-size: 1.5rem;
 		font-weight: 700;
-		color: var(--green);
+		font-family: 'JetBrains Mono', monospace;
 	}
 
-	.stat.issues .stat-value {
-		color: #ef4444;
-	}
-
-	.stat-label {
-		color: var(--text-secondary);
+	.progress-label {
+		color: var(--text-tertiary);
 		font-size: 0.875rem;
 	}
 
 	.progress-bar {
-		height: 8px;
-		background: var(--bg-primary);
-		border-radius: 4px;
+		height: 6px;
+		background: var(--bg-tertiary);
 		overflow: hidden;
 	}
 
 	.progress-fill {
 		height: 100%;
 		background: var(--green);
-		border-radius: 4px;
 		transition: width 0.3s ease;
 	}
 
-	.content-section {
-		margin-bottom: 2.5rem;
-	}
-
-	.content-section h2 {
-		font-size: 1.5rem;
-		font-weight: 600;
-		margin-bottom: 1rem;
-		color: var(--text-primary);
-	}
-
-	.content-section p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-		color: var(--text-secondary);
-	}
-
-	.content-section a {
-		color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.content-section a:hover {
-		text-decoration: underline;
-	}
-
-	.checklist-category {
-		margin-bottom: 3rem;
-	}
-
-	.category-header {
-		margin-bottom: 1.5rem;
-		padding-bottom: 1rem;
-		border-bottom: 1px solid var(--border-color);
-	}
-
-	.category-header h2 {
-		font-size: 1.5rem;
-		font-weight: 600;
-		margin-bottom: 0.25rem;
-	}
-
-	.category-description {
-		color: var(--text-secondary);
-		margin: 0;
-		font-size: 0.9375rem;
-	}
-
-	.checklist-items {
+	/* Checklist */
+	.checklist-list {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 0.75rem;
 	}
 
-	.checklist-item {
-		background: var(--bg-tertiary);
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
+	.check-item {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1.25rem;
 		transition: border-color 0.2s;
 	}
 
-	.checklist-item.checked {
-		border-color: rgba(34, 197, 94, 0.5);
+	.check-item.check-pass {
+		border-color: var(--green);
 	}
 
-	.checklist-item.issue {
-		border-color: rgba(239, 68, 68, 0.5);
+	.check-item.check-fail {
+		border-color: var(--red);
 	}
 
-	.checklist-item.na {
-		opacity: 0.7;
+	.check-item.check-skip {
+		opacity: 0.6;
 	}
 
-	.item-header {
+	.check-header {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		gap: 0.75rem;
-		margin-bottom: 1rem;
+		margin-bottom: 0.75rem;
 	}
 
-	.item-number {
-		width: 28px;
-		height: 28px;
-		background: var(--bg-primary);
-		border-radius: 50%;
+	.check-num {
+		width: 24px;
+		height: 24px;
+		background: var(--bg-tertiary);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		font-size: 0.875rem;
+		font-size: 0.75rem;
 		font-weight: 600;
 		color: var(--text-secondary);
 		flex-shrink: 0;
+		font-family: 'JetBrains Mono', monospace;
 	}
 
-	.item-header h3 {
+	.check-title-wrap {
+		flex: 1;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.check-title {
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 		font-size: 1rem;
 		font-weight: 600;
 		margin: 0;
-		flex: 1;
+		color: var(--text-primary);
+		line-height: 1.4;
 	}
 
-	.severity-tag {
-		padding: 0.25rem 0.5rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
+	.severity {
+		font-size: 0.65rem;
+		padding: 0.15rem 0.4rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
 		font-weight: 600;
 		flex-shrink: 0;
 	}
 
-	.severity-tag.critical {
-		background: rgba(239, 68, 68, 0.2);
-		color: #ef4444;
+	.severity-critical {
+		background: var(--red);
+		color: white;
 	}
 
-	.severity-tag.high {
-		background: rgba(245, 158, 11, 0.2);
-		color: #f59e0b;
+	.severity-high {
+		background: var(--orange);
+		color: white;
 	}
 
-	.severity-tag.medium {
-		background: rgba(59, 130, 246, 0.2);
-		color: #3b82f6;
+	.severity-medium {
+		background: var(--blue);
+		color: white;
 	}
 
-	.item-content {
+	.check-body {
 		margin-bottom: 1rem;
-		font-size: 0.9375rem;
+		padding-left: calc(24px + 0.75rem);
 	}
 
-	.ai-miss, .quick-check {
-		margin-bottom: 0.5rem;
+	.check-detail {
+		font-size: 0.875rem;
 		color: var(--text-secondary);
+		margin: 0 0 0.35rem;
 		line-height: 1.5;
 	}
 
-	.item-actions {
+	.check-detail strong {
+		color: var(--text-primary);
+	}
+
+	.check-actions {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		flex-wrap: wrap;
-		gap: 1rem;
+		gap: 0.75rem;
+		padding-left: calc(24px + 0.75rem);
 	}
 
-	.status-buttons {
+	.check-buttons {
 		display: flex;
 		gap: 0.5rem;
 	}
 
-	.status-btn {
-		padding: 0.5rem 1rem;
-		border: 1px solid var(--border-color);
-		background: var(--bg-primary);
-		border-radius: 6px;
-		font-size: 0.875rem;
+	.check-btn {
+		padding: 0.4rem 0.75rem;
+		border: 1px solid var(--border);
+		background: var(--bg-tertiary);
+		color: var(--text-secondary);
+		font-size: 0.8rem;
+		font-weight: 500;
 		cursor: pointer;
-		transition: all 0.2s;
+		transition: all 0.15s;
 	}
 
-	.status-btn:hover {
-		border-color: var(--text-secondary);
+	.check-btn:hover {
+		border-color: var(--text-tertiary);
+		color: var(--text-primary);
 	}
 
-	.status-btn.yes.active {
-		background: rgba(34, 197, 94, 0.2);
-		border-color: #22c55e;
-		color: #22c55e;
+	.check-btn-yes.active {
+		background: var(--green);
+		border-color: var(--green);
+		color: white;
 	}
 
-	.status-btn.no.active {
-		background: rgba(239, 68, 68, 0.2);
-		border-color: #ef4444;
-		color: #ef4444;
+	.check-btn-no.active {
+		background: var(--red);
+		border-color: var(--red);
+		color: white;
 	}
 
-	.status-btn.na.active {
-		background: rgba(156, 163, 175, 0.2);
-		border-color: #9ca3af;
-		color: #9ca3af;
+	.check-btn-na.active {
+		background: var(--gray-500);
+		border-color: var(--gray-500);
+		color: white;
 	}
 
-	.learn-more {
+	.check-link {
+		font-size: 0.8rem;
 		color: var(--green-dim);
 		text-decoration: none;
-		font-size: 0.875rem;
 	}
 
-	.learn-more:hover {
+	.check-link:hover {
+		color: var(--green);
 		text-decoration: underline;
 	}
 
-	.fix-prompt {
-		margin-top: 1rem;
-		padding-top: 1rem;
-		border-top: 1px solid var(--border-color);
-	}
-
-	.fix-prompt strong {
-		display: block;
-		margin-bottom: 0.5rem;
-		color: #ef4444;
-		font-size: 0.875rem;
-	}
-
-	.fix-prompt pre {
-		background: var(--bg-primary);
-		padding: 1rem;
-		border-radius: 6px;
-		font-size: 0.8125rem;
-		line-height: 1.5;
-		overflow-x: auto;
-		white-space: pre-wrap;
-		margin: 0;
-	}
-
-	.ai-fix-section {
+	/* Fix Prompt Box - shown below item */
+	.fix-prompt-box {
 		background: var(--bg-tertiary);
-		padding: 1.5rem;
-		border-radius: 8px;
+		border: 1px solid var(--red);
+		border-top: none;
+		margin-top: -1px;
+		padding: 1rem;
 	}
 
-	.prompt-container {
-		position: relative;
-		margin-top: 1rem;
+	.fix-prompt-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.75rem;
 	}
 
-	.copy-button {
-		position: absolute;
-		top: 0.5rem;
-		right: 0.5rem;
-		padding: 0.5rem 1rem;
+	.fix-prompt-label {
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--red);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.fix-prompt-content {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1rem;
+		font-size: 0.8rem;
+		line-height: 1.6;
+		color: var(--text-secondary);
+		white-space: pre-wrap;
+		font-family: 'JetBrains Mono', monospace;
+		margin: 0;
+		overflow-x: auto;
+	}
+
+	/* Prompt Box */
+	.prompt-box {
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
+		margin: 1.5rem 0;
+	}
+
+	.prompt-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.75rem 1rem;
+		background: var(--bg-secondary);
+		border-bottom: 1px solid var(--border);
+	}
+
+	.prompt-label {
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--green);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.prompt-content {
+		padding: 1rem;
+		margin: 0;
+		font-size: 0.8rem;
+		line-height: 1.6;
+		color: var(--text-secondary);
+		white-space: pre-wrap;
+		font-family: 'JetBrains Mono', monospace;
+		overflow-x: auto;
+		max-height: 400px;
+		overflow-y: auto;
+	}
+
+	/* Copy Button */
+	.copy-btn {
+		padding: 0.4rem 0.75rem;
 		background: var(--green);
-		color: var(--bg-primary);
+		color: white;
 		border: none;
-		border-radius: 4px;
-		font-size: 0.875rem;
+		font-size: 0.75rem;
 		font-weight: 500;
 		cursor: pointer;
-		z-index: 1;
+		transition: opacity 0.15s;
 	}
 
-	.copy-button:hover {
+	.copy-btn:hover {
 		opacity: 0.9;
 	}
 
-	.ai-prompt {
-		background: var(--bg-primary);
-		padding: 1.5rem;
-		padding-top: 3rem;
-		border-radius: 6px;
-		font-size: 0.8125rem;
-		line-height: 1.6;
-		overflow-x: auto;
-		white-space: pre-wrap;
-		border: 1px solid var(--border-color);
+	.copy-btn.small {
+		padding: 0.25rem 0.5rem;
+		font-size: 0.7rem;
 	}
 
-	.faq-section {
-		background: var(--bg-tertiary);
-		padding: 1.5rem;
-		border-radius: 8px;
+	/* FAQ */
+	.faq-list {
+		margin-top: 1rem;
 	}
 
 	.faq-item {
-		padding: 1rem 0;
-		border-bottom: 1px solid var(--border-color);
+		padding: 1.5rem 0;
+		border-bottom: 1px solid var(--border);
 	}
 
 	.faq-item:last-child {
@@ -970,91 +893,118 @@ Output a summary table:
 	}
 
 	.faq-item h3 {
-		font-size: 1rem;
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+		font-size: 1.0625rem;
 		font-weight: 600;
-		margin-bottom: 0.5rem;
+		margin: 0 0 0.5rem;
 		color: var(--text-primary);
+		line-height: 1.5;
 	}
 
 	.faq-item p {
 		margin: 0;
+		font-size: 0.9375rem;
+		line-height: 1.7;
 		color: var(--text-secondary);
-		line-height: 1.6;
 	}
 
-	.related-section {
-		margin-top: 3rem;
-	}
-
+	/* Related Grid */
 	.related-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		grid-template-columns: repeat(2, 1fr);
 		gap: 1rem;
 		margin-top: 1rem;
 	}
 
-	.related-card {
-		background: var(--bg-tertiary);
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
-		padding: 1.25rem;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green-dim);
+	.related-grid .card {
 		text-decoration: none;
 	}
 
-	.related-card h3 {
+	.related-grid .card h3 {
 		font-size: 1rem;
-		font-weight: 600;
-		margin-bottom: 0.5rem;
+		margin: 0 0 0.35rem;
 		color: var(--text-primary);
 	}
 
-	.related-card p {
-		font-size: 0.875rem;
+	.related-grid .card p {
+		font-size: 0.85rem;
 		color: var(--text-secondary);
 		margin: 0;
-		line-height: 1.5;
 	}
 
-	.cta-section {
-		background: linear-gradient(135deg, var(--green-dim) 0%, var(--green) 100%);
-		padding: 2rem;
-		border-radius: 8px;
+	/* Final CTA */
+	.final-cta {
 		text-align: center;
-		margin-top: 2rem;
+		padding: 3rem 2rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		margin-top: 3rem;
 	}
 
-	.cta-section h2 {
-		color: var(--bg-primary);
+	.final-cta h2 {
 		margin-bottom: 0.75rem;
+		margin-top: 0;
 	}
 
-	.cta-section p {
-		color: var(--bg-secondary);
+	.final-cta p {
+		color: var(--text-secondary);
 		margin-bottom: 1.5rem;
 		max-width: 500px;
 		margin-left: auto;
 		margin-right: auto;
 	}
 
-	.cta-button {
-		display: inline-block;
-		background: var(--bg-primary);
-		color: var(--green);
-		padding: 0.75rem 1.5rem;
-		border-radius: 6px;
-		font-weight: 600;
-		text-decoration: none;
-		transition: opacity 0.2s;
-	}
+	/* Text colors */
+	.text-green { color: var(--green); }
+	.text-red { color: var(--red); }
 
-	.cta-button:hover {
-		opacity: 0.9;
-		text-decoration: none;
+	/* Mobile */
+	@media (max-width: 768px) {
+		.check-header {
+			flex-wrap: wrap;
+		}
+
+		.check-title-wrap {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.35rem;
+		}
+
+		.check-body {
+			padding-left: 0;
+		}
+
+		.check-actions {
+			padding-left: 0;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.check-buttons {
+			width: 100%;
+		}
+
+		.check-btn {
+			flex: 1;
+			text-align: center;
+		}
+
+		.related-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.progress-stats {
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		.prompt-content {
+			font-size: 0.7rem;
+			max-height: 300px;
+		}
+
+		.fix-prompt-content {
+			font-size: 0.7rem;
+		}
 	}
 </style>

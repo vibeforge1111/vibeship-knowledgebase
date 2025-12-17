@@ -66,10 +66,10 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 43 | ✅ Done | Comparison (P0) | replit-vs-cursor |
 | 44 | ✅ Done | Comparison (P1) | lovable-vs-bolt |
 | | | **--- NEW: Prompts Series ---** | |
-| 45 | 📝 Brief Ready | Prompts (P0) | cursor-rules |
-| 46 | 📝 Brief Ready | Prompts (P0) | claude-md |
+| 45 | ✅ Done | Prompts (P0) | cursor-rules |
+| 46 | ✅ Done | Prompts (P0) | claude-md |
 | | | **--- Additional Vulnerabilities ---** | |
-| 47 | 📝 Brief Ready | Vulnerability (P0) | nosql-injection |
+| 47 | ✅ Done | Vulnerability (P0) | nosql-injection |
 | | | **--- Prompts Series Expansion (40 articles) ---** | |
 | | | *Batch 1: Tool Configuration Guides* | |
 | 48 | 📝 Brief Ready | Prompts (P0) | cursor-rules-examples |
@@ -116,6 +116,55 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 85 | 📝 Brief Ready | Prompts (P1) | ai-python-coding |
 | 86 | 📝 Brief Ready | Prompts (P0) | supabase-cursor-rules |
 | 87 | 📝 Brief Ready | Prompts (P0) PILLAR | cursor-rules-fullstack |
+| | | **--- NEW: 40-Article Vulnerability Expansion ---** | |
+| | | *Category A: Injection Variants* | |
+| 88 | 📝 Brief Ready | Vulnerability (P0) | nosql-injection |
+| 89 | 📝 Brief Ready | Vulnerability (P0) | graphql-injection |
+| 90 | 📝 Brief Ready | Vulnerability (P1) | ldap-injection |
+| 91 | 📝 Brief Ready | Vulnerability (P1) | header-injection |
+| 92 | 📝 Brief Ready | Vulnerability (P1) | log-injection |
+| 93 | 📝 Brief Ready | Vulnerability (P1) | email-header-injection |
+| 94 | 📝 Brief Ready | Vulnerability (P2) | xpath-injection |
+| 95 | 📝 Brief Ready | Vulnerability (P2) | el-injection |
+| | | *Category B: Auth & Session* | |
+| 96 | 📝 Brief Ready | Vulnerability (P0) | credential-stuffing |
+| 97 | 📝 Brief Ready | Vulnerability (P0) | password-reset-vulnerabilities |
+| 98 | 📝 Brief Ready | Vulnerability (P1) | session-fixation |
+| 99 | 📝 Brief Ready | Vulnerability (P1) | insecure-remember-me |
+| 100 | 📝 Brief Ready | Vulnerability (P0) | oauth-vulnerabilities |
+| 101 | 📝 Brief Ready | Vulnerability (P1) | mfa-bypass |
+| | | *Category C: Cryptographic Failures* | |
+| 102 | 📝 Brief Ready | Vulnerability (P0) | weak-password-hashing |
+| 103 | 📝 Brief Ready | Vulnerability (P0) | insufficient-entropy |
+| 104 | 📝 Brief Ready | Vulnerability (P0) | hardcoded-crypto-keys |
+| 105 | 📝 Brief Ready | Vulnerability (P1) | insecure-tls |
+| 106 | 📝 Brief Ready | Vulnerability (P2) | timing-attacks |
+| | | *Category D: API Security* | |
+| 107 | 📝 Brief Ready | Vulnerability (P0) | bola |
+| 108 | 📝 Brief Ready | Vulnerability (P1) | bfla |
+| 109 | 📝 Brief Ready | Vulnerability (P0) | excessive-data-exposure |
+| 110 | 📝 Brief Ready | Vulnerability (P1) | unrestricted-resource-consumption |
+| 111 | 📝 Brief Ready | Vulnerability (P1) | unsafe-api-consumption |
+| | | *Category E: Client-Side Security* | |
+| 112 | 📝 Brief Ready | Vulnerability (P0) | dom-xss |
+| 113 | 📝 Brief Ready | Vulnerability (P1) | prototype-pollution |
+| 114 | 📝 Brief Ready | Vulnerability (P1) | clickjacking |
+| 115 | 📝 Brief Ready | Vulnerability (P1) | csp-misconfiguration |
+| | | *Category F: Business Logic* | |
+| 116 | 📝 Brief Ready | Vulnerability (P0) | price-manipulation |
+| 117 | 📝 Brief Ready | Vulnerability (P0) | account-takeover |
+| 118 | 📝 Brief Ready | Vulnerability (P1) | business-logic-bypass |
+| 119 | 📝 Brief Ready | Vulnerability (P1) | workflow-bypass |
+| | | *Category G: Infrastructure & Config* | |
+| 120 | 📝 Brief Ready | Vulnerability (P0) | missing-security-headers |
+| 121 | 📝 Brief Ready | Vulnerability (P0) | verbose-errors |
+| 122 | 📝 Brief Ready | Vulnerability (P1) | directory-listing |
+| 123 | 📝 Brief Ready | Vulnerability (P2) | ssi-injection |
+| | | *Category H: Supply Chain* | |
+| 124 | 📝 Brief Ready | Vulnerability (P0) | vulnerable-dependencies |
+| 125 | 📝 Brief Ready | Vulnerability (P1) | dependency-confusion |
+| 126 | 📝 Brief Ready | Vulnerability (P1) | typosquatting |
+| 127 | 📝 Brief Ready | Vulnerability (P1) | subresource-integrity |
 
 **Legend:** ✅ Done | 📝 Brief Ready | 🔄 Next | ⏳ Pending | ⏸️ Blocked
 
@@ -1134,19 +1183,19 @@ notes: |
 
 ## Additional Vulnerabilities
 
-### 47. Vulnerability: NoSQL Injection
+### 47. Vulnerability: NoSQL Injection ✅ DONE
 ```yaml
 type: vulnerability
 slug: nosql-injection
 url: /kb/security/vulnerabilities/nosql-injection/
-title: "NoSQL Injection: Protect MongoDB & Firestore Apps"
+title: "NoSQL Injection: MongoDB & Firestore Security"
 cwe: CWE-943
 owasp: A03:2021-Injection
 owasp_url: https://owasp.org/Top10/A03_2021-Injection/
 cwe_url: https://cwe.mitre.org/data/definitions/943.html
 severity: High
 word_count: 1500-1800
-status: 📝 Brief Ready
+status: PUBLISHED
 priority: P0 (Quick Win - KD 4)
 keywords:
   - "nosql injection" (250 volume, KD 4)
