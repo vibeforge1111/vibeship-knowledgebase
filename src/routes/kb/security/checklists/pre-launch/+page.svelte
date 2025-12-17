@@ -380,7 +380,7 @@ Output a summary table:
 		<section class="quick-answer">
 			<h2>Quick Answer</h2>
 			<p>
-				<strong>Before launching your vibe coded app, check 5 areas:</strong> authentication (login, passwords, sessions), authorization (who can access what), data protection (no hardcoded secrets), input/output (SQL injection, XSS), and infrastructure (CORS, rate limiting). This checklist catches what AI tools miss - based on <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> essentials.
+				<strong>Before launching your vibe coded app, check 5 areas:</strong> authentication (login, passwords, sessions), authorization (who can access what), data protection (no hardcoded secrets), input/output (SQL injection, XSS), and infrastructure (CORS, rate limiting). This checklist catches what AI tools miss - based on the <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> and <a href="https://owasp.org/Top10/">OWASP Top 10</a> essentials.
 			</p>
 		</section>
 
@@ -405,7 +405,7 @@ Output a summary table:
 		<section class="content-section">
 			<h2>Why This Checklist Exists</h2>
 			<p>
-				AI coding tools generate working code, not secure code. The <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> has 300+ security requirements - overwhelming for a quick launch. This checklist covers the critical 15 items that <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> commonly miss.
+				AI coding tools generate working code, not secure code. The <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> has 300+ security requirements - overwhelming for a quick launch. This checklist covers the critical 15 items that <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> commonly miss - many aligning with the <a href="https://cwe.mitre.org/top25/archive/2024/2024_cwe_top25.html" target="_blank" rel="noopener">CWE Top 25</a> most dangerous software weaknesses.
 			</p>
 			<p>
 				Think of this as a 15-minute security gut-check before you ship your vibe coded MVP. Each item links to a detailed article if you need to dig deeper.

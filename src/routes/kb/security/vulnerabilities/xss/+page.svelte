@@ -185,7 +185,9 @@
 			</p>
 			<p>
 				According to <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP</a>, injection attacks
-				(including XSS) rank #3 in the Top 10 Web Application Security Risks. Vibe coders are especially vulnerable when building features that display user content.
+				(including XSS) rank #3 in the Top 10 Web Application Security Risks.
+				The <a href="https://portswigger.net/web-security/cross-site-scripting">PortSwigger XSS Guide</a> provides comprehensive exploitation techniques and prevention strategies.
+				Vibe coders are especially vulnerable when building features that display user content.
 			</p>
 		</section>
 
@@ -452,7 +454,7 @@ function Comment({ content }) {
 				</div>
 
 				<p>
-					<strong>If you must render HTML</strong> (like a rich text editor), sanitize it first:
+					<strong>If you must render HTML</strong> (like a rich text editor), sanitize it with <a href="https://github.com/cure53/DOMPurify">DOMPurify</a>, the industry-standard sanitization library:
 				</p>
 				<div class="code-block">
 					<pre><code>{`import DOMPurify from 'dompurify';

@@ -48,15 +48,57 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 26 | ✅ Done | Stack | sveltekit-supabase |
 | 27 | ✅ Done | Vulnerability | insecure-deserialization |
 | 28 | ✅ Done | Guide (PILLAR) | secure-vibe-coding-guide |
-| 29 | 📝 Brief Ready | Concept (Agent Security) | mcp-server-security |
-| 30 | 📝 Brief Ready | Vulnerability | broken-access-control |
+| 29 | ✅ Done | Concept (Agent Security) | mcp-server-security |
+| 30 | ✅ Done | Vulnerability | broken-access-control |
 | 31 | 📝 Brief Ready | Vulnerability | insecure-file-upload |
-| 32 | 📝 Brief Ready | Tool | lovable |
-| 33 | 📝 Brief Ready | Vulnerability | xxe |
-| 34 | 📝 Brief Ready | Vulnerability | ssti |
-| 35 | 📝 Brief Ready | Vulnerability | race-conditions |
+| 32 | ✅ Done | Tool | lovable |
+| 33 | ✅ Done | Vulnerability | xxe |
+| 34 | ✅ Done | Vulnerability | ssti |
+| 35 | ✅ Done | Vulnerability | race-conditions |
+| | | **--- NEW: Ahrefs-Driven Quick Wins ---** | |
+| 36 | 📝 Brief Ready | Hub (P0) | best-vibe-coding-tools |
+| 37 | 📝 Brief Ready | Comparison (P0) | claude-code-vs-cursor |
+| 38 | 📝 Brief Ready | Comparison (P0) | windsurf-vs-cursor |
+| 39 | 📝 Brief Ready | Vulnerability (P1) | prompt-injection |
+| 40 | 📝 Brief Ready | Pillar (P1) | what-is-vibe-coding |
 
 **Legend:** ✅ Done | 📝 Brief Ready | 🔄 Next | ⏳ Pending | ⏸️ Blocked
+
+---
+
+## Ahrefs Keyword Research (December 2025)
+
+### Quick Win Opportunities (Low Difficulty, High Volume)
+Based on Ahrefs keyword research conducted 2025-12-17:
+
+| Priority | Keyword | Volume | Difficulty | Article |
+|----------|---------|--------|------------|---------|
+| P0 | vibe coding tools | 2,300 | 20 | best-vibe-coding-tools |
+| P0 | best vibe coding tools | 1,100 | 7 | best-vibe-coding-tools |
+| P0 | claude code vs cursor | 3,000 | 3 | claude-code-vs-cursor |
+| P0 | cursor vs claude code | 1,500 | 1 | claude-code-vs-cursor |
+| P0 | windsurf vs cursor | 4,500 | 25 | windsurf-vs-cursor |
+| P0 | cursor vs windsurf | 2,800 | 24 | windsurf-vs-cursor |
+| P1 | prompt injection | 1,600 | 43 | prompt-injection |
+| P1 | what is vibe coding | 29,000 | 43 | what-is-vibe-coding |
+| P1 | vibe coding | 57,000 | 65 | what-is-vibe-coding |
+
+### Future Comparison Articles (High Volume)
+| Keyword | Volume | Difficulty | Notes |
+|---------|--------|------------|-------|
+| cursor vs copilot | 2,800 | 3 | Quick win |
+| cline vs cursor | 1,300 | 2 | Quick win |
+| replit vs cursor | 1,000 | 0 | Very easy |
+| github copilot vs cursor | 1,000 | 1 | Quick win |
+| lovable vs cursor | 400 | - | Emerging |
+
+### High-Volume Tools (Already Covered)
+| Tool | Volume | Our Article |
+|------|--------|-------------|
+| claude code | 114,000 | ✅ Published |
+| lovable ai | 41,000 | 📝 Brief Ready |
+| windsurf ai | 19,000 | ✅ Published |
+| cursor | 1,200,000+ | ✅ Published |
 
 ---
 
@@ -614,7 +656,7 @@ owasp: A08:2021-Software and Data Integrity Failures
 owasp_url: https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/
 severity: Critical
 word_count: 1800-2200
-status: BRIEF_READY
+status: PUBLISHED
 notes: |
   - MCP = Model Context Protocol, Anthropic's open standard (Nov 2024)
   - "USB-C for AI applications" - connects AI tools to external services
@@ -643,7 +685,7 @@ owasp_url: https://owasp.org/Top10/A01_2021-Broken_Access_Control/
 cwe_url: https://cwe.mitre.org/data/definitions/284.html
 severity: Critical
 word_count: 1600-2000
-status: BRIEF_READY
+status: PUBLISHED
 notes: |
   - OWASP #1 vulnerability (moved from #5 in 2017)
   - 94% of applications have some form of broken access control
@@ -688,7 +730,7 @@ url: /kb/vibe-coding-tools/lovable/
 title: "Lovable Security: CVE-2025-48757, RLS Failures, and VibeScamming Risks"
 severity: Critical
 word_count: 1800-2200
-status: BRIEF_READY
+status: PUBLISHED
 notes: |
   - $1.8B valuation AI app builder
   - CVE-2025-48757: Missing RLS exposed 170+ apps (CVSS 8.26)
@@ -715,7 +757,7 @@ owasp_url: https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
 cwe_url: https://cwe.mitre.org/data/definitions/611.html
 severity: High
 word_count: 1400-1700
-status: BRIEF_READY
+status: PUBLISHED
 notes: |
   - Was OWASP A4:2017, now part of A05:2021
   - Exploits XML parsers that process external entities
@@ -743,7 +785,7 @@ owasp_url: https://owasp.org/Top10/A03_2021-Injection/
 cwe_url: https://cwe.mitre.org/data/definitions/1336.html
 severity: Critical
 word_count: 1500-1800
-status: BRIEF_READY
+status: PUBLISHED
 notes: |
   - User input embedded in template strings → code execution
   - Affects Jinja2, EJS, Pug, Twig, FreeMarker, Velocity
@@ -769,7 +811,7 @@ owasp_url: https://owasp.org/Top10/A04_2021-Insecure_Design/
 cwe_url: https://cwe.mitre.org/data/definitions/362.html
 severity: High
 word_count: 1500-1800
-status: BRIEF_READY
+status: PUBLISHED
 notes: |
   - Exploits timing gaps in async code (CHECK-USE gap)
   - Attacks: redeem gift cards multiple times, bypass rate limits, duplicate transactions
@@ -781,4 +823,123 @@ notes: |
   - Prisma, MongoDB $inc, PostgreSQL FOR UPDATE examples
   - External sources: PortSwigger, CWE, academic research
   - Brief location: docs/.content-ops/briefs/race-conditions-brief.md
+```
+
+---
+
+## Ahrefs-Driven Articles (December 2024)
+
+The following articles are based on Ahrefs keyword research conducted December 2024.
+Focus: High-volume opportunities with achievable keyword difficulty.
+
+### 36. Hub: Best Vibe Coding Tools (Security Comparison)
+```yaml
+type: hub
+slug: vibe-coding-tools
+url: /kb/vibe-coding-tools/
+title: "Best Vibe Coding Tools 2025: Complete Security Comparison"
+word_count: 3000-3500
+status: 📝 Brief Ready
+priority: P0 (Quick Win)
+keywords:
+  - "best vibe coding tools" (1,100 volume, KD 7)
+  - "vibe coding tools" (2,300 volume, KD 20)
+  - "ai coding tools" (11,000 volume, KD 64)
+  - "ai code generator" (43,000 volume, KD 52)
+notes: |
+  - Hub page comparing 8 tools: Cursor, Claude Code, Windsurf, Lovable, GitHub Copilot, Bolt.new, v0, Replit
+  - Security comparison table with CVE tracking
+  - Unique angle: Only comparison with security analysis
+  - Links to all individual tool pages
+  - Brief location: docs/.content-ops/briefs/best-vibe-coding-tools-brief.md
+```
+
+### 37. Comparison: Claude Code vs Cursor
+```yaml
+type: comparison
+slug: claude-code-vs-cursor
+url: /kb/vibe-coding-tools/claude-code-vs-cursor/
+title: "Claude Code vs Cursor: Features & Security Compared"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0 (Quick Win - Very Low KD)
+keywords:
+  - "claude code vs cursor" (3,000 volume, KD 3)
+  - "cursor vs claude code" (1,500 volume, KD 1)
+notes: |
+  - Very low keyword difficulty (KD 1-3) = fast ranking potential
+  - Security-focused comparison (unique angle)
+  - Claude Code has no known CVEs; Cursor has CVE-2025-62352
+  - Compare: CLI vs IDE, agentic vs autocomplete, pricing
+  - Brief location: docs/.content-ops/briefs/claude-code-vs-cursor-brief.md
+```
+
+### 38. Comparison: Windsurf vs Cursor
+```yaml
+type: comparison
+slug: windsurf-vs-cursor
+url: /kb/vibe-coding-tools/windsurf-vs-cursor/
+title: "Windsurf vs Cursor: AI IDE Comparison 2025"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0 (High Volume)
+keywords:
+  - "windsurf vs cursor" (4,500 volume, KD 25)
+  - "cursor vs windsurf" (2,800 volume, KD 24)
+  - "cursor ai vs windsurf" (200 volume)
+notes: |
+  - 7,500/month total addressable volume
+  - Both tools have 2025 CVEs to document
+  - CVE-2025-62353 (Windsurf CVSS 8.1) vs CVE-2025-62352 (Cursor)
+  - Compare: Cascade vs Composer, autonomy levels, pricing ($15 vs $20)
+  - Brief location: docs/.content-ops/briefs/windsurf-vs-cursor-brief.md
+```
+
+### 39. Vulnerability: Prompt Injection
+```yaml
+type: vulnerability
+slug: prompt-injection
+url: /kb/security/vulnerabilities/prompt-injection/
+title: "Prompt Injection: Protect Your AI Apps & Tools"
+owasp: LLM01:2025-Prompt Injection
+owasp_url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+severity: Critical
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1 (Strategic - Our Niche)
+keywords:
+  - "prompt injection" (1,600 volume, KD 43)
+  - "prompt injection attack" (900 volume, KD 39)
+  - "what is prompt injection" (500 volume, KD 47)
+  - "prompt injection examples" (450 volume, KD 23)
+  - "how to prevent prompt injection" (100 volume, KD 11)
+notes: |
+  - OWASP LLM Top 10 #1 risk
+  - Dual angle: apps vibe coders BUILD + tools they USE
+  - Real examples: Windsurf Cascade .env exfiltration, Cursor attacks
+  - Prevention code samples in TypeScript
+  - Brief location: docs/.content-ops/briefs/prompt-injection-guide-brief.md
+```
+
+### 40. Pillar: What is Vibe Coding
+```yaml
+type: pillar
+slug: what-is-vibe-coding
+url: /kb/vibe-coding/what-is-vibe-coding/
+title: "What is Vibe Coding? The Complete Guide to AI-Assisted Development"
+word_count: 2500-3000
+status: 📝 Brief Ready
+priority: P1 (High Volume - Long Term SEO)
+keywords:
+  - "vibe coding" (57,000 volume, KD 65)
+  - "what is vibe coding" (29,000 volume, KD 43)
+  - "vibe coding meaning" (8,200 volume, KD 54)
+  - "vibe coding definition" (3,100 volume, KD 61)
+notes: |
+  - 101,000/month total addressable volume
+  - Definition page - must be cited by LLMs
+  - Origin: Andrej Karpathy (Feb 2025)
+  - Hub linking to all tools and security content
+  - Security angle: "Is vibe coding safe?" section
+  - Brief location: docs/.content-ops/briefs/what-is-vibe-coding-brief.md
 ```

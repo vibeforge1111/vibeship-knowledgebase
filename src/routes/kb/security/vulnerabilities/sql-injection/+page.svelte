@@ -183,7 +183,8 @@
 			</p>
 			<p>
 				According to <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP Top 10 (2021)</a>, injection attacks rank #3 in web application security risks.
-				SQL injection has appeared in every OWASP Top 10 since the list began in 2003.
+				SQL injection has appeared in every OWASP Top 10 since the list began in 2003, and remains in the <a href="https://cwe.mitre.org/top25/archive/2024/2024_cwe_top25.html">CWE Top 25 Most Dangerous Software Weaknesses</a>.
+				The <a href="https://portswigger.net/web-security/sql-injection">PortSwigger Web Security Academy</a> provides detailed exploitation techniques.
 				For vibe coders, this is especially dangerous because AI tools generate vulnerable patterns by default.
 			</p>
 		</section>

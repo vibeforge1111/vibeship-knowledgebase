@@ -335,7 +335,8 @@ export async function POST(request: Request) {
 			</div>
 			<p class="stats-note">
 				Sources: <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62353" target="_blank" rel="noopener">NVD</a>,
-				<a href="https://codeium.com/windsurf" target="_blank" rel="noopener">Codeium</a>
+				<a href="https://codeium.com/windsurf" target="_blank" rel="noopener">Codeium</a>,
+				<a href="https://www.pillar.security/blog/new-vulnerability-in-github-copilot-and-cursor-how-hackers-can-weaponize-code-agents" target="_blank" rel="noopener">Pillar Security Research</a>
 			</p>
 		</div>
 
@@ -346,7 +347,7 @@ export async function POST(request: Request) {
 				Windsurf is an AI-powered IDE from <a href="https://codeium.com/windsurf" target="_blank" rel="noopener">Codeium</a>, designed as a Cursor competitor. Its key feature is "Cascade" - an autonomous agent that can read, write, and execute code with minimal user intervention.
 			</p>
 			<p>
-				This autonomy makes Windsurf powerful for vibe coding but also creates unique security risks. The agent processes your entire codebase for context, including potentially malicious files from cloned repositories.
+				This autonomy makes Windsurf powerful for vibe coding but also creates unique security risks. The agent processes your entire codebase for context, including potentially malicious files from cloned repositories. The vulnerabilities align with <a href="https://owasp.org/Top10/" target="_blank" rel="noopener">OWASP Top 10</a> categories including <a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/" target="_blank" rel="noopener">A01:2021 Broken Access Control</a> and <a href="https://owasp.org/Top10/A02_2021-Cryptographic_Failures/" target="_blank" rel="noopener">A02:2021 Cryptographic Failures</a>.
 			</p>
 		</section>
 

@@ -689,6 +689,8 @@ openssl rand -base64 32
 				<li><a href="https://portswigger.net/web-security/jwt">PortSwigger JWT Attacks</a> - Comprehensive JWT security guide</li>
 				<li><a href="https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/">Auth0 JWT Vulnerabilities</a> - Original library vulnerability disclosure</li>
 				<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html">OWASP JWT Cheat Sheet</a> - Best practices guide</li>
+				<li><a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519</a> - Official JWT specification</li>
+				<li><a href="https://cwe.mitre.org/top25/archive/2024/2024_cwe_top25.html">CWE Top 25</a> - Most dangerous software weaknesses</li>
 				<li><a href="https://jwt.io/">jwt.io</a> - JWT debugger tool</li>
 			</ul>
 		</section>

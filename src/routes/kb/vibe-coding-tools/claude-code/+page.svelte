@@ -341,11 +341,11 @@ export async function POST({ request }) {
 		<section class="article-section">
 			<h2>About Claude Code</h2>
 			<p>
-				<a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a> is Anthropic's official CLI tool for code generation and editing.
+				<a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a> is <a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a>'s official CLI tool for code generation and editing.
 				It is built on Claude 3.5 Sonnet and later models, designed specifically for software development tasks including writing, refactoring, and debugging code.
 			</p>
 			<p>
-				Claude Code is more deliberate about security than many AI coding tools. It sometimes adds authentication checks, uses parameterized queries, and considers edge cases without explicit prompting. However, like all AI assistants, it still generates patterns that prioritize functionality over comprehensive security. Vibe coders should still review Claude Code output before deploying to production.
+				Claude Code is more deliberate about security than many AI coding tools. It sometimes adds authentication checks, uses parameterized queries, and considers edge cases without explicit prompting. However, like all AI assistants, it still generates patterns that prioritize functionality over comprehensive security. The common issues align with <a href="https://owasp.org/Top10/" target="_blank" rel="noopener">OWASP Top 10</a> categories including <a href="https://owasp.org/Top10/A04_2021-Insecure_Design/" target="_blank" rel="noopener">A04:2021 Insecure Design</a>. Vibe coders should still review Claude Code output before deploying to production.
 			</p>
 		</section>
 

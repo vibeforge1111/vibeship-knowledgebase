@@ -413,6 +413,7 @@ export async function POST(request: Request) {
 
 			<p>
 				Per <a href="https://owasp.org/www-community/vulnerabilities/Information_exposure_through_query_strings_in_url" target="_blank" rel="noopener">OWASP guidelines</a>, never put tokens, passwords, session IDs, or PII in URL query strings.
+				The <a href="https://portswigger.net/kb/issues/00600100_information-disclosure-in-error-messages" target="_blank" rel="noopener">PortSwigger Information Disclosure Guide</a> provides detailed exploitation techniques attackers use.
 			</p>
 		</section>
 

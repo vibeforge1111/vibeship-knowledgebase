@@ -180,11 +180,13 @@
 			<p>
 				Once committed to version control, secrets persist in git history forever, even after you "delete" them.
 				Automated bots continuously scan public repositories and can exploit exposed secrets within minutes.
+				According to <a href="https://www.gitguardian.com/state-of-secrets-sprawl-report-2024">GitGuardian's 2024 State of Secrets Sprawl Report</a>, over 12 million new secrets were detected in public GitHub commits in 2023.
 			</p>
 			<p>
 				According to <a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">OWASP</a>,
 				identification and authentication failures (which includes exposed credentials) ranked #7 in
-				the Top 10 Web Application Security Risks. For vibe coders, this is the most common security mistake.
+				the Top 10 Web Application Security Risks. The <a href="https://cwe.mitre.org/top25/archive/2024/2024_cwe_top25.html">CWE Top 25</a> also lists hardcoded credentials as a dangerous weakness.
+				For vibe coders, this is the most common security mistake.
 			</p>
 		</section>
 

@@ -272,7 +272,7 @@ export async function POST(request) {
 			</p>
 			<p>
 				Cursor supports multiple AI models including Claude, GPT-4, and others.
-				While it is a powerful productivity tool, like all AI coding assistants, it generates code patterns that prioritize functionality over security.
+				While it is a powerful productivity tool, like all AI coding assistants, it generates code patterns that prioritize functionality over security. The common vulnerabilities align with categories in the <a href="https://owasp.org/Top10/" target="_blank" rel="noopener">OWASP Top 10</a>, particularly <a href="https://owasp.org/Top10/A03_2021-Injection/" target="_blank" rel="noopener">A03:2021 Injection</a> and <a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/" target="_blank" rel="noopener">A07:2021 Identification and Authentication Failures</a>.
 			</p>
 		</section>
 

@@ -183,6 +183,7 @@
 			<p>
 				According to <a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">OWASP Top 10 (2021)</a>, Broken Access Control (which includes IDOR) ranks #1 in web application security risks.
 				OWASP found that 94% of applications tested had some form of broken access control.
+				IDOR vulnerabilities are frequently reported on <a href="https://hackerone.com/hacktivity?querystring=idor">HackerOne</a>, often earning significant bounties due to their high impact.
 				For vibe coders, IDOR is especially dangerous because AI tools typically add authentication but not per-resource authorization.
 			</p>
 		</section>

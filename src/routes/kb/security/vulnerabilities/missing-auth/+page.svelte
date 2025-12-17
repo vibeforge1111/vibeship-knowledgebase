@@ -183,6 +183,7 @@
 			</p>
 			<p>
 				According to <a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">OWASP Top 10 (2021)</a>, identification and authentication failures rank #7 in web application security risks.
+				The <a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html">OWASP Authentication Cheat Sheet</a> provides comprehensive guidelines for implementing proper authentication.
 				For vibe coders, this is especially common because AI generates the functionality you ask for without assuming you need authentication.
 			</p>
 		</section>

@@ -183,6 +183,7 @@
 			<p>
 				According to <a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">OWASP Top 10 (2021)</a>, path traversal falls under Broken Access Control, ranked #1.
 				<a href="https://cwe.mitre.org/data/definitions/22.html">CWE-22</a> is in the CWE Top 25 Most Dangerous Software Weaknesses.
+				The <a href="https://portswigger.net/web-security/file-path-traversal">PortSwigger Path Traversal Guide</a> provides detailed exploitation and prevention techniques.
 				For vibe coders building file upload or download features, this is critical because AI tools generate vulnerable patterns by default.
 			</p>
 		</section>
