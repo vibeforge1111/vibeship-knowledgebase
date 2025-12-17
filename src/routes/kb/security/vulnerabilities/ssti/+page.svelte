@@ -43,20 +43,20 @@ Jinja2 (Python/Flask):
 # SECURE: Pass data as template variables
 return render_template('greeting.html', name=user_input)
 # Or with inline templates
-return render_template_string("Hello {{ name }}", name=user_input)
+return render_template_string("Hello {"{{"} name {"}}"}", name=user_input)
 \`\`\`
 
 EJS (Node.js/Express):
 \`\`\`javascript
 // SECURE: Use data object, never concatenate
-res.render('page', { name: userInput })
+res.render('page', {"{"}name: userInput{"}"})
 // In template: <%= name %> for escaped output
 \`\`\`
 
 Pug (Node.js):
 \`\`\`javascript
 // SECURE: Pass data object
-res.render('template', { name: userInput })
+res.render('template', {"{"}name: userInput{"}"})
 // In template: h1= name (interpolated and escaped)
 \`\`\`
 
@@ -134,7 +134,7 @@ For each vulnerability found:
           "name": "Is Jinja2 vulnerable to SSTI?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Jinja2 itself is not inherently vulnerable - the vulnerability comes from how developers use it. When you concatenate user input into template strings (like f'Hello {name}' with render_template_string()), you create SSTI. The secure pattern is passing data as variables: render_template_string('Hello {{ name }}', name=user_input). Jinja2's autoescape prevents XSS but does not prevent SSTI."
+            "text": "Jinja2 itself is not inherently vulnerable - the vulnerability comes from how developers use it. When you concatenate user input into template strings (like f'Hello {"{"}name{"}"}' with render_template_string()), you create SSTI. The secure pattern is passing data as variables: render_template_string('Hello {"{{"} name {"}}"}', name=user_input). Jinja2's autoescape prevents XSS but does not prevent SSTI."
           }
         },
         {
