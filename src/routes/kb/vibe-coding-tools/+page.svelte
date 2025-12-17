@@ -38,9 +38,9 @@
 			knownPatterns: ['Open endpoints', 'No auth middleware']
 		},
 		{
-			slug: 'copilot',
+			slug: 'github-copilot',
 			name: 'GitHub Copilot',
-			description: 'GitHub\'s AI pair programmer powered by OpenAI Codex.',
+			description: 'GitHub\'s AI pair programmer powered by OpenAI models.',
 			topIssue: 'SQL Injection',
 			knownPatterns: ['String concatenation in queries', 'Legacy code patterns']
 		},
@@ -50,6 +50,13 @@
 			description: 'Codeium\'s AI-powered IDE with agentic capabilities.',
 			topIssue: 'Missing Auth',
 			knownPatterns: ['Skips authentication setup', 'Open API routes']
+		},
+		{
+			slug: 'lovable',
+			name: 'Lovable',
+			description: 'AI-powered app builder for creating full-stack applications from prompts.',
+			topIssue: 'Missing Auth',
+			knownPatterns: ['Open API endpoints', 'Client-side only validation']
 		}
 	];
 
@@ -88,7 +95,7 @@
 
 		<div class="stats-row">
 			<div class="stat-box">
-				<div class="stat-value">7</div>
+				<div class="stat-value">8</div>
 				<div class="stat-label">AI tools covered</div>
 			</div>
 			<div class="stat-box">

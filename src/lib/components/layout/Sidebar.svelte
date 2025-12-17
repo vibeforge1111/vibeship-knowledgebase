@@ -13,27 +13,17 @@
 			title: 'Knowledge Base',
 			items: [
 				{ href: '/kb', label: 'Overview' },
-				{ href: '/kb/vulnerabilities', label: 'Vulnerabilities', badge: '25+' },
-				{ href: '/kb/vibe-coding-tools', label: 'AI Patterns', badge: '7' },
-				{ href: '/kb/stacks', label: 'Stacks' },
-				{ href: '/kb/fixes', label: 'Fix Prompts', badge: '50+' },
-				{ href: '/kb/glossary', label: 'Glossary' },
-				{ href: '/kb/checklists', label: 'Checklists' }
+				{ href: '/kb/security/vulnerabilities', label: 'Vulnerabilities', badge: '18' },
+				{ href: '/kb/vibe-coding-tools', label: 'Vibe Coding Tools', badge: '8' },
+				{ href: '/kb/security/stacks', label: 'Stack Guides', badge: '3' },
+				{ href: '/kb/security/checklists', label: 'Checklists', badge: '1' }
 			]
 		},
 		{
-			title: 'Research',
+			title: 'Guides',
 			items: [
-				{ href: '/research/vulnerability-index', label: 'Vulnerability Index', badge: 'NEW' },
-				{ href: '/research/ai-tool-comparison', label: 'AI Tool Comparison' },
-				{ href: '/research/methodology', label: 'Methodology' }
-			]
-		},
-		{
-			title: 'Resources',
-			items: [
-				{ href: '/blog', label: 'Blog' },
-				{ href: '/tools', label: 'Tools' }
+				{ href: '/kb/vibe-coding/secure-vibe-coding-guide', label: 'Secure Vibe Coding' },
+				{ href: '/kb/agents/security/mcp-servers', label: 'MCP Server Security' }
 			]
 		}
 	];
