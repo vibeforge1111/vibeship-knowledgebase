@@ -480,7 +480,7 @@
 						<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
 						<circle cx="12" cy="7" r="4"/>
 					</svg>
-					<span>You + AI write code fast</span>
+					<span>YOU + YOUR LLM + VIBESHIP</span>
 				</div>
 			</div>
 
@@ -719,7 +719,6 @@
 	<section class="final-cta">
 		<div class="cta-content">
 			<h2>Ready to ship <span class="highlight">better, safer, stronger</span>?</h2>
-			<p>Join the vibe coding movement. Build faster without the fear.</p>
 			<div class="cta-buttons">
 				<a href="/kb" class="btn btn-primary btn-glow btn-lg">
 					Start Learning
