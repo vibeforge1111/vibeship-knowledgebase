@@ -205,6 +205,47 @@ app.use(cors({
 		}
 	];
 
+	// Tool comparison data
+	const toolComparison = [
+		{ tool: 'Bolt.new', securityPosture: 'Lowest by default', targetUser: 'Beginners, founders', topIssue: 'Hardcoded secrets', deploySpeed: 'Fastest (one-click)', bestFor: 'Rapid prototyping' },
+		{ tool: 'v0', securityPosture: 'Low-Medium', targetUser: 'Designers, frontend devs', topIssue: 'Client-side validation', deploySpeed: 'Fast (export code)', bestFor: 'UI prototyping' },
+		{ tool: 'Cursor', securityPosture: 'Medium', targetUser: 'Experienced devs', topIssue: 'Missing validation', deploySpeed: 'Medium (you deploy)', bestFor: 'Production development' },
+		{ tool: 'Claude Code', securityPosture: 'Medium-High', targetUser: 'Terminal-native devs', topIssue: 'Rate limiting', deploySpeed: 'Medium (you deploy)', bestFor: 'Refactoring, backend' }
+	];
+
+	// AI Fix Prompt
+	const aiFixPrompt = `Review my codebase for these security issues and fix them:
+
+1. **Hardcoded Secrets**: Move all API keys, database URLs, and credentials to environment variables using .env files. Search for patterns like:
+   - \`const supabase = createClient('https://...',\`
+   - \`connectionString: 'postgresql://...\`
+   - Any string containing 'key', 'secret', 'password', 'token'
+
+2. **Missing Authentication**: Add authentication checks to all API routes that access user data. Return 401 if not authenticated.
+   - Check for routes using \`async function POST\` or \`app.post\` without auth checks
+   - Look for \`await db.\` queries without \`locals.user\` or \`req.user\` verification
+
+3. **Missing Input Validation**: Add Zod validation to all API endpoints that accept user input. Validate types, formats, and constraints.
+   - Install Zod: \`npm install zod\`
+   - Add schemas for all request bodies
+
+4. **IDOR Vulnerabilities**: In API routes that fetch data by ID, verify the current user owns that resource before returning it.
+   - Change \`findUnique({ where: { id } })\` to \`findFirst({ where: { id, userId: user.id } })\`
+
+5. **Overly Permissive CORS**: Replace \`origin: '*'\` with an allowlist of your actual frontend domains.
+
+For each fix:
+- Show me the vulnerable code
+- Show me the secure version
+- Explain what changed and why
+
+After fixing, search for remaining patterns:
+- \`origin: '*'\`
+- \`createClient(..., '...')\` (hardcoded keys)
+- Routes without \`if (!locals.user)\` or \`if (!req.user)\`
+
+Please proceed systematically through my codebase.`;
+
 	// FAQ data
 	const faqs = [
 		{
@@ -231,6 +272,7 @@ app.use(cors({
 
 	let copied = $state(false);
 	let copiedIndex = $state(-1);
+	let promptCopied = $state(false);
 
 	function copyCode(code: string, index: number) {
 		navigator.clipboard.writeText(code);
@@ -239,6 +281,14 @@ app.use(cors({
 		setTimeout(() => {
 			copied = false;
 			copiedIndex = -1;
+		}, 2000);
+	}
+
+	function copyPrompt() {
+		navigator.clipboard.writeText(aiFixPrompt);
+		promptCopied = true;
+		setTimeout(() => {
+			promptCopied = false;
 		}, 2000);
 	}
 </script>
@@ -311,8 +361,8 @@ app.use(cors({
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Bolt.new's biggest security issue is hardcoded API keys and database credentials embedded directly in code.</strong>
-				It also generates apps without authentication, input validation, or ownership checks. Great for prototyping, but requires security review before production.
+				<strong>Bolt.new's biggest security issue is hardcoded API keys and database credentials embedded directly in vibe coded apps.</strong>
+				It also generates apps without authentication (<a href="https://cwe.mitre.org/data/definitions/306.html" target="_blank" rel="noopener">CWE-306</a>), input validation, or ownership checks. Great for vibe coding prototypes, but requires security review before production.
 			</p>
 		</div>
 
@@ -343,7 +393,7 @@ app.use(cors({
 				<a href="https://bolt.new/" target="_blank" rel="noopener">Bolt.new</a> is a web-based AI app builder created by StackBlitz that went from $0 to $4M ARR within four weeks of launching with Claude, eventually reaching $20M ARR. It uses <a href="https://bolt.new/blog/we-ve-partnered-with-anthropic-to-bring-claude-sonnet-4-to-all-bolt-users" target="_blank" rel="noopener">Claude Sonnet 4.5</a> (with Opus and Haiku options) to generate full-stack applications that run entirely in the browser using <a href="https://blog.stackblitz.com/posts/introducing-webcontainers/" target="_blank" rel="noopener">WebContainers</a>, a Node.js runtime built with WebAssembly.
 			</p>
 			<p>
-				Bolt is designed for complete beginners and non-technical founders who want to ship apps fast. Its philosophy is "ready to run" - code that works immediately without configuration, environment setup, or security hardening. This makes it excellent for vibe coding and rapid prototyping, but vibe coded apps typically require significant security hardening before production deployment.
+				Bolt is designed for complete beginners, vibe coders, and non-technical founders who want to ship apps fast. Its philosophy is "ready to run" - vibe code that works immediately without configuration, environment setup, or security hardening. This makes it excellent for vibe coding and rapid prototyping, but vibe coded apps typically require security hardening before production deployment. The vulnerabilities commonly generated align with several categories in the <a href="https://owasp.org/Top10/" target="_blank" rel="noopener">OWASP Top 10</a>.
 			</p>
 		</section>
 
@@ -395,16 +445,71 @@ app.use(cors({
 		<!-- Why This Happens -->
 		<section class="article-section">
 			<h2>Why Bolt.new generates these patterns</h2>
-			<p>Bolt.new generates insecure code patterns because of its design philosophy and target audience:</p>
+			<p>Bolt.new generates insecure vibe code patterns because of its design philosophy and target audience:</p>
 			<ul>
-				<li><strong>Designed for beginners:</strong> Bolt's users often don't know what environment variables are, how authentication works, or why input validation matters. According to research from <a href="https://www.endorlabs.com/learn/the-most-common-security-vulnerabilities-in-ai-generated-code" target="_blank" rel="noopener">Endor Labs</a>, AI-generated code commonly includes hardcoded secrets and missing security controls</li>
-				<li><strong>"Ready to run" philosophy:</strong> Bolt optimizes for code that works immediately in the browser without any configuration. Adding environment variables, auth middleware, or validation would prevent the app from running instantly</li>
-				<li><strong>Training data patterns:</strong> AI models learn from tutorials and example code that prioritize simplicity. Most tutorials skip security to keep examples focused and understandable</li>
-				<li><strong>Speed over security:</strong> Bolt's value proposition is shipping MVPs in minutes. Security features add complexity and development time, which conflicts with the core use case</li>
+				<li><strong>Designed for beginners:</strong> Bolt's vibe coder users often don't know what environment variables are, how authentication works, or why input validation matters. According to research from <a href="https://www.endorlabs.com/learn/the-most-common-security-vulnerabilities-in-ai-generated-code" target="_blank" rel="noopener">Endor Labs</a>, AI-generated code commonly includes hardcoded secrets and missing security controls</li>
+				<li><strong>"Ready to run" philosophy:</strong> Bolt optimizes for vibe code that works immediately in the browser without any configuration. Adding environment variables, auth middleware, or validation would prevent the app from running instantly</li>
+				<li><strong>Training data patterns:</strong> AI models learn from tutorials and example code that prioritize simplicity. According to <a href="https://snyk.io/blog/ai-code-security-risks/" target="_blank" rel="noopener">Snyk's security research</a>, most tutorials skip security to keep examples focused and understandable</li>
+				<li><strong>Speed over security:</strong> Bolt's value proposition is shipping MVPs in minutes. Security features add complexity and development time, which conflicts with the core vibe coding use case</li>
 			</ul>
 			<p>
 				Research from <a href="https://www.crowdstrike.com/en-us/blog/crowdstrike-researchers-identify-hidden-vulnerabilities-ai-coded-software/" target="_blank" rel="noopener">CrowdStrike</a> found that AI-generated code frequently contains security vulnerabilities that require manual review. For vibe coders using Bolt, this means the vibe coded app might work perfectly in your browser but be completely insecure when deployed publicly.
 			</p>
+		</section>
+
+		<!-- Tool Comparison -->
+		<section class="article-section">
+			<h2>How does Bolt.new compare to other AI tools?</h2>
+			<p>Bolt.new optimizes for speed and beginner accessibility, which means it generates less secure code by default compared to tools like <a href="/kb/ai-patterns/cursor/">Cursor</a> or <a href="/kb/ai-patterns/claude-code/">Claude Code</a> that give developers more control over the generation process.</p>
+
+			<div class="comparison-table-wrapper">
+				<table class="comparison-table">
+					<thead>
+						<tr>
+							<th>Tool</th>
+							<th>Security Posture</th>
+							<th>Target User</th>
+							<th>Top Issue</th>
+							<th>Deploy Speed</th>
+							<th>Best For</th>
+						</tr>
+					</thead>
+					<tbody>
+						{#each toolComparison as row}
+							<tr class:highlight={row.tool === 'Bolt.new'}>
+								<td class="tool-name">{row.tool}</td>
+								<td>{row.securityPosture}</td>
+								<td>{row.targetUser}</td>
+								<td>{row.topIssue}</td>
+								<td>{row.deploySpeed}</td>
+								<td>{row.bestFor}</td>
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			</div>
+
+			<p class="table-note">
+				<strong>Key takeaway:</strong> Bolt optimizes for speed. Cursor and Claude Code give you more control, which typically results in more secure outcomes because you're reviewing more decisions. For production vibe coded apps, expect to spend more time on security review with Bolt than with other tools.
+			</p>
+		</section>
+
+		<!-- AI Fix Prompt -->
+		<section class="article-section">
+			<h2>AI fix prompt for Bolt.new security issues</h2>
+			<p>Copy this prompt and paste it into Bolt.new, <a href="/kb/ai-patterns/cursor/">Cursor</a>, or <a href="/kb/ai-patterns/claude-code/">Claude Code</a> to automatically find and fix security vulnerabilities in your vibe coded project:</p>
+
+			<div class="prompt-box">
+				<div class="prompt-header">
+					<span class="prompt-label">AI Security Fix Prompt</span>
+					<button class="copy-btn" onclick={copyPrompt}>
+						{promptCopied ? 'Copied!' : 'Copy prompt'}
+					</button>
+				</div>
+				<pre class="prompt-content">{aiFixPrompt}</pre>
+			</div>
+
+			<p class="prompt-note">This prompt works with any AI coding tool. It systematically searches for the five most common vulnerabilities in Bolt-generated vibe code and provides secure alternatives.</p>
 		</section>
 
 		<!-- How to Use Bolt Securely -->
@@ -715,6 +820,107 @@ app.use(cors({
 		.pattern-header {
 			flex-direction: column;
 			gap: 0.5rem;
+		}
+	}
+
+	/* Comparison Table */
+	.comparison-table-wrapper {
+		overflow-x: auto;
+		margin: 1.5rem 0;
+	}
+
+	.comparison-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.875rem;
+	}
+
+	.comparison-table th,
+	.comparison-table td {
+		padding: 0.75rem 1rem;
+		text-align: left;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.comparison-table th {
+		background: var(--bg-tertiary);
+		font-weight: 600;
+		color: var(--text-primary);
+		white-space: nowrap;
+	}
+
+	.comparison-table td {
+		color: var(--text-secondary);
+	}
+
+	.comparison-table tr.highlight {
+		background: var(--bg-secondary);
+	}
+
+	.comparison-table tr.highlight td {
+		color: var(--text-primary);
+	}
+
+	.comparison-table .tool-name {
+		font-weight: 600;
+		color: var(--text-primary);
+	}
+
+	.table-note {
+		font-size: 0.9rem;
+		color: var(--text-secondary);
+		margin-top: 1rem;
+	}
+
+	/* Prompt Box */
+	.prompt-box {
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
+		margin: 1.5rem 0;
+	}
+
+	.prompt-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.75rem 1rem;
+		background: var(--bg-secondary);
+		border-bottom: 1px solid var(--border);
+	}
+
+	.prompt-label {
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--green);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.prompt-content {
+		padding: 1rem;
+		margin: 0;
+		font-size: 0.85rem;
+		line-height: 1.6;
+		color: var(--text-secondary);
+		white-space: pre-wrap;
+		font-family: 'JetBrains Mono', monospace;
+		overflow-x: auto;
+	}
+
+	.prompt-note {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		margin-top: 0.75rem;
+	}
+
+	@media (max-width: 768px) {
+		.comparison-table {
+			font-size: 0.8rem;
+		}
+
+		.comparison-table th,
+		.comparison-table td {
+			padding: 0.5rem 0.75rem;
 		}
 	}
 </style>
