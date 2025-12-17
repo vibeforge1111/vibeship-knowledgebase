@@ -93,11 +93,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip"
+			"name": "vibeship"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "vibeship",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -687,7 +687,7 @@ app.post('/api/login', loginLimiter, async (req, res) => {
 			<h2>Scan your code for missing rate limiting</h2>
 			<p>Check your authentication endpoints for rate limiting and other common security vulnerabilities.</p>
 			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
-				Try VibeShip Scanner
+				Try vibeship scanner
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<path d="M5 12h14M12 5l7 7-7 7"/>
 				</svg>

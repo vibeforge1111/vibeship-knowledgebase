@@ -107,11 +107,11 @@ For each vulnerability found:
       "description": "Race conditions let attackers exploit timing gaps in async code to bypass limits, duplicate transactions, or escalate privileges. Learn secure patterns for Node.js and Python async code.",
       "author": {
         "@type": "Organization",
-        "name": "VibeShip"
+        "name": "vibeship"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "VibeShip",
+        "name": "vibeship",
         "url": "https://vibeship.co"
       },
       "datePublished": "2024-12-17",
@@ -182,7 +182,7 @@ For each vulnerability found:
 </script>
 
 <svelte:head>
-  <title>Race Conditions: How Async Code Creates Security Holes AI Misses | VibeShip</title>
+  <title>Race Conditions: How Async Code Creates Security Holes AI Misses | vibeship</title>
   <meta name="description" content="Race conditions let attackers exploit timing gaps in async code to bypass limits, duplicate transactions, or escalate privileges. Learn secure patterns for Node.js and Python async code." />
   <meta name="keywords" content="race condition, TOCTOU, CWE-362, async security, concurrency vulnerability, vibe coding security" />
   <link rel="canonical" href="https://vibeship.co/kb/security/vulnerabilities/race-conditions/" />
@@ -745,7 +745,7 @@ async function testRaceCondition() {"{"}
 
   <section class="cta-section">
     <h2>Scan Your Code for Race Conditions</h2>
-    <p>VibeShip Scanner detects check-then-act patterns, non-atomic operations, and other race condition vulnerabilities in your AI-generated code.</p>
+    <p>vibeship scanner detects check-then-act patterns, non-atomic operations, and other race condition vulnerabilities in your AI-generated code.</p>
     <a href="https://scanner.vibeship.co" class="cta-button">Scan Your Repository</a>
   </section>
 </article>

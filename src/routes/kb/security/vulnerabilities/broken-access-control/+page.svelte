@@ -50,12 +50,12 @@
 						"Broken Access Control is OWASP's #1 vulnerability. AI tools generate code that checks authentication but forgets authorization. Learn patterns and fixes for Node.js, Python, and React.",
 					author: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					publisher: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					datePublished: '2025-12-17',
@@ -140,7 +140,7 @@
 </script>
 
 <svelte:head>
-	<title>Broken Access Control: The #1 Web Vulnerability AI Tools Get Wrong | VibeShip</title>
+	<title>Broken Access Control: The #1 Web Vulnerability AI Tools Get Wrong | vibeship</title>
 	<meta
 		name="description"
 		content="Broken Access Control is OWASP's #1 vulnerability. AI tools generate code that checks authentication but forgets authorization. Learn patterns and fixes for Node.js, Python, and React."
@@ -753,9 +753,9 @@ Prioritize by severity and provide copy-paste fixes.`}</code></pre>
 			<div class="cta-box">
 				<h2>Scan Your Vibe Coded Project</h2>
 				<p>
-					VibeShip Scanner automatically detects broken access control patterns in AI-generated code, including IDOR, missing authorization, and unprotected admin routes.
+					vibeship scanner automatically detects broken access control patterns in AI-generated code, including IDOR, missing authorization, and unprotected admin routes.
 				</p>
-				<a href="https://scanner.vibeship.co" class="cta-button">Try VibeShip Scanner Free →</a>
+				<a href="https://scanner.vibeship.co" class="cta-button">Try vibeship scanner Free →</a>
 			</div>
 		</section>
 	</article>

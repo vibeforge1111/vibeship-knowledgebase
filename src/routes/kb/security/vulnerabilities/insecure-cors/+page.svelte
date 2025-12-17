@@ -709,7 +709,7 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 		<!-- CTA -->
 		<section class="cta-section">
 			<h2>Scan Your Vibe Coded App for CORS Issues</h2>
-			<p>VibeShip Scanner detects insecure CORS configurations, origin reflection vulnerabilities, and missing preflight handlers in your codebase.</p>
+			<p>vibeship scanner detects insecure CORS configurations, origin reflection vulnerabilities, and missing preflight handlers in your codebase.</p>
 			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
 		</section>
 	</article>

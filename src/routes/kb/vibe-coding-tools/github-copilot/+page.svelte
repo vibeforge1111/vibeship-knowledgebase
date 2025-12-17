@@ -94,7 +94,7 @@ Additional checks:
 </script>
 
 <svelte:head>
-  <title>{pageData.title} | VibeShip</title>
+  <title>{pageData.title} | vibeship</title>
   <meta name="description" content={pageData.description} />
   <meta name="keywords" content="GitHub Copilot security, Copilot vulnerabilities, CVE-2025-62449, AI code security, Copilot CVE, is Copilot secure" />
   <link rel="canonical" href="https://vibeship.co/kb/vibe-coding-tools/github-copilot/" />
@@ -115,12 +115,12 @@ Additional checks:
     "description": pageData.description,
     "author": {
       "@type": "Organization",
-      "name": "VibeShip",
+      "name": "vibeship",
       "url": "https://vibeship.co"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "VibeShip",
+      "name": "vibeship",
       "url": "https://vibeship.co"
     },
     "datePublished": pageData.publishedAt,
@@ -692,10 +692,10 @@ app.get('/files/:filename', (req, res) => {
   <section class="cta-section">
     <h2>Scan Your Copilot Code for Vulnerabilities</h2>
     <p>
-      VibeShip Scanner automatically detects weak random generation, code injection, XSS, command injection, and path traversal in your vibe coded projects. Get a security report in minutes.
+      vibeship scanner automatically detects weak random generation, code injection, XSS, command injection, and path traversal in your vibe coded projects. Get a security report in minutes.
     </p>
     <a href="https://scanner.vibeship.co" class="cta-button">
-      Try VibeShip Scanner Free
+      Try vibeship scanner Free
     </a>
   </section>
 </div>

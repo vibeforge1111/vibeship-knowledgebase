@@ -50,12 +50,12 @@
 						'XML External Entity (XXE) attacks let attackers read /etc/passwd and internal files. AI generates vulnerable XML parsers by default. Learn secure patterns for Node.js, Python, and Java.',
 					author: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					publisher: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					datePublished: '2025-12-17',
@@ -135,7 +135,7 @@
 </script>
 
 <svelte:head>
-	<title>XXE: How AI Code Lets Attackers Read Your Server Files | VibeShip</title>
+	<title>XXE: How AI Code Lets Attackers Read Your Server Files | vibeship</title>
 	<meta
 		name="description"
 		content="XML External Entity (XXE) attacks let attackers read /etc/passwd and internal files. AI generates vulnerable XML parsers by default. Learn secure patterns for Node.js, Python, and Java."
@@ -678,9 +678,9 @@ Prioritize by: User input → XML parser = Critical`}</code></pre>
 			<div class="cta-box">
 				<h2>Scan Your Vibe Coded Project</h2>
 				<p>
-					VibeShip Scanner detects XXE vulnerabilities by identifying XML parsers without security configuration - before attackers find them.
+					vibeship scanner detects XXE vulnerabilities by identifying XML parsers without security configuration - before attackers find them.
 				</p>
-				<a href="https://scanner.vibeship.co" class="cta-button">Try VibeShip Scanner Free →</a>
+				<a href="https://scanner.vibeship.co" class="cta-button">Try vibeship scanner Free →</a>
 			</div>
 		</section>
 	</article>

@@ -145,11 +145,11 @@
       "description": "Compare 8 vibe coding tools including Cursor, Claude Code, Windsurf, and Bolt. See which generates safest code and how to use each tool securely.",
       "author": {
         "@type": "Organization",
-        "name": "VibeShip"
+        "name": "vibeship"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "VibeShip",
+        "name": "vibeship",
         "url": "https://vibeship.co"
       },
       "datePublished": "2025-01-01",
@@ -220,7 +220,7 @@
 </script>
 
 <svelte:head>
-  <title>Best Vibe Coding Tools 2025: Security Comparison | VibeShip</title>
+  <title>Best Vibe Coding Tools 2025: Security Comparison | vibeship</title>
   <meta name="description" content="Compare 8 vibe coding tools: Cursor, Claude Code, Windsurf, Bolt & more. See which generates safest code and how to use each tool securely." />
   <meta name="keywords" content="vibe coding tools, best vibe coding tools, AI coding tools, Cursor, Claude Code, Windsurf, Bolt, vibe coding" />
   <link rel="canonical" href="https://vibeship.co/kb/vibe-coding-tools/" />
@@ -547,7 +547,7 @@
 
       <div class="tip">
         <h4>3. Scan Before Deploying</h4>
-        <p>Run a security scanner on all AI-generated code before it goes to production. <a href="https://scanner.vibeship.co">VibeShip Scanner</a> is built specifically for vibe coded projects.</p>
+        <p>Run a security scanner on all AI-generated code before it goes to production. <a href="https://scanner.vibeship.co">vibeship scanner</a> is built specifically for vibe coded projects.</p>
       </div>
 
       <div class="tip">
@@ -627,7 +627,7 @@
 
   <section class="cta-section">
     <h2>Scan Your AI-Generated Code</h2>
-    <p>VibeShip Scanner finds vulnerabilities that all vibe coding tools create. Works with code from Cursor, Claude Code, Bolt, and more.</p>
+    <p>vibeship scanner finds vulnerabilities that all vibe coding tools create. Works with code from Cursor, Claude Code, Bolt, and more.</p>
     <a href="https://scanner.vibeship.co" class="cta-button">Scan Your Repository</a>
   </section>
 </article>

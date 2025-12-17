@@ -92,7 +92,7 @@ For each vulnerable Route Handler found:
 </script>
 
 <svelte:head>
-  <title>{pageData.title} | VibeShip</title>
+  <title>{pageData.title} | vibeship</title>
   <meta name="description" content={pageData.description} />
   <meta name="keywords" content="CSRF protection, cross-site request forgery, Next.js CSRF, Server Actions security, CSRF token, SameSite cookies" />
   <link rel="canonical" href="https://vibeship.co/kb/security/vulnerabilities/csrf/" />
@@ -113,12 +113,12 @@ For each vulnerable Route Handler found:
     "description": pageData.description,
     "author": {
       "@type": "Organization",
-      "name": "VibeShip",
+      "name": "vibeship",
       "url": "https://vibeship.co"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "VibeShip",
+      "name": "vibeship",
       "url": "https://vibeship.co"
     },
     "datePublished": pageData.publishedAt,
@@ -587,10 +587,10 @@ export async function GET() {
   <section class="cta-section">
     <h2>Scan Your Code for CSRF Vulnerabilities</h2>
     <p>
-      VibeShip Scanner identifies Route Handlers without CSRF protection and recommends whether to add Origin validation, CSRF tokens, or convert to Server Actions. Get a security report in minutes.
+      vibeship scanner identifies Route Handlers without CSRF protection and recommends whether to add Origin validation, CSRF tokens, or convert to Server Actions. Get a security report in minutes.
     </p>
     <a href="https://scanner.vibeship.co" class="cta-button">
-      Try VibeShip Scanner Free
+      Try vibeship scanner Free
     </a>
   </section>
 </div>

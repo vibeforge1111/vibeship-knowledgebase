@@ -212,7 +212,7 @@ Begin your audit. Find all redirect operations, trace what controls the destinat
 </script>
 
 <svelte:head>
-	<title>{meta.title} | VibeShip</title>
+	<title>{meta.title} | vibeship</title>
 	<meta name="description" content={meta.description} />
 	<meta name="keywords" content="open redirect vulnerability, unvalidated redirect, CWE-601, phishing attack, OAuth security, login redirect" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
@@ -231,12 +231,12 @@ Begin your audit. Find all redirect operations, trace what controls the destinat
 		"description": meta.description,
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "vibeship",
 			"url": "https://vibeship.co"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "vibeship",
 			"url": "https://vibeship.co"
 		},
 		"datePublished": "2025-01-15",
@@ -759,7 +759,7 @@ app.get('/goto', (req, res) =&gt; &#123;
 	<section class="cta-section">
 		<div class="cta-content">
 			<h2>Find Open Redirects in Your Code</h2>
-			<p>VibeShip Scanner automatically detects unvalidated redirects in your codebase, including OAuth callback handlers and login return URLs.</p>
+			<p>vibeship scanner automatically detects unvalidated redirects in your codebase, including OAuth callback handlers and login return URLs.</p>
 			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free</a>
 		</div>
 	</section>

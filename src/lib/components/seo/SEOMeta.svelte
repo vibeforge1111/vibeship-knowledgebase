@@ -19,7 +19,7 @@
 		noindex = false
 	}: Props = $props();
 
-	const fullTitle = title.includes('VibeShip') ? title : `${title} | VibeShip`;
+	const fullTitle = title.includes('vibeship') ? title : `${title} | vibeship`;
 </script>
 
 <svelte:head>
@@ -43,7 +43,7 @@
 	<meta property="og:title" content={fullTitle} />
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content={ogImage} />
-	<meta property="og:site_name" content="VibeShip Knowledge Base" />
+	<meta property="og:site_name" content="vibeship knowledge base" />
 
 	<!-- Twitter -->
 	<meta property="twitter:card" content={twitterCard} />
@@ -52,6 +52,6 @@
 	<meta property="twitter:image" content={ogImage} />
 
 	<!-- Additional SEO -->
-	<meta name="author" content="VibeShip" />
+	<meta name="author" content="vibeship" />
 	<meta name="theme-color" content="#0a0a0a" />
 </svelte:head>

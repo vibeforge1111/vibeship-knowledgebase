@@ -217,7 +217,7 @@ Begin your audit. Find all database update operations, check what fields exist i
 </script>
 
 <svelte:head>
-	<title>{meta.title} | VibeShip</title>
+	<title>{meta.title} | vibeship</title>
 	<meta name="description" content={meta.description} />
 	<meta name="keywords" content="mass assignment vulnerability, API security, CWE-915, object injection, privilege escalation, Node.js security" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
@@ -236,12 +236,12 @@ Begin your audit. Find all database update operations, check what fields exist i
 		"description": meta.description,
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "vibeship",
 			"url": "https://vibeship.co"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "vibeship",
 			"url": "https://vibeship.co"
 		},
 		"datePublished": "2025-01-15",
@@ -724,7 +724,7 @@ export async function updateProfile(formData: FormData) &#123;
 	<section class="cta-section">
 		<div class="cta-content">
 			<h2>Find Mass Assignment in Your Code</h2>
-			<p>VibeShip Scanner automatically detects mass assignment vulnerabilities in your codebase, including Object.assign, spread operators, and direct ORM updates.</p>
+			<p>vibeship scanner automatically detects mass assignment vulnerabilities in your codebase, including Object.assign, spread operators, and direct ORM updates.</p>
 			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free</a>
 		</div>
 	</section>

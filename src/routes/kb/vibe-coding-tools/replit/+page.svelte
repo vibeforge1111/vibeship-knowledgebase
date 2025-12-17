@@ -657,7 +657,7 @@ For each fix:
 		<!-- CTA -->
 		<section class="cta-section">
 			<h2>Scan Your Replit Project for Security Issues</h2>
-			<p>VibeShip Scanner detects debug mode exposure, hardcoded credentials, and other patterns specific to AI-generated code.</p>
+			<p>vibeship scanner detects debug mode exposure, hardcoded credentials, and other patterns specific to AI-generated code.</p>
 			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
 		</section>
 	</article>

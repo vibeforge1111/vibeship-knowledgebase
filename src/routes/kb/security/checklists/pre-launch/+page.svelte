@@ -259,7 +259,7 @@ Output a summary table:
 		},
 		{
 			question: 'Can I automate security checks?',
-			answer: 'Yes. Copy the AI fix prompt to your AI coding tool (Cursor, Claude Code) to automatically scan your codebase. For CI/CD, use tools like Semgrep, Snyk, or GitHub CodeQL. VibeShip Scanner is specifically designed for AI-generated code patterns that generic tools miss.'
+			answer: 'Yes. Copy the AI fix prompt to your AI coding tool (Cursor, Claude Code) to automatically scan your codebase. For CI/CD, use tools like Semgrep, Snyk, or GitHub CodeQL. vibeship scanner is specifically designed for AI-generated code patterns that generic tools miss.'
 		}
 	];
 
@@ -551,7 +551,7 @@ Output a summary table:
 		<!-- CTA -->
 		<section class="cta-section">
 			<h2>Automated Security Scanning for Vibe Coded Apps</h2>
-			<p>VibeShip Scanner runs these checks automatically and catches patterns specific to AI-generated code.</p>
+			<p>vibeship scanner runs these checks automatically and catches patterns specific to AI-generated code.</p>
 			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
 		</section>
 	</article>

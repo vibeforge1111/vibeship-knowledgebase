@@ -50,12 +50,12 @@
 						'AI tools generate unsafe eval(), yaml.load(), and deserialize patterns that lead to RCE. Learn CWE-502 patterns and safe alternatives for Node.js and Python.',
 					author: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					publisher: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					datePublished: '2025-12-17',
@@ -131,7 +131,7 @@
 </script>
 
 <svelte:head>
-	<title>Insecure Deserialization: When AI Code Lets Attackers Execute Commands | VibeShip</title>
+	<title>Insecure Deserialization: When AI Code Lets Attackers Execute Commands | vibeship</title>
 	<meta
 		name="description"
 		content="AI tools generate unsafe eval(), yaml.load(), and deserialize patterns that lead to RCE. Learn CWE-502 patterns and safe alternatives for Node.js and Python."
@@ -645,10 +645,10 @@ grep -rn "yaml.load" --include="*.py" | grep -v "SafeLoader\|safe_load"</code
 		</div>
 
 		<div class="cta-box">
-			<strong>Scan Your Vibe Coded Project:</strong> Manual searches miss context. VibeShip Scanner
+			<strong>Scan Your Vibe Coded Project:</strong> Manual searches miss context. vibeship scanner
 			automatically detects deserialization vulnerabilities in AI-generated code and provides
 			fix suggestions.
-			<a href="https://scanner.vibeship.co" class="cta-link">Try VibeShip Scanner →</a>
+			<a href="https://scanner.vibeship.co" class="cta-link">Try vibeship scanner →</a>
 		</div>
 	</section>
 

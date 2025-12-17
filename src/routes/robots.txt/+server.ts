@@ -3,7 +3,7 @@ import type { RequestHandler } from './$types';
 export const GET: RequestHandler = async ({ url }) => {
 	const baseUrl = url.origin;
 
-	const content = `# VibeShip Knowledge Base - robots.txt
+	const content = `# vibeship knowledge base - robots.txt
 # Welcome crawlers! This site is designed to be indexed and cited.
 
 # Allow all standard search engines

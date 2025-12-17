@@ -94,11 +94,11 @@ For each vulnerability found:
       "description": "Server-Side Template Injection (SSTI) lets attackers execute code through template engines like Jinja2, EJS, and Pug. AI generates vulnerable patterns. Learn detection and prevention.",
       "author": {
         "@type": "Organization",
-        "name": "VibeShip"
+        "name": "vibeship"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "VibeShip",
+        "name": "vibeship",
         "url": "https://vibeship.co"
       },
       "datePublished": "2024-12-17",
@@ -169,7 +169,7 @@ For each vulnerability found:
 </script>
 
 <svelte:head>
-  <title>SSTI: When AI Template Code Becomes Remote Code Execution | VibeShip</title>
+  <title>SSTI: When AI Template Code Becomes Remote Code Execution | vibeship</title>
   <meta name="description" content="Server-Side Template Injection (SSTI) lets attackers execute code through template engines like Jinja2, EJS, and Pug. AI generates vulnerable patterns. Learn detection and prevention." />
   <meta name="keywords" content="SSTI, server-side template injection, template injection, Jinja2 SSTI, EJS security, CWE-1336, vibe coding security" />
   <link rel="canonical" href="https://vibeship.co/kb/security/vulnerabilities/ssti/" />
@@ -704,7 +704,7 @@ eval() with template content</code></pre>
 
   <section class="cta-section">
     <h2>Scan Your Code for SSTI</h2>
-    <p>VibeShip Scanner automatically detects template injection vulnerabilities in your AI-generated code across Jinja2, EJS, Pug, Twig, and more.</p>
+    <p>vibeship scanner automatically detects template injection vulnerabilities in your AI-generated code across Jinja2, EJS, Pug, Twig, and more.</p>
     <a href="https://scanner.vibeship.co" class="cta-button">Scan Your Repository</a>
   </section>
 </article>

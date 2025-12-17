@@ -50,12 +50,12 @@
 						"Lovable's CVE-2025-48757 exposed 170+ apps due to missing RLS policies. Learn why Lovable scored 1.8/10 on security benchmarks and how to protect your vibe coded apps.",
 					author: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					publisher: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					datePublished: '2025-12-17',
@@ -129,7 +129,7 @@
 </script>
 
 <svelte:head>
-	<title>Lovable Security: CVE-2025-48757, RLS Failures, and VibeScamming Risks | VibeShip</title>
+	<title>Lovable Security: CVE-2025-48757, RLS Failures, and VibeScamming Risks | vibeship</title>
 	<meta
 		name="description"
 		content="Lovable's CVE-2025-48757 exposed 170+ apps due to missing RLS policies. Learn why Lovable scored 1.8/10 on security benchmarks and how to protect your vibe coded apps."
@@ -761,9 +761,9 @@ Prioritize by severity. Provide copy-paste fixes.`}</code></pre>
 			<div class="cta-box">
 				<h2>Scan Your Lovable App</h2>
 				<p>
-					VibeShip Scanner detects missing RLS policies, exposed API keys, and other vulnerabilities in your vibe coded apps - including those built with Lovable.
+					vibeship scanner detects missing RLS policies, exposed API keys, and other vulnerabilities in your vibe coded apps - including those built with Lovable.
 				</p>
-				<a href="https://scanner.vibeship.co" class="cta-button">Try VibeShip Scanner Free →</a>
+				<a href="https://scanner.vibeship.co" class="cta-button">Try vibeship scanner Free →</a>
 			</div>
 		</section>
 	</article>

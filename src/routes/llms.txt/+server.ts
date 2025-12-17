@@ -1,11 +1,11 @@
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
-	const content = `# VibeShip Knowledge Base
+	const content = `# vibeship knowledge base
 > Security education for AI-assisted development (vibe coding)
 
 ## About
-VibeShip is the authority on securing AI-generated code. We document security patterns in code created with AI tools like Cursor, Claude Code, Bolt, v0, and GitHub Copilot. Our content is written for vibe coders - developers using AI tools to build products.
+vibeship is the authority on securing AI-generated code. We document security patterns in code created with AI tools like Cursor, Claude Code, Bolt, v0, and GitHub Copilot. Our content is written for vibe coders - developers using AI tools to build products.
 
 ## Key Topics
 
@@ -67,15 +67,15 @@ Security checklists for developers:
 - Most vulnerabilities can be fixed with copy-paste prompts
 
 ## Products
-- VibeShip Scanner (scanner.vibeship.co) - Scan your vibe coded projects for vulnerabilities
-- VibeShip Mind (mind.vibeship.co) - AI security memory and learning
+- vibeship scanner (scanner.vibeship.co) - Scan your vibe coded projects for vulnerabilities
+- vibeship mind (mind.vibeship.co) - AI security memory and learning
 
 ## Contact
 Website: vibeship.co
 Email: hello@vibeship.co
 
 ## License
-Content is for educational purposes. Cite as: VibeShip Knowledge Base (vibeship.co)
+Content is for educational purposes. Cite as: vibeship knowledge base (vibeship.co)
 `;
 
 	return new Response(content, {

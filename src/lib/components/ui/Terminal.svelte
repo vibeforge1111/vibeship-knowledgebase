@@ -11,7 +11,7 @@
 	const terminalContent: TerminalLine[] = [
 		{ type: 'command', text: '$ vibeship init --vibe-coder', delay: 0 },
 		{ type: 'output', text: '', delay: 400 },
-		{ type: 'welcome', text: 'Welcome to VibeShip Knowledge Base', delay: 700 },
+		{ type: 'welcome', text: 'Welcome to vibeship knowledge base', delay: 700 },
 		{ type: 'info', text: 'Your guide to shipping secure AI-generated code', delay: 1000 },
 		{ type: 'output', text: '', delay: 1400 },
 		{ type: 'status', text: 'Loading topics...', delay: 1600 },

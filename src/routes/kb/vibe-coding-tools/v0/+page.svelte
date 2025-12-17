@@ -671,7 +671,7 @@ For each issue found:
 		<!-- CTA -->
 		<section class="cta-section">
 			<h2>Scan Your v0 Project for Security Issues</h2>
-			<p>VibeShip Scanner detects NEXT_PUBLIC_ exposure, missing auth, and other patterns specific to AI-generated Next.js code.</p>
+			<p>vibeship scanner detects NEXT_PUBLIC_ exposure, missing auth, and other patterns specific to AI-generated Next.js code.</p>
 			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
 		</section>
 	</article>

@@ -217,7 +217,7 @@ Begin your audit. Find all HTTP request patterns with user input, then verify co
 </script>
 
 <svelte:head>
-	<title>{meta.title} | VibeShip</title>
+	<title>{meta.title} | vibeship</title>
 	<meta name="description" content={meta.description} />
 	<meta name="keywords" content="SSRF vulnerability, server-side request forgery, CWE-918, Next.js SSRF, CVE-2024-34351, cloud metadata attack" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
@@ -236,12 +236,12 @@ Begin your audit. Find all HTTP request patterns with user input, then verify co
 		"description": meta.description,
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "vibeship",
 			"url": "https://vibeship.co"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "vibeship",
 			"url": "https://vibeship.co"
 		},
 		"datePublished": "2025-01-15",
@@ -726,7 +726,7 @@ export async function safeRedirect(path: string) &#123;
 	<section class="cta-section">
 		<div class="cta-content">
 			<h2>Find SSRF Vulnerabilities in Your Code</h2>
-			<p>VibeShip Scanner automatically detects SSRF patterns in your codebase, including unvalidated URL fetching and missing internal IP blocks.</p>
+			<p>vibeship scanner automatically detects SSRF patterns in your codebase, including unvalidated URL fetching and missing internal IP blocks.</p>
 			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free</a>
 		</div>
 	</section>

@@ -42,7 +42,7 @@
 		{
 			question: 'How do I review AI-generated code for security?',
 			answer:
-				'Use the 5-minute security review checklist in this guide. Check for authentication, input validation, secrets exposure, and error handling. Then run automated tools like Semgrep and Gitleaks for additional coverage. Consider using our <a href="https://scanner.vibeship.co">VibeShip Scanner</a> for comprehensive analysis.'
+				'Use the 5-minute security review checklist in this guide. Check for authentication, input validation, secrets exposure, and error handling. Then run automated tools like Semgrep and Gitleaks for additional coverage. Consider using our <a href="https://scanner.vibeship.co">vibeship scanner</a> for comprehensive analysis.'
 		},
 		{
 			question: 'What percentage of AI-generated code has vulnerabilities?',
@@ -52,7 +52,7 @@
 		{
 			question: 'Are there free security tools for vibe coding?',
 			answer:
-				'Yes! <a href="https://gitleaks.io/">Gitleaks</a> (secrets), <a href="https://semgrep.dev/">Semgrep</a> (SAST), npm audit (dependencies), and ESLint security plugin are all free and effective. Start with these before considering paid tools. Our <a href="https://scanner.vibeship.co">VibeShip Scanner</a> also offers a free tier.'
+				'Yes! <a href="https://gitleaks.io/">Gitleaks</a> (secrets), <a href="https://semgrep.dev/">Semgrep</a> (SAST), npm audit (dependencies), and ESLint security plugin are all free and effective. Start with these before considering paid tools. Our <a href="https://scanner.vibeship.co">vibeship scanner</a> also offers a free tier.'
 		},
 		{
 			question: 'How do I write secure prompts for AI coding?',
@@ -130,12 +130,12 @@
 						'45% of AI-generated code fails security tests (Veracode 2025). Learn secure prompting, rules files, and code review to vibe code safely with Cursor, Copilot, and Claude Code.',
 					author: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					publisher: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					datePublished: '2025-12-17',
@@ -234,7 +234,7 @@
 </script>
 
 <svelte:head>
-	<title>The Complete Secure Vibe Coding Guide: Ship Fast Without Getting Hacked | VibeShip</title>
+	<title>The Complete Secure Vibe Coding Guide: Ship Fast Without Getting Hacked | vibeship</title>
 	<meta
 		name="description"
 		content="45% of AI-generated code fails security tests (Veracode 2025). Learn secure prompting, rules files, and code review to vibe code safely with Cursor, Copilot, and Claude Code."
@@ -508,10 +508,10 @@ AVOID: CWE-89 (SQL injection), CWE-307 (brute force), CWE-209 (info disclosure)<
 			files as a critical security control for vibe coding.
 		</p>
 
-		<h3>The VibeShip Security Rules (Copy-Paste Ready)</h3>
+		<h3>The vibeship Security Rules (Copy-Paste Ready)</h3>
 		<div class="rules-box">
 			<div class="rules-header">
-				<span>VibeShip Security Rules for AI Tools</span>
+				<span>vibeship security rules for AI Tools</span>
 				<button
 					class="copy-button"
 					onclick={(e) => copyToClipboard(securityRulesContent, e.currentTarget as HTMLButtonElement)}
@@ -745,9 +745,9 @@ Code to review:
 		</div>
 
 		<div class="cta-box">
-			<strong>Automate Your Security Reviews:</strong> VibeShip Scanner automatically analyzes AI-generated
+			<strong>Automate Your Security Reviews:</strong> vibeship scanner automatically analyzes AI-generated
 			code for vulnerabilities and provides fix suggestions.
-			<a href="https://scanner.vibeship.co" class="cta-link">Try VibeShip Scanner →</a>
+			<a href="https://scanner.vibeship.co" class="cta-link">Try vibeship scanner →</a>
 		</div>
 	</section>
 
@@ -1086,7 +1086,7 @@ module.exports = {
 			<li>Bookmark this guide for the 5-minute review checklist</li>
 			<li>Run Gitleaks and Semgrep on your existing code</li>
 			<li>
-				<a href="https://scanner.vibeship.co">Try VibeShip Scanner</a> for automated vulnerability detection
+				<a href="https://scanner.vibeship.co">Try vibeship scanner</a> for automated vulnerability detection
 			</li>
 		</ol>
 		<p>

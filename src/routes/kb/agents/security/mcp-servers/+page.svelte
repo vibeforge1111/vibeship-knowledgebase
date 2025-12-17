@@ -55,12 +55,12 @@
 						'MCP servers connect AI tools to your data but expose you to tool poisoning, credential theft, and RCE. Learn attack vectors and secure your Claude Code, Cursor, and Windsurf setup.',
 					author: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					publisher: {
 						'@type': 'Organization',
-						name: 'VibeShip',
+						name: 'vibeship',
 						url: 'https://vibeship.co'
 					},
 					datePublished: '2025-12-17',
@@ -172,7 +172,7 @@
 </script>
 
 <svelte:head>
-	<title>MCP Server Security: The Hidden Risks in AI Tool Integrations | VibeShip</title>
+	<title>MCP Server Security: The Hidden Risks in AI Tool Integrations | vibeship</title>
 	<meta
 		name="description"
 		content="MCP servers connect AI tools to your data but expose you to tool poisoning, credential theft, and RCE. Learn attack vectors and secure your Claude Code, Cursor, and Windsurf setup."
@@ -743,10 +743,10 @@ Format your response as a security report with risk ratings (Critical/High/Mediu
 			<div class="cta-box">
 				<h2>Scan Your Vibe Coded Project</h2>
 				<p>
-					VibeShip Scanner automatically detects security vulnerabilities in AI-generated code,
+					vibeship scanner automatically detects security vulnerabilities in AI-generated code,
 					including dangerous patterns that MCP servers might introduce.
 				</p>
-				<a href="https://scanner.vibeship.co" class="cta-button">Try VibeShip Scanner Free →</a>
+				<a href="https://scanner.vibeship.co" class="cta-button">Try vibeship scanner Free →</a>
 			</div>
 		</section>
 	</article>

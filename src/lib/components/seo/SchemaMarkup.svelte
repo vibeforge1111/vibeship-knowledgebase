@@ -11,7 +11,7 @@
 		'@type': type,
 		publisher: {
 			'@type': 'Organization',
-			name: 'VibeShip',
+			name: 'vibeship',
 			url: 'https://vibeship.co',
 			logo: {
 				'@type': 'ImageObject',
