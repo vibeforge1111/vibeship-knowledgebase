@@ -480,7 +480,7 @@
 						<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
 						<circle cx="12" cy="7" r="4"/>
 					</svg>
-					<span>YOU + YOUR LLM + VIBESHIP</span>
+					<span>YOU + YOUR IDEA + YOUR LLM + VIBESHIP</span>
 				</div>
 			</div>
 
@@ -495,12 +495,10 @@
 				<div class="stage-box medium">
 					<div class="stage-icon">
 						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-							<path d="M12 2a4 4 0 0 1 4 4c0 1.1-.9 2-2 2"/>
-							<path d="M6 8a4 4 0 0 1 4-4"/>
-							<path d="M18 8a6 6 0 0 1-6 6"/>
-							<path d="M6 8a6 6 0 0 0 6 6"/>
-							<path d="M12 14v8"/>
-							<path d="M8 18h8"/>
+							<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+							<path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+							<path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/>
+							<path d="M12 18v4"/>
 						</svg>
 					</div>
 					<div class="stage-content">
@@ -1683,6 +1681,10 @@
 		padding: 6rem 0;
 		border-top: 1px solid var(--border);
 		text-align: center;
+	}
+
+	.final-cta h2 {
+		margin-bottom: 2rem;
 	}
 
 	.final-cta p {
