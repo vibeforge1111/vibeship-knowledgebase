@@ -25,3 +25,4 @@ vite.config.ts.timestamp-*
 # Content ops (only actual brief content is ephemeral)
 /docs/.content-ops/briefs/*-brief.md
 /docs/scripts
+nul

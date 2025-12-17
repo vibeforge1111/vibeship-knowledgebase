@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
+	import SearchModal from './SearchModal.svelte';
 
 	interface Props {
 		isOpen?: boolean;
@@ -7,6 +9,22 @@
 	}
 
 	let { isOpen = false, onClose }: Props = $props();
+	let searchOpen = $state(false);
+
+	// Global keyboard shortcut for Cmd+K / Ctrl+K
+	$effect(() => {
+		if (!browser) return;
+
+		function handleKeydown(e: KeyboardEvent) {
+			if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+				e.preventDefault();
+				searchOpen = true;
+			}
+		}
+
+		document.addEventListener('keydown', handleKeydown);
+		return () => document.removeEventListener('keydown', handleKeydown);
+	});
 
 	const navSections = [
 		{
@@ -46,15 +64,17 @@
 	</div>
 
 	<div class="sidebar-search">
-		<div class="search-wrapper">
+		<button class="search-trigger" onclick={() => searchOpen = true}>
 			<svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
 				<circle cx="11" cy="11" r="8"/>
 				<path d="m21 21-4.35-4.35"/>
 			</svg>
-			<input type="text" class="search-input" placeholder="Search..." />
+			<span class="search-placeholder">Search...</span>
 			<span class="search-shortcut">⌘K</span>
-		</div>
+		</button>
 	</div>
+
+	<SearchModal isOpen={searchOpen} onClose={() => searchOpen = false} />
 
 	<nav class="sidebar-nav">
 		{#each navSections as section}
@@ -146,44 +166,36 @@
 		border-bottom: 1px solid var(--border);
 	}
 
-	.search-wrapper {
-		position: relative;
+	.search-trigger {
+		width: 100%;
 		display: flex;
 		align-items: center;
-	}
-
-	.search-icon {
-		position: absolute;
-		left: 0.75rem;
-		color: var(--text-tertiary);
-		pointer-events: none;
-	}
-
-	.search-input {
-		width: 100%;
+		gap: 0.5rem;
 		padding: 0.5rem 0.75rem;
-		padding-left: 2.25rem;
-		padding-right: 2.5rem;
 		background: var(--bg-primary);
 		border: 1px solid var(--border);
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 0.8rem;
-		color: var(--text-primary);
+		cursor: pointer;
 		transition: border-color 0.15s;
 	}
 
-	.search-input:focus {
-		outline: none;
-		border-color: var(--text-primary);
+	.search-trigger:hover {
+		border-color: var(--text-tertiary);
 	}
 
-	.search-input::placeholder {
+	.search-icon {
+		color: var(--text-tertiary);
+		flex-shrink: 0;
+	}
+
+	.search-placeholder {
+		flex: 1;
+		text-align: left;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.8rem;
 		color: var(--text-tertiary);
 	}
 
 	.search-shortcut {
-		position: absolute;
-		right: 0.5rem;
 		font-family: 'JetBrains Mono', monospace;
 		font-size: 0.65rem;
 		color: var(--text-tertiary);

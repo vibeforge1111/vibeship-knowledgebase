@@ -57,7 +57,7 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 35 | ✅ Done | Vulnerability | race-conditions |
 | | | **--- NEW: Ahrefs-Driven Quick Wins ---** | |
 | 36 | 📝 Brief Ready | Hub (P0) | best-vibe-coding-tools |
-| 37 | 📝 Brief Ready | Comparison (P0) | claude-code-vs-cursor |
+| 37 | ✅ Done | Comparison (P0) | claude-code-vs-cursor |
 | 38 | 📝 Brief Ready | Comparison (P0) | windsurf-vs-cursor |
 | 39 | 📝 Brief Ready | Vulnerability (P1) | prompt-injection |
 | 40 | 📝 Brief Ready | Pillar (P1) | what-is-vibe-coding |
@@ -96,7 +96,7 @@ Based on Ahrefs keyword research conducted 2025-12-17:
 | Tool | Volume | Our Article |
 |------|--------|-------------|
 | claude code | 114,000 | ✅ Published |
-| lovable ai | 41,000 | 📝 Brief Ready |
+| lovable ai | 41,000 | ✅ Published |
 | windsurf ai | 19,000 | ✅ Published |
 | cursor | 1,200,000+ | ✅ Published |
 
