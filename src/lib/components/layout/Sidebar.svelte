@@ -35,7 +35,7 @@
 				{ href: '/kb/vibe-coding-tools', label: 'Vibe Coding Tools', badge: '8' },
 				{ href: '/kb/security/stacks', label: 'Stack Guides', badge: '3' },
 				{ href: '/kb/security/checklists', label: 'Checklists', badge: '1' },
-				{ href: '/kb/prompts', label: 'Prompts' }
+				{ href: '/kb/prompts', label: 'Prompts', badge: '10' }
 			]
 		},
 		{
