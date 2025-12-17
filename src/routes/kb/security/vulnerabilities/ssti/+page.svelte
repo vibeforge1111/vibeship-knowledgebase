@@ -134,7 +134,7 @@ For each vulnerability found:
           "name": "Is Jinja2 vulnerable to SSTI?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Jinja2 itself is not inherently vulnerable - the vulnerability comes from how developers use it. When you concatenate user input into template strings (like f'Hello {"{"}name{"}"}' with render_template_string()), you create SSTI. The secure pattern is passing data as variables: render_template_string('Hello {"{{"} name {"}}"}', name=user_input). Jinja2's autoescape prevents XSS but does not prevent SSTI."
+            "text": "Jinja2 itself is not inherently vulnerable - the vulnerability comes from how developers use it. When you concatenate user input into template strings (like f'Hello [name]' with render_template_string()), you create SSTI. The secure pattern is passing data as variables: render_template_string('Hello [[ name ]]', name=user_input). Jinja2's autoescape prevents XSS but does not prevent SSTI."
           }
         },
         {
