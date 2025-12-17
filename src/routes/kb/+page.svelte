@@ -1,63 +1,41 @@
 <script lang="ts">
-	import { Header } from '$lib/components/layout';
+	import { Header, SearchModal } from '$lib/components/layout';
 	import { Terminal } from '$lib/components/ui';
-	import { goto } from '$app/navigation';
 
-	let searchQuery = $state('');
-
-	function handleSearch(e: Event) {
-		e.preventDefault();
-		if (searchQuery.trim()) {
-			goto(`/kb/search?q=${encodeURIComponent(searchQuery.trim())}`);
-		}
-	}
+	let searchOpen = $state(false);
 
 	const categories = [
 		{
-			href: '/kb/vulnerabilities',
+			href: '/kb/security/vulnerabilities',
 			title: 'Vulnerabilities',
-			description: 'Deep dives into SQL injection, XSS, hardcoded secrets, and 20+ security vulnerabilities common in AI-generated code.',
-			count: '25+ articles'
+			description: 'Deep dives into SQL injection, XSS, hardcoded secrets, and 18+ security vulnerabilities common in AI-generated code.',
+			count: '18 articles'
 		},
 		{
 			href: '/kb/vibe-coding-tools',
-			title: 'AI Patterns',
-			description: 'Security patterns specific to Cursor, Claude Code, Bolt, v0, and other AI coding tools. Our unique moat.',
-			count: '7 tools'
+			title: 'AI Tool Patterns',
+			description: 'Security patterns specific to Cursor, Claude Code, Bolt, v0, and other AI coding tools.',
+			count: '8 tools'
 		},
 		{
-			href: '/kb/stacks',
+			href: '/kb/security/stacks',
 			title: 'Stack Guides',
-			description: 'Security guides for Next.js + Supabase, Express + PostgreSQL, SvelteKit, and other popular stacks.',
-			count: '6 stacks'
+			description: 'Security guides for Next.js + Supabase, Next.js + Prisma, SvelteKit + Supabase, and more.',
+			count: '3 stacks'
 		},
 		{
-			href: '/kb/fixes',
-			title: 'Fix Prompts',
-			description: 'Copy-paste AI prompts to fix vulnerabilities. Framework-specific, battle-tested, ready to use.',
-			count: '50+ prompts'
-		},
-		{
-			href: '/kb/glossary',
-			title: 'Glossary',
-			description: 'Plain English definitions of security terms. No jargon, no gatekeeping.',
-			count: '100+ terms'
-		},
-		{
-			href: '/kb/checklists',
+			href: '/kb/security/checklists',
 			title: 'Checklists',
-			description: 'Interactive security checklists for pre-launch, API security, authentication, and more.',
-			count: '10+ checklists'
+			description: 'Security checklists for pre-launch review and deployment verification.',
+			count: '1 checklist'
 		}
 	];
 
 	const icons: Record<string, string> = {
-		'/kb/vulnerabilities': 'lock',
+		'/kb/security/vulnerabilities': 'lock',
 		'/kb/vibe-coding-tools': 'cpu',
-		'/kb/stacks': 'layers',
-		'/kb/fixes': 'tool',
-		'/kb/glossary': 'book',
-		'/kb/checklists': 'check-square'
+		'/kb/security/stacks': 'layers',
+		'/kb/security/checklists': 'check-square'
 	};
 </script>
 
@@ -78,21 +56,16 @@
 		</div>
 
 		<!-- Prominent Search Bar -->
-		<form class="kb-search-form" onsubmit={handleSearch}>
-			<div class="kb-search-container">
-				<svg class="kb-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<circle cx="11" cy="11" r="8"/>
-					<path d="M21 21l-4.35-4.35"/>
-				</svg>
-				<input
-					type="text"
-					class="kb-search-input"
-					placeholder="Search vulnerabilities, fixes, AI patterns..."
-					bind:value={searchQuery}
-				/>
-				<kbd class="kb-search-shortcut">/</kbd>
-			</div>
-		</form>
+		<button class="kb-search-trigger" onclick={() => searchOpen = true}>
+			<svg class="kb-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<circle cx="11" cy="11" r="8"/>
+				<path d="M21 21l-4.35-4.35"/>
+			</svg>
+			<span class="kb-search-placeholder">Search vulnerabilities, tools, guides...</span>
+			<kbd class="kb-search-shortcut">⌘K</kbd>
+		</button>
+
+		<SearchModal isOpen={searchOpen} onClose={() => searchOpen = false} />
 
 		<div class="terminal-section">
 			<Terminal />
@@ -102,7 +75,7 @@
 			{#each categories as cat}
 				<a href={cat.href} class="card card-interactive">
 					<div class="category-icon">
-						{#if cat.href === '/kb/vulnerabilities'}
+						{#if cat.href === '/kb/security/vulnerabilities'}
 							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
 								<rect x="3" y="11" width="18" height="11" rx="2"/>
 								<path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -113,22 +86,13 @@
 								<rect x="9" y="9" width="6" height="6"/>
 								<path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
 							</svg>
-						{:else if cat.href === '/kb/stacks'}
+						{:else if cat.href === '/kb/security/stacks'}
 							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
 								<path d="M12 2L2 7l10 5 10-5-10-5z"/>
 								<path d="M2 17l10 5 10-5"/>
 								<path d="M2 12l10 5 10-5"/>
 							</svg>
-						{:else if cat.href === '/kb/fixes'}
-							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-								<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-							</svg>
-						{:else if cat.href === '/kb/glossary'}
-							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-								<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-								<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-							</svg>
-						{:else if cat.href === '/kb/checklists'}
+						{:else if cat.href === '/kb/security/checklists'}
 							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
 								<path d="M9 11l3 3L22 4"/>
 								<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
@@ -209,51 +173,40 @@
 
 <style>
 	/* Prominent Search Bar */
-	.kb-search-form {
-		margin-bottom: 2rem;
-	}
-
-	.kb-search-container {
-		position: relative;
+	.kb-search-trigger {
+		width: 100%;
 		display: flex;
 		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 1.25rem;
+		margin-bottom: 2rem;
 		background: var(--bg-secondary);
 		border: 1px solid var(--border);
+		cursor: pointer;
 		transition: border-color 0.15s ease, box-shadow 0.15s ease;
 	}
 
-	.kb-search-container:focus-within {
-		border-color: var(--green);
-		box-shadow: 0 0 0 3px var(--green-dim);
+	.kb-search-trigger:hover {
+		border-color: var(--text-tertiary);
 	}
 
 	.kb-search-icon {
-		position: absolute;
-		left: 1.25rem;
 		color: var(--text-tertiary);
-		pointer-events: none;
+		flex-shrink: 0;
 	}
 
-	.kb-search-input {
+	.kb-search-placeholder {
 		flex: 1;
-		background: transparent;
-		border: none;
-		padding: 1.125rem 1rem 1.125rem 3.5rem;
+		text-align: left;
 		font-size: 1.125rem;
-		color: var(--text-primary);
-		outline: none;
-	}
-
-	.kb-search-input::placeholder {
 		color: var(--text-tertiary);
 	}
 
 	.kb-search-shortcut {
-		margin-right: 1rem;
 		padding: 0.25rem 0.5rem;
-		background: var(--bg-tertiary);
+		background: var(--bg-primary);
 		border: 1px solid var(--border);
-		font-family: var(--font-mono);
+		font-family: 'JetBrains Mono', monospace;
 		font-size: 0.75rem;
 		color: var(--text-tertiary);
 	}
@@ -308,9 +261,8 @@
 			grid-template-columns: 1fr;
 		}
 
-		.kb-search-input {
+		.kb-search-placeholder {
 			font-size: 1rem;
-			padding: 1rem 1rem 1rem 3rem;
 		}
 
 		.kb-search-shortcut {
