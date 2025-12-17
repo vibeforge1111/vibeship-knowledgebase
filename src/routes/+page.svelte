@@ -163,7 +163,7 @@
 					'    /kb/security/checklists/database',
 					'    └─ 12-point pre-deploy checklist',
 					'',
-					'50+ articles. 26 vulnerability types covered.',
+					'50+ articles. 2000+ vulnerability types covered.',
 				]
 			}
 		}
@@ -220,7 +220,7 @@
 			github: 'https://github.com/vibeforge1111/vibeship-scanner',
 			status: 'live',
 			icon: 'shield',
-			stats: '26 vulnerability types'
+			stats: '2000+ vulnerability types'
 		},
 		{
 			name: 'Mind',
@@ -268,17 +268,19 @@
 <nav>
 	<div class="nav-content">
 		<a href="/" class="logo">
+			<img src="/logo.png" alt="vibeship" class="logo-icon" />
 			<span class="logo-text">vibeship</span>
 		</a>
 		<div class="nav-right">
-			<a href="https://github.com/vibeforge1111" target="_blank" class="github-link" aria-label="GitHub">
-				<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+			<a href="https://github.com/vibeforge1111" target="_blank" class="github-cta">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
 					<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
 				</svg>
+				GitHub
 			</a>
 			<button class="theme-toggle" onclick={toggleTheme} aria-label="Toggle theme">
 				{#if theme === 'dark'}
-					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 						<circle cx="12" cy="12" r="5"/>
 						<line x1="12" y1="1" x2="12" y2="3"/>
 						<line x1="12" y1="21" x2="12" y2="23"/>
@@ -290,7 +292,7 @@
 						<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
 					</svg>
 				{:else}
-					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
 					</svg>
 				{/if}
@@ -305,12 +307,10 @@
 		<div class="hero-intro">
 			<div class="hero-badge">THE VIBE CODING ECOSYSTEM</div>
 			<h1>
-				Ship <span class="highlight">faster<span class="underline-accent"></span></span>.
-				Ship <span class="highlight">safer<span class="underline-accent green"></span></span>.
+				ship better <span class="highlight">vibe coded<span class="underline-accent orange"></span></span> products
 			</h1>
 			<p class="hero-subtitle">
-				AI tools to scan, remember, and orchestrate.
-				Built for developers who build with AI.
+				Tools to scan and secure your codebase, remember what you built, and spawn skilled agents - all to help you ship products you're proud of.
 			</p>
 		</div>
 
@@ -642,7 +642,7 @@
 	<section class="stats">
 		<div class="stats-grid">
 			<div class="stat">
-				<div class="stat-value">26</div>
+				<div class="stat-value">2000+</div>
 				<div class="stat-label">Vulnerability Types</div>
 				<div class="stat-sub">OWASP Top 10 + AI-specific</div>
 			</div>
@@ -659,7 +659,7 @@
 			<div class="stat">
 				<div class="stat-value">100%</div>
 				<div class="stat-label">Open Source</div>
-				<div class="stat-sub">MIT licensed</div>
+				<div class="stat-sub">Apache 2.0 licensed</div>
 			</div>
 		</div>
 	</section>
@@ -686,18 +686,38 @@
 
 <footer>
 	<div class="footer-content">
-		<div class="footer-brand">
-			<span class="footer-logo">vibeship</span>
-			<span class="footer-tagline">Tools for vibe coders</span>
+		<div class="footer-upper">
+			<div class="footer-products">
+				<a href="https://scanner.vibeship.co" target="_blank">Scanner</a>
+				<a href="https://mind.vibeship.co" target="_blank">Mind</a>
+				<a href="/kb">Knowledge Base</a>
+			</div>
+			<div class="footer-social">
+				<a href="https://github.com/vibeforge1111" target="_blank" class="github-btn">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+					</svg>
+					GitHub
+				</a>
+				<a href="https://x.com/vibeshipco" target="_blank" class="x-link" aria-label="X">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+					</svg>
+				</a>
+			</div>
 		</div>
-		<div class="footer-links">
-			<a href="/kb">Knowledge Base</a>
-			<a href="https://scanner.vibeship.co" target="_blank">Scanner</a>
-			<a href="https://mind.vibeship.co" target="_blank">Mind</a>
-			<a href="https://github.com/vibeforge1111" target="_blank">GitHub</a>
-		</div>
-		<div class="footer-bottom">
-			<span>Open source. Built with AI.</span>
+		<div class="footer-lower">
+			<a href="/" class="footer-logo">
+				<img src="/logo.png" alt="vibeship" class="footer-logo-icon" />
+				<span>vibeship</span>
+			</a>
+			<div class="footer-legal">
+				<a href="/terms">Terms</a>
+				<span class="footer-dot">·</span>
+				<a href="/privacy">Privacy</a>
+				<span class="footer-dot">·</span>
+				<span>Vibe coded. For vibe coders.</span>
+			</div>
 		</div>
 	</div>
 </footer>
@@ -712,13 +732,12 @@
 
 	/* Navigation */
 	nav {
-		height: 56px;
+		height: 52px;
 		border-bottom: 1px solid var(--border);
 		background: var(--bg-primary);
 		position: sticky;
 		top: 0;
 		z-index: 100;
-		backdrop-filter: blur(8px);
 	}
 
 	.nav-content {
@@ -732,29 +751,44 @@
 	}
 
 	.logo {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
 		text-decoration: none;
+	}
+
+	.logo-icon {
+		width: 24px;
+		height: 24px;
+		filter: invert(var(--logo-invert, 0));
 	}
 
 	.logo-text {
 		font-family: 'Instrument Serif', Georgia, serif;
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 		color: var(--text-primary);
 	}
 
 	.nav-right {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.75rem;
 	}
 
-	.github-link {
-		color: var(--text-secondary);
-		transition: color 0.15s;
+	.github-cta {
 		display: flex;
 		align-items: center;
+		gap: 0.5rem;
+		padding: 0.4rem 0.75rem;
+		font-size: 0.75rem;
+		color: var(--text-secondary);
+		text-decoration: none;
+		border: 1px solid var(--border);
+		transition: all 0.15s;
 	}
 
-	.github-link:hover {
+	.github-cta:hover {
+		border-color: var(--green-dim);
 		color: var(--green-dim);
 	}
 
@@ -762,7 +796,9 @@
 		background: transparent;
 		border: 1px solid var(--border);
 		color: var(--text-secondary);
-		padding: 0.5rem;
+		width: 32px;
+		height: 32px;
+		padding: 0;
 		cursor: pointer;
 		display: flex;
 		align-items: center;
@@ -819,16 +855,23 @@
 
 	.underline-accent {
 		position: absolute;
-		bottom: 0.1em;
-		left: -2%;
-		width: 104%;
-		height: 3px;
-		background: linear-gradient(90deg, transparent 0%, var(--orange, #D97757) 15%, var(--orange, #D97757) 85%, transparent 100%);
-		transform: rotate(-2deg);
+		bottom: -0.15em;
+		left: -3%;
+		width: 106%;
+		height: 4px;
+		background: linear-gradient(90deg, transparent 0%, var(--green-dim) 10%, var(--green-dim) 90%, transparent 100%);
+		transform: rotate(-1.5deg);
+		border-radius: 2px;
 	}
 
 	.underline-accent.green {
-		background: linear-gradient(90deg, transparent 0%, var(--green-dim) 15%, var(--green-dim) 85%, transparent 100%);
+		background: linear-gradient(90deg, transparent 0%, var(--green-dim) 10%, var(--green-dim) 90%, transparent 100%);
+	}
+
+	.underline-accent.orange {
+		background: linear-gradient(90deg, transparent 0%, #E27B58 8%, #D97757 50%, #CC6B4A 92%, transparent 100%);
+		height: 3px;
+		transform: rotate(-1deg) skewX(-2deg);
 	}
 
 	.hero-subtitle {
@@ -1586,7 +1629,7 @@
 	/* Footer */
 	footer {
 		border-top: 1px solid var(--border);
-		padding: 3rem 1.5rem;
+		padding: 1.5rem;
 	}
 
 	.footer-content {
@@ -1594,49 +1637,118 @@
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.footer-upper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.footer-products {
+		display: flex;
 		align-items: center;
 		gap: 1.5rem;
 	}
 
-	.footer-brand {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.25rem;
-	}
-
-	.footer-logo {
-		font-family: 'Instrument Serif', Georgia, serif;
-		font-size: 1.5rem;
-		color: var(--text-primary);
-	}
-
-	.footer-tagline {
+	.footer-products a {
 		font-size: 0.8rem;
-		color: var(--text-tertiary);
-	}
-
-	.footer-links {
-		display: flex;
-		gap: 2rem;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
-
-	.footer-links a {
-		font-size: 0.875rem;
 		color: var(--text-secondary);
 		text-decoration: none;
 		transition: color 0.15s;
 	}
 
-	.footer-links a:hover {
+	.footer-products a:hover {
 		color: var(--green-dim);
 	}
 
-	.footer-bottom {
+	.footer-social {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.github-btn {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.4rem 0.75rem;
 		font-size: 0.75rem;
+		color: var(--text-secondary);
+		text-decoration: none;
+		border: 1px solid var(--border);
+		transition: all 0.15s;
+	}
+
+	.github-btn:hover {
+		border-color: var(--green-dim);
+		color: var(--green-dim);
+	}
+
+	.x-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		color: var(--text-secondary);
+		border: 1px solid var(--border);
+		transition: all 0.15s;
+	}
+
+	.x-link:hover {
+		border-color: var(--green-dim);
+		color: var(--green-dim);
+	}
+
+	.footer-lower {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 1rem;
+		border-top: 1px solid var(--border);
+	}
+
+	.footer-logo {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		text-decoration: none;
+	}
+
+	.footer-logo-icon {
+		width: 18px;
+		height: 18px;
+		filter: invert(var(--logo-invert, 0));
+	}
+
+	.footer-logo span {
+		font-family: 'Instrument Serif', Georgia, serif;
+		font-size: 1rem;
+		color: var(--text-primary);
+	}
+
+	.footer-legal {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.65rem;
 		color: var(--text-tertiary);
+	}
+
+	.footer-legal a {
+		color: var(--text-tertiary);
+		text-decoration: none;
+		transition: color 0.15s;
+	}
+
+	.footer-legal a:hover {
+		color: var(--green-dim);
+	}
+
+	.footer-dot {
+		opacity: 0.5;
 	}
 
 	/* Responsive */
@@ -1700,6 +1812,26 @@
 
 		.funnel {
 			max-width: 100%;
+		}
+
+		.footer-upper {
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.footer-products {
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		.footer-lower {
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.footer-legal {
+			flex-wrap: wrap;
+			justify-content: center;
 		}
 	}
 
