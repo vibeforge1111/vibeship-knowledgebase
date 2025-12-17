@@ -40,14 +40,14 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 18 | ✅ Done | Vulnerability | open-redirect |
 | 19 | ✅ Done | Vulnerability | mass-assignment |
 | 20 | ✅ Done | Vulnerability | jwt-vulnerabilities |
-| 21 | 📝 Brief Ready | Tool | github-copilot |
-| 22 | 📝 Brief Ready | Vulnerability | csrf |
-| 23 | 📝 Brief Ready | Tool | windsurf |
-| 24 | 📝 Brief Ready | Vulnerability | sensitive-data-exposure |
-| 25 | 📝 Brief Ready | Vulnerability | command-injection |
-| 26 | 📝 Brief Ready | Stack | sveltekit-supabase |
-| 27 | 📝 Brief Ready | Vulnerability | insecure-deserialization |
-| 28 | 📝 Brief Ready | Guide (PILLAR) | secure-vibe-coding-guide |
+| 21 | ✅ Done | Tool | github-copilot |
+| 22 | ✅ Done | Vulnerability | csrf |
+| 23 | ✅ Done | Tool | windsurf |
+| 24 | ✅ Done | Vulnerability | sensitive-data-exposure |
+| 25 | ✅ Done | Vulnerability | command-injection |
+| 26 | ✅ Done | Stack | sveltekit-supabase |
+| 27 | ✅ Done | Vulnerability | insecure-deserialization |
+| 28 | ✅ Done | Guide (PILLAR) | secure-vibe-coding-guide |
 
 **Legend:** ✅ Done | 📝 Brief Ready | 🔄 Next | ⏳ Pending | ⏸️ Blocked
 
