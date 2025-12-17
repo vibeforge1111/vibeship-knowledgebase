@@ -28,7 +28,7 @@
 	// FAQ data for schema
 	const faqs = [
 		{
-			question: 'Is SQL injection still a real threat in 2024?',
+			question: 'Is SQL injection still a real threat in 2025?',
 			answer: 'Yes. SQL injection remains one of the most exploited vulnerabilities worldwide. It has been in the OWASP Top 10 every year since the list began in 2003 and is currently ranked #3 (A03:2021 - Injection). AI coding tools can generate vulnerable patterns because they prioritize readable code over secure code.'
 		},
 		{
@@ -68,6 +68,20 @@
 	<meta property="og:type" content="article" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
 
+	<!-- BreadcrumbList Schema -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
+			{"@type": "ListItem", "position": 2, "name": "Security", "item": "https://vibeship.co/kb/security"},
+			{"@type": "ListItem", "position": 3, "name": "Vulnerabilities", "item": "https://vibeship.co/kb/security/vulnerabilities"},
+			{"@type": "ListItem", "position": 4, "name": "SQL Injection"}
+		]
+	}
+	</script>`}
+
 	<!-- Schema.org structured data -->
 	{@html `<script type="application/ld+json">
 	{
@@ -87,8 +101,8 @@
 				"url": "https://vibeship.co/logo.png"
 			}
 		},
-		"datePublished": "2024-12-17",
-		"dateModified": "2024-12-17"
+		"datePublished": "2025-12-17",
+		"dateModified": "2025-12-17"
 	}
 	</script>`}
 

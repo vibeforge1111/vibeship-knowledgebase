@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Claude Code Security Patterns: Common Vulnerabilities in Claude-Generated Code | VibeShip',
+		title: 'Claude Code Security: 5 Patterns to Fix | VibeShip',
 		description: 'Security patterns in Claude Code AI-generated apps. Learn about input validation, verbose errors, CORS issues, and how to use Claude Code securely.',
 		url: '/kb/ai-patterns/claude-code/'
 	};
@@ -240,6 +240,19 @@ export async function POST({ request }) {
 	<meta property="og:type" content="article" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
 
+	<!-- BreadcrumbList Schema -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
+			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/ai-patterns"},
+			{"@type": "ListItem", "position": 3, "name": "Claude Code"}
+		]
+	}
+	</script>`}
+
 	<!-- Schema.org structured data -->
 	{@html `<script type="application/ld+json">
 	{
@@ -332,14 +345,14 @@ export async function POST({ request }) {
 				It is built on Claude 3.5 Sonnet and later models, designed specifically for software development tasks including writing, refactoring, and debugging code.
 			</p>
 			<p>
-				Claude Code is more deliberate about security than many AI coding tools. It sometimes adds authentication checks, uses parameterized queries, and considers edge cases without explicit prompting. However, like all AI assistants, it still generates patterns that prioritize functionality over comprehensive security.
+				Claude Code is more deliberate about security than many AI coding tools. It sometimes adds authentication checks, uses parameterized queries, and considers edge cases without explicit prompting. However, like all AI assistants, it still generates patterns that prioritize functionality over comprehensive security. Vibe coders should still review Claude Code output before deploying to production.
 			</p>
 		</section>
 
 		<!-- Security Patterns -->
 		<section class="article-section">
 			<h2>Security Patterns</h2>
-			<p>These are the most common security issues we see in Claude Code-generated code:</p>
+			<p>These are the most common security issues we see in vibe coded projects using Claude Code:</p>
 
 			{#each patterns as pattern, i}
 				<div class="pattern-card">
@@ -385,7 +398,7 @@ export async function POST({ request }) {
 			<ul>
 				<li><strong>Training data patterns:</strong> AI models learn from millions of code examples. Many tutorials and Stack Overflow answers prioritize clarity and quick solutions over security best practices</li>
 				<li><strong>Functionality first:</strong> AI optimizes for code that works immediately. Security features like rate limiting and input validation add complexity that may not be evident in initial testing</li>
-				<li><strong>Implicit requirements:</strong> "Create an API endpoint" does not automatically imply "with rate limiting, input validation, and sanitized errors" to an AI model</li>
+				<li><strong>Implicit requirements:</strong> When vibe coding, "create an API endpoint" does not automatically imply "with rate limiting, input validation, and sanitized errors" to an AI model</li>
 				<li><strong>Context limitations:</strong> AI may not have full context about your threat model, compliance requirements, or production environment constraints</li>
 			</ul>
 			<p>
@@ -418,8 +431,8 @@ export async function POST({ request }) {
 
 		<!-- CTA Box -->
 		<div class="cta-box">
-			<p><strong>Scan your Claude Code-generated apps</strong></p>
-			<p class="cta-subtext">Find missing validation, verbose errors, and other issues in your codebase</p>
+			<p><strong>Scan your vibe coded apps</strong></p>
+			<p class="cta-subtext">Find missing validation, verbose errors, and other issues in your Claude Code-generated codebase</p>
 			<a href="https://scanner.vibeship.co" class="btn btn-green">
 				Scan your code free
 				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

@@ -302,6 +302,19 @@ Please proceed systematically through my codebase.`;
 	<meta property="og:type" content="article" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
 
+	<!-- BreadcrumbList Schema -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
+			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/ai-patterns"},
+			{"@type": "ListItem", "position": 3, "name": "Bolt.new"}
+		]
+	}
+	</script>`}
+
 	<!-- Schema.org structured data -->
 	{@html `<script type="application/ld+json">
 	{

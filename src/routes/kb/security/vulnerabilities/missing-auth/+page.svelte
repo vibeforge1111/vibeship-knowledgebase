@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Missing Authentication: Unprotected API Routes in Vibe Coded Apps | VibeShip',
+		title: 'Missing Auth: Unprotected APIs in Vibe Code | VibeShip',
 		description: 'Missing authentication lets anyone access your API endpoints. Common in vibe coding when AI generates routes without auth checks. Learn to fix it.',
 		url: '/kb/security/vulnerabilities/missing-auth/'
 	};
@@ -68,6 +68,20 @@
 	<meta property="og:type" content="article" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
 
+	<!-- BreadcrumbList Schema -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
+			{"@type": "ListItem", "position": 2, "name": "Security", "item": "https://vibeship.co/kb/security"},
+			{"@type": "ListItem", "position": 3, "name": "Vulnerabilities", "item": "https://vibeship.co/kb/security/vulnerabilities"},
+			{"@type": "ListItem", "position": 4, "name": "Missing Authentication"}
+		]
+	}
+	</script>`}
+
 	<!-- Schema.org structured data -->
 	{@html `<script type="application/ld+json">
 	{
@@ -87,8 +101,8 @@
 				"url": "https://vibeship.co/logo.png"
 			}
 		},
-		"datePublished": "2024-12-17",
-		"dateModified": "2024-12-17"
+		"datePublished": "2025-12-17",
+		"dateModified": "2025-12-17"
 	}
 	</script>`}
 

@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Cursor Security Patterns: Common Vulnerabilities in Cursor-Generated Code | VibeShip',
+		title: 'Cursor Security: 5 Patterns to Fix | VibeShip',
 		description: 'Security patterns in Cursor AI-generated code. Learn about SQL injection, template literals, and other vulnerabilities Cursor commonly generates.',
 		url: '/kb/ai-patterns/cursor/'
 	};
@@ -166,6 +166,19 @@ export async function POST(request) {
 	<meta property="og:type" content="article" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
 
+	<!-- BreadcrumbList Schema -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
+			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/ai-patterns"},
+			{"@type": "ListItem", "position": 3, "name": "Cursor"}
+		]
+	}
+	</script>`}
+
 	<!-- Schema.org structured data -->
 	{@html `<script type="application/ld+json">
 	{
@@ -185,8 +198,8 @@ export async function POST(request) {
 				"url": "https://vibeship.co/logo.png"
 			}
 		},
-		"datePublished": "2024-12-17",
-		"dateModified": "2024-12-17"
+		"datePublished": "2025-12-17",
+		"dateModified": "2025-12-17"
 	}
 	</script>`}
 
@@ -254,7 +267,7 @@ export async function POST(request) {
 		<section class="article-section">
 			<h2>About Cursor</h2>
 			<p>
-				<a href="https://cursor.sh" target="_blank" rel="noopener">Cursor</a> is an AI-powered code editor built on VS Code.
+				<a href="https://cursor.com" target="_blank" rel="noopener">Cursor</a> is an AI-powered code editor built on VS Code.
 				It is one of the most popular tools for vibe coding, offering composer and chat features that let developers describe what they want and have AI generate the code.
 			</p>
 			<p>
