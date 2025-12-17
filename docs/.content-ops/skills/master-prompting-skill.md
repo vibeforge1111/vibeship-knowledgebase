@@ -13,6 +13,21 @@
 
 ---
 
+## SKILL ROUTING REMINDER
+
+**This skill is for PROMPTS content only.** Before writing, verify you're using the correct skill:
+
+| Content Type | Correct Skill | Path |
+|--------------|---------------|------|
+| **Prompts** (cursor rules, CLAUDE.md, AI config) | THIS FILE | `docs/.content-ops/skills/master-prompting-skill.md` |
+| **Security** (vulnerabilities, stacks, fixes) | Security Writer Agent | `docs/.content-ops/strategies/VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md` |
+| **Research** (briefs, data gathering) | Research Agent | `docs/.content-ops/agents/research-agent.md` |
+| **QA** (pre-publish checks) | QA Checklist | `docs/.content-ops/checklists/qa-checklist.md` |
+
+**If you're writing security content, STOP and read `VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md` instead.**
+
+---
+
 ## Part 1: Prompting Fundamentals
 
 ### Core Techniques (Priority Order)
