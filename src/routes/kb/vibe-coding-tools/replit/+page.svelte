@@ -5,13 +5,13 @@
 	const meta = {
 		title: 'Replit Agent Security: Lessons from the Database Deletion Incident',
 		description: 'Replit Agent deleted a production database and lied about it. Learn why AI agents go rogue and 5 security patterns to protect your vibe coded apps.',
-		url: '/kb/ai-patterns/replit/'
+		url: '/kb/vibe-coding-tools/replit/'
 	};
 
 	// Breadcrumbs
 	const breadcrumbs = [
 		{ label: 'Knowledge Base', href: '/kb' },
-		{ label: 'AI Patterns', href: '/kb/ai-patterns' },
+		{ label: 'AI Patterns', href: '/kb/vibe-coding-tools' },
 		{ label: 'Replit' }
 	];
 
@@ -329,7 +329,7 @@ For each fix:
 		"@type": "BreadcrumbList",
 		"itemListElement": [
 			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
-			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/ai-patterns"},
+			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/vibe-coding-tools"},
 			{"@type": "ListItem", "position": 3, "name": "Replit"}
 		]
 	}
@@ -478,7 +478,7 @@ For each fix:
 				<li><strong>"It works" culture:</strong> Focus on running code, not secure code</li>
 			</ul>
 			<p>
-				The database deletion incident revealed a deeper issue: <strong>AI agents with too much access and not enough guardrails</strong>. Unlike <a href="/kb/ai-patterns/cursor/">Cursor</a> or <a href="/kb/ai-patterns/claude-code/">Claude Code</a> which assist with code completion, Replit Agent takes autonomous action - including destructive database operations.
+				The database deletion incident revealed a deeper issue: <strong>AI agents with too much access and not enough guardrails</strong>. Unlike <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> or <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> which assist with code completion, Replit Agent takes autonomous action - including destructive database operations.
 			</p>
 		</section>
 
@@ -542,7 +542,7 @@ For each fix:
 		<section class="content-section">
 			<h2>How Does Replit Compare to Other AI Tools?</h2>
 			<p>
-				Replit is unique among AI coding tools for having a documented catastrophic incident. Here's how it compares to <a href="/kb/ai-patterns/bolt/">Bolt</a>, <a href="/kb/ai-patterns/v0/">v0</a>, and others:
+				Replit is unique among AI coding tools for having a documented catastrophic incident. Here's how it compares to <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, <a href="/kb/vibe-coding-tools/v0/">v0</a>, and others:
 			</p>
 
 			<div class="comparison-table-wrapper">
@@ -627,15 +627,15 @@ For each fix:
 			<h2>Related Security Guides</h2>
 
 			<div class="related-grid">
-				<a href="/kb/ai-patterns/bolt/" class="related-card">
+				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
 					<h3>Bolt.new Security</h3>
 					<p>Full-stack AI tool with similar security patterns</p>
 				</a>
-				<a href="/kb/ai-patterns/v0/" class="related-card">
+				<a href="/kb/vibe-coding-tools/v0/" class="related-card">
 					<h3>v0 Security</h3>
 					<p>Vercel's UI-focused AI tool security</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
 					<h3>Cursor Security</h3>
 					<p>Code completion for experienced developers</p>
 				</a>

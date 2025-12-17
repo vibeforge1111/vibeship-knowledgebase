@@ -5,13 +5,13 @@
 	const meta = {
 		title: 'Is Cursor Safe? Security Risks & Fixes',
 		description: 'Security patterns in Cursor AI-generated code. Learn about SQL injection, template literals, and other vulnerabilities Cursor commonly generates.',
-		url: '/kb/ai-patterns/cursor/'
+		url: '/kb/vibe-coding-tools/cursor/'
 	};
 
 	// Breadcrumbs
 	const breadcrumbs = [
 		{ label: 'Knowledge Base', href: '/kb' },
-		{ label: 'AI Patterns', href: '/kb/ai-patterns' },
+		{ label: 'AI Patterns', href: '/kb/vibe-coding-tools' },
 		{ label: 'Cursor' }
 	];
 
@@ -173,7 +173,7 @@ export async function POST(request) {
 		"@type": "BreadcrumbList",
 		"itemListElement": [
 			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
-			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/ai-patterns"},
+			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/vibe-coding-tools"},
 			{"@type": "ListItem", "position": 3, "name": "Cursor"}
 		]
 	}
@@ -384,12 +384,12 @@ export async function POST(request) {
 			<h2>Related content</h2>
 
 			<div class="related-grid">
-				<a href="/kb/ai-patterns/claude-code/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/claude-code/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Claude Code</div>
 					<p class="related-card-description">Security patterns in Claude Code generated apps</p>
 				</a>
-				<a href="/kb/ai-patterns/bolt/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Bolt</div>
 					<p class="related-card-description">Security patterns in Bolt generated apps</p>

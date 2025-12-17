@@ -14,7 +14,7 @@
 			items: [
 				{ href: '/kb', label: 'Overview' },
 				{ href: '/kb/vulnerabilities', label: 'Vulnerabilities', badge: '25+' },
-				{ href: '/kb/ai-patterns', label: 'AI Patterns', badge: '7' },
+				{ href: '/kb/vibe-coding-tools', label: 'AI Patterns', badge: '7' },
 				{ href: '/kb/stacks', label: 'Stacks' },
 				{ href: '/kb/fixes', label: 'Fix Prompts', badge: '50+' },
 				{ href: '/kb/glossary', label: 'Glossary' },

@@ -109,7 +109,7 @@
 			<h2>All AI Tools</h2>
 			<div class="tool-grid">
 				{#each tools as tool}
-					<a href="/kb/ai-patterns/{tool.slug}" class="card card-interactive tool-card">
+					<a href="/kb/vibe-coding-tools/{tool.slug}" class="card card-interactive tool-card">
 						<div class="tool-card-header">
 							<h3>{tool.name}</h3>
 							<span class="badge">{tool.topIssue}</span>

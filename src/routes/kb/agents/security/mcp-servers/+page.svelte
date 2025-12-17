@@ -323,9 +323,9 @@
 			<div class="warning-box">
 				<strong>Supply Chain Risk:</strong> According to Wiz, MCP server installation "resembles pipe
 				curl to bash" - no package signing, no pinning, no verification. If you're using
-				<a href="/kb/ai-patterns/cursor/">Cursor</a>,
-				<a href="/kb/ai-patterns/claude-code/">Claude Code</a>, or
-				<a href="/kb/ai-patterns/windsurf/">Windsurf</a> with MCP servers, you're trusting random packages
+				<a href="/kb/vibe-coding-tools/cursor/">Cursor</a>,
+				<a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>, or
+				<a href="/kb/vibe-coding-tools/windsurf/">Windsurf</a> with MCP servers, you're trusting random packages
 				with full access to your development environment.
 			</div>
 		</section>
@@ -469,19 +469,19 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><a href="/kb/ai-patterns/claude-code/">Claude Code</a></td>
+							<td><a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a></td>
 							<td>Native</td>
 							<td>Approval prompts, local preference, permission model</td>
 							<td><span class="risk-medium">Medium</span></td>
 						</tr>
 						<tr>
-							<td><a href="/kb/ai-patterns/cursor/">Cursor</a></td>
+							<td><a href="/kb/vibe-coding-tools/cursor/">Cursor</a></td>
 							<td>Native</td>
 							<td>Permission model, tool approval required</td>
 							<td><span class="risk-medium">Medium</span></td>
 						</tr>
 						<tr>
-							<td><a href="/kb/ai-patterns/windsurf/">Windsurf</a></td>
+							<td><a href="/kb/vibe-coding-tools/windsurf/">Windsurf</a></td>
 							<td>Native</td>
 							<td>Basic approval prompts</td>
 							<td><span class="risk-high">Medium-High</span></td>
@@ -719,11 +719,11 @@ Format your response as a security report with risk ratings (Critical/High/Mediu
 			<h2>Related Articles</h2>
 
 			<div class="related-grid">
-				<a href="/kb/ai-patterns/claude-code/" class="related-card">
+				<a href="/kb/vibe-coding-tools/claude-code/" class="related-card">
 					<h3>Claude Code Security</h3>
 					<p>Security patterns for Claude Code including MCP configuration best practices.</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
 					<h3>Cursor Security Patterns</h3>
 					<p>How to configure Cursor securely with MCP servers and code generation.</p>
 				</a>

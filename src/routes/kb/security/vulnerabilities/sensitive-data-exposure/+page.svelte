@@ -200,7 +200,7 @@
 		<section>
 			<h2>Why AI Tools Generate Leaky Code</h2>
 			<p>
-				AI-generated code prioritizes debugging and development convenience over production security. When you ask <a href="/kb/ai-patterns/cursor/">Cursor</a>, <a href="/kb/ai-patterns/claude-code/">Claude Code</a>, or <a href="/kb/ai-patterns/bolt/">Bolt</a> to "make it work," they generate code that helps you debug - which also helps attackers.
+				AI-generated code prioritizes debugging and development convenience over production security. When you ask <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>, or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> to "make it work," they generate code that helps you debug - which also helps attackers.
 			</p>
 
 			<ul>
@@ -509,7 +509,7 @@ For each issue:
 					<span class="related-type">Vulnerability</span>
 					<span class="related-title">IDOR</span>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
 					<span class="related-type">AI Tool</span>
 					<span class="related-title">Cursor Security Patterns</span>
 				</a>

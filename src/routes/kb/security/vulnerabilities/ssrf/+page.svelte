@@ -685,11 +685,11 @@ export async function safeRedirect(path: string) &#123;
 					<h4>Path Traversal</h4>
 					<p>file:// protocol in SSRF enables similar file access attacks</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
 					<h4>Cursor Security Patterns</h4>
 					<p>How Cursor generates URL-fetching code</p>
 				</a>
-				<a href="/kb/ai-patterns/bolt/" class="related-card">
+				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
 					<h4>Bolt.new Security</h4>
 					<p>Webhook and API patterns from Bolt</p>
 				</a>

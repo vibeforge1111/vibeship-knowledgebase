@@ -20,7 +20,7 @@
 			count: '25+ articles'
 		},
 		{
-			href: '/kb/ai-patterns',
+			href: '/kb/vibe-coding-tools',
 			title: 'AI Patterns',
 			description: 'Security patterns specific to Cursor, Claude Code, Bolt, v0, and other AI coding tools. Our unique moat.',
 			count: '7 tools'
@@ -53,7 +53,7 @@
 
 	const icons: Record<string, string> = {
 		'/kb/vulnerabilities': 'lock',
-		'/kb/ai-patterns': 'cpu',
+		'/kb/vibe-coding-tools': 'cpu',
 		'/kb/stacks': 'layers',
 		'/kb/fixes': 'tool',
 		'/kb/glossary': 'book',
@@ -107,7 +107,7 @@
 								<rect x="3" y="11" width="18" height="11" rx="2"/>
 								<path d="M7 11V7a5 5 0 0 1 10 0v4"/>
 							</svg>
-						{:else if cat.href === '/kb/ai-patterns'}
+						{:else if cat.href === '/kb/vibe-coding-tools'}
 							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
 								<rect x="4" y="4" width="16" height="16" rx="2"/>
 								<rect x="9" y="9" width="6" height="6"/>

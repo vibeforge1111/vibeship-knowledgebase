@@ -108,7 +108,7 @@ vibeship.co/kb/security/                    ← Main hub
 │   ├── missing-auth/
 │   ├── xss/
 │   └── idor/
-├── ai-patterns/                            ← AI tool index
+├── vibe-coding-tools/                            ← AI tool index
 │   ├── cursor/                             ← Individual tool
 │   ├── bolt/
 │   └── claude-code/
@@ -131,7 +131,7 @@ vibeship.co/kb/security/                    ← Main hub
 | Hub | /kb/security/ | 400-600 | Entry point, links to all sections |
 | Index | /kb/security/vulnerabilities/ | 300-500 | Lists all items in category |
 | Vulnerability | /kb/security/vulnerabilities/{slug}/ | 1,500-2,000 | Deep dive on one vuln |
-| Tool Analysis | /kb/security/ai-patterns/{tool}/ | 1,500-2,000 | Security analysis of one tool |
+| Tool Analysis | /kb/vibe-coding-tools/{tool}/ | 1,500-2,000 | Security analysis of one tool |
 | Stack Guide | /kb/security/stacks/{stack}/ | 1,500-2,500 | Security guide for one stack |
 | Fix Prompt | /kb/security/fixes/{vuln}/{framework}/ | 600-800 | Actionable fix for specific combo |
 | Checklist | /kb/security/checklists/{name}/ | 800-1,200 | Interactive checklist |
@@ -713,7 +713,7 @@ Fix all {vulnerability} vulnerabilities in my codebase.
 
 ## Template 2: AI Tool Analysis
 
-**URL:** `/kb/security/ai-patterns/{tool}/`
+**URL:** `/kb/vibe-coding-tools/{tool}/`
 **Word Count:** 1,500-2,000
 
 ```markdown
@@ -1024,16 +1024,16 @@ Start with {priority location} and work systematically.
 |---|--------|------|------|-----|
 | 1 | 🔄 Next | Hub | security | /kb/security/ |
 | 2 | ⏳ | Hub | vulnerabilities | /kb/security/vulnerabilities/ |
-| 3 | ⏳ | Hub | ai-patterns | /kb/security/ai-patterns/ |
+| 3 | ⏳ | Hub | vibe-coding-tools | /kb/vibe-coding-tools/ |
 | 4 | ⏳ | Hub | stacks | /kb/security/stacks/ |
 | 5 | ⏳ | Vulnerability | sql-injection | /kb/security/vulnerabilities/sql-injection/ |
 | 6 | ⏳ | Vulnerability | hardcoded-secrets | /kb/security/vulnerabilities/hardcoded-secrets/ |
 | 7 | ⏳ | Vulnerability | missing-auth | /kb/security/vulnerabilities/missing-auth/ |
 | 8 | ⏳ | Vulnerability | xss | /kb/security/vulnerabilities/xss/ |
 | 9 | ⏳ | Vulnerability | idor | /kb/security/vulnerabilities/idor/ |
-| 10 | ⏳ | Tool | cursor | /kb/security/ai-patterns/cursor/ |
-| 11 | ⏳ | Tool | bolt | /kb/security/ai-patterns/bolt/ |
-| 12 | ⏳ | Tool | claude-code | /kb/security/ai-patterns/claude-code/ |
+| 10 | ⏳ | Tool | cursor | /kb/vibe-coding-tools/cursor/ |
+| 11 | ⏳ | Tool | bolt | /kb/vibe-coding-tools/bolt/ |
+| 12 | ⏳ | Tool | claude-code | /kb/vibe-coding-tools/claude-code/ |
 | 13 | ⏳ | Stack | nextjs-supabase | /kb/security/stacks/nextjs-supabase/ |
 | 14 | ⏳ | Stack | nextjs-prisma | /kb/security/stacks/nextjs-prisma/ |
 | 15 | ⏳ | Fix | sql-injection/nextjs | /kb/security/fixes/sql-injection/nextjs/ |

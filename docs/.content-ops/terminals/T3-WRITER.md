@@ -76,7 +76,7 @@ If `claimed_at` is >2 hours ago and no article exists, the other terminal may ha
 | Type | Path |
 |------|------|
 | Vulnerability | `src/routes/kb/security/vulnerabilities/{slug}/+page.svelte` |
-| AI Tool | `src/routes/kb/ai-patterns/{slug}/+page.svelte` |
+| AI Tool | `src/routes/kb/vibe-coding-tools/{slug}/+page.svelte` |
 | Stack | `src/routes/kb/security/stacks/{slug}/+page.svelte` |
 | Checklist | `src/routes/kb/security/checklists/{slug}/+page.svelte` |
 

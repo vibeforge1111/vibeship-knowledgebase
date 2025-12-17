@@ -325,7 +325,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'fallback' // Fallback in prod!
 			</div>
 
 			<p>
-				Tools like <a href="/kb/ai-patterns/cursor/">Cursor</a>, <a href="/kb/ai-patterns/bolt/">Bolt</a>, and <a href="/kb/ai-patterns/claude-code/">Claude Code</a> all generate these patterns because you didn't explicitly ask for secure JWT handling.
+				Tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> all generate these patterns because you didn't explicitly ask for secure JWT handling.
 			</p>
 		</section>
 
@@ -674,7 +674,7 @@ openssl rand -base64 32
 					<div class="related-card-title">XSS</div>
 					<p class="related-card-description">Steals tokens from localStorage</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Cursor Security Patterns</div>
 					<p class="related-card-description">Common vulnerabilities in Cursor-generated code</p>

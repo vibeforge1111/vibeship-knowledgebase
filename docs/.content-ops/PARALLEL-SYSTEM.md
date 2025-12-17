@@ -206,7 +206,7 @@ If you open a brief and it's already `IN_PROGRESS`:
 | Content Type | File Path |
 |--------------|-----------|
 | Vulnerability | `src/routes/kb/security/vulnerabilities/{slug}/+page.svelte` |
-| AI Tool | `src/routes/kb/ai-patterns/{slug}/+page.svelte` |
+| AI Tool | `src/routes/kb/vibe-coding-tools/{slug}/+page.svelte` |
 | Stack Guide | `src/routes/kb/security/stacks/{slug}/+page.svelte` |
 | Checklist | `src/routes/kb/security/checklists/{slug}/+page.svelte` |
 

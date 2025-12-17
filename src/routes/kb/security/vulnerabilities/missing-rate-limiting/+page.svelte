@@ -267,7 +267,7 @@
 
 			<div class="tool-patterns-box">
 				<h3>Common AI-generated vulnerable pattern</h3>
-				<p>When you ask vibe coding tools like <a href="/kb/ai-patterns/cursor/">Cursor</a>, <a href="/kb/ai-patterns/bolt/">Bolt</a>, or <a href="/kb/ai-patterns/claude-code/">Claude Code</a> for a login endpoint, they generate this:</p>
+				<p>When you ask vibe coding tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, or <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> for a login endpoint, they generate this:</p>
 				<div class="code-block">
 					<pre><code>{`// AI-generated login - no rate limiting
 // app/api/auth/login/route.ts
@@ -659,12 +659,12 @@ app.post('/api/login', loginLimiter, async (req, res) => {
 					<div class="related-card-title">Hardcoded Secrets</div>
 					<p class="related-card-description">API keys exposed in source code</p>
 				</a>
-				<a href="/kb/ai-patterns/bolt/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Bolt Security Patterns</div>
 					<p class="related-card-description">Common patterns in Bolt generated apps</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Cursor Security Patterns</div>
 					<p class="related-card-description">Common patterns in Cursor generated code</p>
@@ -674,7 +674,7 @@ app.post('/api/login', loginLimiter, async (req, res) => {
 					<div class="related-card-title">IDOR</div>
 					<p class="related-card-description">When users can access each other's data</p>
 				</a>
-				<a href="/kb/ai-patterns/claude-code/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/claude-code/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Claude Code Security Patterns</div>
 					<p class="related-card-description">Common patterns in Claude Code apps</p>

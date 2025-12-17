@@ -524,7 +524,7 @@ const cleanHTML = DOMPurify.sanitize(untrustedHTML);
 					<div class="related-card-title">Hardcoded Secrets</div>
 					<p class="related-card-description">API keys and credentials in your code</p>
 				</a>
-				<a href="/kb/security/ai-patterns/cursor/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Cursor Security Patterns</div>
 					<p class="related-card-description">Common vulnerabilities in Cursor-generated code</p>

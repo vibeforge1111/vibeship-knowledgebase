@@ -20,7 +20,7 @@ Deep dives into security vulnerabilities commonly found in vibe coded apps:
 - Missing Rate Limiting (CWE-770)
 - Sensitive Data Exposure (CWE-200)
 
-### AI Tool Patterns (/kb/ai-patterns/)
+### AI Tool Patterns (/kb/vibe-coding-tools/)
 Security patterns specific to each AI coding tool:
 - Cursor - Top issue: SQL Injection (template literals in queries)
 - Claude Code - Top issue: Missing Auth (trusts user input)

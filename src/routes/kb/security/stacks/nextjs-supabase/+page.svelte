@@ -413,7 +413,7 @@ List all files you modified with before/after snippets.`;
 		<section class="article-section">
 			<h2>Why does this stack need special attention?</h2>
 			<p>
-				Next.js + Supabase is the most popular stack for vibe coding full-stack apps. It's fast to set up, has great DX, and AI tools like <a href="/kb/ai-patterns/cursor/">Cursor</a>, <a href="/kb/ai-patterns/bolt/">Bolt</a>, and <a href="/kb/ai-patterns/claude-code/">Claude Code</a> generate working code quickly.
+				Next.js + Supabase is the most popular stack for vibe coding full-stack apps. It's fast to set up, has great DX, and AI tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> generate working code quickly.
 			</p>
 			<p>
 				But there's a critical difference from traditional stacks: <strong>Supabase exposes your database directly via API</strong>. Your frontend talks directly to Postgres through Supabase's REST API. The ONLY thing protecting your data is Row Level Security (RLS).
@@ -485,7 +485,7 @@ List all files you modified with before/after snippets.`;
 		<!-- AI Fix Prompt -->
 		<section class="article-section">
 			<h2>AI fix prompt for Next.js + Supabase security</h2>
-			<p>Copy this prompt and paste it into <a href="/kb/ai-patterns/cursor/">Cursor</a>, <a href="/kb/ai-patterns/claude-code/">Claude Code</a>, or <a href="/kb/ai-patterns/bolt/">Bolt</a> to automatically find and fix security vulnerabilities in your vibe coded project:</p>
+			<p>Copy this prompt and paste it into <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>, or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> to automatically find and fix security vulnerabilities in your vibe coded project:</p>
 
 			<div class="prompt-box">
 				<div class="prompt-header">
@@ -573,12 +573,12 @@ List all files you modified with before/after snippets.`;
 					<div class="related-card-title">Hardcoded Secrets</div>
 					<p class="related-card-description">API keys exposed in source code</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Cursor</div>
 					<p class="related-card-description">Security patterns in Cursor generated code</p>
 				</a>
-				<a href="/kb/ai-patterns/bolt/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Bolt.new</div>
 					<p class="related-card-description">Security patterns in Bolt generated apps</p>

@@ -37,7 +37,7 @@
 		{
 			question: 'Should I use Cursor rules for security?',
 			answer:
-				'Yes, absolutely. Rules files provide persistent security context so you don\'t have to repeat security requirements in every prompt. They act like a security-focused senior developer reviewing every AI suggestion. See <a href="/kb/ai-patterns/cursor/">Cursor Security Patterns</a> for specific guidance.'
+				'Yes, absolutely. Rules files provide persistent security context so you don\'t have to repeat security requirements in every prompt. They act like a security-focused senior developer reviewing every AI suggestion. See <a href="/kb/vibe-coding-tools/cursor/">Cursor Security Patterns</a> for specific guidance.'
 		},
 		{
 			question: 'How do I review AI-generated code for security?',
@@ -471,19 +471,19 @@ AVOID: CWE-89 (SQL injection), CWE-307 (brute force), CWE-209 (info disclosure)<
 		<h3>Tool-Specific Secure Prompting</h3>
 		<ul>
 			<li>
-				<strong><a href="/kb/ai-patterns/cursor/">Cursor</a>:</strong> Use .cursorrules for persistent
+				<strong><a href="/kb/vibe-coding-tools/cursor/">Cursor</a>:</strong> Use .cursorrules for persistent
 				security context across all sessions
 			</li>
 			<li>
-				<strong><a href="/kb/ai-patterns/github-copilot/">Copilot</a>:</strong> Add security comments
+				<strong><a href="/kb/vibe-coding-tools/github-copilot/">Copilot</a>:</strong> Add security comments
 				before code blocks to guide generation
 			</li>
 			<li>
-				<strong><a href="/kb/ai-patterns/claude-code/">Claude Code</a>:</strong> CLAUDE.md can include
+				<strong><a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>:</strong> CLAUDE.md can include
 				project-wide security rules
 			</li>
 			<li>
-				<strong><a href="/kb/ai-patterns/bolt/">Bolt</a>:</strong> Add "with security" to every generation
+				<strong><a href="/kb/vibe-coding-tools/bolt/">Bolt</a>:</strong> Add "with security" to every generation
 				request
 			</li>
 		</ul>
@@ -553,7 +553,7 @@ mkdir -p .cursor/rules
 
 		<div class="warning-box">
 			<strong>Warning:</strong> Rules files can be compromised. <a
-				href="/kb/ai-patterns/windsurf/">Research has shown</a
+				href="/kb/vibe-coding-tools/windsurf/">Research has shown</a
 			>
 			hidden Unicode characters can inject malicious instructions. Always review rules files from external
 			sources, store them in version control, and don't auto-run commands from untrusted rules.
@@ -861,48 +861,48 @@ module.exports = {
 		</p>
 
 		<div class="tools-grid">
-			<a href="/kb/ai-patterns/cursor/" class="tool-card">
+			<a href="/kb/vibe-coding-tools/cursor/" class="tool-card">
 				<h3>Cursor</h3>
 				<p>
 					VS Code fork with GPT-4/Claude. Common issues: template literals for SQL, missing auth in
 					API routes.
 				</p>
 			</a>
-			<a href="/kb/ai-patterns/github-copilot/" class="tool-card">
+			<a href="/kb/vibe-coding-tools/github-copilot/" class="tool-card">
 				<h3>GitHub Copilot</h3>
 				<p>
 					Most popular AI tool. CVEs for path traversal, 27.3% vulnerability rate in generated code.
 				</p>
 			</a>
-			<a href="/kb/ai-patterns/claude-code/" class="tool-card">
+			<a href="/kb/vibe-coding-tools/claude-code/" class="tool-card">
 				<h3>Claude Code</h3>
 				<p>
 					Anthropic's official agent. More security-conscious but not immune. Missing input
 					validation, verbose errors.
 				</p>
 			</a>
-			<a href="/kb/ai-patterns/bolt/" class="tool-card">
+			<a href="/kb/vibe-coding-tools/bolt/" class="tool-card">
 				<h3>Bolt.new</h3>
 				<p>
 					StackBlitz's rapid prototyping tool. "Ready to run" philosophy means security often
 					skipped.
 				</p>
 			</a>
-			<a href="/kb/ai-patterns/v0/" class="tool-card">
+			<a href="/kb/vibe-coding-tools/v0/" class="tool-card">
 				<h3>v0 (Vercel)</h3>
 				<p>
 					AI UI generation. NEXT_PUBLIC_ secret exposure blocked on 17k deployments. Missing
 					server-side validation.
 				</p>
 			</a>
-			<a href="/kb/ai-patterns/replit/" class="tool-card">
+			<a href="/kb/vibe-coding-tools/replit/" class="tool-card">
 				<h3>Replit Agent</h3>
 				<p>
 					Browser-based development. July 2025: agent deleted production database. Now has Semgrep
 					integration.
 				</p>
 			</a>
-			<a href="/kb/ai-patterns/windsurf/" class="tool-card">
+			<a href="/kb/vibe-coding-tools/windsurf/" class="tool-card">
 				<h3>Windsurf</h3>
 				<p>
 					Codeium's IDE with Cascade agent. CVE-2025-62353 for path traversal. Prompt injection can

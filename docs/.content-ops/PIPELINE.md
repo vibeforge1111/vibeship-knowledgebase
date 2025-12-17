@@ -638,7 +638,7 @@ H2: Related
 | Page | Suggested Anchor Text |
 |------|----------------------|
 | /kb/security/vulnerabilities/ | "security vulnerabilities" |
-| /kb/security/ai-patterns/[tool]/ | "[Tool] security patterns" |
+| /kb/vibe-coding-tools/[tool]/ | "[Tool] security patterns" |
 | /kb/security/stacks/[stack]/ | "[Stack] security guide" |
 
 ### Should Link TO (Related)
@@ -853,13 +853,13 @@ H2: Related
 ### Must Link TO
 | Page | Anchor Text |
 |------|-------------|
-| /kb/security/ai-patterns/ | "AI tool security patterns" |
+| /kb/vibe-coding-tools/ | "AI tool security patterns" |
 | /kb/security/vulnerabilities/[top-vuln]/ | "[Top vulnerability]" |
 
 ### Create Sub-Pages For
-- /kb/security/ai-patterns/[tool]/sql-injection/
-- /kb/security/ai-patterns/[tool]/hardcoded-secrets/
-- /kb/security/ai-patterns/[tool]/missing-auth/
+- /kb/vibe-coding-tools/[tool]/sql-injection/
+- /kb/vibe-coding-tools/[tool]/hardcoded-secrets/
+- /kb/vibe-coding-tools/[tool]/missing-auth/
 
 ---
 

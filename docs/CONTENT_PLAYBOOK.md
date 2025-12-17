@@ -640,7 +640,7 @@ Create machine-readable summaries:
 
 ### Category-Specific
 - `/kb/vulnerabilities/llms.txt` — All vulnerability content
-- `/kb/ai-patterns/llms.txt` — All AI tool content
+- `/kb/vibe-coding-tools/llms.txt` — All AI tool content
 - `/research/llms.txt` — All research/data
 
 ## 5.5 Citation Optimization
@@ -825,7 +825,7 @@ To prevent {vulnerability} in future code:
 ## Related
 
 - **Similar vulnerabilities:** [XSS](/kb/vulnerabilities/xss), [IDOR](/kb/vulnerabilities/idor)
-- **Tool-specific:** [Cursor patterns](/kb/ai-patterns/cursor/{slug})
+- **Tool-specific:** [Cursor patterns](/kb/vibe-coding-tools/cursor/{slug})
 - **Stack guides:** [Next.js security](/kb/stacks/nextjs-supabase)
 
 ---
@@ -1076,7 +1076,7 @@ keywords: ["what is {term}", "{term} definition", "{term} explained"]
 ## Learn More
 
 - [Full {Term} Guide](/kb/vulnerabilities/{slug}) — Deep dive with fixes
-- [{Term} in {Tool}](/kb/ai-patterns/{tool}/{slug}) — Tool-specific patterns
+- [{Term} in {Tool}](/kb/vibe-coding-tools/{tool}/{slug}) — Tool-specific patterns
 
 ---
 

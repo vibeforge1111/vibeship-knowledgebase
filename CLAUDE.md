@@ -71,9 +71,9 @@ See `docs/KB_SITEMAP.md` for the complete architecture. Key structure:
 vibeship.co/
 ├── /                                    # Landing page
 ├── /kb/                                 # Knowledge base root
+│   ├── /kb/vibe-coding-tools/           # AI tool security (Cursor, Claude Code, Bolt, v0, etc.)
 │   ├── /kb/security/                    # Security concepts (Scanner-adjacent)
 │   │   ├── /kb/security/vulnerabilities/    # SQL injection, XSS, etc.
-│   │   ├── /kb/security/ai-patterns/        # Cursor, Claude Code, Bolt, v0
 │   │   ├── /kb/security/stacks/             # Next.js + Supabase, etc.
 │   │   ├── /kb/security/fixes/              # AI-ready fix prompts
 │   │   └── /kb/security/checklists/         # Security checklists
@@ -100,7 +100,7 @@ vibeship.co/
 └── /robots.txt                          # Crawler permissions
 ```
 
-**Important:** All security content lives under `/kb/security/`, not directly under `/kb/`.
+**Important:** Security content lives under `/kb/security/`. AI tool content (Cursor, Bolt, etc.) lives under `/kb/vibe-coding-tools/`.
 
 ## Development Commands
 
@@ -375,7 +375,7 @@ Every FAQ answer must:
 | Type | URL Pattern | Template |
 |------|-------------|----------|
 | Vulnerability | `/kb/security/vulnerabilities/{slug}/` | `references/templates/vulnerability.md` |
-| AI Tool Analysis | `/kb/security/ai-patterns/{tool}/` | `references/templates/ai-pattern.md` |
+| AI Tool Analysis | `/kb/vibe-coding-tools/{tool}/` | `references/templates/ai-pattern.md` |
 | Stack Guide | `/kb/security/stacks/{stack}/` | `references/templates/stack-guide.md` |
 | Fix Prompt | `/kb/security/fixes/{vuln}/{framework}/` | `references/templates/fix-checklist.md` |
 | Glossary | `/kb/glossary/security/{term}/` | Short definition + link |
@@ -459,8 +459,8 @@ KB articles should include CTAs like:
 1. `/kb/security/vulnerabilities/sql-injection`
 2. `/kb/security/vulnerabilities/hardcoded-secrets`
 3. `/kb/security/vulnerabilities/xss`
-4. `/kb/security/ai-patterns/cursor`
-5. `/kb/security/ai-patterns/claude-code`
+4. `/kb/vibe-coding-tools/cursor`
+5. `/kb/vibe-coding-tools/claude-code`
 
 **P1 (Build Next):**
 - More vulnerabilities (IDOR, missing auth, etc.)

@@ -203,20 +203,20 @@ H2: Related
 ### Must Link TO
 | Page | Anchor Text |
 |------|-------------|
-| /kb/security/ai-patterns/ | "AI tool security" |
+| /kb/vibe-coding-tools/ | "AI tool security" |
 | /kb/security/vulnerabilities/[top-vuln]/ | "[Top vulnerability]" |
 
 ### Sub-Pages to Create
 These pages should be created alongside or after the main tool page:
-- /kb/security/ai-patterns/[tool]/sql-injection/
-- /kb/security/ai-patterns/[tool]/hardcoded-secrets/
-- /kb/security/ai-patterns/[tool]/missing-auth/
+- /kb/vibe-coding-tools/[tool]/sql-injection/
+- /kb/vibe-coding-tools/[tool]/hardcoded-secrets/
+- /kb/vibe-coding-tools/[tool]/missing-auth/
 
 ### Related Tool Pages
 | Page | Relationship |
 |------|--------------|
-| /kb/security/ai-patterns/[competitor-1]/ | Compare |
-| /kb/security/ai-patterns/[competitor-2]/ | Compare |
+| /kb/vibe-coding-tools/[competitor-1]/ | Compare |
+| /kb/vibe-coding-tools/[competitor-2]/ | Compare |
 
 ---
 
@@ -234,7 +234,7 @@ Analysis of [N] [Tool] projects. Security score: XX/100. See the top 10 vulnerab
 
 ### Target URL
 ```
-/kb/security/ai-patterns/[tool-slug]/
+/kb/vibe-coding-tools/[tool-slug]/
 ```
 
 ---

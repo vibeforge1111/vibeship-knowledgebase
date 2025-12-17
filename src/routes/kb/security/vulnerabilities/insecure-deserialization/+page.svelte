@@ -257,9 +257,9 @@
 	<section class="content-section">
 		<h2>Why Do AI Tools Generate Vulnerable Deserialization Code?</h2>
 		<p>
-			AI coding assistants like <a href="/kb/ai-patterns/cursor/">Cursor</a>,
-			<a href="/kb/ai-patterns/claude-code/">Claude Code</a>, and
-			<a href="/kb/ai-patterns/github-copilot/">GitHub Copilot</a>
+			AI coding assistants like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>,
+			<a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>, and
+			<a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot</a>
 			generate insecure deserialization patterns because they optimize for "working code" rather than
 			secure code. When you ask for dynamic execution or flexible data handling, AI reaches for powerful
 			but dangerous tools.
@@ -655,9 +655,9 @@ grep -rn "yaml.load" --include="*.py" | grep -v "SafeLoader\|safe_load"</code
 	<section class="content-section">
 		<h2>AI Fix Prompt: Secure Deserialization Patterns</h2>
 		<p>
-			Copy this prompt into <a href="/kb/ai-patterns/cursor/">Cursor</a>,
-			<a href="/kb/ai-patterns/claude-code/">Claude Code</a>, or
-			<a href="/kb/ai-patterns/github-copilot/">GitHub Copilot</a> to fix deserialization vulnerabilities:
+			Copy this prompt into <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>,
+			<a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>, or
+			<a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot</a> to fix deserialization vulnerabilities:
 		</p>
 		<div class="ai-prompt">
 			<div class="prompt-header">
@@ -770,14 +770,14 @@ grep -rn "yaml.load" --include="*.py" | grep -v "SafeLoader\|safe_load"</code
 				<h3>AI Tool Security</h3>
 				<ul>
 					<li>
-						<a href="/kb/ai-patterns/cursor/">Cursor Security Patterns</a> - Common Cursor vulnerabilities
+						<a href="/kb/vibe-coding-tools/cursor/">Cursor Security Patterns</a> - Common Cursor vulnerabilities
 					</li>
 					<li>
-						<a href="/kb/ai-patterns/claude-code/">Claude Code Security Patterns</a> - Claude Code
+						<a href="/kb/vibe-coding-tools/claude-code/">Claude Code Security Patterns</a> - Claude Code
 						pitfalls
 					</li>
 					<li>
-						<a href="/kb/ai-patterns/github-copilot/">GitHub Copilot Security</a> - Copilot-generated
+						<a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot Security</a> - Copilot-generated
 						vulnerabilities
 					</li>
 				</ul>

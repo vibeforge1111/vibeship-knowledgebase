@@ -48,6 +48,13 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 26 | ✅ Done | Stack | sveltekit-supabase |
 | 27 | ✅ Done | Vulnerability | insecure-deserialization |
 | 28 | ✅ Done | Guide (PILLAR) | secure-vibe-coding-guide |
+| 29 | 📝 Brief Ready | Concept (Agent Security) | mcp-server-security |
+| 30 | 📝 Brief Ready | Vulnerability | broken-access-control |
+| 31 | 📝 Brief Ready | Vulnerability | insecure-file-upload |
+| 32 | 📝 Brief Ready | Tool | lovable |
+| 33 | 📝 Brief Ready | Vulnerability | xxe |
+| 34 | 📝 Brief Ready | Vulnerability | ssti |
+| 35 | 📝 Brief Ready | Vulnerability | race-conditions |
 
 **Legend:** ✅ Done | 📝 Brief Ready | 🔄 Next | ⏳ Pending | ⏸️ Blocked
 
@@ -150,7 +157,7 @@ notes: |
 ```yaml
 type: tool
 slug: cursor
-url: /kb/ai-patterns/cursor/
+url: /kb/vibe-coding-tools/cursor/
 title: "Cursor Security Patterns"
 word_count: 1500-2000
 status: PUBLISHED
@@ -165,7 +172,7 @@ notes: |
 ```yaml
 type: tool
 slug: claude-code
-url: /kb/ai-patterns/claude-code/
+url: /kb/vibe-coding-tools/claude-code/
 title: "Claude Code Security Patterns"
 word_count: 1500-2000
 status: PUBLISHED
@@ -180,7 +187,7 @@ notes: |
 ```yaml
 type: tool
 slug: bolt
-url: /kb/ai-patterns/bolt/
+url: /kb/vibe-coding-tools/bolt/
 title: "Bolt.new Security: 5 Patterns to Fix"
 word_count: 1500-2000
 status: PUBLISHED
@@ -281,7 +288,7 @@ notes: |
 ```yaml
 type: tool
 slug: v0
-url: /kb/ai-patterns/v0/
+url: /kb/vibe-coding-tools/v0/
 title: "v0 Security Patterns: When Fast UI Meets Vulnerable Code"
 word_count: 1500-2000
 notes: |
@@ -297,7 +304,7 @@ notes: |
 ```yaml
 type: tool
 slug: replit
-url: /kb/ai-patterns/replit/
+url: /kb/vibe-coding-tools/replit/
 title: "Replit Agent Security: Lessons from the Database Deletion Incident"
 word_count: 1500-2000
 notes: |
@@ -409,7 +416,7 @@ notes: |
 ```yaml
 type: tool
 slug: github-copilot
-url: /kb/ai-patterns/github-copilot/
+url: /kb/vibe-coding-tools/github-copilot/
 title: "GitHub Copilot Security: The Most Popular AI Tool Has Known Vulnerabilities"
 word_count: 1500-2000
 notes: |
@@ -446,7 +453,7 @@ notes: |
 ```yaml
 type: tool
 slug: windsurf
-url: /kb/ai-patterns/windsurf/
+url: /kb/vibe-coding-tools/windsurf/
 title: "Windsurf Security: CVEs, Prompt Injection, and How to Stay Safe"
 word_count: 1500-2000
 notes: |
@@ -596,3 +603,182 @@ When you complete an article:
 2. Move 🔄 to the next pending item
 3. Update the article definition with `status: PUBLISHED`
 4. Note any issues or learnings
+
+### 29. Concept: MCP Server Security
+```yaml
+type: concept
+slug: mcp-server-security
+url: /kb/agents/security/mcp-servers/
+title: "MCP Server Security: The Hidden Risks in AI Tool Integrations"
+owasp: A08:2021-Software and Data Integrity Failures
+owasp_url: https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/
+severity: Critical
+word_count: 1800-2200
+status: BRIEF_READY
+notes: |
+  - MCP = Model Context Protocol, Anthropic's open standard (Nov 2024)
+  - "USB-C for AI applications" - connects AI tools to external services
+  - Used by Claude Code, Cursor, Windsurf, Cline
+  - CVE-2025-6514: Critical RCE in mcp-remote (CVSS 9.6)
+  - Tool Poisoning Attacks (TPA): Hidden malicious instructions in tool descriptions
+  - Tool Shadowing: Override trusted tools via malicious servers
+  - Rug Pull Attacks: Change tool definitions post-approval
+  - ~1000 exposed MCP servers with no authorization (Bitsight)
+  - Supply chain risks similar to npm ecosystem
+  - OAuth is OPTIONAL in MCP spec (key security gap)
+  - External sources: Invariant Labs, Wiz Security, Pillar Security
+  - Brief location: docs/.content-ops/briefs/mcp-server-security-brief.md
+```
+
+### 30. Vulnerability: Broken Access Control
+```yaml
+type: vulnerability
+slug: broken-access-control
+url: /kb/security/vulnerabilities/broken-access-control/
+title: "Broken Access Control: The #1 Web Vulnerability AI Tools Get Wrong"
+cwe: CWE-284
+cwe_children: CWE-639, CWE-862, CWE-863, CWE-306
+owasp: A01:2021-Broken Access Control
+owasp_url: https://owasp.org/Top10/A01_2021-Broken_Access_Control/
+cwe_url: https://cwe.mitre.org/data/definitions/284.html
+severity: Critical
+word_count: 1600-2000
+status: BRIEF_READY
+notes: |
+  - OWASP #1 vulnerability (moved from #5 in 2017)
+  - 94% of applications have some form of broken access control
+  - AI understands authentication but not authorization
+  - Common patterns: IDOR, missing authz checks, vertical/horizontal escalation
+  - Framework guidance: Next.js middleware, Express middleware, Supabase RLS
+  - Key insight: Authentication != Authorization
+  - External sources: OWASP, CWE, Veracode, Endor Labs
+  - Brief location: docs/.content-ops/briefs/broken-access-control-brief.md
+```
+
+### 31. Vulnerability: Insecure File Upload
+```yaml
+type: vulnerability
+slug: insecure-file-upload
+url: /kb/security/vulnerabilities/insecure-file-upload/
+title: "Insecure File Upload: How AI Code Lets Attackers Upload Web Shells"
+cwe: CWE-434
+cwe_parent: CWE-669
+owasp: A04:2021-Insecure Design
+owasp_url: https://owasp.org/Top10/A04_2021-Insecure_Design/
+cwe_url: https://cwe.mitre.org/data/definitions/434.html
+severity: Critical
+word_count: 1500-1800
+status: BRIEF_READY
+notes: |
+  - Web shell upload = complete server takeover
+  - AI generates uploads with user-controlled filenames (path traversal risk)
+  - 10+ extension bypass techniques documented
+  - Key patterns: trusting originalname, blacklists vs allowlists, Content-Type spoofing
+  - Secure implementation: random filenames, content validation, store outside webroot
+  - Uses file-type library for magic byte validation
+  - External sources: OWASP, PortSwigger, CWE, JFrog
+  - Brief location: docs/.content-ops/briefs/insecure-file-upload-brief.md
+```
+
+### 32. Tool: Lovable
+```yaml
+type: tool
+slug: lovable
+url: /kb/vibe-coding-tools/lovable/
+title: "Lovable Security: CVE-2025-48757, RLS Failures, and VibeScamming Risks"
+severity: Critical
+word_count: 1800-2200
+status: BRIEF_READY
+notes: |
+  - $1.8B valuation AI app builder
+  - CVE-2025-48757: Missing RLS exposed 170+ apps (CVSS 8.26)
+  - 303 vulnerable endpoints, 10.3% of analyzed projects affected
+  - Exposed data: emails, addresses, API keys, financial records
+  - VibeScamming benchmark: Scored 1.8/10 (worst tested, vs ChatGPT 8/10)
+  - Can generate pixel-perfect phishing pages auto-deployed to lovable.app
+  - Security scanner added but only checks if RLS exists, not correctness
+  - Stack: React, TypeScript, Tailwind, Supabase
+  - External sources: Superblocks, Hacker News, Semafor, Guardio Labs
+  - Brief location: docs/.content-ops/briefs/lovable-brief.md
+```
+
+### 33. Vulnerability: XXE (XML External Entity)
+```yaml
+type: vulnerability
+slug: xxe
+url: /kb/security/vulnerabilities/xxe/
+title: "XXE: How AI Code Lets Attackers Read Your Server Files"
+cwe: CWE-611
+cwe_parent: CWE-610
+owasp: A05:2021-Security Misconfiguration
+owasp_url: https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
+cwe_url: https://cwe.mitre.org/data/definitions/611.html
+severity: High
+word_count: 1400-1700
+status: BRIEF_READY
+notes: |
+  - Was OWASP A4:2017, now part of A05:2021
+  - Exploits XML parsers that process external entities
+  - Attack capabilities: file disclosure, SSRF, DoS (Billion Laughs), RCE (rare)
+  - Java DocumentBuilder vulnerable by default
+  - Python: use defusedxml library
+  - PHP 8.0+ safe by default
+  - .NET 4.5.2+ XmlReader safe by default
+  - libxml2 2.9+ disables external entities by default
+  - Key message: "disable DTD processing"
+  - External sources: OWASP, CWE, PortSwigger
+  - Brief location: docs/.content-ops/briefs/xxe-brief.md
+```
+
+### 34. Vulnerability: SSTI (Server-Side Template Injection)
+```yaml
+type: vulnerability
+slug: ssti
+url: /kb/security/vulnerabilities/ssti/
+title: "SSTI: When AI Template Code Becomes Remote Code Execution"
+cwe: CWE-1336
+cwe_parent: CWE-94
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/1336.html
+severity: Critical
+word_count: 1500-1800
+status: BRIEF_READY
+notes: |
+  - User input embedded in template strings → code execution
+  - Affects Jinja2, EJS, Pug, Twig, FreeMarker, Velocity
+  - AI generates vulnerable patterns: f-strings, template concatenation
+  - Detection: {{7*7}} or ${7*7} returns 49
+  - CVE-2024-34359: Jinja2 SSTI in Python LLM bindings
+  - Key insight: "data vs template" - pass data as variables
+  - Different from XSS (server-side vs client-side)
+  - External sources: PortSwigger, OWASP, CWE
+  - Brief location: docs/.content-ops/briefs/ssti-brief.md
+```
+
+### 35. Vulnerability: Race Conditions
+```yaml
+type: vulnerability
+slug: race-conditions
+url: /kb/security/vulnerabilities/race-conditions/
+title: "Race Conditions: How Async Code Creates Security Holes AI Misses"
+cwe: CWE-362
+cwe_children: CWE-367
+owasp: A04:2021-Insecure Design
+owasp_url: https://owasp.org/Top10/A04_2021-Insecure_Design/
+cwe_url: https://cwe.mitre.org/data/definitions/362.html
+severity: High
+word_count: 1500-1800
+status: BRIEF_READY
+notes: |
+  - Exploits timing gaps in async code (CHECK-USE gap)
+  - Attacks: redeem gift cards multiple times, bypass rate limits, duplicate transactions
+  - AI generates async code without transactions or atomic operations
+  - TOCTOU (Time-of-check Time-of-use) is common variant
+  - CVE-2024-50379: Apache Tomcat TOCTOU RCE
+  - CVE-2025-68146: Python filelock TOCTOU symlink attack
+  - Fixes: database transactions, atomic operations, optimistic/pessimistic locking
+  - Prisma, MongoDB $inc, PostgreSQL FOR UPDATE examples
+  - External sources: PortSwigger, CWE, academic research
+  - Brief location: docs/.content-ops/briefs/race-conditions-brief.md
+```

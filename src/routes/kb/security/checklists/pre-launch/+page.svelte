@@ -405,7 +405,7 @@ Output a summary table:
 		<section class="content-section">
 			<h2>Why This Checklist Exists</h2>
 			<p>
-				AI coding tools generate working code, not secure code. The <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> has 300+ security requirements - overwhelming for a quick launch. This checklist covers the critical 15 items that <a href="/kb/ai-patterns/cursor/">Cursor</a>, <a href="/kb/ai-patterns/bolt/">Bolt</a>, and <a href="/kb/ai-patterns/claude-code/">Claude Code</a> commonly miss.
+				AI coding tools generate working code, not secure code. The <a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a> has 300+ security requirements - overwhelming for a quick launch. This checklist covers the critical 15 items that <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> commonly miss.
 			</p>
 			<p>
 				Think of this as a 15-minute security gut-check before you ship your vibe coded MVP. Each item links to a detailed article if you need to dig deeper.

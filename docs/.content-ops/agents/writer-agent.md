@@ -427,7 +427,7 @@ Sections:
 - Related Links
 
 ### 2. AI Tool Analysis
-**URL:** `/kb/security/ai-patterns/{tool}/`
+**URL:** `/kb/vibe-coding-tools/{tool}/`
 **Length:** 1,500-2,000 words
 
 Sections:

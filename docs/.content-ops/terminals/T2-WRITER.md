@@ -63,7 +63,7 @@ This prevents Terminal 3 from working on the same article.
 | Type | Path |
 |------|------|
 | Vulnerability | `src/routes/kb/security/vulnerabilities/{slug}/+page.svelte` |
-| AI Tool | `src/routes/kb/ai-patterns/{slug}/+page.svelte` |
+| AI Tool | `src/routes/kb/vibe-coding-tools/{slug}/+page.svelte` |
 | Stack | `src/routes/kb/security/stacks/{slug}/+page.svelte` |
 | Checklist | `src/routes/kb/security/checklists/{slug}/+page.svelte` |
 

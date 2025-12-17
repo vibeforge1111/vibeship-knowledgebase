@@ -244,7 +244,7 @@ Requirements:
 ### Vulnerability Article (/kb/security/vulnerabilities/{slug}/)
 See references/templates/vulnerability.md
 
-### AI Tool Analysis (/kb/security/ai-patterns/{tool}/)
+### AI Tool Analysis (/kb/vibe-coding-tools/{tool}/)
 See references/templates/ai-pattern.md
 
 ### Stack Guide (/kb/security/stacks/{stack}/)

@@ -89,7 +89,7 @@ vibeship.co/
 │   │   │   ├── missing-rate-limiting/
 │   │   │   ├── sensitive-data-exposure/
 │   │   │   └── ...
-│   │   ├── /kb/security/ai-patterns/
+│   │   ├── /kb/vibe-coding-tools/
 │   │   │   ├── cursor/
 │   │   │   │   ├── index (overview)
 │   │   │   │   ├── sql-injection/
@@ -453,7 +453,7 @@ vibeship.co/kb/security/vulnerabilities/sql-injection/
     ├── Links to: scanner.vibeship.co/docs/getting-started/
     │             "Scan your code for SQL injection →"
     │
-    ├── Links to: /kb/security/ai-patterns/cursor/sql-injection/
+    ├── Links to: /kb/vibe-coding-tools/cursor/sql-injection/
     │             "Cursor-specific SQL injection patterns →"
     │
     ├── Links to: /kb/security/fixes/sql-injection/nextjs/
@@ -493,7 +493,7 @@ mind.vibeship.co/docs/getting-started/
 | "Agent orchestration patterns" | vibeship.co/kb/agents/patterns/ | Educational patterns |
 | "Spawner agent templates" | spawner.vibeship.co/docs/templates/ | Product templates |
 | "Secure AI agent development" | vibeship.co/kb/guides/secure-agent-development/ | Cross-product guide |
-| "Cursor security issues" | vibeship.co/kb/security/ai-patterns/cursor/ | Educational analysis |
+| "Cursor security issues" | vibeship.co/kb/vibe-coding-tools/cursor/ | Educational analysis |
 | "What is vibe coding" | vibeship.co/kb/glossary/general/vibe-coding/ | Definition |
 | "VibeShip vulnerability index" | vibeship.co/research/vulnerability-index/ | Research/data |
 
@@ -518,7 +518,7 @@ https://vibeship.co
 ### Security
 Learn about vulnerabilities in AI-generated code, AI tool patterns, and fixes.
 - Vulnerabilities: https://vibeship.co/kb/security/vulnerabilities/
-- AI Patterns: https://vibeship.co/kb/security/ai-patterns/
+- AI Patterns: https://vibeship.co/kb/vibe-coding-tools/
 - Stack Guides: https://vibeship.co/kb/security/stacks/
 - Fix Prompts: https://vibeship.co/kb/security/fixes/
 - Checklists: https://vibeship.co/kb/security/checklists/
@@ -626,7 +626,7 @@ visit the main VibeShip Knowledge Base:
 
 - Security Knowledge Base: https://vibeship.co/kb/security/
 - Vulnerabilities: https://vibeship.co/kb/security/vulnerabilities/
-- AI Tool Patterns: https://vibeship.co/kb/security/ai-patterns/
+- AI Tool Patterns: https://vibeship.co/kb/vibe-coding-tools/
 
 ## Parent Organization
 VibeShip: https://vibeship.co
@@ -714,7 +714,7 @@ src/routes/
 │   │   │       ├── +page.svelte
 │   │   │       └── +page.server.ts
 │   │   │
-│   │   ├── ai-patterns/
+│   │   ├── vibe-coding-tools/
 │   │   │   ├── +page.svelte            # AI patterns hub
 │   │   │   ├── +page.server.ts
 │   │   │   └── [tool]/
@@ -876,7 +876,7 @@ src/lib/content/
 │   │   ├── sql-injection.json
 │   │   ├── xss.json
 │   │   └── ...
-│   ├── ai-patterns/
+│   ├── vibe-coding-tools/
 │   │   ├── cursor.json
 │   │   └── ...
 │   ├── stacks/
@@ -1001,8 +1001,8 @@ src/lib/content/
          class:active={$page.url.pathname.includes('/vulnerabilities')}>
         Vulnerabilities
       </a>
-      <a href="/kb/security/ai-patterns"
-         class:active={$page.url.pathname.includes('/ai-patterns')}>
+      <a href="/kb/vibe-coding-tools"
+         class:active={$page.url.pathname.includes('/vibe-coding-tools')}>
         AI Patterns
       </a>
       <a href="/kb/security/stacks"

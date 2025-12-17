@@ -199,7 +199,7 @@
 			<p class="stats-note">
 				Sources: <a href={owaspData.cweSource} target="_blank" rel="noopener">MITRE CWE-78</a>,
 				<a href="https://www.cisa.gov/resources-tools/resources/secure-design-alert-eliminating-os-command-injection-vulnerabilities" target="_blank" rel="noopener">CISA</a>,
-				<a href="/kb/ai-patterns/github-copilot/">GitHub Copilot Research</a>
+				<a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot Research</a>
 			</p>
 		</div>
 
@@ -269,10 +269,10 @@
 				Vibe coding with AI tools often produces command injection vulnerabilities because AI generates what's common in training data. When you prompt "run a shell command" or "ping a server", AI naturally reaches for <code>exec()</code> with template literals.
 			</p>
 			<p>
-				Academic research on <a href="/kb/ai-patterns/github-copilot/">GitHub Copilot security</a> found that 6.21% of generated code contains <a href={owaspData.cweSource} target="_blank" rel="noopener">CWE-78</a> command injection vulnerabilities. AI tools don't distinguish between trusted and untrusted input - they generate readable, functional code that happens to be insecure.
+				Academic research on <a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot security</a> found that 6.21% of generated code contains <a href={owaspData.cweSource} target="_blank" rel="noopener">CWE-78</a> command injection vulnerabilities. AI tools don't distinguish between trusted and untrusted input - they generate readable, functional code that happens to be insecure.
 			</p>
 			<p>
-				The pattern <code>exec(`command $&#123;variable&#125;`)</code> is cleaner than array-based alternatives, so it appears frequently in vibe coded projects. <a href="/kb/ai-patterns/cursor/">Cursor</a> and <a href="/kb/ai-patterns/claude-code/">Claude Code</a> exhibit similar patterns when asked to execute system commands.
+				The pattern <code>exec(`command $&#123;variable&#125;`)</code> is cleaner than array-based alternatives, so it appears frequently in vibe coded projects. <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> exhibit similar patterns when asked to execute system commands.
 			</p>
 		</section>
 
@@ -613,11 +613,11 @@ For each vulnerability:
 					<span class="related-type">Vulnerability</span>
 					<span class="related-title">Sensitive Data Exposure</span>
 				</a>
-				<a href="/kb/ai-patterns/github-copilot/" class="related-card">
+				<a href="/kb/vibe-coding-tools/github-copilot/" class="related-card">
 					<span class="related-type">AI Tool</span>
 					<span class="related-title">GitHub Copilot Security</span>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
 					<span class="related-type">AI Tool</span>
 					<span class="related-title">Cursor Security Patterns</span>
 				</a>

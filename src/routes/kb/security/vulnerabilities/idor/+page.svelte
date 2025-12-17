@@ -548,7 +548,7 @@ export async function GET(
 					<div class="related-card-title">Missing Authentication</div>
 					<p class="related-card-description">Unprotected API routes anyone can access</p>
 				</a>
-				<a href="/kb/security/ai-patterns/cursor/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Cursor Security Patterns</div>
 					<p class="related-card-description">Common patterns in Cursor-generated code</p>

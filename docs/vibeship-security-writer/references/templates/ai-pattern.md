@@ -1,6 +1,6 @@
 # AI Tool Analysis Template
 
-Use this template for all pages at `/kb/security/ai-patterns/{tool}/`
+Use this template for all pages at `/kb/vibe-coding-tools/{tool}/`
 
 ## JSON Content Structure
 
@@ -200,7 +200,7 @@ Use this template for all pages at `/kb/security/ai-patterns/{tool}/`
 
 ## Tool-Specific Vulnerability Pages
 
-For each tool, also create sub-pages at `/kb/security/ai-patterns/{tool}/{vulnerability}/`
+For each tool, also create sub-pages at `/kb/vibe-coding-tools/{tool}/{vulnerability}/`
 
 These pages focus on how THIS SPECIFIC TOOL causes THIS SPECIFIC VULNERABILITY.
 

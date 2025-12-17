@@ -302,7 +302,7 @@ H2: Scan Your [Stack] Project
 ### Tool Pages to Link
 | Page | Why |
 |------|-----|
-| /kb/security/ai-patterns/[tool]/ | Most common tool for this stack |
+| /kb/vibe-coding-tools/[tool]/ | Most common tool for this stack |
 
 ---
 

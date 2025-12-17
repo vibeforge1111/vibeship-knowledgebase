@@ -5,13 +5,13 @@
 	const meta = {
 		title: 'Windsurf Security: CVEs, Prompt Injection, and How to Stay Safe',
 		description: 'Windsurf has CVE-2025-62353 (path traversal) and prompt injection vulnerabilities that can exfiltrate your .env files. Learn the patterns and fixes.',
-		url: '/kb/ai-patterns/windsurf/'
+		url: '/kb/vibe-coding-tools/windsurf/'
 	};
 
 	// Breadcrumbs
 	const breadcrumbs = [
 		{ label: 'Knowledge Base', href: '/kb' },
-		{ label: 'AI Patterns', href: '/kb/ai-patterns' },
+		{ label: 'AI Patterns', href: '/kb/vibe-coding-tools' },
 		{ label: 'Windsurf' }
 	];
 
@@ -237,7 +237,7 @@ export async function POST(request: Request) {
 		"@type": "BreadcrumbList",
 		"itemListElement": [
 			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
-			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/ai-patterns"},
+			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/vibe-coding-tools"},
 			{"@type": "ListItem", "position": 3, "name": "Windsurf"}
 		]
 	}
@@ -463,25 +463,25 @@ API_KEY = "configured in environment"`}</code></pre>
 							<td>Medium-High</td>
 						</tr>
 						<tr>
-							<td><a href="/kb/ai-patterns/github-copilot/">GitHub Copilot</a></td>
+							<td><a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot</a></td>
 							<td>2</td>
 							<td>Code completion</td>
 							<td>Medium</td>
 						</tr>
 						<tr>
-							<td><a href="/kb/ai-patterns/cursor/">Cursor</a></td>
+							<td><a href="/kb/vibe-coding-tools/cursor/">Cursor</a></td>
 							<td>0 public</td>
 							<td>Chat + completion</td>
 							<td>Medium</td>
 						</tr>
 						<tr>
-							<td><a href="/kb/ai-patterns/claude-code/">Claude Code</a></td>
+							<td><a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a></td>
 							<td>0 public</td>
 							<td>Chat agent</td>
 							<td>Medium</td>
 						</tr>
 						<tr>
-							<td><a href="/kb/ai-patterns/bolt/">Bolt</a></td>
+							<td><a href="/kb/vibe-coding-tools/bolt/">Bolt</a></td>
 							<td>0 public</td>
 							<td>Full-stack generator</td>
 							<td>Low-Medium</td>
@@ -549,11 +549,11 @@ For each issue:
 		<section>
 			<h2>Related Content</h2>
 			<div class="related-grid">
-				<a href="/kb/ai-patterns/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
 					<span class="related-type">AI Tool</span>
 					<span class="related-title">Cursor Security Patterns</span>
 				</a>
-				<a href="/kb/ai-patterns/github-copilot/" class="related-card">
+				<a href="/kb/vibe-coding-tools/github-copilot/" class="related-card">
 					<span class="related-type">AI Tool</span>
 					<span class="related-title">GitHub Copilot Security</span>
 				</a>

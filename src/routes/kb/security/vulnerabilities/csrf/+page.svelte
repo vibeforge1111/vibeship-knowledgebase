@@ -317,7 +317,7 @@ export async function transferMoney(formData: FormData) {
   <section class="content-section">
     <h2>Why Do AI Tools Generate Vulnerable Routes?</h2>
     <p>
-      When you ask <a href="/kb/ai-patterns/cursor/">Cursor</a>, <a href="/kb/ai-patterns/claude-code/">Claude Code</a>, or <a href="/kb/ai-patterns/bolt/">Bolt</a> to "create an API endpoint," they generate Route Handlers, not Server Actions. Route Handlers are more flexible and familiar from Express.js patterns, but they lack Server Actions' built-in CSRF protection.
+      When you ask <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>, or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> to "create an API endpoint," they generate Route Handlers, not Server Actions. Route Handlers are more flexible and familiar from Express.js patterns, but they lack Server Actions' built-in CSRF protection.
     </p>
     <p>
       The problem: AI-generated code works without CSRF protection. You can test it, deploy it, and it functions correctly - until an attacker exploits it. Vibe coders often don't realize the gap because CSRF attacks don't surface during normal development.
@@ -494,7 +494,7 @@ export async function GET() {
   <section class="content-section">
     <h2>AI Fix Prompt for CSRF Vulnerabilities</h2>
     <p>
-      Copy this prompt into <a href="/kb/ai-patterns/cursor/">Cursor</a> or <a href="/kb/ai-patterns/claude-code/">Claude Code</a> to scan for CSRF vulnerabilities:
+      Copy this prompt into <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> or <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> to scan for CSRF vulnerabilities:
     </p>
 
     <button class="expand-button" onclick={() => showFixPrompt = !showFixPrompt}>

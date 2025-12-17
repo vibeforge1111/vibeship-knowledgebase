@@ -480,7 +480,7 @@ const pool = new Pool({
 					<div class="related-card-title">SQL Injection</div>
 					<p class="related-card-description">Another critical vulnerability in AI-generated code</p>
 				</a>
-				<a href="/kb/security/ai-patterns/bolt/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Bolt Security Patterns</div>
 					<p class="related-card-description">Why Bolt generates hardcoded credentials</p>

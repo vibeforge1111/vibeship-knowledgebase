@@ -104,16 +104,16 @@ vibeship.co/
 │   │   ├── /kb/vulnerabilities/sensitive-data-exposure/
 │   │   └── ...
 │   │
-│   ├── /kb/ai-patterns/                    # Hub: AI tool patterns (UNIQUE MOAT)
-│   │   ├── /kb/ai-patterns/cursor/
-│   │   │   ├── /kb/ai-patterns/cursor/sql-injection/
-│   │   │   └── /kb/ai-patterns/cursor/missing-auth/
-│   │   ├── /kb/ai-patterns/claude-code/
-│   │   ├── /kb/ai-patterns/bolt/
-│   │   ├── /kb/ai-patterns/v0/
-│   │   ├── /kb/ai-patterns/replit/
-│   │   ├── /kb/ai-patterns/copilot/
-│   │   └── /kb/ai-patterns/windsurf/
+│   ├── /kb/vibe-coding-tools/                    # Hub: AI tool patterns (UNIQUE MOAT)
+│   │   ├── /kb/vibe-coding-tools/cursor/
+│   │   │   ├── /kb/vibe-coding-tools/cursor/sql-injection/
+│   │   │   └── /kb/vibe-coding-tools/cursor/missing-auth/
+│   │   ├── /kb/vibe-coding-tools/claude-code/
+│   │   ├── /kb/vibe-coding-tools/bolt/
+│   │   ├── /kb/vibe-coding-tools/v0/
+│   │   ├── /kb/vibe-coding-tools/replit/
+│   │   ├── /kb/vibe-coding-tools/copilot/
+│   │   └── /kb/vibe-coding-tools/windsurf/
 │   │
 │   ├── /kb/stacks/                         # Hub: Stack-specific guides
 │   │   ├── /kb/stacks/nextjs-supabase/
@@ -199,7 +199,7 @@ vibeship.co/
 
 ---
 
-### Category 2: AI Patterns (`/kb/ai-patterns/`)
+### Category 2: AI Patterns (`/kb/vibe-coding-tools/`)
 
 **Purpose:** YOUR UNIQUE MOAT. No competitor has this data.
 
@@ -1451,9 +1451,9 @@ export async function getRelatedContent(
           <p class="text-sm text-slate-400">
             💡 <strong class="text-slate-300">Want details for a specific tool?</strong> 
             See our analysis of 
-            <a href="/kb/ai-patterns/cursor/{data.slug}" class="text-blue-400 hover:text-blue-300">Cursor</a>, 
-            <a href="/kb/ai-patterns/claude-code/{data.slug}" class="text-blue-400 hover:text-blue-300">Claude Code</a>, or 
-            <a href="/kb/ai-patterns/bolt/{data.slug}" class="text-blue-400 hover:text-blue-300">Bolt</a> 
+            <a href="/kb/vibe-coding-tools/cursor/{data.slug}" class="text-blue-400 hover:text-blue-300">Cursor</a>, 
+            <a href="/kb/vibe-coding-tools/claude-code/{data.slug}" class="text-blue-400 hover:text-blue-300">Claude Code</a>, or 
+            <a href="/kb/vibe-coding-tools/bolt/{data.slug}" class="text-blue-400 hover:text-blue-300">Bolt</a> 
             specific patterns.
           </p>
         </div>
@@ -1877,7 +1877,7 @@ export async function getRelatedContent(
       <div class="group">
         <div class="flex items-center justify-between text-sm mb-1">
           <a 
-            href="/kb/ai-patterns/{tool.tool.toLowerCase().replace(' ', '-')}"
+            href="/kb/vibe-coding-tools/{tool.tool.toLowerCase().replace(' ', '-')}"
             class="text-slate-300 hover:text-white transition-colors"
           >
             {tool.tool}
@@ -2142,7 +2142,7 @@ export async function GET() {
     { url: '', priority: 1.0, changefreq: 'weekly' },
     { url: '/kb', priority: 0.9, changefreq: 'weekly' },
     { url: '/kb/vulnerabilities', priority: 0.9, changefreq: 'weekly' },
-    { url: '/kb/ai-patterns', priority: 0.9, changefreq: 'weekly' },
+    { url: '/kb/vibe-coding-tools', priority: 0.9, changefreq: 'weekly' },
     { url: '/kb/stacks', priority: 0.8, changefreq: 'monthly' },
     { url: '/kb/fixes', priority: 0.8, changefreq: 'weekly' },
     { url: '/kb/glossary', priority: 0.7, changefreq: 'monthly' },
@@ -2179,7 +2179,7 @@ export async function GET() {
     })),
     
     ...aiPatterns.map(p => ({
-      loc: `${baseUrl}/kb/ai-patterns/${p.slug}`,
+      loc: `${baseUrl}/kb/vibe-coding-tools/${p.slug}`,
       lastmod: p.updatedAt,
       priority: 0.8,
       changefreq: 'monthly'
@@ -2373,7 +2373,7 @@ ${vuln.quickAnswer}
   for (const pattern of aiPatterns) {
     content += `### ${pattern.title}
 ${pattern.quickAnswer}
-- Full analysis: https://vibeship.co/kb/ai-patterns/${pattern.slug}
+- Full analysis: https://vibeship.co/kb/vibe-coding-tools/${pattern.slug}
 
 `
   }
@@ -3341,7 +3341,7 @@ aggregateWeeklyStats().catch(console.error)
 |---------|---------------|------------|-------------|
 | vibe coding security | Low | Low | /kb |
 | ai generated code security | Medium | Medium | /kb |
-| cursor security issues | Low | Low | /kb/ai-patterns/cursor |
+| cursor security issues | Low | Low | /kb/vibe-coding-tools/cursor |
 | sql injection ai code | Low | Low | /kb/vulnerabilities/sql-injection |
 | supabase security checklist | Medium | Medium | /kb/checklists/supabase |
 | nextjs security best practices | High | High | /kb/stacks/nextjs-supabase |

@@ -118,7 +118,7 @@ issues and how to fix them before deployment. (124 chars)
 **Good:**
 ```
 /kb/security/vulnerabilities/sql-injection/
-/kb/security/ai-patterns/cursor/
+/kb/vibe-coding-tools/cursor/
 /kb/security/stacks/nextjs-supabase/
 /kb/security/fixes/sql-injection/nextjs/
 ```
@@ -397,7 +397,7 @@ Create machine-readable content summaries:
 
 ### AI Tool Patterns
 {2-3 sentences describing this section}
-- Cursor: https://vibeship.co/kb/security/ai-patterns/cursor/
+- Cursor: https://vibeship.co/kb/vibe-coding-tools/cursor/
 ...
 
 ## Key Statistics

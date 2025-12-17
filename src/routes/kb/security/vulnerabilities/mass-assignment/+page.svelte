@@ -683,11 +683,11 @@ export async function updateProfile(formData: FormData) &#123;
 					<h4>SQL Injection</h4>
 					<p>Another input validation vulnerability</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
 					<h4>Cursor Security Patterns</h4>
 					<p>Object.assign patterns in Cursor-generated code</p>
 				</a>
-				<a href="/kb/ai-patterns/bolt/" class="related-card">
+				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
 					<h4>Bolt.new Security</h4>
 					<p>API endpoint patterns from Bolt</p>
 				</a>

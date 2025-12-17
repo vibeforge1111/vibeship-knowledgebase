@@ -219,7 +219,7 @@
 		<section>
 			<h2>1. The getSession() vs getUser() trap</h2>
 			<p>
-				This is the #1 mistake in SvelteKit + Supabase vibe coded apps. AI tools like <a href="/kb/ai-patterns/cursor/">Cursor</a> and <a href="/kb/ai-patterns/claude-code/">Claude Code</a> generate this constantly because tutorials optimize for speed, not security.
+				This is the #1 mistake in SvelteKit + Supabase vibe coded apps. AI tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> generate this constantly because tutorials optimize for speed, not security.
 			</p>
 
 			<div class="code-comparison">
@@ -717,11 +717,11 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 					<span class="related-type">Vulnerability</span>
 					<span class="related-title">Missing Authentication</span>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
 					<span class="related-type">AI Tool</span>
 					<span class="related-title">Cursor Security Patterns</span>
 				</a>
-				<a href="/kb/ai-patterns/claude-code/" class="related-card">
+				<a href="/kb/vibe-coding-tools/claude-code/" class="related-card">
 					<span class="related-type">AI Tool</span>
 					<span class="related-title">Claude Code Security</span>
 				</a>

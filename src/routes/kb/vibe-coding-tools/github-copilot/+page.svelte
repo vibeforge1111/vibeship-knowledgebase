@@ -97,12 +97,12 @@ Additional checks:
   <title>{pageData.title} | VibeShip</title>
   <meta name="description" content={pageData.description} />
   <meta name="keywords" content="GitHub Copilot security, Copilot vulnerabilities, CVE-2025-62449, AI code security, Copilot CVE, is Copilot secure" />
-  <link rel="canonical" href="https://vibeship.co/kb/ai-patterns/github-copilot/" />
+  <link rel="canonical" href="https://vibeship.co/kb/vibe-coding-tools/github-copilot/" />
 
   <meta property="og:title" content={pageData.title} />
   <meta property="og:description" content={pageData.description} />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://vibeship.co/kb/ai-patterns/github-copilot/" />
+  <meta property="og:url" content="https://vibeship.co/kb/vibe-coding-tools/github-copilot/" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={pageData.title} />
@@ -127,7 +127,7 @@ Additional checks:
     "dateModified": pageData.updatedAt,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://vibeship.co/kb/ai-patterns/github-copilot/"
+      "@id": "https://vibeship.co/kb/vibe-coding-tools/github-copilot/"
     },
     "about": {
       "@type": "Thing",
@@ -169,13 +169,13 @@ Additional checks:
         "@type": "ListItem",
         "position": 3,
         "name": "AI Patterns",
-        "item": "https://vibeship.co/kb/ai-patterns/"
+        "item": "https://vibeship.co/kb/vibe-coding-tools/"
       },
       {
         "@type": "ListItem",
         "position": 4,
         "name": "GitHub Copilot",
-        "item": "https://vibeship.co/kb/ai-patterns/github-copilot/"
+        "item": "https://vibeship.co/kb/vibe-coding-tools/github-copilot/"
       }
     ]
   })}</script>`}
@@ -187,7 +187,7 @@ Additional checks:
     <span class="separator">/</span>
     <a href="/kb">Knowledge Base</a>
     <span class="separator">/</span>
-    <a href="/kb/ai-patterns">AI Patterns</a>
+    <a href="/kb/vibe-coding-tools">AI Patterns</a>
     <span class="separator">/</span>
     <span class="current">GitHub Copilot</span>
   </nav>
@@ -224,7 +224,7 @@ Additional checks:
   <section class="content-section">
     <h2>Why Does Copilot Generate Vulnerable Code?</h2>
     <p>
-      Unlike AI tools that reason about security in real-time (like <a href="/kb/ai-patterns/claude-code/">Claude Code</a>), Copilot's suggestions come primarily from pattern-matching against its training data. Since that training data is public GitHub code, it includes:
+      Unlike AI tools that reason about security in real-time (like <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>), Copilot's suggestions come primarily from pattern-matching against its training data. Since that training data is public GitHub code, it includes:
     </p>
     <ul>
       <li><strong>Vulnerable code patterns</strong> - Public repositories contain known security flaws</li>
@@ -568,25 +568,25 @@ app.get('/files/:filename', (req, res) => {
             <td class="cell-warning">Medium</td>
           </tr>
           <tr>
-            <td><a href="/kb/ai-patterns/cursor/">Cursor</a></td>
+            <td><a href="/kb/vibe-coding-tools/cursor/">Cursor</a></td>
             <td class="cell-safe">0</td>
             <td>SQL injection</td>
             <td class="cell-warning">Medium</td>
           </tr>
           <tr>
-            <td><a href="/kb/ai-patterns/claude-code/">Claude Code</a></td>
+            <td><a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a></td>
             <td class="cell-safe">0</td>
             <td>Missing rate limiting</td>
             <td class="cell-safe">Medium-High</td>
           </tr>
           <tr>
-            <td><a href="/kb/ai-patterns/windsurf/">Windsurf</a></td>
+            <td><a href="/kb/vibe-coding-tools/windsurf/">Windsurf</a></td>
             <td class="cell-warning">1</td>
             <td>Path traversal</td>
             <td class="cell-warning">Low-Medium</td>
           </tr>
           <tr>
-            <td><a href="/kb/ai-patterns/bolt/">Bolt</a></td>
+            <td><a href="/kb/vibe-coding-tools/bolt/">Bolt</a></td>
             <td class="cell-safe">0</td>
             <td>Hardcoded secrets</td>
             <td class="cell-vulnerable">Low</td>
@@ -643,11 +643,11 @@ app.get('/files/:filename', (req, res) => {
   <section class="content-section">
     <h2>Related Resources</h2>
     <div class="related-grid">
-      <a href="/kb/ai-patterns/cursor/" class="related-card">
+      <a href="/kb/vibe-coding-tools/cursor/" class="related-card">
         <h3>Cursor Security</h3>
         <p>Security patterns for Cursor AI code editor</p>
       </a>
-      <a href="/kb/ai-patterns/windsurf/" class="related-card">
+      <a href="/kb/vibe-coding-tools/windsurf/" class="related-card">
         <h3>Windsurf Security</h3>
         <p>Similar CVEs and prompt injection risks</p>
       </a>

@@ -5,13 +5,13 @@
 	const meta = {
 		title: 'v0 Security Patterns: When Fast UI Meets Vulnerable Code',
 		description: 'v0 generates beautiful UI fast but often exposes secrets via NEXT_PUBLIC_ and skips server-side validation. Learn 5 patterns to fix before deploying.',
-		url: '/kb/ai-patterns/v0/'
+		url: '/kb/vibe-coding-tools/v0/'
 	};
 
 	// Breadcrumbs
 	const breadcrumbs = [
 		{ label: 'Knowledge Base', href: '/kb' },
-		{ label: 'AI Patterns', href: '/kb/ai-patterns' },
+		{ label: 'AI Patterns', href: '/kb/vibe-coding-tools' },
 		{ label: 'v0' }
 	];
 
@@ -384,7 +384,7 @@ For each issue found:
 		"@type": "BreadcrumbList",
 		"itemListElement": [
 			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
-			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/ai-patterns"},
+			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/vibe-coding-tools"},
 			{"@type": "ListItem", "position": 3, "name": "v0"}
 		]
 	}
@@ -518,7 +518,7 @@ For each issue found:
 				Additionally, v0 generates Next.js code which has confusing environment variable rules. The <code>NEXT_PUBLIC_</code> prefix exposes variables to the browser - many vibe coders don't understand this, and v0 doesn't always get it right when you ask it to "add Supabase" or "integrate OpenAI".
 			</p>
 			<p>
-				Unlike <a href="/kb/ai-patterns/bolt/">Bolt</a> which focuses on full-stack apps, v0's UI-first approach means backend security is secondary. It generates what looks right in the browser, not what's secure on the server.
+				Unlike <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> which focuses on full-stack apps, v0's UI-first approach means backend security is secondary. It generates what looks right in the browser, not what's secure on the server.
 			</p>
 		</section>
 
@@ -564,7 +564,7 @@ For each issue found:
 		<section class="content-section">
 			<h2>How Does v0 Compare to Other AI Tools?</h2>
 			<p>
-				Each AI coding tool has different security characteristics. v0's UI-first approach means its vulnerabilities differ from full-stack tools like <a href="/kb/ai-patterns/bolt/">Bolt</a> or code-completion tools like <a href="/kb/ai-patterns/cursor/">Cursor</a>:
+				Each AI coding tool has different security characteristics. v0's UI-first approach means its vulnerabilities differ from full-stack tools like <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> or code-completion tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>:
 			</p>
 
 			<div class="comparison-table-wrapper">
@@ -641,15 +641,15 @@ For each issue found:
 			<h2>Related Security Guides</h2>
 
 			<div class="related-grid">
-				<a href="/kb/ai-patterns/bolt/" class="related-card">
+				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
 					<h3>Bolt.new Security</h3>
 					<p>Full-stack AI tool with similar security patterns</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
 					<h3>Cursor Security</h3>
 					<p>Code completion tool for experienced developers</p>
 				</a>
-				<a href="/kb/ai-patterns/claude-code/" class="related-card">
+				<a href="/kb/vibe-coding-tools/claude-code/" class="related-card">
 					<h3>Claude Code Security</h3>
 					<p>Terminal-based AI with higher security awareness</p>
 				</a>

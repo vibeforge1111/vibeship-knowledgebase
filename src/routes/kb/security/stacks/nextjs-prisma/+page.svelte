@@ -423,7 +423,7 @@ List all files you modified with before/after snippets.`;
 		<section class="article-section">
 			<h2>Why does Prisma security matter?</h2>
 			<p>
-				Prisma is the most popular ORM for Next.js and TypeScript projects. AI tools like <a href="/kb/ai-patterns/cursor/">Cursor</a>, <a href="/kb/ai-patterns/bolt/">Bolt</a>, and <a href="/kb/ai-patterns/claude-code/">Claude Code</a> love generating Prisma code because it's type-safe and produces clean, readable queries.
+				Prisma is the most popular ORM for Next.js and TypeScript projects. AI tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> love generating Prisma code because it's type-safe and produces clean, readable queries.
 			</p>
 			<p>
 				But type safety creates a <strong>false sense of security</strong>. TypeScript types are compile-time checks - they don't protect you at runtime. According to <a href="https://cwe.mitre.org/data/definitions/564.html" target="_blank" rel="noopener">CWE-564</a>, ORMs shift SQL injection risk but don't eliminate it. The attack surface moves from raw SQL to ORM-specific vulnerabilities.
@@ -499,7 +499,7 @@ List all files you modified with before/after snippets.`;
 		<!-- AI Fix Prompt -->
 		<section class="article-section">
 			<h2>AI fix prompt for Next.js + Prisma security</h2>
-			<p>Copy this prompt and paste it into <a href="/kb/ai-patterns/cursor/">Cursor</a>, <a href="/kb/ai-patterns/claude-code/">Claude Code</a>, or <a href="/kb/ai-patterns/bolt/">Bolt</a> to automatically find and fix security vulnerabilities in your vibe coded project:</p>
+			<p>Copy this prompt and paste it into <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>, or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> to automatically find and fix security vulnerabilities in your vibe coded project:</p>
 
 			<div class="prompt-box">
 				<div class="prompt-header">
@@ -589,7 +589,7 @@ List all files you modified with before/after snippets.`;
 					<div class="related-card-title">Hardcoded Secrets</div>
 					<p class="related-card-description">Database URLs and API keys in code</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Cursor</div>
 					<p class="related-card-description">Security patterns in Cursor generated code</p>

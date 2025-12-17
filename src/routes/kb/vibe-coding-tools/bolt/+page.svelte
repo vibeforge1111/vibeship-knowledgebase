@@ -5,13 +5,13 @@
 	const meta = {
 		title: 'Is Bolt.new Safe? Security Risks & Fixes',
 		description: 'Bolt.new generates apps fast but often includes hardcoded secrets and missing auth. Learn 5 security patterns and how to fix them before deploying.',
-		url: '/kb/ai-patterns/bolt/'
+		url: '/kb/vibe-coding-tools/bolt/'
 	};
 
 	// Breadcrumbs
 	const breadcrumbs = [
 		{ label: 'Knowledge Base', href: '/kb' },
-		{ label: 'AI Patterns', href: '/kb/ai-patterns' },
+		{ label: 'AI Patterns', href: '/kb/vibe-coding-tools' },
 		{ label: 'Bolt.new' }
 	];
 
@@ -309,7 +309,7 @@ Please proceed systematically through my codebase.`;
 		"@type": "BreadcrumbList",
 		"itemListElement": [
 			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
-			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/ai-patterns"},
+			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/vibe-coding-tools"},
 			{"@type": "ListItem", "position": 3, "name": "Bolt.new"}
 		]
 	}
@@ -473,7 +473,7 @@ Please proceed systematically through my codebase.`;
 		<!-- Tool Comparison -->
 		<section class="article-section">
 			<h2>How does Bolt.new compare to other AI tools?</h2>
-			<p>Bolt.new optimizes for speed and beginner accessibility, which means it generates less secure code by default compared to tools like <a href="/kb/ai-patterns/cursor/">Cursor</a> or <a href="/kb/ai-patterns/claude-code/">Claude Code</a> that give developers more control over the generation process.</p>
+			<p>Bolt.new optimizes for speed and beginner accessibility, which means it generates less secure code by default compared to tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> or <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> that give developers more control over the generation process.</p>
 
 			<div class="comparison-table-wrapper">
 				<table class="comparison-table">
@@ -510,7 +510,7 @@ Please proceed systematically through my codebase.`;
 		<!-- AI Fix Prompt -->
 		<section class="article-section">
 			<h2>AI fix prompt for Bolt.new security issues</h2>
-			<p>Copy this prompt and paste it into Bolt.new, <a href="/kb/ai-patterns/cursor/">Cursor</a>, or <a href="/kb/ai-patterns/claude-code/">Claude Code</a> to automatically find and fix security vulnerabilities in your vibe coded project:</p>
+			<p>Copy this prompt and paste it into Bolt.new, <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, or <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> to automatically find and fix security vulnerabilities in your vibe coded project:</p>
 
 			<div class="prompt-box">
 				<div class="prompt-header">
@@ -591,12 +591,12 @@ Please proceed systematically through my codebase.`;
 			<h2>Related content</h2>
 
 			<div class="related-grid">
-				<a href="/kb/ai-patterns/cursor/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Cursor</div>
 					<p class="related-card-description">Security patterns in Cursor generated code</p>
 				</a>
-				<a href="/kb/ai-patterns/claude-code/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/claude-code/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Claude Code</div>
 					<p class="related-card-description">Security patterns in Claude Code generated apps</p>

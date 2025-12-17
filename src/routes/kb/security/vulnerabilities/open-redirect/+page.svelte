@@ -722,11 +722,11 @@ app.get('/goto', (req, res) =&gt; &#123;
 					<h4>IDOR</h4>
 					<p>Related access control vulnerability in authorization</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
 					<h4>Cursor Security Patterns</h4>
 					<p>Login flow vulnerabilities in Cursor-generated code</p>
 				</a>
-				<a href="/kb/ai-patterns/bolt/" class="related-card">
+				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
 					<h4>Bolt.new Security</h4>
 					<p>Authentication redirect patterns from Bolt</p>
 				</a>

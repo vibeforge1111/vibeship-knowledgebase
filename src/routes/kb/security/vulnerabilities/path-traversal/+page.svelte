@@ -220,7 +220,7 @@ app.get('/download', (req, res) => {
 
 			<p>
 				Common vulnerable features in vibe coded apps include file downloads, image uploads, user avatar handling, document exports, and any endpoint that takes a filename parameter.
-				Tools like <a href="/kb/ai-patterns/cursor/">Cursor</a>, <a href="/kb/ai-patterns/bolt/">Bolt</a>, and <a href="/kb/ai-patterns/claude-code/">Claude Code</a> can all generate these patterns.
+				Tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> can all generate these patterns.
 			</p>
 		</section>
 
@@ -545,7 +545,7 @@ app.get('/download', (req, res) => {
 					<div class="related-card-title">IDOR</div>
 					<p class="related-card-description">Related access control vulnerability</p>
 				</a>
-				<a href="/kb/ai-patterns/cursor/" class="card card-interactive related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
 					<div class="related-card-title">Cursor Security Patterns</div>
 					<p class="related-card-description">Common vulnerabilities in Cursor-generated code</p>

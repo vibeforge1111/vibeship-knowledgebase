@@ -62,7 +62,7 @@ Verify all items before publishing.
 | Type | Template | URL Pattern |
 |------|----------|-------------|
 | Vulnerability | `vulnerability-brief.md` | `/kb/security/vulnerabilities/{slug}/` |
-| AI Tool | `tool-brief.md` | `/kb/security/ai-patterns/{tool}/` |
+| AI Tool | `tool-brief.md` | `/kb/vibe-coding-tools/{tool}/` |
 | Stack Guide | `stack-brief.md` | `/kb/security/stacks/{stack}/` |
 | Fix Prompt | (in writer-agent) | `/kb/security/fixes/{vuln}/{framework}/` |
 | Glossary | (in writer-agent) | `/kb/glossary/security/{term}/` |
