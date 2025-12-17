@@ -236,10 +236,6 @@ Code to review:
 	<article class="content-main content-wide">
 		<!-- Header -->
 		<header class="article-header">
-			<div class="badge-row">
-				<span class="badge badge-pillar">Pillar Guide</span>
-				<span class="badge badge-comprehensive">4000+ Words</span>
-			</div>
 			<h1>The Complete Secure Vibe Coding Guide: Ship Fast Without Getting Hacked</h1>
 		</header>
 
