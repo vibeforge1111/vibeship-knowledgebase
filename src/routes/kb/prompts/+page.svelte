@@ -39,6 +39,24 @@
 					badge: 'Guide'
 				}
 			]
+		},
+		{
+			title: 'Learning & Comparisons',
+			description: 'Guides to improve your AI coding workflow',
+			articles: [
+				{
+					title: 'How to Use Cursor Rules',
+					description: 'Step-by-step tutorial for beginners',
+					href: '/kb/prompts/how-to-use-cursor-rules/',
+					badge: 'Tutorial'
+				},
+				{
+					title: 'Best AI Coding Tools 2025',
+					description: 'Comparison of top AI coding assistants',
+					href: '/kb/prompts/best-ai-coding-tools-2025/',
+					badge: 'Comparison'
+				}
+			]
 		}
 	];
 </script>
@@ -76,6 +94,25 @@
 			</p>
 		</div>
 
+		<div class="stats-row">
+			<div class="stat-box">
+				<div class="stat-value">5</div>
+				<div class="stat-label">guides & templates</div>
+			</div>
+			<div class="stat-box">
+				<div class="stat-value">3</div>
+				<div class="stat-label">AI tools covered</div>
+			</div>
+			<div class="stat-box">
+				<div class="stat-value">Copy-Paste</div>
+				<div class="stat-label">ready templates</div>
+			</div>
+			<div class="stat-box">
+				<div class="stat-value">Security</div>
+				<div class="stat-label">focused configs</div>
+			</div>
+		</div>
+
 		{#each categories as category}
 			<section class="article-section">
 				<h2>{category.title}</h2>
@@ -83,7 +120,7 @@
 
 				<div class="article-grid">
 					{#each category.articles as article}
-						<a href={article.href} class="card card-interactive article-card" class:coming-soon={article.badge === 'Coming Soon'}>
+						<a href={article.href} class="card card-interactive article-card">
 							<div class="article-card-header">
 								<h3>{article.title}</h3>
 								<span class="badge">{article.badge}</span>
@@ -136,10 +173,5 @@
 		font-size: 0.85rem;
 		color: var(--text-secondary);
 		line-height: 1.5;
-	}
-
-	.article-card.coming-soon {
-		opacity: 0.6;
-		pointer-events: none;
 	}
 </style>
