@@ -70,6 +70,52 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 46 | 📝 Brief Ready | Prompts (P0) | claude-md |
 | | | **--- Additional Vulnerabilities ---** | |
 | 47 | 📝 Brief Ready | Vulnerability (P0) | nosql-injection |
+| | | **--- Prompts Series Expansion (40 articles) ---** | |
+| | | *Batch 1: Tool Configuration Guides* | |
+| 48 | 📝 Brief Ready | Prompts (P0) | cursor-rules-examples |
+| 49 | 📝 Brief Ready | Prompts (P0) | how-to-use-cursor-rules |
+| 50 | 📝 Brief Ready | Prompts (P1) | windsurf-rules |
+| 51 | 📝 Brief Ready | Prompts (P1) | cline-rules |
+| 52 | 📝 Brief Ready | Prompts (P1) | copilot-instructions |
+| 53 | 📝 Brief Ready | Prompts (P1) | cursor-rules-file |
+| 54 | 📝 Brief Ready | Prompts (P1) | awesome-cursor-rules |
+| 55 | 📝 Brief Ready | Prompts (P1) | cursor-system-prompt |
+| 56 | 📝 Brief Ready | Prompts (P2) | v0-prompts |
+| 57 | 📝 Brief Ready | Prompts (P2) | bolt-prompts |
+| 58 | 📝 Brief Ready | Prompts (P1) | replit-prompts |
+| 59 | 📝 Brief Ready | Prompts (P1) | agents-md |
+| | | *Batch 2: Prompt Libraries* | |
+| 60 | 📝 Brief Ready | Prompts (P1) | ai-prompt-library |
+| 61 | 📝 Brief Ready | Prompts (P1) | prompt-templates |
+| 62 | 📝 Brief Ready | Prompts (P0) | ai-coding-prompts |
+| 63 | 📝 Brief Ready | Prompts (P1) | chatgpt-prompt-examples |
+| 64 | 📝 Brief Ready | Prompts (P1) | custom-instructions |
+| 65 | 📝 Brief Ready | Prompts (P1) | system-prompts |
+| 66 | 📝 Brief Ready | Prompts (P1) | prompt-cheat-sheet |
+| 67 | 📝 Brief Ready | Prompts (P1) | claude-system-prompts |
+| | | *Batch 3: Use Case Guides* | |
+| 68 | 📝 Brief Ready | Prompts (P0) | security-prompts |
+| 69 | 📝 Brief Ready | Prompts (P0) | debugging-prompts |
+| 70 | 📝 Brief Ready | Prompts (P1) | refactoring-prompts |
+| 71 | 📝 Brief Ready | Prompts (P1) | code-review-prompts |
+| 72 | 📝 Brief Ready | Prompts (P1) | testing-prompts |
+| 73 | 📝 Brief Ready | Prompts (P1) | documentation-prompts |
+| 74 | 📝 Brief Ready | Prompts (P1) | ai-prompts-founders |
+| 75 | 📝 Brief Ready | Prompts (P0) PILLAR | prompt-engineering-code |
+| | | *Batch 4: Comparisons* | |
+| 76 | 📝 Brief Ready | Prompts (P1) | cursor-vs-windsurf-rules |
+| 77 | 📝 Brief Ready | Prompts (P1) | cursor-vs-claude-code-config |
+| 78 | 📝 Brief Ready | Prompts (P0) | best-ai-coding-tools-2025 |
+| 79 | 📝 Brief Ready | Prompts (P1) | cline-vs-cursor-config |
+| 80 | 📝 Brief Ready | Prompts (P1) | copilot-vs-cursor-config |
+| 81 | 📝 Brief Ready | Prompts (P1) | ai-tool-config-matrix |
+| | | *Batch 5: Framework/Language Specific* | |
+| 82 | 📝 Brief Ready | Prompts (P0) | cursor-rules-nextjs |
+| 83 | 📝 Brief Ready | Prompts (P1) | cursor-rules-react |
+| 84 | 📝 Brief Ready | Prompts (P1) | cursor-rules-typescript |
+| 85 | 📝 Brief Ready | Prompts (P1) | ai-python-coding |
+| 86 | 📝 Brief Ready | Prompts (P0) | supabase-cursor-rules |
+| 87 | 📝 Brief Ready | Prompts (P0) PILLAR | cursor-rules-fullstack |
 
 **Legend:** ✅ Done | 📝 Brief Ready | 🔄 Next | ⏳ Pending | ⏸️ Blocked
 
@@ -1111,4 +1157,767 @@ notes: |
   - MongoDB, Firestore, DynamoDB coverage
   - Often overlooked "NoSQL is safe" myth
   - Brief location: docs/.content-ops/briefs/nosql-injection-brief.md
+```
+
+---
+
+## Prompts Series - Full 40-Article Expansion
+
+**Skill Reference:** `docs/.content-ops/skills/master-prompting-skill.md`
+**Brief Files:** `docs/.content-ops/briefs/prompts-series-batch*.md`
+
+### Batch 1: Tool Configuration Guides (Articles 48-59)
+
+### 48. Prompts: Cursor Rules Examples
+```yaml
+type: prompts
+slug: cursor-rules-examples
+url: /kb/prompts/cursor-rules-examples/
+title: "Cursor Rules Examples: 20+ Templates for Every Stack"
+word_count: 2500-3000
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "cursor rules examples" (300 volume)
+  - "best cursor rules" (100 volume)
+  - "cursorrules examples"
+notes: |
+  - High intent: people want copy-paste examples
+  - Include: Next.js, React, TypeScript, Python, Security
+  - Reference awesome-cursorrules GitHub (36k stars)
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 49. Prompts: How to Use Cursor Rules
+```yaml
+type: prompts
+slug: how-to-use-cursor-rules
+url: /kb/prompts/how-to-use-cursor-rules/
+title: "How to Use Cursor Rules: Complete Beginner Tutorial"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "how to use cursor rules" (100 volume)
+  - "how to add cursor rules" (80 volume)
+notes: |
+  - Beginner-friendly tutorial format
+  - Screenshots/visual steps
+  - Troubleshooting section
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 50. Prompts: Windsurf Rules
+```yaml
+type: prompts
+slug: windsurf-rules
+url: /kb/prompts/windsurf-rules/
+title: "Windsurf Rules: Configure Cascade for Better Code"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "windsurf rules" (500 volume)
+  - "windsurf prompts" (30 volume)
+notes: |
+  - Emerging tool, low competition
+  - Cover: .windsurf/rules/, global_rules.md
+  - 12k character limit per file
+  - Activation modes (Manual, Always On, Model Decision, Glob)
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 51. Prompts: Cline Rules
+```yaml
+type: prompts
+slug: cline-rules
+url: /kb/prompts/cline-rules/
+title: "Cline Rules: The Complete .clinerules Guide"
+word_count: 1800-2200
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "cline rules" (200 volume)
+  - "clinerules" (50 volume)
+notes: |
+  - Free, open-source tool - growing fast
+  - Rules bank pattern (active vs available)
+  - AGENTS.md fallback support
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 52. Prompts: Copilot Instructions
+```yaml
+type: prompts
+slug: copilot-instructions
+url: /kb/prompts/copilot-instructions/
+title: "GitHub Copilot Instructions: Customize Your AI Pair Programmer"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "copilot instructions" (500 volume)
+  - "copilot prompts" (450 volume)
+  - "github copilot prompts" (150 volume)
+notes: |
+  - Official GitHub tool - huge user base
+  - Cover: .github/copilot-instructions.md
+  - Path-specific instructions with frontmatter
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 53. Prompts: Cursor Rules File
+```yaml
+type: prompts
+slug: cursor-rules-file
+url: /kb/prompts/cursor-rules-file/
+title: "Cursor Rules File: Complete .cursorrules Syntax Reference"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "cursor rules file" (400 volume)
+  - ".cursorrules file"
+notes: |
+  - Technical reference guide
+  - Frontmatter options (description, alwaysApply, globs)
+  - Rule precedence (Team > Project > User)
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 54. Prompts: Awesome Cursor Rules
+```yaml
+type: prompts
+slug: awesome-cursor-rules
+url: /kb/prompts/awesome-cursor-rules/
+title: "Awesome Cursor Rules: 150+ Community Templates"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "awesome cursor rules" (300 volume)
+  - "cursor rules github"
+notes: |
+  - Reference PatrickJS/awesome-cursorrules (36.2k stars)
+  - Categories: Frontend, Backend, Mobile, Testing, Security
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 55. Prompts: Cursor System Prompt
+```yaml
+type: prompts
+slug: cursor-system-prompt
+url: /kb/prompts/cursor-system-prompt/
+title: "Cursor System Prompt: Understanding AI Context"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "cursor system prompt" (200 volume)
+  - "cursor ai rules"
+notes: |
+  - Technical explainer
+  - How Cursor injects rules into context
+  - Context window management
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 56. Prompts: V0 Prompts
+```yaml
+type: prompts
+slug: v0-prompts
+url: /kb/prompts/v0-prompts/
+title: "V0 Prompts: Get Better Results from Vercel's AI"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P2
+keywords:
+  - "v0 prompts" (50 volume)
+  - "vercel v0 prompts"
+notes: |
+  - Emerging tool - Vercel ecosystem
+  - Best practices for UI generation prompts
+  - Export to Next.js workflow
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 57. Prompts: Bolt Prompts
+```yaml
+type: prompts
+slug: bolt-prompts
+url: /kb/prompts/bolt-prompts/
+title: "Bolt.new Prompts: Optimize Your AI App Building"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P2
+keywords:
+  - "bolt prompts" (10 volume)
+  - "bolt.new prompts"
+notes: |
+  - Emerging - WebContainers technology
+  - Security defaults to check
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 58. Prompts: Replit Prompts
+```yaml
+type: prompts
+slug: replit-prompts
+url: /kb/prompts/replit-prompts/
+title: "Replit Agent Prompts: Build Apps with AI"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "replit agent" (2,400 volume)
+  - "replit prompts"
+notes: |
+  - Good volume on "replit agent"
+  - Cloud vs local implications
+  - Security considerations
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+### 59. Prompts: AGENTS.md
+```yaml
+type: prompts
+slug: agents-md
+url: /kb/prompts/agents-md/
+title: "AGENTS.md: One Config File for All AI Tools"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "agents.md" (emerging)
+  - "agents md file"
+notes: |
+  - Emerging standard - cross-tool compatibility
+  - Supported by: Cursor, Cline, Claude Code
+  - When to use vs tool-specific configs
+  - Brief: prompts-series-batch1-tool-configs.md
+```
+
+---
+
+### Batch 2: Prompt Libraries (Articles 60-67)
+
+### 60. Prompts: AI Prompt Library
+```yaml
+type: prompts
+slug: ai-prompt-library
+url: /kb/prompts/ai-prompt-library/
+title: "AI Prompt Library: 100+ Prompts for Developers"
+word_count: 2500-3000
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "ai prompt library" (200 volume)
+  - "prompt library"
+notes: |
+  - Comprehensive collection format
+  - Categories: debugging, refactoring, security, testing
+  - Brief: prompts-series-batch2-libraries.md
+```
+
+### 61. Prompts: Prompt Templates
+```yaml
+type: prompts
+slug: prompt-templates
+url: /kb/prompts/prompt-templates/
+title: "AI Prompt Templates: Copy-Paste Formats That Work"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "prompt templates" (300 volume)
+  - "ai prompt templates"
+notes: |
+  - SCRIBE format, RISEN format
+  - Chain-of-thought templates
+  - Brief: prompts-series-batch2-libraries.md
+```
+
+### 62. Prompts: AI Coding Prompts
+```yaml
+type: prompts
+slug: ai-coding-prompts
+url: /kb/prompts/ai-coding-prompts/
+title: "AI Coding Prompts: 50+ Prompts That Ship Faster"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "ai coding prompts" (100 volume)
+  - "ai prompts for coding"
+notes: |
+  - High intent: people want actionable prompts
+  - Security-conscious prompts
+  - Brief: prompts-series-batch2-libraries.md
+```
+
+### 63. Prompts: ChatGPT Prompt Examples
+```yaml
+type: prompts
+slug: chatgpt-prompt-examples
+url: /kb/prompts/chatgpt-prompt-examples/
+title: "ChatGPT Prompt Examples: 40+ for Developers"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "chatgpt prompt examples" (500 volume)
+  - "chatgpt prompts for coding"
+notes: |
+  - ChatGPT still most searched
+  - Developer-specific examples
+  - Brief: prompts-series-batch2-libraries.md
+```
+
+### 64. Prompts: Custom Instructions
+```yaml
+type: prompts
+slug: custom-instructions
+url: /kb/prompts/custom-instructions/
+title: "Custom Instructions: Set Up Your AI Coding Assistant"
+word_count: 1800-2200
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "custom instructions" (400 volume)
+  - "ai custom instructions"
+notes: |
+  - Cross-tool coverage
+  - ChatGPT, Claude, Copilot custom instructions
+  - Brief: prompts-series-batch2-libraries.md
+```
+
+### 65. Prompts: System Prompts
+```yaml
+type: prompts
+slug: system-prompts
+url: /kb/prompts/system-prompts/
+title: "System Prompts: Control How AI Writes Your Code"
+word_count: 1800-2200
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "system prompts" (200 volume)
+  - "system prompt examples"
+notes: |
+  - Technical explainer
+  - Best practices from OpenAI/Anthropic
+  - Brief: prompts-series-batch2-libraries.md
+```
+
+### 66. Prompts: Prompt Cheat Sheet
+```yaml
+type: prompts
+slug: prompt-cheat-sheet
+url: /kb/prompts/prompt-cheat-sheet/
+title: "AI Prompt Cheat Sheet: Quick Reference for Developers"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "prompt cheat sheet" (100 volume)
+  - "ai prompt cheat sheet"
+notes: |
+  - Quick reference format
+  - Techniques: CoT, few-shot, etc.
+  - Brief: prompts-series-batch2-libraries.md
+```
+
+### 67. Prompts: Claude System Prompts
+```yaml
+type: prompts
+slug: claude-system-prompts
+url: /kb/prompts/claude-system-prompts/
+title: "Claude System Prompts: Official Best Practices"
+word_count: 1800-2200
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "claude system prompt" (150 volume)
+  - "claude prompts"
+notes: |
+  - Official Anthropic recommendations
+  - XML tag usage (<thinking>, etc.)
+  - Brief: prompts-series-batch2-libraries.md
+```
+
+---
+
+### Batch 3: Use Case Guides (Articles 68-75)
+
+### 68. Prompts: Security Prompts
+```yaml
+type: prompts
+slug: security-prompts
+url: /kb/prompts/security-prompts/
+title: "Security Prompts: AI Code Review That Catches Vulnerabilities"
+word_count: 2500-3000
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "security prompts" (emerging)
+  - "ai security review"
+notes: |
+  - OUR CORE ANGLE - security focus
+  - OWASP Top 10 prompts
+  - Brief: prompts-series-batch3-use-cases.md
+```
+
+### 69. Prompts: Debugging Prompts
+```yaml
+type: prompts
+slug: debugging-prompts
+url: /kb/prompts/debugging-prompts/
+title: "Debugging Prompts: Fix Any Bug with AI Assistance"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "debugging prompts" (50 volume)
+  - "ai debugging"
+notes: |
+  - High utility for vibe coders
+  - Error message analysis prompts
+  - Brief: prompts-series-batch3-use-cases.md
+```
+
+### 70. Prompts: Refactoring Prompts
+```yaml
+type: prompts
+slug: refactoring-prompts
+url: /kb/prompts/refactoring-prompts/
+title: "Refactoring Prompts: Clean Up AI-Generated Code"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "refactoring prompts" (50 volume)
+  - "ai refactoring"
+notes: |
+  - Clean up vibe coded projects
+  - Before/after code examples
+  - Brief: prompts-series-batch3-use-cases.md
+```
+
+### 71. Prompts: Code Review Prompts
+```yaml
+type: prompts
+slug: code-review-prompts
+url: /kb/prompts/code-review-prompts/
+title: "Code Review Prompts: AI-Assisted Pull Request Reviews"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "code review prompts" (100 volume)
+  - "ai code review"
+notes: |
+  - Team workflow focus
+  - Security review section
+  - Brief: prompts-series-batch3-use-cases.md
+```
+
+### 72. Prompts: Testing Prompts
+```yaml
+type: prompts
+slug: testing-prompts
+url: /kb/prompts/testing-prompts/
+title: "Testing Prompts: AI-Generated Unit & Integration Tests"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "testing prompts" (50 volume)
+  - "ai testing"
+notes: |
+  - Critical for vibe coded projects
+  - Jest/Vitest focus (JS ecosystem)
+  - Brief: prompts-series-batch3-use-cases.md
+```
+
+### 73. Prompts: Documentation Prompts
+```yaml
+type: prompts
+slug: documentation-prompts
+url: /kb/prompts/documentation-prompts/
+title: "Documentation Prompts: AI-Generated Docs & Comments"
+word_count: 1800-2200
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "documentation prompts" (50 volume)
+  - "ai documentation"
+notes: |
+  - README generation
+  - JSDoc/TSDoc generation
+  - Brief: prompts-series-batch3-use-cases.md
+```
+
+### 74. Prompts: AI Prompts for Founders
+```yaml
+type: prompts
+slug: ai-prompts-founders
+url: /kb/prompts/ai-prompts-founders/
+title: "AI Prompts for Founders: Build Without Coding Experience"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "ai prompts for non-coders" (emerging)
+  - "prompts for founders"
+notes: |
+  - Vibe coder core audience
+  - Non-technical language
+  - Brief: prompts-series-batch3-use-cases.md
+```
+
+### 75. Prompts: Prompt Engineering for Code (PILLAR)
+```yaml
+type: prompts
+slug: prompt-engineering-code
+url: /kb/prompts/prompt-engineering-code/
+title: "Prompt Engineering for Code: Developer's Complete Guide"
+word_count: 3000-3500
+status: 📝 Brief Ready
+priority: P0
+pillar: true
+keywords:
+  - "prompt engineering for code" (100 volume)
+  - "prompt engineering coding"
+notes: |
+  - PILLAR CONTENT - comprehensive guide
+  - Context engineering approach
+  - Links to all other prompt articles
+  - Brief: prompts-series-batch3-use-cases.md
+```
+
+---
+
+### Batch 4: Comparisons (Articles 76-81)
+
+### 76. Prompts: Cursor vs Windsurf Rules
+```yaml
+type: prompts
+slug: cursor-vs-windsurf-rules
+url: /kb/prompts/cursor-vs-windsurf-rules/
+title: "Cursor vs Windsurf Rules: Which Config System Wins?"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "cursor vs windsurf" (200 volume)
+  - "windsurf vs cursor"
+notes: |
+  - Rules syntax differences
+  - Migration guide between tools
+  - Brief: prompts-series-batch4-comparisons.md
+```
+
+### 77. Prompts: Cursor vs Claude Code Config
+```yaml
+type: prompts
+slug: cursor-vs-claude-code-config
+url: /kb/prompts/cursor-vs-claude-code-config/
+title: "Cursor vs Claude Code: .cursorrules vs CLAUDE.md"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "cursor vs claude code" (50 volume)
+  - "cursorrules vs claude md"
+notes: |
+  - Config file comparison
+  - IDE vs terminal workflow
+  - Brief: prompts-series-batch4-comparisons.md
+```
+
+### 78. Prompts: Best AI Coding Tools 2025 (Prompts Focus)
+```yaml
+type: prompts
+slug: best-ai-coding-tools-2025
+url: /kb/prompts/best-ai-coding-tools-2025/
+title: "Best AI Coding Tools 2025: Rules & Configuration Compared"
+word_count: 3000-3500
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "best ai coding tools 2025" (500 volume)
+  - "ai coding tools"
+notes: |
+  - Annual roundup format
+  - All tools configuration comparison
+  - Brief: prompts-series-batch4-comparisons.md
+```
+
+### 79. Prompts: Cline vs Cursor Config
+```yaml
+type: prompts
+slug: cline-vs-cursor-config
+url: /kb/prompts/cline-vs-cursor-config/
+title: "Cline vs Cursor: Free vs Premium AI Coding"
+word_count: 1800-2200
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "cline vs cursor" (100 volume)
+  - "cursor alternative"
+notes: |
+  - Open source angle
+  - Price comparison (free vs paid)
+  - Brief: prompts-series-batch4-comparisons.md
+```
+
+### 80. Prompts: Copilot vs Cursor Config
+```yaml
+type: prompts
+slug: copilot-vs-cursor-config
+url: /kb/prompts/copilot-vs-cursor-config/
+title: "GitHub Copilot vs Cursor: Which for Your Team?"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "copilot vs cursor" (300 volume)
+  - "github copilot vs cursor"
+notes: |
+  - Enterprise decision guide
+  - Instructions vs rules comparison
+  - Brief: prompts-series-batch4-comparisons.md
+```
+
+### 81. Prompts: AI Tool Config Matrix
+```yaml
+type: prompts
+slug: ai-tool-config-matrix
+url: /kb/prompts/ai-tool-config-matrix/
+title: "AI Tool Config Matrix: Every Config File Compared"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "ai coding tool comparison"
+  - "cursor rules comparison"
+notes: |
+  - Reference/matrix format
+  - All config files in one place
+  - Brief: prompts-series-batch4-comparisons.md
+```
+
+---
+
+### Batch 5: Framework/Language Specific (Articles 82-87)
+
+### 82. Prompts: Cursor Rules for Next.js
+```yaml
+type: prompts
+slug: cursor-rules-nextjs
+url: /kb/prompts/cursor-rules-nextjs/
+title: "Cursor Rules for Next.js: App Router & Security Template"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "cursor rules nextjs" (100 volume)
+  - "next js cursor rules"
+notes: |
+  - Most popular framework
+  - App Router focus (Next.js 13+)
+  - Server Components rules
+  - Brief: prompts-series-batch5-frameworks.md
+```
+
+### 83. Prompts: Cursor Rules for React
+```yaml
+type: prompts
+slug: cursor-rules-react
+url: /kb/prompts/cursor-rules-react/
+title: "Cursor Rules for React: Components, Hooks & Best Practices"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "cursor rules react" (80 volume)
+  - "react cursor rules"
+notes: |
+  - React 18+ patterns
+  - Hooks best practices
+  - Brief: prompts-series-batch5-frameworks.md
+```
+
+### 84. Prompts: Cursor Rules for TypeScript
+```yaml
+type: prompts
+slug: cursor-rules-typescript
+url: /kb/prompts/cursor-rules-typescript/
+title: "Cursor Rules for TypeScript: Strict Mode & Best Practices"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "cursor rules typescript" (80 volume)
+  - "typescript cursor rules"
+notes: |
+  - TypeScript strict mode
+  - Zod schema patterns
+  - Brief: prompts-series-batch5-frameworks.md
+```
+
+### 85. Prompts: AI Python Coding
+```yaml
+type: prompts
+slug: ai-python-coding
+url: /kb/prompts/ai-python-coding/
+title: "AI Python Coding: Prompts, Rules & Best Practices"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "ai python coding" (100 volume)
+  - "python ai prompts"
+notes: |
+  - Python-specific coverage
+  - FastAPI/Django patterns
+  - Brief: prompts-series-batch5-frameworks.md
+```
+
+### 86. Prompts: Supabase Cursor Rules
+```yaml
+type: prompts
+slug: supabase-cursor-rules
+url: /kb/prompts/supabase-cursor-rules/
+title: "Supabase Cursor Rules: RLS, Auth & Security Patterns"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "supabase cursor rules" (emerging)
+  - "cursor supabase"
+notes: |
+  - Popular vibe coding stack
+  - RLS rules enforcement
+  - Brief: prompts-series-batch5-frameworks.md
+```
+
+### 87. Prompts: Full-Stack Cursor Rules (PILLAR)
+```yaml
+type: prompts
+slug: cursor-rules-fullstack
+url: /kb/prompts/cursor-rules-fullstack/
+title: "Full-Stack Cursor Rules: Complete Project Template"
+word_count: 3000-3500
+status: 📝 Brief Ready
+priority: P0
+pillar: true
+keywords:
+  - "cursor rules full stack" (50 volume)
+  - "full stack cursorrules"
+notes: |
+  - PILLAR CONTENT - comprehensive template
+  - Next.js + Supabase + TypeScript
+  - Everything in one file
+  - Brief: prompts-series-batch5-frameworks.md
 ```

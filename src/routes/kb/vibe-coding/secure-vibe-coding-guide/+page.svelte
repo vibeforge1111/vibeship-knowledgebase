@@ -9,13 +9,6 @@
 		{ label: 'Secure Vibe Coding Guide' }
 	];
 
-	// FAQ accordion state
-	let openFaq = $state<number | null>(null);
-
-	function toggleFaq(index: number) {
-		openFaq = openFaq === index ? null : index;
-	}
-
 	// Copy button functionality
 	let copiedRules = $state(false);
 	let copiedReview = $state(false);
@@ -414,8 +407,8 @@ AVOID: CWE-89 (SQL injection), CWE-307 (brute force), CWE-209 (info disclosure)<
 			</div>
 
 			<h3>Installing Security Rules</h3>
-			<div class="install-grid">
-				<div class="install-card">
+			<div class="install-list">
+				<div class="install-item">
 					<h4>Cursor</h4>
 					<div class="code-block">
 						<pre><code># Create .cursor/rules/security.mdc in project root
@@ -423,21 +416,21 @@ mkdir -p .cursor/rules
 # Paste the rules above into security.mdc</code></pre>
 					</div>
 				</div>
-				<div class="install-card">
+				<div class="install-item">
 					<h4>Claude Code</h4>
 					<div class="code-block">
 						<pre><code># Add to CLAUDE.md in project root
 # Create the file and paste security rules section</code></pre>
 					</div>
 				</div>
-				<div class="install-card">
+				<div class="install-item">
 					<h4>GitHub Copilot</h4>
 					<div class="code-block">
 						<pre><code># Create .github/copilot-instructions.md
 # Paste security rules</code></pre>
 					</div>
 				</div>
-				<div class="install-card">
+				<div class="install-item">
 					<h4>Windsurf</h4>
 					<div class="code-block">
 						<pre><code># Create .windsurfrules in project root</code></pre>
@@ -725,36 +718,26 @@ module.exports = {
 		<section id="faq" class="article-section">
 			<h2>Frequently Asked Questions</h2>
 			<div class="faq-list">
-				{#each faqs as faq, index}
-					<div class="faq-item" class:open={openFaq === index}>
-						<button class="faq-question" onclick={() => toggleFaq(index)} aria-expanded={openFaq === index}>
-							<span>{faq.question}</span>
-							<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<polyline points="6,9 12,15 18,9"></polyline>
-							</svg>
-						</button>
-						{#if openFaq === index}
-							<div class="faq-answer">{@html faq.answer}</div>
-						{/if}
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{@html faq.answer}</p>
 					</div>
 				{/each}
 			</div>
 		</section>
 
 		<!-- Final CTA -->
-		<section class="article-section">
-			<div class="cta-box cta-box-success">
-				<h3>Start Vibe Coding Securely Today</h3>
-				<p>You now have everything you need: secure prompts, rules files, review checklists, and vulnerability guides. The next step is implementation.</p>
-				<ol>
-					<li>Copy the security rules to your .cursorrules or equivalent</li>
-					<li>Bookmark this guide for the 5-minute review checklist</li>
-					<li>Run Gitleaks and Semgrep on your existing code</li>
-					<li><a href="https://scanner.vibeship.co">Try vibeship scanner</a> for automated vulnerability detection</li>
-				</ol>
-				<p><strong>Ship fast. Ship secure. That's vibe coding done right.</strong></p>
-			</div>
-		</section>
+		<div class="final-cta">
+			<h2>Start Vibe Coding Securely Today</h2>
+			<p>You now have everything you need: secure prompts, rules files, review checklists, and vulnerability guides.</p>
+			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
+				Try vibeship scanner
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M5 12h14M12 5l7 7-7 7"/>
+				</svg>
+			</a>
+		</div>
 
 		<!-- External References -->
 		<section class="article-section">
@@ -778,6 +761,14 @@ module.exports = {
 
 <style>
 	/* Page-specific styles - minimal, using CSS variables */
+
+	/* Badge row */
+	.badge-row {
+		display: flex;
+		gap: 0.5rem;
+		margin-bottom: 1rem;
+		flex-wrap: wrap;
+	}
 
 	/* Badge variants */
 	.badge-pillar {
@@ -873,32 +864,33 @@ module.exports = {
 		margin: 0;
 	}
 
-	/* Install grid */
-	.install-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		gap: 1rem;
+	/* Install list - vertical layout */
+	.install-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
 		margin: 1.5rem 0;
 	}
 
-	.install-card {
+	.install-item {
 		background: var(--bg-secondary);
 		border: 1px solid var(--border);
-		padding: 1rem;
+		padding: 1.25rem;
 	}
 
-	.install-card h4 {
+	.install-item h4 {
 		margin: 0 0 0.75rem 0;
 		color: var(--green-dim);
+		font-size: 1rem;
 	}
 
-	.install-card .code-block {
+	.install-item .code-block {
 		margin: 0;
 	}
 
-	.install-card .code-block pre {
+	.install-item .code-block pre {
 		margin: 0;
-		font-size: 0.75rem;
+		font-size: 0.8rem;
 	}
 
 	/* Warning box */
@@ -960,15 +952,57 @@ module.exports = {
 		font-weight: 600;
 	}
 
-	/* CTA box success variant */
-	.cta-box-success {
-		background: var(--bg-secondary);
-		border-left: 3px solid var(--green);
+	/* FAQ - simple list style (matches sql-injection) */
+	.faq-list {
+		margin-top: 1rem;
 	}
 
-	.cta-box-success h3 {
-		color: var(--green);
+	.faq-item {
+		padding: 1.5rem 0;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.faq-item:last-child {
+		border-bottom: none;
+	}
+
+	.faq-item h3 {
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+		font-size: 1.0625rem;
+		font-weight: 600;
+		margin: 0 0 0.5rem;
+		color: var(--text-primary);
+		line-height: 1.5;
+		letter-spacing: -0.01em;
+	}
+
+	.faq-item p {
+		margin: 0;
+		font-size: 0.9375rem;
+		line-height: 1.7;
+		color: var(--text-secondary);
+	}
+
+	/* Final CTA */
+	.final-cta {
+		text-align: center;
+		padding: 3rem 2rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		margin-top: 3rem;
+	}
+
+	.final-cta h2 {
+		margin-bottom: 0.75rem;
 		margin-top: 0;
+	}
+
+	.final-cta p {
+		color: var(--text-secondary);
+		margin-bottom: 1.5rem;
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	/* Reference list */
@@ -1006,8 +1040,12 @@ module.exports = {
 			grid-template-columns: 1fr;
 		}
 
-		.install-grid {
-			grid-template-columns: 1fr;
+		.faq-item h3 {
+			font-size: 1rem;
+		}
+
+		.final-cta {
+			padding: 2rem 1.5rem;
 		}
 	}
 </style>
