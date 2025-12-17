@@ -19,7 +19,7 @@
 	const faqs = [
 		{
 			question: 'Is Claude Code better than Cursor?',
-			answer: 'It depends on your workflow. Claude Code is better for complex multi-file refactoring, autonomous task execution, and security-conscious development. Cursor is better for fast autocomplete, quick edits, and developers who prefer IDE integration. Claude Code has no known CVEs while Cursor has one (CVE-2025-62352).'
+			answer: 'It depends on your workflow. Claude Code is better for complex multi-file refactoring and autonomous task execution. Cursor is better for fast autocomplete, quick edits, and developers who prefer IDE integration. Both have documented CVEs - Claude Code has 3 (CVSS up to 8.8), Cursor has 1 (CVE-2025-62352). Security practices matter more than tool choice.'
 		},
 		{
 			question: 'Is Cursor safe to use?',
@@ -35,7 +35,7 @@
 		},
 		{
 			question: 'Which AI coding tool has fewer security issues?',
-			answer: 'Claude Code currently has no known CVEs, while Cursor has CVE-2025-62352 and Copilot has two (CVE-2025-62449, CVE-2025-62453). However, all tools can generate vulnerable code. Security practices like code review, rules files, and scanning matter more than tool choice.'
+			answer: 'All major AI coding tools have documented CVEs: Claude Code has 3 (up to CVSS 8.8), Cursor has 1, and Copilot has 2. The CVE count alone doesn\'t determine safety. All tools can generate vulnerable code. Security practices like code review, rules files, and scanning matter more than tool choice.'
 		}
 	];
 </script>
@@ -123,8 +123,8 @@
 			<p class="quick-answer-text">
 				<strong>Claude Code</strong> is an agentic CLI tool best for complex, multi-file projects and autonomous task execution.
 				<strong>Cursor</strong> is a VS Code-based IDE with autocomplete for faster coding.
-				Claude Code has no known CVEs; Cursor has <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62352" target="_blank" rel="noopener">CVE-2025-62352</a>.
-				Both can generate vulnerable code - security practices matter more than tool choice.
+				Both have documented CVEs - Claude Code has 3, Cursor has 1 (<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62352" target="_blank" rel="noopener">CVE-2025-62352</a>).
+				Security practices matter more than tool choice.
 			</p>
 		</div>
 
@@ -172,8 +172,8 @@
 						</tr>
 						<tr>
 							<td>Known CVEs</td>
-							<td class="secure">None</td>
-							<td class="vulnerable">CVE-2025-62352</td>
+							<td class="vulnerable">3 (CVSS up to 8.8)</td>
+							<td class="vulnerable">1 (CVE-2025-62352)</td>
 						</tr>
 						<tr>
 							<td>Best For</td>
@@ -313,13 +313,20 @@
 			<div class="security-comparison">
 				<div class="security-card claude">
 					<h3>Claude Code Security</h3>
-					<div class="cve-status secure">No known CVEs</div>
+					<div class="cve-status vulnerable">
+						3 CVEs (CVSS up to 8.8)
+					</div>
+					<h4>Known CVEs</h4>
+					<ul>
+						<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54795" target="_blank" rel="noopener">CVE-2025-54795</a> - Command injection (CVSS 8.7)</li>
+						<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54794" target="_blank" rel="noopener">CVE-2025-54794</a> - Path traversal (CVSS 7.7)</li>
+						<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-52882" target="_blank" rel="noopener">CVE-2025-52882</a> - MCP auth bypass (CVSS 8.8)</li>
+					</ul>
 					<h4>Strengths</h4>
 					<ul>
 						<li>Built by Anthropic (AI safety focused)</li>
 						<li>No autocomplete reduces accidental secret exposure</li>
 						<li>Plan Mode allows security review before execution</li>
-						<li>Agentic model considers security holistically</li>
 					</ul>
 					<h4>Common Vulnerability Patterns</h4>
 					<ul>
@@ -351,7 +358,7 @@
 			</div>
 
 			<p>
-				<strong>Bottom line:</strong> Claude Code has a cleaner security record with no known CVEs. Cursor's autocomplete can inadvertently expose secrets and generates more "quick and dirty" code patterns. However, your security practices - using <a href="/kb/vibe-coding/secure-vibe-coding-guide/">rules files</a>, reviewing code, running scanners - matter more than which tool you choose.
+				<strong>Bottom line:</strong> Both tools have documented CVEs from the <a href="https://www.theregister.com/2025/05/22/ideaster_ai_coding_bugs/" target="_blank" rel="noopener">IDEsaster research</a>. Claude Code has 3 CVEs (patched), Cursor has 1 CVE. All AI coding tools generate vulnerable code patterns. Your security practices - using <a href="/kb/vibe-coding/secure-vibe-coding-guide/">rules files</a>, reviewing code, running scanners - matter more than which tool you choose.
 			</p>
 		</section>
 
@@ -364,7 +371,7 @@
 			<ul>
 				<li><strong>Complex refactoring:</strong> Multi-file changes across your codebase</li>
 				<li><strong>Autonomous execution:</strong> "Implement feature X" without step-by-step guidance</li>
-				<li><strong>Security-conscious development:</strong> No CVEs, more thoughtful code generation</li>
+				<li><strong>Plan Mode workflows:</strong> Review and approve approach before execution</li>
 				<li><strong>CLI workflows:</strong> You live in the terminal</li>
 				<li><strong>Planning before coding:</strong> Plan Mode for reviewing approach first</li>
 			</ul>

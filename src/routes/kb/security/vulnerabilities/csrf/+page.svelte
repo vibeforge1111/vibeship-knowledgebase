@@ -16,9 +16,9 @@
     slug: "csrf",
     cwe: "CWE-352",
     cweUrl: "https://cwe.mitre.org/data/definitions/352.html",
-    owasp: "A01:2021",
-    owaspName: "Broken Access Control",
-    owaspUrl: "https://owasp.org/Top10/A01_2021-Broken_Access_Control/",
+    owasp: "CSRF Prevention",
+    owaspName: "CSRF Prevention Cheat Sheet",
+    owaspUrl: "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
     severity: "High",
     publishedAt: "2025-12-17",
     updatedAt: "2025-12-17"

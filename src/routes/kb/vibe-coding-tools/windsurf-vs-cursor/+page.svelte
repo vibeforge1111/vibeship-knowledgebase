@@ -19,7 +19,7 @@
 	const faqs = [
 		{
 			question: 'Is Windsurf better than Cursor?',
-			answer: 'It depends on your needs. Windsurf offers more autonomous coding via Cascade at $15/month. Cursor provides proven stability with a larger community at $20/month. Windsurf has a more severe CVE (CVSS 8.1) while Cursor\'s CVE is less severe. Choose Windsurf for autonomy, Cursor for reliability.'
+			answer: 'It depends on your needs. Windsurf offers more autonomous coding via Cascade at $15/month. Cursor provides proven stability with a larger community at $20/month. Windsurf has a critical CVE (CVSS 9.8) while Cursor\'s CVE is less severe. Choose Windsurf for autonomy, Cursor for reliability.'
 		},
 		{
 			question: 'Is Windsurf free?',
@@ -27,7 +27,7 @@
 		},
 		{
 			question: 'Is Windsurf safe to use?',
-			answer: 'Windsurf has known security issues: CVE-2025-62353 (path traversal, CVSS 8.1) and documented prompt injection attacks that can exfiltrate .env files. Keep it updated, avoid opening untrusted projects, and never put secrets in files the AI can access.'
+			answer: 'Windsurf has known security issues: CVE-2025-62353 (path traversal, CVSS 9.8 Critical) and documented prompt injection attacks that can exfiltrate .env files. Keep it updated, avoid opening untrusted projects, and never put secrets in files the AI can access.'
 		},
 		{
 			question: 'What is Windsurf Cascade?',
@@ -123,7 +123,7 @@
 			<p class="quick-answer-text">
 				<strong>Windsurf</strong> offers more autonomous coding with Cascade at $15/mo.
 				<strong>Cursor</strong> provides proven reliability at $20/mo.
-				Both have path traversal CVEs in 2025: Windsurf's <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62353" target="_blank" rel="noopener">CVE-2025-62353</a> (CVSS 8.1) is more severe than Cursor's <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62352" target="_blank" rel="noopener">CVE-2025-62352</a>.
+				Both have path traversal CVEs in 2025: Windsurf's <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62353" target="_blank" rel="noopener">CVE-2025-62353</a> (CVSS 9.8 Critical) is more severe than Cursor's <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62352" target="_blank" rel="noopener">CVE-2025-62352</a>.
 				Windsurf's autonomy is powerful but increases attack surface.
 			</p>
 		</div>
@@ -172,7 +172,7 @@
 						</tr>
 						<tr>
 							<td>Known CVEs</td>
-							<td class="vulnerable-high">CVE-2025-62353 (CVSS 8.1)</td>
+							<td class="vulnerable-high">CVE-2025-62353 (CVSS 9.8)</td>
 							<td class="vulnerable">CVE-2025-62352</td>
 						</tr>
 						<tr>
@@ -350,7 +350,7 @@
 				<div class="security-card windsurf">
 					<h3>Windsurf Security</h3>
 					<div class="cve-status vulnerable-high">
-						<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62353" target="_blank" rel="noopener">CVE-2025-62353</a> (CVSS 8.1 High)
+						<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62353" target="_blank" rel="noopener">CVE-2025-62353</a> (CVSS 9.8 Critical)
 					</div>
 					<h4>The Vulnerability</h4>
 					<p>Path traversal in <code>codebase_search</code> and <code>write_to_file</code> tools allows reading/writing files outside project directory.</p>
@@ -392,7 +392,7 @@
 					<tbody>
 						<tr>
 							<td>CVE Severity</td>
-							<td class="vulnerable-high">Higher (CVSS 8.1)</td>
+							<td class="vulnerable-high">Critical (CVSS 9.8)</td>
 							<td class="vulnerable">Lower</td>
 						</tr>
 						<tr>

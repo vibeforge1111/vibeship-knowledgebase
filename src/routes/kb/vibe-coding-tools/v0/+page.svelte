@@ -75,7 +75,7 @@ export const supabase = createBrowserClient(
 		{
 			name: 'Missing Server-Side Validation',
 			severity: 'High',
-			prevalence: 'Expected 76% of projects',
+			prevalence: 'Very Common',
 			description: 'v0 generates client-side form validation only, with no server-side checks. Attackers can bypass client validation trivially.',
 			whyHappens: 'v0 focuses on UI/UX where validation is visible. Client-side validation provides instant user feedback, which looks better in demos.',
 			vulnerableCode: `// VULNERABLE: v0 generates client-only validation
@@ -133,7 +133,7 @@ export async function POST(request: Request) {
 		{
 			name: 'Unprotected Server Actions',
 			severity: 'Critical',
-			prevalence: 'Expected 63% of projects',
+			prevalence: 'Very Common',
 			description: 'v0 uses Next.js Server Actions without authentication or authorization checks. Any client can call these functions directly.',
 			whyHappens: 'Server Actions are convenient for form handling. Auth checks add boilerplate that slows down the "prompt to preview" experience.',
 			vulnerableCode: `// VULNERABLE: v0 generates Server Actions without auth
@@ -195,7 +195,7 @@ export async function updateProfile(formData: FormData) {
 		{
 			name: 'Client-Side Data Fetching Without Auth',
 			severity: 'High',
-			prevalence: 'Expected 40-50% of projects',
+			prevalence: 'Common',
 			description: 'v0 generates useEffect data fetching that exposes API endpoints without protection. Any user can fetch any other user\'s data.',
 			whyHappens: 'Client components are the default mental model. useEffect + fetch is a common pattern that v0 replicates without adding auth.',
 			vulnerableCode: `// VULNERABLE: v0 generates unprotected client data fetching
@@ -239,7 +239,7 @@ export async function UserDashboard() {
 		{
 			name: 'Sensitive Data in Logs/Errors',
 			severity: 'Medium',
-			prevalence: 'Expected 35-45% of projects',
+			prevalence: 'Common',
 			description: 'v0 logs user data, tokens, or API responses to console. In production, these logs may expose sensitive information.',
 			whyHappens: 'console.log is helpful during development. v0 generates code that works, including debug statements that should be removed for production.',
 			vulnerableCode: `// VULNERABLE: v0 generates debug logs with sensitive data

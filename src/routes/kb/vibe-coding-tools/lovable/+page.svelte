@@ -17,7 +17,7 @@
 		{
 			question: 'What is CVE-2025-48757?',
 			answer:
-				'CVE-2025-48757 (CVSS 8.26) is a critical vulnerability affecting Lovable-generated apps. Researchers found 303 vulnerable endpoints across 170+ apps (10.3% of analyzed projects) where missing <a href="https://supabase.com/docs/guides/auth/row-level-security">Row Level Security</a> policies allowed anyone to read and write database data. Exposed data included emails, addresses, API keys, and financial records. The CVE was published May 29, 2025 after a 45-day disclosure window.'
+				'CVE-2025-48757 (CVSS 9.3 Critical) is a severe vulnerability affecting Lovable-generated apps. Researchers found 303 vulnerable endpoints across 170+ apps (10.3% of analyzed projects) where missing <a href="https://supabase.com/docs/guides/auth/row-level-security">Row Level Security</a> policies allowed anyone to read and write database data. Exposed data included emails, addresses, API keys, and financial records. The CVE was published May 29, 2025 after a 45-day disclosure window.'
 		},
 		{
 			question: 'How do I fix RLS issues in Lovable apps?',
@@ -181,7 +181,7 @@
 			<h1>Lovable Security: CVE-2025-48757, RLS Failures, and VibeScamming Risks</h1>
 
 			<p class="subtitle">
-				A $1.8B vibe coding tool with a CVSS 8.26 vulnerability and the worst phishing resistance score among tested AI tools.
+				A $1.8B vibe coding tool with a CVSS 9.3 Critical vulnerability and the worst phishing resistance score among tested AI tools.
 			</p>
 
 			<!-- Quick Answer Box -->
@@ -197,7 +197,7 @@
 		<div class="cve-alert">
 			<div class="cve-header">
 				<span class="cve-id">CVE-2025-48757</span>
-				<span class="cve-score">CVSS 8.26 (High)</span>
+				<span class="cve-score">CVSS 9.3 (Critical)</span>
 			</div>
 			<div class="cve-details">
 				<p><strong>Vulnerability:</strong> Missing Row Level Security in Lovable-generated Supabase apps</p>

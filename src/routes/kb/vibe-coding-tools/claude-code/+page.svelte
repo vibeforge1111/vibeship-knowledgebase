@@ -197,19 +197,19 @@ export async function POST({ request }) {
 	const faqs = [
 		{
 			question: 'Is Claude Code secure?',
-			answer: 'Claude Code is more security-conscious than many AI coding tools and will sometimes add basic security patterns without prompting. However, like all AI tools, it prioritizes functionality over security. Generated code still requires security review before deployment.'
+			answer: 'Claude Code has 3 documented CVEs (CVE-2025-54795, CVE-2025-54794, CVE-2025-52882) with CVSS scores up to 8.8. These have been patched, so keep your installation updated. The tool is more security-conscious than some competitors but still generates code that requires security review before deployment.'
 		},
 		{
 			question: 'What security issues does Claude Code have?',
-			answer: 'Claude Code commonly generates code with missing input validation, verbose error messages, missing rate limiting, overly permissive CORS, and client-side only validation. These patterns appear because AI models optimize for working code, not secure code.'
+			answer: 'At the tool level, Claude Code has had command injection, path traversal, and MCP authentication bypass vulnerabilities. For generated code, common issues include missing input validation, verbose error messages, missing rate limiting, and overly permissive CORS configurations.'
 		},
 		{
 			question: 'Is Claude Code safer than Cursor?',
-			answer: 'Claude Code exhibits slightly more security awareness than Cursor in some areas. It is less likely to generate SQL injection via template literals and sometimes adds basic auth checks without prompting. However, both tools require the same level of security review.'
+			answer: 'Both tools have documented CVEs from the IDEsaster research. Claude Code has 3 CVEs (CVSS up to 8.8), while Cursor has documented vulnerabilities as well. Both require security review. Claude Code shows slightly more security awareness in generated code patterns.'
 		},
 		{
 			question: 'How do I use Claude Code securely?',
-			answer: 'Be explicit about security requirements in prompts. Instead of "create an API endpoint," say "create an API endpoint with input validation, rate limiting, and proper error handling." Review generated code for the patterns listed above before committing.'
+			answer: 'Keep Claude Code updated to patch known CVEs. Be explicit about security requirements in prompts. Instead of "create an API endpoint," say "create an API endpoint with input validation, rate limiting, and proper error handling." Review generated code before committing.'
 		},
 		{
 			question: 'Can Claude Code fix security issues?',
@@ -312,28 +312,28 @@ export async function POST({ request }) {
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Claude Code's most common security issue is missing input validation.</strong>
-				It also generates verbose error messages, APIs without rate limiting, overly permissive CORS, and client-side only validation. Claude Code is generally more security-aware than competitors but still requires review.
+				<strong>Claude Code has 3 documented CVEs (CVSS up to 8.8) and generates code with missing input validation.</strong>
+				Security issues include command injection via malicious repositories (CVE-2025-54795), path traversal (CVE-2025-54794), and MCP WebSocket bypasses (CVE-2025-52882). Review all AI-generated code before deployment.
 			</p>
 		</div>
 
 		<!-- Stats Box -->
 		<div class="stats-row">
 			<div class="stat-box">
-				<div class="stat-value">Input Validation</div>
-				<div class="stat-label">Top Issue</div>
+				<div class="stat-value">3</div>
+				<div class="stat-label">Known CVEs</div>
 			</div>
 			<div class="stat-box">
-				<div class="stat-value">More Secure</div>
-				<div class="stat-label">Than Competitors</div>
+				<div class="stat-value">8.8</div>
+				<div class="stat-label">Highest CVSS</div>
 			</div>
 			<div class="stat-box">
 				<div class="stat-value">5</div>
-				<div class="stat-label">Key Patterns</div>
+				<div class="stat-label">Code Patterns</div>
 			</div>
 			<div class="stat-box">
-				<div class="stat-value">Fixable</div>
-				<div class="stat-label">With Prompts</div>
+				<div class="stat-value">CLI</div>
+				<div class="stat-label">Tool Type</div>
 			</div>
 		</div>
 
@@ -349,10 +349,75 @@ export async function POST({ request }) {
 			</p>
 		</section>
 
+		<!-- Known CVEs -->
+		<section class="article-section">
+			<h2>Known CVEs in Claude Code</h2>
+			<p>
+				Claude Code has 3 documented CVEs as of 2025. These vulnerabilities were disclosed as part of the
+				<a href="https://www.theregister.com/2025/05/22/ideaster_ai_coding_bugs/" target="_blank" rel="noopener">IDEsaster research</a>
+				into AI coding tools. All have been patched in recent versions.
+			</p>
+
+			<div class="cve-list">
+				<div class="cve-card">
+					<div class="cve-header">
+						<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54795" target="_blank" rel="noopener" class="cve-id">CVE-2025-54795</a>
+						<span class="badge badge-high">CVSS 8.7</span>
+					</div>
+					<h4>Command Injection via Malicious Repositories</h4>
+					<p>
+						Attackers could embed malicious code in repository files that would execute shell commands when Claude Code processed them.
+						This could lead to arbitrary code execution on the developer's machine.
+					</p>
+					<div class="cve-meta">
+						<span><strong>CWE:</strong> <a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank" rel="noopener">CWE-78</a> (Command Injection)</span>
+						<span><strong>Status:</strong> Patched</span>
+					</div>
+				</div>
+
+				<div class="cve-card">
+					<div class="cve-header">
+						<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54794" target="_blank" rel="noopener" class="cve-id">CVE-2025-54794</a>
+						<span class="badge badge-high">CVSS 7.7</span>
+					</div>
+					<h4>Path Restriction Bypass</h4>
+					<p>
+						A vulnerability allowed Claude Code to access files outside the intended working directory.
+						Attackers could read or modify sensitive files on the developer's system.
+					</p>
+					<div class="cve-meta">
+						<span><strong>CWE:</strong> <a href="https://cwe.mitre.org/data/definitions/22.html" target="_blank" rel="noopener">CWE-22</a> (Path Traversal)</span>
+						<span><strong>Status:</strong> Patched</span>
+					</div>
+				</div>
+
+				<div class="cve-card">
+					<div class="cve-header">
+						<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-52882" target="_blank" rel="noopener" class="cve-id">CVE-2025-52882</a>
+						<span class="badge badge-high">CVSS 8.8</span>
+					</div>
+					<h4>MCP WebSocket Authentication Bypass</h4>
+					<p>
+						The Model Context Protocol (MCP) WebSocket implementation had an authentication bypass vulnerability.
+						Malicious websites could connect to the local MCP server and execute commands without proper authorization.
+					</p>
+					<div class="cve-meta">
+						<span><strong>CWE:</strong> <a href="https://cwe.mitre.org/data/definitions/287.html" target="_blank" rel="noopener">CWE-287</a> (Improper Authentication)</span>
+						<span><strong>Status:</strong> Patched</span>
+					</div>
+				</div>
+			</div>
+
+			<p>
+				<strong>Action required:</strong> Ensure you're running the latest version of Claude Code.
+				Check for updates with <code>claude --version</code> and update via your package manager.
+			</p>
+		</section>
+
 		<!-- Security Patterns -->
 		<section class="article-section">
-			<h2>Security Patterns</h2>
-			<p>These are the most common security issues we see in vibe coded projects using Claude Code:</p>
+			<h2>Security Patterns in Generated Code</h2>
+			<p>Beyond tool-level CVEs, these are the most common security issues we see in vibe coded projects using Claude Code:</p>
 
 			{#each patterns as pattern, i}
 				<div class="pattern-card">
@@ -666,8 +731,83 @@ export async function POST({ request }) {
 		color: black;
 	}
 
+	/* CVE Cards */
+	.cve-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	.cve-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		border-left: 3px solid var(--orange, #f97316);
+		padding: 1.25rem;
+	}
+
+	.cve-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.cve-id {
+		font-family: var(--font-mono);
+		font-weight: 600;
+		color: var(--text-primary);
+		text-decoration: none;
+	}
+
+	.cve-id:hover {
+		color: var(--green);
+		text-decoration: underline;
+	}
+
+	.cve-card h4 {
+		margin: 0 0 0.5rem;
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--text-primary);
+	}
+
+	.cve-card p {
+		margin: 0 0 0.75rem;
+		color: var(--text-secondary);
+		font-size: 0.9rem;
+		line-height: 1.6;
+	}
+
+	.cve-meta {
+		display: flex;
+		gap: 1.5rem;
+		font-size: 0.8rem;
+		color: var(--text-muted);
+		flex-wrap: wrap;
+	}
+
+	.cve-meta a {
+		color: var(--green-dim);
+	}
+
+	.cve-meta a:hover {
+		color: var(--green);
+	}
+
 	@media (max-width: 768px) {
 		.pattern-header {
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		.cve-header {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.cve-meta {
 			flex-direction: column;
 			gap: 0.5rem;
 		}

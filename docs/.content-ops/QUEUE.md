@@ -50,17 +50,26 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 28 | ✅ Done | Guide (PILLAR) | secure-vibe-coding-guide |
 | 29 | ✅ Done | Concept (Agent Security) | mcp-server-security |
 | 30 | ✅ Done | Vulnerability | broken-access-control |
-| 31 | 📝 Brief Ready | Vulnerability | insecure-file-upload |
+| 31 | ✅ Done | Vulnerability | insecure-file-upload |
 | 32 | ✅ Done | Tool | lovable |
 | 33 | ✅ Done | Vulnerability | xxe |
 | 34 | ✅ Done | Vulnerability | ssti |
 | 35 | ✅ Done | Vulnerability | race-conditions |
 | | | **--- NEW: Ahrefs-Driven Quick Wins ---** | |
-| 36 | 📝 Brief Ready | Hub (P0) | best-vibe-coding-tools |
+| 36 | ✅ Done | Hub (P0) | best-vibe-coding-tools |
 | 37 | ✅ Done | Comparison (P0) | claude-code-vs-cursor |
-| 38 | 📝 Brief Ready | Comparison (P0) | windsurf-vs-cursor |
-| 39 | 📝 Brief Ready | Vulnerability (P1) | prompt-injection |
-| 40 | 📝 Brief Ready | Pillar (P1) | what-is-vibe-coding |
+| 38 | ✅ Done | Comparison (P0) | windsurf-vs-cursor |
+| 39 | ✅ Done | Vulnerability (P1) | prompt-injection |
+| 40 | ✅ Done | Pillar (P1) | what-is-vibe-coding |
+| 41 | ✅ Done | Comparison (P0) | cursor-vs-copilot |
+| 42 | ✅ Done | Comparison (P0) | cline-vs-cursor |
+| 43 | ✅ Done | Comparison (P0) | replit-vs-cursor |
+| 44 | ✅ Done | Comparison (P1) | lovable-vs-bolt |
+| | | **--- NEW: Prompts Series ---** | |
+| 45 | 📝 Brief Ready | Prompts (P0) | cursor-rules |
+| 46 | 📝 Brief Ready | Prompts (P0) | claude-md |
+| | | **--- Additional Vulnerabilities ---** | |
+| 47 | 📝 Brief Ready | Vulnerability (P0) | nosql-injection |
 
 **Legend:** ✅ Done | 📝 Brief Ready | 🔄 Next | ⏳ Pending | ⏸️ Blocked
 
@@ -942,4 +951,164 @@ notes: |
   - Hub linking to all tools and security content
   - Security angle: "Is vibe coding safe?" section
   - Brief location: docs/.content-ops/briefs/what-is-vibe-coding-brief.md
+```
+
+### 41. Comparison: Cursor vs GitHub Copilot
+```yaml
+type: comparison
+slug: cursor-vs-copilot
+url: /kb/vibe-coding-tools/cursor-vs-copilot/
+title: "Cursor vs GitHub Copilot: Complete Comparison 2025"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0 (Quick Win - Very Low KD)
+keywords:
+  - "cursor vs copilot" (2,800 volume, KD 3)
+  - "copilot vs cursor" (1,100 volume)
+  - "github copilot vs cursor" (1,000 volume, KD 1)
+notes: |
+  - 4,900/month total addressable volume
+  - Very low KD (1-3) = fast ranking
+  - Compare: IDE vs extension, $20 vs $10 pricing
+  - Cursor CVE-2025-62352 vs Copilot training data concerns
+  - Brief location: docs/.content-ops/briefs/cursor-vs-copilot-brief.md
+```
+
+### 42. Comparison: Cline vs Cursor
+```yaml
+type: comparison
+slug: cline-vs-cursor
+url: /kb/vibe-coding-tools/cline-vs-cursor/
+title: "Cline vs Cursor: Free vs Paid AI Coding Compared"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0 (Quick Win - Very Low KD)
+keywords:
+  - "cline vs cursor" (1,300 volume, KD 2)
+  - "cursor vs cline" (450 volume)
+notes: |
+  - 1,750/month total addressable volume
+  - Cline = free open-source, human-in-the-loop
+  - Security angle: open-source auditability, approval workflow
+  - Brief location: docs/.content-ops/briefs/cline-vs-cursor-brief.md
+```
+
+### 43. Comparison: Replit vs Cursor
+```yaml
+type: comparison
+slug: replit-vs-cursor
+url: /kb/vibe-coding-tools/replit-vs-cursor/
+title: "Replit vs Cursor: Cloud vs Desktop IDE Compared"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0 (Quick Win - KD 0)
+keywords:
+  - "replit vs cursor" (1,000 volume, KD 0)
+  - "cursor vs replit" (450 volume, KD 2)
+notes: |
+  - 1,450/month total addressable volume
+  - KD 0 = extremely easy ranking
+  - Cloud vs local paradigm comparison
+  - Data residency and privacy implications
+  - Brief location: docs/.content-ops/briefs/replit-vs-cursor-brief.md
+```
+
+### 44. Comparison: Lovable vs Bolt
+```yaml
+type: comparison
+slug: lovable-vs-bolt
+url: /kb/vibe-coding-tools/lovable-vs-bolt/
+title: "Lovable vs Bolt: AI App Builder Comparison 2025"
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1 (Emerging)
+keywords:
+  - "lovable vs bolt" (450 volume)
+  - "bolt vs lovable" (400 volume)
+notes: |
+  - 850/month total addressable volume
+  - Both target non-technical founders
+  - Lovable = better UI defaults, Supabase integration
+  - Security defaults comparison for app builders
+  - Brief location: docs/.content-ops/briefs/lovable-vs-bolt-brief.md
+```
+
+---
+
+## Prompts Series (NEW Section)
+
+High-volume prompting and AI configuration content. New category: `/kb/prompts/`
+
+**Required Skill:** Use `docs/.content-ops/skills/master-prompting-skill.md` for research, writing, and QA of all prompting content. This skill covers Anthropic best practices, Cursor Rules (.mdc) format, CLAUDE.md structure, security rules library, and content templates.
+
+### 45. Prompts: Cursor Rules Guide
+```yaml
+type: prompts
+slug: cursor-rules
+url: /kb/prompts/cursor-rules/
+title: "Cursor Rules: The Complete .cursorrules Guide 2025"
+word_count: 2500-3000
+status: 📝 Brief Ready
+priority: P0 (High Volume)
+keywords:
+  - "cursor rules" (5,300 volume, KD 26)
+  - "cursorrules" (1,200 volume)
+  - ".cursorrules" (450 volume)
+  - "cursor rules file" (400 volume)
+notes: |
+  - 7,700/month total addressable volume
+  - Complete guide to .cursorrules configuration
+  - Security rules library (our differentiator)
+  - Copy-paste templates for common stacks
+  - Brief location: docs/.content-ops/briefs/cursor-rules-brief.md
+```
+
+### 46. Prompts: CLAUDE.md Guide
+```yaml
+type: prompts
+slug: claude-md
+url: /kb/prompts/claude-md/
+title: "CLAUDE.md: Complete Guide for Claude Code"
+word_count: 2000-2500
+status: 📝 Brief Ready
+priority: P0 (Emerging - First Mover)
+keywords:
+  - "claude.md" (450 volume)
+  - "claude md" (450 volume)
+  - "claude code system prompt" (10 volume)
+notes: |
+  - 900/month total addressable volume
+  - Emerging term - first mover advantage
+  - Security-focused templates
+  - Comparison with .cursorrules
+  - Brief location: docs/.content-ops/briefs/claude-md-brief.md
+```
+
+---
+
+## Additional Vulnerabilities
+
+### 47. Vulnerability: NoSQL Injection
+```yaml
+type: vulnerability
+slug: nosql-injection
+url: /kb/security/vulnerabilities/nosql-injection/
+title: "NoSQL Injection: Protect MongoDB & Firestore Apps"
+cwe: CWE-943
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/943.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0 (Quick Win - KD 4)
+keywords:
+  - "nosql injection" (250 volume, KD 4)
+  - "mongodb injection" (100 volume, KD 4)
+notes: |
+  - Very low KD = fast ranking
+  - Operator injection attacks ($ne, $gt, etc.)
+  - MongoDB, Firestore, DynamoDB coverage
+  - Often overlooked "NoSQL is safe" myth
+  - Brief location: docs/.content-ops/briefs/nosql-injection-brief.md
 ```

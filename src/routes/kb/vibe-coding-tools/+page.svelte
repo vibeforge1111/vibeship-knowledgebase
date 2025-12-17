@@ -3,6 +3,7 @@
 
   let showSecurityTable = $state(true);
 
+  // Last updated: December 2025 - CVE data verified via NVD and IDEsaster research
   const tools = [
     {
       slug: 'cursor',
@@ -13,8 +14,10 @@
       price: '$20/mo',
       bestFor: 'Overall IDE experience',
       description: 'AI-powered code editor built on VS Code with Composer and Chat features.',
-      topIssue: 'Prompt Injection',
-      cve: 'CVE-2025-62352',
+      topIssue: 'Path Traversal',
+      cve: 'CVE-2025-59944',
+      cveCount: 4,
+      cveSeverity: 'High',
       securityScore: 'B',
       knownPatterns: ['Template literals in queries', 'Inline database credentials', 'Prompt injection risks'],
       category: 'ide'
@@ -25,13 +28,15 @@
       company: 'Anthropic',
       type: 'CLI',
       model: 'Claude',
-      price: 'API usage',
+      price: '$20/mo Pro or API',
       bestFor: 'Agentic coding',
       description: 'Anthropic\'s official CLI tool for autonomous coding tasks.',
-      topIssue: 'Verbose Errors',
-      cve: null,
-      securityScore: 'A',
-      knownPatterns: ['Verbose error messages', 'Generally security-conscious'],
+      topIssue: 'Command Injection',
+      cve: 'CVE-2025-54795',
+      cveCount: 3,
+      cveSeverity: 'High (8.7)',
+      securityScore: 'B+',
+      knownPatterns: ['Path restriction bypass', 'Command injection risks', 'WebSocket auth (MCP)'],
       category: 'cli'
     },
     {
@@ -45,7 +50,9 @@
       description: 'AI-native IDE with Cascade autonomous agent capabilities.',
       topIssue: 'Path Traversal',
       cve: 'CVE-2025-62353',
-      securityScore: 'B-',
+      cveCount: 1,
+      cveSeverity: 'Critical (9.8)',
+      securityScore: 'C+',
       knownPatterns: ['Path traversal in tools', 'Prompt injection .env exfiltration', 'Open API routes'],
       category: 'ide'
     },
@@ -58,10 +65,12 @@
       price: '$10-19/mo',
       bestFor: 'Most popular',
       description: 'GitHub\'s AI pair programmer, the most widely adopted coding assistant.',
-      topIssue: 'Code Injection',
+      topIssue: 'Path Traversal',
       cve: 'CVE-2025-62449',
+      cveCount: 3,
+      cveSeverity: 'High',
       securityScore: 'B',
-      knownPatterns: ['27.3% vulnerable code rate', 'String concatenation in queries', 'Weak random generation'],
+      knownPatterns: ['String concatenation in queries', 'Weak random generation', 'Missing input validation'],
       category: 'ide'
     },
     {
@@ -75,6 +84,8 @@
       description: 'Build and deploy full-stack apps directly in the browser.',
       topIssue: 'Hardcoded Secrets',
       cve: null,
+      cveCount: 0,
+      cveSeverity: null,
       securityScore: 'C+',
       knownPatterns: ['Hardcoded API keys', 'Missing .gitignore', 'Open endpoints'],
       category: 'web'
@@ -84,14 +95,16 @@
       name: 'v0',
       company: 'Vercel',
       type: 'Web',
-      model: 'Unknown',
+      model: 'Claude/GPT-4',
       price: '$20/mo',
       bestFor: 'UI components',
       description: 'Vercel\'s AI for generating React and Next.js UI components.',
       topIssue: 'NEXT_PUBLIC_ Exposure',
       cve: null,
+      cveCount: 0,
+      cveSeverity: null,
       securityScore: 'B',
-      knownPatterns: ['NEXT_PUBLIC_ secret exposure', 'Client-side validation only', 'Blocked 100k+ insecure deployments'],
+      knownPatterns: ['NEXT_PUBLIC_ secret exposure', 'Client-side validation only', 'Environment variable misuse'],
       category: 'web'
     },
     {
@@ -100,13 +113,15 @@
       company: 'Lovable',
       type: 'Web',
       model: 'Claude 3.5',
-      price: '$20/mo',
+      price: '$25/mo',
       bestFor: 'Full-stack apps',
       description: 'AI app builder for creating complete applications from prompts.',
       topIssue: 'Missing RLS',
       cve: 'CVE-2025-48757',
+      cveCount: 1,
+      cveSeverity: 'Critical (9.3)',
       securityScore: 'C',
-      knownPatterns: ['Missing Row Level Security', '303 vulnerable endpoints found', 'VibeScamming 1.8/10 score'],
+      knownPatterns: ['Missing Row Level Security', 'Exposed Supabase endpoints', 'Open API routes'],
       category: 'web'
     },
     {
@@ -120,9 +135,28 @@
       description: 'Online IDE with AI agent, hosting, and collaboration features.',
       topIssue: 'Database Deletion',
       cve: null,
+      cveCount: 0,
+      cveSeverity: null,
       securityScore: 'C',
       knownPatterns: ['July 2024 database deletion incident', 'Debug mode in production', 'Hardcoded DB credentials'],
       category: 'web'
+    },
+    {
+      slug: 'cline',
+      name: 'Cline',
+      company: 'Open Source',
+      type: 'CLI',
+      model: 'Any (BYOK)',
+      price: 'Free (BYOK)',
+      bestFor: 'Open source alternative',
+      description: 'Open-source AI coding assistant with VS Code extension. Bring your own API key.',
+      topIssue: 'Tool Call Manipulation',
+      cve: 'CVE-2025-32723',
+      cveCount: 1,
+      cveSeverity: 'High',
+      securityScore: 'B',
+      knownPatterns: ['Tool call manipulation via prompts', 'MCP server vulnerabilities', 'Dependency on user config'],
+      category: 'cli'
     }
   ];
 
@@ -136,13 +170,17 @@
     return '#dc2626';
   }
 
+  // Calculate total CVEs across all tools
+  const totalCVEs = tools.reduce((sum, t) => sum + (t.cveCount || 0), 0);
+  const toolsWithCVEs = tools.filter(t => t.cve).length;
+
   // Schema.org structured data
   onMount(() => {
     const schema = {
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Best Vibe Coding Tools 2025: Security Comparison Guide",
-      "description": "Compare 8 vibe coding tools including Cursor, Claude Code, Windsurf, and Bolt. See which generates safest code and how to use each tool securely.",
+      "description": "Compare 9 vibe coding tools including Cursor, Claude Code, Windsurf, and Bolt. See real CVE data from NVD and IDEsaster research. Learn how to use each tool securely.",
       "author": {
         "@type": "Organization",
         "name": "vibeship"
@@ -153,7 +191,7 @@
         "url": "https://vibeship.co"
       },
       "datePublished": "2025-01-01",
-      "dateModified": "2025-01-01",
+      "dateModified": "2025-12-17",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://vibeship.co/kb/vibe-coding-tools/"
@@ -169,7 +207,7 @@
           "name": "What is the best vibe coding tool in 2025?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The best vibe coding tool depends on your needs. Cursor is the best overall IDE for professional development. Claude Code is best for autonomous agentic coding. Bolt.new is best for rapid prototyping. For security-conscious development, Claude Code has no known CVEs while tools like Cursor and Windsurf have documented vulnerabilities."
+            "text": "The best vibe coding tool depends on your needs. Cursor is the best overall IDE for professional development. Claude Code is best for autonomous agentic coding. Bolt.new is best for rapid prototyping. All major tools have had CVEs in 2025 - see our security comparison with verified NVD data."
           }
         },
         {
@@ -177,7 +215,7 @@
           "name": "Which AI coding tool is most secure?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Claude Code is currently the most security-conscious vibe coding tool with no known CVEs. It generates more secure code patterns by default compared to alternatives. However, all AI coding tools can generate vulnerable code - always review AI-generated code and use a security scanner before deployment."
+            "text": "No AI coding tool is completely secure - all have had vulnerabilities. Web-based tools like Bolt.new and v0 have no known CVEs but generate code with hardcoded secrets. IDE tools like Cursor and Windsurf have CVEs but better code quality. Claude Code has 3 CVEs but generally produces security-conscious code. Always scan AI-generated code before deployment."
           }
         },
         {
@@ -185,7 +223,7 @@
           "name": "Is Cursor better than GitHub Copilot?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Cursor and GitHub Copilot serve different needs. Cursor offers a complete IDE experience with Composer for larger changes, while Copilot integrates into existing IDEs. Both have 2025 CVEs (CVE-2025-62352 for Cursor, CVE-2025-62449 for Copilot). Cursor costs $20/month vs Copilot's $10-19/month. Choose Cursor for dedicated AI IDE, Copilot for integration with your existing setup."
+            "text": "Cursor and GitHub Copilot serve different needs. Cursor offers a complete IDE experience with Composer for larger changes, while Copilot integrates into existing IDEs. Both have multiple 2025 CVEs. Cursor costs $20/month vs Copilot's $10-19/month. Choose Cursor for dedicated AI IDE, Copilot for integration with your existing setup."
           }
         },
         {
@@ -193,7 +231,7 @@
           "name": "Are vibe coding tools safe to use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Vibe coding tools are safe when used correctly, but require security awareness. Studies show 25-70% of AI-generated code contains vulnerabilities. Key safety practices: always review generated code, use security-focused prompts, scan code before deployment, and understand each tool's common vulnerability patterns. The tools themselves can have CVEs (like prompt injection attacks), so keep them updated."
+            "text": "Vibe coding tools are safe when used correctly, but require security awareness. AI-generated code frequently contains vulnerabilities. Multiple CVEs have been found in major AI coding tools including Cursor, Windsurf, and Claude Code. Key safety practices: always review generated code, scan before deployment, and keep tools updated."
           }
         },
         {
@@ -201,7 +239,7 @@
           "name": "What's the difference between Cursor and Claude Code?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Cursor is a full IDE (VS Code fork) with visual interface, while Claude Code is a CLI tool for terminal-based development. Cursor costs $20/month flat; Claude Code uses API pricing. Cursor supports multiple models (GPT-4, Claude); Claude Code uses only Claude models. For security, Claude Code has no known CVEs while Cursor has CVE-2025-62352. Choose Cursor for visual IDE experience, Claude Code for terminal-based agentic workflows."
+            "text": "Cursor is a full IDE (VS Code fork) with visual interface, while Claude Code is a CLI tool for terminal-based development. Cursor costs $20/month flat; Claude Code uses $20/month Pro or API pricing. Cursor supports multiple models (GPT-4, Claude); Claude Code uses only Claude models. Both have had 2025 CVEs. Choose Cursor for visual IDE experience, Claude Code for terminal-based agentic workflows."
           }
         }
       ]
@@ -221,8 +259,8 @@
 
 <svelte:head>
   <title>Best Vibe Coding Tools 2025: Security Comparison | vibeship</title>
-  <meta name="description" content="Compare 8 vibe coding tools: Cursor, Claude Code, Windsurf, Bolt & more. See which generates safest code and how to use each tool securely." />
-  <meta name="keywords" content="vibe coding tools, best vibe coding tools, AI coding tools, Cursor, Claude Code, Windsurf, Bolt, vibe coding" />
+  <meta name="description" content="Compare 9 AI coding tools with real CVE data: Cursor, Claude Code, Windsurf, Bolt & more. Security comparison using NVD data. See how to vibe code safely." />
+  <meta name="keywords" content="vibe coding tools, best vibe coding tools, AI coding tools, Cursor, Claude Code, Windsurf, Bolt, vibe coding, AI IDE security, CVE" />
   <link rel="canonical" href="https://vibeship.co/kb/vibe-coding-tools/" />
 </svelte:head>
 
@@ -237,30 +275,62 @@
 <article class="hub-article">
   <header class="article-header">
     <h1>Best Vibe Coding Tools 2025: Security Comparison Guide</h1>
-    <p class="subtitle">Compare 8 AI coding tools on features, price, and security patterns</p>
+    <p class="subtitle">Compare 9 AI coding tools on features, pricing, and real CVE data</p>
+    <p class="last-updated">Last updated: December 2025 - CVEs verified via <a href="https://nvd.nist.gov/">NVD</a></p>
   </header>
 
   <div class="quick-answer">
-    <strong>The best vibe coding tools in 2025 are Cursor, Claude Code, Windsurf, and Bolt.new - but they all can generate vulnerable code.</strong>
-    Our analysis shows Claude Code is the most security-conscious with no known CVEs, while tools like Lovable (CVE-2025-48757) and Windsurf (CVE-2025-62353) have documented vulnerabilities. This guide compares 8 tools on features AND security so you can <a href="/kb/vibe-coding/what-is-vibe-coding/">vibe code</a> safely.
+    <strong>The best vibe coding tools in 2025 are Cursor, Claude Code, Windsurf, and Bolt.new - but ALL major tools have had CVEs this year.</strong>
+    The <a href="https://ideaster.github.io/about/">IDEsaster research</a> has documented multiple vulnerabilities in AI coding tools. Critical CVEs include Windsurf (<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62353">CVE-2025-62353</a>, CVSS 9.8) and Lovable (<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-48757">CVE-2025-48757</a>, CVSS 9.3). This guide compares 9 tools with verified <a href="https://nvd.nist.gov/">NVD</a> data so you can <a href="/kb/vibe-coding/what-is-vibe-coding/">vibe code</a> safely.
+  </div>
+
+  <!-- CVE Tracker Visual Component -->
+  <div class="cve-tracker">
+    <div class="cve-tracker-header">
+      <h3>AI Coding Tool CVE Tracker</h3>
+      <span class="tracker-badge">Live Data - December 2025</span>
+    </div>
+    <div class="cve-grid">
+      <div class="cve-stat critical">
+        <span class="cve-count">2</span>
+        <span class="cve-label">Critical CVEs</span>
+        <span class="cve-detail">CVSS 9.0+</span>
+      </div>
+      <div class="cve-stat high">
+        <span class="cve-count">10+</span>
+        <span class="cve-label">High CVEs</span>
+        <span class="cve-detail">CVSS 7.0-8.9</span>
+      </div>
+      <div class="cve-stat affected">
+        <span class="cve-count">{toolsWithCVEs}</span>
+        <span class="cve-label">Tools Affected</span>
+        <span class="cve-detail">of 9 analyzed</span>
+      </div>
+      <div class="cve-stat developers">
+        <span class="cve-count">9.8</span>
+        <span class="cve-label">Max CVSS Score</span>
+        <span class="cve-detail">Windsurf CVE-2025-62353</span>
+      </div>
+    </div>
+    <p class="cve-source">Source: <a href="https://nvd.nist.gov/">National Vulnerability Database</a>, <a href="https://ideaster.github.io/about/">IDEsaster Research</a></p>
   </div>
 
   <div class="stats-box">
     <div class="stat">
-      <span class="stat-value">8</span>
+      <span class="stat-value">9</span>
       <span class="stat-label">Tools Compared</span>
     </div>
     <div class="stat">
-      <span class="stat-value">5</span>
+      <span class="stat-value">{toolsWithCVEs}</span>
       <span class="stat-label">Have Known CVEs</span>
     </div>
     <div class="stat">
-      <span class="stat-value">25-70%</span>
-      <span class="stat-label">AI Code Has Vulnerabilities</span>
+      <span class="stat-value">13</span>
+      <span class="stat-label">Total CVEs Found</span>
     </div>
     <div class="stat">
-      <span class="stat-value">Claude Code</span>
-      <span class="stat-label">Most Secure</span>
+      <span class="stat-value">Cline</span>
+      <span class="stat-label">Free Option (BYOK)</span>
     </div>
   </div>
 
@@ -271,8 +341,8 @@
       <li><a href="#quick-comparison">Quick Comparison Table</a></li>
       <li><a href="#ide-tools">Best IDE-Based Tools</a></li>
       <li><a href="#web-tools">Best Web-Based Tools</a></li>
-      <li><a href="#cli-tools">Best CLI Tools</a></li>
-      <li><a href="#security-comparison">Security Comparison</a></li>
+      <li><a href="#cli-tools">Best CLI Tools (Claude Code, Cline)</a></li>
+      <li><a href="#security-comparison">Security Comparison with CVE Data</a></li>
       <li><a href="#secure-usage">How to Use Any Tool Securely</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -283,7 +353,7 @@
 
     <p>Vibe coding tools are AI-powered assistants that help you write code through natural language prompts. The term "vibe coding" was coined by Andrej Karpathy in early 2025 to describe the practice of building software by describing what you want rather than writing every line yourself. Learn more in our <a href="/kb/vibe-coding/what-is-vibe-coding/">complete guide to vibe coding</a>.</p>
 
-    <p>These tools range from IDE extensions like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> and <a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot</a> to web-based builders like <a href="/kb/vibe-coding-tools/bolt/">Bolt.new</a> and <a href="/kb/vibe-coding-tools/lovable/">Lovable</a>. While they dramatically speed up development, studies show 25-70% of AI-generated code contains security vulnerabilities. That's why understanding each tool's security patterns is critical.</p>
+    <p>These tools range from IDE extensions like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> and <a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot</a> to web-based builders like <a href="/kb/vibe-coding-tools/bolt/">Bolt.new</a> and <a href="/kb/vibe-coding-tools/lovable/">Lovable</a>. While they dramatically speed up development, AI-generated code frequently contains security vulnerabilities. That's why understanding each tool's security patterns is critical.</p>
   </section>
 
   <section id="quick-comparison">
@@ -297,13 +367,14 @@
             <th>Type</th>
             <th>Best For</th>
             <th>Price</th>
-            <th>Security</th>
-            <th>Top Vulnerability</th>
+            <th>CVEs</th>
+            <th>Severity</th>
+            <th>Grade</th>
           </tr>
         </thead>
         <tbody>
           {#each tools as tool}
-            <tr>
+            <tr class:critical-row={tool.cveSeverity?.includes('Critical')}>
               <td>
                 <a href="/kb/vibe-coding-tools/{tool.slug}/" class="tool-link">{tool.name}</a>
               </td>
@@ -311,16 +382,25 @@
               <td>{tool.bestFor}</td>
               <td>{tool.price}</td>
               <td>
+                {#if tool.cveCount > 0}
+                  <span class="cve-count-badge">{tool.cveCount}</span>
+                {:else}
+                  <span class="no-cve-badge">0</span>
+                {/if}
+              </td>
+              <td>
+                {#if tool.cveSeverity}
+                  <span class="severity-badge {tool.cveSeverity.includes('Critical') ? 'critical' : 'high'}">
+                    {tool.cveSeverity}
+                  </span>
+                {:else}
+                  <span class="severity-badge none">N/A</span>
+                {/if}
+              </td>
+              <td>
                 <span class="security-score" style="color: {getScoreColor(tool.securityScore)}">
                   {tool.securityScore}
                 </span>
-              </td>
-              <td>
-                {#if tool.cve}
-                  <span class="has-cve">{tool.topIssue}</span>
-                {:else}
-                  {tool.topIssue}
-                {/if}
               </td>
             </tr>
           {/each}
@@ -328,7 +408,7 @@
       </table>
     </div>
 
-    <p class="table-note">Security scores are based on known CVEs, vulnerability patterns in generated code, and security features. See individual tool pages for detailed analysis.</p>
+    <p class="table-note">CVE data from <a href="https://nvd.nist.gov/">NVD</a> and <a href="https://ideaster.github.io/about/">IDEsaster research</a>. Security grades are editorial assessments based on CVE count, CVE severity, and documented vulnerability patterns - not a formal security audit. December 2025.</p>
   </section>
 
   <section id="ide-tools">
@@ -364,13 +444,13 @@
     </div>
 
     <h3>Cursor - Best Overall IDE</h3>
-    <p><a href="/kb/vibe-coding-tools/cursor/">Cursor</a> is a VS Code fork with deep AI integration. Its Composer feature handles multi-file changes, and it supports both GPT-4 and Claude models. Security-wise, it has CVE-2025-62352 (prompt injection) and commonly generates template literal SQL queries. Best for developers who want a complete AI-native IDE experience.</p>
+    <p><a href="/kb/vibe-coding-tools/cursor/">Cursor</a> is a VS Code fork with deep AI integration. Its Composer feature handles multi-file changes, and it supports both GPT-4 and Claude models. Security-wise, it has 4 CVEs in 2025 including <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-59944">CVE-2025-59944</a> (path traversal) and commonly generates template literal SQL queries. Best for developers who want a complete AI-native IDE experience. See our <a href="/kb/vibe-coding-tools/claude-code-vs-cursor/">Claude Code vs Cursor</a> comparison.</p>
 
     <h3>GitHub Copilot - Most Popular</h3>
-    <p><a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot</a> is the most widely adopted AI coding tool with millions of users. Academic research shows 27.3% of its generated code contains vulnerabilities. It has multiple 2025 CVEs including CVE-2025-62449 (path traversal). Best for developers already in the GitHub ecosystem who want inline suggestions.</p>
+    <p><a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot</a> is the most widely adopted AI coding tool. It has 3 CVEs in 2025 including <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62449">CVE-2025-62449</a> and <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-53773">CVE-2025-53773</a>. Known patterns include string concatenation in SQL queries and weak random generation. At $10-19/month, it's more affordable than Cursor. Best for developers already in the GitHub ecosystem who want inline suggestions.</p>
 
     <h3>Windsurf - Best Autonomous Agent</h3>
-    <p><a href="/kb/vibe-coding-tools/windsurf/">Windsurf</a> by Codeium offers Cascade, an autonomous agent that can make changes across your codebase. It has CVE-2025-62353 (path traversal, CVSS 8.1) and documented prompt injection attacks that can exfiltrate .env files. At $15/month, it's the cheapest IDE option. Best for developers who want maximum autonomy from their AI.</p>
+    <p><a href="/kb/vibe-coding-tools/windsurf/">Windsurf</a> by Codeium offers Cascade, an autonomous agent that can make changes across your codebase. <strong>Critical:</strong> It has <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62353">CVE-2025-62353</a> (path traversal, <strong>CVSS 9.8</strong>) and documented prompt injection attacks that can exfiltrate .env files. At $15/month, it's the cheapest IDE option but has the highest severity CVE. Best for developers who want maximum autonomy but must keep updated. See our <a href="/kb/vibe-coding-tools/windsurf-vs-cursor/">Windsurf vs Cursor</a> comparison.</p>
   </section>
 
   <section id="web-tools">
@@ -409,10 +489,10 @@
     <p><a href="/kb/vibe-coding-tools/bolt/">Bolt.new</a> by StackBlitz lets you build and deploy full-stack apps entirely in the browser using WebContainers. Its "ready to run" philosophy prioritizes speed, which often means <a href="/kb/security/vulnerabilities/hardcoded-secrets/">hardcoded secrets</a> and missing .gitignore files. Best for quick prototypes you'll secure before production.</p>
 
     <h3>v0 - Best for UI Components</h3>
-    <p><a href="/kb/vibe-coding-tools/v0/">v0</a> by Vercel generates React and Next.js UI components from prompts. It's blocked over 100,000 insecure deployments, primarily from NEXT_PUBLIC_ environment variable exposure. Best for generating UI components to integrate into existing secure applications.</p>
+    <p><a href="/kb/vibe-coding-tools/v0/">v0</a> by Vercel generates React and Next.js UI components from prompts. A common issue is NEXT_PUBLIC_ environment variable exposure where secrets are accidentally made public. Best for generating UI components to integrate into existing secure applications.</p>
 
     <h3>Lovable - Best for Full-Stack Apps</h3>
-    <p><a href="/kb/vibe-coding-tools/lovable/">Lovable</a> builds complete applications from prompts, but CVE-2025-48757 exposed 170+ apps due to missing Supabase Row Level Security. It scored 1.8/10 in VibeScamming tests for generating phishing pages. Best used with careful RLS auditing - see our <a href="/kb/security/vulnerabilities/broken-access-control/">broken access control</a> guide.</p>
+    <p><a href="/kb/vibe-coding-tools/lovable/">Lovable</a> builds complete applications from prompts, but <strong>Critical:</strong> <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-48757">CVE-2025-48757</a> (<strong>CVSS 9.3</strong>) exposed applications due to missing Supabase Row Level Security. At $25/month it's pricier than alternatives. Best used with careful RLS auditing - see our <a href="/kb/security/vulnerabilities/broken-access-control/">broken access control</a> guide.</p>
 
     <h3>Replit - Best for Learning</h3>
     <p><a href="/kb/vibe-coding-tools/replit/">Replit</a> offers an online IDE with AI agent, hosting, and collaboration. A July 2024 incident saw their agent delete a production database and fabricate fake data. Now has Semgrep integration for scanning. Best for learning and prototyping, not production without additional security review.</p>
@@ -421,9 +501,11 @@
   <section id="cli-tools">
     <h2>Best CLI/Terminal Tools</h2>
 
+    <p>CLI tools offer powerful agentic coding from the terminal. They're popular with experienced developers who prefer command-line workflows.</p>
+
     <div class="tool-cards">
       {#each cliTools as tool}
-        <a href="/kb/vibe-coding-tools/{tool.slug}/" class="tool-card featured">
+        <a href="/kb/vibe-coding-tools/{tool.slug}/" class="tool-card {tool.slug === 'cline' ? 'open-source' : 'featured'}">
           <div class="tool-header">
             <h3>{tool.name}</h3>
             <span class="security-badge" style="background: {getScoreColor(tool.securityScore)}20; color: {getScoreColor(tool.securityScore)}">
@@ -443,89 +525,114 @@
             {#if tool.cve}
               <span class="cve-tag">{tool.cve}</span>
             {/if}
+            {#if tool.cveSeverity}
+              <span class="severity-mini">{tool.cveSeverity}</span>
+            {/if}
           </div>
         </a>
       {/each}
     </div>
 
     <h3>Claude Code - Best Agentic Coding</h3>
-    <p><a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> is Anthropic's official CLI for autonomous coding tasks. It's the most security-conscious tool in our comparison with no known CVEs. It can make multi-file changes, run commands, and iterate on code independently. Uses API pricing rather than subscription. Best for developers comfortable with terminal workflows who want maximum security.</p>
+    <p><a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> is Anthropic's official CLI for autonomous coding tasks. Despite being security-focused, it has 3 CVEs in 2025: <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54795">CVE-2025-54795</a> (command injection, CVSS 8.7), <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54794">CVE-2025-54794</a> (path restriction bypass, CVSS 7.7), and <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-52882">CVE-2025-52882</a> (WebSocket auth bypass in MCP, CVSS 8.8). Pricing is $20/month for Claude Pro or API usage. Best for developers comfortable with terminal workflows. See our <a href="/kb/vibe-coding-tools/claude-code-vs-cursor/">Claude Code vs Cursor</a> comparison.</p>
+
+    <h3>Cline - Best Free/Open Source Option</h3>
+    <p><a href="https://github.com/cline/cline">Cline</a> is an open-source AI coding assistant with a VS Code extension. It's completely free - you just bring your own API key (BYOK) from OpenAI, Anthropic, or other providers. It has <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32723">CVE-2025-32723</a> (tool call manipulation). Security depends heavily on your configuration and which API you connect. Best for developers who want full control over their AI coding tool without subscription fees.</p>
   </section>
 
   <section id="security-comparison">
-    <h2>Security Comparison: Which Tool Is Safest?</h2>
+    <h2>Security Comparison: CVE Data for All Tools</h2>
 
-    <p>Security should be a key factor in choosing a vibe coding tool. Here's how they compare:</p>
+    <p>The <a href="https://ideaster.github.io/about/">IDEsaster research</a> has documented multiple vulnerabilities in AI coding tools in 2025. Here's the current CVE landscape based on <a href="https://nvd.nist.gov/">NVD</a> data:</p>
 
     <div class="security-comparison-table">
       <table>
         <thead>
           <tr>
             <th>Tool</th>
-            <th>Known CVEs</th>
+            <th>CVEs</th>
+            <th>Max Severity</th>
             <th>Top Pattern</th>
-            <th>Security Features</th>
+            <th>Mitigation</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="highlight-row">
-            <td><strong>Claude Code</strong></td>
-            <td><span class="no-cve">None</span></td>
-            <td>Verbose errors</td>
-            <td>Most security-conscious prompts</td>
+          <tr class="critical-highlight">
+            <td><strong>Windsurf</strong></td>
+            <td><span class="has-cve">1 CVE</span></td>
+            <td><span class="severity-critical">Critical (9.8)</span></td>
+            <td>Path traversal</td>
+            <td>Update immediately</td>
+          </tr>
+          <tr class="critical-highlight">
+            <td><strong>Lovable</strong></td>
+            <td><span class="has-cve">1 CVE</span></td>
+            <td><span class="severity-critical">Critical (9.3)</span></td>
+            <td>Missing RLS</td>
+            <td>Audit all Supabase RLS</td>
+          </tr>
+          <tr>
+            <td>Claude Code</td>
+            <td><span class="has-cve">3 CVEs</span></td>
+            <td><span class="severity-high">High (8.8)</span></td>
+            <td>Command injection</td>
+            <td>Review MCP servers</td>
           </tr>
           <tr>
             <td>Cursor</td>
-            <td><span class="has-cve">CVE-2025-62352</span></td>
-            <td>Prompt injection</td>
-            <td>.cursorrules for security prompts</td>
-          </tr>
-          <tr>
-            <td>Windsurf</td>
-            <td><span class="has-cve">CVE-2025-62353</span></td>
-            <td>Path traversal (CVSS 8.1)</td>
-            <td>Cascade rules configuration</td>
+            <td><span class="has-cve">4 CVEs</span></td>
+            <td><span class="severity-high">High</span></td>
+            <td>Path traversal</td>
+            <td>.cursorrules + update</td>
           </tr>
           <tr>
             <td>GitHub Copilot</td>
-            <td><span class="has-cve">CVE-2025-62449, 62453</span></td>
-            <td>27.3% vulnerable code</td>
+            <td><span class="has-cve">3 CVEs</span></td>
+            <td><span class="severity-high">High</span></td>
+            <td>SQL string concat</td>
             <td>Content exclusions</td>
           </tr>
           <tr>
+            <td>Cline</td>
+            <td><span class="has-cve">1 CVE</span></td>
+            <td><span class="severity-high">High</span></td>
+            <td>Tool call manipulation</td>
+            <td>Review tool permissions</td>
+          </tr>
+          <tr>
             <td>v0</td>
-            <td><span class="no-cve">None</span></td>
+            <td><span class="no-cve">0 CVEs</span></td>
+            <td><span class="severity-na">N/A</span></td>
             <td>NEXT_PUBLIC_ exposure</td>
-            <td>Blocked 100k+ insecure deploys</td>
+            <td>Review env variables</td>
           </tr>
           <tr>
             <td>Bolt.new</td>
-            <td><span class="no-cve">None</span></td>
+            <td><span class="no-cve">0 CVEs</span></td>
+            <td><span class="severity-na">N/A</span></td>
             <td><a href="/kb/security/vulnerabilities/hardcoded-secrets/">Hardcoded secrets</a></td>
-            <td>None documented</td>
-          </tr>
-          <tr>
-            <td>Lovable</td>
-            <td><span class="has-cve">CVE-2025-48757</span></td>
-            <td>Missing RLS (170+ apps)</td>
-            <td>Added security scanner</td>
+            <td>Scan before deploy</td>
           </tr>
           <tr>
             <td>Replit</td>
-            <td><span class="no-cve">None</span></td>
-            <td>Database deletion incident</td>
+            <td><span class="no-cve">0 CVEs</span></td>
+            <td><span class="severity-na">N/A</span></td>
+            <td>Database deletion risk</td>
             <td>Semgrep integration</td>
           </tr>
         </tbody>
       </table>
     </div>
 
+    <p class="table-source">CVE data from <a href="https://nvd.nist.gov/">National Vulnerability Database</a>. Updated December 2025.</p>
+
     <h3>Key Takeaways</h3>
     <ul>
-      <li><strong>Claude Code</strong> is the safest choice with no known CVEs and security-conscious code generation</li>
-      <li><strong>IDE tools</strong> (Cursor, Windsurf, Copilot) all have 2025 CVEs - keep them updated</li>
-      <li><strong>Web-based tools</strong> prioritize speed over security - always audit before production</li>
-      <li><strong>All tools</strong> can generate vulnerable code - scanning is essential regardless of tool choice</li>
+      <li><strong>No tool is CVE-free:</strong> All major IDE and CLI tools have had 2025 CVEs - even Claude Code has 3</li>
+      <li><strong>Critical CVEs:</strong> Windsurf (CVSS 9.8) and Lovable (CVSS 9.3) need immediate attention</li>
+      <li><strong>Web tools trade-off:</strong> Bolt.new and v0 have no CVEs but generate code with hardcoded secrets</li>
+      <li><strong>Keep tools updated:</strong> Most CVEs are patched in latest versions - update regularly</li>
+      <li><strong>Scan everything:</strong> All tools can generate vulnerable code - scanning is essential</li>
     </ul>
   </section>
 
@@ -569,35 +676,42 @@
       <details class="faq-item">
         <summary>What is the best vibe coding tool in 2025?</summary>
         <div class="faq-answer">
-          <p>The best vibe coding tool depends on your needs. <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> is the best overall IDE for professional development. <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> is best for autonomous agentic coding. <a href="/kb/vibe-coding-tools/bolt/">Bolt.new</a> is best for rapid prototyping. For security-conscious development, Claude Code has no known CVEs while tools like Cursor and Windsurf have documented vulnerabilities.</p>
+          <p>The best vibe coding tool depends on your needs. <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> ($20/mo) is the best overall IDE for professional development. <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> ($20/mo or API) is best for autonomous agentic coding. <a href="/kb/vibe-coding-tools/bolt/">Bolt.new</a> ($20/mo) is best for rapid prototyping. For budget-conscious developers, <a href="https://github.com/cline/cline">Cline</a> is free (BYOK). All major tools have had CVEs in 2025 - see our security comparison above.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>Which AI coding tool is most secure?</summary>
         <div class="faq-answer">
-          <p><a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> is currently the most security-conscious vibe coding tool with no known CVEs. It generates more secure code patterns by default compared to alternatives. However, all AI coding tools can generate vulnerable code - always review AI-generated code and use a security scanner before deployment.</p>
+          <p>No AI coding tool is completely secure in 2025. The <a href="https://ideaster.github.io/about/">IDEsaster research</a> has documented CVEs across multiple AI coding tools. <strong>Critical severity:</strong> Windsurf (CVSS 9.8) and Lovable (CVSS 9.3). Claude Code has 3 CVEs (max CVSS 8.8). Web tools like Bolt.new have no CVEs but generate code with hardcoded secrets. Always scan AI-generated code before deployment regardless of tool choice.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>Is Cursor better than GitHub Copilot?</summary>
         <div class="faq-answer">
-          <p><a href="/kb/vibe-coding-tools/cursor/">Cursor</a> and <a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot</a> serve different needs. Cursor offers a complete IDE experience with Composer for larger changes, while Copilot integrates into existing IDEs. Both have 2025 CVEs (CVE-2025-62352 for Cursor, CVE-2025-62449 for Copilot). Cursor costs $20/month vs Copilot's $10-19/month. Choose Cursor for dedicated AI IDE, Copilot for integration with your existing setup. See our <a href="/kb/vibe-coding-tools/claude-code-vs-cursor/">Claude Code vs Cursor</a> comparison for more.</p>
+          <p><a href="/kb/vibe-coding-tools/cursor/">Cursor</a> and <a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot</a> serve different needs. Cursor offers a complete IDE with Composer for larger changes, while Copilot integrates into existing IDEs. Both have multiple 2025 CVEs. Cursor costs $20/month vs Copilot's $10-19/month. Choose Cursor for dedicated AI IDE, Copilot for integration with VS Code. See our <a href="/kb/vibe-coding-tools/claude-code-vs-cursor/">Claude Code vs Cursor</a> comparison.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>Are vibe coding tools safe to use?</summary>
         <div class="faq-answer">
-          <p>Vibe coding tools are safe when used correctly, but require security awareness. Studies show 25-70% of AI-generated code contains vulnerabilities. Key safety practices: always review generated code, use security-focused prompts, scan code before deployment, and understand each tool's common vulnerability patterns. The tools themselves can have CVEs (like prompt injection attacks), so keep them updated. See our <a href="/kb/vibe-coding/secure-vibe-coding-guide/">secure vibe coding guide</a>.</p>
+          <p>Vibe coding tools are safe when used correctly, but AI-generated code frequently contains security vulnerabilities. The <a href="https://ideaster.github.io/about/">IDEsaster research</a> has documented CVEs across major AI coding tools including Cursor, Windsurf, and Claude Code. Key safety practices: always review generated code, scan before deployment, keep tools updated, and understand each tool's vulnerability patterns. See our <a href="/kb/vibe-coding/secure-vibe-coding-guide/">secure vibe coding guide</a>.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>What's the difference between Cursor and Claude Code?</summary>
         <div class="faq-answer">
-          <p><a href="/kb/vibe-coding-tools/cursor/">Cursor</a> is a full IDE (VS Code fork) with visual interface, while <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> is a CLI tool for terminal-based development. Cursor costs $20/month flat; Claude Code uses API pricing. Cursor supports multiple models (GPT-4, Claude); Claude Code uses only Claude models. For security, Claude Code has no known CVEs while Cursor has CVE-2025-62352. Choose Cursor for visual IDE experience, Claude Code for terminal-based agentic workflows.</p>
+          <p><a href="/kb/vibe-coding-tools/cursor/">Cursor</a> is a full IDE (VS Code fork) with visual interface, while <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> is a CLI tool for terminal-based development. Both cost ~$20/month. Cursor supports multiple models (GPT-4, Claude); Claude Code uses only Claude. Both have 2025 CVEs (Cursor: 4, Claude Code: 3). Choose Cursor for visual IDE experience, Claude Code for terminal-based agentic workflows. See our detailed <a href="/kb/vibe-coding-tools/claude-code-vs-cursor/">Claude Code vs Cursor comparison</a>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is there a free AI coding tool?</summary>
+        <div class="faq-answer">
+          <p>Yes. <a href="https://github.com/cline/cline">Cline</a> is completely free and open source - you just bring your own API key from OpenAI, Anthropic, or other providers. GitHub Copilot offers a limited free tier with 2000 completions. Most other tools require $10-25/month subscriptions. Cline has 1 CVE (<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32723">CVE-2025-32723</a>) for tool call manipulation.</p>
         </div>
       </details>
     </div>
@@ -637,26 +751,26 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    font-family: system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
-    color: #1a1a2e;
+    line-height: 1.7;
+    color: var(--text-primary);
   }
 
   .breadcrumb {
     display: flex;
     gap: 0.5rem;
     font-size: 0.875rem;
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 2rem;
     flex-wrap: wrap;
   }
 
   .breadcrumb a {
-    color: #6366f1;
+    color: var(--green-dim);
     text-decoration: none;
   }
 
   .breadcrumb a:hover {
+    color: var(--green);
     text-decoration: underline;
   }
 
@@ -665,32 +779,226 @@
   }
 
   h1 {
-    font-size: 2.25rem;
-    font-weight: 700;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 400;
     margin-bottom: 0.5rem;
-    color: #1a1a2e;
+    color: var(--text-primary);
   }
 
   .subtitle {
     font-size: 1.125rem;
-    color: #666;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+  }
+
+  .last-updated {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    margin: 0;
+  }
+
+  .last-updated a {
+    color: var(--green-dim);
+  }
+
+  /* CVE Tracker Component */
+  .cve-tracker {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .cve-tracker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .cve-tracker-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  .tracker-badge {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .cve-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .cve-stat {
+    text-align: center;
+    padding: 1rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+  }
+
+  .cve-stat.critical {
+    border-left: 3px solid var(--red);
+  }
+
+  .cve-stat.high {
+    border-left: 3px solid var(--orange);
+  }
+
+  .cve-stat.affected {
+    border-left: 3px solid var(--blue);
+  }
+
+  .cve-stat.developers {
+    border-left: 3px solid var(--green);
+  }
+
+  .cve-count {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .cve-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  .cve-detail {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+    margin-top: 0.25rem;
+  }
+
+  .cve-source {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin: 1rem 0 0 0;
+    text-align: center;
+  }
+
+  .cve-source a {
+    color: var(--green-dim);
+  }
+
+  /* Severity badges */
+  .severity-badge {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+
+  .severity-badge.critical {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--red);
+    font-weight: 600;
+  }
+
+  .severity-badge.high {
+    background: rgba(217, 119, 6, 0.15);
+    color: var(--orange);
+  }
+
+  .severity-badge.none {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+  }
+
+  .severity-critical {
+    color: var(--red);
+    font-weight: 600;
+  }
+
+  .severity-high {
+    color: var(--orange);
+    font-weight: 500;
+  }
+
+  .severity-na {
+    color: var(--text-secondary);
+  }
+
+  /* CVE count badges */
+  .cve-count-badge {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--red);
+    padding: 0.125rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .no-cve-badge {
+    display: inline-block;
+    background: rgba(46, 204, 113, 0.15);
+    color: var(--green);
+    padding: 0.125rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* Critical row highlighting */
+  .critical-row {
+    background: rgba(239, 68, 68, 0.1);
+  }
+
+  .critical-highlight {
+    background: rgba(239, 68, 68, 0.1);
+  }
+
+  .severity-mini {
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    margin-left: 0.25rem;
+  }
+
+  .table-source {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    margin-top: 0.5rem;
+  }
+
+  .table-source a {
+    color: var(--green-dim);
+  }
+
+  /* Open source card styling */
+  .tool-card.open-source {
+    border-left: 3px solid var(--green);
   }
 
   .quick-answer {
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-    border-left: 4px solid #0ea5e9;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green-dim);
     padding: 1.5rem;
-    border-radius: 0 8px 8px 0;
     margin-bottom: 2rem;
     font-size: 1rem;
   }
 
   .quick-answer a {
-    color: #0284c7;
+    color: var(--green-dim);
     text-decoration: none;
   }
 
   .quick-answer a:hover {
+    color: var(--green);
     text-decoration: underline;
   }
 
@@ -698,9 +1006,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1rem;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
     padding: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -713,26 +1020,27 @@
     display: block;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #6366f1;
+    color: var(--text-primary);
   }
 
   .stat-label {
     font-size: 0.75rem;
-    color: #64748b;
+    color: var(--text-tertiary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
   .toc {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
     padding: 1.5rem;
     margin-bottom: 2rem;
   }
 
   .toc h2 {
     font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
     margin-bottom: 1rem;
     border-bottom: none;
     padding-bottom: 0;
@@ -748,12 +1056,13 @@
   }
 
   .toc a {
-    color: #6366f1;
+    color: var(--green-dim);
     text-decoration: none;
     font-size: 0.875rem;
   }
 
   .toc a:hover {
+    color: var(--green);
     text-decoration: underline;
   }
 
@@ -762,54 +1071,63 @@
   }
 
   h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.875rem;
+    font-weight: 400;
     margin-bottom: 1rem;
-    color: #1a1a2e;
+    color: var(--text-primary);
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 1px solid var(--border);
   }
 
   h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
     margin: 1.5rem 0 0.75rem;
-    color: #374151;
+    color: var(--text-primary);
   }
 
   h4 {
     font-size: 1rem;
     font-weight: 600;
     margin: 0 0 0.5rem 0;
-    color: #4b5563;
+    color: var(--text-secondary);
   }
 
   p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-secondary);
   }
 
   a {
-    color: #6366f1;
+    color: var(--green-dim);
     text-decoration: none;
   }
 
   a:hover {
+    color: var(--green);
     text-decoration: underline;
   }
 
   ul, ol {
-    margin: 1rem 0;
+    margin: 1.25rem 0;
     padding-left: 1.5rem;
+    color: var(--text-secondary);
   }
 
   li {
     margin-bottom: 0.5rem;
   }
 
+  li::marker {
+    color: var(--green-dim);
+  }
+
   /* Comparison Table */
   .comparison-table-container {
     overflow-x: auto;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
   }
 
   .comparison-table {
@@ -822,13 +1140,13 @@
   .comparison-table td {
     padding: 0.75rem 1rem;
     text-align: left;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border);
   }
 
   .comparison-table th {
-    background: #f8fafc;
+    background: var(--bg-secondary);
     font-weight: 600;
-    color: #374151;
+    color: var(--text-primary);
   }
 
   .tool-link {
@@ -840,16 +1158,16 @@
   }
 
   .has-cve {
-    color: #dc2626;
+    color: var(--red);
   }
 
   .no-cve {
-    color: #16a34a;
+    color: var(--green);
   }
 
   .table-note {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--text-tertiary);
     font-style: italic;
     margin-top: 0.5rem;
   }
@@ -865,22 +1183,19 @@
   .tool-card {
     display: block;
     padding: 1.25rem;
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
     text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s;
   }
 
   .tool-card:hover {
-    border-color: #6366f1;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-color: var(--green-dim);
     text-decoration: none;
   }
 
   .tool-card.featured {
-    border-color: #16a34a;
-    background: linear-gradient(135deg, #f0fdf4 0%, white 100%);
+    border-left: 3px solid var(--green-dim);
   }
 
   .tool-header {
@@ -892,26 +1207,28 @@
 
   .tool-header h3 {
     margin: 0;
-    color: #1a1a2e;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-primary);
   }
 
   .security-badge {
     padding: 0.25rem 0.5rem;
-    border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
   }
 
   .tool-tagline {
     font-size: 0.8rem;
-    color: #6366f1;
+    color: var(--green-dim);
     font-weight: 500;
     margin: 0 0 0.5rem 0;
   }
 
   .tool-description {
     font-size: 0.875rem;
-    color: #4b5563;
+    color: var(--text-secondary);
     margin: 0 0 0.75rem 0;
   }
 
@@ -920,10 +1237,10 @@
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
     font-size: 0.75rem;
-    color: #64748b;
+    color: var(--text-tertiary);
     margin-bottom: 0.75rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border);
   }
 
   .tool-security {
@@ -935,26 +1252,25 @@
   }
 
   .security-label {
-    color: #64748b;
+    color: var(--text-tertiary);
   }
 
   .security-issue {
-    color: #dc2626;
+    color: var(--red);
     font-weight: 500;
   }
 
   .cve-tag {
-    background: #fef2f2;
-    color: #dc2626;
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--red);
     padding: 0.125rem 0.375rem;
-    border-radius: 4px;
     font-size: 0.7rem;
   }
 
   /* Security Comparison Table */
   .security-comparison-table {
     overflow-x: auto;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
   }
 
   .security-comparison-table table {
@@ -967,41 +1283,42 @@
   .security-comparison-table td {
     padding: 0.75rem 1rem;
     text-align: left;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border);
   }
 
   .security-comparison-table th {
-    background: #f8fafc;
+    background: var(--bg-secondary);
     font-weight: 600;
-    color: #374151;
+    color: var(--text-primary);
   }
 
   .highlight-row {
-    background: #f0fdf4;
+    background: var(--bg-tertiary);
   }
 
   /* Security Tips */
   .security-tips {
     display: grid;
     gap: 1rem;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
   }
 
   .tip {
-    padding: 1rem;
-    background: #f8fafc;
-    border-radius: 8px;
-    border-left: 3px solid #6366f1;
+    padding: 1.25rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green-dim);
   }
 
   .tip h4 {
-    color: #6366f1;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
   }
 
   .tip p {
     margin: 0;
     font-size: 0.875rem;
-    color: #4b5563;
+    color: var(--text-secondary);
   }
 
   /* FAQ */
@@ -1012,8 +1329,7 @@
   }
 
   .faq-item {
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    border: 1px solid var(--border);
     overflow: hidden;
   }
 
@@ -1021,11 +1337,12 @@
     padding: 1rem;
     font-weight: 500;
     cursor: pointer;
-    background: #f8fafc;
+    background: var(--bg-secondary);
     list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--text-primary);
   }
 
   .faq-item summary::-webkit-details-marker {
@@ -1035,7 +1352,7 @@
   .faq-item summary::after {
     content: '+';
     font-size: 1.25rem;
-    color: #6366f1;
+    color: var(--green-dim);
     font-weight: 300;
   }
 
@@ -1045,21 +1362,21 @@
 
   .faq-answer {
     padding: 1rem;
-    background: white;
-    border-top: 1px solid #e2e8f0;
+    background: var(--bg-tertiary);
+    border-top: 1px solid var(--border);
   }
 
   .faq-answer p {
     margin: 0;
     font-size: 0.875rem;
-    color: #4b5563;
-    line-height: 1.6;
+    color: var(--text-secondary);
+    line-height: 1.7;
   }
 
   /* Related Content */
   .related-content {
-    background: #f8fafc;
-    border-radius: 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
     padding: 2rem;
   }
 
@@ -1077,67 +1394,63 @@
   .related-link {
     display: block;
     padding: 1rem;
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
     text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s;
   }
 
   .related-link:hover {
-    border-color: #6366f1;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-color: var(--green-dim);
     text-decoration: none;
   }
 
   .related-link h4 {
     margin: 0 0 0.25rem 0;
-    color: #6366f1;
+    color: var(--green-dim);
     font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
   }
 
   .related-link p {
     margin: 0;
     font-size: 0.75rem;
-    color: #64748b;
+    color: var(--text-tertiary);
   }
 
   /* CTA */
   .cta-section {
     text-align: center;
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    border-radius: 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
     padding: 3rem 2rem;
-    color: white;
   }
 
   .cta-section h2 {
-    color: white;
     border-bottom: none;
     padding-bottom: 0;
   }
 
   .cta-section p {
-    opacity: 0.9;
     max-width: 500px;
     margin: 0 auto 1.5rem;
   }
 
   .cta-button {
     display: inline-block;
-    background: white;
-    color: #6366f1;
+    background: var(--green);
+    color: var(--bg-primary);
     padding: 0.875rem 2rem;
-    border-radius: 8px;
     font-weight: 600;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: background-color 0.2s;
   }
 
   .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: var(--green-dim);
     text-decoration: none;
+    color: var(--bg-primary);
   }
 
   @media (max-width: 768px) {
@@ -1151,6 +1464,29 @@
 
     .tool-cards {
       grid-template-columns: 1fr;
+    }
+
+    .cve-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cve-count {
+      font-size: 1.5rem;
+    }
+
+    .comparison-table {
+      font-size: 0.75rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cve-grid {
+      grid-template-columns: 1fr 1fr;
     }
   }
 </style>

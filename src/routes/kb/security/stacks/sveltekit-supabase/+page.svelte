@@ -26,9 +26,9 @@
 		},
 		{
 			id: 'CVE-2024-53262',
-			description: 'XSS via error.html template',
-			fixedIn: 'SvelteKit 2.x',
-			link: 'https://security.snyk.io/vuln/SNYK-JS-SVELTEJSKIT-5411362'
+			description: 'XSS via unescaped error.html template',
+			fixedIn: 'SvelteKit 2.8.3',
+			link: 'https://github.com/advisories/GHSA-mh2x-fcqh-fmqv'
 		},
 		{
 			id: 'CVE-2024-45047',

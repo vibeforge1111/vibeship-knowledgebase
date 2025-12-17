@@ -43,7 +43,7 @@
 		{
 			name: 'Debug Mode in Production',
 			severity: 'High',
-			prevalence: 'Expected 67% of projects',
+			prevalence: 'Very Common',
 			description: 'Replit projects ship with debug mode enabled, exposing detailed error messages, stack traces, and internal state to attackers.',
 			whyHappens: 'Debug mode makes development easier. Replit projects are "always in development" with no clear dev/prod separation by default.',
 			vulnerableCode: `# VULNERABLE: Replit generates this
@@ -73,7 +73,7 @@ if __name__ == '__main__':
 		{
 			name: 'Hardcoded Database Credentials',
 			severity: 'Critical',
-			prevalence: 'Expected 58% of projects',
+			prevalence: 'Very Common',
 			description: 'Replit Agent embeds database URLs with credentials directly in code instead of using the Secrets manager.',
 			whyHappens: 'Hardcoding makes code work immediately. Replit has a Secrets manager, but AI doesn\'t always use it.',
 			vulnerableCode: `// VULNERABLE: Replit Agent generates this
@@ -134,7 +134,7 @@ Best practices:
 		{
 			name: 'Missing HTTPS Enforcement',
 			severity: 'Medium',
-			prevalence: 'Expected 73% of projects',
+			prevalence: 'Very Common',
 			description: 'Replit apps don\'t enforce HTTPS redirects, allowing credentials and data to be transmitted in cleartext.',
 			whyHappens: 'Replit development URLs work over HTTP by default. Generated code doesn\'t include HTTPS enforcement.',
 			vulnerableCode: `// VULNERABLE: No HTTPS enforcement
@@ -177,7 +177,7 @@ app.listen(3000)`,
 		{
 			name: 'Missing Input Validation',
 			severity: 'High',
-			prevalence: 'Expected 50-60% of projects',
+			prevalence: 'Common',
 			description: 'Replit Agent generates APIs that accept any input without validation, enabling injection attacks and mass assignment.',
 			whyHappens: 'Validation adds code complexity. AI optimizes for working code, not edge cases. Beginners don\'t think about malicious input.',
 			vulnerableCode: `# VULNERABLE: No input validation

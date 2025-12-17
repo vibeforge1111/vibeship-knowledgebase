@@ -469,7 +469,7 @@ curl -X OPTIONS -H "Origin: https://your-app.com" \\
 				When vibe coding, the typical pattern is: you build a frontend, try to call your API, and get a CORS error. You ask the AI to "fix CORS" or "enable CORS", and it immediately generates <code>origin: '*'</code> because that makes the error disappear.
 			</p>
 			<p>
-				According to our <a href="/kb/vibe-coding-tools/claude-code/">Claude Code security patterns</a> analysis, 38% of AI-generated projects have insecure CORS defaults. The AI optimizes for "working code" without considering that wildcard CORS + authenticated APIs = anyone can steal your users' data.
+				Insecure CORS defaults are commonly found in AI-generated code. The AI optimizes for "working code" without considering that wildcard CORS + authenticated APIs = anyone can steal your users' data. See our <a href="/kb/vibe-coding-tools/claude-code/">Claude Code security patterns</a> guide for more details.
 			</p>
 			<p>
 				This is part of <a href="https://owasp.org/Top10/A05_2021-Security_Misconfiguration/">OWASP's Security Misconfiguration</a> category - insecure defaults that "work" but create vulnerabilities.

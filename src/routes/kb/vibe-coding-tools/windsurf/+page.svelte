@@ -203,7 +203,7 @@ export async function POST(request: Request) {
 		},
 		{
 			question: 'Is Windsurf better than Cursor?',
-			answer: 'Both have similar security profiles. Windsurf has a public CVE (CVE-2025-62353), Cursor has fewer documented vulnerabilities. Both generate code with common AI security patterns. Choose based on features, not security alone.'
+			answer: 'Both have documented CVEs. Windsurf has CVE-2025-62353 (CVSS 9.8), Cursor has CVE-2025-3115 via Electron. Both generate code with common AI security patterns. Choose based on features, not security alone.'
 		},
 		{
 			question: 'Does Windsurf have prompt injection vulnerabilities?',
@@ -318,9 +318,9 @@ export async function POST(request: Request) {
 					<span class="stat-source">CVE-2025-62353</span>
 				</div>
 				<div class="stat-item">
-					<span class="stat-value">8.1</span>
+					<span class="stat-value">9.8</span>
 					<span class="stat-label">CVSS Score</span>
-					<span class="stat-source">High Severity</span>
+					<span class="stat-source">Critical Severity</span>
 				</div>
 				<div class="stat-item">
 					<span class="stat-value">Cascade</span>
@@ -357,7 +357,7 @@ export async function POST(request: Request) {
 
 			<div class="cve-card">
 				<div class="cve-meta">
-					<span class="badge badge-high">CVSS 8.1</span>
+					<span class="badge badge-critical">CVSS 9.8</span>
 					<span class="badge">CWE-22</span>
 					<span class="badge">Path Traversal</span>
 				</div>
@@ -461,7 +461,7 @@ API_KEY = "configured in environment"`}</code></pre>
 							<td><strong>Windsurf</strong></td>
 							<td>1 (CVE-2025-62353)</td>
 							<td>Autonomous agent</td>
-							<td>Medium-High</td>
+							<td>High (CVSS 9.8)</td>
 						</tr>
 						<tr>
 							<td><a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot</a></td>
@@ -471,15 +471,15 @@ API_KEY = "configured in environment"`}</code></pre>
 						</tr>
 						<tr>
 							<td><a href="/kb/vibe-coding-tools/cursor/">Cursor</a></td>
-							<td>0 public</td>
+							<td>1 (CVE-2025-3115)</td>
 							<td>Chat + completion</td>
 							<td>Medium</td>
 						</tr>
 						<tr>
 							<td><a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a></td>
-							<td>0 public</td>
-							<td>Chat agent</td>
-							<td>Medium</td>
+							<td>3 (CVSS up to 8.8)</td>
+							<td>CLI agent</td>
+							<td>Medium-High</td>
 						</tr>
 						<tr>
 							<td><a href="/kb/vibe-coding-tools/bolt/">Bolt</a></td>

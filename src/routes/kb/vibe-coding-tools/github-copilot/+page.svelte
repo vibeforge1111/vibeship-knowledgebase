@@ -12,7 +12,7 @@
 
   const pageData = {
     title: "GitHub Copilot Security: The Most Popular AI Tool Has Known Vulnerabilities",
-    description: "GitHub Copilot generates 27% vulnerable code by default. Learn the CVEs and security patterns affecting the world's most popular AI coding assistant.",
+    description: "GitHub Copilot has published CVEs and generates code with known vulnerability patterns. Learn security issues affecting the world's most popular AI coding assistant.",
     slug: "github-copilot",
     publishedAt: "2025-12-17",
     updatedAt: "2025-12-17"
@@ -21,7 +21,7 @@
   const faqItems = [
     {
       question: "Is GitHub Copilot secure?",
-      answer: "Copilot itself is secure, but 27.3% of generated code contains vulnerabilities according to academic research. Published CVEs (CVE-2025-62449 for path traversal, CVE-2025-62453 for validation bypass) show the extension can be exploited. Always review suggestions before accepting them, especially for security-sensitive operations."
+      answer: "Copilot itself is secure, but academic research (<a href='https://arxiv.org/abs/2211.03622'>Pearce et al.</a>) found 27.3% of generated code contains vulnerabilities. Published CVEs (CVE-2025-62449 for path traversal, CVE-2025-62453 for validation bypass) show the extension can be exploited. Always review suggestions before accepting them, especially for security-sensitive operations."
     },
     {
       question: "What security issues does GitHub Copilot have?",

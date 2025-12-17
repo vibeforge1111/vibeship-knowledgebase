@@ -32,7 +32,7 @@
 		{
 			question: 'How do AI tools cause access control issues?',
 			answer:
-				'AI tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> are trained on tutorials that demonstrate authentication patterns but rarely cover authorization. When you prompt "create a user API," the AI generates routes with login checks but no ownership verification. Studies show 40-48% of AI-generated code contains security vulnerabilities, with access control being a top category.'
+				'AI tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> and <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> are trained on tutorials that demonstrate authentication patterns but rarely cover authorization. When you prompt "create a user API," the AI generates routes with login checks but no ownership verification. According to <a href="https://www.endorlabs.com/learn/the-most-common-security-vulnerabilities-in-ai-generated-code">Endor Labs research</a>, access control issues are among the top vulnerabilities in AI-generated code.'
 		}
 	];
 

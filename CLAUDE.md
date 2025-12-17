@@ -107,6 +107,84 @@ Every article: 3-5 uses of "vibe coding" terms minimum.
 
 Use **opengrep** (not semgrep) for rule syntax. Also use **trivy** and **gitleaks**.
 
+### 4. ARTICLE PAGE STYLING (MANDATORY)
+
+**All KB article pages MUST follow the vibeship design system exactly.**
+
+#### Required Structure
+
+```svelte
+<script lang="ts">
+  import { Header } from '$lib/components/layout';
+
+  const breadcrumbs = [
+    { label: 'Knowledge Base', href: '/kb' },
+    { label: 'Category', href: '/kb/category' },
+    { label: 'Article Title' }
+  ];
+</script>
+
+<Header {breadcrumbs} />
+
+<div class="content-wrapper">
+  <article class="content-main content-wide">
+    <!-- Article content here -->
+  </article>
+</div>
+
+<style>
+  /* Only page-specific styles using CSS variables */
+</style>
+```
+
+#### CSS Rules
+
+**ALWAYS use CSS variables - NEVER hardcode colors:**
+```css
+/* ✅ CORRECT */
+background: var(--bg-secondary);
+color: var(--text-primary);
+border: 1px solid var(--border);
+color: var(--green-dim);
+
+/* ❌ WRONG - Never do this */
+background: #f8fafc;
+color: #1e40af;
+border: 1px solid #e5e7eb;
+```
+
+**Available CSS Variables:**
+- Backgrounds: `--bg-primary`, `--bg-secondary`, `--bg-tertiary`
+- Text: `--text-primary`, `--text-secondary`, `--text-tertiary`
+- Borders: `--border`, `--border-strong`
+- Accents: `--green`, `--green-dim`, `--orange`, `--red`, `--blue`, `--violet`, `--pink`
+- Grays: `--gray-100` through `--gray-900`
+
+#### Global CSS Classes (Use These)
+
+**From components.css - use instead of custom styles:**
+- `.badge` - Category/type badges
+- `.quick-answer` - Quick answer boxes with green left border
+- `.stats-row` - Grid of stats cards
+- `.code-block` - Code example containers
+- `.code-comparison` - Before/after code comparison
+- `.fix-prompt` - AI fix prompt boxes
+- `.faq-list`, `.faq-item` - FAQ sections
+- `.related-grid` - Related content grid
+- `.card` - Content cards with hover effects
+- `.cta-box` - Call-to-action boxes
+
+#### Minimal Scoped Styles
+
+**Target: Under 150 lines of scoped styles per article.**
+
+Only add scoped styles for truly page-specific elements:
+- Custom badge variants (e.g., `.badge-pillar`)
+- Table of contents styles
+- Article-specific warning boxes
+
+**Reference article:** `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte`
+
 ---
 
 ## Content System
