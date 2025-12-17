@@ -4,6 +4,22 @@ Quick reference for running the three-agent content system.
 
 ---
 
+## Quick Start (Terminal Setup)
+
+| Terminal | Agent | Prompt File |
+|----------|-------|-------------|
+| T1 | Research Agent | `docs/.content-ops/terminals/T1-RESEARCH.md` |
+| T2 | Writer Agent | `docs/.content-ops/terminals/T2-WRITER.md` |
+| T3 | Writer Agent (parallel) | `docs/.content-ops/terminals/T3-WRITER.md` |
+| T4 | QA Agent | `docs/.content-ops/terminals/T4-QA.md` |
+
+**Or just ask in current session:**
+- "Research [topic] for KB article"
+- "Write article from this brief: [brief]"
+- "QA the [slug] article"
+
+---
+
 ## Agent 1: Research Agent
 
 **Tools:** Ahrefs MCP, Web Search, File Read
