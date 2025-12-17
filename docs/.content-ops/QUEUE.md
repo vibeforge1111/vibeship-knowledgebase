@@ -28,18 +28,26 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 6 | ✅ Done | Tool | cursor |
 | 7 | ✅ Done | Tool | claude-code |
 | 8 | ✅ Done | Tool | bolt |
-| 9 | 📝 Brief Ready | Stack | nextjs-supabase |
-| 10 | 📝 Brief Ready | Stack | nextjs-prisma |
+| 9 | ✅ Done | Stack | nextjs-supabase |
+| 10 | ✅ Done | Stack | nextjs-prisma |
 | 11 | ✅ Done | Vulnerability | missing-rate-limiting |
-| 12 | 📝 Brief Ready | Vulnerability | insecure-cors |
-| 13 | 📝 Brief Ready | Checklist | pre-launch |
-| 14 | 📝 Brief Ready | Tool | v0 |
-| 15 | 📝 Brief Ready | Tool | replit |
-| 16 | 📝 Brief Ready | Vulnerability | path-traversal |
-| 17 | 📝 Brief Ready | Vulnerability | ssrf |
-| 18 | 📝 Brief Ready | Vulnerability | open-redirect |
-| 19 | 📝 Brief Ready | Vulnerability | mass-assignment |
-| 20 | 📝 Brief Ready | Vulnerability | jwt-vulnerabilities |
+| 12 | ✅ Done | Vulnerability | insecure-cors |
+| 13 | ✅ Done | Checklist | pre-launch |
+| 14 | ✅ Done | Tool | v0 |
+| 15 | ✅ Done | Tool | replit |
+| 16 | ✅ Done | Vulnerability | path-traversal |
+| 17 | ✅ Done | Vulnerability | ssrf |
+| 18 | ✅ Done | Vulnerability | open-redirect |
+| 19 | ✅ Done | Vulnerability | mass-assignment |
+| 20 | ✅ Done | Vulnerability | jwt-vulnerabilities |
+| 21 | 📝 Brief Ready | Tool | github-copilot |
+| 22 | 📝 Brief Ready | Vulnerability | csrf |
+| 23 | 📝 Brief Ready | Tool | windsurf |
+| 24 | 📝 Brief Ready | Vulnerability | sensitive-data-exposure |
+| 25 | 📝 Brief Ready | Vulnerability | command-injection |
+| 26 | 📝 Brief Ready | Stack | sveltekit-supabase |
+| 27 | 📝 Brief Ready | Vulnerability | insecure-deserialization |
+| 28 | 📝 Brief Ready | Guide (PILLAR) | secure-vibe-coding-guide |
 
 **Legend:** ✅ Done | 📝 Brief Ready | 🔄 Next | ⏳ Pending | ⏸️ Blocked
 
@@ -395,6 +403,174 @@ notes: |
   - Weak secrets can be brute-forced
   - Missing expiration = tokens valid forever
   - Always specify algorithm in verify()
+```
+
+### 21. Tool: GitHub Copilot
+```yaml
+type: tool
+slug: github-copilot
+url: /kb/ai-patterns/github-copilot/
+title: "GitHub Copilot Security: The Most Popular AI Tool Has Known Vulnerabilities"
+word_count: 1500-2000
+notes: |
+  - Most popular AI coding tool (millions of users)
+  - CVE-2025-62449: Path traversal via malicious codebase files (CVSS 6.8)
+  - CVE-2025-62453: AI output validation bypass (CVSS 5.0)
+  - "Rules File Backdoor" attack via hidden unicode in rule files
+  - Academic study: 27.3% of generated code contains vulnerabilities
+  - Top CWEs: CWE-330 (weak random, 18%), CWE-94 (code injection, 10%), CWE-79 (XSS, 9.5%)
+  - External sources: NVD, Pillar Security, academic research
+```
+
+### 22. Vulnerability: CSRF
+```yaml
+type: vulnerability
+slug: csrf
+url: /kb/security/vulnerabilities/csrf/
+title: "CSRF: Why AI Tools Skip This Critical Protection"
+cwe: CWE-352
+owasp: A01:2021-Broken Access Control
+owasp_url: https://owasp.org/Top10/A01_2021-Broken_Access_Control/
+cwe_url: https://cwe.mitre.org/data/definitions/352.html
+severity: High
+word_count: 1200-1500
+notes: |
+  - Next.js Server Actions have built-in CSRF protection (POST-only, Origin validation)
+  - Custom Route Handlers require manual CSRF protection
+  - AI tools generate Route Handlers without CSRF protection
+  - SameSite cookies (browser default) provide partial protection
+  - Key distinction: Server Actions vs Route Handlers
+```
+
+### 23. Tool: Windsurf
+```yaml
+type: tool
+slug: windsurf
+url: /kb/ai-patterns/windsurf/
+title: "Windsurf Security: CVEs, Prompt Injection, and How to Stay Safe"
+word_count: 1500-2000
+notes: |
+  - Codeium's AI-native IDE with autonomous "Cascade" agent
+  - CVE-2025-62353: Path traversal in codebase_search/write_to_file (CVSS 8.1)
+  - Prompt injection can exfiltrate .env files via hidden instructions
+  - Inherited Electron/Chromium vulnerabilities (94+ CVEs)
+  - Key patterns: path traversal, secret exfiltration, hardcoded credentials
+  - External sources: NVD, Pillar Security, Kaspersky research
+```
+
+### 24. Vulnerability: Sensitive Data Exposure
+```yaml
+type: vulnerability
+slug: sensitive-data-exposure
+url: /kb/security/vulnerabilities/sensitive-data-exposure/
+title: "Sensitive Data Exposure: When AI Leaks Your Secrets"
+cwe: CWE-200
+cwe_secondary: CWE-209, CWE-532
+owasp: A02:2021-Cryptographic Failures
+owasp_url: https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/200.html
+severity: High
+word_count: 1200-1500
+notes: |
+  - CWE-200 in CWE Top 25 Most Dangerous Weaknesses (2024)
+  - OWASP renamed from "Sensitive Data Exposure" to "Cryptographic Failures"
+  - AI generates verbose error messages, console.log with sensitive data
+  - API responses return full database objects instead of filtered fields
+  - Stack traces reveal internal structure, file paths, component versions
+  - Query strings with tokens/emails logged by servers and proxies
+```
+
+### 25. Vulnerability: Command Injection
+```yaml
+type: vulnerability
+slug: command-injection
+url: /kb/security/vulnerabilities/command-injection/
+title: "Command Injection: When AI Gives Attackers Shell Access"
+cwe: CWE-78
+cwe_parent: CWE-77
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/78.html
+severity: Critical
+word_count: 1200-1500
+notes: |
+  - CVSS 8.8-9.9 (Critical) - complete system takeover
+  - 6.21% prevalence in Copilot-generated code (academic research)
+  - AI generates exec() with template literals for "run command" requests
+  - child_process.exec() spawns shell, interprets metacharacters (; | && $())
+  - Fix: Use execFile() or spawn() with array arguments
+  - CVE-2024-27980: Node.js spawn vulnerability with .bat/.cmd on Windows
+  - CISA added multiple command injection CVEs to KEV in 2024
+```
+
+### 26. Stack: SvelteKit + Supabase
+```yaml
+type: stack
+slug: sveltekit-supabase
+url: /kb/security/stacks/sveltekit-supabase/
+title: "SvelteKit + Supabase Security: Complete Checklist for Vibe Coders"
+framework: SvelteKit
+database: Supabase
+word_count: 1800-2200
+notes: |
+  - The #1 mistake: Using getSession() instead of getUser() on server
+  - getSession() reads from cookies (can be spoofed), getUser() validates with Auth server
+  - RLS (Row Level Security) disabled by default on new tables
+  - Service role key bypasses ALL RLS - never expose client-side
+  - CVE-2023-29003: SvelteKit CSRF bypass via Content-Type: text/plain
+  - CVE-2024-53262: XSS via error.html template
+  - hooks.server.ts auth setup critical for security
+  - Authorization in +layout.server.ts doesn't propagate reliably
+  - Views bypass RLS by default (security_invoker in Postgres 15+)
+  - External sources: Supabase Docs, SvelteKit Docs, Snyk CVE database
+```
+
+### 27. Vulnerability: Insecure Deserialization
+```yaml
+type: vulnerability
+slug: insecure-deserialization
+url: /kb/security/vulnerabilities/insecure-deserialization/
+title: "Insecure Deserialization: When AI Code Lets Attackers Execute Commands"
+cwe: CWE-502
+cwe_parent: CWE-913
+owasp: A08:2021-Software and Data Integrity Failures
+owasp_url: https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/502.html
+severity: Critical
+word_count: 1400-1800
+notes: |
+  - CWE-502 in 2024 CWE Top 25 Most Dangerous Weaknesses
+  - CVE-2025-55182: Critical React Server Components RCE (December 2024)
+  - Affects React 19.0.0-19.2.0, Next.js, React Router, Expo, and more
+  - Python: yaml.load() without SafeLoader enables RCE (fixed PyYAML 5.4)
+  - JavaScript: eval(), node-serialize, Function() constructor
+  - JSON.parse() is SAFE - custom deserializers are the problem
+  - Prototype pollution is related but different vulnerability
+  - OWASP merged into A08 (was standalone A8:2017)
+  - External sources: OWASP, Snyk, PortSwigger, HackTricks
+```
+
+### 28. Guide: The Complete Secure Vibe Coding Guide (PILLAR)
+```yaml
+type: guide
+slug: secure-vibe-coding-guide
+url: /kb/vibe-coding/secure-vibe-coding-guide/
+title: "The Complete Secure Vibe Coding Guide: Ship Fast Without Getting Hacked"
+pillar: true
+word_count: 4000-5000
+notes: |
+  - FLAGSHIP PILLAR CONTENT - links to ALL other KB articles
+  - Covers full workflow: prompting → generating → reviewing → scanning → deploying
+  - 25-70% of AI code contains vulnerabilities (BaxBench, multiple studies)
+  - 45% failed security tests (Veracode 2025)
+  - Includes complete .cursorrules security file (copy-paste ready)
+  - Secure prompt formula with before/after examples
+  - 5-minute security review checklist
+  - Tool-specific guidance (Cursor, Copilot, Claude Code, Bolt, etc.)
+  - Pre-deployment checklist
+  - OWASP Top 10 LLM Applications 2025 coverage
+  - External sources: OpenSSF, CSA, Wiz, Veracode, Endor Labs, OWASP
+  - Links to all 10+ vulnerability articles and 7+ tool articles
 ```
 
 ---

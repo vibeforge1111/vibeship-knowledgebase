@@ -46,6 +46,78 @@ Always output a structured **Content Brief** using one of these templates:
 - All competitor gaps must be specific and actionable
 - All internal links must be valid URLs in our KB structure
 
+---
+
+## Value-Impact for Vibe Coders (TOP PRIORITY)
+
+**Every brief must enable articles that deliver MASSIVE value to vibe coders.** This is our competitive advantage - we don't just explain vulnerabilities, we make vibe coders genuinely better at security.
+
+### What "Value-Packed" Means
+
+Articles should make readers say: "I'm glad I read this - I actually understand this now and know exactly what to do."
+
+**Research briefs must include opportunities for:**
+
+1. **Practical Copy-Paste Solutions**
+   - AI fix prompts they can use immediately
+   - Code snippets they can drop into their projects
+   - Regex patterns for finding issues
+   - Framework-specific configurations
+
+2. **Clear Mental Models**
+   - Real-world analogies that stick (hotel key analogy for IDOR)
+   - Visual explanations of how attacks work
+   - "If you remember one thing" takeaways
+   - Common misconceptions to address
+
+3. **Actionable Checklists**
+   - "Before you deploy" quick checks
+   - Tool-specific security prompts
+   - Environment setup steps
+   - Testing procedures they can follow
+
+4. **Stack-Specific Guidance**
+   - Next.js vs Express vs SvelteKit differences
+   - Supabase vs Firebase vs raw PostgreSQL
+   - Where each framework helps/fails
+
+5. **Time-to-Value Optimization**
+   - What's the fastest path to "secure enough"?
+   - Which fixes have highest impact for lowest effort?
+   - What can they ignore vs what's critical?
+
+### Brief Research Requirements
+
+When researching, actively seek:
+
+| Find This | Why It Adds Value |
+|-----------|-------------------|
+| Common misconceptions | Helps them avoid mistakes others make |
+| Framework defaults that cause issues | Shows exactly where to look |
+| Real CVE examples | Makes the threat concrete |
+| Prevention patterns | Not just fixes, but future-proofing |
+| Tool comparison data | Helps them evaluate their AI tool |
+| Secure prompt examples | Immediate win they can use today |
+
+### Red Flags in Research
+
+If your brief doesn't enable at least 3 of these, dig deeper:
+- [ ] Copy-paste AI fix prompt
+- [ ] Before/after code comparison
+- [ ] Framework-specific guidance
+- [ ] Concrete "this could happen to you" scenario
+- [ ] Quick detection method
+- [ ] Prevention pattern for future code
+
+### Value Density Checklist
+
+Before marking a brief complete:
+- [ ] Does this enable an article a vibe coder would bookmark?
+- [ ] Can they take action within 10 minutes of reading?
+- [ ] Will they feel smarter, not dumber, after reading?
+- [ ] Is there something here competitors don't cover?
+- [ ] Would this help them avoid a real incident?
+
 ## What You DO
 
 ✓ Query and analyze Scanner database

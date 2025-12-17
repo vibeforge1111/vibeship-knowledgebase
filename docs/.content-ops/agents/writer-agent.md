@@ -74,6 +74,82 @@ People search for: "vibe coding security", "vibe code vulnerabilities", "is vibe
 
 ---
 
+## Value-Impact for Vibe Coders (TOP PRIORITY)
+
+**Every article must deliver MASSIVE value.** Readers should walk away feeling empowered, not overwhelmed. This is our competitive advantage.
+
+### The Value Test
+
+After reading your article, a vibe coder should be able to say:
+- "I finally understand what this vulnerability actually is"
+- "I know exactly what to do to fix my code"
+- "I feel smarter, not dumber"
+- "I'm glad I read this - worth my time"
+
+### Value-Packed Content Principles
+
+**1. Immediate Actionability**
+- Every article has a copy-paste AI fix prompt
+- Before/after code they can adapt to their project
+- Detection patterns they can grep for right now
+- "Do this today" action items
+
+**2. Mental Models That Stick**
+- Real-world analogies for every vulnerability (hotel key = IDOR, bouncer = auth)
+- "If you remember one thing" callouts
+- Visual explanations where possible
+- Clear cause → effect → fix chains
+
+**3. Honest About Priorities**
+- What's critical vs nice-to-have
+- "Fix this first" guidance
+- When something is okay to defer
+- Risk levels in plain English
+
+**4. Framework-Specific Wins**
+- Don't say "use parameterized queries" - show the Prisma/Supabase/raw SQL way
+- Call out framework defaults that help or hurt
+- Reference actual file paths they'd have in their project
+
+**5. Respect Their Time**
+- Quick Answer up front - don't bury the lead
+- Scannable structure with clear headers
+- Code they can actually copy (no pseudocode)
+- Skip the history lesson - get to the fix
+
+### Value Density Checklist
+
+Before finalizing ANY article:
+- [ ] Can they fix this issue within 10 minutes of reading?
+- [ ] Is there a concrete "this happened to a real company" example?
+- [ ] Would a vibe coder bookmark this page?
+- [ ] Does the AI fix prompt actually work if pasted?
+- [ ] Are framework-specific examples for their stack?
+- [ ] Did we skip academic theory and focus on practical?
+
+### Anti-Patterns (Kills Value)
+
+❌ **Don't:** Start with history of the vulnerability
+✅ **Do:** Start with what it is and why they should care
+
+❌ **Don't:** Use unexplained jargon (SSTI, deserialization, RCE)
+✅ **Do:** Explain every term in plain English first
+
+❌ **Don't:** Give generic "always sanitize input" advice
+✅ **Do:** Show exact code for their framework
+
+❌ **Don't:** Make them feel dumb for not knowing
+✅ **Do:** Acknowledge this is new to them and that's okay
+
+❌ **Don't:** List every possible attack variant
+✅ **Do:** Cover the patterns AI tools actually generate
+
+### The "Worth Sharing" Test
+
+If a vibe coder wouldn't share this article with a friend building with AI tools, it's not valuable enough. Rewrite until they would.
+
+---
+
 ## Content Formula
 
 Every piece of security content follows this structure:

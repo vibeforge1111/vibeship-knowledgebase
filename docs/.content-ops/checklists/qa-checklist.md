@@ -4,6 +4,60 @@ Use this checklist before publishing any KB content.
 
 ---
 
+## Value-Impact Assessment (START HERE)
+
+**This is the most important section.** If an article fails the value test, it doesn't matter if everything else passes.
+
+### The Core Question
+After reading this article, will a vibe coder:
+- [ ] **Understand** the concept clearly (not just memorize)
+- [ ] **Know what to do** within 10 minutes of reading
+- [ ] **Feel empowered**, not overwhelmed or dumb
+- [ ] **Bookmark it** or share it with other vibe coders
+
+### Value Density Checks
+
+#### Immediate Actionability
+- [ ] Copy-paste AI fix prompt that actually works
+- [ ] Before/after code they can adapt to their project
+- [ ] Detection commands they can run right now
+- [ ] Clear "do this first" prioritization
+
+#### Mental Models
+- [ ] Real-world analogy that makes it click (hotel key = IDOR, bouncer = auth)
+- [ ] "If you remember one thing" summary
+- [ ] Clear cause → effect → fix explanation
+- [ ] Addresses common misconceptions
+
+#### Time Respect
+- [ ] Quick answer in first 50 words (not buried)
+- [ ] Can skim headers and get the gist
+- [ ] No unnecessary history lessons
+- [ ] Practical over theoretical
+
+#### Framework-Specific Value
+- [ ] Examples use actual frameworks they use (Next.js, SvelteKit, etc.)
+- [ ] Shows the Prisma/Supabase/Drizzle way, not just generic SQL
+- [ ] Mentions actual file paths they'd have
+- [ ] Calls out framework defaults that help or hurt
+
+### The "Worth Sharing" Test
+- [ ] Would a vibe coder share this with a friend building with AI tools?
+- [ ] Does this article exist anywhere else? (If yes, what makes ours better?)
+- [ ] Would they come back to reference it again?
+
+### Anti-Value Flags (Instant Fail)
+- [ ] ❌ Starts with history instead of what they need to know
+- [ ] ❌ Unexplained jargon that makes them feel dumb
+- [ ] ❌ Generic advice ("always sanitize input") without specific code
+- [ ] ❌ Lists every attack variant instead of AI-generated patterns
+- [ ] ❌ Academic tone that talks down to them
+- [ ] ❌ AI fix prompt that's too vague to actually use
+
+**If any anti-value flag is checked, STOP and fix before continuing.**
+
+---
+
 ## Pre-Flight Check
 
 ### Content Brief Verified
@@ -214,3 +268,53 @@ Use this checklist before publishing any KB content.
 
 ### "Not citable by LLMs"
 → Add "According to VibeShip Scanner (Month Year)..." before key stats
+
+---
+
+## Value Score (Final Gate)
+
+Rate each dimension 1-5, then total. **Minimum 20/25 to publish.**
+
+| Dimension | Score (1-5) | Notes |
+|-----------|-------------|-------|
+| **Actionability** - Can they fix this in 10 mins? | /5 | |
+| **Clarity** - Would a non-technical founder get it? | /5 | |
+| **Specificity** - Framework-specific, not generic? | /5 | |
+| **Completeness** - All they need in one place? | /5 | |
+| **Uniqueness** - Better than what's out there? | /5 | |
+| **TOTAL** | /25 | Min: 20 |
+
+### Scoring Guide
+
+**5 - Exceptional:** Best resource on the internet for this topic. Vibe coders would pay for this.
+**4 - Strong:** Clearly valuable, would bookmark. Minor improvements possible.
+**3 - Adequate:** Gets the job done but not remarkable. Likely won't be shared.
+**2 - Weak:** Missing key value. Needs significant work before publishing.
+**1 - Fail:** Doesn't serve vibe coders. Do not publish.
+
+### Score Interpretation
+
+| Total | Action |
+|-------|--------|
+| 23-25 | 🟢 Publish immediately |
+| 20-22 | 🟢 Publish - minor polish optional |
+| 17-19 | 🟡 Revise weak dimensions before publishing |
+| 14-16 | 🟠 Major revision needed - don't publish |
+| <14 | 🔴 Rewrite from scratch |
+
+### Low Score Recovery
+
+**Actionability low?**
+→ Add specific AI fix prompt, grep commands, file paths
+
+**Clarity low?**
+→ Add real-world analogy, simplify jargon, test on non-technical reader
+
+**Specificity low?**
+→ Add Next.js/SvelteKit/Express code, Prisma/Supabase examples
+
+**Completeness low?**
+→ Check competitor content for gaps, add FAQ, related links
+
+**Uniqueness low?**
+→ Add Scanner data, AI tool comparison, unique angle from brief
