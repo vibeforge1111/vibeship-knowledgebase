@@ -673,6 +673,15 @@ Pattern:
 			{/each}
 		</section>
 
+		<!-- Scanner CTA -->
+		<section class="cta-box">
+			<h2>Scan Your Cursor Projects for Vulnerabilities</h2>
+			<p>
+				Rules help prevent vulnerabilities, but they can't catch everything. <a href="https://scanner.vibeship.co">VibeShip Scanner</a> automatically detects SQL injection, XSS, hardcoded secrets, and more in your vibe coded projects.
+			</p>
+			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
+		</section>
+
 		<!-- Related Content -->
 		<section>
 			<h2>Related resources</h2>

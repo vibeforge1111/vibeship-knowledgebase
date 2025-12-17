@@ -4,6 +4,20 @@ Use this checklist before publishing any KB content.
 
 ---
 
+## SKILL ROUTING REMINDER
+
+**This checklist is for QA/pre-publish review.** Ensure the content was written using the correct skill:
+
+| Content Type | Correct Writer Skill | Path |
+|--------------|---------------------|------|
+| **Security** (vulnerabilities, stacks, fixes) | Security Writer Agent | `docs/.content-ops/strategies/VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md` |
+| **Prompts** (cursor rules, CLAUDE.md, AI config) | Master Prompting Skill | `docs/.content-ops/skills/master-prompting-skill.md` |
+| **Research** (briefs, data gathering) | Research Agent | `docs/.content-ops/agents/research-agent.md` |
+
+**QA Question:** Was the correct skill used to write this content? If not, rewrite.
+
+---
+
 ## Value-Impact Assessment (START HERE)
 
 **This is the most important section.** If an article fails the value test, it doesn't matter if everything else passes.

@@ -208,7 +208,7 @@
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>The best AI coding tools in 2025 are Cursor (best overall), Claude Code (best terminal), GitHub Copilot (best enterprise), and Bolt.new (best beginners).</strong> Each offers unique configuration for security and coding standards. Pricing ranges from free (Cline) to $40/user/month (enterprise).
+				<strong>The best AI coding tools in 2025 are Cursor (best overall), Claude Code (terminal), Copilot (enterprise), and Bolt.new (beginners).</strong> Pricing ranges from free to $40/user/month. Each offers security configuration options.
 			</p>
 		</div>
 

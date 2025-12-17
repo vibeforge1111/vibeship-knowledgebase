@@ -1,7 +1,7 @@
 # AI Coding Prompts: 50+ Prompts That Ship Faster
 
 <div class="quick-answer">
-<strong>AI coding prompts are copy-paste templates for building features, fixing bugs, and refactoring code with AI tools.</strong> These 50+ prompts include security considerations built in. Works with Cursor, Claude Code, ChatGPT, and GitHub Copilot. Each prompt is production-ready and security-conscious.
+<strong>AI coding prompts are copy-paste templates for building features, fixing bugs, and refactoring code.</strong> These 50+ prompts include security built in. Works with Cursor, Claude Code, ChatGPT, and Copilot.
 </div>
 
 ## How to Use These Prompts

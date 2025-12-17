@@ -72,7 +72,7 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 47 | ✅ Done | Vulnerability (P0) | nosql-injection |
 | | | **--- Prompts Series Expansion (40 articles) ---** | |
 | | | *Batch 1: Tool Configuration Guides* | |
-| 48 | 📝 Brief Ready | Prompts (P0) | cursor-rules-examples |
+| 48 | ✅ Done | Prompts (P0) | cursor-rules-examples |
 | 49 | 📝 Brief Ready | Prompts (P0) | how-to-use-cursor-rules |
 | 50 | 📝 Brief Ready | Prompts (P1) | windsurf-rules |
 | 51 | 📝 Brief Ready | Prompts (P1) | cline-rules |
@@ -119,9 +119,9 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | | | **--- NEW: 40-Article Vulnerability Expansion ---** | |
 | | | *Category A: Injection Variants* | |
 | 88 | 📝 Brief Ready | Vulnerability (P0) | nosql-injection |
-| 89 | 📝 Brief Ready | Vulnerability (P0) | graphql-injection |
-| 90 | 📝 Brief Ready | Vulnerability (P1) | ldap-injection |
-| 91 | 📝 Brief Ready | Vulnerability (P1) | header-injection |
+| 89 | ✅ Done | Vulnerability (P0) | graphql-injection |
+| 90 | ✅ Done | Vulnerability (P1) | ldap-injection |
+| 91 | ✅ Done | Vulnerability (P1) | header-injection |
 | 92 | 📝 Brief Ready | Vulnerability (P1) | log-injection |
 | 93 | 📝 Brief Ready | Vulnerability (P1) | email-header-injection |
 | 94 | 📝 Brief Ready | Vulnerability (P2) | xpath-injection |
@@ -1969,4 +1969,1014 @@ notes: |
   - Next.js + Supabase + TypeScript
   - Everything in one file
   - Brief: prompts-series-batch5-frameworks.md
+```
+
+---
+
+## 40-Article Vulnerability Expansion (December 2025)
+
+Expanding vulnerability coverage from 22 to 62 articles. All briefs completed with external authoritative sources.
+
+**Brief Files:** `docs/.content-ops/briefs/[slug]-brief.md`
+**Master List:** `docs/.content-ops/briefs/vulnerability-expansion-40.md`
+
+---
+
+### Category A: Injection Variants
+
+### 88. Vulnerability: NoSQL Injection
+```yaml
+type: vulnerability
+slug: nosql-injection
+url: /kb/security/vulnerabilities/nosql-injection/
+title: "NoSQL Injection: Why MongoDB Isn't Safe by Default"
+cwe: CWE-943
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/943.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "nosql injection" (250 volume, KD 4)
+  - "mongodb injection" (100 volume, KD 4)
+notes: |
+  - Operator injection ($ne, $gt, $where, $regex)
+  - MongoDB, Firestore, DynamoDB coverage
+  - AI generates vulnerable queries with user input in operators
+  - Myth: "NoSQL databases don't have injection" is FALSE
+  - Brief: nosql-injection-brief.md
+```
+
+### 89. Vulnerability: GraphQL Injection
+```yaml
+type: vulnerability
+slug: graphql-injection
+url: /kb/security/vulnerabilities/graphql-injection/
+title: "GraphQL Security: Introspection, DoS, and Query Attacks"
+cwe: CWE-89
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/89.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "graphql security" (450 volume)
+  - "graphql injection" (100 volume)
+notes: |
+  - Introspection enabled by default (schema exposure)
+  - Deep query attacks (denial of service)
+  - Field suggestion attacks, batch attacks
+  - AI enables introspection, doesn't add depth limits
+  - Brief: graphql-injection-brief.md
+```
+
+### 90. Vulnerability: LDAP Injection
+```yaml
+type: vulnerability
+slug: ldap-injection
+url: /kb/security/vulnerabilities/ldap-injection/
+title: "LDAP Injection: Enterprise Auth Vulnerabilities in AI Code"
+cwe: CWE-90
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/90.html
+severity: High
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "ldap injection" (200 volume)
+  - "active directory security"
+notes: |
+  - Common in enterprise auth integrations
+  - AI copies LDAP examples without sanitization
+  - Characters: *, (, ), \, NUL
+  - Affects Azure AD, Active Directory integrations
+  - CVE-2024-49113 LDAPNightmare (CVSS 9.8)
+  - Brief: ldap-injection-brief.md
+```
+
+### 91. Vulnerability: HTTP Header Injection
+```yaml
+type: vulnerability
+slug: header-injection
+url: /kb/security/vulnerabilities/header-injection/
+title: "HTTP Header Injection: Exploiting AI-Generated Response Headers"
+cwe: CWE-113
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/113.html
+severity: Medium
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "http header injection" (150 volume)
+  - "crlf injection" (200 volume)
+  - "response splitting"
+notes: |
+  - CRLF injection (\r\n) in headers
+  - Can lead to XSS, cache poisoning
+  - AI generates redirect URLs without sanitization
+  - Brief: header-injection-brief.md
+```
+
+### 92. Vulnerability: Log Injection
+```yaml
+type: vulnerability
+slug: log-injection
+url: /kb/security/vulnerabilities/log-injection/
+title: "Log Injection: How AI Logging Code Creates Security Blind Spots"
+cwe: CWE-117
+owasp: A09:2021-Security Logging and Monitoring Failures
+owasp_url: https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/117.html
+severity: Medium
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "log injection" (100 volume)
+  - "log forging"
+notes: |
+  - Attackers inject fake log entries
+  - Hide attacks, frame other users
+  - AI generates console.log(userInput) everywhere
+  - Log4Shell context (CVE-2021-44228)
+  - Brief: log-injection-brief.md
+```
+
+### 93. Vulnerability: Email Header Injection
+```yaml
+type: vulnerability
+slug: email-header-injection
+url: /kb/security/vulnerabilities/email-header-injection/
+title: "Email Header Injection: Contact Forms That Send Spam"
+cwe: CWE-93
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/93.html
+severity: Medium
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "email injection" (100 volume)
+  - "contact form security"
+  - "smtp injection"
+notes: |
+  - AI generates contact forms without validation
+  - Attackers add CC, BCC headers via newlines
+  - Can turn your site into spam relay
+  - Brief: email-header-injection-brief.md
+```
+
+### 94. Vulnerability: XPath Injection
+```yaml
+type: vulnerability
+slug: xpath-injection
+url: /kb/security/vulnerabilities/xpath-injection/
+title: "XPath Injection: XML Query Attacks AI Tools Generate"
+cwe: CWE-643
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/643.html
+severity: High
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P2
+keywords:
+  - "xpath injection" (150 volume)
+  - "xml security"
+notes: |
+  - Less common but severe when present
+  - AI generates XPath queries with string concatenation
+  - Related to XXE but different attack vector
+  - Brief: xpath-injection-brief.md
+```
+
+### 95. Vulnerability: Expression Language Injection
+```yaml
+type: vulnerability
+slug: el-injection
+url: /kb/security/vulnerabilities/el-injection/
+title: "Expression Language Injection: Spring, JSP, and Template Attacks"
+cwe: CWE-917
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/917.html
+severity: Critical
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P2
+keywords:
+  - "el injection" (50 volume)
+  - "spring expression injection"
+  - "ognl injection"
+notes: |
+  - Java/Spring-specific
+  - OGNL, SpEL, MVEL expressions
+  - CVE-2022-22963, CVE-2022-22965 (SpringShell)
+  - Brief: el-injection-brief.md
+```
+
+---
+
+### Category B: Authentication & Session
+
+### 96. Vulnerability: Credential Stuffing Protection
+```yaml
+type: vulnerability
+slug: credential-stuffing
+url: /kb/security/vulnerabilities/credential-stuffing/
+title: "Credential Stuffing: Why AI Login Code Gets Breached"
+cwe: CWE-307
+owasp: A07:2021-Identification and Authentication Failures
+owasp_url: https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/307.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "credential stuffing" (400 volume)
+  - "password spraying"
+  - "brute force protection"
+notes: |
+  - Billions of leaked credentials available
+  - AI generates login without detection/blocking
+  - Need: anomaly detection, CAPTCHA, device fingerprinting
+  - Brief: credential-stuffing-brief.md
+```
+
+### 97. Vulnerability: Password Reset Flaws
+```yaml
+type: vulnerability
+slug: password-reset-vulnerabilities
+url: /kb/security/vulnerabilities/password-reset-vulnerabilities/
+title: "Password Reset Vulnerabilities: 7 Flaws in AI-Generated Flows"
+cwe: CWE-640
+owasp: A07:2021-Identification and Authentication Failures
+owasp_url: https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/640.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "password reset security" (200 volume)
+  - "forgot password vulnerabilities"
+notes: |
+  - Token predictability, no expiration, token reuse
+  - User enumeration via error messages
+  - Host header injection
+  - Brief: password-reset-vulnerabilities-brief.md
+```
+
+### 98. Vulnerability: Session Fixation
+```yaml
+type: vulnerability
+slug: session-fixation
+url: /kb/security/vulnerabilities/session-fixation/
+title: "Session Fixation: When AI Auth Code Reuses Session IDs"
+cwe: CWE-384
+owasp: A07:2021-Identification and Authentication Failures
+owasp_url: https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/384.html
+severity: High
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "session fixation" (150 volume)
+  - "session security"
+notes: |
+  - AI doesn't regenerate session ID after login
+  - Attacker sets victim's session before auth
+  - Must call req.session.regenerate() on login
+  - Brief: session-fixation-brief.md
+```
+
+### 99. Vulnerability: Insecure Remember Me
+```yaml
+type: vulnerability
+slug: insecure-remember-me
+url: /kb/security/vulnerabilities/insecure-remember-me/
+title: "Insecure Remember Me: Persistent Login Done Wrong"
+cwe: CWE-613
+owasp: A07:2021-Identification and Authentication Failures
+owasp_url: https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/613.html
+severity: Medium
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "remember me security" (100 volume)
+  - "persistent login"
+notes: |
+  - Predictable tokens, no token rotation
+  - AI generates localStorage tokens with no security
+  - Series-token rotation pattern (Barry Jaspan)
+  - Brief: insecure-remember-me-brief.md
+```
+
+### 100. Vulnerability: OAuth/OIDC Misconfigurations
+```yaml
+type: vulnerability
+slug: oauth-vulnerabilities
+url: /kb/security/vulnerabilities/oauth-vulnerabilities/
+title: "OAuth Security: Redirect URI, State, and PKCE Failures"
+cwe: CWE-352
+owasp: A07:2021-Identification and Authentication Failures
+owasp_url: https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/352.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "oauth security" (300 volume)
+  - "oidc vulnerabilities"
+notes: |
+  - Missing state parameter (CSRF)
+  - Overly permissive redirect URIs
+  - Missing PKCE for mobile/SPA
+  - Brief: oauth-vulnerabilities-brief.md
+```
+
+### 101. Vulnerability: MFA Bypass
+```yaml
+type: vulnerability
+slug: mfa-bypass
+url: /kb/security/vulnerabilities/mfa-bypass/
+title: "MFA Bypass: When Two-Factor Authentication Fails"
+cwe: CWE-308
+owasp: A07:2021-Identification and Authentication Failures
+owasp_url: https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/308.html
+severity: Critical
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "mfa bypass" (300 volume)
+  - "2fa bypass"
+notes: |
+  - Response manipulation, backup code brute force
+  - MFA fatigue attacks, SIM swapping
+  - AI implements MFA without abuse prevention
+  - Brief: mfa-bypass-brief.md
+```
+
+---
+
+### Category C: Cryptographic Failures
+
+### 102. Vulnerability: Weak Password Hashing
+```yaml
+type: vulnerability
+slug: weak-password-hashing
+url: /kb/security/vulnerabilities/weak-password-hashing/
+title: "Weak Password Hashing: MD5, SHA1, and AI Defaults"
+cwe: CWE-328
+owasp: A02:2021-Cryptographic Failures
+owasp_url: https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/328.html
+severity: Critical
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "password hashing" (500 volume)
+  - "bcrypt vs argon2"
+notes: |
+  - AI generates MD5, SHA256 without salt
+  - bcrypt cost factor too low (should be 12+)
+  - Argon2id is now recommended
+  - Brief: weak-password-hashing-brief.md
+```
+
+### 103. Vulnerability: Insufficient Entropy
+```yaml
+type: vulnerability
+slug: insufficient-entropy
+url: /kb/security/vulnerabilities/insufficient-entropy/
+title: "Insufficient Entropy: Weak Random in AI-Generated Security Code"
+cwe: CWE-330
+owasp: A02:2021-Cryptographic Failures
+owasp_url: https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/330.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "weak random" (100 volume)
+  - "math.random security"
+notes: |
+  - Math.random() for tokens/secrets
+  - UUIDv4 misconceptions
+  - AI generates Math.random() for tokens
+  - Brief: insufficient-entropy-brief.md
+```
+
+### 104. Vulnerability: Hardcoded Cryptographic Keys
+```yaml
+type: vulnerability
+slug: hardcoded-crypto-keys
+url: /kb/security/vulnerabilities/hardcoded-crypto-keys/
+title: "Hardcoded Crypto Keys: When AI Example Keys Go Production"
+cwe: CWE-321
+owasp: A02:2021-Cryptographic Failures
+owasp_url: https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/321.html
+severity: Critical
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "hardcoded encryption key" (100 volume)
+  - "jwt secret key"
+notes: |
+  - JWT_SECRET = "secret"
+  - Encryption keys in code, IV reuse
+  - Related to but distinct from hardcoded-secrets
+  - Brief: hardcoded-crypto-keys-brief.md
+```
+
+### 105. Vulnerability: Insecure TLS Configuration
+```yaml
+type: vulnerability
+slug: insecure-tls
+url: /kb/security/vulnerabilities/insecure-tls/
+title: "Insecure TLS: SSL Vulnerabilities in AI-Deployed Apps"
+cwe: CWE-326
+owasp: A02:2021-Cryptographic Failures
+owasp_url: https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/326.html
+severity: High
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "tls security" (200 volume)
+  - "ssl configuration"
+notes: |
+  - TLS 1.0/1.1 still enabled
+  - Weak cipher suites, missing HSTS
+  - AI copies NODE_TLS_REJECT_UNAUTHORIZED=0
+  - Brief: insecure-tls-brief.md
+```
+
+### 106. Vulnerability: Timing Attacks
+```yaml
+type: vulnerability
+slug: timing-attacks
+url: /kb/security/vulnerabilities/timing-attacks/
+title: "Timing Attacks: Constant-Time Comparison AI Gets Wrong"
+cwe: CWE-208
+owasp: A02:2021-Cryptographic Failures
+owasp_url: https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/208.html
+severity: Medium
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P2
+keywords:
+  - "timing attack" (200 volume)
+  - "constant time comparison"
+notes: |
+  - String comparison reveals length
+  - crypto.timingSafeEqual() required
+  - AI uses === for security tokens
+  - Brief: timing-attacks-brief.md
+```
+
+---
+
+### Category D: API Security
+
+### 107. Vulnerability: BOLA (Broken Object Level Authorization)
+```yaml
+type: vulnerability
+slug: bola
+url: /kb/security/vulnerabilities/bola/
+title: "BOLA: The API Vulnerability That Exposed Millions"
+cwe: CWE-639
+owasp: API1:2023-BOLA
+owasp_url: https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/
+cwe_url: https://cwe.mitre.org/data/definitions/639.html
+severity: Critical
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "bola api" (100 volume)
+  - "broken object level authorization"
+notes: |
+  - OWASP API #1 vulnerability
+  - /api/users/{id} without ownership check
+  - More detail than general IDOR article
+  - Brief: bola-brief.md
+```
+
+### 108. Vulnerability: BFLA (Broken Function Level Authorization)
+```yaml
+type: vulnerability
+slug: bfla
+url: /kb/security/vulnerabilities/bfla/
+title: "BFLA: Admin Functions Exposed to Regular Users"
+cwe: CWE-285
+owasp: API5:2023-BFLA
+owasp_url: https://owasp.org/API-Security/editions/2023/en/0xa5-broken-function-level-authorization/
+cwe_url: https://cwe.mitre.org/data/definitions/285.html
+severity: Critical
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "bfla" (50 volume)
+  - "broken function level authorization"
+notes: |
+  - Vertical privilege escalation
+  - Regular user accessing admin endpoints
+  - AI generates admin routes without role checks
+  - Brief: bfla-brief.md
+```
+
+### 109. Vulnerability: Excessive Data Exposure
+```yaml
+type: vulnerability
+slug: excessive-data-exposure
+url: /kb/security/vulnerabilities/excessive-data-exposure/
+title: "Excessive Data Exposure: APIs That Return Too Much"
+cwe: CWE-213
+owasp: API3:2023-BOPLA
+owasp_url: https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/
+cwe_url: https://cwe.mitre.org/data/definitions/213.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "api data exposure" (100 volume)
+  - "overfetching"
+notes: |
+  - Return full user object including password hash
+  - Rely on client to filter sensitive fields
+  - AI returns db.user.findOne() directly
+  - Brief: excessive-data-exposure-brief.md
+```
+
+### 110. Vulnerability: Unrestricted Resource Consumption
+```yaml
+type: vulnerability
+slug: unrestricted-resource-consumption
+url: /kb/security/vulnerabilities/unrestricted-resource-consumption/
+title: "API DoS: Resource Exhaustion in AI-Generated APIs"
+cwe: CWE-400
+owasp: API4:2023-Unrestricted Resource Consumption
+owasp_url: https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/
+cwe_url: https://cwe.mitre.org/data/definitions/400.html
+severity: High
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "api dos" (100 volume)
+  - "resource exhaustion"
+notes: |
+  - Unbounded queries, large file uploads
+  - Regex DoS (ReDoS), GraphQL depth attacks
+  - AI doesn't add resource limits
+  - Brief: unrestricted-resource-consumption-brief.md
+```
+
+### 111. Vulnerability: Unsafe API Consumption
+```yaml
+type: vulnerability
+slug: unsafe-api-consumption
+url: /kb/security/vulnerabilities/unsafe-api-consumption/
+title: "Unsafe API Consumption: Third-Party API Security"
+cwe: CWE-346
+owasp: API10:2023-Unsafe Consumption of APIs
+owasp_url: https://owasp.org/API-Security/editions/2023/en/0xa10-unsafe-consumption-of-apis/
+cwe_url: https://cwe.mitre.org/data/definitions/346.html
+severity: High
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "third party api security" (100 volume)
+  - "api integration security"
+notes: |
+  - Trusting external API responses
+  - Webhook signature verification
+  - AI integrates APIs without validation
+  - Brief: unsafe-api-consumption-brief.md
+```
+
+---
+
+### Category E: Client-Side Security
+
+### 112. Vulnerability: DOM-Based XSS
+```yaml
+type: vulnerability
+slug: dom-xss
+url: /kb/security/vulnerabilities/dom-xss/
+title: "DOM XSS: Client-Side Script Injection in SPAs"
+cwe: CWE-79
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/79.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "dom xss" (200 volume)
+  - "dom based xss"
+notes: |
+  - Different from reflected/stored XSS
+  - innerHTML, document.write, eval
+  - React dangerouslySetInnerHTML
+  - Brief: dom-xss-brief.md
+```
+
+### 113. Vulnerability: Prototype Pollution
+```yaml
+type: vulnerability
+slug: prototype-pollution
+url: /kb/security/vulnerabilities/prototype-pollution/
+title: "Prototype Pollution: JavaScript's Hidden Attack Vector"
+cwe: CWE-1321
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/1321.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "prototype pollution" (300 volume)
+  - "javascript security"
+notes: |
+  - Object.assign() with user input
+  - __proto__, constructor.prototype injection
+  - Can escalate to RCE in Node.js
+  - Brief: prototype-pollution-brief.md
+```
+
+### 114. Vulnerability: Clickjacking
+```yaml
+type: vulnerability
+slug: clickjacking
+url: /kb/security/vulnerabilities/clickjacking/
+title: "Clickjacking: When UI Tricks Users into Attacks"
+cwe: CWE-1021
+owasp: A01:2021-Broken Access Control
+owasp_url: https://owasp.org/Top10/A01_2021-Broken_Access_Control/
+cwe_url: https://cwe.mitre.org/data/definitions/1021.html
+severity: Medium
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "clickjacking" (400 volume)
+  - "ui redressing"
+notes: |
+  - Invisible iframes over legitimate UI
+  - X-Frame-Options vs CSP frame-ancestors
+  - AI doesn't add frame protection headers
+  - Brief: clickjacking-brief.md
+```
+
+### 115. Vulnerability: CSP Misconfiguration
+```yaml
+type: vulnerability
+slug: csp-misconfiguration
+url: /kb/security/vulnerabilities/csp-misconfiguration/
+title: "CSP Bypasses: Why AI Security Headers Fail"
+cwe: CWE-16
+owasp: A05:2021-Security Misconfiguration
+owasp_url: https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
+cwe_url: https://cwe.mitre.org/data/definitions/16.html
+severity: Medium
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "content security policy" (400 volume)
+  - "csp bypass"
+notes: |
+  - 'unsafe-inline', 'unsafe-eval' defeats purpose
+  - CDN/domain allowlist bypasses
+  - AI generates permissive CSP or none
+  - Brief: csp-misconfiguration-brief.md
+```
+
+---
+
+### Category F: Business Logic
+
+### 116. Vulnerability: Price Manipulation
+```yaml
+type: vulnerability
+slug: price-manipulation
+url: /kb/security/vulnerabilities/price-manipulation/
+title: "Price Manipulation: E-Commerce Vulnerabilities in AI Code"
+cwe: CWE-20
+owasp: A04:2021-Insecure Design
+owasp_url: https://owasp.org/Top10/A04_2021-Insecure_Design/
+cwe_url: https://cwe.mitre.org/data/definitions/20.html
+severity: Critical
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "price manipulation" (150 volume)
+  - "ecommerce security"
+notes: |
+  - Client-side price in cart
+  - Currency confusion attacks
+  - AI trusts client-sent prices
+  - Brief: price-manipulation-brief.md
+```
+
+### 117. Vulnerability: Account Takeover Patterns
+```yaml
+type: vulnerability
+slug: account-takeover
+url: /kb/security/vulnerabilities/account-takeover/
+title: "Account Takeover: 10 Attack Patterns in AI-Generated Auth"
+cwe: CWE-306
+owasp: A07:2021-Identification and Authentication Failures
+owasp_url: https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/306.html
+severity: Critical
+word_count: 1800-2200
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "account takeover" (500 volume)
+  - "ato prevention"
+notes: |
+  - Comprehensive guide to ATO vectors
+  - Credential stuffing, session hijacking
+  - Consolidated view of auth attacks
+  - Brief: account-takeover-brief.md
+```
+
+### 118. Vulnerability: Business Logic Bypass
+```yaml
+type: vulnerability
+slug: business-logic-bypass
+url: /kb/security/vulnerabilities/business-logic-bypass/
+title: "Business Logic Bypass: Attacks AI Can't Anticipate"
+cwe: CWE-840
+owasp: A04:2021-Insecure Design
+owasp_url: https://owasp.org/Top10/A04_2021-Insecure_Design/
+cwe_url: https://cwe.mitre.org/data/definitions/840.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "business logic bypass" (100 volume)
+  - "logic flaw"
+notes: |
+  - Negative quantity in shopping cart
+  - Coupon code abuse
+  - AI generates valid code without business constraints
+  - Brief: business-logic-bypass-brief.md
+```
+
+### 119. Vulnerability: Workflow Bypass
+```yaml
+type: vulnerability
+slug: workflow-bypass
+url: /kb/security/vulnerabilities/workflow-bypass/
+title: "Workflow Bypass: Skipping Steps in Multi-Step Processes"
+cwe: CWE-841
+owasp: A04:2021-Insecure Design
+owasp_url: https://owasp.org/Top10/A04_2021-Insecure_Design/
+cwe_url: https://cwe.mitre.org/data/definitions/841.html
+severity: High
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "workflow bypass" (50 volume)
+  - "multi step form security"
+notes: |
+  - Checkout without payment
+  - Skip verification steps
+  - AI generates each step independently
+  - Brief: workflow-bypass-brief.md
+```
+
+---
+
+### Category G: Infrastructure & Config
+
+### 120. Vulnerability: Missing Security Headers
+```yaml
+type: vulnerability
+slug: missing-security-headers
+url: /kb/security/vulnerabilities/missing-security-headers/
+title: "Missing Security Headers: The 5-Minute Hardening Guide"
+cwe: CWE-16
+owasp: A05:2021-Security Misconfiguration
+owasp_url: https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
+cwe_url: https://cwe.mitre.org/data/definitions/16.html
+severity: Medium
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "security headers" (600 volume)
+  - "http headers security"
+notes: |
+  - HSTS, X-Frame-Options, X-Content-Type-Options
+  - AI deploys without any security headers
+  - Copy-paste headers for Next.js, Express
+  - Brief: missing-security-headers-brief.md
+```
+
+### 121. Vulnerability: Verbose Errors
+```yaml
+type: vulnerability
+slug: verbose-errors
+url: /kb/security/vulnerabilities/verbose-errors/
+title: "Verbose Errors: Stack Traces That Reveal Secrets"
+cwe: CWE-209
+owasp: A05:2021-Security Misconfiguration
+owasp_url: https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
+cwe_url: https://cwe.mitre.org/data/definitions/209.html
+severity: Medium
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "error message security" (100 volume)
+  - "stack trace exposure"
+notes: |
+  - Development errors in production
+  - Database structure in errors
+  - AI leaves debug mode enabled
+  - Brief: verbose-errors-brief.md
+```
+
+### 122. Vulnerability: Directory Listing
+```yaml
+type: vulnerability
+slug: directory-listing
+url: /kb/security/vulnerabilities/directory-listing/
+title: "Directory Listing: Exposing Your Entire Codebase"
+cwe: CWE-548
+owasp: A05:2021-Security Misconfiguration
+owasp_url: https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
+cwe_url: https://cwe.mitre.org/data/definitions/548.html
+severity: Medium
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "directory listing" (200 volume)
+  - "directory indexing"
+notes: |
+  - Default web server configs
+  - Exposes source code, .git, .env
+  - AI doesn't configure web servers
+  - Brief: directory-listing-brief.md
+```
+
+### 123. Vulnerability: SSI Injection
+```yaml
+type: vulnerability
+slug: ssi-injection
+url: /kb/security/vulnerabilities/ssi-injection/
+title: "SSI Injection: Legacy Vulnerability in Modern AI Code"
+cwe: CWE-97
+owasp: A03:2021-Injection
+owasp_url: https://owasp.org/Top10/A03_2021-Injection/
+cwe_url: https://cwe.mitre.org/data/definitions/97.html
+severity: High
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P2
+keywords:
+  - "ssi injection" (50 volume)
+  - "server side includes"
+notes: |
+  - Less common but severe
+  - Apache mod_include, nginx SSI
+  - <!--#exec cmd="..." -->
+  - Brief: ssi-injection-brief.md
+```
+
+---
+
+### Category H: Supply Chain & Dependencies
+
+### 124. Vulnerability: Vulnerable Dependencies
+```yaml
+type: vulnerability
+slug: vulnerable-dependencies
+url: /kb/security/vulnerabilities/vulnerable-dependencies/
+title: "Vulnerable Dependencies: AI's npm install Problem"
+cwe: CWE-1395
+owasp: A06:2021-Vulnerable and Outdated Components
+owasp_url: https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/
+cwe_url: https://cwe.mitre.org/data/definitions/1395.html
+severity: High
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P0
+keywords:
+  - "npm audit" (400 volume)
+  - "dependency security"
+notes: |
+  - npm audit, Snyk, Dependabot
+  - AI suggests outdated packages
+  - Transitive dependencies
+  - Brief: vulnerable-dependencies-brief.md
+```
+
+### 125. Vulnerability: Dependency Confusion
+```yaml
+type: vulnerability
+slug: dependency-confusion
+url: /kb/security/vulnerabilities/dependency-confusion/
+title: "Dependency Confusion: Private Package Hijacking"
+cwe: CWE-427
+owasp: A08:2021-Software and Data Integrity Failures
+owasp_url: https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/427.html
+severity: Critical
+word_count: 1500-1800
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "dependency confusion" (200 volume)
+  - "package hijacking"
+notes: |
+  - Public package same name as internal
+  - npm, PyPI, Maven attacks
+  - AI uses generic package names
+  - Brief: dependency-confusion-brief.md
+```
+
+### 126. Vulnerability: Typosquatting
+```yaml
+type: vulnerability
+slug: typosquatting
+url: /kb/security/vulnerabilities/typosquatting/
+title: "Typosquatting: Malicious Packages One Typo Away"
+cwe: CWE-426
+owasp: A08:2021-Software and Data Integrity Failures
+owasp_url: https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/426.html
+severity: High
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "typosquatting npm" (100 volume)
+  - "package typosquatting"
+notes: |
+  - lodash → 1odash, lodsh
+  - colors.js incident
+  - AI autocomplete can suggest wrong packages
+  - Brief: typosquatting-brief.md
+```
+
+### 127. Vulnerability: Subresource Integrity
+```yaml
+type: vulnerability
+slug: subresource-integrity
+url: /kb/security/vulnerabilities/subresource-integrity/
+title: "SRI: Protecting Against CDN Compromise"
+cwe: CWE-353
+owasp: A08:2021-Software and Data Integrity Failures
+owasp_url: https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/353.html
+severity: Medium
+word_count: 1400-1700
+status: 📝 Brief Ready
+priority: P1
+keywords:
+  - "subresource integrity" (200 volume)
+  - "sri hash"
+notes: |
+  - Script/style integrity verification
+  - CDN compromise protection
+  - AI loads scripts without SRI
+  - Brief: subresource-integrity-brief.md
 ```

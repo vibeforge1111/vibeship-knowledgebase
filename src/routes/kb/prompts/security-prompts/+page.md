@@ -1,7 +1,7 @@
 # Security Prompts: AI Code Review That Catches Vulnerabilities
 
 <div class="quick-answer">
-<strong>Security prompts are copy-paste code review instructions that help AI tools like Cursor, Claude Code, or ChatGPT find vulnerabilities in your vibe coded projects.</strong> Use these prompts to catch SQL injection, XSS, auth bypass, hardcoded secrets, and more before deployment. Each prompt includes what to check, why it matters, and how to fix it.
+<strong>Security prompts are copy-paste code review instructions for AI tools like Cursor and Claude Code.</strong> Use them to catch SQL injection, XSS, auth bypass, and hardcoded secrets in vibe coded projects before deployment.
 </div>
 
 ## Why You Need Security Prompts
