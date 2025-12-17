@@ -69,7 +69,7 @@
 </script>
 
 <svelte:head>
-	<title>AI Fix Prompts for Security Vulnerabilities | VibeShip Knowledge Base</title>
+	<title>AI Fix Prompts for Security Vulnerabilities | Vibeship Knowledge Base</title>
 	<meta name="description" content="Copy-paste prompts to fix security vulnerabilities with AI coding tools. SQL injection, XSS, authentication, and more.">
 </svelte:head>
 
@@ -179,7 +179,7 @@
 			<h2>Verify Your Fixes</h2>
 			<p>AI-generated fixes should always be verified:</p>
 			<ul>
-				<li>Run <a href="https://scanner.vibeship.co">VibeShip Scanner</a> on the fixed code</li>
+				<li>Run <a href="https://scanner.vibeship.co">Vibeship Scanner</a> on the fixed code</li>
 				<li>Test with malicious inputs manually</li>
 				<li>Review the fix logic. Does it make sense?</li>
 				<li>Check for regressions in functionality</li>

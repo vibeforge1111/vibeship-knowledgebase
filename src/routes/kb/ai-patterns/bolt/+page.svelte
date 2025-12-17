@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Bolt.new Security: 5 Patterns to Fix | VibeShip',
+		title: 'Is Bolt.new Safe? Security Risks & Fixes',
 		description: 'Bolt.new generates apps fast but often includes hardcoded secrets and missing auth. Learn 5 security patterns and how to fix them before deploying.',
 		url: '/kb/ai-patterns/bolt/'
 	};
@@ -324,11 +324,11 @@ Please proceed systematically through my codebase.`;
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip"
+			"name": "Vibeship"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "Vibeship",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -555,7 +555,7 @@ Please proceed systematically through my codebase.`;
 				</li>
 				<li>
 					<strong>Scan before deploying:</strong>
-					<p>Run <a href="https://scanner.vibeship.co">VibeShip Scanner</a> to catch hardcoded secrets, missing auth, and other vulnerabilities automatically.</p>
+					<p>Run <a href="https://scanner.vibeship.co">Vibeship Scanner</a> to catch hardcoded secrets, missing auth, and other vulnerabilities automatically.</p>
 				</li>
 			</ol>
 		</section>

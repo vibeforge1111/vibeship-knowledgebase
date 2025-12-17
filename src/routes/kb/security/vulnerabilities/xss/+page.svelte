@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'XSS in Vibe Coded Apps: Script Injection Fix | VibeShip',
+		title: 'XSS: Find & Fix Cross-Site Scripting',
 		description: 'Cross-Site Scripting (XSS) lets attackers inject scripts. Common when vibe coding. OWASP Top 10. Fix prompts for React, Vue & Svelte.',
 		url: '/kb/security/vulnerabilities/xss/'
 	};
@@ -90,11 +90,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip"
+			"name": "Vibeship"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "Vibeship",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -298,7 +298,7 @@ javascript:`}</code></pre>
 			<div class="cta-box">
 				<p><strong>Want to find XSS vulnerabilities automatically?</strong></p>
 				<a href="https://scanner.vibeship.co" class="btn btn-green">
-					Try VibeShip Scanner
+					Try Vibeship Scanner
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 						<path d="M5 12h14M12 5l7 7-7 7"/>
 					</svg>
@@ -537,7 +537,7 @@ const cleanHTML = DOMPurify.sanitize(untrustedHTML);
 			<h2>Scan your code for XSS vulnerabilities</h2>
 			<p>Check your codebase for dangerous HTML rendering patterns and other security issues.</p>
 			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
-				Try VibeShip Scanner
+				Try Vibeship Scanner
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<path d="M5 12h14M12 5l7 7-7 7"/>
 				</svg>

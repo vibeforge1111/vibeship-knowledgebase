@@ -120,7 +120,7 @@
 </script>
 
 <svelte:head>
-	<title>Security Glossary | VibeShip Knowledge Base</title>
+	<title>Security Glossary | Vibeship Knowledge Base</title>
 	<meta name="description" content="Plain English definitions of security terms. SQL injection, XSS, CSRF, JWT, and more explained for developers.">
 </svelte:head>
 

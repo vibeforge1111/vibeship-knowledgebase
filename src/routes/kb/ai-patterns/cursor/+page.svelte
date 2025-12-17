@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Cursor Security: 5 Patterns to Fix | VibeShip',
+		title: 'Is Cursor Safe? Security Risks & Fixes',
 		description: 'Security patterns in Cursor AI-generated code. Learn about SQL injection, template literals, and other vulnerabilities Cursor commonly generates.',
 		url: '/kb/ai-patterns/cursor/'
 	};
@@ -131,7 +131,7 @@ export async function POST(request) {
 		},
 		{
 			question: 'Should I stop using Cursor for security-sensitive code?',
-			answer: 'No. Cursor is a powerful tool that significantly speeds up development. The key is to review generated code for security issues before committing. Use VibeShip Scanner or manual review to catch vulnerabilities. AI-generated code needs the same security review as human-written code.'
+			answer: 'No. Cursor is a powerful tool that significantly speeds up development. The key is to review generated code for security issues before committing. Use Vibeship Scanner or manual review to catch vulnerabilities. AI-generated code needs the same security review as human-written code.'
 		},
 		{
 			question: 'Does Cursor\'s model choice affect security?',
@@ -188,11 +188,11 @@ export async function POST(request) {
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip"
+			"name": "Vibeship"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "Vibeship",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -348,7 +348,7 @@ export async function POST(request) {
 				</li>
 				<li>
 					<strong>Scan before shipping:</strong>
-					<p>Run <a href="https://scanner.vibeship.co">VibeShip Scanner</a> on your codebase to catch vulnerabilities.</p>
+					<p>Run <a href="https://scanner.vibeship.co">Vibeship Scanner</a> on your codebase to catch vulnerabilities.</p>
 				</li>
 			</ol>
 		</section>

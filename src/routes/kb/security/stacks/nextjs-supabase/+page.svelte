@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Next.js + Supabase Security: 5 Critical Patterns | VibeShip',
+		title: 'Next.js + Supabase Security: 5 Critical Patterns',
 		description: 'Secure your Next.js + Supabase vibe coded app. Learn RLS setup, key management, and Server Component security. Copy-paste fixes included.',
 		url: '/kb/security/stacks/nextjs-supabase/'
 	};
@@ -319,11 +319,11 @@ List all files you modified with before/after snippets.`;
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip"
+			"name": "Vibeship"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "Vibeship",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -523,7 +523,7 @@ List all files you modified with before/after snippets.`;
 			</div>
 
 			<p class="checklist-note">
-				For automated detection, use <a href="https://supabase.com/docs/guides/deployment/going-into-prod" target="_blank" rel="noopener">Supabase's Production Checklist</a> and run <a href="https://scanner.vibeship.co">VibeShip Scanner</a> to catch issues in your codebase.
+				For automated detection, use <a href="https://supabase.com/docs/guides/deployment/going-into-prod" target="_blank" rel="noopener">Supabase's Production Checklist</a> and run <a href="https://scanner.vibeship.co">Vibeship Scanner</a> to catch issues in your codebase.
 			</p>
 		</section>
 

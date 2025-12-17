@@ -56,7 +56,7 @@
 </script>
 
 <svelte:head>
-	<title>AI Coding Tool Security Patterns | VibeShip Knowledge Base</title>
+	<title>AI Coding Tool Security Patterns | Vibeship Knowledge Base</title>
 	<meta name="description" content="Security analysis of AI coding tools including Cursor, Claude Code, Bolt, v0, and more. Compare vulnerability rates and common issues.">
 </svelte:head>
 
@@ -144,7 +144,7 @@
 			<ol>
 				<li><strong>Always review generated code:</strong> Don't blindly accept AI suggestions</li>
 				<li><strong>Use security-focused prompts:</strong> Ask for secure, parameterized queries explicitly</li>
-				<li><strong>Scan before shipping:</strong> Run <a href="https://scanner.vibeship.co">VibeShip Scanner</a> on AI-generated code</li>
+				<li><strong>Scan before shipping:</strong> Run <a href="https://scanner.vibeship.co">Vibeship Scanner</a> on AI-generated code</li>
 				<li><strong>Learn the patterns:</strong> Understand what each tool gets wrong</li>
 			</ol>
 		</section>

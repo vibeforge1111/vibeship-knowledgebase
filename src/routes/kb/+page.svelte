@@ -62,7 +62,7 @@
 </script>
 
 <svelte:head>
-	<title>Knowledge Base | VibeShip</title>
+	<title>Knowledge Base | Vibeship</title>
 	<meta name="description" content="The definitive knowledge base for AI-generated code security. Learn about vulnerabilities, AI coding patterns, and how to fix security issues.">
 </svelte:head>
 

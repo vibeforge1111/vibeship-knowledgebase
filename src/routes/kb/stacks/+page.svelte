@@ -60,7 +60,7 @@
 </script>
 
 <svelte:head>
-	<title>Stack Security Guides | VibeShip Knowledge Base</title>
+	<title>Stack Security Guides | Vibeship Knowledge Base</title>
 	<meta name="description" content="Security guides for popular tech stacks including Next.js + Supabase, Express + MongoDB, FastAPI, and more. Learn common vulnerabilities by stack.">
 </svelte:head>
 

@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Hardcoded Secrets in Vibe Coded Apps | VibeShip',
+		title: 'Hardcoded Secrets: Find & Fix API Keys in Code',
 		description: 'Hardcoded API keys let attackers access your services. Common when vibe coding. Ranked OWASP Top 10. Fix prompts for Cursor, Bolt & Claude.',
 		url: '/kb/security/vulnerabilities/hardcoded-secrets/'
 	};
@@ -90,11 +90,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip"
+			"name": "Vibeship"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "Vibeship",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -289,7 +289,7 @@ const TOKEN = '....'
 			<div class="cta-box">
 				<p><strong>Want to find secrets automatically?</strong></p>
 				<a href="https://scanner.vibeship.co" class="btn btn-green">
-					Try VibeShip Scanner
+					Try Vibeship Scanner
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 						<path d="M5 12h14M12 5l7 7-7 7"/>
 					</svg>
@@ -498,7 +498,7 @@ const pool = new Pool({
 			<h2>Scan your code for hardcoded secrets</h2>
 			<p>Check your codebase for exposed API keys, passwords, and other credentials.</p>
 			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
-				Try VibeShip Scanner
+				Try Vibeship Scanner
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<path d="M5 12h14M12 5l7 7-7 7"/>
 				</svg>

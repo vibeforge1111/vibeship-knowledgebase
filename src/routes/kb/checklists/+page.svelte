@@ -54,7 +54,7 @@
 </script>
 
 <svelte:head>
-	<title>Security Checklists | VibeShip Knowledge Base</title>
+	<title>Security Checklists | Vibeship Knowledge Base</title>
 	<meta name="description" content="Actionable security checklists for developers. Pre-launch, API, authentication, database, and AI code review checklists.">
 </svelte:head>
 
@@ -141,7 +141,7 @@
 				<li><strong>Pick the right checklist:</strong> Choose based on your role and what you're building</li>
 				<li><strong>Work through each item:</strong> Don't skip items even if they seem obvious</li>
 				<li><strong>Use linked resources:</strong> Each item links to explanations and fix prompts</li>
-				<li><strong>Run automated checks:</strong> Use <a href="https://scanner.vibeship.co">VibeShip Scanner</a> for automatic detection</li>
+				<li><strong>Run automated checks:</strong> Use <a href="https://scanner.vibeship.co">Vibeship Scanner</a> for automatic detection</li>
 			</ol>
 		</section>
 

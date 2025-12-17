@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'IDOR: When Users Can Access Each Other\'s Data | VibeShip',
+		title: 'IDOR: Fix Insecure Direct Object References',
 		description: 'IDOR lets authenticated users access other users\' data by changing IDs in URLs. Common in vibe coding. Ranked #1 OWASP Top 10. Learn to fix it.',
 		url: '/kb/security/vulnerabilities/idor/'
 	};
@@ -91,11 +91,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip"
+			"name": "Vibeship"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "Vibeship",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -566,7 +566,7 @@ export async function GET(
 			<h2>Scan your code for IDOR vulnerabilities</h2>
 			<p>Check your API endpoints for authorization issues and other common security vulnerabilities.</p>
 			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
-				Try VibeShip Scanner
+				Try Vibeship Scanner
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<path d="M5 12h14M12 5l7 7-7 7"/>
 				</svg>

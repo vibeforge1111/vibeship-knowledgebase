@@ -28,13 +28,20 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 6 | ✅ Done | Tool | cursor |
 | 7 | ✅ Done | Tool | claude-code |
 | 8 | ✅ Done | Tool | bolt |
-| 9 | 🔄 Next | Stack | nextjs-supabase |
-| 10 | ⏳ Pending | Stack | nextjs-prisma |
-| 11 | ⏳ Pending | Vulnerability | missing-rate-limiting |
-| 12 | ⏳ Pending | Vulnerability | insecure-cors |
-| 13 | ⏳ Pending | Checklist | pre-launch |
+| 9 | 📝 Brief Ready | Stack | nextjs-supabase |
+| 10 | 📝 Brief Ready | Stack | nextjs-prisma |
+| 11 | ✅ Done | Vulnerability | missing-rate-limiting |
+| 12 | 📝 Brief Ready | Vulnerability | insecure-cors |
+| 13 | 📝 Brief Ready | Checklist | pre-launch |
+| 14 | 📝 Brief Ready | Tool | v0 |
+| 15 | 📝 Brief Ready | Tool | replit |
+| 16 | 📝 Brief Ready | Vulnerability | path-traversal |
+| 17 | 📝 Brief Ready | Vulnerability | ssrf |
+| 18 | 📝 Brief Ready | Vulnerability | open-redirect |
+| 19 | 📝 Brief Ready | Vulnerability | mass-assignment |
+| 20 | 📝 Brief Ready | Vulnerability | jwt-vulnerabilities |
 
-**Legend:** ✅ Done | 🔄 Next | ⏳ Pending | ⏸️ Blocked
+**Legend:** ✅ Done | 📝 Brief Ready | 🔄 Next | ⏳ Pending | ⏸️ Blocked
 
 ---
 
@@ -206,22 +213,23 @@ notes: |
   - Type-safe queries are generally secure
 ```
 
-### 11. Vulnerability: Missing Rate Limiting
+### 11. Vulnerability: Missing Rate Limiting ✅ DONE
 ```yaml
 type: vulnerability
 slug: missing-rate-limiting
 url: /kb/security/vulnerabilities/missing-rate-limiting/
-title: "Missing Rate Limiting: Open Door for Attackers"
+title: "Missing Rate Limiting: Why AI Forgets This Critical Security"
 cwe: CWE-799
 owasp: A04:2021-Insecure Design
 owasp_url: https://owasp.org/Top10/A04_2021-Insecure_Design/
 cwe_url: https://cwe.mitre.org/data/definitions/799.html
 severity: Medium
 word_count: 1200-1500
+status: PUBLISHED
 notes: |
   - AI rarely adds rate limiting unless asked
   - Critical for login, password reset, API endpoints
-  - Easy to add with libraries (express-rate-limit, etc.)
+  - Easy to add with libraries (express-rate-limit, Upstash)
 ```
 
 ### 12. Vulnerability: Insecure CORS
@@ -259,6 +267,134 @@ notes: |
   - Simple yes/no checklist format
   - Link to relevant vulnerability articles
   - Include AI fix prompt for automated scanning
+```
+
+### 14. Tool: v0 (Vercel)
+```yaml
+type: tool
+slug: v0
+url: /kb/ai-patterns/v0/
+title: "v0 Security Patterns: When Fast UI Meets Vulnerable Code"
+word_count: 1500-2000
+notes: |
+  - Vercel's AI UI generation tool
+  - UI-first, Next.js native, shadcn/ui integration
+  - Top issue: NEXT_PUBLIC_ secret exposure (17k deployments blocked)
+  - v0 blocked 100k+ insecure deployments since launch
+  - Key patterns: missing server-side validation, unprotected Server Actions
+  - External sources: Vercel Blog, Kaspersky research
+```
+
+### 15. Tool: Replit Agent
+```yaml
+type: tool
+slug: replit
+url: /kb/ai-patterns/replit/
+title: "Replit Agent Security: Lessons from the Database Deletion Incident"
+word_count: 1500-2000
+notes: |
+  - Browser-based AI development environment
+  - July 2025 incident: Agent deleted production database, fabricated fake data, lied
+  - CEO Amjad Masad publicly apologized
+  - Now has Semgrep integration for vulnerability scanning
+  - Key patterns: debug mode in production, hardcoded DB credentials, missing HTTPS
+  - External sources: CyberNews, CPO Magazine, Kaspersky research
+```
+
+### 16. Vulnerability: Path Traversal
+```yaml
+type: vulnerability
+slug: path-traversal
+url: /kb/security/vulnerabilities/path-traversal/
+title: "Path Traversal: Stop Attackers Escaping Your Directories"
+cwe: CWE-22
+owasp: A01:2021-Broken Access Control
+owasp_url: https://owasp.org/Top10/A01_2021-Broken_Access_Control/
+cwe_url: https://cwe.mitre.org/data/definitions/22.html
+severity: High
+word_count: 1200-1500
+notes: |
+  - Attackers use ../ to escape intended directories
+  - Common in file upload/download features
+  - path.resolve() alone is NOT sufficient
+  - Must verify resolved path stays within allowed directory
+```
+
+### 17. Vulnerability: SSRF (Server-Side Request Forgery)
+```yaml
+type: vulnerability
+slug: ssrf
+url: /kb/security/vulnerabilities/ssrf/
+title: "SSRF: When Your Server Makes Requests for Attackers"
+cwe: CWE-918
+owasp: A10:2021-Server-Side Request Forgery
+owasp_url: https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/
+cwe_url: https://cwe.mitre.org/data/definitions/918.html
+severity: High
+word_count: 1200-1500
+notes: |
+  - Next.js had critical SSRF CVEs in 2024-2025 (CVE-2024-34351, CVE-2025-57822)
+  - Common in URL preview, image proxy, webhook features
+  - AWS metadata endpoint (169.254.169.254) is prime target
+  - Must validate and allowlist URLs before fetching
+```
+
+### 18. Vulnerability: Open Redirect
+```yaml
+type: vulnerability
+slug: open-redirect
+url: /kb/security/vulnerabilities/open-redirect/
+title: "Open Redirect: How Attackers Hijack Your Login Flow"
+cwe: CWE-601
+owasp: A01:2021-Broken Access Control
+owasp_url: https://owasp.org/Top10/A01_2021-Broken_Access_Control/
+cwe_url: https://cwe.mitre.org/data/definitions/601.html
+severity: Medium
+word_count: 1200-1500
+notes: |
+  - Enables phishing with trusted domains
+  - Common in returnUrl, OAuth callback handling
+  - Users trust your domain, get redirected to phishing site
+  - Always validate redirect URLs against allowlist
+```
+
+### 19. Vulnerability: Mass Assignment
+```yaml
+type: vulnerability
+slug: mass-assignment
+url: /kb/security/vulnerabilities/mass-assignment/
+title: "Mass Assignment: When Users Modify Fields They Shouldn't"
+cwe: CWE-915
+owasp: API3:2023-Broken Object Property Level Authorization
+owasp_url: https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/
+cwe_url: https://cwe.mitre.org/data/definitions/915.html
+severity: High
+word_count: 1200-1500
+notes: |
+  - Attacker adds isAdmin: true to API request
+  - Object.assign() and spread operator are culprits
+  - Was API6:2019, now merged into API3:2023
+  - Always use allowlists for updateable fields
+```
+
+### 20. Vulnerability: JWT Implementation Flaws
+```yaml
+type: vulnerability
+slug: jwt-vulnerabilities
+url: /kb/security/vulnerabilities/jwt-vulnerabilities/
+title: "JWT Security: 5 Flaws AI Tools Get Wrong"
+cwe: CWE-347
+owasp: A02:2021-Cryptographic Failures
+owasp_url: https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
+cwe_url: https://cwe.mitre.org/data/definitions/347.html
+severity: Critical
+word_count: 1500-2000
+notes: |
+  - Algorithm confusion: RS256 to HS256 attack
+  - "none" algorithm attack bypasses signature
+  - Weak secrets can be brute-forced
+  - Missing expiration = tokens valid forever
+  - Always specify algorithm in verify()
 ```
 
 ---

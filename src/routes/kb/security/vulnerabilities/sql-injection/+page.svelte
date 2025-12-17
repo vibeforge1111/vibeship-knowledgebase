@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'SQL Injection: Find & Fix in Vibe Coded Apps | VibeShip',
+		title: 'SQL Injection: Find & Fix in AI-Generated Code',
 		description: 'SQL injection lets attackers steal your database. Common in vibe coding. Ranked #3 OWASP Top 10. Fix prompts for Cursor, Bolt & Claude.',
 		url: '/kb/security/vulnerabilities/sql-injection/'
 	};
@@ -91,11 +91,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip"
+			"name": "Vibeship"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "Vibeship",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -484,7 +484,7 @@ const getUser = async (userId) => {
 			<h2>Scan your code for SQL injection</h2>
 			<p>Check your codebase for SQL injection and other common security vulnerabilities.</p>
 			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
-				Try VibeShip Scanner
+				Try Vibeship Scanner
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<path d="M5 12h14M12 5l7 7-7 7"/>
 				</svg>

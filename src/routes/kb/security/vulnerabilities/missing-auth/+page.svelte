@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Missing Auth: Unprotected APIs in Vibe Code | VibeShip',
+		title: 'Broken Authentication: Fix Unprotected APIs',
 		description: 'Missing authentication lets anyone access your API endpoints. Common in vibe coding when AI generates routes without auth checks. Learn to fix it.',
 		url: '/kb/security/vulnerabilities/missing-auth/'
 	};
@@ -91,11 +91,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip"
+			"name": "Vibeship"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "Vibeship",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -568,7 +568,7 @@ export async function GET(
 			<h2>Scan your code for missing authentication</h2>
 			<p>Check your API routes for authentication issues and other common security vulnerabilities.</p>
 			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
-				Try VibeShip Scanner
+				Try Vibeship Scanner
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<path d="M5 12h14M12 5l7 7-7 7"/>
 				</svg>

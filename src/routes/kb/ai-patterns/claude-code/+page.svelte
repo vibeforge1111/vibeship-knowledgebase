@@ -3,7 +3,7 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Claude Code Security: 5 Patterns to Fix | VibeShip',
+		title: 'Is Claude Code Safe? Security Guide',
 		description: 'Security patterns in Claude Code AI-generated apps. Learn about input validation, verbose errors, CORS issues, and how to use Claude Code securely.',
 		url: '/kb/ai-patterns/claude-code/'
 	};
@@ -262,11 +262,11 @@ export async function POST({ request }) {
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "VibeShip"
+			"name": "Vibeship"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "VibeShip",
+			"name": "Vibeship",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -424,7 +424,7 @@ export async function POST({ request }) {
 				</li>
 				<li>
 					<strong>Scan your codebase before deployment:</strong>
-					<p>Run <a href="https://scanner.vibeship.co">VibeShip Scanner</a> to catch vulnerabilities that may have slipped through review.</p>
+					<p>Run <a href="https://scanner.vibeship.co">Vibeship Scanner</a> to catch vulnerabilities that may have slipped through review.</p>
 				</li>
 			</ol>
 		</section>
