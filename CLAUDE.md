@@ -4,43 +4,24 @@ This project uses Mind for persistent memory across sessions.
 
 ### Required Protocol
 
-1. **Session Start**: ALWAYS call `mind_recall()` before responding to the first message. This loads context from previous sessions.
+1. **Session Start**: ALWAYS call `mind_recall()` before responding to the first message.
 
-2. **During Work**: Use `mind_log(message, type)` to capture what happens:
-   - `mind_log("chose X over Y - simpler", type="decision")` → MEMORY.md
-   - `mind_log("API returns 500 on large payloads", type="problem")` → MEMORY.md
-   - `mind_log("Safari needs vendor prefix for X", type="learning")` → MEMORY.md
-   - `mind_log("resolved by increasing timeout", type="progress")` → MEMORY.md
-   - `mind_log("working on auth flow", type="experience")` → SESSION.md
-   - `mind_log("build keeps failing", type="blocker")` → SESSION.md
-   - `mind_log("tried Redis - too complex", type="rejected")` → SESSION.md
-   - `mind_log("assuming user has stable internet", type="assumption")` → SESSION.md
+2. **During Work**: Use `mind_log(message, type)` to capture:
+   - `decision`, `learning`, `problem`, `progress` → MEMORY.md (permanent)
+   - `experience`, `blocker`, `rejected`, `assumption` → SESSION.md (ephemeral)
 
 3. **Session End**: Summarize with `## DATE | what happened | mood: X`
 
-### Two-Layer Memory
-
-**MEMORY.md** (permanent, cross-session):
-- Decisions, learnings, problems, progress
-- Use types: `decision`, `learning`, `problem`, `progress`
-
-**SESSION.md** (ephemeral, within-session):
-- Raw experience, blockers, rejected approaches, assumptions
-- Use types: `experience`, `blocker`, `rejected`, `assumption`
-- Valuable items get promoted to MEMORY.md on session gap (>30 min)
-
 ### Tools Available
-
 - `mind_recall()` - Load session context (CALL FIRST!)
-- `mind_log(msg, type)` - Log to session or memory (routes by type)
+- `mind_log(msg, type)` - Log to session or memory
 - `mind_session()` - Get current session state
-- `mind_blocker(description)` - Log blocker + auto-search memory for solutions
+- `mind_blocker(description)` - Log blocker + auto-search for solutions
 - `mind_search(query)` - Find specific memories
-- `mind_remind(msg, when)` - Set time or context reminder
+- `mind_remind(msg, when)` - Set reminder
 - `mind_checkpoint()` - Force process pending memories
 - `mind_edges(intent)` - Check for gotchas before coding
-- `mind_status()` - Check memory health
-- `mind_spawn_helper(problem)` - Package problem for fresh agent investigation
+- `mind_spawn_helper(problem)` - Package problem for fresh agent
 
 ---
 
@@ -52,57 +33,18 @@ sveltekit, typescript
 (None yet - add to .mind/MEMORY.md Gotchas section)
 <!-- MIND:END -->
 
-# CLAUDE.md - Vibeship Knowledge Base
+# VibeShip Knowledge Base
 
 ## Project Overview
 
-This is the **vibeship.co** main authority hub - the educational/research content site that drives SEO and LLM citations back to VibeShip products.
+**vibeship.co** - Main authority hub for vibe coding security education.
 
-**Architecture Strategy:**
-- `vibeship.co` (this site) = Main authority hub with all educational content
-- `scanner.vibeship.co` = Scanner product (separate repo at `vibeship scanner`)
+**Architecture:**
+- `vibeship.co` (this site) = Educational content, SEO, LLM citations
+- `scanner.vibeship.co` = Scanner product (separate repo)
 - `mind.vibeship.co` = Future Mind product
 
-## URL Structure
-
-See `docs/KB_SITEMAP.md` for the complete architecture. Key structure:
-
-```
-vibeship.co/
-├── /                                    # Landing page
-├── /kb/                                 # Knowledge base root
-│   ├── /kb/vibe-coding-tools/           # AI tool security (Cursor, Claude Code, Bolt, v0, etc.)
-│   ├── /kb/security/                    # Security concepts (Scanner-adjacent)
-│   │   ├── /kb/security/vulnerabilities/    # SQL injection, XSS, etc.
-│   │   ├── /kb/security/stacks/             # Next.js + Supabase, etc.
-│   │   ├── /kb/security/fixes/              # AI-ready fix prompts
-│   │   └── /kb/security/checklists/         # Security checklists
-│   ├── /kb/memory/                      # Memory concepts (Mind-adjacent)
-│   │   ├── /kb/memory/concepts/
-│   │   ├── /kb/memory/patterns/
-│   │   ├── /kb/memory/integrations/
-│   │   └── /kb/memory/best-practices/
-│   ├── /kb/agents/                      # Agent concepts (Spawner-adjacent)
-│   │   ├── /kb/agents/concepts/
-│   │   ├── /kb/agents/patterns/
-│   │   └── /kb/agents/security/
-│   ├── /kb/vibe-coding/                 # General vibe coding education
-│   ├── /kb/glossary/                    # Plain English definitions
-│   └── /kb/guides/                      # Cross-product guides
-├── /research/                           # Data & research hub
-│   ├── /research/vulnerability-index/   # Weekly Hallucinated Vulnerability Index
-│   ├── /research/ai-tool-comparison/    # AI tool security comparison
-│   └── /research/methodology/           # How we scan
-├── /blog/                               # Thought leadership
-├── /tools/                              # Product hub (links to subdomains)
-├── /llms.txt                            # LLM-optimized summary
-├── /sitemap.xml                         # Auto-generated
-└── /robots.txt                          # Crawler permissions
-```
-
-**Important:** Security content lives under `/kb/security/`. AI tool content (Cursor, Bolt, etc.) lives under `/kb/vibe-coding-tools/`.
-
-## Development Commands
+## Development
 
 ```bash
 npm run dev          # Start dev server
@@ -110,1005 +52,166 @@ npm run build        # Build for production
 npm run preview      # Preview production build
 ```
 
-## Key Design Principles
+**Stack:** SvelteKit 2.0, TypeScript, Static/SSG on Vercel
 
-1. **SEO-first** - Every page optimized for Google rankings
-2. **LLM-citable** - Content structured for ChatGPT, Claude, Perplexity to cite
-3. **Fully public** - No authentication, maximum crawlability
-4. **Cross-linking** - KB articles link to Scanner, Scanner docs link back
+## URL Structure
 
----
-
-## 🎯 VIBE CODING TERMINOLOGY (SEO CRITICAL)
-
-**Use "vibe coding" terminology throughout all content.** This is how our audience describes what they do.
-
-### Required Terms (Use Interchangeably)
-- **vibe coding** - The practice of building with AI tools
-- **vibe code** - Code generated this way
-- **vibe coded** - Past tense ("vibe coded apps")
-- **vibe coders** - The people doing it (our audience)
-- **AI-generated code** - More technical term (use alongside vibe coding)
-
-### Usage Requirements
-- **Every article must use "vibe coding" terms at least 3-5 times**
-- Mix with "AI-generated code" for variety
-- Use in titles, H2s, and body text where natural
-- Include in Quick Answer boxes when relevant
-
-### Example Usage
-```markdown
-✅ GOOD:
-"Vibe coding makes building apps fast, but AI tools often generate insecure patterns."
-"This vulnerability is common in vibe coded projects because AI prioritizes working code."
-"As a vibe coder, you need to check for SQL injection in AI-generated code."
-
-❌ BAD:
-"AI-assisted development..." (too formal, not how audience searches)
-"Code written with AI tools..." (misses the keyword)
+```
+vibeship.co/
+├── /kb/vibe-coding-tools/      # AI tools (Cursor, Claude Code, Bolt, etc.)
+├── /kb/security/               # Security concepts
+│   ├── /vulnerabilities/       # SQL injection, XSS, etc.
+│   ├── /stacks/                # Next.js + Supabase, etc.
+│   ├── /fixes/                 # AI-ready fix prompts
+│   └── /checklists/            # Security checklists
+├── /kb/memory/                 # Memory concepts (Mind-adjacent)
+├── /kb/agents/                 # Agent concepts (Spawner-adjacent)
+├── /kb/vibe-coding/            # General vibe coding education
+├── /kb/glossary/               # Plain English definitions
+├── /research/                  # Data & research hub
+└── /blog/                      # Thought leadership
 ```
 
-### Search Intent
-People search for:
-- "vibe coding security"
-- "vibe code vulnerabilities"
-- "is vibe coding safe"
-- "vibe coding best practices"
-
-We want to rank for ALL of these.
+See `docs/KB_SITEMAP.md` for complete architecture.
 
 ---
 
-## 🚨 DATA INTEGRITY RULE (TOP PRIORITY)
+## Critical Rules
 
-**NEVER hallucinate or fabricate data. This is the #1 rule above all else.**
+### 1. VIBE CODING TERMINOLOGY (SEO)
 
-### The Rule
-- **NEVER** invent statistics, percentages, or numbers
-- **NEVER** claim Scanner data exists when it doesn't
-- **NEVER** exaggerate or round up for dramatic effect
-- **ALWAYS** cite real sources with links
-- **ALWAYS** clearly label when data is unavailable: "Data coming soon" or "Based on [external source]"
+**Use "vibe coding" terms throughout all content:**
+- **vibe coding** - Building with AI tools
+- **vibe coders** - Our audience
+- **vibe coded** - Past tense for AI-generated apps
+- **AI-generated code** - Technical synonym
 
-### What to do when data isn't available:
-1. **Use established external sources** (OWASP, CWE, CVE databases, academic papers) with proper attribution and links
-2. **Say "We're collecting data"** - be honest that Scanner stats are coming
-3. **Use qualitative descriptions** - "common", "frequently seen" without fake percentages
-4. **Link to the source** so readers can verify
+Every article: 3-5 uses of "vibe coding" terms minimum.
 
-### Examples:
+### 2. DATA INTEGRITY (TOP PRIORITY)
+
+**NEVER hallucinate or fabricate data.**
+
+- NEVER invent statistics or percentages
+- NEVER claim Scanner data exists when it doesn't
+- ALWAYS cite real sources with links
+- ALWAYS label unavailable data: "Data coming soon" or "Based on [external source]"
 
 ```markdown
-❌ WRONG (Hallucinated):
-"Found in 23.4% of 10,847 AI-generated repositories (December 2024)"
-
-✅ CORRECT (Real external source):
-"SQL injection is ranked #3 in the [OWASP Top 10 (2021)](https://owasp.org/Top10/A03_2021-Injection/), affecting millions of applications worldwide."
-
-✅ CORRECT (Honest about our data):
-"VibeShip Scanner is actively collecting data on AI-generated code vulnerabilities. Early patterns suggest SQL injection is common in AI-assisted projects."
-
-✅ CORRECT (Qualitative):
-"SQL injection remains one of the most exploited vulnerabilities—it has appeared in every OWASP Top 10 since 2003."
+❌ WRONG: "Found in 23.4% of 10,847 AI-generated repositories"
+✅ RIGHT: "Ranked #3 in [OWASP Top 10 (2021)](https://owasp.org/Top10/)"
+✅ RIGHT: "VibeShip Scanner is collecting data. Early patterns suggest..."
 ```
 
-### Why this matters:
-- **Trust**: Once readers catch one fake stat, they distrust everything
-- **Legal**: Fabricated data claims can create liability
-- **LLM citations**: LLMs will propagate our fake data across the internet
-- **SEO**: Google's helpful content guidelines penalize made-up expertise
+### 3. SECURITY SCANNING TOOLS
 
----
-
-## Security Content Writing
-
-**IMPORTANT:** When creating ANY security content under `/kb/security/`, you MUST use:
-- `docs/vibeship-security-writer/SKILL.md` - Complete writing guidelines
-- `docs/vibeship-security-writer/references/` - Templates, vulnerability data, AI tool patterns
-
-### Content Goals (The Three Wins)
-
-Every piece of security content must:
-1. **Rank #1 on Google** for target keywords
-2. **Get cited by LLMs** (ChatGPT, Claude, Perplexity)
-3. **Convert readers** to VibeShip Scanner users
-
-### Target Audience: Vibe Coders
-
-**Who:** Non-technical founders using AI coding tools (Cursor, Claude Code, Bolt, v0, Replit). They know JavaScript basics but have ZERO security background.
-
-**What they need:**
-- Plain English explanations (no unexplained jargon)
-- Copy-paste solutions (AI fix prompts)
-- Confidence they can fix issues themselves
-
-**What they DON'T need:**
-- Academic security theory
-- Exhaustive technical details
-- Feeling dumb for not knowing
-
-### Content Formula (Every Article)
-
-```
-1. HOOK (First 50 words)
-   └── Direct answer to the query
-   └── Why they should care
-   └── Stat from Scanner data
-
-2. QUICK STATS (Data box)
-   └── Prevalence percentage
-   └── Repos scanned
-   └── Trend indicator
-   └── Most affected tool
-
-3. WHAT IS IT (100-150 words)
-   └── Plain English definition
-   └── Real-world analogy
-   └── What could happen
-
-4. AI TOOL PATTERNS (150-200 words)
-   └── WHY AI tools generate this
-   └── Tool comparison chart
-   └── Specific code patterns
-
-5. DETECTION (100-150 words)
-   └── Code patterns to search for
-   └── Quick check methods
-   └── Scanner CTA
-
-6. SOLUTION (200-400 words)
-   └── AI Fix Prompt (complete, copy-paste ready)
-   └── Manual fix with before/after code
-   └── Framework-specific notes
-
-7. FAQ (5 questions)
-   └── Questions people actually ask
-   └── Direct 50-100 word answers
-
-8. RELATED LINKS
-   └── Related vulnerabilities
-   └── Tool-specific pages
-   └── Stack guides
-```
-
-### Writing Rules
-
-**No Em Dashes:** Never use em dashes (—) in content. Use regular hyphens (-) or rewrite the sentence.
-
-**First-Sentence Rule:** First sentence after every H2 MUST directly answer the implied question.
-
-```markdown
-✅ GOOD:
-## What is SQL injection?
-SQL injection is a vulnerability where attackers manipulate your database...
-
-❌ BAD:
-## What is SQL injection?
-Before we discuss SQL injection, it's important to understand databases...
-```
-
-**Jargon Rule:** Every technical term explained on first use:
-```markdown
-IDOR (Insecure Direct Object Reference) happens when users can access
-other users' data by changing IDs in the URL—like if changing your
-hotel room number let you into someone else's room.
-```
-
-**Data Rule:** Always cite Scanner data with specifics:
-```markdown
-✅ "Found in 73% of 10,847 AI-generated repositories (December 2024)"
-❌ "Very common in AI-generated code"
-```
-
-**Code Rule:** Always show before AND after:
-```javascript
-// ❌ VULNERABLE
-const user = await db.query(`SELECT * FROM users WHERE id = ${userId}`)
-
-// ✅ SECURE
-const user = await db.query('SELECT * FROM users WHERE id = $1', [userId])
-```
-
----
-
-## SEO Requirements
-
-### Title Tag
-- Under 60 characters
-- Primary keyword near beginning
-- Format: `{Keyword}: {Hook} | VibeShip`
-
-Example: `SQL Injection: Find & Fix in AI-Generated Code | VibeShip`
-
-### Meta Description
-- 150-160 characters
-- Include primary keyword + CTA
-
-Example: `SQL injection lets attackers steal your database. Found in 23% of AI-generated code. Get copy-paste fixes for Cursor, Bolt & Claude Code.`
-
-### H2 Headers
-Use question format matching search queries:
-- "What is {vulnerability}?"
-- "How do AI tools cause {vulnerability}?"
-- "How do I fix {vulnerability}?"
-
-### Internal Links
-Every article must include:
-- 5-10 internal links to related KB pages
-- Links to Scanner (scanner.vibeship.co)
-- Links to related vulnerabilities, tools, stacks
-
-### Schema Markup
-Include for every page:
-- `TechArticle` schema
-- `FAQPage` schema (for FAQ sections)
-- `BreadcrumbList` schema
-
----
-
-## LLM Optimization
-
-### Chunk Structure
-Each H2 section must be:
-- **75-225 words** (100-300 tokens)
-- **Self-contained** (makes sense without context)
-- **Directly answers** the H2 question
-
-### Citable Facts
-Include specific, attributable facts:
-```markdown
-According to VibeShip Scanner analysis of 10,847 repositories in December 2024,
-73% of Cursor-generated projects contain at least one SQL injection vulnerability.
-```
-
-### FAQ Requirements
-Every FAQ answer must:
-- Directly answer the question in first sentence
-- Be 50-100 words
-- Include a citable fact when possible
-- Link to deeper content
-
----
-
-## Content Types & Templates
-
-| Type | URL Pattern | Template |
-|------|-------------|----------|
-| Vulnerability | `/kb/security/vulnerabilities/{slug}/` | `references/templates/vulnerability.md` |
-| AI Tool Analysis | `/kb/vibe-coding-tools/{tool}/` | `references/templates/ai-pattern.md` |
-| Stack Guide | `/kb/security/stacks/{stack}/` | `references/templates/stack-guide.md` |
-| Fix Prompt | `/kb/security/fixes/{vuln}/{framework}/` | `references/templates/fix-checklist.md` |
-| Glossary | `/kb/glossary/security/{term}/` | Short definition + link |
-
----
-
-## Quality Checklist
-
-Before publishing ANY content:
-
-- [ ] First 50 words directly answer the main query
-- [ ] Title under 60 chars with primary keyword
-- [ ] Meta description 150-160 chars with CTA
-- [ ] All H2s are question-based where appropriate
-- [ ] Each section is 75-225 words (self-contained)
-- [ ] Scanner data cited with specific numbers
-- [ ] All jargon explained on first use
-- [ ] Code examples show before AND after
-- [ ] AI fix prompt is complete (200-400 words)
-- [ ] 5+ internal links included
-- [ ] FAQ has 5 questions with direct answers
-- [ ] CWE/OWASP references included (for vulnerabilities)
-- [ ] Related content linked at bottom
-- [ ] Schema markup included
-
----
-
-## Reference Documents
-
-**Content Operations:**
-- `docs/.content-ops/agents/writer-agent.md` - Full writer agent prompt
-- `docs/.content-ops/agents/research-agent.md` - Research agent prompt
-- `docs/.content-ops/templates/` - Content brief templates
-
-**Security Writing:**
-- `docs/vibeship-security-writer/SKILL.md` - Security content skill
-- `docs/vibeship-security-writer/references/vulnerability-database.md` - OWASP/CWE data
-- `docs/vibeship-security-writer/references/ai-tool-patterns.md` - Tool-specific patterns
-- `docs/vibeship-security-writer/references/templates/` - Page templates
-
-**Architecture:**
-- `docs/KB_SITEMAP.md` - Complete URL structure
-
----
-
-## Content Strategy
-
-**For LLMs:**
-- `/llms.txt` - Summary for LLM ingestion
-- Predictable URL paths
-- Clean, extractable content chunks
-- FAQ sections with structured data
-
-**For SEO:**
-- Hub-and-spoke internal linking
-- Keyword-rich URLs
-- Schema.org structured data
-- Fresh stats updated weekly
-
-## Tech Stack
-
-- SvelteKit 2.0
-- TypeScript
-- Static content (markdown or JSON)
-- Deployed to Vercel (static/SSG preferred)
-
-## Reference Documents
-
-See the original implementation strategy in:
-- `vibeship scanner/vibeship-knowledge-base-implementation.md`
-
-## Cross-Linking with Scanner
-
-KB articles should include CTAs like:
-- "Scan your code for [vulnerability] →" linking to scanner.vibeship.co
-- "Learn more about [topic] →" on scanner docs linking back here
-
-## Content Categories Priority
-
-**P0 (Build First):**
-1. `/kb/security/vulnerabilities/sql-injection`
-2. `/kb/security/vulnerabilities/hardcoded-secrets`
-3. `/kb/security/vulnerabilities/xss`
-4. `/kb/vibe-coding-tools/cursor`
-5. `/kb/vibe-coding-tools/claude-code`
-
-**P1 (Build Next):**
-- More vulnerabilities (IDOR, missing auth, etc.)
-- More AI tools (Bolt, v0, Replit)
-- Stack guides (Next.js + Supabase)
-
-## Component Patterns
-
-Reuse these from the scanner codebase:
-- Design tokens (colors, typography, spacing)
-- Card patterns
-- Badge/severity indicators
-- CTA button styles
-
-## Svelte Claude Skills
-
-Use the [svelte-claude-skills](https://github.com/spences10/svelte-claude-skills) agents for Svelte 5 and SvelteKit development guidance.
-
-**Available Skills:**
-- **svelte5-runes** - Svelte 5 reactive system (`$state()`, `$derived()`, `$effect()`), migration patterns, anti-patterns
-- **sveltekit-data-flow** - Load functions, form actions, serialization, error handling
-- **sveltekit-structure** - File-based routing, layout patterns, error boundaries, SSR/hydration
-
-**Installation:**
-```bash
-# Clone entire collection
-git clone https://github.com/spences10/svelte-claude-skills.git ~/.claude/skills/svelte
-
-# Or symlink individual skills
-ln -s /path/to/svelte-claude-skills/.claude/skills/svelte5-runes ~/.claude/skills/
-```
-
-Skills auto-activate in Svelte/SvelteKit projects with progressive disclosure from quick references to detailed docs.
+Use **opengrep** (not semgrep) for rule syntax. Also use **trivy** and **gitleaks**.
 
 ---
 
 ## Content System
 
-Read `.content-ops/` for templates, queue, and detailed guidelines:
-- `QUEUE.md` - Articles to generate with data
-- `agents/writer-agent.md` - Full writing guidelines
-- `checklists/qa-checklist.md` - Pre-publish checklist
+**All KB content uses the two-agent pipeline:**
 
----
+1. **Research Agent** → Creates Content Brief
+2. **Writer Agent** → Transforms brief into article
 
-## Top 10 Rules for SEO + LLM Optimization
-
-**MANDATORY CHECKLIST: Every article MUST pass all 10 rules before publishing.**
-
-### SEO Rules (Get Ranked)
-
-| # | Rule | Requirement | Example |
-|---|------|-------------|---------|
-| 1 | **Answer in first 50 words** | Quick Answer box must be under 50 words and directly answer the query | "SQL injection is a vulnerability where attackers insert malicious code into database queries through user input, potentially stealing your entire database." (25 words) |
-| 2 | **Question-based H2s** | Every H2 should be a question matching search intent | "What is SQL injection?" not "SQL Injection Overview" |
-| 3 | **Title under 60 chars, keyword first** | Primary keyword at start, total under 60 characters | "SQL Injection: Find & Fix..." (47 chars) ✅ not "How to Find & Fix SQL Injection..." (65 chars) ❌ |
-| 4 | **5-10 internal links per page** | Link to related vulns, tools, stacks, fixes | Links to XSS, Cursor patterns, Next.js stack guide |
-| 5 | **One topic = one page** | Don't dilute. Each page targets one keyword cluster | SQL injection page only covers SQL injection |
-
-### LLM Rules (Get Cited)
-
-| # | Rule | Requirement | Example |
-|---|------|-------------|---------|
-| 6 | **Self-contained sections (75-225 words)** | Each H2 section must standalone without context | Each section readable by an LLM in isolation |
-| 7 | **Citable facts with attribution** | Stats must have source and date. If no Scanner data, use external sources with links | "According to [OWASP Top 10 (2021)](url), injection ranks #3..." |
-| 8 | **First sentence answers the H2** | First sentence after H2 MUST directly answer the question | "## What is XSS?" → "XSS (Cross-Site Scripting) is a vulnerability where..." |
-| 9 | **FAQ with direct answers** | FAQ answers start with YES/NO or the direct fact, then explain | "Does React protect from XSS?" → "Yes, React escapes values by default..." |
-| 10 | **Specific numbers, not vague claims** | Use exact figures. No "many", "about", "roughly" | "ranked #3" not "one of the top" |
-
-### The Golden Formula (H2 Section Template)
-
-```markdown
-## What is SQL injection?
-
-SQL injection is a vulnerability where attackers manipulate database queries by
-inserting malicious code through user input fields. [DIRECT ANSWER - first sentence]
-
-It allows attackers to read, modify, or delete your entire database. Think of it
-like a hotel where guests write their own room keys. [PLAIN ENGLISH + ANALOGY]
-
-According to [OWASP Top 10 (2021)](https://owasp.org/Top10/A03_2021-Injection/),
-injection attacks rank #3 in web application security risks. [CITABLE FACT]
-```
-
-Word count: ~70 words. Self-contained. Citable. Direct answer first.
-
-### Quick Answer Box Rules
-
-The Quick Answer at the top of every article MUST:
-- Be **under 50 words** (hard limit)
-- **Directly answer** the implied query
-- Include **one key fact** (OWASP ranking, CWE ID, or severity)
-- Link to **authoritative source**
-
-```html
-<!-- GOOD: 45 words -->
-<strong>SQL injection happens when user input is placed directly into database queries.</strong>
-Attackers can manipulate queries to steal or delete your database. Ranked
-<a href="https://owasp.org/Top10/A03_2021-Injection/">#3 on OWASP Top 10</a>.
-
-<!-- BAD: 72 words - TOO LONG -->
-<strong>SQL injection is one of the most dangerous...</strong> [continues for 70+ words]
-```
-
-### Pre-Publish Checklist
-
-Before publishing, verify EVERY item:
-
-```
-SEO RULES
-□ Rule 1: Quick Answer under 50 words
-□ Rule 2: All H2s are questions
-□ Rule 3: Title under 60 chars, keyword first
-□ Rule 4: 5-10 internal links present
-□ Rule 5: Single topic focus
-
-LLM RULES
-□ Rule 6: Each H2 section is 75-225 words
-□ Rule 7: All stats have attribution + links
-□ Rule 8: First sentence after each H2 directly answers it
-□ Rule 9: FAQ answers start with direct answer
-□ Rule 10: No vague claims ("many", "about", "roughly")
-```
-
-If ANY rule fails, fix it before publishing.
-
----
-
-## Detailed Data Integrity Rules
-
-### Internal Data (Scanner)
-Always cite with this format:
-```
-According to VibeShip Scanner analysis of [N] repositories ([Month Year]), [finding].
-```
-
-Example:
-```
-According to VibeShip Scanner analysis of 10,847 repositories (December 2024),
-23.4% of Cursor-generated projects contain SQL injection vulnerabilities.
-```
-
-Rules:
-- Include exact sample size
-- Include date/month of data
-- Never round percentages (23.4% not ~25%)
-- Always specify which tool if tool-specific
-
-### External Data (Research & Standards)
-Link to authoritative sources. Prefer:
-
-| Source | Use For | Link Format |
-|--------|---------|-------------|
-| OWASP | Vulnerability categories, Top 10 | [OWASP Top 10](https://owasp.org/Top10/) |
-| CWE/MITRE | Vulnerability definitions, IDs | [CWE-89](https://cwe.mitre.org/data/definitions/89.html) |
-| NVD/NIST | CVE data, severity scores | [NVD](https://nvd.nist.gov/) |
-| Snyk | Vulnerability research | [Snyk Learn](https://learn.snyk.io/) |
-| PortSwigger | Technical deep-dives | [PortSwigger Web Security](https://portswigger.net/web-security) |
-| HackerOne | Real-world reports, stats | [HackerOne Reports](https://hackerone.com/hacktivity) |
-| Verizon DBIR | Breach statistics | [Verizon DBIR](https://www.verizon.com/business/resources/reports/dbir/) |
-| IBM Cost of Breach | Financial impact stats | [IBM Security](https://www.ibm.com/security/data-breach) |
-
-Citation format for external research:
-```
-According to the [Verizon 2024 Data Breach Investigations Report](https://www.verizon.com/business/resources/reports/dbir/),
-injection attacks account for 23% of web application breaches.
-```
-
-Rules:
-- Always link to the source
-- Include year/version of the report
-- Use official URLs, not summaries
-- Verify the stat exists at the source
-
-### Combining Sources
-When using multiple sources:
-```
-SQL injection remains the #3 vulnerability in the [OWASP Top 10 (2021)](https://owasp.org/Top10/A03_2021-Injection/).
-Our Scanner data shows it affects 23.4% of AI-generated codebases, higher than the
-[15% industry average reported by Snyk](https://snyk.io/reports/open-source-security/).
-```
-
----
-
-## Required Citations by Content Type
-
-### Vulnerability Articles
-Must include:
-- [ ] CWE link: `[CWE-89](https://cwe.mitre.org/data/definitions/89.html)`
-- [ ] OWASP link: `[OWASP A03:2021](https://owasp.org/Top10/A03_2021-Injection/)`
-- [ ] Scanner stat with sample size and date (when available)
-- [ ] At least 1 external research citation (Verizon, HackerOne, etc.)
-
-### AI Tool Articles
-Must include:
-- [ ] Scanner stats for this tool vs others
-- [ ] Link to tool's official site
-- [ ] Link to any existing security research about the tool
-
-### Stack Guides
-Must include:
-- [ ] Framework security docs: `[Next.js Security](https://nextjs.org/docs/security)`
-- [ ] Database security docs: `[Supabase RLS](https://supabase.com/docs/guides/auth/row-level-security)`
-- [ ] Scanner stats for this stack (when available)
-
----
-
-## Section Template
-
-Every H2 section should follow this pattern:
-
-```markdown
-## What is SQL injection?
-
-[DIRECT ANSWER - 1 sentence with key stat]
-SQL injection affects 23.4% of AI-generated codebases according to VibeShip Scanner
-analysis of 10,847 repositories (December 2024).
-
-[PLAIN ENGLISH - 2-3 sentences]
-It happens when user input is placed directly into database queries. Attackers can
-manipulate these queries to read, modify, or delete your entire database.
-
-[AUTHORITY REFERENCE - 1 sentence with link]
-It has remained in the [OWASP Top 10](https://owasp.org/Top10/) since the list began
-in 2003, currently ranked #3 under Injection attacks.
-
-[CONTEXT/IMPACT - 1-2 sentences]
-For vibe coders, this is critical because AI tools like Cursor generate vulnerable
-patterns by default.
-```
-
-- Word count: 75-150 words
-- Links: 1-2 per section minimum
-
----
-
-## Outbound Link Guidelines
-
-### Philosophy: Quality Over Quantity
-
-There is no fixed "sweet spot" for outbound links. The goal is to include **relevant links that provide genuine value** by pointing to authoritative, trustworthy sources. Links should:
-- Enhance reader understanding
-- Provide credible evidence for claims
-- Offer paths to deeper learning
-- Build our credibility through association with authority
-
-### Link Density Guidelines
-
-| Content Length | Outbound Links | Notes |
-|----------------|----------------|-------|
-| ~500 words | 1-2 links | Minimum for credibility |
-| ~1000 words | 3-5 links | Standard article |
-| ~1500 words | 5-8 links | In-depth guide |
-| ~2000+ words | 8-12 links | Comprehensive reference |
-
-**Rule of thumb:** 1-2 external links per 500 words, placed where they naturally support claims.
-
-### Link Placement Best Practices
-
-1. **Avoid early exits:** Don't place external links in the first 100-150 words - keep readers engaged
-2. **Contextual embedding:** Links should flow naturally within sentences, not interrupt reading
-3. **Descriptive anchor text:** Use text that describes the destination (not "click here")
-4. **Distribute throughout:** Spread links across sections rather than clustering
-5. **Save CTAs for end:** Internal links to Scanner should appear mid-article and end, not competing with early external links
-
-### Authoritative Source Hierarchy
-
-**Tier 1 - Always Link (highest authority):**
-| Source | Use For | URL |
-|--------|---------|-----|
-| OWASP | Vulnerability categories, Top 10, Cheat Sheets | owasp.org |
-| CWE/MITRE | Vulnerability definitions, IDs | cwe.mitre.org |
-| NIST NVD | CVE data, severity scores | nvd.nist.gov |
-| MDN Web Docs | Web security concepts, APIs | developer.mozilla.org |
-
-**Tier 2 - Strongly Recommended (industry authority):**
-| Source | Use For | URL |
-|--------|---------|-----|
-| PortSwigger Web Security | Technical deep-dives, tutorials | portswigger.net/web-security |
-| Snyk Learn | Vulnerability explanations, fix guides | learn.snyk.io |
-| SANS | Research papers, best practices | sans.org |
-| HackerOne Hacktivity | Real-world vulnerability reports | hackerone.com/hacktivity |
-
-**Tier 3 - Industry Reports & Research:**
-| Source | Use For | URL |
-|--------|---------|-----|
-| Verizon DBIR | Breach statistics, trends | verizon.com/business/resources/reports/dbir |
-| IBM Cost of Data Breach | Financial impact data | ibm.com/security/data-breach |
-| Snyk State of Open Source | Open source vulnerability stats | snyk.io/reports |
-| GitHub Security Lab | Vulnerability research | securitylab.github.com |
-| Mandiant/Google Threat Intel | APT research, threat reports | cloud.google.com/security/mandiant |
-| CrowdStrike Reports | Threat landscape reports | crowdstrike.com/resources/reports |
-
-**Tier 4 - Security Scanning Tools & Rule Engines:**
-| Source | Use For | URL |
-|--------|---------|-----|
-| Opengrep | Open-source static analysis, rule syntax | opengrep.dev |
-| Semgrep | SAST rules, pattern matching | semgrep.dev |
-| Trivy | Container/dependency scanning, CVE data | trivy.dev |
-| Gitleaks | Secret detection patterns | gitleaks.io |
-| Bandit | Python security linting | bandit.readthedocs.io |
-| ESLint Security | JS/TS security rules | github.com/eslint-community/eslint-plugin-security |
-| CodeQL | GitHub's semantic analysis | codeql.github.com |
-
-**Tier 5 - Academic & Scientific Research:**
-| Source | Use For | URL |
-|--------|---------|-----|
-| IEEE S&P | Premier security conference papers | ieee-security.org/TC/SP |
-| USENIX Security | Systems security research | usenix.org/conferences/usenix-security |
-| ACM CCS | Computer security research | sigsac.org/ccs |
-| NDSS | Network/distributed security | ndss-symposium.org |
-| arXiv cs.CR | Preprints, cutting-edge research | arxiv.org/list/cs.CR |
-| Google Scholar | Academic paper search | scholar.google.com |
-| DBLP | CS bibliography/paper lookup | dblp.org |
-
-**Tier 6 - Framework/Tool Specific:**
-| Source | Use For | URL |
-|--------|---------|-----|
-| Next.js Security | Next.js security features | nextjs.org/docs/security |
-| React Security | React XSS prevention | react.dev/reference/react-dom |
-| Supabase Auth/RLS | Supabase security | supabase.com/docs/guides/auth |
-| Prisma Security | Database security | prisma.io/docs |
-| Node.js Security | Node best practices | nodejs.org/en/docs/guides/security |
-| Express Security | Express hardening | expressjs.com/en/advanced/best-practice-security.html |
-
-**Tier 7 - AI Tool Official Sites (required for tool articles):**
-- Cursor: cursor.com
-- Claude Code: claude.ai/code, anthropic.com
-- Bolt: bolt.new, stackblitz.com
-- v0: v0.dev, vercel.com
-- Replit: replit.com
-- GitHub Copilot: github.com/features/copilot
-
-### Do Link To
-- Official documentation (OWASP, CWE, framework docs)
-- Peer-reviewed research and industry reports
-- Authoritative security sources (NIST, SANS, PortSwigger, Snyk)
-- Original research with clear methodology
-- Official tool/framework websites and security pages
-- Government and educational institution resources (.gov, .edu)
-- Well-established tech publications (for news/trends only)
-
-### Don't Link To
-- Random blog posts without sources or credentials
-- SEO content farms or thin affiliate sites
-- Outdated resources (>3 years for statistics, >5 years for concepts)
-- Paywalled content (unless essential and noted)
-- Direct competitors' content marketing
-- Social media posts (except official announcements)
-- Sites with excessive ads or poor UX
-
-### Link Formatting
-
-```markdown
-<!-- Inline for natural flow -->
-According to [OWASP's Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html), parameterized queries are the primary defense.
-
-<!-- With context for authority -->
-The [Verizon 2024 Data Breach Investigations Report](https://www.verizon.com/business/resources/reports/dbir/) found that web application attacks account for 26% of breaches.
-
-<!-- Reference style for repeated citations -->
-SQL injection ([CWE-89][cwe-89]) remains in the [OWASP Top 10][owasp-top10] as part of the Injection category.
-
-[cwe-89]: https://cwe.mitre.org/data/definitions/89.html
-[owasp-top10]: https://owasp.org/Top10/
-```
-
-### Sponsored/Affiliate Links
-If any link is sponsored or affiliate (unlikely for KB content), it MUST include `rel="sponsored"` attribute. Tool links are NOT affiliate - they're reference material.
-
----
-
-## Fact-Checking Checklist
-
-Before including any statistic:
-- [ ] Is the source authoritative (Tier 1-3)?
-- [ ] Is the data current (within 2 years for stats)?
-- [ ] Can I link directly to the source?
-- [ ] Is the methodology sound and transparent?
-- [ ] Am I representing it accurately (not cherry-picking)?
-- [ ] Would this source be cited in academic/professional work?
-
-If you can't verify a stat, don't use it. Say "commonly cited" or find a better source.
-
----
-
-## Quality Signals
-
-### Strong Content Has
-- Scanner data + external research (dual validation)
-- Links to CWE/OWASP for every vulnerability mentioned
-- Framework docs linked for every code recommendation
-- Specific numbers with dates and sources
-- 1-2 outbound links per 500 words to Tier 1-3 sources
-- Tool official sites linked in tool-specific articles
-- Links distributed throughout (not clustered)
-
-### Weak Content Has
-- Vague claims ("many projects have this issue")
-- No external validation of claims
-- Missing CWE/OWASP references for vulnerabilities
-- Outdated statistics or undated claims
-- No links to authoritative sources
-- All links clustered in one section
-- External links in first paragraph (causes bounce)
-
----
-
-## Quick Reference: Key Sources
-
-**Security Standards & Databases:**
-```
-OWASP Top 10:        https://owasp.org/Top10/
-OWASP Cheat Sheets:  https://cheatsheetseries.owasp.org/
-CWE Database:        https://cwe.mitre.org/data/definitions/
-NIST NVD:            https://nvd.nist.gov/
-CVE Database:        https://cve.mitre.org/
-```
-
-**Security Learning & Research:**
-```
-PortSwigger Academy: https://portswigger.net/web-security
-Snyk Learn:          https://learn.snyk.io/
-SANS Reading Room:   https://www.sans.org/white-papers/
-HackerOne Hacktivity: https://hackerone.com/hacktivity
-GitHub Security Lab: https://securitylab.github.com/
-```
-
-**Industry Reports:**
-```
-Verizon DBIR:        https://www.verizon.com/business/resources/reports/dbir/
-IBM Data Breach:     https://www.ibm.com/security/data-breach
-Snyk Reports:        https://snyk.io/reports/
-Mandiant Threat Intel: https://cloud.google.com/security/mandiant
-CrowdStrike Reports: https://www.crowdstrike.com/resources/reports/
-```
-
-**Security Scanning Tools & Rule Engines:**
-```
-Opengrep:            https://opengrep.dev/
-Opengrep GitHub:     https://github.com/opengrep/opengrep
-Semgrep:             https://semgrep.dev/
-Semgrep Rules:       https://semgrep.dev/r
-Trivy:               https://trivy.dev/
-Trivy GitHub:        https://github.com/aquasecurity/trivy
-Gitleaks:            https://gitleaks.io/
-CodeQL:              https://codeql.github.com/
-Bandit (Python):     https://bandit.readthedocs.io/
-ESLint Security:     https://github.com/eslint-community/eslint-plugin-security
-```
-
-**Academic & Scientific Research (The "Big Four" Security Conferences):**
-```
-IEEE S&P:            https://www.ieee-security.org/TC/SP/
-USENIX Security:     https://www.usenix.org/conferences/usenix-security
-ACM CCS:             https://www.sigsac.org/ccs/
-NDSS:                https://www.ndss-symposium.org/
-arXiv Security:      https://arxiv.org/list/cs.CR/recent
-Google Scholar:      https://scholar.google.com/
-DBLP:                https://dblp.org/
-ACM Digital Library: https://dl.acm.org/
-IEEE Xplore:         https://ieeexplore.ieee.org/
-```
-
-**Framework Security Docs:**
-```
-Next.js Security:    https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy
-React DOM:           https://react.dev/reference/react-dom
-Supabase Auth:       https://supabase.com/docs/guides/auth
-Supabase RLS:        https://supabase.com/docs/guides/auth/row-level-security
-Prisma Security:     https://www.prisma.io/docs/concepts/components/prisma-client/raw-database-access
-Node.js Security:    https://nodejs.org/en/docs/guides/security/
-Express Security:    https://expressjs.com/en/advanced/best-practice-security.html
-```
-
-**Web Standards:**
-```
-MDN Web Security:    https://developer.mozilla.org/en-US/docs/Web/Security
-MDN HTTP:            https://developer.mozilla.org/en-US/docs/Web/HTTP
-W3C Security:        https://www.w3.org/Security/
-```
-
-**AI Coding Tools:**
-```
-Cursor:              https://cursor.com
-Claude Code:         https://claude.ai/code
-Bolt:                https://bolt.new
-v0:                  https://v0.dev
-Replit:              https://replit.com
-GitHub Copilot:      https://github.com/features/copilot
-```
-
----
-
-## Two-Agent Content Pipeline (MANDATORY)
-
-**All KB content MUST be created using the two-agent system.** This ensures consistent quality, proper research, and SEO/LLM optimization.
-
-### The Pipeline
-
-```
-┌──────────────┐      ┌──────────────┐      ┌──────────────┐
-│   AGENT 1    │      │   HANDOFF    │      │   AGENT 2    │
-│   Research   │ ───▶ │   Content    │ ───▶ │   Writer     │ ───▶ OUTPUT
-│              │      │   Brief      │      │              │
-└──────────────┘      └──────────────┘      └──────────────┘
-```
-
-### Agent 1: Research Agent
-
-**Role:** Security research analyst who gathers data and creates structured briefs.
-
-**What Agent 1 Does:**
-- Query and analyze Scanner database (when available)
-- Research competitors via web search
-- Identify keyword opportunities and PAA questions
-- Validate CWE/OWASP references
-- Create structured Content Briefs
-- Map internal linking opportunities
-
-**What Agent 1 Does NOT Do:**
-- Write article prose
-- Create AI fix prompts
-- Write FAQ answers
-- Apply brand voice
-- Create code examples
-
-**Agent 1 Prompt Template:**
-```
-You are the VibeShip Research Agent. Create a comprehensive content brief for:
-
-Topic: [TOPIC NAME]
-Type: [vulnerability/tool/stack]
-
-Include:
-1. Core data (CWE, OWASP, external sources)
-2. SEO strategy (keywords, search intent, PAA questions)
-3. Competitive analysis (top 3 results, gaps)
-4. Content structure (outline with word counts)
-5. Internal linking targets
-6. Unique angle
-
-Use the template from docs/.content-ops/templates/
-Output a complete Content Brief - do NOT write the article.
-```
-
-### Agent 2: Writer Agent
-
-**Role:** World-class security content writer using VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.
-
-**What Agent 2 Does:**
-- Transform briefs into publication-ready content
-- Apply VibeShip brand voice
-- Create AI fix prompts (200-400 words)
-- Write FAQ sections with schema
-- Generate before/after code examples
-- Optimize for SEO and LLM citation
-
-**What Agent 2 Does NOT Do:**
-- Research new data
-- Validate statistics
-- Analyze competitors
-- Query databases
-
-**Agent 2 Prompt Template:**
-```
-You are the VibeShip Security Writer. Using the guidelines from
-docs/.content-ops/strategies/VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md,
-create a complete article from this Content Brief:
-
-[PASTE CONTENT BRIEF FROM AGENT 1]
-
-Requirements:
-- Follow exact content formula
-- Use all data points from brief
-- Create complete AI fix prompt
-- Write 5 FAQ entries
-- Include all internal links specified
-```
-
-### How to Execute (Using Claude Code Task Tool)
-
-**Step 1: Dispatch Research Agent(s) in Parallel**
-```
-Use Task tool with subagent_type='general-purpose':
-- "Research Claude Code security patterns for KB article. Create Content Brief using docs/.content-ops/templates/tool-brief.md"
-- "Research Bolt security patterns for KB article..."
-- "Research Next.js + Supabase security for KB stack guide..."
-```
-
-**Step 2: Review Briefs**
-Check each brief for:
-- [ ] All data points have sources
-- [ ] Keywords identified
-- [ ] Competitor gaps specific
-- [ ] Internal links valid
-
-**Step 3: Dispatch Writer Agent(s) with Briefs**
-```
-Use Task tool with subagent_type='general-purpose':
-- Include full VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md
-- Include the Content Brief from Step 1
-- Request complete Svelte component output
-```
-
-**Step 4: QA and Publish**
-- Verify against qa-checklist.md
-- Create Svelte file
-- Commit and update QUEUE.md
-
-### Key Documents
+### Key Documents (READ THESE)
 
 | Document | Location | Purpose |
 |----------|----------|---------|
-| Research Agent | `docs/.content-ops/agents/research-agent.md` | Agent 1 system prompt |
-| Writer Agent | `docs/.content-ops/agents/writer-agent.md` | Agent 2 system prompt |
-| Full Writer Skill | `docs/.content-ops/strategies/VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md` | Complete writer guidelines |
-| Pipeline Guide | `docs/.content-ops/PIPELINE.md` | Full two-agent workflow |
-| Vulnerability Brief | `docs/.content-ops/templates/vulnerability-brief.md` | Template for vuln research |
-| Tool Brief | `docs/.content-ops/templates/tool-brief.md` | Template for AI tool research |
-| Stack Brief | `docs/.content-ops/templates/stack-brief.md` | Template for stack guide research |
+| **Master Guide** | `docs/.content-ops/VIBESHIP-KB-MASTER.md` | Complete content system |
+| **Writer Prompt** | `docs/.content-ops/strategies/VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md` | Full writing guidelines |
+| **SEO/LLM Guide** | `docs/.content-ops/references/seo-llm-guide.md` | Optimization rules |
+| **Pipeline** | `docs/.content-ops/PIPELINE.md` | Two-agent workflow |
+| **Queue** | `docs/.content-ops/QUEUE.md` | Articles to generate |
+| **QA Checklist** | `docs/.content-ops/checklists/qa-checklist.md` | Pre-publish checklist |
 
-### Why Two Agents?
-
-| Single Agent Problems | Two-Agent Solution |
-|-----------------------|-------------------|
-| Research + writing consumes too much context | Each agent focused on its task |
-| Quality degrades mixing research + writing | Clear separation of concerns |
-| Hard to iterate | Review briefs before writing |
-| Inconsistent output | Standardized briefs ensure consistency |
+### Templates
+- `docs/.content-ops/templates/vulnerability-brief.md`
+- `docs/.content-ops/templates/tool-brief.md`
+- `docs/.content-ops/templates/stack-brief.md`
 
 ---
 
-## Processing Queue Articles
+## Top 10 Rules (Quick Reference)
 
-When processing from `.content-ops/QUEUE.md`:
+### SEO Rules
+| # | Rule |
+|---|------|
+| 1 | Answer in first 50 words |
+| 2 | Question-based H2s |
+| 3 | Title under 60 chars, keyword first |
+| 4 | 5-10 internal links per page |
+| 5 | One topic = one page |
 
-1. **Agent 1:** Create Content Brief using appropriate template
-2. **Review:** Verify brief completeness
-3. **Agent 2:** Write article using VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md
-4. **Apply:** CLAUDE.md rules for SEO/LLM/citations
-5. **Output:** Svelte component
-6. **Verify:** Against qa-checklist.md
-7. **Update:** QUEUE.md status
+### LLM Rules
+| # | Rule |
+|---|------|
+| 6 | Self-contained sections (75-225 words) |
+| 7 | Citable facts with attribution + links |
+| 8 | First sentence answers the H2 |
+| 9 | FAQ answers start with direct answer |
+| 10 | Specific numbers, not vague claims |
 
-**For parallel processing, dispatch multiple Agent 1 tasks simultaneously, then multiple Agent 2 tasks.**
+**Full details:** `docs/.content-ops/references/seo-llm-guide.md`
+
+---
+
+## Writing Quick Reference
+
+### Content Formula
+```
+1. HOOK (First 50 words) - Direct answer + stat
+2. STATS BOX - Prevalence, trend, most affected tool
+3. WHAT IS IT (100-150 words) - Plain English + analogy
+4. AI TOOL PATTERNS (150-200 words) - Why AI generates this
+5. DETECTION (100-150 words) - Patterns to search for
+6. SOLUTION (200-400 words) - AI fix prompt + manual fix
+7. FAQ (5 questions) - Direct answers
+8. RELATED LINKS
+```
+
+### Key Writing Rules
+- **First sentence after H2** = Direct answer to implied question
+- **Code examples** = Always show before AND after
+- **Jargon** = Explain on first use
+- **No em dashes** (—) - Use hyphens (-) or rewrite
+
+### Authority Sources (Tier 1-2)
+```
+OWASP:           https://owasp.org/Top10/
+CWE:             https://cwe.mitre.org/
+NIST NVD:        https://nvd.nist.gov/
+PortSwigger:     https://portswigger.net/web-security
+Snyk Learn:      https://learn.snyk.io/
+```
+
+**Full source hierarchy:** `docs/.content-ops/references/seo-llm-guide.md`
+
+---
+
+## Svelte Development
+
+Use [svelte-claude-skills](https://github.com/spences10/svelte-claude-skills):
+- **svelte5-runes** - `$state()`, `$derived()`, `$effect()`
+- **sveltekit-data-flow** - Load functions, form actions
+- **sveltekit-structure** - File-based routing, layouts
+
+---
+
+## Processing Content
 
 **Start prompt:**
 ```
-Process the next article from .content-ops/QUEUE.md using the two-agent pipeline
+Process the next article from docs/.content-ops/QUEUE.md using the two-agent pipeline
 ```
+
+**Workflow:**
+1. Check `QUEUE.md` for next article
+2. Research Agent creates brief using template
+3. Review brief for completeness
+4. Writer Agent writes article using `VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md`
+5. QA against `qa-checklist.md`
+6. Output Svelte component
+7. Update QUEUE.md status
