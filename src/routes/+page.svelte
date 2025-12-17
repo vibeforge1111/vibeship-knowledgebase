@@ -447,14 +447,21 @@
 		</div>
 
 		<div class="hero-cta">
-			<a href="/kb" class="btn btn-primary btn-glow">
-				<span>Explore Knowledge Base</span>
+			<a href="https://mind.vibeship.co" class="btn btn-primary btn-glow" target="_blank">
 				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M5 12h14M12 5l7 7-7 7"/>
+					<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+					<path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+					<path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/>
+					<path d="M12 18v4"/>
 				</svg>
+				<span>Install Your LLM a Mind</span>
 			</a>
 			<a href="https://scanner.vibeship.co" class="btn btn-secondary" target="_blank">
-				Try Scanner Free
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+					<path d="M9 12l2 2 4-4"/>
+				</svg>
+				<span>Scan Your Code</span>
 			</a>
 		</div>
 	</section>
@@ -487,7 +494,14 @@
 			<div class="funnel-stage">
 				<div class="stage-box medium">
 					<div class="stage-icon">
-						<span class="icon-glyph">M</span>
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<path d="M12 2a4 4 0 0 1 4 4c0 1.1-.9 2-2 2"/>
+							<path d="M6 8a4 4 0 0 1 4-4"/>
+							<path d="M18 8a6 6 0 0 1-6 6"/>
+							<path d="M6 8a6 6 0 0 0 6 6"/>
+							<path d="M12 14v8"/>
+							<path d="M8 18h8"/>
+						</svg>
 					</div>
 					<div class="stage-content">
 						<span class="stage-name">Mind</span>
@@ -503,7 +517,17 @@
 			<div class="funnel-stage">
 				<div class="stage-box medium">
 					<div class="stage-icon">
-						<span class="icon-glyph">S</span>
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<circle cx="12" cy="12" r="3"/>
+							<circle cx="4" cy="4" r="2"/>
+							<circle cx="20" cy="4" r="2"/>
+							<circle cx="4" cy="20" r="2"/>
+							<circle cx="20" cy="20" r="2"/>
+							<line x1="12" y1="9" x2="12" y2="4"/>
+							<line x1="9" y1="12" x2="4" y2="12"/>
+							<line x1="15" y1="12" x2="20" y2="12"/>
+							<line x1="12" y1="15" x2="12" y2="20"/>
+						</svg>
 					</div>
 					<div class="stage-content">
 						<span class="stage-name">Spawner</span>
@@ -518,8 +542,11 @@
 			<!-- Stage 3: Scanner -->
 			<div class="funnel-stage">
 				<div class="stage-box medium">
-					<div class="stage-icon scanner">
-						<span class="icon-glyph">~</span>
+					<div class="stage-icon">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+							<path d="M9 12l2 2 4-4"/>
+						</svg>
 					</div>
 					<div class="stage-content">
 						<span class="stage-name">Scanner</span>
@@ -616,24 +643,48 @@
 
 	<!-- Why Section -->
 	<section class="why">
-		<h2>Why Vibeship?</h2>
-		<p class="section-subtitle">AI generates code fast. We make sure it doesn't blow up.</p>
+		<div class="why-inner">
+			<h2>Why Vibeship?</h2>
+			<p class="section-subtitle">Ship products you're actually proud of.</p>
 
-		<div class="why-grid">
-			<div class="why-card">
-				<div class="why-number">01</div>
-				<h3>AI-First Security</h3>
-				<p>Traditional scanners miss AI-generated patterns. We catch what Cursor, Claude, and Copilot actually produce.</p>
-			</div>
-			<div class="why-card">
-				<div class="why-number">02</div>
-				<h3>Context That Persists</h3>
-				<p>Your AI assistant forgets everything between sessions. Mind fixes that. Decisions, learnings, reminders - all preserved.</p>
-			</div>
-			<div class="why-card">
-				<div class="why-number">03</div>
-				<h3>Open Source Core</h3>
-				<p>Every tool is on GitHub. Inspect, fork, contribute. No black boxes. No vendor lock-in.</p>
+			<div class="why-list">
+				<div class="why-item">
+					<div class="why-number">01</div>
+					<div class="why-content">
+						<h3>Vibe Fast, Ship Safe</h3>
+						<p>Catch vulnerabilities before your users do. Security that understands how you actually build.</p>
+					</div>
+				</div>
+
+				<div class="why-divider"></div>
+
+				<div class="why-item">
+					<div class="why-number">02</div>
+					<div class="why-content">
+						<h3>Never Start From Zero</h3>
+						<p>Your context persists. Decisions, learnings, and reminders follow you across sessions.</p>
+					</div>
+				</div>
+
+				<div class="why-divider"></div>
+
+				<div class="why-item">
+					<div class="why-number">03</div>
+					<div class="why-content">
+						<h3>Scale With Agents</h3>
+						<p>Spawn parallel agents for complex tasks. Build faster without burning out.</p>
+					</div>
+				</div>
+
+				<div class="why-divider"></div>
+
+				<div class="why-item">
+					<div class="why-number">04</div>
+					<div class="why-content">
+						<h3>Open Source Core</h3>
+						<p>Every tool on GitHub. No black boxes, no vendor lock-in. Fork it, own it.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -653,7 +704,7 @@
 			</div>
 			<div class="stat">
 				<div class="stat-value">50+</div>
-				<div class="stat-label">Security Guides</div>
+				<div class="stat-label">Articles & Guides</div>
 				<div class="stat-sub">Written for vibe coders</div>
 			</div>
 			<div class="stat">
@@ -667,7 +718,7 @@
 	<!-- CTA Section -->
 	<section class="final-cta">
 		<div class="cta-content">
-			<h2>Ready to ship <span class="highlight">safely</span>?</h2>
+			<h2>Ready to ship <span class="highlight">better, safer, stronger</span>?</h2>
 			<p>Join the vibe coding movement. Build faster without the fear.</p>
 			<div class="cta-buttons">
 				<a href="/kb" class="btn btn-primary btn-glow btn-lg">
@@ -724,10 +775,15 @@
 
 <style>
 	/* Base */
+	:global(html) {
+		overflow-x: hidden;
+	}
+
 	:global(body) {
 		font-family: 'JetBrains Mono', monospace;
 		margin: 0;
 		padding: 0;
+		overflow-x: hidden;
 	}
 
 	/* Navigation */
@@ -816,6 +872,7 @@
 		max-width: 1200px;
 		margin: 0 auto;
 		padding: 0 1.5rem;
+		overflow-x: hidden;
 	}
 
 	/* Hero */
@@ -1337,16 +1394,8 @@
 		background: rgba(0, 196, 154, 0.1);
 	}
 
-	.icon-glyph {
-		font-family: 'Instrument Serif', Georgia, serif;
-		font-size: 1.25rem;
-		font-weight: 400;
+	.stage-icon svg {
 		color: var(--green-dim);
-	}
-
-	.stage-icon.scanner .icon-glyph {
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 1.1rem;
 	}
 
 	.stage-content {
@@ -1365,7 +1414,7 @@
 
 	.stage-desc {
 		font-size: 0.8rem;
-		color: var(--text-tertiary);
+		color: var(--text-secondary);
 	}
 
 	.stage-tag {
@@ -1535,47 +1584,71 @@
 
 	/* Why Section */
 	.why {
+		background: #f8f9fa;
 		padding: 5rem 0;
-		border-top: 1px solid var(--border);
 	}
 
-	.why-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+	.why-inner {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	.why h2 {
+		color: #1a1a1a;
+	}
+
+	.why .section-subtitle {
+		color: #5a5a5a;
+	}
+
+	.why-list {
+		margin-top: 3rem;
+	}
+
+	.why-item {
+		display: flex;
+		align-items: flex-start;
 		gap: 2rem;
-		margin-top: 2rem;
-	}
-
-	.why-card {
-		padding: 2rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
+		padding: 1.5rem 0;
 	}
 
 	.why-number {
-		font-size: 0.75rem;
-		color: var(--green-dim);
-		margin-bottom: 1rem;
-		font-weight: 600;
+		font-size: 1.5rem;
+		font-family: 'Instrument Serif', Georgia, serif;
+		color: #0d847a;
+		font-weight: 400;
+		flex-shrink: 0;
+		width: 2.5rem;
 	}
 
-	.why-card h3 {
+	.why-content {
+		flex: 1;
+	}
+
+	.why-content h3 {
 		font-family: 'JetBrains Mono', monospace;
 		font-size: 1rem;
-		font-weight: 500;
-		margin-bottom: 0.75rem;
+		font-weight: 600;
+		margin-bottom: 0.5rem;
+		color: #1a1a1a;
 	}
 
-	.why-card p {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		line-height: 1.7;
+	.why-content p {
+		font-size: 0.9rem;
+		color: #5a5a5a;
+		line-height: 1.6;
+	}
+
+	.why-divider {
+		height: 1px;
+		background: #d4d4d4;
 	}
 
 	/* Stats Section */
 	.stats {
 		padding: 4rem 0;
-		border-top: 1px solid var(--border);
+		border-top: 1px solid #d4d4d4;
+		border-bottom: 1px solid #d4d4d4;
 		background: linear-gradient(180deg, transparent 0%, rgba(0, 196, 154, 0.03) 100%);
 	}
 
@@ -1802,8 +1875,13 @@
 			grid-template-columns: 1fr;
 		}
 
-		.why-grid {
-			grid-template-columns: 1fr;
+		.why-item {
+			gap: 1.5rem;
+		}
+
+		.why-number {
+			font-size: 1.25rem;
+			width: 2rem;
 		}
 
 		.stats-grid {
