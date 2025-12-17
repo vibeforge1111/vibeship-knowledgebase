@@ -417,9 +417,9 @@ const html = ejs.render(
       <div class="code-secure">
         <h4>Secure</h4>
         <pre><code class="language-javascript">// Pass data object to template
-res.render('page', {
+res.render('page', {"{"}
     name: userInput
-})
+{"}"})
 
 // In template file:
 // &lt;p&gt;{"<%="}name{"%>"}&lt;/p&gt; (escaped)
@@ -440,9 +440,9 @@ pug.render(template)</code></pre>
       <div class="code-secure">
         <h4>Secure</h4>
         <pre><code class="language-javascript">// Pass data as locals
-res.render('template', {
+res.render('template', {"{"}
     name: userInput
-})
+{"}"})
 
 // In template file:
 // h1= name (interpolated and escaped)</code></pre>
@@ -474,17 +474,17 @@ echo $twig->render('hello.twig', [
       <div class="code-vulnerable">
         <h4>Vulnerable Helper</h4>
         <pre><code class="language-javascript">// NEVER create helpers that execute code
-Handlebars.registerHelper('exec', (cmd) => {
+Handlebars.registerHelper('exec', (cmd) =&gt; {"{"}
     return require('child_process')
         .execSync(cmd)
-})</code></pre>
+{"}"})</code></pre>
       </div>
       <div class="code-secure">
         <h4>Secure Pattern</h4>
         <pre><code class="language-javascript">// Only register safe helpers
-Handlebars.registerHelper('uppercase', (str) => {
+Handlebars.registerHelper('uppercase', (str) =&gt; {"{"}
     return str.toUpperCase()
-})
+{"}"})
 
 // Compile templates from trusted files only
 const template = Handlebars.compile(

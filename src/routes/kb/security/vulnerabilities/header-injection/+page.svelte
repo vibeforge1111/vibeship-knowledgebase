@@ -37,7 +37,7 @@
 		},
 		{
 			question: 'How does HTTP response splitting work?',
-			answer: 'HTTP response splitting works by injecting two CRLF sequences (\\r\\n\\r\\n) to prematurely end the HTTP headers and start the response body. An attacker sends: /redirect?url=page%0d%0a%0d%0a<script>alert(1)</script>. The server creates a Location header that terminates early, and the script becomes part of the response body that executes in the browser.'
+			answer: 'HTTP response splitting works by injecting two CRLF sequences (\\r\\n\\r\\n) to prematurely end the HTTP headers and start the response body. An attacker sends: /redirect?url=page%0d%0a%0d%0a&lt;script&gt;alert(1)&lt;/script&gt;. The server creates a Location header that terminates early, and the script becomes part of the response body that executes in the browser.'
 		},
 		{
 			question: 'Why are CRLF characters dangerous in HTTP headers?',

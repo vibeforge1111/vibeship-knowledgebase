@@ -1205,17 +1205,19 @@ Security:
 	.badge {
 		display: inline-block;
 		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		background: var(--surface-2, #333);
-		color: var(--text-secondary, #aaa);
+		background: var(--bg-primary);
+		color: var(--text-secondary);
+		border: 1px solid var(--border);
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.badge-prompts {
-		background: #8b5cf6;
-		color: white;
+		background: rgba(0, 196, 154, 0.1);
+		color: var(--green-dim);
+		border-color: var(--green-dim);
 	}
 
 	h1 {
@@ -1224,20 +1226,19 @@ Security:
 	}
 
 	.text-secondary {
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		font-size: 1.1rem;
 	}
 
 	.update-note {
 		font-size: 0.875rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-tertiary);
 		margin-top: 0.5rem;
 	}
 
 	.quick-answer {
-		background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
-		border: 1px solid rgba(139, 92, 246, 0.3);
-		border-radius: 8px;
+		background: rgba(0, 196, 154, 0.05);
+		border: 1px solid rgba(0, 196, 154, 0.2);
 		padding: 1.5rem;
 		margin-bottom: 2rem;
 	}
@@ -1246,7 +1247,7 @@ Security:
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		color: #8b5cf6;
+		color: var(--green-dim);
 		margin-bottom: 0.5rem;
 	}
 
@@ -1263,7 +1264,7 @@ Security:
 		font-size: 1.5rem;
 		margin-bottom: 1rem;
 		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	h3 {
@@ -1283,11 +1284,11 @@ Security:
 	}
 
 	code {
-		font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
-		background: rgba(0,0,0,0.3);
+		font-family: 'JetBrains Mono', monospace;
+		background: var(--bg-primary);
 		padding: 0.125rem 0.375rem;
-		border-radius: 3px;
 		font-size: 0.9em;
+		border: 1px solid var(--border);
 	}
 
 	ul {
@@ -1301,12 +1302,13 @@ Security:
 	}
 
 	a {
-		color: #8b5cf6;
+		color: var(--green-dim);
 		text-decoration: none;
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
+		text-decoration: none;
 	}
 
 	/* Tables */
@@ -1325,11 +1327,11 @@ Security:
 	.comparison-table td {
 		padding: 0.75rem 1rem;
 		text-align: left;
-		border: 1px solid var(--border, #333);
+		border: 1px solid var(--border);
 	}
 
 	.comparison-table th {
-		background: var(--surface-2, #222);
+		background: var(--bg-secondary);
 		font-weight: 600;
 	}
 
@@ -1340,15 +1342,15 @@ Security:
 	.table-note {
 		margin-top: 1rem;
 		padding: 1rem;
-		background: rgba(139, 92, 246, 0.1);
-		border-radius: 6px;
+		background: rgba(0, 196, 154, 0.05);
+		border: 1px solid rgba(0, 196, 154, 0.2);
 		font-size: 0.9rem;
 	}
 
 	/* Code Examples */
 	.code-example {
-		background: #0d0d0d;
-		border-radius: 8px;
+		background: var(--bg-primary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 		margin: 1rem 0;
 	}
@@ -1358,23 +1360,24 @@ Security:
 		justify-content: space-between;
 		align-items: center;
 		padding: 0.75rem 1rem;
-		background: rgba(255,255,255,0.05);
+		background: var(--bg-secondary);
 		font-size: 0.875rem;
+		border-bottom: 1px solid var(--border);
 	}
 
 	.copy-btn {
 		padding: 0.375rem 0.75rem;
-		background: #8b5cf6;
+		background: var(--green-dim);
 		color: white;
 		border: none;
-		border-radius: 4px;
 		font-size: 0.75rem;
 		font-weight: 600;
 		cursor: pointer;
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.copy-btn:hover {
-		background: #7c3aed;
+		background: var(--green);
 	}
 
 	pre {
@@ -1400,14 +1403,13 @@ Security:
 
 	.config-card {
 		padding: 1.5rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
 	.config-card h3 {
 		margin-top: 0;
-		color: #8b5cf6;
+		color: var(--green-dim);
 		font-size: 1rem;
 	}
 
@@ -1424,14 +1426,13 @@ Security:
 	.migration-note {
 		margin-top: 2rem;
 		padding: 1.5rem;
-		background: rgba(34, 197, 94, 0.1);
-		border: 1px solid rgba(34, 197, 94, 0.3);
-		border-radius: 8px;
+		background: rgba(0, 196, 154, 0.05);
+		border: 1px solid rgba(0, 196, 154, 0.2);
 	}
 
 	.migration-note h4 {
 		margin-top: 0;
-		color: #22c55e;
+		color: var(--green-dim);
 	}
 
 	/* Security Grid */
@@ -1444,14 +1445,13 @@ Security:
 
 	.security-feature {
 		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
 	.security-feature h4 {
 		margin-top: 0;
-		color: #22c55e;
+		color: var(--green-dim);
 	}
 
 	.security-feature p {

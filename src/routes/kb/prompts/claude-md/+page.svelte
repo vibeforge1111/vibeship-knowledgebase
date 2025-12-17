@@ -906,17 +906,19 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	.badge {
 		display: inline-block;
 		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		background: var(--surface-2, #333);
-		color: var(--text-secondary, #aaa);
+		background: var(--bg-primary);
+		color: var(--text-secondary);
+		border: 1px solid var(--border);
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.badge-prompts {
-		background: #8b5cf6;
-		color: white;
+		background: rgba(0, 196, 154, 0.1);
+		color: var(--green-dim);
+		border-color: var(--green-dim);
 	}
 
 	h1 {
@@ -925,24 +927,24 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	}
 
 	.text-secondary {
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		font-size: 1.1rem;
 	}
 
 	.quick-answer {
-		background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
-		border: 1px solid rgba(139, 92, 246, 0.3);
-		border-radius: 8px;
+		background: rgba(0, 196, 154, 0.05);
+		border: 1px solid rgba(0, 196, 154, 0.2);
 		padding: 1.5rem;
 		margin-bottom: 2rem;
 	}
 
 	.quick-answer-label {
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		color: #8b5cf6;
+		color: var(--green-dim);
 		margin-bottom: 0.5rem;
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.quick-answer-text {
@@ -978,10 +980,9 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	}
 
 	code {
-		font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+		font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
 		background: rgba(0,0,0,0.3);
 		padding: 0.125rem 0.375rem;
-		border-radius: 3px;
 		font-size: 0.9em;
 	}
 
@@ -995,21 +996,21 @@ E-commerce platform with Next.js frontend and Supabase backend.
 
 	.hierarchy-card {
 		padding: 1.25rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
 	.tier-badge {
 		display: inline-block;
 		padding: 0.25rem 0.5rem;
-		background: #8b5cf6;
-		color: white;
-		font-size: 0.7rem;
+		background: rgba(0, 196, 154, 0.1);
+		color: var(--green-dim);
+		border: 1px solid var(--green-dim);
+		font-size: 0.65rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		border-radius: 4px;
 		margin-bottom: 0.75rem;
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.hierarchy-card h3 {
@@ -1027,7 +1028,7 @@ E-commerce platform with Next.js frontend and Supabase backend.
 
 	.tier-desc {
 		font-size: 0.875rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		margin-bottom: 0.5rem;
 	}
 
@@ -1039,17 +1040,17 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	/* File Structure */
 	.file-structure {
 		background: #0d0d0d;
-		border-radius: 8px;
 		overflow: hidden;
 		margin: 1rem 0;
+		border: 1px solid var(--border);
 	}
 
 	.file-header {
 		padding: 0.75rem 1rem;
-		background: rgba(139, 92, 246, 0.1);
+		background: rgba(0, 196, 154, 0.1);
 		font-size: 0.875rem;
 		font-weight: 600;
-		color: #a78bfa;
+		color: var(--green-dim);
 	}
 
 	.file-structure pre {
@@ -1060,9 +1061,9 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	/* Code Blocks */
 	.code-block {
 		background: #0d0d0d;
-		border-radius: 8px;
 		overflow: hidden;
 		margin: 1rem 0;
+		border: 1px solid var(--border);
 	}
 
 	.code-header {
@@ -1076,17 +1077,17 @@ E-commerce platform with Next.js frontend and Supabase backend.
 
 	.copy-btn {
 		padding: 0.375rem 0.75rem;
-		background: #8b5cf6;
+		background: var(--green-dim);
 		color: white;
 		border: none;
-		border-radius: 4px;
 		font-size: 0.75rem;
 		font-weight: 600;
 		cursor: pointer;
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.copy-btn:hover {
-		background: #7c3aed;
+		background: var(--green);
 	}
 
 	pre {
@@ -1104,17 +1105,16 @@ E-commerce platform with Next.js frontend and Supabase backend.
 
 	/* Security Section */
 	.security-section {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 12px;
+		background: var(--bg-secondary);
 		padding: 2rem;
 		border: 1px solid rgba(34, 197, 94, 0.3);
 	}
 
 	.security-rules-block {
 		background: #0d0d0d;
-		border-radius: 8px;
 		overflow: hidden;
 		margin: 1rem 0;
+		border: 1px solid var(--border);
 	}
 
 	.security-code {
@@ -1126,8 +1126,8 @@ E-commerce platform with Next.js frontend and Supabase backend.
 		margin-top: 1rem;
 		padding: 1rem;
 		background: rgba(34, 197, 94, 0.1);
-		border-radius: 6px;
 		font-size: 0.9rem;
+		border: 1px solid rgba(34, 197, 94, 0.2);
 	}
 
 	/* Stack Examples */
@@ -1138,9 +1138,8 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	}
 
 	.stack-card {
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
@@ -1159,13 +1158,13 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	.stack-desc {
 		margin: 0;
 		font-size: 0.875rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 	}
 
 	.stack-card pre {
 		max-height: 350px;
 		overflow-y: auto;
-		border-top: 1px solid var(--border, #333);
+		border-top: 1px solid var(--border);
 	}
 
 	/* Best Practices Grid */
@@ -1184,7 +1183,6 @@ E-commerce platform with Next.js frontend and Supabase backend.
 
 	.practice {
 		padding: 1.5rem;
-		border-radius: 8px;
 	}
 
 	.practice.do {
@@ -1232,11 +1230,11 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	.comparison-table td {
 		padding: 0.75rem 1rem;
 		text-align: left;
-		border: 1px solid var(--border, #333);
+		border: 1px solid var(--border);
 	}
 
 	.comparison-table th {
-		background: var(--surface-2, #222);
+		background: var(--bg-secondary);
 		font-weight: 600;
 	}
 
@@ -1248,7 +1246,7 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	.faq-item {
 		margin-bottom: 1.5rem;
 		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.faq-item:last-child {
@@ -1263,7 +1261,7 @@ E-commerce platform with Next.js frontend and Supabase backend.
 
 	.faq-item p {
 		margin: 0;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 	}
 
 	/* Related Grid */
@@ -1276,21 +1274,20 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	.related-card {
 		display: block;
 		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		text-decoration: none;
 		transition: border-color 0.2s;
 	}
 
 	.related-card:hover {
-		border-color: #8b5cf6;
+		border-color: var(--green-dim);
 	}
 
 	.related-type {
 		display: block;
 		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		text-transform: uppercase;
 		margin-bottom: 0.25rem;
 	}
@@ -1298,7 +1295,7 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	.related-title {
 		display: block;
 		font-weight: 600;
-		color: var(--text-primary, #fff);
+		color: var(--text-primary);
 	}
 
 	/* External Links */
@@ -1312,7 +1309,7 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	}
 
 	.external-links a {
-		color: #8b5cf6;
+		color: var(--green-dim);
 		text-decoration: none;
 	}
 
@@ -1321,10 +1318,39 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	}
 
 	a {
-		color: #8b5cf6;
+		color: var(--green-dim);
 	}
 
 	a:hover {
 		text-decoration: underline;
+	}
+
+	/* CTA Box */
+	.cta-box {
+		background: rgba(0, 196, 154, 0.05);
+		border: 1px solid rgba(0, 196, 154, 0.3);
+		padding: 2rem;
+		text-align: center;
+	}
+
+	.cta-box h2 {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+
+	.cta-button {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background: var(--green-dim);
+		color: white;
+		text-decoration: none;
+		font-weight: 600;
+		margin-top: 1rem;
+		transition: background 0.2s;
+	}
+
+	.cta-button:hover {
+		background: var(--green);
+		text-decoration: none;
 	}
 </style>

@@ -406,7 +406,7 @@ tags: [security, critical]
     padding: 2rem 1rem;
     font-family: system-ui, -apple-system, sans-serif;
     line-height: 1.7;
-    color: #1a1a1a;
+    color: var(--text-primary);
   }
 
   .article-header {
@@ -415,17 +415,18 @@ tags: [security, critical]
 
   .breadcrumb {
     font-size: 0.875rem;
-    color: #666;
+    color: var(--text-tertiary);
     margin-bottom: 1rem;
   }
 
   .breadcrumb a {
-    color: #0066cc;
+    color: var(--green-dim);
     text-decoration: none;
   }
 
   .breadcrumb a:hover {
-    text-decoration: underline;
+    color: var(--green);
+    text-decoration: none;
   }
 
   h1 {
@@ -433,30 +434,31 @@ tags: [security, critical]
     font-weight: 700;
     line-height: 1.2;
     margin: 0 0 1rem 0;
-    color: #000;
+    color: var(--text-primary);
   }
 
   .article-meta {
     display: flex;
     gap: 1rem;
     font-size: 0.875rem;
-    color: #666;
+    color: var(--text-tertiary);
   }
 
   .quick-answer {
-    background: #f0f9ff;
-    border-left: 4px solid #0066cc;
+    background: rgba(0, 196, 154, 0.05);
+    border: 1px solid rgba(0, 196, 154, 0.2);
+    border-left: 3px solid var(--green-dim);
     padding: 1.25rem;
     margin: 2rem 0;
     font-size: 1rem;
   }
 
   .quick-answer code {
-    background: #e0f2fe;
+    background: var(--bg-primary);
     padding: 0.125rem 0.375rem;
-    border-radius: 3px;
-    font-family: 'Monaco', 'Courier New', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.9em;
+    border: 1px solid var(--border);
   }
 
   section {
@@ -467,14 +469,14 @@ tags: [security, critical]
     font-size: 1.875rem;
     font-weight: 600;
     margin: 2.5rem 0 1rem 0;
-    color: #000;
+    color: var(--text-primary);
   }
 
   h3 {
     font-size: 1.375rem;
     font-weight: 600;
     margin: 2rem 0 1rem 0;
-    color: #1a1a1a;
+    color: var(--text-primary);
   }
 
   p {
@@ -482,36 +484,37 @@ tags: [security, critical]
   }
 
   a {
-    color: #0066cc;
+    color: var(--green-dim);
     text-decoration: none;
   }
 
   a:hover {
-    text-decoration: underline;
+    color: var(--green);
+    text-decoration: none;
   }
 
   code {
-    background: #f5f5f5;
+    background: var(--bg-primary);
     padding: 0.125rem 0.375rem;
-    border-radius: 3px;
-    font-family: 'Monaco', 'Courier New', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.9em;
+    border: 1px solid var(--border);
   }
 
   .code-example {
-    background: #1e1e1e;
-    color: #d4d4d4;
-    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
     overflow: hidden;
     margin: 1.5rem 0;
   }
 
   .code-header {
-    background: #2d2d2d;
+    background: var(--bg-secondary);
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
-    color: #888;
-    border-bottom: 1px solid #404040;
+    color: var(--text-tertiary);
+    border-bottom: 1px solid var(--border);
   }
 
   .code-example pre {
@@ -526,12 +529,12 @@ tags: [security, critical]
     padding: 0;
     font-size: 0.875rem;
     line-height: 1.6;
+    border: none;
   }
 
   .file-structure {
-    background: #f8f9fa;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
     padding: 1rem;
     margin: 1.5rem 0;
   }
@@ -539,6 +542,8 @@ tags: [security, critical]
   .file-structure pre {
     margin: 0;
     font-size: 0.875rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-secondary);
   }
 
   ul, ol {
@@ -560,53 +565,55 @@ tags: [security, critical]
   }
 
   .cta-box {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: var(--bg-secondary);
+    border: 1px solid var(--green-dim);
+    color: var(--text-primary);
     padding: 2rem;
-    border-radius: 8px;
     margin: 2rem 0;
     text-align: center;
   }
 
   .cta-box h3 {
-    color: white;
+    color: var(--text-primary);
     margin-top: 0;
   }
 
   .cta-box p {
     margin: 1rem 0;
+    color: var(--text-secondary);
   }
 
   .cta-box a {
-    color: white;
+    color: var(--green-dim);
   }
 
   .cta-button {
     display: inline-block;
-    background: white;
-    color: #667eea;
+    background: var(--green-dim);
+    color: white;
     padding: 0.75rem 2rem;
-    border-radius: 6px;
     font-weight: 600;
     text-decoration: none;
     margin-top: 1rem;
-    transition: transform 0.2s;
+    transition: background 0.2s;
   }
 
   .cta-button:hover {
-    transform: translateY(-2px);
+    background: var(--green);
     text-decoration: none;
+    color: white;
   }
 
   .article-footer {
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--border);
   }
 
   .related-articles h3 {
     font-size: 1.25rem;
     margin-bottom: 1rem;
+    color: var(--text-primary);
   }
 
   .related-articles ul {
@@ -621,7 +628,7 @@ tags: [security, critical]
   .last-updated {
     margin-top: 2rem;
     font-size: 0.875rem;
-    color: #666;
+    color: var(--text-tertiary);
   }
 
   @media (max-width: 768px) {

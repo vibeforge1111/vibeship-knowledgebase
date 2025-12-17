@@ -485,7 +485,7 @@ async function withdrawFunds(userId, amount) {"{"}
       where: {"{"} id: userId {"}"}
     {"}"})
 
-    if (user.balance < amount) {"{"}
+    if (user.balance &lt; amount) {"{"}
       throw new Error('Insufficient balance')
     {"}"}
 

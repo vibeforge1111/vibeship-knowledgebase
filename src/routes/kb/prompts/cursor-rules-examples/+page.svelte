@@ -901,7 +901,8 @@ test('should not expose sensitive data in DOM', async ({ page }) => {
 })
 
 test('should prevent XSS in user input', async ({ page }) => {
-  const xssPayload = '<script>alert("xss")</script>'
+  // Test with XSS payload (script tags)
+  const xssPayload = '<' + 'script>alert("xss")</' + 'script>'
   await page.getByLabel('Name').fill(xssPayload)
   await page.getByRole('button', { name: 'Save' }).click()
 
@@ -1471,17 +1472,19 @@ globs: ["**/*.ts", "**/*.tsx"]
 	.badge {
 		display: inline-block;
 		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		background: var(--surface-2, #333);
-		color: var(--text-secondary, #aaa);
+		background: var(--bg-primary);
+		color: var(--text-secondary);
+		border: 1px solid var(--border);
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.badge-prompts {
-		background: #8b5cf6;
-		color: white;
+		background: rgba(0, 196, 154, 0.1);
+		color: var(--green-dim);
+		border-color: var(--green-dim);
 	}
 
 	h1 {
@@ -1490,24 +1493,24 @@ globs: ["**/*.ts", "**/*.tsx"]
 	}
 
 	.text-secondary {
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		font-size: 1.1rem;
 	}
 
 	.quick-answer {
-		background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
-		border: 1px solid rgba(139, 92, 246, 0.3);
-		border-radius: 8px;
+		background: rgba(0, 196, 154, 0.05);
+		border: 1px solid rgba(0, 196, 154, 0.2);
 		padding: 1.5rem;
 		margin-bottom: 2rem;
 	}
 
 	.quick-answer-label {
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		color: #8b5cf6;
+		color: var(--green-dim);
 		margin-bottom: 0.5rem;
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.quick-answer-text {
@@ -1523,7 +1526,7 @@ globs: ["**/*.ts", "**/*.tsx"]
 		font-size: 1.5rem;
 		margin-bottom: 1rem;
 		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	h3 {
@@ -1543,10 +1546,9 @@ globs: ["**/*.ts", "**/*.tsx"]
 	}
 
 	code {
-		font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+		font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
 		background: rgba(0,0,0,0.3);
 		padding: 0.125rem 0.375rem;
-		border-radius: 3px;
 		font-size: 0.9em;
 	}
 
@@ -1560,10 +1562,9 @@ globs: ["**/*.ts", "**/*.tsx"]
 
 	.category-btn {
 		padding: 0.75rem 1.25rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		color: var(--text-primary, #fff);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		color: var(--text-primary);
 		font-size: 0.9rem;
 		font-weight: 500;
 		cursor: pointer;
@@ -1574,24 +1575,23 @@ globs: ["**/*.ts", "**/*.tsx"]
 	}
 
 	.category-btn:hover {
-		border-color: #8b5cf6;
+		border-color: var(--green-dim);
 	}
 
 	.category-btn.active {
-		background: rgba(139, 92, 246, 0.2);
-		border-color: #8b5cf6;
-		color: #a78bfa;
+		background: rgba(0, 196, 154, 0.1);
+		border-color: var(--green-dim);
+		color: var(--green-dim);
 	}
 
 	.category-btn .count {
 		background: rgba(255,255,255,0.1);
 		padding: 0.125rem 0.5rem;
-		border-radius: 4px;
 		font-size: 0.75rem;
 	}
 
 	.category-btn.active .count {
-		background: rgba(139, 92, 246, 0.3);
+		background: rgba(0, 196, 154, 0.2);
 	}
 
 	/* Template Grid */
@@ -1601,9 +1601,8 @@ globs: ["**/*.ts", "**/*.tsx"]
 	}
 
 	.template-card {
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
@@ -1613,29 +1612,29 @@ globs: ["**/*.ts", "**/*.tsx"]
 		align-items: flex-start;
 		padding: 1rem 1.25rem;
 		background: rgba(255,255,255,0.02);
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.template-desc {
 		margin: 0;
 		font-size: 0.875rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 	}
 
 	.copy-btn {
 		padding: 0.5rem 1rem;
-		background: #8b5cf6;
+		background: var(--green-dim);
 		color: white;
 		border: none;
-		border-radius: 4px;
 		font-size: 0.8rem;
 		font-weight: 600;
 		cursor: pointer;
 		white-space: nowrap;
+		font-family: 'JetBrains Mono', monospace;
 	}
 
 	.copy-btn:hover {
-		background: #7c3aed;
+		background: var(--green);
 	}
 
 	.template-code {
@@ -1663,17 +1662,15 @@ globs: ["**/*.ts", "**/*.tsx"]
 
 	.step {
 		padding: 1.25rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
 	.step-number {
 		width: 28px;
 		height: 28px;
-		background: #8b5cf6;
+		background: var(--green-dim);
 		color: white;
-		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -1689,14 +1686,13 @@ globs: ["**/*.ts", "**/*.tsx"]
 	.step p {
 		margin: 0;
 		font-size: 0.875rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 	}
 
 	/* Security Callout */
 	.security-callout {
-		background: var(--surface-1, #1a1a1a);
+		background: var(--bg-secondary);
 		border: 1px solid rgba(34, 197, 94, 0.3);
-		border-radius: 12px;
 		padding: 2rem;
 	}
 
@@ -1712,17 +1708,17 @@ globs: ["**/*.ts", "**/*.tsx"]
 	/* File Structure */
 	.file-structure {
 		background: #0d0d0d;
-		border-radius: 8px;
 		overflow: hidden;
 		margin: 1rem 0;
+		border: 1px solid var(--border);
 	}
 
 	.file-header {
 		padding: 0.75rem 1rem;
-		background: rgba(139, 92, 246, 0.1);
+		background: rgba(0, 196, 154, 0.1);
 		font-size: 0.875rem;
 		font-weight: 600;
-		color: #a78bfa;
+		color: var(--green-dim);
 	}
 
 	.file-structure pre {
@@ -1733,9 +1729,9 @@ globs: ["**/*.ts", "**/*.tsx"]
 	/* Code Block */
 	.code-block {
 		background: #0d0d0d;
-		border-radius: 8px;
 		overflow: hidden;
 		margin: 1rem 0;
+		border: 1px solid var(--border);
 	}
 
 	.code-header {
@@ -1761,7 +1757,7 @@ globs: ["**/*.ts", "**/*.tsx"]
 	.faq-item {
 		margin-bottom: 1.5rem;
 		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.faq-item:last-child {
@@ -1775,7 +1771,7 @@ globs: ["**/*.ts", "**/*.tsx"]
 
 	.faq-item p {
 		margin: 0;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 	}
 
 	/* Related Grid */
@@ -1788,21 +1784,20 @@ globs: ["**/*.ts", "**/*.tsx"]
 	.related-card {
 		display: block;
 		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		text-decoration: none;
 		transition: border-color 0.2s;
 	}
 
 	.related-card:hover {
-		border-color: #8b5cf6;
+		border-color: var(--green-dim);
 	}
 
 	.related-type {
 		display: block;
 		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		text-transform: uppercase;
 		margin-bottom: 0.25rem;
 	}
@@ -1810,7 +1805,7 @@ globs: ["**/*.ts", "**/*.tsx"]
 	.related-title {
 		display: block;
 		font-weight: 600;
-		color: var(--text-primary, #fff);
+		color: var(--text-primary);
 	}
 
 	/* External Links */
@@ -1824,7 +1819,7 @@ globs: ["**/*.ts", "**/*.tsx"]
 	}
 
 	.external-links a {
-		color: #8b5cf6;
+		color: var(--green-dim);
 		text-decoration: none;
 	}
 
@@ -1833,7 +1828,7 @@ globs: ["**/*.ts", "**/*.tsx"]
 	}
 
 	a {
-		color: #8b5cf6;
+		color: var(--green-dim);
 	}
 
 	a:hover {
