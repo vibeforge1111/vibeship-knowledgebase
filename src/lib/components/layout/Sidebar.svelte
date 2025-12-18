@@ -99,9 +99,10 @@
 	</nav>
 
 	<div class="sidebar-footer">
-		<a href="https://scanner.vibeship.co" class="btn btn-green sidebar-cta">
-			<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+		<a href="https://scanner.vibeship.co" target="_blank" class="scan-btn">
+			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 				<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+				<path d="M9 12l2 2 4-4"/>
 			</svg>
 			Scan Your Code
 		</a>
@@ -281,9 +282,26 @@
 		border-top: 1px solid var(--border);
 	}
 
-	.sidebar-cta {
-		width: 100%;
+	.scan-btn {
+		display: flex;
+		align-items: center;
 		justify-content: center;
+		gap: 0.5rem;
+		width: 100%;
+		padding: 0.5rem 0.75rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-primary);
+		text-decoration: none;
+		border: 1px solid var(--text-primary);
+		transition: all 0.15s;
+	}
+
+	.scan-btn:hover {
+		background: var(--text-primary);
+		color: var(--bg-primary);
 	}
 
 	/* Mobile responsive */

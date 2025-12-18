@@ -1,33 +1,158 @@
 <script lang="ts">
-	const currentYear = new Date().getFullYear();
 </script>
 
 <footer>
-	<p>&copy; {currentYear} <a href="https://vibeship.co" target="_blank">vibeship</a></p>
+	<div class="footer-row">
+		<a href="/" class="footer-logo">
+			<img src="/logo.png" alt="vibeship" class="footer-logo-icon" />
+			<span>vibeship</span>
+		</a>
+
+		<div class="footer-links">
+			<a href="https://scanner.vibeship.co" target="_blank" class="scan-btn">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+					<path d="M9 12l2 2 4-4"/>
+				</svg>
+				Scan Your Code
+			</a>
+			<a href="https://mind.vibeship.co" target="_blank">Mind</a>
+			<a href="/kb">Knowledge Base</a>
+		</div>
+
+		<div class="footer-right">
+			<a href="https://github.com/vibeforge1111" target="_blank" class="icon-btn" aria-label="GitHub">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+					<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+				</svg>
+			</a>
+			<a href="https://x.com/vibeshipco" target="_blank" class="icon-btn" aria-label="X">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+					<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+				</svg>
+			</a>
+		</div>
+	</div>
 </footer>
 
 <style>
 	footer {
-		padding: 2rem 1.5rem;
 		border-top: 1px solid var(--border);
-		text-align: center;
-		max-width: 800px;
+		padding: 1rem 1.5rem;
+		margin-left: -260px;
+		padding-left: calc(260px + 1.5rem);
+	}
+
+	@media (max-width: 768px) {
+		footer {
+			margin-left: 0;
+			padding-left: 1.5rem;
+		}
+	}
+
+	.footer-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 1200px;
 		margin: 0 auto;
 	}
 
-	footer p {
-		font-size: 0.85rem;
-		color: var(--text-tertiary);
-		margin: 0;
+	.footer-logo {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		text-decoration: none;
 	}
 
-	footer a {
+	.footer-logo-icon {
+		width: 18px;
+		height: 18px;
+		filter: invert(var(--logo-invert, 0));
+	}
+
+	.footer-logo span {
+		font-family: 'Instrument Serif', Georgia, serif;
+		font-size: 1rem;
+		color: var(--text-primary);
+	}
+
+	.footer-links {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.footer-links a {
+		font-size: 0.8rem;
 		color: var(--text-secondary);
 		text-decoration: none;
 		transition: color 0.15s;
 	}
 
-	footer a:hover {
-		color: var(--text-primary);
+	.footer-links a:hover {
+		color: var(--green-dim);
+	}
+
+	.scan-btn {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.4rem 0.75rem;
+		font-size: 0.75rem;
+		color: var(--text-primary) !important;
+		border: 1px solid var(--text-primary);
+		transition: all 0.15s;
+	}
+
+	.scan-btn:hover {
+		background: var(--text-primary);
+		color: var(--bg-primary) !important;
+	}
+
+	.footer-right {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.icon-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		color: var(--text-secondary);
+		border: 1px solid var(--border);
+		transition: all 0.15s;
+	}
+
+	.icon-btn:hover {
+		border-color: var(--green-dim);
+		color: var(--green-dim);
+	}
+
+	@media (max-width: 768px) {
+		.footer-row {
+			flex-wrap: wrap;
+			gap: 1rem;
+			justify-content: center;
+		}
+
+		.footer-logo {
+			order: 1;
+			width: 100%;
+			justify-content: center;
+		}
+
+		.footer-links {
+			order: 2;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		.footer-right {
+			order: 3;
+		}
 	}
 </style>
