@@ -9,15 +9,9 @@
 		</a>
 
 		<div class="footer-links">
-			<a href="https://scanner.vibeship.co" target="_blank" class="scan-btn">
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-					<path d="M9 12l2 2 4-4"/>
-				</svg>
-				Scan Your Code
-			</a>
+			<a href="https://scanner.vibeship.co" target="_blank">Scanner</a>
 			<a href="https://mind.vibeship.co" target="_blank">Mind</a>
-			<a href="/kb">Knowledge Base</a>
+			<a href="https://vibeship.co" target="_blank">Ecosystem</a>
 		</div>
 
 		<div class="footer-right">
@@ -37,16 +31,27 @@
 
 <style>
 	footer {
-		border-top: 1px solid var(--border);
 		padding: 1rem 1.5rem;
-		margin-left: -260px;
-		padding-left: calc(260px + 1.5rem);
+		position: relative;
+	}
+
+	footer::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -260px;
+		right: 0;
+		height: 1px;
+		background: var(--border);
 	}
 
 	@media (max-width: 768px) {
 		footer {
-			margin-left: 0;
-			padding-left: 1.5rem;
+			padding: 1rem 1.5rem;
+		}
+
+		footer::before {
+			left: 0;
 		}
 	}
 
@@ -92,22 +97,6 @@
 
 	.footer-links a:hover {
 		color: var(--green-dim);
-	}
-
-	.scan-btn {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.4rem 0.75rem;
-		font-size: 0.75rem;
-		color: var(--text-primary) !important;
-		border: 1px solid var(--text-primary);
-		transition: all 0.15s;
-	}
-
-	.scan-btn:hover {
-		background: var(--text-primary);
-		color: var(--bg-primary) !important;
 	}
 
 	.footer-right {

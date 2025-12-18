@@ -279,7 +279,6 @@
 
 	.sidebar-footer {
 		padding: 1rem 1rem;
-		border-top: 1px solid var(--border);
 	}
 
 	.scan-btn {
