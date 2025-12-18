@@ -48,7 +48,7 @@
 		{
 			id: 'scanner',
 			name: 'scan()',
-			description: 'Security scanning for AI code',
+			description: 'Security scanning and fix prompts for AI generated code',
 			category: 'SECURITY',
 			status: 'live',
 			url: 'https://scanner.vibeship.co',
@@ -57,30 +57,26 @@
 				command: '$ vibeship scan ./src',
 				output: [
 					'',
+					'## 2000+ rules | OWASP Top 10',
+					'  └─ opengrep, trivy, gitleaks',
+					'',
 					'Scanning 142 files...',
 					'',
-					'## Vulnerabilities Found: 3',
+					'## 3 Vulnerabilities Found',
 					'',
-					'[CRITICAL] SQL Injection',
-					'  └─ src/api/users.ts:47',
-					'  └─ Unsanitized user input in query',
+					'[CRITICAL] SQL Injection - src/api/users.ts:47',
+					'[HIGH] XSS - src/components/Comment.tsx:23',
+					'[MEDIUM] Hardcoded API key - src/config/api.ts:12',
 					'',
-					'[HIGH] XSS in render output',
-					'  └─ src/components/Comment.tsx:23',
-					'  └─ innerHTML with user data',
-					'',
-					'[MEDIUM] Hardcoded API key',
-					'  └─ src/config/api.ts:12',
-					'  └─ Move to environment variable',
-					'',
-					'Run `vibeship fix` to auto-patch',
+					'## Master Fix Prompt generated',
+					'Copy to Claude/Cursor to fix all.',
 				]
 			}
 		},
 		{
 			id: 'mind',
 			name: 'recall()',
-			description: 'Persistent memory for Claude',
+			description: 'Persistent long term and short term memory for Claude Code',
 			category: 'MEMORY',
 			status: 'live',
 			url: 'https://mind.vibeship.co',
@@ -89,58 +85,61 @@
 				command: '$ mind_recall()',
 				output: [
 					'',
-					'## Memory: Active',
-					'Last captured: 2 hours ago',
+					'## Long-term Memory',
+					'  └─ Decisions, learnings, gotchas preserved',
 					'',
-					'## Reminders Due',
-					'- Review auth flow when we work on login',
+					'## Short-term Session',
+					'  └─ Current blockers, assumptions, progress',
 					'',
-					'## Recent Decisions',
-					'- file-based storage (simpler, git-trackable)',
-					'- MCP over REST (native Claude integration)',
+					'## Smart Reminders',
+					'  └─ "Remind me about auth when we touch login"',
+					'',
+					'## Self-Improvement',
+					'  └─ Tracks your preferences & blind spots',
 					'',
 					'## Continue From',
-					'Last: implementing two-layer memory system',
+					'Last: implementing payment flow',
 					'',
-					'12 tools available. Type mind_status() for health.',
+					'Never start from zero. Build on what you learned.',
 				]
 			}
 		},
 		{
 			id: 'spawner',
 			name: 'spawn()',
-			description: 'Parallel agent orchestration',
+			description: 'Claude Skills & agents tailored for you for better outputs',
 			category: 'AGENTS',
 			status: 'coming',
 			url: null,
 			github: 'https://github.com/vibeforge1111/vibeship-spawner',
 			terminal: {
-				command: '$ spawner dispatch --parallel 4',
+				command: '$ spawner init',
 				output: [
 					'',
-					'## Spawning 4 agents...',
+					'## Analyzing your codebase...',
+					'  └─ Stack: SvelteKit, TypeScript, Supabase',
+					'  └─ Patterns: 12 components, 4 API routes',
 					'',
-					'[Agent 1] Researching auth patterns',
-					'  └─ Status: gathering context',
+					'## Generating custom skills...',
 					'',
-					'[Agent 2] Writing unit tests',
-					'  └─ Status: 12/24 tests written',
+					'[Skill] svelte-component-writer',
+					'  └─ Matches your naming conventions',
 					'',
-					'[Agent 3] Reviewing PR #47',
-					'  └─ Status: analyzing changes',
+					'[Skill] supabase-rls-helper',
+					'  └─ Aligned with your auth patterns',
 					'',
-					'[Agent 4] Fixing linter errors',
-					'  └─ Status: 8/8 fixed ✓',
+					'[Skill] brainstorm-to-code',
+					'  └─ Refines ideas before implementation',
 					'',
-					'## ETA: 3 min',
-					'Coordinating via shared memory...',
+					'## Ready to spawn agents',
+					'Skills adapt as your codebase evolves.',
 				]
 			}
 		},
 		{
 			id: 'kb',
 			name: 'learn()',
-			description: 'Security guides & best practices',
+			description: 'Security guides, checklists, prompts, and more for vibe coders',
 			category: 'LEARN',
 			status: 'live',
 			url: '/kb',
@@ -163,7 +162,7 @@
 					'    /kb/security/checklists/database',
 					'    └─ 12-point pre-deploy checklist',
 					'',
-					'50+ articles. 2000+ vulnerability types covered.',
+					'50+ articles. Written for vibe coders.',
 				]
 			}
 		}
@@ -235,7 +234,7 @@
 		{
 			name: 'Spawner',
 			tagline: 'Skills & agents for Claude',
-			description: 'Spawn parallel AI agents for complex tasks. Coordinate, delegate, conquer.',
+			description: 'Analyzes your codebase, brainstorms ideas, and generates custom skills that match how you build.',
 			url: null,
 			github: 'https://github.com/vibeforge1111/vibeship-spawner',
 			status: 'coming',
@@ -374,17 +373,53 @@
 				{/each}
 
 				<div class="sidebar-footer">
-					<a href="https://github.com/vibeforge1111" target="_blank" class="github-footer-link">
+					<a href={selectedToolData.github} target="_blank" class="github-footer-link">
 						<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
 							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
 						</svg>
-						All repos
+						View source
 					</a>
 				</div>
 			</div>
 
 			<!-- Terminal Panel -->
 			<div class="ide-terminal">
+				<!-- Mobile Tabs -->
+				<div class="mobile-tabs">
+					{#each tools as tool}
+						<button
+							class="mobile-tab"
+							class:active={selectedTool === tool.id}
+							onclick={() => selectedTool = tool.id}
+						>
+							{#if tool.id === 'scanner'}
+								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+								</svg>
+							{:else if tool.id === 'mind'}
+								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+									<path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+								</svg>
+							{:else if tool.id === 'spawner'}
+								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<circle cx="12" cy="12" r="3"/>
+									<path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+								</svg>
+							{:else}
+								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+									<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+								</svg>
+							{/if}
+							<span>{tool.id === 'kb' ? 'KB' : tool.id.charAt(0).toUpperCase() + tool.id.slice(1)}</span>
+							{#if tool.status === 'live'}
+								<span class="tab-status"></span>
+							{/if}
+						</button>
+					{/each}
+				</div>
+
 				<div class="terminal-header">
 					<div class="terminal-dots">
 						<span class="terminal-dot red"></span>
@@ -436,12 +471,6 @@
 				</div>
 				<div class="terminal-footer">
 					<span class="footer-hint">{selectedToolData.description}</span>
-					<a href={selectedToolData.github} target="_blank" class="footer-link">
-						<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-						</svg>
-						View source
-					</a>
 				</div>
 			</div>
 		</div>
@@ -559,7 +588,6 @@
 			<div class="funnel-stage output">
 				<div class="stage-box narrow shipped">
 					<span class="shipped-text">Ship with confidence</span>
-					<span class="shipped-check">✓</span>
 				</div>
 			</div>
 		</div>
@@ -1076,6 +1104,11 @@
 		color: var(--green-dim);
 	}
 
+	/* Mobile Tabs - hidden on desktop */
+	.mobile-tabs {
+		display: none;
+	}
+
 	/* IDE Terminal */
 	.ide-terminal {
 		flex: 1;
@@ -1450,14 +1483,8 @@
 
 	.shipped-text {
 		font-family: 'Instrument Serif', Georgia, serif;
-		font-size: 1.2rem;
+		font-size: 1.4rem;
 		color: white;
-	}
-
-	.shipped-check {
-		font-size: 1.1rem;
-		color: white;
-		margin-left: 0.5rem;
 	}
 
 	/* Products Grid */
@@ -1847,40 +1874,80 @@
 		}
 
 		.ide-sidebar {
-			width: 100%;
-			border-right: none;
-			border-bottom: 1px solid var(--border);
-		}
-
-		.sidebar-category {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.25rem;
-			padding: 0.5rem 1rem;
-		}
-
-		.category-label {
-			width: 100%;
-			padding: 0.25rem 0;
-		}
-
-		.tool-item {
-			padding: 0.5rem 0.75rem;
-			flex: 0 0 auto;
-		}
-
-		.tool-item.active {
-			border-left: none;
-			border-bottom: 2px solid var(--green-dim);
-			padding-left: 0.75rem;
-		}
-
-		.sidebar-footer {
 			display: none;
 		}
 
+		.mobile-tabs {
+			display: flex;
+			background: var(--bg-tertiary);
+			border-bottom: 1px solid var(--border);
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.mobile-tab {
+			display: flex;
+			align-items: center;
+			gap: 0.4rem;
+			padding: 0.75rem 1rem;
+			background: transparent;
+			border: none;
+			border-bottom: 2px solid transparent;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.75rem;
+			color: var(--text-secondary);
+			cursor: pointer;
+			white-space: nowrap;
+			transition: all 0.15s;
+		}
+
+		.mobile-tab:hover {
+			color: var(--text-primary);
+			background: var(--bg-secondary);
+		}
+
+		.mobile-tab.active {
+			color: var(--green-dim);
+			border-bottom-color: var(--green-dim);
+			background: var(--bg-secondary);
+		}
+
+		.mobile-tab svg {
+			flex-shrink: 0;
+		}
+
+		.tab-status {
+			width: 5px;
+			height: 5px;
+			background: var(--green-dim);
+			border-radius: 50%;
+			margin-left: 0.2rem;
+		}
+
 		.terminal-body {
-			min-height: 280px;
+			height: 320px;
+			min-height: 320px;
+			max-height: 320px;
+			padding: 1rem;
+			font-size: 0.75rem;
+			overflow-y: auto;
+		}
+
+		.ide-explorer {
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.mobile-tabs {
+			border-radius: 8px 8px 0 0;
+		}
+
+		.terminal-footer {
+			padding: 0.5rem 1rem;
+		}
+
+		.footer-hint {
+			font-size: 0.65rem;
 		}
 
 		.products-grid {
@@ -1936,10 +2003,9 @@
 		}
 
 		.ide-explorer {
-			margin-left: -1.5rem;
-			margin-right: -1.5rem;
-			border-left: none;
-			border-right: none;
+			margin-left: 0;
+			margin-right: 0;
+			border-radius: 4px;
 		}
 
 		.hero-cta {
