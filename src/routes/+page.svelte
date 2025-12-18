@@ -508,7 +508,7 @@
 						<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
 						<circle cx="12" cy="7" r="4"/>
 					</svg>
-					<span>YOU + YOUR IDEA + YOUR LLM + VIBESHIP</span>
+					<span>You + Your Idea + Your LLM + Vibeship</span>
 				</div>
 			</div>
 
@@ -557,9 +557,9 @@
 					</div>
 					<div class="stage-content">
 						<span class="stage-name">Spawner</span>
-						<span class="stage-desc">Parallel agents at scale</span>
+						<span class="stage-desc">Skills tailored to your code</span>
 					</div>
-					<span class="stage-tag">SCALE</span>
+					<span class="stage-tag">ADAPT</span>
 				</div>
 			</div>
 
@@ -1395,9 +1395,10 @@
 	.stage-box.wide {
 		width: 100%;
 		border-color: var(--orange, #D97757);
-		color: var(--orange, #D97757);
+		color: var(--text-primary);
 		justify-content: center;
 		margin-bottom: 1rem;
+		font-size: 0.85rem;
 	}
 
 	.funnel-arrow {
@@ -1484,7 +1485,7 @@
 	.shipped-text {
 		font-family: 'Instrument Serif', Georgia, serif;
 		font-size: 1.4rem;
-		color: white;
+		color: var(--text-primary);
 	}
 
 	/* Products Grid */
