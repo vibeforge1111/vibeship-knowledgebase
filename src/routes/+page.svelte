@@ -474,7 +474,6 @@
 		<div class="funnel">
 			<!-- Top: Input -->
 			<div class="funnel-stage input">
-				<div class="stage-label">YOUR IDEA</div>
 				<div class="stage-box wide">
 					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 						<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -1358,6 +1357,11 @@
 		border-color: var(--orange, #D97757);
 		color: var(--orange, #D97757);
 		justify-content: center;
+		margin-bottom: 1rem;
+	}
+
+	.funnel-arrow {
+		margin-top: -0.5rem;
 	}
 
 	.stage-box.medium {
@@ -1371,8 +1375,8 @@
 
 	.stage-box.shipped {
 		border-color: var(--green-dim);
-		background: linear-gradient(135deg, rgba(0, 196, 154, 0.08) 0%, rgba(0, 196, 154, 0.02) 100%);
-		box-shadow: 0 0 20px rgba(0, 196, 154, 0.1);
+		background: linear-gradient(135deg, rgba(0, 196, 154, 0.04) 0%, rgba(0, 196, 154, 0.01) 100%);
+		box-shadow: 0 0 12px rgba(0, 196, 154, 0.08);
 	}
 
 	.stage-icon {
@@ -1439,13 +1443,13 @@
 
 	.shipped-text {
 		font-family: 'Instrument Serif', Georgia, serif;
-		font-size: 1.1rem;
-		color: var(--green-dim);
+		font-size: 1.2rem;
+		color: white;
 	}
 
 	.shipped-check {
-		font-size: 1rem;
-		color: var(--green-dim);
+		font-size: 1.1rem;
+		color: white;
 		margin-left: 0.5rem;
 	}
 
