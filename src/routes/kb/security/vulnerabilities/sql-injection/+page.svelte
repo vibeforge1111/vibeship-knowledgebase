@@ -138,13 +138,13 @@
 			<p class="text-secondary">How to find and fix the vulnerability that lets attackers steal your entire database</p>
 		</header>
 
-		<!-- Quick Answer - @pager_duty voice (authoritative, no fake experiences) -->
+		<!-- Quick Answer -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Databases get dumped in real-time. Incident responders watch it happen, helpless to stop it mid-attack. SQL injection is how those calls start.</strong>
-				Attackers slip malicious code into your queries and walk away with everything. Ranked <a href="https://owasp.org/Top10/A03_2021-Injection/">#3 on OWASP Top 10</a> for 20+ years.
-				AI tools generate the vulnerable pattern by default.
+				<strong>SQL injection lets attackers run their own commands on your database by typing malicious code into form fields.</strong>
+				They can steal every user record, delete tables, or bypass login entirely. It's ranked <a href="https://owasp.org/Top10/A03_2021-Injection/">#3 on OWASP Top 10</a> and has been for 20+ years.
+				AI coding tools generate vulnerable patterns by default, so vibe coded apps are especially at risk.
 			</p>
 		</div>
 
