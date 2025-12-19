@@ -211,9 +211,8 @@ const getUser = async (userId) => {
 }`}</code></pre>
 				</div>
 				<p class="pattern-note">
-					This code works perfectly. It also lets attackers run arbitrary SQL.
-					The <code>userId</code> goes straight into the query string. No escaping, no parameterization.
-					This exact pattern shows up in breach after breach.
+					Looks clean. Runs fine. Also completely vulnerable.
+					The <code>userId</code> goes straight into the query string with no escaping or parameterization, so attackers can run whatever SQL they want.
 				</p>
 			</div>
 
