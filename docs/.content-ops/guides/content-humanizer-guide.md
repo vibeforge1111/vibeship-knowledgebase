@@ -741,6 +741,69 @@ AI loves using dashes for parenthetical asides. One or two per article is fine. 
 
 **Exception:** Lists are fine: "Cursor, Bolt, Claude Code, v0"
 
+### 11. The Filler Intro
+
+The most obvious AI tell. Real writers start with the topic.
+
+```markdown
+❌ "In today's digital landscape..."
+❌ "As technology continues to evolve..."
+❌ "In the modern era of software development..."
+❌ "With the rise of AI-powered tools..."
+❌ "In an increasingly connected world..."
+
+✅ Start with the actual topic. First sentence = the point.
+```
+
+### 12. The Synonym Rotation
+
+AI rotates synonyms to seem varied. Humans just repeat words.
+
+```markdown
+❌ "Attackers can steal data. Malicious actors target databases.
+   Bad actors exploit vulnerabilities. Threat actors use automated tools."
+
+✅ "Attackers can steal data. Attackers target databases.
+   Attackers exploit vulnerabilities. Attackers use automated tools."
+```
+
+Using the same word twice is fine. Forcing synonyms is weird.
+
+### 13. Fear Without Action
+
+Scaring readers without giving them something to do. We're not a news site reporting doom.
+
+```markdown
+❌ "This vulnerability is devastating. Millions have been affected.
+   Your data could be next. The threat is real and growing."
+   [End of section]
+
+✅ "This vulnerability has caused major breaches. Here's how to check
+   if you're affected, and how to fix it in 10 minutes."
+```
+
+Every scary fact needs a next step. Otherwise we're just anxiety merchants.
+
+### 14. Tool Bashing
+
+Criticizing tools in an overly negative way. We're here to help, not to trash products.
+
+```markdown
+❌ "Cursor generates insecure code."
+❌ "Bolt is dangerous for production use."
+❌ "Claude Code doesn't care about security."
+❌ "These AI tools are fundamentally broken."
+
+✅ "Cursor's default patterns skip parameterization."
+✅ "Bolt projects often ship with credentials in code."
+✅ "Claude Code optimizes for working code, not hardened code."
+✅ "AI tools prioritize functionality over security by default."
+```
+
+**The difference:** Specific and fixable vs. vague and damning. We want readers to use these tools better, not abandon them.
+
+---
+
 ### Quick Test
 
 Read your sentence out loud. Would a tired, slightly annoyed expert actually say this to a colleague? If it sounds like a LinkedIn post or a TED talk, rewrite it.
