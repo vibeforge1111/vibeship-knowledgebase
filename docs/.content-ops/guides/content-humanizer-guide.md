@@ -747,6 +747,94 @@ Read your sentence out loud. Would a tired, slightly annoyed expert actually say
 
 ---
 
+## Flow and Rhythm
+
+Good writing has rhythm. AI writing often doesn't. Here's how to fix it.
+
+### The Staccato Problem
+
+Too many short sentences in a row creates choppy, hard-to-read text:
+
+```markdown
+❌ BAD:
+"Databases get dumped in real-time. Incident responders watch it happen.
+They're helpless to stop it. SQL injection is how those calls start.
+Attackers slip malicious code into queries. They walk away with everything."
+
+✅ BETTER:
+"SQL injection lets attackers run their own commands on your database
+by typing malicious code into form fields. They can steal every user
+record, delete tables, or bypass login entirely."
+```
+
+**The problem:** Each sentence is isolated. Ideas don't connect. Reader has to work to build the picture.
+
+**The fix:** Combine related ideas. Let one thought lead to the next.
+
+### The Flow Rule
+
+Each sentence should either:
+1. **Build on** the previous one (add detail, consequence, or example)
+2. **Contrast with** the previous one (but, however, on the other hand)
+3. **Start a new paragraph** if it's a new idea
+
+```markdown
+❌ DISCONNECTED:
+"SQL injection is dangerous. It's ranked #3 on OWASP. AI tools generate
+vulnerable code. Vibe coded apps are at risk."
+
+✅ CONNECTED:
+"SQL injection is ranked #3 on OWASP and has been for 20+ years.
+AI coding tools generate vulnerable patterns by default, which means
+vibe coded apps are especially at risk."
+```
+
+### Vary Sentence Length
+
+Mix short and long. Short sentences punch. Longer sentences explain and connect ideas together, giving the reader time to absorb complexity before the next point lands.
+
+```markdown
+❌ ALL SHORT:
+"This is bad. It happens fast. Tools automate it. You can't stop it.
+Prevention matters."
+
+❌ ALL LONG:
+"This vulnerability is particularly concerning because automated tools
+can exploit it within seconds, and once an attack begins there is
+essentially no way to stop the data exfiltration in progress, which
+means that prevention is the only viable strategy."
+
+✅ MIXED:
+"Automated tools exploit this in seconds. Once an attack starts,
+there's no stopping it mid-stream. Prevention is all you've got."
+```
+
+### The "And Then What?" Test
+
+After each sentence, ask "and then what?" or "so what?" If the next sentence answers that question, you have flow. If it jumps to something unrelated, you don't.
+
+```markdown
+"SQL injection lets attackers run commands on your database."
+→ And then what?
+"They can steal every user record, delete tables, or bypass login."
+→ So what?
+"It's ranked #3 on OWASP for 20+ years."
+→ Why should I care?
+"AI tools generate this by default, so vibe coded apps are at risk."
+✅ Each sentence answers the implied question from the previous one.
+```
+
+### Paragraph Flow
+
+Same rules apply to paragraphs. Each paragraph should:
+- Open with the main point
+- Support/explain that point
+- Lead naturally to the next paragraph
+
+If you have to add "Additionally," or "Furthermore," or "Moreover," your paragraphs probably aren't flowing. Restructure instead.
+
+---
+
 ## Anti-Patterns (Style)
 
 **Don't:**
