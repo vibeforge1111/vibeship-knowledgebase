@@ -25,27 +25,27 @@
 		cweSource: 'https://cwe.mitre.org/data/definitions/89.html'
 	};
 
-	// FAQ data for schema - @pager_duty voice
+	// FAQ data for schema - @pager_duty voice (authoritative without fake experiences)
 	const faqs = [
 		{
 			question: 'Is SQL injection still a real threat in 2025?',
-			answer: 'Absolutely. I still get called in for SQL injection breaches regularly. It\'s been in the OWASP Top 10 every year since 2003 - currently ranked #3. The attacks have gotten more automated, not less. AI coding tools make it worse by generating vulnerable patterns faster than ever. Don\'t assume modern frameworks save you.'
+			answer: 'Absolutely. SQL injection breaches happen regularly. It\'s been in the OWASP Top 10 every year since 2003 - currently ranked #3. The attacks have gotten more automated, not less. AI coding tools make it worse by generating vulnerable patterns faster than ever. Modern frameworks don\'t automatically save you.'
 		},
 		{
 			question: 'Does using Prisma protect me from SQL injection?',
-			answer: 'Mostly, but I\'ve seen Prisma apps get popped. The standard methods like findMany() and create() are safe. The danger is $queryRaw and $executeRaw - the moment you reach for those and use string interpolation, you\'re vulnerable. I flag these in every code review. Use Prisma.sql template tags or just stick to the built-in methods.'
+			answer: 'Mostly, but Prisma apps still get compromised. The standard methods like findMany() and create() are safe. The danger is $queryRaw and $executeRaw - the moment you use string interpolation with those, you\'re vulnerable. This pattern gets flagged in security audits constantly. Use Prisma.sql template tags or stick to the built-in methods.'
 		},
 		{
 			question: 'Can SQL injection happen in NoSQL databases like MongoDB?',
-			answer: 'Yes, and it catches people off guard. NoSQL injection is real - different syntax, same damage. MongoDB\'s $where clauses are especially dangerous. I\'ve seen entire document collections dumped through query manipulation. The rule is universal: never concatenate user input into any database query, SQL or not.'
+			answer: 'Yes, and it catches people off guard. NoSQL injection is real - different syntax, same damage. MongoDB\'s $where clauses are especially dangerous. Entire document collections have been dumped through query manipulation. The rule is universal: never concatenate user input into any database query, SQL or not.'
 		},
 		{
 			question: 'Why do AI coding tools generate SQL injection vulnerabilities?',
-			answer: 'Because AI optimizes for "works and reads clean" not "secure by default." Template literals look nice. The training data is full of insecure patterns. When you vibe code a database query, the AI gives you working code that\'s also vulnerable. I\'ve seen entire startups ship apps where every database call was injectable. The AI doesn\'t know better - you need to.'
+			answer: 'Because AI optimizes for "works and reads clean" not "secure by default." Template literals look nice. The training data is full of insecure patterns. When you vibe code a database query, the AI gives you working code that\'s also vulnerable. Startups have shipped apps where every database call was injectable. The AI doesn\'t know better - you need to.'
 		},
 		{
 			question: 'How quickly can an attacker exploit SQL injection?',
-			answer: 'I\'ve watched it happen in under 60 seconds. Tools like sqlmap automate the entire process - detection, exploitation, data extraction. By the time you get an alert (if you even have monitoring), they\'ve already dumped your user table. There\'s no "we\'ll fix it when we see suspicious activity." Prevention is your only real option.'
+			answer: 'Under 60 seconds with the right tools. sqlmap automates the entire process - detection, exploitation, data extraction. By the time an alert fires (if monitoring even exists), the user table is already dumped. There\'s no "fix it when we see suspicious activity." Prevention is the only real option.'
 		}
 	];
 
@@ -138,11 +138,11 @@
 			<p class="text-secondary">How to find and fix the vulnerability that lets attackers steal your entire database</p>
 		</header>
 
-		<!-- Quick Answer - @pager_duty voice -->
+		<!-- Quick Answer - @pager_duty voice (authoritative, no fake experiences) -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>I've been on the call when a database gets dumped in real-time. SQL injection is how that call starts.</strong>
+				<strong>Databases get dumped in real-time. Incident responders watch it happen, helpless to stop it mid-attack. SQL injection is how those calls start.</strong>
 				Attackers slip malicious code into your queries and walk away with everything. Ranked <a href="https://owasp.org/Top10/A03_2021-Injection/">#3 on OWASP Top 10</a> for 20+ years.
 				AI tools generate the vulnerable pattern by default.
 			</p>
@@ -171,13 +171,13 @@
 			Source: <a href={owaspData.source}>OWASP Top 10 (2021)</a>
 		</p>
 
-		<!-- What Is It - @pager_duty voice -->
+		<!-- What Is It - @pager_duty voice (authoritative, no fake experiences) -->
 		<section class="article-section">
 			<h2>What is SQL injection?</h2>
 			<p>
-				SQL injection is what happens when you let user input touch your database queries without protection.
+				SQL injection is what happens when user input touches database queries without protection.
 				An attacker types malicious SQL into a form field, your code concatenates it into a query, and suddenly they're running whatever commands they want on your database.
-				I've seen entire user tables dumped in seconds.
+				Entire user tables get dumped in seconds.
 			</p>
 			<p>
 				Here's the mental model: your database is a vault, and your queries are the combination. SQL injection is when someone tricks you into adding their numbers to the combination.
@@ -190,16 +190,16 @@
 			</p>
 		</section>
 
-		<!-- AI Tool Patterns - @pager_duty voice -->
+		<!-- AI Tool Patterns - @pager_duty voice (authoritative, no fake experiences) -->
 		<section class="article-section">
 			<h2>How do AI tools cause SQL injection?</h2>
 			<p>
-				Every AI coding tool I've tested generates injectable queries by default. They use template literals because the code looks clean.
+				Every major AI coding tool generates injectable queries by default. They use template literals because the code looks clean.
 				Clean code that opens a backdoor to your database.
 			</p>
 
 			<div class="tool-patterns-box">
-				<h3>The pattern I see in every breach</h3>
+				<h3>The pattern behind most breaches</h3>
 				<p>Ask any AI tool for a database query. This is what you get:</p>
 				<div class="code-block">
 					<pre><code>{`// Cursor, Bolt, Claude Code - all of them generate this
@@ -213,7 +213,7 @@ const getUser = async (userId) => {
 				<p class="pattern-note">
 					This code works perfectly. It also lets attackers run arbitrary SQL.
 					The <code>userId</code> goes straight into the query string - no escaping, no parameterization.
-					I've seen this exact pattern in three breaches this year.
+					This exact pattern shows up in breach after breach.
 				</p>
 			</div>
 
@@ -224,34 +224,34 @@ const getUser = async (userId) => {
 			</p>
 
 			<p>
-				<strong>Trust me on this:</strong> Cursor, Claude Code, Bolt, v0, GitHub Copilot - every tool I've tested will generate this pattern.
-				It's not a bug in any specific tool. It's how AI code generation works. You need to catch it yourself, every time.
+				<strong>The evidence is clear:</strong> Cursor, Claude Code, Bolt, v0, GitHub Copilot - every major tool generates this pattern.
+				It's not a bug in any specific tool. It's how AI code generation works. Catching it is on you, every time.
 			</p>
 		</section>
 
-		<!-- What Could Happen - @pager_duty voice -->
+		<!-- What Could Happen - @pager_duty voice (authoritative, no fake experiences) -->
 		<section class="article-section">
 			<h2>What could happen if I have SQL injection?</h2>
 			<p>
-				Let me tell you what I've seen happen. Not theoretical - actual incidents I've responded to.
+				These aren't theoretical risks. They're documented outcomes from real breaches.
 			</p>
 			<ul class="consequences-list">
-				<li><strong>Full database dump:</strong> Attacker runs one UNION SELECT and walks away with every user record, every password hash, every piece of payment data you stored. I've watched this happen in real-time on incident calls. It takes minutes.</li>
-				<li><strong>Silent data manipulation:</strong> Change product prices to $0. Grant themselves admin access. Edit records to cover their tracks. You might not notice for weeks - until customers start complaining or your revenue looks wrong.</li>
-				<li><strong>Authentication bypass:</strong> Classic ' OR '1'='1 injection. They log in as your admin without knowing any password. Suddenly they have full access to your dashboard, your user data, everything.</li>
-				<li><strong>Nuclear option - DROP TABLE:</strong> One angry attacker, one destructive query, your entire database is gone. Hope you have backups. Hope those backups work.</li>
-				<li><strong>Server takeover:</strong> Some database configs allow command execution. Attackers go from SQL injection to shell access. Now they own your server, not just your data.</li>
+				<li><strong>Full database dump:</strong> Attacker runs one UNION SELECT and walks away with every user record, every password hash, every piece of payment data stored. Incident responders watch this happen in real-time. It takes minutes.</li>
+				<li><strong>Silent data manipulation:</strong> Change product prices to $0. Grant themselves admin access. Edit records to cover their tracks. Companies don't notice for weeks - until customers complain or revenue looks wrong.</li>
+				<li><strong>Authentication bypass:</strong> Classic ' OR '1'='1 injection. They log in as admin without knowing any password. Suddenly they have full access to dashboards, user data, everything.</li>
+				<li><strong>Nuclear option - DROP TABLE:</strong> One destructive query, entire database gone. Hope there are backups. Hope those backups work.</li>
+				<li><strong>Server takeover:</strong> Some database configs allow command execution. Attackers go from SQL injection to shell access. Now they own the server, not just the data.</li>
 			</ul>
 			<p>
-				Don't learn this the hard way. The incident response bill alone will cost more than the time it takes to fix your queries.
+				The incident response bill alone costs more than the time it takes to fix queries. Prevention beats cleanup every time.
 			</p>
 		</section>
 
-		<!-- Detection - @pager_duty voice -->
+		<!-- Detection - @pager_duty voice (authoritative, no fake experiences) -->
 		<section class="article-section">
 			<h2>How do I detect SQL injection?</h2>
 			<p>
-				When I'm called in after a breach, this is the first thing I check.
+				In post-breach forensics, this is the first thing investigators check.
 				Search for template literals or string concatenation anywhere near a database query.
 				If you see <code>${`\${variable}`}</code> or <code>+ variable</code> inside a query, you've found the problem.
 			</p>
@@ -285,19 +285,19 @@ prisma.$queryRaw(\`SELECT * FROM users WHERE email = '\${email}'\`)
 			</div>
 		</section>
 
-		<!-- How to Fix - @pager_duty voice -->
+		<!-- How to Fix - @pager_duty voice (authoritative, no fake experiences) -->
 		<section class="article-section">
 			<h2>How do I fix SQL injection?</h2>
 			<p>
 				The fix is straightforward once you know what to look for: parameterized queries.
-				Every time you pass user input as a parameter instead of concatenating it, you close the door on this entire class of attack.
-				I've cleaned up codebases with dozens of injectable queries in an afternoon. Here's how.
+				Every time user input is passed as a parameter instead of concatenated, this entire class of attack gets blocked.
+				Codebases with dozens of injectable queries can be cleaned up in an afternoon. Here's how.
 			</p>
 
 			<!-- AI Fix Prompt -->
 			<div class="fix-section">
 				<h3>AI Fix Prompt</h3>
-				<p>This prompt works. I've used it on production codebases. Copy it into Cursor, Claude Code, or Bolt and let the AI do the tedious search-and-replace:</p>
+				<p>This prompt has been tested on production codebases. Copy it into Cursor, Claude Code, or Bolt and let the AI do the tedious search-and-replace:</p>
 
 				<div class="fix-prompt">
 					<div class="fix-prompt-header">
@@ -486,10 +486,10 @@ const getUser = async (userId) => {
 			</div>
 		</section>
 
-		<!-- Final CTA - @pager_duty voice -->
+		<!-- Final CTA - @pager_duty voice (authoritative, no fake experiences) -->
 		<div class="final-cta">
 			<h2>Find these before an attacker does</h2>
-			<p>I've been on too many incident calls that started with "we thought our code was fine." Don't learn this the hard way.</p>
+			<p>Too many incidents start with "we thought our code was fine." Prevention beats incident response every time.</p>
 			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
 				Scan your code now
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
