@@ -239,7 +239,7 @@ const getUser = async (userId) => {
 				<li><strong>Full database dump:</strong> Attacker runs one UNION SELECT and walks away with every user record, every password hash, every piece of payment data stored. Incident responders watch this happen in real-time. It takes minutes.</li>
 				<li><strong>Silent data manipulation:</strong> Change product prices to $0. Grant themselves admin access. Edit records to cover their tracks. Companies don't notice for weeks. Then customers complain. Revenue looks wrong.</li>
 				<li><strong>Authentication bypass:</strong> Classic ' OR '1'='1 injection. They log in as admin without knowing any password. Suddenly they have full access to dashboards, user data, everything.</li>
-				<li><strong>Nuclear option (DROP TABLE):</strong> One destructive query, entire database gone. Hope there are backups. Hope those backups work.</li>
+				<li><strong>Total destruction:</strong> One <code>DROP TABLE</code> command, entire database gone. Hope there are backups. Hope those backups work.</li>
 				<li><strong>Server takeover:</strong> Some database configs allow command execution. Attackers go from SQL injection to shell access. Now they own the server, not just the data.</li>
 			</ul>
 			<p>
