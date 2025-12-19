@@ -25,11 +25,11 @@
 		cweSource: 'https://cwe.mitre.org/data/definitions/89.html'
 	};
 
-	// FAQ data for schema - @pager_duty voice (authoritative without fake experiences)
+	// FAQ data for schema
 	const faqs = [
 		{
 			question: 'Is SQL injection still a real threat in 2025?',
-			answer: 'Absolutely. SQL injection breaches happen regularly. It\'s been in the OWASP Top 10 every year since 2003 - currently ranked #3. The attacks have gotten more automated, not less. AI coding tools make it worse by generating vulnerable patterns faster than ever. Modern frameworks don\'t automatically save you.'
+			answer: 'Yes. SQL injection breaches happen regularly. It\'s been in the OWASP Top 10 every year since 2003 - currently ranked #3. The attacks have gotten more automated, not less. AI coding tools make it worse by generating vulnerable patterns faster than ever. Modern frameworks don\'t automatically save you.'
 		},
 		{
 			question: 'Does using Prisma protect me from SQL injection?',
@@ -180,13 +180,13 @@
 				Entire user tables get dumped in seconds.
 			</p>
 			<p>
-				Here's the mental model: your database is a vault, and your queries are the combination. SQL injection is when someone tricks you into adding their numbers to the combination.
-				They're not breaking in - you're opening the door for them.
+				Think of your database as a vault and your queries as the combination. SQL injection is when someone tricks you into adding their numbers to the combination.
+				They don't break in - you open the door for them.
 			</p>
 			<p>
-				This isn't theoretical. According to <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP Top 10 (2021)</a>, injection attacks rank #3 in web application security risks.
+				According to <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP Top 10 (2021)</a>, injection attacks rank #3 in web application security risks.
 				SQL injection has been in every OWASP Top 10 since the list began in 2003. It's in the <a href="https://cwe.mitre.org/top25/archive/2024/2024_cwe_top25.html">CWE Top 25</a>.
-				Two decades later, we're still getting this wrong - and AI tools are making it worse by generating vulnerable patterns faster than ever.
+				Two decades later, we're still getting this wrong - and AI tools generate vulnerable patterns faster than ever.
 			</p>
 		</section>
 
@@ -224,16 +224,16 @@ const getUser = async (userId) => {
 			</p>
 
 			<p>
-				<strong>The evidence is clear:</strong> Cursor, Claude Code, Bolt, v0, GitHub Copilot - every major tool generates this pattern.
-				It's not a bug in any specific tool. It's how AI code generation works. Catching it is on you, every time.
+				Cursor, Claude Code, Bolt, v0, GitHub Copilot - every major tool generates this pattern.
+				Not a bug in any specific tool. Just how AI code generation works. Catching it is on you.
 			</p>
 		</section>
 
-		<!-- What Could Happen - @pager_duty voice (authoritative, no fake experiences) -->
+		<!-- What Could Happen -->
 		<section class="article-section">
 			<h2>What could happen if I have SQL injection?</h2>
 			<p>
-				These aren't theoretical risks. They're documented outcomes from real breaches.
+				All of this has happened. Multiple times. To companies bigger than yours.
 			</p>
 			<ul class="consequences-list">
 				<li><strong>Full database dump:</strong> Attacker runs one UNION SELECT and walks away with every user record, every password hash, every piece of payment data stored. Incident responders watch this happen in real-time. It takes minutes.</li>
@@ -243,7 +243,7 @@ const getUser = async (userId) => {
 				<li><strong>Server takeover:</strong> Some database configs allow command execution. Attackers go from SQL injection to shell access. Now they own the server, not just the data.</li>
 			</ul>
 			<p>
-				The incident response bill alone costs more than the time it takes to fix queries. Prevention beats cleanup every time.
+				The incident response bill alone costs more than the time it takes to fix your queries now.
 			</p>
 		</section>
 
@@ -486,10 +486,10 @@ const getUser = async (userId) => {
 			</div>
 		</section>
 
-		<!-- Final CTA - @pager_duty voice (authoritative, no fake experiences) -->
+		<!-- Final CTA -->
 		<div class="final-cta">
 			<h2>Find these before an attacker does</h2>
-			<p>Too many incidents start with "we thought our code was fine." Prevention beats incident response every time.</p>
+			<p>Too many incidents start with "we thought our code was fine."</p>
 			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
 				Scan your code now
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

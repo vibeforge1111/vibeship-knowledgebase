@@ -620,6 +620,115 @@ Before publishing, verify each sentence:
 
 ---
 
+## AI Writing Patterns to Avoid
+
+These patterns instantly signal "AI wrote this." Kill them on sight.
+
+### 1. The Negation-Affirmation Pattern
+
+```markdown
+❌ "This isn't theoretical. It's documented."
+❌ "These aren't risks. They're realities."
+❌ "This isn't just important. It's critical."
+❌ "We're not talking about X. We're talking about Y."
+
+✅ "All of this has happened. Multiple times."
+✅ "Documented in breach after breach."
+✅ Just state the thing directly.
+```
+
+### 2. The Setup Phrase
+
+```markdown
+❌ "Here's the thing:"
+❌ "Here's the mental model:"
+❌ "Here's what you need to know:"
+❌ "Let me be clear:"
+❌ "The bottom line is:"
+
+✅ Just say the thing. No announcement needed.
+```
+
+### 3. The Evidence Phrase
+
+```markdown
+❌ "The evidence is clear:"
+❌ "The data speaks for itself:"
+❌ "Research shows that:"
+❌ "Studies have found:"
+
+✅ Cite the specific source inline, or just state the fact.
+```
+
+### 4. The Platitude Ending
+
+```markdown
+❌ "Prevention beats cleanup every time."
+❌ "Security is everyone's responsibility."
+❌ "The best defense is a good offense."
+❌ "Knowledge is power."
+
+✅ End with something specific to the article, or just stop.
+```
+
+### 5. The False Dichotomy
+
+```markdown
+❌ "It's not about X, it's about Y."
+❌ "The question isn't X, it's Y."
+❌ "Don't focus on X, focus on Y."
+
+✅ Just talk about Y. Skip the X entirely.
+```
+
+### 6. The Emphatic Repetition
+
+```markdown
+❌ "This is important. Really important."
+❌ "You need to understand. Really understand."
+❌ "Think about it. Really think about it."
+
+✅ Say it once, strongly.
+```
+
+### 7. The Rhetorical Buildup
+
+```markdown
+❌ "So what does this mean? It means..."
+❌ "Why does this matter? Because..."
+❌ "What's the takeaway? Simple:"
+
+✅ Just state the meaning/takeaway directly.
+```
+
+### 8. The Transitional Filler
+
+```markdown
+❌ "Now, let's talk about..."
+❌ "Moving on to..."
+❌ "With that said..."
+❌ "That being said..."
+
+✅ Just start the next section. Headers do the transition.
+```
+
+### 9. The Absolutist Qualifier
+
+```markdown
+❌ "Absolutely."
+❌ "Certainly."
+❌ "Undoubtedly."
+❌ "Without question."
+
+✅ Let the facts speak. Or use "Yes" if you need affirmation.
+```
+
+### Quick Test
+
+Read your sentence out loud. Would a tired, slightly annoyed expert actually say this to a colleague? If it sounds like a LinkedIn post or a TED talk, rewrite it.
+
+---
+
 ## Anti-Patterns (Style)
 
 **Don't:**
