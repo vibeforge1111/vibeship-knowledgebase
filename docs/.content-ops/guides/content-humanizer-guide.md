@@ -723,6 +723,24 @@ These patterns instantly signal "AI wrote this." Kill them on sight.
 ✅ Let the facts speak. Or use "Yes" if you need affirmation.
 ```
 
+### 10. The Dash Interjection
+
+AI loves using dashes for parenthetical asides. One or two per article is fine. Ten is a pattern.
+
+```markdown
+❌ "The code looks clean - but it's vulnerable."
+❌ "AI gives you what it's seen most - not what's safest."
+❌ "Different syntax - same damage."
+❌ "It works perfectly - until an attacker finds it."
+
+✅ "The code looks clean. But it's vulnerable."
+✅ "AI gives you what it's seen most, not what's safest."
+✅ "Different syntax. Same damage."
+✅ Use commas, periods, or parentheses instead.
+```
+
+**Exception:** Lists are fine: "Cursor, Bolt, Claude Code, v0"
+
 ### Quick Test
 
 Read your sentence out loud. Would a tired, slightly annoyed expert actually say this to a colleague? If it sounds like a LinkedIn post or a TED talk, rewrite it.
