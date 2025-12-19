@@ -1,8 +1,8 @@
 # VibeShip Security Content Pipeline
-## Two-Agent System for World-Class KB Content
+## Three-Agent System for World-Class KB Content
 
-**Version:** 1.0  
-**Last Updated:** December 2024  
+**Version:** 2.0
+**Last Updated:** December 2024
 
 ---
 
@@ -10,62 +10,81 @@
 
 1. [System Overview](#system-overview)
 2. [Agent 1: Research & Strategy](#agent-1-research--strategy)
-3. [Agent 2: Content Writer](#agent-2-content-writer)
-4. [Handoff Protocol](#handoff-protocol)
-5. [Content Brief Templates](#content-brief-templates)
-6. [Workflow Examples](#workflow-examples)
-7. [Quality Assurance](#quality-assurance)
-8. [Batch Processing](#batch-processing)
-9. [Troubleshooting](#troubleshooting)
+3. [Agent 2: Personality](#agent-2-personality)
+4. [Agent 3: Content Writer](#agent-3-content-writer)
+5. [Handoff Protocol](#handoff-protocol)
+6. [Content Brief Templates](#content-brief-templates)
+7. [Workflow Examples](#workflow-examples)
+8. [Quality Assurance](#quality-assurance)
+9. [Batch Processing](#batch-processing)
+10. [Troubleshooting](#troubleshooting)
 
 ---
 
 ## System Overview
 
-### Why Two Agents?
+### Why Three Agents?
 
-| Single Agent Problems | Two-Agent Solution |
-|-----------------------|-------------------|
+| Problem | Solution |
+|---------|----------|
 | Skill prompt consumes context needed for research | Research agent has full context for data gathering |
 | Quality degrades mixing research + writing | Each agent optimized for its task |
+| Content feels AI-generated, lacks personality | Personality agent assigns voice/persona |
 | Hard to iterate on sections | Clear handoff points for review |
-| Inconsistent output | Standardized briefs ensure consistency |
+| All articles sound the same | 14 distinct personas create publication feel |
 
 ### The Pipeline
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                         CONTENT PIPELINE                                │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                         │
-│  ┌──────────────┐      ┌──────────────┐      ┌──────────────┐          │
-│  │   INPUTS     │      │   AGENT 1    │      │   AGENT 2    │          │
-│  │              │      │   Research   │      │   Writer     │          │
-│  │ • Topic      │ ───▶ │              │ ───▶ │              │ ───▶ OUTPUT
-│  │ • Scanner DB │      │ • Data       │      │ • Full Skill │          │
-│  │ • Keywords   │      │ • Strategy   │      │ • Templates  │          │
-│  │ • Competitors│      │ • Brief      │      │ • Voice      │          │
-│  └──────────────┘      └──────────────┘      └──────────────┘          │
-│                               │                     │                   │
-│                               ▼                     ▼                   │
-│                        Content Brief          Final Article             │
-│                        (Structured)           (Publication-Ready)       │
-│                                                                         │
-└─────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                              CONTENT PIPELINE v2.0                                │
+├──────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                   │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐   │
+│  │   INPUTS     │    │   AGENT 1    │    │   AGENT 2    │    │   AGENT 3    │   │
+│  │              │    │   Research   │    │  Personality │    │    Writer    │   │
+│  │ • Topic      │───▶│              │───▶│              │───▶│              │───▶ OUTPUT
+│  │ • Scanner DB │    │ • Data       │    │ • Persona    │    │ • Full Skill │   │
+│  │ • Keywords   │    │ • Strategy   │    │ • Voice      │    │ • Templates  │   │
+│  │ • Competitors│    │ • Brief      │    │ • Hooks      │    │ • Persona    │   │
+│  └──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘   │
+│                             │                   │                   │            │
+│                             ▼                   ▼                   ▼            │
+│                       Content Brief      Persona Packet       Final Article      │
+│                       (Structured)        (Voice/Style)     (Human-feeling)      │
+│                                                                                   │
+└──────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+### The 14 Personas
+
+Our content reads like a real publication because we have 14 distinct writer personas:
+
+**Vulnerabilities:** @pager_duty (Firefighter), @flaggedthis (Auditor), @eli5sec (Translator), @breachlore (Historian)
+
+**Prompts & Tools:** @keystrokecounts (Optimizer), @tryhard_tk (Tinkerer), @deletedmost (Minimalist)
+
+**Guides & Stacks:** @ninascales (Architect), @pat_ships (Pragmatist), @danawhy (Debugger), @samexplains (Mentor)
+
+**Vibe Coding:** @vibecheckpassed (Evangelist), @waitwhat_ (Skeptic), @buildermagic (Builder)
+
+Full persona profiles: `docs/.content-ops/guides/content-humanizer-guide.md`
 
 ### When to Use Each Agent
 
 | Task | Agent |
 |------|-------|
-| Pull Scanner statistics | Agent 1 |
-| Research competitor content | Agent 1 |
-| Identify keyword opportunities | Agent 1 |
-| Create content structure | Agent 1 |
-| Write article sections | Agent 2 |
-| Create AI fix prompts | Agent 2 |
-| Generate FAQ content | Agent 2 |
-| Format for publication | Agent 2 |
+| Pull Scanner statistics | Agent 1 (Research) |
+| Research competitor content | Agent 1 (Research) |
+| Identify keyword opportunities | Agent 1 (Research) |
+| Create content structure | Agent 1 (Research) |
+| Select persona for article | Agent 2 (Personality) |
+| Generate opening hook | Agent 2 (Personality) |
+| Identify signature move moments | Agent 2 (Personality) |
+| Write article sections | Agent 3 (Writer) |
+| Create AI fix prompts | Agent 3 (Writer) |
+| Generate FAQ content | Agent 3 (Writer) |
+| Apply persona voice throughout | Agent 3 (Writer) |
 
 ---
 
@@ -261,17 +280,67 @@ Provide a complete Content Brief using the Stack Guide template.
 
 ---
 
-## Agent 2: Content Writer
+## Agent 2: Personality
 
 ### Role Definition
 
-Agent 2 is a world-class security content writer who:
+Agent 2 sits between Research and Writing. It:
+- Analyzes the content brief
+- Selects the best persona for this article
+- Generates a "persona packet" with voice guidance
+- Tracks rotation to ensure variety
+
+### System Prompt for Agent 2
+
+Use the complete prompt from **`docs/.content-ops/agents/personality-agent.md`**
+
+### Agent 2 Capabilities
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ AGENT 2 CAN DO                    │ AGENT 2 DOES NOT DO        │
+├───────────────────────────────────┼────────────────────────────┤
+│ ✓ Select best persona for topic   │ ✗ Write article content    │
+│ ✓ Generate opening hooks          │ ✗ Research data            │
+│ ✓ Identify signature move moments │ ✗ Create code examples     │
+│ ✓ Provide voice notes             │ ✗ Format for publication   │
+│ ✓ Check rotation history          │ ✗ SEO optimization         │
+│ ✓ Create persona packets          │ ✗ Validate technical claims│
+└───────────────────────────────────┴────────────────────────────┘
+```
+
+### Persona Selection Quick Reference
+
+| If the brief emphasizes... | Consider... |
+|---------------------------|-------------|
+| Incident scenarios, urgency | @pager_duty |
+| Checklists, process, compliance | @flaggedthis |
+| Complex concepts needing simplification | @eli5sec |
+| Historical breaches, CVEs | @breachlore |
+| Efficiency, metrics, comparisons | @keystrokecounts |
+| Experimentation, new features | @tryhard_tk |
+| Minimalism, cutting bloat | @deletedmost |
+| Architecture, trade-offs, scale | @ninascales |
+| Fast shipping, pragmatic security | @pat_ships |
+| Debugging, troubleshooting | @danawhy |
+| Teaching, foundational concepts | @samexplains |
+| AI tool potential, optimism | @vibecheckpassed |
+| Caution, skepticism, reality check | @waitwhat_ |
+| Hands-on building, tutorials | @buildermagic |
+
+---
+
+## Agent 3: Content Writer
+
+### Role Definition
+
+Agent 3 is a world-class security content writer who:
 - Transforms briefs into publication-ready content
-- Applies VibeShip brand voice
+- **Applies the assigned persona's voice throughout**
 - Optimizes for SEO and LLM citation
 - Creates actionable, copy-paste solutions
 
-### System Prompt for Agent 2
+### System Prompt for Agent 3
 
 Use the complete prompt from **VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md**
 

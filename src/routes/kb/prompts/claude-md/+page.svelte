@@ -295,7 +295,7 @@ REST API built with FastAPI and SQLAlchemy.
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
-				<span class="badge badge-prompts">Prompts Guide</span>
+				<span class="badge badge-green">Prompts Guide</span>
 				<span class="badge">Claude Code</span>
 				<span class="badge">Configuration</span>
 			</div>
@@ -335,7 +335,7 @@ REST API built with FastAPI and SQLAlchemy.
 
 			<div class="hierarchy-grid">
 				{#each hierarchyTiers as tier}
-					<div class="hierarchy-card">
+					<div class="card hierarchy-card">
 						<div class="tier-badge">Tier {tier.tier}</div>
 						<h3>{tier.name}</h3>
 						<div class="tier-location">
@@ -376,8 +376,8 @@ REST API built with FastAPI and SQLAlchemy.
 
 			<h3>Essential sections</h3>
 			<div class="code-block">
-				<div class="code-header">
-					<span>CLAUDE.md Template</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">CLAUDE.md Template</span>
 					<button class="copy-btn" onclick={() => copyCode(`# CLAUDE.md
 
 ## Project Overview
@@ -453,8 +453,8 @@ REST API built with FastAPI and SQLAlchemy.
 			</p>
 
 			<div class="code-block">
-				<div class="code-header">
-					<span>Using Imports</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">Using Imports</span>
 				</div>
 				<pre><code>{`# CLAUDE.md
 
@@ -474,8 +474,8 @@ REST API built with FastAPI and SQLAlchemy.
 			</p>
 
 			<div class="code-block">
-				<div class="code-header">
-					<span>.claude/rules/api-routes.md</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">.claude/rules/api-routes.md</span>
 				</div>
 				<pre><code>{`---
 paths: src/app/api/**/*.ts
@@ -505,8 +505,8 @@ These rules apply only to API routes.
 			</p>
 
 			<div class="security-rules-block">
-				<div class="code-header">
-					<span>.claude/rules/security.md</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">.claude/rules/security.md</span>
 					<button class="copy-btn" onclick={() => copyCode(`# Security Rules
 
 ## Database Security
@@ -690,7 +690,7 @@ Pattern:
 
 			<div class="stack-examples">
 				{#each stackTemplates as stack, i}
-					<div class="stack-card">
+					<div class="card stack-card">
 						<div class="stack-header">
 							<div>
 								<h3>{stack.name}</h3>
@@ -798,8 +798,8 @@ Pattern:
 			</p>
 
 			<div class="code-block">
-				<div class="code-header">
-					<span>AGENTS.md (Cross-tool compatibility)</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">AGENTS.md (Cross-tool compatibility)</span>
 				</div>
 				<pre><code>{`# AGENTS.md
 
@@ -839,7 +839,7 @@ E-commerce platform with Next.js frontend and Supabase backend.
 			<p>
 				CLAUDE.md rules help prevent vulnerabilities, but they can't catch everything. <a href="https://scanner.vibeship.co">VibeShip Scanner</a> automatically detects SQL injection, XSS, hardcoded secrets, and more in your vibe coded projects.
 			</p>
-			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
+			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">Scan Your Code Free →</a>
 		</section>
 
 		<!-- Related Content -->
@@ -847,28 +847,28 @@ E-commerce platform with Next.js frontend and Supabase backend.
 			<h2>Related resources</h2>
 			<div class="related-grid">
 				<a href="/kb/vibe-coding-tools/claude-code/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Claude Code Security</span>
+					<span class="related-card-category">Tool Guide</span>
+					<span class="related-card-title">Claude Code Security</span>
 				</a>
 				<a href="/kb/prompts/cursor-rules/" class="related-card">
-					<span class="related-type">Config Guide</span>
-					<span class="related-title">Cursor Rules Guide</span>
+					<span class="related-card-category">Config Guide</span>
+					<span class="related-card-title">Cursor Rules Guide</span>
 				</a>
 				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">Secure Vibe Coding Guide</span>
+					<span class="related-card-category">Pillar Guide</span>
+					<span class="related-card-title">Secure Vibe Coding Guide</span>
 				</a>
 				<a href="/kb/security/stacks/nextjs-supabase/" class="related-card">
-					<span class="related-type">Stack Guide</span>
-					<span class="related-title">Next.js + Supabase Security</span>
+					<span class="related-card-category">Stack Guide</span>
+					<span class="related-card-title">Next.js + Supabase Security</span>
 				</a>
 				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">SQL Injection</span>
+					<span class="related-card-category">Vulnerability</span>
+					<span class="related-card-title">SQL Injection</span>
 				</a>
 				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Missing Authentication</span>
+					<span class="related-card-category">Vulnerability</span>
+					<span class="related-card-title">Missing Authentication</span>
 				</a>
 			</div>
 		</section>
@@ -886,6 +886,7 @@ E-commerce platform with Next.js frontend and Supabase backend.
 </div>
 
 <style>
+	/* Page Layout */
 	.content-wrapper {
 		max-width: 900px;
 		margin: 0 auto;
@@ -903,24 +904,6 @@ E-commerce platform with Next.js frontend and Supabase backend.
 		margin-bottom: 1rem;
 	}
 
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		font-size: 0.7rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		background: var(--bg-primary);
-		color: var(--text-secondary);
-		border: 1px solid var(--border);
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.badge-prompts {
-		background: rgba(0, 196, 154, 0.1);
-		color: var(--green-dim);
-		border-color: var(--green-dim);
-	}
-
 	h1 {
 		font-size: 2.5rem;
 		margin-bottom: 0.5rem;
@@ -931,27 +914,6 @@ E-commerce platform with Next.js frontend and Supabase backend.
 		font-size: 1.1rem;
 	}
 
-	.quick-answer {
-		background: rgba(0, 196, 154, 0.05);
-		border: 1px solid rgba(0, 196, 154, 0.2);
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer-label {
-		font-size: 0.7rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		color: var(--green-dim);
-		margin-bottom: 0.5rem;
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.quick-answer-text {
-		margin: 0;
-		line-height: 1.6;
-	}
-
 	section {
 		margin-bottom: 3rem;
 	}
@@ -960,7 +922,7 @@ E-commerce platform with Next.js frontend and Supabase backend.
 		font-size: 1.5rem;
 		margin-bottom: 1rem;
 		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	h3 {
@@ -979,11 +941,32 @@ E-commerce platform with Next.js frontend and Supabase backend.
 		margin-bottom: 1rem;
 	}
 
+	a {
+		color: var(--green-dim);
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
 	code {
 		font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
 		background: rgba(0,0,0,0.3);
 		padding: 0.125rem 0.375rem;
 		font-size: 0.9em;
+	}
+
+	pre {
+		margin: 0;
+		padding: 1rem;
+		overflow-x: auto;
+		font-size: 0.8rem;
+		line-height: 1.5;
+	}
+
+	pre code {
+		background: transparent;
+		padding: 0;
 	}
 
 	/* Hierarchy Grid */
@@ -992,12 +975,6 @@ E-commerce platform with Next.js frontend and Supabase backend.
 		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		gap: 1rem;
 		margin: 1.5rem 0;
-	}
-
-	.hierarchy-card {
-		padding: 1.25rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
 	}
 
 	.tier-badge {
@@ -1058,51 +1035,6 @@ E-commerce platform with Next.js frontend and Supabase backend.
 		padding: 1rem;
 	}
 
-	/* Code Blocks */
-	.code-block {
-		background: #0d0d0d;
-		overflow: hidden;
-		margin: 1rem 0;
-		border: 1px solid var(--border);
-	}
-
-	.code-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0.75rem 1rem;
-		background: rgba(255,255,255,0.05);
-		font-size: 0.875rem;
-	}
-
-	.copy-btn {
-		padding: 0.375rem 0.75rem;
-		background: var(--green-dim);
-		color: white;
-		border: none;
-		font-size: 0.75rem;
-		font-weight: 600;
-		cursor: pointer;
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.copy-btn:hover {
-		background: var(--green);
-	}
-
-	pre {
-		margin: 0;
-		padding: 1rem;
-		overflow-x: auto;
-		font-size: 0.8rem;
-		line-height: 1.5;
-	}
-
-	pre code {
-		background: transparent;
-		padding: 0;
-	}
-
 	/* Security Section */
 	.security-section {
 		background: var(--bg-secondary);
@@ -1138,8 +1070,6 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	}
 
 	.stack-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
@@ -1264,38 +1194,17 @@ E-commerce platform with Next.js frontend and Supabase backend.
 		color: var(--text-secondary);
 	}
 
-	/* Related Grid */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
+	/* CTA Box */
+	.cta-box {
+		background: rgba(0, 196, 154, 0.05);
+		border: 1px solid rgba(0, 196, 154, 0.3);
+		padding: 2rem;
+		text-align: center;
 	}
 
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green-dim);
-	}
-
-	.related-type {
-		display: block;
-		font-size: 0.75rem;
-		color: var(--text-secondary);
-		text-transform: uppercase;
-		margin-bottom: 0.25rem;
-	}
-
-	.related-title {
-		display: block;
-		font-weight: 600;
-		color: var(--text-primary);
+	.cta-box h2 {
+		border-bottom: none;
+		padding-bottom: 0;
 	}
 
 	/* External Links */
@@ -1315,42 +1224,5 @@ E-commerce platform with Next.js frontend and Supabase backend.
 
 	.external-links a:hover {
 		text-decoration: underline;
-	}
-
-	a {
-		color: var(--green-dim);
-	}
-
-	a:hover {
-		text-decoration: underline;
-	}
-
-	/* CTA Box */
-	.cta-box {
-		background: rgba(0, 196, 154, 0.05);
-		border: 1px solid rgba(0, 196, 154, 0.3);
-		padding: 2rem;
-		text-align: center;
-	}
-
-	.cta-box h2 {
-		border-bottom: none;
-		padding-bottom: 0;
-	}
-
-	.cta-button {
-		display: inline-block;
-		padding: 0.75rem 1.5rem;
-		background: var(--green-dim);
-		color: white;
-		text-decoration: none;
-		font-weight: 600;
-		margin-top: 1rem;
-		transition: background 0.2s;
-	}
-
-	.cta-button:hover {
-		background: var(--green);
-		text-decoration: none;
 	}
 </style>

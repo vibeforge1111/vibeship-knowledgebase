@@ -195,7 +195,7 @@
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
-				<span class="badge badge-prompts">Annual Guide</span>
+				<span class="badge badge-green">Annual Guide</span>
 				<span class="badge">Comparison</span>
 				<span class="badge">2025</span>
 			</div>
@@ -262,8 +262,8 @@
 			</p>
 
 			<div class="code-example">
-				<div class="code-header">
-					<span>.cursor/rules/security.md</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">.cursor/rules/security.md</span>
 					<button class="copy-btn" onclick={() => copyCode(`---
 description: "Security rules for database and auth"
 alwaysApply: true
@@ -321,8 +321,8 @@ alwaysApply: true
 			</p>
 
 			<div class="code-example">
-				<div class="code-header">
-					<span>CLAUDE.md</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">CLAUDE.md</span>
 					<button class="copy-btn" onclick={() => copyCode(`# Project Rules
 
 ## Tech Stack
@@ -384,8 +384,8 @@ alwaysApply: true
 			</p>
 
 			<div class="code-example">
-				<div class="code-header">
-					<span>copilot-instructions.md</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">copilot-instructions.md</span>
 					<button class="copy-btn" onclick={() => copyCode(`# GitHub Copilot Instructions
 
 ## Code Style
@@ -448,8 +448,8 @@ alwaysApply: true
 			</p>
 
 			<div class="code-example">
-				<div class="code-header">
-					<span>.windsurf/rules/core.md</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">.windsurf/rules/core.md</span>
 					<button class="copy-btn" onclick={() => copyCode(`# Core Project Rules
 
 ## Stack
@@ -519,8 +519,8 @@ alwaysApply: true
 			</p>
 
 			<div class="code-example">
-				<div class="code-header">
-					<span>.clinerules</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">.clinerules</span>
 					<button class="copy-btn" onclick={() => copyCode(`# Cline Project Rules
 
 ## Tech Stack
@@ -589,8 +589,8 @@ This is a Python FastAPI project with PostgreSQL.
 			</p>
 
 			<div class="code-example">
-				<div class="code-header">
-					<span>Bolt.new Template Prompt</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">Bolt.new Template Prompt</span>
 					<button class="copy-btn" onclick={() => copyCode(`Build a [app description] using:
 - React 18 + Vite
 - TypeScript strict mode
@@ -658,8 +658,8 @@ Follow these patterns:
 			</p>
 
 			<div class="code-example">
-				<div class="code-header">
-					<span>v0 Prompt Template</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">v0 Prompt Template</span>
 					<button class="copy-btn" onclick={() => copyCode(`Create a [component description] using:
 - Next.js 14 App Router
 - TypeScript
@@ -721,8 +721,8 @@ Requirements:
 			</p>
 
 			<div class="code-example">
-				<div class="code-header">
-					<span>Replit Agent Prompt Template</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">Replit Agent Prompt Template</span>
 					<button class="copy-btn" onclick={() => copyCode(`Build a [app description] with:
 - Backend: Node.js + Express
 - Frontend: React + Vite
@@ -1141,28 +1141,28 @@ Security:
 			<h2>Related resources</h2>
 			<div class="related-grid">
 				<a href="/kb/prompts/cursor-rules/" class="related-card">
-					<span class="related-type">Config Guide</span>
-					<span class="related-title">Cursor Rules Guide</span>
+					<span class="related-card-category">Config Guide</span>
+					<span class="related-card-title">Cursor Rules Guide</span>
 				</a>
 				<a href="/kb/prompts/claude-md/" class="related-card">
-					<span class="related-type">Config Guide</span>
-					<span class="related-title">CLAUDE.md Guide</span>
+					<span class="related-card-category">Config Guide</span>
+					<span class="related-card-title">CLAUDE.md Guide</span>
 				</a>
 				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Cursor Security Patterns</span>
+					<span class="related-card-category">Tool Guide</span>
+					<span class="related-card-title">Cursor Security Patterns</span>
 				</a>
 				<a href="/kb/vibe-coding-tools/claude-code/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Claude Code Security</span>
+					<span class="related-card-category">Tool Guide</span>
+					<span class="related-card-title">Claude Code Security</span>
 				</a>
 				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">Secure Vibe Coding Guide</span>
+					<span class="related-card-category">Pillar Guide</span>
+					<span class="related-card-title">Secure Vibe Coding Guide</span>
 				</a>
 				<a href="https://scanner.vibeship.co" class="related-card" target="_blank" rel="noopener">
-					<span class="related-type">Tool</span>
-					<span class="related-title">VibeShip Scanner</span>
+					<span class="related-card-category">Tool</span>
+					<span class="related-card-title">VibeShip Scanner</span>
 				</a>
 			</div>
 		</section>
@@ -1185,11 +1185,7 @@ Security:
 </div>
 
 <style>
-	.content-wrapper {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
+	/* Page-specific styles only - global styles from components.css and layout.css */
 
 	.article-header {
 		margin-bottom: 2rem;
@@ -1200,24 +1196,6 @@ Security:
 		gap: 0.5rem;
 		flex-wrap: wrap;
 		margin-bottom: 1rem;
-	}
-
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		font-size: 0.7rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		background: var(--bg-primary);
-		color: var(--text-secondary);
-		border: 1px solid var(--border);
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.badge-prompts {
-		background: rgba(0, 196, 154, 0.1);
-		color: var(--green-dim);
-		border-color: var(--green-dim);
 	}
 
 	h1 {
@@ -1234,26 +1212,6 @@ Security:
 		font-size: 0.875rem;
 		color: var(--text-tertiary);
 		margin-top: 0.5rem;
-	}
-
-	.quick-answer {
-		background: rgba(0, 196, 154, 0.05);
-		border: 1px solid rgba(0, 196, 154, 0.2);
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer-label {
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		color: var(--green-dim);
-		margin-bottom: 0.5rem;
-	}
-
-	.quick-answer-text {
-		margin: 0;
-		line-height: 1.6;
 	}
 
 	section {
@@ -1355,31 +1313,6 @@ Security:
 		margin: 1rem 0;
 	}
 
-	.code-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0.75rem 1rem;
-		background: var(--bg-secondary);
-		font-size: 0.875rem;
-		border-bottom: 1px solid var(--border);
-	}
-
-	.copy-btn {
-		padding: 0.375rem 0.75rem;
-		background: var(--green-dim);
-		color: white;
-		border: none;
-		font-size: 0.75rem;
-		font-weight: 600;
-		cursor: pointer;
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.copy-btn:hover {
-		background: var(--green);
-	}
-
 	pre {
 		margin: 0;
 		padding: 1rem;
@@ -1391,6 +1324,7 @@ Security:
 	pre code {
 		background: transparent;
 		padding: 0;
+		border: none;
 	}
 
 	/* Config Comparison */
@@ -1464,7 +1398,6 @@ Security:
 		padding: 1rem;
 		background: rgba(239, 68, 68, 0.1);
 		border: 1px solid rgba(239, 68, 68, 0.3);
-		border-radius: 6px;
 	}
 
 	/* Pricing Table */
@@ -1510,8 +1443,8 @@ Security:
 	.pricing-notes {
 		margin-top: 1.5rem;
 		padding: 1.5rem;
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
 	.pricing-notes h4 {
@@ -1532,15 +1465,14 @@ Security:
 
 	.use-case {
 		padding: 1.5rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
 	.use-case h3 {
 		margin-top: 0;
 		font-size: 1rem;
-		color: #8b5cf6;
+		color: var(--violet);
 	}
 
 	.use-case p {
@@ -1557,14 +1489,13 @@ Security:
 
 	.decision-step {
 		padding: 1.5rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
 	.decision-step h4 {
 		margin-top: 0;
-		color: #8b5cf6;
+		color: var(--violet);
 	}
 
 	.decision-step ul {
@@ -1575,64 +1506,7 @@ Security:
 		margin-top: 1.5rem;
 		padding: 1rem;
 		background: rgba(139, 92, 246, 0.1);
-		border-radius: 6px;
-	}
-
-	/* FAQ */
-	.faq-item {
-		margin-bottom: 1.5rem;
-		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border, #333);
-	}
-
-	.faq-item:last-child {
-		border-bottom: none;
-	}
-
-	.faq-item h3 {
-		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
-		margin-top: 0;
-	}
-
-	.faq-item p {
-		margin: 0;
-		color: var(--text-secondary, #ddd);
-	}
-
-	/* Related Grid */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
-	}
-
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: #8b5cf6;
-	}
-
-	.related-type {
-		display: block;
-		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
-		text-transform: uppercase;
-		margin-bottom: 0.25rem;
-	}
-
-	.related-title {
-		display: block;
-		font-weight: 600;
-		color: var(--text-primary, #fff);
+		border: 1px solid var(--border);
 	}
 
 	/* External Links */
@@ -1646,7 +1520,7 @@ Security:
 	}
 
 	.external-links a {
-		color: #8b5cf6;
+		color: var(--green-dim);
 		text-decoration: none;
 	}
 

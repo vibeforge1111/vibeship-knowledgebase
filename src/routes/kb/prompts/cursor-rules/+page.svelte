@@ -223,7 +223,7 @@
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
-				<span class="badge badge-prompts">Prompts Guide</span>
+				<span class="badge badge-green">Prompts Guide</span>
 				<span class="badge">Cursor</span>
 				<span class="badge">Configuration</span>
 			</div>
@@ -280,8 +280,8 @@
 
 			<h3>Rule file format (with frontmatter)</h3>
 			<div class="code-block">
-				<div class="code-header">
-					<span>.cursor/rules/security.md</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">.cursor/rules/security.md</span>
 					<button class="copy-btn" onclick={() => copyCode(`---
 description: "Security rules for database and auth patterns"
 alwaysApply: true
@@ -330,22 +330,22 @@ globs: ["**/*.ts", "**/*.tsx", "**/*.js"]
 			</p>
 
 			<div class="mode-grid">
-				<div class="mode-card">
+				<div class="card mode-card">
 					<h4>Always Apply</h4>
 					<code>alwaysApply: true</code>
 					<p>Active in every conversation. Use for core project rules, security requirements, and tech stack definitions.</p>
 				</div>
-				<div class="mode-card">
+				<div class="card mode-card">
 					<h4>Intelligent (AI Decides)</h4>
 					<code>alwaysApply: false</code>
 					<p>AI reads the description and decides if relevant. Good for specialized rules like testing or deployment.</p>
 				</div>
-				<div class="mode-card">
+				<div class="card mode-card">
 					<h4>File-Specific</h4>
 					<code>globs: ["*.ts"]</code>
 					<p>Triggered when working with matching files. Use for language-specific conventions (TypeScript vs Python).</p>
 				</div>
-				<div class="mode-card">
+				<div class="card mode-card">
 					<h4>Manual</h4>
 					<code>@rule-name</code>
 					<p>Activated by mentioning in chat. Good for optional workflows or specialized tasks.</p>
@@ -365,23 +365,23 @@ globs: ["**/*.ts", "**/*.tsx", "**/*.js"]
 			</p>
 
 			<div class="category-list">
-				<div class="category-item">
+				<div class="card category-item">
 					<h4>1. Project Context</h4>
 					<p>Tech stack, framework versions, key architectural decisions. Helps Cursor understand what libraries and patterns to use.</p>
 				</div>
-				<div class="category-item">
+				<div class="card category-item">
 					<h4>2. Code Style</h4>
 					<p>Naming conventions, formatting preferences, component patterns. Keeps generated code consistent with your existing codebase.</p>
 				</div>
-				<div class="category-item">
+				<div class="card category-item">
 					<h4>3. Framework Rules</h4>
 					<p>Next.js App Router patterns, React hooks conventions, API structure. Framework-specific best practices.</p>
 				</div>
-				<div class="category-item highlight">
+				<div class="card category-item category-highlight">
 					<h4>4. Security Rules (Critical!)</h4>
 					<p>Database query patterns, authentication requirements, input validation. <strong>This is where most vibe coders fall short.</strong> See our <a href="#security-rules">security rules library</a> below.</p>
 				</div>
-				<div class="category-item">
+				<div class="card category-item">
 					<h4>5. Response Format</h4>
 					<p>How Cursor should structure responses, comment style, explanation level. Customize the AI's communication style.</p>
 				</div>
@@ -396,8 +396,8 @@ globs: ["**/*.ts", "**/*.tsx", "**/*.js"]
 			</p>
 
 			<div class="security-rules-block">
-				<div class="code-header">
-					<span>Complete Security Rules</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">Complete Security Rules</span>
 					<button class="copy-btn" onclick={() => copyCode(`# Security Rules
 
 ## Database Security
@@ -563,7 +563,7 @@ Pattern:
 
 			<div class="stack-examples">
 				{#each stackExamples as stack, i}
-					<div class="stack-card">
+					<div class="card stack-card">
 						<div class="stack-header">
 							<div>
 								<h3>{stack.name}</h3>
@@ -679,7 +679,7 @@ Pattern:
 			<p>
 				Rules help prevent vulnerabilities, but they can't catch everything. <a href="https://scanner.vibeship.co">VibeShip Scanner</a> automatically detects SQL injection, XSS, hardcoded secrets, and more in your vibe coded projects.
 			</p>
-			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
+			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">Scan Your Code Free →</a>
 		</section>
 
 		<!-- Related Content -->
@@ -687,28 +687,28 @@ Pattern:
 			<h2>Related resources</h2>
 			<div class="related-grid">
 				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Cursor Security Patterns</span>
+					<span class="related-card-category">Tool Guide</span>
+					<span class="related-card-title">Cursor Security Patterns</span>
 				</a>
 				<a href="/kb/prompts/claude-md/" class="related-card">
-					<span class="related-type">Config Guide</span>
-					<span class="related-title">CLAUDE.md Guide</span>
+					<span class="related-card-category">Config Guide</span>
+					<span class="related-card-title">CLAUDE.md Guide</span>
 				</a>
 				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">Secure Vibe Coding Guide</span>
+					<span class="related-card-category">Pillar Guide</span>
+					<span class="related-card-title">Secure Vibe Coding Guide</span>
 				</a>
 				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">SQL Injection</span>
+					<span class="related-card-category">Vulnerability</span>
+					<span class="related-card-title">SQL Injection</span>
 				</a>
 				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Hardcoded Secrets</span>
+					<span class="related-card-category">Vulnerability</span>
+					<span class="related-card-title">Hardcoded Secrets</span>
 				</a>
 				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Missing Authentication</span>
+					<span class="related-card-category">Vulnerability</span>
+					<span class="related-card-title">Missing Authentication</span>
 				</a>
 			</div>
 		</section>
@@ -726,6 +726,7 @@ Pattern:
 </div>
 
 <style>
+	/* Page Layout */
 	.content-wrapper {
 		max-width: 900px;
 		margin: 0 auto;
@@ -743,24 +744,6 @@ Pattern:
 		margin-bottom: 1rem;
 	}
 
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		font-size: 0.7rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		background: var(--bg-primary);
-		color: var(--text-secondary);
-		border: 1px solid var(--border);
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.badge-prompts {
-		background: rgba(0, 196, 154, 0.1);
-		color: var(--green-dim);
-		border-color: var(--green-dim);
-	}
-
 	h1 {
 		font-size: 2.5rem;
 		margin-bottom: 0.5rem;
@@ -769,59 +752,6 @@ Pattern:
 	.text-secondary {
 		color: var(--text-secondary);
 		font-size: 1.1rem;
-	}
-
-	.quick-answer {
-		background: rgba(0, 196, 154, 0.05);
-		border: 1px solid rgba(0, 196, 154, 0.2);
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer-label {
-		font-size: 0.7rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		color: var(--green-dim);
-		margin-bottom: 0.5rem;
-		font-family: 'JetBrains Mono', monospace;
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-	}
-
-	.quick-answer-text {
-		margin: 0;
-		line-height: 1.6;
-	}
-
-	/* CTA Box */
-	.cta-box {
-		background: rgba(0, 196, 154, 0.05);
-		border: 1px solid rgba(0, 196, 154, 0.3);
-		padding: 2rem;
-		text-align: center;
-	}
-
-	.cta-box h2 {
-		border-bottom: none;
-		padding-bottom: 0;
-	}
-
-	.cta-button {
-		display: inline-block;
-		padding: 0.75rem 1.5rem;
-		background: var(--green-dim);
-		color: white;
-		text-decoration: none;
-		font-weight: 600;
-		margin-top: 1rem;
-		transition: background 0.2s;
-	}
-
-	.cta-button:hover {
-		background: var(--green);
-		text-decoration: none;
 	}
 
 	section {
@@ -851,11 +781,32 @@ Pattern:
 		margin-bottom: 1rem;
 	}
 
+	a {
+		color: var(--green-dim);
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
 	code {
 		font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
 		background: rgba(0,0,0,0.3);
 		padding: 0.125rem 0.375rem;
 		font-size: 0.9em;
+	}
+
+	pre {
+		margin: 0;
+		padding: 1rem;
+		overflow-x: auto;
+		font-size: 0.8rem;
+		line-height: 1.5;
+	}
+
+	pre code {
+		background: transparent;
+		padding: 0;
 	}
 
 	/* File Structure */
@@ -879,63 +830,12 @@ Pattern:
 		padding: 1rem;
 	}
 
-	/* Code Blocks */
-	.code-block {
-		background: #0d0d0d;
-		overflow: hidden;
-		margin: 1rem 0;
-		border: 1px solid var(--border);
-	}
-
-	.code-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0.75rem 1rem;
-		background: rgba(255,255,255,0.05);
-		font-size: 0.875rem;
-	}
-
-	.copy-btn {
-		padding: 0.375rem 0.75rem;
-		background: var(--green-dim);
-		color: white;
-		border: none;
-		font-size: 0.75rem;
-		font-weight: 600;
-		cursor: pointer;
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.copy-btn:hover {
-		background: var(--green);
-	}
-
-	pre {
-		margin: 0;
-		padding: 1rem;
-		overflow-x: auto;
-		font-size: 0.8rem;
-		line-height: 1.5;
-	}
-
-	pre code {
-		background: transparent;
-		padding: 0;
-	}
-
 	/* Mode Grid */
 	.mode-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1rem;
 		margin: 1.5rem 0;
-	}
-
-	.mode-card {
-		padding: 1rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
 	}
 
 	.mode-card h4 {
@@ -952,7 +852,7 @@ Pattern:
 	.mode-card p {
 		font-size: 0.875rem;
 		margin: 0;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 	}
 
 	/* Category List */
@@ -962,12 +862,6 @@ Pattern:
 		margin: 1rem 0;
 	}
 
-	.category-item {
-		padding: 1rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-	}
-
 	.category-item h4 {
 		margin-top: 0;
 	}
@@ -975,15 +869,15 @@ Pattern:
 	.category-item p {
 		margin: 0;
 		font-size: 0.9rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 	}
 
-	.category-item.highlight {
+	.category-highlight {
 		border-color: rgba(239, 68, 68, 0.5);
 		background: rgba(239, 68, 68, 0.05);
 	}
 
-	.category-item.highlight h4 {
+	.category-highlight h4 {
 		color: #f87171;
 	}
 
@@ -1022,8 +916,6 @@ Pattern:
 	}
 
 	.stack-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
@@ -1042,7 +934,7 @@ Pattern:
 	.stack-desc {
 		margin: 0;
 		font-size: 0.875rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 	}
 
 	.stack-card pre {
@@ -1145,41 +1037,20 @@ Pattern:
 
 	.faq-item p {
 		margin: 0;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 	}
 
-	/* Related Grid */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
+	/* CTA Box */
+	.cta-box {
+		background: rgba(0, 196, 154, 0.05);
+		border: 1px solid rgba(0, 196, 154, 0.3);
+		padding: 2rem;
+		text-align: center;
 	}
 
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green-dim);
-	}
-
-	.related-type {
-		display: block;
-		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
-		text-transform: uppercase;
-		margin-bottom: 0.25rem;
-	}
-
-	.related-title {
-		display: block;
-		font-weight: 600;
-		color: var(--text-primary, #fff);
+	.cta-box h2 {
+		border-bottom: none;
+		padding-bottom: 0;
 	}
 
 	/* External Links */
@@ -1199,37 +1070,5 @@ Pattern:
 
 	.external-links a:hover {
 		text-decoration: underline;
-	}
-
-	a {
-		color: var(--green-dim);
-	}
-
-	a:hover {
-		text-decoration: underline;
-	}
-
-	.related-type {
-		color: var(--text-secondary);
-	}
-
-	.related-title {
-		color: var(--text-primary);
-	}
-
-	.faq-item p {
-		color: var(--text-secondary);
-	}
-
-	.stack-desc {
-		color: var(--text-secondary);
-	}
-
-	.mode-card p {
-		color: var(--text-secondary);
-	}
-
-	.category-item p {
-		color: var(--text-secondary);
 	}
 </style>

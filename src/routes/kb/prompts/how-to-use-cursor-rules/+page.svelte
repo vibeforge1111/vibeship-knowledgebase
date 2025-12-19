@@ -1,651 +1,1254 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+	import { Header } from '$lib/components/layout';
 
-  let title = "How to Use Cursor Rules: Complete Beginner Tutorial";
-  let description = "Step-by-step tutorial: Create .cursor/rules folder, add markdown rules, test in 2 minutes. Includes security templates, troubleshooting, and examples for vibe coders.";
+	// Page metadata
+	const meta = {
+		title: 'How to Use Cursor Rules: Complete Beginner Tutorial',
+		description: 'Learn how to set up Cursor rules step by step. Create your first .cursorrules file, test it works, and iterate on your configuration with this beginner-friendly guide.',
+		url: '/kb/prompts/how-to-use-cursor-rules/'
+	};
+
+	// Breadcrumbs
+	const breadcrumbs = [
+		{ label: 'Knowledge Base', href: '/kb' },
+		{ label: 'Prompts', href: '/kb/prompts' },
+		{ label: 'How to Use Cursor Rules' }
+	];
+
+	// FAQ data
+	const faqs = [
+		{
+			question: 'Why are my cursor rules not working?',
+			answer: 'Check three things: 1) The file is named exactly .cursorrules (with the dot) or placed in .cursor/rules/ folder, 2) The file is in your project root directory, 3) You have restarted Cursor or opened a new chat after creating the file. If using frontmatter, ensure the YAML syntax is valid with proper indentation.'
+		},
+		{
+			question: 'Do I need to restart Cursor after changing rules?',
+			answer: 'For the legacy .cursorrules file, changes apply to new chat sessions automatically. For .cursor/rules/ files, Cursor watches for changes and applies them immediately. If rules seem ignored, start a new chat to ensure fresh context.'
+		},
+		{
+			question: 'Should I use .cursorrules or .cursor/rules/ folder?',
+			answer: 'Use .cursor/rules/ folder for new projects. It offers better organization (split by category), activation modes (always, intelligent, file-specific), and is the officially recommended approach. The legacy .cursorrules file still works but lacks these features.'
+		},
+		{
+			question: 'How do I know if Cursor is reading my rules?',
+			answer: 'Ask Cursor directly: "What rules are you following for this project?" or "Summarize my cursor rules." Cursor will list the active rules it found. You can also check by asking it to generate code that should follow your rules - if it follows them, they are working.'
+		},
+		{
+			question: 'Can I use cursor rules with any AI model?',
+			answer: 'Yes. Cursor rules work with all supported models (Claude, GPT-4, etc.). Rules are injected into the system context before your prompts, so every model receives the same instructions. Different models may follow rules with varying precision.'
+		},
+		{
+			question: 'How long should my cursor rules be?',
+			answer: 'Keep total rules under 500 lines. Shorter, focused rules work better than long documents. If you have many rules, split them into separate files in .cursor/rules/ (security.md, typescript.md, etc.). Each rule should be specific and actionable.'
+		},
+		{
+			question: 'Do cursor rules work in Cursor Composer?',
+			answer: 'Yes. Cursor rules apply to both regular chat and Cursor Composer. The rules are loaded into context for any AI interaction in your project, including multi-file editing sessions in Composer.'
+		}
+	];
+
+	// Step by step tutorial data
+	const steps = [
+		{
+			number: 1,
+			title: 'Open your project in Cursor',
+			description: 'Open the folder containing your project in Cursor. Rules are project-specific, so each project can have its own configuration.',
+			tip: 'Make sure you open the root folder of your project, not a subfolder.'
+		},
+		{
+			number: 2,
+			title: 'Create the rules file',
+			description: 'Create a new file named .cursorrules in your project root. The dot at the beginning is required - this makes it a hidden file on macOS/Linux.',
+			tip: 'On Windows, you can create the file from Cursor directly. Some file explorers hide dot-files by default.'
+		},
+		{
+			number: 3,
+			title: 'Add your first rule',
+			description: 'Start simple with your tech stack and one security rule. You can expand later.',
+			tip: 'Begin with what makes your project unique - the framework, language, and coding patterns.'
+		},
+		{
+			number: 4,
+			title: 'Test the rules',
+			description: 'Open a new chat in Cursor and ask it to generate some code. Check if the output follows your rules.',
+			tip: 'Ask Cursor: "What rules are you following?" to verify it loaded your configuration.'
+		},
+		{
+			number: 5,
+			title: 'Iterate and expand',
+			description: 'Add more rules as you notice patterns. When Cursor generates something you correct often, add a rule for it.',
+			tip: 'Review your rules monthly. Remove ones that are no longer relevant and add new patterns.'
+		}
+	];
+
+	let copied = $state(false);
+	let copiedSection = $state('');
+
+	function copyCode(code: string, section: string) {
+		navigator.clipboard.writeText(code);
+		copied = true;
+		copiedSection = section;
+		setTimeout(() => {
+			copied = false;
+			copiedSection = '';
+		}, 2000);
+	}
+
+	const starterTemplate = `# Project Configuration
+
+## Tech Stack
+- [Your framework: Next.js / React / SvelteKit / etc.]
+- [Your language: TypeScript / JavaScript / Python]
+- [Your database: Supabase / Prisma / MongoDB]
+- [Your styling: Tailwind / CSS Modules / styled-components]
+
+## Code Style
+- Use functional components
+- Prefer named exports over default exports
+- Use TypeScript interfaces for props
+
+## Security Rules
+- NEVER use template literals for database queries
+- ALWAYS validate user input on the server
+- Check authentication on every API route
+- Use environment variables for secrets, never hardcode`;
+
+	const advancedTemplate = `---
+description: "Core project rules - tech stack and conventions"
+alwaysApply: true
+---
+
+# Project: [Your App Name]
+
+## Tech Stack
+- Next.js 14 with App Router
+- TypeScript in strict mode
+- Supabase for auth and database
+- Tailwind CSS for styling
+
+## Architecture Patterns
+- Use Server Components by default
+- Client Components only for interactivity
+- Server Actions for mutations
+- Zod for input validation
+
+## Naming Conventions
+- Components: PascalCase (UserCard.tsx)
+- Utilities: camelCase (formatDate.ts)
+- Constants: SCREAMING_SNAKE_CASE
+- Types/Interfaces: PascalCase with 'I' or 'T' prefix optional
+
+## Security (Critical)
+- Parameterized queries only: $1, $2 - never template literals
+- Validate ALL input with Zod before database operations
+- Check auth in every Server Action and API route
+- Never expose SUPABASE_SERVICE_ROLE_KEY to client`;
 </script>
 
 <svelte:head>
-  <title>{title} | VibeShip</title>
-  <meta name="description" content={description} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:type" content="article" />
-  <link rel="canonical" href="https://vibeship.co/kb/prompts/how-to-use-cursor-rules/" />
+	<title>{meta.title}</title>
+	<meta name="description" content={meta.description} />
+	<meta property="og:title" content={meta.title} />
+	<meta property="og:description" content={meta.description} />
+	<meta property="og:url" content={meta.url} />
+	<meta property="og:type" content="article" />
+	<link rel="canonical" href="https://vibeship.co{meta.url}" />
+
+	<!-- BreadcrumbList Schema -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
+			{"@type": "ListItem", "position": 2, "name": "Prompts", "item": "https://vibeship.co/kb/prompts"},
+			{"@type": "ListItem", "position": 3, "name": "How to Use Cursor Rules"}
+		]
+	}
+	</script>`}
+
+	<!-- HowTo Schema -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "HowTo",
+		"name": "How to Set Up Cursor Rules",
+		"description": "Step-by-step guide to creating and using Cursor rules for better AI-generated code",
+		"step": [
+			{
+				"@type": "HowToStep",
+				"position": 1,
+				"name": "Open your project in Cursor",
+				"text": "Open the folder containing your project in Cursor. Rules are project-specific."
+			},
+			{
+				"@type": "HowToStep",
+				"position": 2,
+				"name": "Create the rules file",
+				"text": "Create a file named .cursorrules in your project root directory."
+			},
+			{
+				"@type": "HowToStep",
+				"position": 3,
+				"name": "Add your first rule",
+				"text": "Start with your tech stack and one security rule."
+			},
+			{
+				"@type": "HowToStep",
+				"position": 4,
+				"name": "Test the rules",
+				"text": "Open a new chat and verify Cursor follows your rules."
+			},
+			{
+				"@type": "HowToStep",
+				"position": 5,
+				"name": "Iterate and expand",
+				"text": "Add more rules as you notice patterns in your corrections."
+			}
+		]
+	}
+	</script>`}
+
+	<!-- FAQ Schema -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": ${JSON.stringify(faqs.map(faq => ({
+			"@type": "Question",
+			"name": faq.question,
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": faq.answer
+			}
+		})))}
+	}
+	</script>`}
 </svelte:head>
 
-<article class="kb-article">
-  <header class="article-header">
-    <div class="breadcrumb">
-      <a href="/kb">Knowledge Base</a> /
-      <a href="/kb/prompts">Prompts</a> /
-      <span>How to Use Cursor Rules</span>
-    </div>
-
-    <h1>How to Use Cursor Rules: Complete Beginner Tutorial</h1>
-
-    <div class="article-meta">
-      <span class="reading-time">8 min read</span>
-      <span class="last-updated">Updated December 2024</span>
-    </div>
-  </header>
-
-  <div class="quick-answer">
-    <strong>Create a <code>.cursor/rules/</code> folder in your project root, add markdown files with your rules, and Cursor will automatically apply them.</strong> Takes 2 minutes to set up. Rules guide Cursor's AI code generation to follow your security standards, coding style, and framework patterns.
-  </div>
-
-  <section>
-    <h2>What Are Cursor Rules?</h2>
-
-    <p>Cursor rules are markdown files that tell Cursor AI how to generate code for your specific project. They define your security requirements, coding standards, framework patterns, and project conventions. Think of them as instructions that Cursor reads before writing any code.</p>
-
-    <p>For vibe coders, rules are critical because they prevent AI tools from generating insecure defaults. Without rules, Cursor might create SQL injection vulnerabilities, hardcoded secrets, or missing authentication checks. With proper rules, you can enforce <a href="/kb/security/">security best practices</a> automatically.</p>
-
-    <p>Cursor supports two formats: the modern <code>.cursor/rules/</code> folder (recommended) and the legacy <code>.cursorrules</code> file. This tutorial covers both, with focus on the folder approach since it allows organizing rules across multiple files. Learn more about <a href="/kb/prompts/cursor-rules/">what Cursor rules are and why they matter</a>.</p>
-  </section>
-
-  <section>
-    <h2>Step 1: Create Your Rules Folder</h2>
-
-    <p>Cursor rules live in a <code>.cursor/rules/</code> folder at your project root. Create this folder in the same directory as your <code>package.json</code>, <code>README.md</code>, or other root-level files.</p>
-
-    <div class="code-example">
-      <div class="code-header">
-        <span class="filename">Terminal</span>
-      </div>
-      <pre><code class="language-bash"># Navigate to your project root
-cd /path/to/your/project
-
-# Create the rules folder
-mkdir -p .cursor/rules
-
-# Verify it was created
-ls -la .cursor/</code></pre>
-    </div>
-
-    <p>You should see output like:</p>
-
-    <div class="code-example">
-      <pre><code>drwxr-xr-x  2 user  staff   64 Dec 17 10:30 rules</code></pre>
-    </div>
-
-    <p><strong>Alternative: Legacy .cursorrules file</strong> - If you prefer a single file instead of a folder, create <code>.cursorrules</code> (no extension) at your project root. This works but doesn't support multiple organized rule files.</p>
-
-    <div class="code-example">
-      <div class="code-header">
-        <span class="filename">Terminal</span>
-      </div>
-      <pre><code class="language-bash"># Create legacy single file
-touch .cursorrules</code></pre>
-    </div>
-  </section>
-
-  <section>
-    <h2>Step 2: Write Your First Rule</h2>
-
-    <p>Create your first rule file with basic frontmatter metadata and instructions. Start with a general coding standards file that applies to your entire project.</p>
-
-    <div class="code-example">
-      <div class="code-header">
-        <span class="filename">.cursor/rules/coding-standards.md</span>
-      </div>
-      <pre><code class="language-markdown">---
-description: General coding standards for this project
-tags: [typescript, style]
----
-
-# Coding Standards
-
-## TypeScript Requirements
-- Use TypeScript for all new files
-- Enable strict mode in tsconfig.json
-- Prefer explicit types over 'any'
-- Use interfaces for object shapes
-
-## Code Style
-- Use meaningful variable names (no x, y, temp)
-- Add JSDoc comments for all exported functions
-- Keep functions under 50 lines
-- Extract magic numbers to named constants
-
-## Error Handling
-- Always handle async errors with try/catch
-- Never use empty catch blocks
-- Return typed errors, not string messages
-- Log errors before re-throwing</code></pre>
-    </div>
-
-    <p>The frontmatter (content between <code>---</code> markers) is optional but helpful for organization. The <code>description</code> field explains what the rule does, and <code>tags</code> help categorize rules when you have many files.</p>
-
-    <p>Save this file, then verify Cursor loaded it by opening Cursor's chat panel (Cmd+L on Mac, Ctrl+L on Windows) and asking:</p>
-
-    <div class="code-example">
-      <pre><code>"What are my project's coding standards?"</code></pre>
-    </div>
-
-    <p>Cursor should reference your rule file in its response.</p>
-  </section>
-
-  <section>
-    <h2>Step 3: Add Security Rules (Critical)</h2>
-
-    <p>Security rules are the most important rules for vibe coders because AI tools generate <a href="/kb/security/vulnerabilities/sql-injection/">SQL injection</a>, <a href="/kb/security/vulnerabilities/hardcoded-secrets/">hardcoded secrets</a>, and <a href="/kb/security/vulnerabilities/xss/">XSS vulnerabilities</a> by default. Add a dedicated security rule file to prevent these issues.</p>
-
-    <div class="code-example">
-      <div class="code-header">
-        <span class="filename">.cursor/rules/security.md</span>
-      </div>
-      <pre><code class="language-markdown">---
-description: Security requirements - READ THIS BEFORE GENERATING CODE
-tags: [security, critical]
----
-
-# Security Rules (MANDATORY)
-
-## Database Queries
-- NEVER use string concatenation or template literals in SQL queries
-- ALWAYS use parameterized queries with $1, $2 placeholders
-- NEVER trust user input in database queries
-- Example (PostgreSQL):
-  ```typescript
-  // ❌ NEVER DO THIS
-  const user = await db.query(`SELECT * FROM users WHERE id = ${userId}`)
-
-  // ✅ ALWAYS DO THIS
-  const user = await db.query('SELECT * FROM users WHERE id = $1', [userId])
-  ```
-
-## Secrets Management
-- NEVER hardcode API keys, passwords, or tokens
-- ALWAYS use environment variables via process.env
-- Store secrets in .env file (add to .gitignore)
-- Use dotenv package to load environment variables
-- Example:
-  ```typescript
-  // ❌ NEVER DO THIS
-  const apiKey = "sk_live_abcd1234"
-
-  // ✅ ALWAYS DO THIS
-  const apiKey = process.env.STRIPE_API_KEY
-  ```
-
-## Authentication
-- NEVER skip authentication checks
-- ALWAYS verify user session/token before data access
-- Use middleware for route protection
-- Check user permissions, not just authentication
-
-## Input Validation
-- NEVER trust user input
-- ALWAYS validate and sanitize input on the server
-- Use validation libraries (zod, joi, yup)
-- Reject invalid input with clear error messages
-
-## XSS Prevention
-- NEVER use dangerouslySetInnerHTML without sanitization
-- ALWAYS escape user content in HTML
-- Use framework defaults (React escapes by default)
-- Sanitize with DOMPurify if HTML is required
-
-## Error Messages
-- NEVER expose stack traces to users
-- NEVER include sensitive data in error messages
-- Log detailed errors server-side only
-- Return generic messages to clients</code></pre>
-    </div>
-
-    <p>This security template covers the most common vulnerabilities found in AI-generated code. According to research on <a href="/kb/vibe-coding-tools/cursor/">Cursor security patterns</a>, these rules reduce security issues by preventing the exact patterns Cursor generates by default.</p>
-
-    <p>After adding this file, test it by asking Cursor to generate a database query. It should automatically use parameterized queries instead of string concatenation.</p>
-  </section>
-
-  <section>
-    <h2>Step 4: Test Your Rules</h2>
-
-    <p>Test that Cursor is reading and applying your rules by generating code that should follow them. Open Cursor's chat (Cmd+L / Ctrl+L) and request code that involves your rules.</p>
-
-    <p><strong>Test 1: Database Query</strong></p>
-    <div class="code-example">
-      <pre><code>Prompt: "Write a function to fetch a user by ID from PostgreSQL"</code></pre>
-    </div>
-
-    <p>Expected result: Cursor should generate parameterized queries with <code>$1</code> placeholders, not string concatenation.</p>
-
-    <p><strong>Test 2: API Key Usage</strong></p>
-    <div class="code-example">
-      <pre><code>Prompt: "Create a Stripe payment function"</code></pre>
-    </div>
-
-    <p>Expected result: Cursor should use <code>process.env.STRIPE_API_KEY</code>, not hardcoded keys.</p>
-
-    <p><strong>Test 3: Verify Rules Are Loaded</strong></p>
-    <div class="code-example">
-      <pre><code>Prompt: "What are my project's security rules?"</code></pre>
-    </div>
-
-    <p>Cursor should list your security requirements from the rule file. If it doesn't mention your rules, check these common issues:</p>
-
-    <ul>
-      <li>File is in wrong location (must be <code>.cursor/rules/</code> at project root)</li>
-      <li>File has wrong extension (must be <code>.md</code>)</li>
-      <li>Restart Cursor to reload rules</li>
-      <li>Check for syntax errors in frontmatter</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Step 5: Iterate and Improve</h2>
-
-    <p>Rules aren't one-and-done. Update them as you encounter issues or find patterns Cursor consistently gets wrong. Add rules iteratively based on what you actually need.</p>
-
-    <p><strong>When to update rules:</strong></p>
-    <ul>
-      <li>Cursor generates the same mistake multiple times</li>
-      <li>You find a security issue in generated code</li>
-      <li>Your team adopts new coding standards</li>
-      <li>You switch frameworks or libraries</li>
-    </ul>
-
-    <p><strong>When to split into multiple files:</strong> Split rules when a single file exceeds 500 lines or covers unrelated topics. Organization examples:</p>
-
-    <div class="file-structure">
-      <pre><code>.cursor/rules/
-├── security.md          # Security requirements (keep this separate)
-├── typescript.md        # TypeScript patterns and types
-├── react.md            # React component patterns
-├── database.md         # Database query patterns
-├── api.md              # API route patterns
-└── testing.md          # Test writing guidelines</code></pre>
-    </div>
-
-    <p><strong>Best practices for maintenance:</strong></p>
-    <ul>
-      <li>Add examples to rules (before/after code)</li>
-      <li>Use "NEVER" and "ALWAYS" for critical rules</li>
-      <li>Tag rules by framework/language for easy filtering</li>
-      <li>Review rules quarterly and remove outdated ones</li>
-      <li>Share rules file with your team via git</li>
-    </ul>
-
-    <p>Check <a href="/kb/prompts/cursor-rules-examples/">Cursor rules examples</a> for proven templates you can copy.</p>
-  </section>
-
-  <section>
-    <h2>Troubleshooting Common Issues</h2>
-
-    <h3>"My rules aren't being applied"</h3>
-    <p><strong>Symptoms:</strong> Cursor generates code that violates your rules.</p>
-    <p><strong>Fixes:</strong></p>
-    <ul>
-      <li>Verify file location: Rules must be in <code>.cursor/rules/</code> at project root (same level as package.json)</li>
-      <li>Check file extension: Must be <code>.md</code> (markdown)</li>
-      <li>Restart Cursor completely (Cmd+Q / Ctrl+Q, then reopen)</li>
-      <li>Make rules more explicit: Use "NEVER" and "ALWAYS" with code examples</li>
-      <li>Check frontmatter syntax: YAML must be valid between <code>---</code> markers</li>
-    </ul>
-
-    <h3>"Cursor ignores my security rules"</h3>
-    <p><strong>Symptoms:</strong> Generated code still has SQL injection or hardcoded secrets.</p>
-    <p><strong>Fixes:</strong></p>
-    <ul>
-      <li>Add "MANDATORY" or "CRITICAL" to security rule titles</li>
-      <li>Place security rules first in file (Cursor reads top-to-bottom)</li>
-      <li>Include before/after code examples in rules</li>
-      <li>Use bold/caps for emphasis: <strong>NEVER concatenate SQL queries</strong></li>
-      <li>Re-prompt with explicit security reminder: "Generate this using parameterized queries"</li>
-    </ul>
-
-    <h3>"Rules conflict with each other"</h3>
-    <p><strong>Symptoms:</strong> Cursor follows one rule but breaks another.</p>
-    <p><strong>Fixes:</strong></p>
-    <ul>
-      <li>Consolidate overlapping rules into one file</li>
-      <li>Use hierarchy: Security rules should override style rules</li>
-      <li>Add priority indicators: "Security rules take precedence"</li>
-      <li>Remove contradictory rules (e.g., "use async/await" vs "use promises")</li>
-    </ul>
-
-    <h3>"Files too large / rules ignored"</h3>
-    <p><strong>Symptoms:</strong> Cursor doesn't reference rules in large files.</p>
-    <p><strong>Fixes:</strong></p>
-    <ul>
-      <li>Split into multiple files (keep each under 500 lines)</li>
-      <li>Remove verbose examples (link to docs instead)</li>
-      <li>Use concise language (bullet points, not paragraphs)</li>
-      <li>Keep most critical rules in first 100 lines</li>
-    </ul>
-
-    <p>If issues persist, check Cursor's <a href="https://cursor.com/docs" target="_blank" rel="noopener noreferrer">official documentation</a> or the <a href="/kb/vibe-coding-tools/cursor/">Cursor security guide</a>.</p>
-  </section>
-
-  <section>
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq-item">
-      <h3>How long should rules be?</h3>
-      <p><strong>Short answer: 200-500 lines per file.</strong> Cursor reads all rules but prioritizes content near the top. Keep critical security rules under 300 lines in a dedicated file. Split large rule sets across multiple files by topic (security.md, react.md, database.md). Each rule should include a brief example (10-20 lines of code max).</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Can I have multiple rule files?</h3>
-      <p><strong>Yes, that's recommended.</strong> Place multiple <code>.md</code> files in <code>.cursor/rules/</code> and Cursor will read all of them. Organize by concern: security, framework patterns, coding style, testing. All files are loaded automatically - no configuration needed. Name files descriptively (<code>security.md</code>, <code>nextjs-patterns.md</code>) for easy maintenance.</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Do I need frontmatter?</h3>
-      <p><strong>No, frontmatter is optional.</strong> Cursor reads the markdown content regardless of frontmatter. However, adding <code>description</code> and <code>tags</code> in frontmatter helps you organize rules and may help Cursor prioritize relevant rules. If you skip frontmatter, just start your file with a heading (<code># Security Rules</code>).</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>How do I share rules with my team?</h3>
-      <p><strong>Commit <code>.cursor/</code> to git.</strong> The <code>.cursor/rules/</code> folder should be version controlled so your entire team uses the same rules. Add this to your <code>.gitignore</code> to exclude user-specific Cursor settings while keeping rules:</p>
-      <div class="code-example">
-        <div class="code-header">
-          <span class="filename">.gitignore</span>
-        </div>
-        <pre><code>.cursor/*
-!.cursor/rules/</code></pre>
-      </div>
-      <p>This ignores everything in <code>.cursor/</code> except the <code>rules/</code> folder, ensuring rules are shared but personal settings aren't.</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Where are user-level rules stored?</h3>
-      <p><strong>User-level rules apply to all projects.</strong> Create global rules that apply across every project you work on:</p>
-      <ul>
-        <li><strong>Mac:</strong> <code>~/.cursor/rules/</code></li>
-        <li><strong>Windows:</strong> <code>C:\Users\YourName\.cursor\rules\</code></li>
-        <li><strong>Linux:</strong> <code>~/.cursor/rules/</code></li>
-      </ul>
-      <p>Use user-level rules for personal preferences (variable naming, comment style) and project-level rules for team standards. Project rules override user rules when they conflict.</p>
-    </div>
-  </section>
-
-  <section>
-    <h2>Next Steps</h2>
-
-    <p>Now that you know how to set up and use Cursor rules, here are resources to improve your implementation:</p>
-
-    <ul>
-      <li><strong><a href="/kb/prompts/cursor-rules-examples/">Cursor Rules Examples</a></strong> - Copy-paste templates for Next.js, React, Node.js, security, and more</li>
-      <li><strong><a href="/kb/security/">Security Guides</a></strong> - Learn which vulnerabilities to prevent with rules (<a href="/kb/security/vulnerabilities/sql-injection/">SQL injection</a>, <a href="/kb/security/vulnerabilities/xss/">XSS</a>, <a href="/kb/security/vulnerabilities/hardcoded-secrets/">secrets leakage</a>)</li>
-      <li><strong><a href="/kb/security/stacks/">Stack-Specific Guides</a></strong> - Security rules for Next.js + Supabase, Express + PostgreSQL, and other common stacks</li>
-      <li><strong><a href="/kb/vibe-coding-tools/cursor/">Cursor Security Patterns</a></strong> - Research on which vulnerabilities Cursor generates most frequently</li>
-      <li><strong><a href="/kb/prompts/">Prompt Engineering</a></strong> - Learn how to write better prompts that work with your rules</li>
-    </ul>
-
-    <div class="cta-box">
-      <h3>Automatically Scan Your AI-Generated Code</h3>
-      <p>Rules help prevent vulnerabilities, but they're not foolproof. Use <a href="https://scanner.vibeship.co">VibeShip Scanner</a> to automatically detect security issues in Cursor-generated code.</p>
-      <a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code →</a>
-    </div>
-  </section>
-
-  <footer class="article-footer">
-    <div class="related-articles">
-      <h3>Related Articles</h3>
-      <ul>
-        <li><a href="/kb/prompts/cursor-rules/">What Are Cursor Rules?</a></li>
-        <li><a href="/kb/prompts/cursor-rules-examples/">Cursor Rules Examples</a></li>
-        <li><a href="/kb/vibe-coding-tools/cursor/">Cursor Security Guide</a></li>
-        <li><a href="/kb/security/vulnerabilities/sql-injection/">SQL Injection Prevention</a></li>
-        <li><a href="/kb/security/vulnerabilities/hardcoded-secrets/">Hardcoded Secrets</a></li>
-      </ul>
-    </div>
-
-    <div class="last-updated">
-      Last updated: December 17, 2024
-    </div>
-  </footer>
-</article>
+<Header {breadcrumbs} />
+
+<div class="content-wrapper">
+	<article class="content-main content-wide">
+		<!-- Header -->
+		<header class="article-header">
+			<div class="badge-row">
+				<span class="badge badge-green">Tutorial</span>
+				<span class="badge">Cursor</span>
+				<span class="badge">Beginner</span>
+			</div>
+			<h1>How to Use Cursor Rules: Step-by-Step Tutorial</h1>
+			<p class="text-secondary">Set up your first .cursorrules file in 5 minutes</p>
+		</header>
+
+		<!-- Quick Answer -->
+		<div class="quick-answer">
+			<div class="quick-answer-label">Quick Answer</div>
+			<p class="quick-answer-text">
+				<strong>Create a file named <code>.cursorrules</code> in your project root.</strong>
+				Add your tech stack, coding conventions, and security rules. Cursor reads this file before every response, making AI output more consistent and secure. This tutorial walks through each step with copy-paste templates.
+			</p>
+		</div>
+
+		<!-- What You'll Learn -->
+		<section>
+			<h2>What you'll learn</h2>
+			<p>
+				This tutorial shows you how to set up <a href="/kb/prompts/cursor-rules/">Cursor rules</a> from scratch. By the end, you'll have a working configuration that makes <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> generate better, more secure code for your vibe coding projects.
+			</p>
+			<div class="learn-grid">
+				<div class="learn-item">
+					<span class="learn-icon">1</span>
+					<span>Create your first rules file</span>
+				</div>
+				<div class="learn-item">
+					<span class="learn-icon">2</span>
+					<span>Add essential rules for your stack</span>
+				</div>
+				<div class="learn-item">
+					<span class="learn-icon">3</span>
+					<span>Test and verify rules are working</span>
+				</div>
+				<div class="learn-item">
+					<span class="learn-icon">4</span>
+					<span>Troubleshoot common issues</span>
+				</div>
+			</div>
+			<p>
+				<strong>Time required:</strong> 5-10 minutes for basic setup. No prior configuration experience needed.
+			</p>
+		</section>
+
+		<!-- Prerequisites -->
+		<section>
+			<h2>Before you start</h2>
+			<ul class="checklist">
+				<li><span class="check">&#10003;</span> <a href="https://cursor.com" target="_blank" rel="noopener">Cursor</a> installed on your computer</li>
+				<li><span class="check">&#10003;</span> A project folder open in Cursor</li>
+				<li><span class="check">&#10003;</span> Basic understanding of your project's tech stack</li>
+			</ul>
+		</section>
+
+		<!-- Step by Step Tutorial -->
+		<section>
+			<h2>How to add cursor rules (step by step)</h2>
+
+			{#each steps as step}
+				<div class="step-card">
+					<div class="step-header">
+						<span class="step-number">{step.number}</span>
+						<h3>{step.title}</h3>
+					</div>
+					<p>{step.description}</p>
+
+					{#if step.number === 2}
+						<div class="file-visual">
+							<div class="file-tree">
+								<div class="tree-item root">your-project/</div>
+								<div class="tree-item file highlight">.cursorrules</div>
+								<div class="tree-item folder">src/</div>
+								<div class="tree-item file">package.json</div>
+							</div>
+						</div>
+					{/if}
+
+					{#if step.number === 3}
+						<div class="code-block">
+							<div class="code-block-header">
+								<span class="code-block-lang">.cursorrules (starter template)</span>
+								<button class="copy-btn" onclick={() => copyCode(starterTemplate, 'starter')}>
+									{copied && copiedSection === 'starter' ? 'Copied!' : 'Copy'}
+								</button>
+							</div>
+							<pre><code>{starterTemplate}</code></pre>
+						</div>
+					{/if}
+
+					{#if step.number === 4}
+						<div class="test-prompts">
+							<p><strong>Try these test prompts:</strong></p>
+							<ul>
+								<li>"What rules are you following for this project?"</li>
+								<li>"Create a simple API route" (check if it matches your stack)</li>
+								<li>"Show me a database query" (verify security rules apply)</li>
+							</ul>
+						</div>
+					{/if}
+
+					<div class="step-tip">
+						<strong>Tip:</strong> {step.tip}
+					</div>
+				</div>
+			{/each}
+		</section>
+
+		<!-- Popular Cursor Rules Resources -->
+		<section>
+			<h2>Popular cursor rules to copy</h2>
+			<p>
+				Don't start from scratch. These popular repos and sites have battle-tested cursor rules you can copy and adapt for your projects.
+			</p>
+			<div class="resource-grid">
+				<a href="https://github.com/PatrickJS/awesome-cursorrules" target="_blank" rel="noopener" class="resource-card">
+					<div class="resource-header">
+						<span class="resource-icon">★</span>
+						<span class="resource-stars">36k+ stars</span>
+					</div>
+					<span class="resource-title">awesome-cursorrules</span>
+					<span class="resource-desc">The definitive collection. Rules for Next.js, React, Python, Go, Rust, and 50+ frameworks. Start here.</span>
+				</a>
+				<a href="https://cursor.directory" target="_blank" rel="noopener" class="resource-card">
+					<div class="resource-header">
+						<span class="resource-icon">📁</span>
+						<span class="resource-stars">Community site</span>
+					</div>
+					<span class="resource-title">cursor.directory</span>
+					<span class="resource-desc">Searchable directory of cursor rules by framework, language, and use case. One-click copy.</span>
+				</a>
+				<a href="https://github.com/pontusab/cursor.directory" target="_blank" rel="noopener" class="resource-card">
+					<div class="resource-header">
+						<span class="resource-icon">★</span>
+						<span class="resource-stars">10k+ stars</span>
+					</div>
+					<span class="resource-title">cursor.directory (GitHub)</span>
+					<span class="resource-desc">Open source repo behind cursor.directory. Submit your own rules or browse raw files.</span>
+				</a>
+				<a href="https://github.com/Mawla/cursor-rules" target="_blank" rel="noopener" class="resource-card">
+					<div class="resource-header">
+						<span class="resource-icon">★</span>
+						<span class="resource-stars">Popular</span>
+					</div>
+					<span class="resource-title">cursor-rules by Mawla</span>
+					<span class="resource-desc">Well-organized rules with TypeScript, testing, and architecture patterns. Great for serious projects.</span>
+				</a>
+			</div>
+			<div class="resource-tip">
+				<strong>Pro tip:</strong> Copy a base template from these repos, then customize for your specific stack. Don't use generic rules - add your database (Supabase, Prisma), your framework version (Next.js 14 App Router), and your security requirements.
+			</div>
+		</section>
+
+		<!-- Modern Approach -->
+		<section>
+			<h2>Modern approach: .cursor/rules/ folder</h2>
+			<p>
+				For larger projects, use the <code>.cursor/rules/</code> folder instead of a single file. This lets you organize rules by category and control when each rule applies.
+			</p>
+
+			<div class="file-structure">
+				<div class="file-header">Recommended Project Structure</div>
+				<pre><code>your-project/
+├── .cursor/
+│   └── rules/
+│       ├── core.md           # Always-on: tech stack, conventions
+│       ├── security.md       # Always-on: security patterns
+│       ├── typescript.md     # File-specific: *.ts, *.tsx
+│       └── testing.md        # Manual: @testing when needed
+├── src/
+└── package.json</code></pre>
+			</div>
+
+			<h3>Using frontmatter for activation modes</h3>
+			<p>
+				Add YAML frontmatter to control when rules activate. This is more powerful than the legacy approach.
+			</p>
+
+			<div class="code-block">
+				<div class="code-block-header">
+					<span class="code-block-lang">.cursor/rules/core.md</span>
+					<button class="copy-btn" onclick={() => copyCode(advancedTemplate, 'advanced')}>
+						{copied && copiedSection === 'advanced' ? 'Copied!' : 'Copy'}
+					</button>
+				</div>
+				<pre><code>{advancedTemplate}</code></pre>
+			</div>
+
+			<div class="mode-explanation">
+				<h4>Activation mode options:</h4>
+				<div class="mode-grid">
+					<div class="mode-item">
+						<code>alwaysApply: true</code>
+						<p>Active in every chat. Use for core rules.</p>
+					</div>
+					<div class="mode-item">
+						<code>alwaysApply: false</code>
+						<p>AI decides based on description. Use for specialized rules.</p>
+					</div>
+					<div class="mode-item">
+						<code>globs: ["*.ts"]</code>
+						<p>Only when working with matching files.</p>
+					</div>
+					<div class="mode-item">
+						<code>@rule-name</code>
+						<p>Manual activation by mentioning in chat.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Troubleshooting -->
+		<section class="troubleshooting-section">
+			<h2>Troubleshooting cursor rules</h2>
+			<p>
+				If your rules aren't working, check these common issues:
+			</p>
+
+			<div class="trouble-grid">
+				<div class="trouble-item">
+					<h4>Rules completely ignored</h4>
+					<ul>
+						<li>File must be named exactly <code>.cursorrules</code> (with the dot)</li>
+						<li>File must be in project root, not a subfolder</li>
+						<li>Try starting a new chat session</li>
+						<li>Check for syntax errors in YAML frontmatter</li>
+					</ul>
+				</div>
+				<div class="trouble-item">
+					<h4>Rules partially working</h4>
+					<ul>
+						<li>Some rules may conflict - simplify and test one at a time</li>
+						<li>Long rules may get truncated - keep under 500 lines</li>
+						<li>Vague rules are interpreted loosely - be specific</li>
+						<li>Check <code>alwaysApply</code> settings in frontmatter</li>
+					</ul>
+				</div>
+				<div class="trouble-item">
+					<h4>File not found</h4>
+					<ul>
+						<li>Enable "Show hidden files" in your file explorer</li>
+						<li>On Windows, create via Cursor's file menu</li>
+						<li>Verify you opened the correct project folder</li>
+						<li>Check if <code>.cursor/</code> folder exists for modern approach</li>
+					</ul>
+				</div>
+				<div class="trouble-item">
+					<h4>Changes not applying</h4>
+					<ul>
+						<li>Start a new chat after editing rules</li>
+						<li>Changes apply to new sessions, not current ones</li>
+						<li>Check the file saved successfully</li>
+						<li>Verify YAML frontmatter syntax is correct</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="debug-tip">
+				<h4>Debug command</h4>
+				<p>Ask Cursor: <code>"List all the cursor rules you're currently following for this project"</code></p>
+				<p>This reveals which rules Cursor detected and helps identify missing or ignored rules.</p>
+			</div>
+		</section>
+
+		<!-- Security Rules -->
+		<section class="security-callout">
+			<h2>Don't forget security rules</h2>
+			<p>
+				The most important cursor rules for vibe coders prevent security vulnerabilities. AI tools often generate working code without considering security. Add these rules to catch common issues:
+			</p>
+			<div class="security-list">
+				<div class="security-item">
+					<strong>Database queries:</strong> "NEVER use template literals for SQL - use parameterized queries"
+				</div>
+				<div class="security-item">
+					<strong>Authentication:</strong> "Check auth on EVERY API route and Server Action"
+				</div>
+				<div class="security-item">
+					<strong>Input validation:</strong> "Validate ALL user input with Zod before processing"
+				</div>
+				<div class="security-item">
+					<strong>Secrets:</strong> "NEVER hardcode API keys - use environment variables"
+				</div>
+			</div>
+			<p>
+				See our <a href="/kb/prompts/cursor-rules/#security-rules">complete security rules template</a> for copy-paste rules that prevent <a href="/kb/security/vulnerabilities/sql-injection/">SQL injection</a>, <a href="/kb/security/vulnerabilities/hardcoded-secrets/">hardcoded secrets</a>, and other common vulnerabilities.
+			</p>
+		</section>
+
+		<!-- FAQ -->
+		<section>
+			<h2>Frequently asked questions</h2>
+			{#each faqs as faq}
+				<div class="faq-item">
+					<h3>{faq.question}</h3>
+					<p>{faq.answer}</p>
+				</div>
+			{/each}
+		</section>
+
+		<!-- Next Steps -->
+		<section>
+			<h2>Next steps</h2>
+			<div class="next-steps-grid">
+				<a href="/kb/prompts/cursor-rules/" class="next-step-card">
+					<span class="next-step-type">Complete Guide</span>
+					<span class="next-step-title">Cursor Rules Reference</span>
+					<span class="next-step-desc">Deep dive into all features, activation modes, and best practices</span>
+				</a>
+				<a href="/kb/prompts/cursor-rules-examples/" class="next-step-card">
+					<span class="next-step-type">Examples</span>
+					<span class="next-step-title">20+ Cursor Rules Templates</span>
+					<span class="next-step-desc">Copy-paste templates for Next.js, React, Python, and more</span>
+				</a>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="next-step-card">
+					<span class="next-step-type">Pillar Guide</span>
+					<span class="next-step-title">Secure Vibe Coding</span>
+					<span class="next-step-desc">Complete security guide for AI-assisted development</span>
+				</a>
+			</div>
+		</section>
+
+		<!-- Scanner CTA -->
+		<section class="cta-box">
+			<h2>Verify Your Rules Are Working</h2>
+			<p>
+				Cursor rules reduce vulnerabilities but can't catch everything. <a href="https://scanner.vibeship.co">VibeShip Scanner</a> automatically detects security issues in your vibe coded projects - even ones that slip past your rules.
+			</p>
+			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free</a>
+		</section>
+
+		<!-- Related Content -->
+		<section>
+			<h2>Related resources</h2>
+			<div class="related-grid">
+				<a href="/kb/prompts/cursor-rules/" class="related-card">
+					<span class="related-card-category">Config Guide</span>
+					<span class="related-card-title">Cursor Rules Complete Guide</span>
+				</a>
+				<a href="/kb/prompts/cursor-rules-examples/" class="related-card">
+					<span class="related-card-category">Examples</span>
+					<span class="related-card-title">Cursor Rules Examples</span>
+				</a>
+				<a href="/kb/prompts/claude-md/" class="related-card">
+					<span class="related-card-category">Config Guide</span>
+					<span class="related-card-title">CLAUDE.md Guide</span>
+				</a>
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
+					<span class="related-card-category">Tool Guide</span>
+					<span class="related-card-title">Cursor Security Patterns</span>
+				</a>
+				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
+					<span class="related-card-category">Vulnerability</span>
+					<span class="related-card-title">SQL Injection</span>
+				</a>
+				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-card">
+					<span class="related-card-category">Vulnerability</span>
+					<span class="related-card-title">Hardcoded Secrets</span>
+				</a>
+			</div>
+		</section>
+
+		<!-- External Resources -->
+		<section>
+			<h2>Official documentation</h2>
+			<ul class="external-links">
+				<li><a href="https://cursor.com/docs/context/rules" target="_blank" rel="noopener">Cursor Rules Documentation</a> - Official docs from Cursor</li>
+				<li><a href="https://docs.cursor.com/context/rules-for-ai" target="_blank" rel="noopener">Rules for AI</a> - Advanced configuration options</li>
+			</ul>
+		</section>
+	</article>
+</div>
 
 <style>
-  .kb-article {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    font-family: system-ui, -apple-system, sans-serif;
-    line-height: 1.7;
-    color: var(--text-primary);
-  }
+	.content-wrapper {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 2rem;
+	}
 
-  .article-header {
-    margin-bottom: 2rem;
-  }
+	.article-header {
+		margin-bottom: 2rem;
+	}
 
-  .breadcrumb {
-    font-size: 0.875rem;
-    color: var(--text-tertiary);
-    margin-bottom: 1rem;
-  }
+	.badge-row {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		margin-bottom: 1rem;
+	}
 
-  .breadcrumb a {
-    color: var(--green-dim);
-    text-decoration: none;
-  }
 
-  .breadcrumb a:hover {
-    color: var(--green);
-    text-decoration: none;
-  }
+	h1 {
+		font-size: 2.5rem;
+		margin-bottom: 0.5rem;
+	}
 
-  h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin: 0 0 1rem 0;
-    color: var(--text-primary);
-  }
+	.text-secondary {
+		color: var(--text-secondary);
+		font-size: 1.1rem;
+	}
 
-  .article-meta {
-    display: flex;
-    gap: 1rem;
-    font-size: 0.875rem;
-    color: var(--text-tertiary);
-  }
 
-  .quick-answer {
-    background: rgba(0, 196, 154, 0.05);
-    border: 1px solid rgba(0, 196, 154, 0.2);
-    border-left: 3px solid var(--green-dim);
-    padding: 1.25rem;
-    margin: 2rem 0;
-    font-size: 1rem;
-  }
+	.quick-answer-text {
+		margin: 0;
+		line-height: 1.6;
+	}
 
-  .quick-answer code {
-    background: var(--bg-primary);
-    padding: 0.125rem 0.375rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9em;
-    border: 1px solid var(--border);
-  }
+	section {
+		margin-bottom: 3rem;
+	}
 
-  section {
-    margin: 3rem 0;
-  }
+	h2 {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid var(--border);
+	}
 
-  h2 {
-    font-size: 1.875rem;
-    font-weight: 600;
-    margin: 2.5rem 0 1rem 0;
-    color: var(--text-primary);
-  }
+	h3 {
+		font-size: 1.1rem;
+		margin-top: 1.5rem;
+		margin-bottom: 0.75rem;
+	}
 
-  h3 {
-    font-size: 1.375rem;
-    font-weight: 600;
-    margin: 2rem 0 1rem 0;
-    color: var(--text-primary);
-  }
+	h4 {
+		font-size: 1rem;
+		margin-bottom: 0.5rem;
+	}
 
-  p {
-    margin: 1rem 0;
-  }
+	p {
+		line-height: 1.7;
+		margin-bottom: 1rem;
+	}
 
-  a {
-    color: var(--green-dim);
-    text-decoration: none;
-  }
+	code {
+		font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+		background: rgba(0,0,0,0.3);
+		padding: 0.125rem 0.375rem;
+		font-size: 0.9em;
+	}
 
-  a:hover {
-    color: var(--green);
-    text-decoration: none;
-  }
+	a {
+		color: var(--green-dim);
+	}
 
-  code {
-    background: var(--bg-primary);
-    padding: 0.125rem 0.375rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9em;
-    border: 1px solid var(--border);
-  }
+	a:hover {
+		text-decoration: underline;
+	}
 
-  .code-example {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    margin: 1.5rem 0;
-  }
+	/* What You'll Learn */
+	.learn-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
 
-  .code-header {
-    background: var(--bg-secondary);
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    color: var(--text-tertiary);
-    border-bottom: 1px solid var(--border);
-  }
+	.learn-item {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+	}
 
-  .code-example pre {
-    margin: 0;
-    padding: 1rem;
-    overflow-x: auto;
-  }
+	.learn-icon {
+		width: 28px;
+		height: 28px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--green-dim);
+		color: white;
+		font-weight: 600;
+		font-size: 0.875rem;
+		flex-shrink: 0;
+	}
 
-  .code-example code {
-    background: none;
-    color: inherit;
-    padding: 0;
-    font-size: 0.875rem;
-    line-height: 1.6;
-    border: none;
-  }
+	/* Checklist */
+	.checklist {
+		list-style: none;
+		padding: 0;
+		margin: 1rem 0;
+	}
 
-  .file-structure {
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
-    padding: 1rem;
-    margin: 1.5rem 0;
-  }
+	.checklist li {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.75rem 0;
+		border-bottom: 1px solid var(--border);
+	}
 
-  .file-structure pre {
-    margin: 0;
-    font-size: 0.875rem;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text-secondary);
-  }
+	.checklist li:last-child {
+		border-bottom: none;
+	}
 
-  ul, ol {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-  }
+	.check {
+		color: var(--green-dim);
+		font-weight: bold;
+	}
 
-  li {
-    margin: 0.5rem 0;
-  }
+	/* Step Cards */
+	.step-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.5rem;
+		margin-bottom: 1.5rem;
+	}
 
-  .faq-item {
-    margin: 2rem 0;
-  }
+	.step-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
 
-  .faq-item h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-  }
+	.step-number {
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--green-dim);
+		color: white;
+		font-weight: 700;
+		font-size: 1.1rem;
+		flex-shrink: 0;
+	}
 
-  .cta-box {
-    background: var(--bg-secondary);
-    border: 1px solid var(--green-dim);
-    color: var(--text-primary);
-    padding: 2rem;
-    margin: 2rem 0;
-    text-align: center;
-  }
+	.step-header h3 {
+		margin: 0;
+		font-size: 1.25rem;
+	}
 
-  .cta-box h3 {
-    color: var(--text-primary);
-    margin-top: 0;
-  }
+	.step-tip {
+		background: rgba(0, 196, 154, 0.1);
+		border-left: 3px solid var(--green-dim);
+		padding: 0.75rem 1rem;
+		margin-top: 1rem;
+		font-size: 0.9rem;
+	}
 
-  .cta-box p {
-    margin: 1rem 0;
-    color: var(--text-secondary);
-  }
+	/* File Visual */
+	.file-visual {
+		background: #0d0d0d;
+		padding: 1rem;
+		margin: 1rem 0;
+		border: 1px solid var(--border);
+	}
 
-  .cta-box a {
-    color: var(--green-dim);
-  }
+	.file-tree {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.875rem;
+	}
 
-  .cta-button {
-    display: inline-block;
-    background: var(--green-dim);
-    color: white;
-    padding: 0.75rem 2rem;
-    font-weight: 600;
-    text-decoration: none;
-    margin-top: 1rem;
-    transition: background 0.2s;
-  }
+	.tree-item {
+		padding: 0.25rem 0;
+		padding-left: 1rem;
+	}
 
-  .cta-button:hover {
-    background: var(--green);
-    text-decoration: none;
-    color: white;
-  }
+	.tree-item.root {
+		padding-left: 0;
+		color: var(--text-primary);
+	}
 
-  .article-footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
+	.tree-item.folder {
+		color: var(--text-secondary);
+	}
 
-  .related-articles h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-  }
+	.tree-item.file {
+		color: var(--text-secondary);
+	}
 
-  .related-articles ul {
-    list-style: none;
-    padding: 0;
-  }
+	.tree-item.highlight {
+		color: var(--green-dim);
+		font-weight: 600;
+	}
 
-  .related-articles li {
-    margin: 0.75rem 0;
-  }
+	/* Code Blocks */
+	.code-block {
+		background: #0d0d0d;
+		overflow: hidden;
+		margin: 1rem 0;
+		border: 1px solid var(--border);
+	}
 
-  .last-updated {
-    margin-top: 2rem;
-    font-size: 0.875rem;
-    color: var(--text-tertiary);
-  }
+	.code-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.75rem 1rem;
+		background: rgba(255,255,255,0.05);
+		font-size: 0.875rem;
+	}
 
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2rem;
-    }
+	.copy-btn {
+		padding: 0.375rem 0.75rem;
+		background: var(--green-dim);
+		color: white;
+		border: none;
+		font-size: 0.75rem;
+		font-weight: 600;
+		cursor: pointer;
+		font-family: 'JetBrains Mono', monospace;
+	}
 
-    h2 {
-      font-size: 1.5rem;
-    }
+	.copy-btn:hover {
+		background: var(--green);
+	}
 
-    h3 {
-      font-size: 1.25rem;
-    }
+	pre {
+		margin: 0;
+		padding: 1rem;
+		overflow-x: auto;
+		font-size: 0.8rem;
+		line-height: 1.5;
+	}
 
-    .kb-article {
-      padding: 1rem 0.5rem;
-    }
-  }
+	pre code {
+		background: transparent;
+		padding: 0;
+	}
+
+	/* Test Prompts */
+	.test-prompts {
+		background: var(--bg-primary);
+		padding: 1rem;
+		margin: 1rem 0;
+		border: 1px solid var(--border);
+	}
+
+	.test-prompts p {
+		margin-bottom: 0.5rem;
+	}
+
+	.test-prompts ul {
+		margin: 0;
+		padding-left: 1.25rem;
+	}
+
+	.test-prompts li {
+		margin-bottom: 0.5rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+	}
+
+	/* File Structure */
+	.file-structure {
+		background: #0d0d0d;
+		overflow: hidden;
+		margin: 1rem 0;
+		border: 1px solid var(--border);
+	}
+
+	.file-header {
+		padding: 0.75rem 1rem;
+		background: rgba(0, 196, 154, 0.1);
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--green-dim);
+	}
+
+	/* Mode Grid */
+	.mode-explanation h4 {
+		margin-top: 1.5rem;
+	}
+
+	.mode-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 1rem;
+		margin: 1rem 0;
+	}
+
+	.mode-item {
+		padding: 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+	}
+
+	.mode-item code {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-size: 0.75rem;
+		color: var(--green-dim);
+	}
+
+	.mode-item p {
+		margin: 0;
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+	}
+
+	/* Troubleshooting */
+	.troubleshooting-section {
+		background: var(--bg-secondary);
+		padding: 2rem;
+		border: 1px solid var(--border);
+	}
+
+	.trouble-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1.5rem;
+		margin: 1.5rem 0;
+	}
+
+	.trouble-item {
+		padding: 1rem;
+		background: var(--bg-primary);
+		border: 1px solid var(--border);
+	}
+
+	.trouble-item h4 {
+		margin-top: 0;
+		color: var(--orange);
+	}
+
+	.trouble-item ul {
+		margin: 0;
+		padding-left: 1.25rem;
+	}
+
+	.trouble-item li {
+		margin-bottom: 0.5rem;
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+	}
+
+	.debug-tip {
+		background: rgba(0, 196, 154, 0.1);
+		border: 1px solid rgba(0, 196, 154, 0.3);
+		padding: 1rem;
+		margin-top: 1rem;
+	}
+
+	.debug-tip h4 {
+		margin-top: 0;
+		color: var(--green-dim);
+	}
+
+	.debug-tip code {
+		display: block;
+		margin: 0.5rem 0;
+		padding: 0.5rem;
+		background: rgba(0, 0, 0, 0.3);
+	}
+
+	.debug-tip p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.debug-tip p:last-child {
+		margin-top: 0.5rem;
+		color: var(--text-secondary);
+	}
+
+	/* Security Callout */
+	.security-callout {
+		background: rgba(239, 68, 68, 0.05);
+		border: 1px solid rgba(239, 68, 68, 0.3);
+		padding: 2rem;
+	}
+
+	.security-callout h2 {
+		color: #f87171;
+		border-bottom-color: rgba(239, 68, 68, 0.3);
+	}
+
+	.security-list {
+		display: grid;
+		gap: 0.75rem;
+		margin: 1rem 0;
+	}
+
+	.security-item {
+		padding: 0.75rem 1rem;
+		background: var(--bg-primary);
+		border-left: 3px solid #f87171;
+		font-size: 0.9rem;
+	}
+
+	/* Next Steps */
+	.next-steps-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+	}
+
+	.next-step-card {
+		display: block;
+		padding: 1.25rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		text-decoration: none;
+		transition: border-color 0.2s;
+	}
+
+	.next-step-card:hover {
+		border-color: var(--green-dim);
+		text-decoration: none;
+	}
+
+	.next-step-type {
+		display: block;
+		font-size: 0.7rem;
+		color: var(--green-dim);
+		text-transform: uppercase;
+		font-family: 'JetBrains Mono', monospace;
+		margin-bottom: 0.25rem;
+	}
+
+	.next-step-title {
+		display: block;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin-bottom: 0.5rem;
+	}
+
+	.next-step-desc {
+		display: block;
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+	}
+
+	/* CTA Box */
+	.cta-box {
+		background: rgba(0, 196, 154, 0.05);
+		border: 1px solid rgba(0, 196, 154, 0.3);
+		padding: 2rem;
+		text-align: center;
+	}
+
+	.cta-box h2 {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+
+	.cta-button {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background: var(--green-dim);
+		color: white;
+		text-decoration: none;
+		font-weight: 600;
+		margin-top: 1rem;
+		transition: background 0.2s;
+	}
+
+	.cta-button:hover {
+		background: var(--green);
+		text-decoration: none;
+	}
+
+	/* FAQ */
+	.faq-item {
+		margin-bottom: 1.5rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.faq-item:last-child {
+		border-bottom: none;
+	}
+
+	.faq-item h3 {
+		font-size: 1.1rem;
+		margin-bottom: 0.5rem;
+		margin-top: 0;
+	}
+
+	.faq-item p {
+		margin: 0;
+		color: var(--text-secondary);
+	}
+
+	/* Resource Grid */
+	.resource-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	.resource-card {
+		display: block;
+		padding: 1.25rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		text-decoration: none;
+		transition: border-color 0.2s, transform 0.2s;
+	}
+
+	.resource-card:hover {
+		border-color: var(--green-dim);
+		transform: translateY(-2px);
+		text-decoration: none;
+	}
+
+	.resource-header {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.resource-icon {
+		font-size: 1rem;
+		color: var(--orange);
+	}
+
+	.resource-stars {
+		font-size: 0.7rem;
+		color: var(--text-secondary);
+		font-family: 'JetBrains Mono', monospace;
+		text-transform: uppercase;
+	}
+
+	.resource-title {
+		display: block;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin-bottom: 0.5rem;
+	}
+
+	.resource-desc {
+		display: block;
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	.resource-tip {
+		background: rgba(0, 196, 154, 0.1);
+		border-left: 3px solid var(--green-dim);
+		padding: 1rem;
+		margin-top: 1rem;
+		font-size: 0.9rem;
+	}
+
+	/* Related Grid */
+	.related-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+	}
+
+	.related-card {
+		display: block;
+		padding: 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		text-decoration: none;
+		transition: border-color 0.2s;
+	}
+
+	.related-card:hover {
+		border-color: var(--green-dim);
+	}
+
+	.related-type {
+		display: block;
+		font-size: 0.75rem;
+		color: var(--text-secondary);
+		text-transform: uppercase;
+		margin-bottom: 0.25rem;
+	}
+
+	.related-title {
+		display: block;
+		font-weight: 600;
+		color: var(--text-primary);
+	}
+
+	/* External Links */
+	.external-links {
+		list-style: none;
+		padding: 0;
+	}
+
+	.external-links li {
+		margin-bottom: 0.75rem;
+	}
+
+	.external-links a {
+		color: var(--green-dim);
+		text-decoration: none;
+	}
+
+	.external-links a:hover {
+		text-decoration: underline;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.content-wrapper {
+			padding: 1rem;
+		}
+
+		h1 {
+			font-size: 1.75rem;
+		}
+
+		.step-header {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.trouble-grid {
+			grid-template-columns: 1fr;
+		}
+	}
 </style>

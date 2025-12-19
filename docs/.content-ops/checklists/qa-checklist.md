@@ -161,6 +161,21 @@ After reading this article, will a vibe coder:
 
 ## SEO Optimization
 
+### Ahrefs Keyword Verification (MCP)
+Before publishing, verify keywords with Ahrefs MCP:
+- [ ] Primary keyword has search volume (use `keywords-explorer-overview`)
+- [ ] Target keyword volume > 100/month (US)
+- [ ] Check related terms for additional H2 opportunities (`keywords-explorer-matching-terms`)
+- [ ] Note keyword difficulty if available
+
+**Example Ahrefs check:**
+```
+mcp__ahrefs__keywords-explorer-overview
+  keywords: "your target keyword"
+  country: "us"
+  select: "keyword,volume,difficulty,traffic_potential"
+```
+
 ### Keywords
 - [ ] Primary keyword in title
 - [ ] Primary keyword in first 100 words

@@ -73,11 +73,11 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | | | **--- Prompts Series Expansion (40 articles) ---** | |
 | | | *Batch 1: Tool Configuration Guides* | |
 | 48 | ✅ Done | Prompts (P0) | cursor-rules-examples |
-| 49 | 📝 Brief Ready | Prompts (P0) | how-to-use-cursor-rules |
-| 50 | 📝 Brief Ready | Prompts (P1) | windsurf-rules |
-| 51 | 📝 Brief Ready | Prompts (P1) | cline-rules |
-| 52 | 📝 Brief Ready | Prompts (P1) | copilot-instructions |
-| 53 | 📝 Brief Ready | Prompts (P1) | cursor-rules-file |
+| 49 | ✅ Done | Prompts (P0) | how-to-use-cursor-rules |
+| 50 | ✅ Done | Prompts (P1) | windsurf-rules |
+| 51 | ✅ Done | Prompts (P1) | cline-rules |
+| 52 | ✅ Done | Prompts (P1) | copilot-instructions |
+| 53 | ✅ Done | Prompts (P1) | cursor-rules-file |
 | 54 | 📝 Brief Ready | Prompts (P1) | awesome-cursor-rules |
 | 55 | 📝 Brief Ready | Prompts (P1) | cursor-system-prompt |
 | 56 | 📝 Brief Ready | Prompts (P2) | v0-prompts |
@@ -1283,7 +1283,7 @@ slug: cline-rules
 url: /kb/prompts/cline-rules/
 title: "Cline Rules: The Complete .clinerules Guide"
 word_count: 1800-2200
-status: 📝 Brief Ready
+status: ✅ Done
 priority: P1
 keywords:
   - "cline rules" (200 volume)
@@ -1302,7 +1302,7 @@ slug: copilot-instructions
 url: /kb/prompts/copilot-instructions/
 title: "GitHub Copilot Instructions: Customize Your AI Pair Programmer"
 word_count: 2000-2500
-status: 📝 Brief Ready
+status: ✅ Done
 priority: P1
 keywords:
   - "copilot instructions" (500 volume)

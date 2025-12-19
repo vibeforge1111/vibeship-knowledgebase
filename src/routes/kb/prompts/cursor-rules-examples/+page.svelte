@@ -1213,7 +1213,7 @@ def validate_user_id(id: int) -> UserId:
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
-				<span class="badge badge-prompts">Prompts Guide</span>
+				<span class="badge badge-green">Prompts Guide</span>
 				<span class="badge">Templates</span>
 				<span class="badge">Copy-Paste</span>
 			</div>
@@ -1383,8 +1383,8 @@ def validate_user_id(id: int) -> UserId:
 			</p>
 
 			<div class="code-block">
-				<div class="code-header">
-					<span>Frontmatter Example</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">Frontmatter Example</span>
 				</div>
 				<pre><code>{`---
 description: "TypeScript patterns for all .ts and .tsx files"
@@ -1413,28 +1413,28 @@ globs: ["**/*.ts", "**/*.tsx"]
 			<h2>Related resources</h2>
 			<div class="related-grid">
 				<a href="/kb/prompts/cursor-rules/" class="related-card">
-					<span class="related-type">Guide</span>
-					<span class="related-title">Cursor Rules Complete Guide</span>
+					<span class="related-card-category">Guide</span>
+					<span class="related-card-title">Cursor Rules Complete Guide</span>
 				</a>
 				<a href="/kb/prompts/how-to-use-cursor-rules/" class="related-card">
-					<span class="related-type">Tutorial</span>
-					<span class="related-title">How to Use Cursor Rules</span>
+					<span class="related-card-category">Tutorial</span>
+					<span class="related-card-title">How to Use Cursor Rules</span>
 				</a>
 				<a href="/kb/prompts/claude-md/" class="related-card">
-					<span class="related-type">Config Guide</span>
-					<span class="related-title">CLAUDE.md Guide</span>
+					<span class="related-card-category">Config Guide</span>
+					<span class="related-card-title">CLAUDE.md Guide</span>
 				</a>
 				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Cursor Security Patterns</span>
+					<span class="related-card-category">Tool Guide</span>
+					<span class="related-card-title">Cursor Security Patterns</span>
 				</a>
 				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">Secure Vibe Coding Guide</span>
+					<span class="related-card-category">Pillar Guide</span>
+					<span class="related-card-title">Secure Vibe Coding Guide</span>
 				</a>
 				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">SQL Injection Prevention</span>
+					<span class="related-card-category">Vulnerability</span>
+					<span class="related-card-title">SQL Injection Prevention</span>
 				</a>
 			</div>
 		</section>
@@ -1452,11 +1452,7 @@ globs: ["**/*.ts", "**/*.tsx"]
 </div>
 
 <style>
-	.content-wrapper {
-		max-width: 1000px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
+	/* Page-specific styles only - global styles from components.css and layout.css */
 
 	.article-header {
 		margin-bottom: 2rem;
@@ -1469,24 +1465,6 @@ globs: ["**/*.ts", "**/*.tsx"]
 		margin-bottom: 1rem;
 	}
 
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		font-size: 0.7rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		background: var(--bg-primary);
-		color: var(--text-secondary);
-		border: 1px solid var(--border);
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.badge-prompts {
-		background: rgba(0, 196, 154, 0.1);
-		color: var(--green-dim);
-		border-color: var(--green-dim);
-	}
-
 	h1 {
 		font-size: 2.25rem;
 		margin-bottom: 0.5rem;
@@ -1495,27 +1473,6 @@ globs: ["**/*.ts", "**/*.tsx"]
 	.text-secondary {
 		color: var(--text-secondary);
 		font-size: 1.1rem;
-	}
-
-	.quick-answer {
-		background: rgba(0, 196, 154, 0.05);
-		border: 1px solid rgba(0, 196, 154, 0.2);
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer-label {
-		font-size: 0.7rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		color: var(--green-dim);
-		margin-bottom: 0.5rem;
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.quick-answer-text {
-		margin: 0;
-		line-height: 1.6;
 	}
 
 	section {
@@ -1621,22 +1578,6 @@ globs: ["**/*.ts", "**/*.tsx"]
 		color: var(--text-secondary);
 	}
 
-	.copy-btn {
-		padding: 0.5rem 1rem;
-		background: var(--green-dim);
-		color: white;
-		border: none;
-		font-size: 0.8rem;
-		font-weight: 600;
-		cursor: pointer;
-		white-space: nowrap;
-		font-family: 'JetBrains Mono', monospace;
-	}
-
-	.copy-btn:hover {
-		background: var(--green);
-	}
-
 	.template-code {
 		max-height: 400px;
 		overflow-y: auto;
@@ -1726,20 +1667,6 @@ globs: ["**/*.ts", "**/*.tsx"]
 		padding: 1rem;
 	}
 
-	/* Code Block */
-	.code-block {
-		background: #0d0d0d;
-		overflow: hidden;
-		margin: 1rem 0;
-		border: 1px solid var(--border);
-	}
-
-	.code-header {
-		padding: 0.75rem 1rem;
-		background: rgba(255,255,255,0.05);
-		font-size: 0.875rem;
-	}
-
 	pre {
 		margin: 0;
 		padding: 1rem;
@@ -1751,61 +1678,6 @@ globs: ["**/*.ts", "**/*.tsx"]
 	pre code {
 		background: transparent;
 		padding: 0;
-	}
-
-	/* FAQ */
-	.faq-item {
-		margin-bottom: 1.5rem;
-		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border);
-	}
-
-	.faq-item:last-child {
-		border-bottom: none;
-	}
-
-	.faq-item h3 {
-		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.faq-item p {
-		margin: 0;
-		color: var(--text-secondary);
-	}
-
-	/* Related Grid */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
-	}
-
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green-dim);
-	}
-
-	.related-type {
-		display: block;
-		font-size: 0.75rem;
-		color: var(--text-secondary);
-		text-transform: uppercase;
-		margin-bottom: 0.25rem;
-	}
-
-	.related-title {
-		display: block;
-		font-weight: 600;
-		color: var(--text-primary);
 	}
 
 	/* External Links */
