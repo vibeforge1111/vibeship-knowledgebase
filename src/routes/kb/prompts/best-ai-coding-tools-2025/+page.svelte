@@ -3,8 +3,8 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Best AI Coding Tools 2025: Rules & Configuration Compared',
-		description: 'Compare the best AI coding tools in 2025 including Cursor, Claude Code, GitHub Copilot, Windsurf, Cline, Bolt, v0, and Replit. Pricing, security features, and configuration options.',
+		title: 'Best AI Coding Tools 2025: Complete Comparison & Verdict',
+		description: 'Compare the best AI coding tools in 2025: Cursor, Claude Code, GitHub Copilot, Windsurf, Cline, Bolt, v0, Replit. Our verdict: Claude Code + Cursor is the optimal setup. Full pricing, security, and configuration guide.',
 		url: '/kb/prompts/best-ai-coding-tools-2025/'
 	};
 
@@ -266,7 +266,7 @@
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>The best AI coding tools in 2025 are Cursor (best overall), Claude Code (terminal), Copilot (enterprise), and Bolt.new (beginners).</strong> Pricing ranges from free to $40/user/month. Each offers security configuration options.
+				<strong>The best AI coding tools in 2025 are Cursor (best overall), Claude Code (terminal), Copilot (enterprise), and Bolt.new (beginners).</strong> Our verdict: use Claude Code with Opus 4.5 in terminal alongside Cursor for IDE work - this combo gives you the best of both worlds. Pricing ranges from free to $40/user/month. Each offers security configuration options.
 			</p>
 		</div>
 
@@ -1156,6 +1156,412 @@ Security:
 			</p>
 		</section>
 
+		<!-- Our Verdict: The Optimal Setup -->
+		<section id="verdict">
+			<h2>Our verdict: Claude Code + Cursor is the optimal 2025 setup</h2>
+			<p>
+				After testing every major AI coding tool extensively, we've landed on a clear winner: <strong>use Claude Code with Opus 4.5 in the terminal alongside Cursor for IDE work</strong>. This isn't about picking one tool - it's about using each tool where it excels.
+			</p>
+
+			<div class="verdict-highlight">
+				<h3>Why this combination works</h3>
+				<p>
+					Claude Code in terminal gives you access to Claude Opus 4.5 - the most capable reasoning model available - with full agentic capabilities. It can read your entire codebase, plan multi-step implementations, execute commands, run tests, and create PRs autonomously. The human-in-loop approval system means every file change and command requires your explicit OK, making it the safest agentic tool available.
+				</p>
+				<p>
+					Cursor handles the IDE experience: inline completions, chat panel for quick questions, and deep integration with VS Code workflows. When you need to edit a specific file or get autocomplete suggestions, Cursor is faster and more natural than switching to terminal.
+				</p>
+			</div>
+
+			<h3>When to use each tool</h3>
+			<div class="verdict-comparison">
+				<div class="verdict-card">
+					<h4>Use Claude Code for:</h4>
+					<ul>
+						<li><strong>Multi-file refactoring</strong> - "Rename this function across the codebase"</li>
+						<li><strong>Complex implementations</strong> - "Add authentication with Supabase"</li>
+						<li><strong>Test generation</strong> - "Write tests for all API routes"</li>
+						<li><strong>Debugging sessions</strong> - "Find and fix the bug causing 500 errors"</li>
+						<li><strong>Git workflows</strong> - "Create a PR for this feature"</li>
+						<li><strong>Running builds/tests</strong> - "Run the test suite and fix failures"</li>
+						<li><strong>Codebase exploration</strong> - "How does authentication work in this project?"</li>
+					</ul>
+				</div>
+				<div class="verdict-card">
+					<h4>Use Cursor for:</h4>
+					<ul>
+						<li><strong>Inline completions</strong> - Tab to accept suggestions as you type</li>
+						<li><strong>Quick questions</strong> - "What does this function do?"</li>
+						<li><strong>Single-file edits</strong> - "Refactor this component"</li>
+						<li><strong>Code navigation</strong> - Finding definitions, references</li>
+						<li><strong>Visual debugging</strong> - Breakpoints, variable inspection</li>
+						<li><strong>Manual editing</strong> - When you know exactly what to write</li>
+						<li><strong>Review changes</strong> - Looking at diffs in the IDE</li>
+					</ul>
+				</div>
+			</div>
+
+			<h3>The workflow in practice</h3>
+			<div class="workflow-steps">
+				<div class="workflow-step">
+					<span class="step-number">1</span>
+					<div class="step-content">
+						<strong>Start in Claude Code:</strong> "I need to add a user settings page with email preferences"
+					</div>
+				</div>
+				<div class="workflow-step">
+					<span class="step-number">2</span>
+					<div class="step-content">
+						<strong>Claude Code plans:</strong> Creates a todo list, identifies files to create/modify, asks clarifying questions
+					</div>
+				</div>
+				<div class="workflow-step">
+					<span class="step-number">3</span>
+					<div class="step-content">
+						<strong>Review and approve:</strong> Check each file change, approve commands, verify approach
+					</div>
+				</div>
+				<div class="workflow-step">
+					<span class="step-number">4</span>
+					<div class="step-content">
+						<strong>Switch to Cursor:</strong> Fine-tune the generated code, adjust styling, fix edge cases
+					</div>
+				</div>
+				<div class="workflow-step">
+					<span class="step-number">5</span>
+					<div class="step-content">
+						<strong>Back to Claude Code:</strong> "Run the tests and fix any failures"
+					</div>
+				</div>
+			</div>
+
+			<h3>Cost comparison for this setup</h3>
+			<div class="cost-breakdown">
+				<div class="cost-item">
+					<span class="cost-label">Claude Pro ($20/month)</span>
+					<span class="cost-desc">Access to Claude Code with Opus 4.5</span>
+				</div>
+				<div class="cost-item">
+					<span class="cost-label">Cursor Pro ($20/month)</span>
+					<span class="cost-desc">Unlimited completions, premium models</span>
+				</div>
+				<div class="cost-total">
+					<span class="total-label">Total: $40/month</span>
+					<span class="total-desc">Less than one hour of senior developer time</span>
+				</div>
+			</div>
+
+			<h3>Why not just use one tool?</h3>
+			<p>
+				We tested single-tool workflows extensively. Using only Cursor means giving up terminal-based agentic workflows - Cursor's agent mode is good but not as capable as Claude Code for complex multi-step tasks. Using only Claude Code means slower iteration on small changes - sometimes you just want to edit one line without typing a prompt.
+			</p>
+			<p>
+				The combination multiplies your productivity: Claude Code for the heavy lifting, Cursor for the precision work. Your <code>CLAUDE.md</code> and <code>.cursor/rules/</code> can share the same security rules via <code>AGENTS.md</code>, ensuring consistent behavior across both tools.
+			</p>
+		</section>
+
+		<!-- Pro Workflows -->
+		<section id="pro-workflows">
+			<h2>Pro workflows: Multi-tool strategies by developer type</h2>
+			<p>
+				Different developers have different needs. Here's how to set up your AI tool stack based on your primary workflow.
+			</p>
+
+			<div class="workflow-profiles">
+				<div class="profile-card">
+					<h3>The Solo Founder</h3>
+					<p class="profile-desc">Building MVPs fast, shipping features daily, wearing all hats</p>
+					<div class="profile-stack">
+						<span class="stack-primary">Primary: Claude Code + Cursor ($40/mo)</span>
+						<span class="stack-secondary">Backup: Bolt.new for quick prototypes ($0-20/mo)</span>
+					</div>
+					<div class="profile-workflow">
+						<strong>Typical day:</strong> Start in Claude Code to plan the day's feature. Let it scaffold the implementation while you handle business tasks. Switch to Cursor to refine UI details. Use Bolt.new when you need to quickly test an idea before committing to building it properly.
+					</div>
+				</div>
+
+				<div class="profile-card">
+					<h3>The Full-Stack Engineer</h3>
+					<p class="profile-desc">Working on established codebases, shipping production features</p>
+					<div class="profile-stack">
+						<span class="stack-primary">Primary: Claude Code + Cursor ($40/mo)</span>
+						<span class="stack-secondary">Supplement: GitHub Copilot for inline ($10/mo)</span>
+					</div>
+					<div class="profile-workflow">
+						<strong>Typical day:</strong> Claude Code for complex tasks - "add caching to this API," "refactor this service to use the new SDK." Cursor for reviewing PRs and making targeted edits. Copilot running in background for autocomplete everywhere.
+					</div>
+				</div>
+
+				<div class="profile-card">
+					<h3>The Frontend Specialist</h3>
+					<p class="profile-desc">Building UIs, design systems, component libraries</p>
+					<div class="profile-stack">
+						<span class="stack-primary">Primary: Cursor + v0 ($40/mo)</span>
+						<span class="stack-secondary">Supplement: Claude Code for backend tasks ($20/mo)</span>
+					</div>
+					<div class="profile-workflow">
+						<strong>Typical day:</strong> v0 to generate initial component designs from screenshots or descriptions. Cursor to refine the generated code, add interactivity, integrate with state management. Claude Code when you need to touch backend APIs.
+					</div>
+				</div>
+
+				<div class="profile-card">
+					<h3>The Budget Developer</h3>
+					<p class="profile-desc">Learning, side projects, cost-conscious</p>
+					<div class="profile-stack">
+						<span class="stack-primary">Primary: Cline + DeepSeek (~$5/mo)</span>
+						<span class="stack-secondary">Free tier: GitHub Copilot Free + Bolt.new Free</span>
+					</div>
+					<div class="profile-workflow">
+						<strong>Typical day:</strong> Cline with DeepSeek-R1 for intelligent assistance at pennies per query. GitHub Copilot Free for 2,000 monthly completions. Bolt.new free tier for quick experiments. Total cost: under $10/month.
+					</div>
+				</div>
+
+				<div class="profile-card">
+					<h3>The Enterprise Developer</h3>
+					<p class="profile-desc">Working at scale, compliance requirements, team coordination</p>
+					<div class="profile-stack">
+						<span class="stack-primary">Primary: GitHub Copilot Enterprise ($39/mo)</span>
+						<span class="stack-secondary">Supplement: Claude Code for personal productivity ($20/mo)</span>
+					</div>
+					<div class="profile-workflow">
+						<strong>Typical day:</strong> Copilot Enterprise for all work on company repos - audit logs, IP indemnity, custom models trained on your codebase. Claude Code for personal learning and side exploration (keep work code on company tools).
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 2025 Trends -->
+		<section id="trends">
+			<h2>AI coding tool trends to watch in 2025</h2>
+			<p>
+				The AI coding landscape is evolving rapidly. Here's what's changing and how it affects your tool choices.
+			</p>
+
+			<div class="trends-grid">
+				<div class="trend-card">
+					<h3>Agentic capabilities become standard</h3>
+					<p>
+						Every tool is adding autonomous execution. Claude Code pioneered this with human-in-loop approval. Cursor added Agent Mode. Windsurf has Cascade. In 2025, expect all tools to offer multi-step task execution. The differentiator becomes <strong>safety controls</strong> - how much oversight do you get?
+					</p>
+				</div>
+
+				<div class="trend-card">
+					<h3>Model access is commoditizing</h3>
+					<p>
+						Most tools now offer multiple model choices (Claude, GPT-4, Gemini). This means the tool's value isn't just "access to Claude" - it's the <strong>user experience, context handling, and integration quality</strong>. Choose tools by workflow fit, not model availability.
+					</p>
+				</div>
+
+				<div class="trend-card">
+					<h3>Configuration portability emerging</h3>
+					<p>
+						<code>AGENTS.md</code> is becoming a cross-tool standard. Cursor, Cline, and Claude Code all recognize it. Expect more standardization around rule formats. Our recommendation: maintain an <code>AGENTS.md</code> in every repo for tool-agnostic rules.
+					</p>
+				</div>
+
+				<div class="trend-card">
+					<h3>Security differentiation grows</h3>
+					<p>
+						As AI writes more code, security becomes critical. Tools are competing on features like audit logs (Copilot Enterprise), human-in-loop (Claude Code), and BYOK (Cline). Choose tools that let you <strong>verify before executing</strong>.
+					</p>
+				</div>
+
+				<div class="trend-card">
+					<h3>Pricing models consolidating</h3>
+					<p>
+						The market is settling on hybrid pricing: base subscription + usage credits. Expect $15-25/month for individual plans, $30-50/user for teams. Token-based tools (Bolt, Windsurf) appeal to light users; unlimited tools (Copilot, Cursor) appeal to heavy users.
+					</p>
+				</div>
+
+				<div class="trend-card">
+					<h3>Specialization vs generalization</h3>
+					<p>
+						Some tools are going deep (v0 for UI, Replit for deployment), others are going wide (Cursor, Claude Code). Both strategies work. Match tool specialization to your primary workflow.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Model Deep Dive -->
+		<section id="models">
+			<h2>Which AI models power each tool?</h2>
+			<p>
+				Understanding the underlying models helps you make informed choices. Here's what powers each tool and when each model shines.
+			</p>
+
+			<div class="models-table-wrapper">
+				<table class="models-table">
+					<thead>
+						<tr>
+							<th>Tool</th>
+							<th>Default Model</th>
+							<th>Premium Models</th>
+							<th>BYOK Support</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Claude Code</strong></td>
+							<td>Claude Sonnet 4</td>
+							<td>Claude Opus 4.5 (Max plans)</td>
+							<td>API only</td>
+						</tr>
+						<tr>
+							<td><strong>Cursor</strong></td>
+							<td>Claude Sonnet 4</td>
+							<td>Claude Opus 4.5, GPT-4, Gemini</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td><strong>GitHub Copilot</strong></td>
+							<td>GPT-4 (optimized)</td>
+							<td>Claude, Gemini (Enterprise)</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td><strong>Windsurf</strong></td>
+							<td>SWE-1 (custom)</td>
+							<td>Claude, GPT-4, Gemini</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td><strong>Cline</strong></td>
+							<td>Any (user choice)</td>
+							<td>All via API</td>
+							<td>Yes (required)</td>
+						</tr>
+						<tr>
+							<td><strong>Bolt.new</strong></td>
+							<td>Claude Sonnet</td>
+							<td>Claude Opus</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td><strong>v0</strong></td>
+							<td>GPT-4 (optimized)</td>
+							<td>Not disclosed</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td><strong>Replit</strong></td>
+							<td>Multi-model</td>
+							<td>GPT-4, Claude</td>
+							<td>No</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<h3>Model selection guide</h3>
+			<div class="model-guide">
+				<div class="model-recommendation">
+					<h4>Claude Opus 4.5 (Best for complex reasoning)</h4>
+					<p>
+						Anthropic's most capable model. Excels at multi-step planning, code architecture decisions, and understanding complex codebases. Available in Claude Code (Max plans) and Cursor (premium credits). Use for: feature planning, complex refactoring, debugging intricate issues.
+					</p>
+				</div>
+				<div class="model-recommendation">
+					<h4>Claude Sonnet 4 (Best balance of speed and quality)</h4>
+					<p>
+						Fast and capable. Great for most coding tasks. Default in Claude Code and Cursor. Use for: daily coding, quick questions, standard implementations.
+					</p>
+				</div>
+				<div class="model-recommendation">
+					<h4>GPT-4 / GPT-4o (Best for inline completions)</h4>
+					<p>
+						Optimized for code completion in Copilot. Fast response times, good at predicting next tokens. Use for: autocomplete, finishing your sentences, boilerplate code.
+					</p>
+				</div>
+				<div class="model-recommendation">
+					<h4>DeepSeek-R1 (Best budget option)</h4>
+					<p>
+						Surprisingly capable at a fraction of the cost ($0.65 per million input tokens). Works with Cline via OpenRouter. Use for: cost-conscious development, learning, experimentation.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Configuration Portability -->
+		<section id="portability">
+			<h2>Migrating between AI coding tools</h2>
+			<p>
+				Moving your rules and configuration between tools is increasingly important as the market evolves. Here's how to maintain portability.
+			</p>
+
+			<h3>The universal config: AGENTS.md</h3>
+			<p>
+				Create an <code>AGENTS.md</code> file in your repository root. This file is recognized by Cursor, Claude Code, and Cline as a fallback configuration. Use it for rules that should apply regardless of which tool you're using.
+			</p>
+
+			<div class="code-example">
+				<div class="code-block-header">
+					<span class="code-block-lang">AGENTS.md (Universal Config)</span>
+				</div>
+				<pre><code>{`# AGENTS.md - Universal AI Tool Configuration
+
+## Project Overview
+This is a Next.js 14 application with Supabase backend.
+
+## Tech Stack
+- Next.js 14 App Router
+- TypeScript strict mode
+- Supabase (auth, database, storage)
+- Tailwind CSS
+
+## Security Rules (Critical)
+- NEVER use template literals for database queries
+- ALWAYS use parameterized queries: $1, $2 placeholders
+- Check authentication in EVERY Server Action
+- Validate ALL input with Zod on the server
+- Never expose secrets in client-side code
+
+## Code Conventions
+- Server Components by default
+- 'use client' only when needed
+- Named exports preferred
+- Types in separate .types.ts files
+
+## Commands
+- npm run dev: Start development
+- npm run build: Build for production
+- npm test: Run tests
+- npm run lint: Check code quality`}</code></pre>
+			</div>
+
+			<h3>Tool-specific augmentation</h3>
+			<p>
+				Add tool-specific configuration on top of your universal <code>AGENTS.md</code>:
+			</p>
+
+			<div class="migration-grid">
+				<div class="migration-card">
+					<h4>For Cursor</h4>
+					<p>Add <code>.cursor/rules/*.md</code> files with frontmatter for activation modes (alwaysApply, globs). Cursor-specific features like file references (@filename) and agent instructions.</p>
+				</div>
+				<div class="migration-card">
+					<h4>For Claude Code</h4>
+					<p>Add <code>CLAUDE.md</code> for project-specific context. Use imports (@path/to/file) for modular rules. Add path-specific rules with YAML frontmatter.</p>
+				</div>
+				<div class="migration-card">
+					<h4>For Cline</h4>
+					<p>Add <code>.clinerules/</code> folder with numbered files (01-coding.md, 02-security.md). Cline automatically reads AGENTS.md as fallback.</p>
+				</div>
+				<div class="migration-card">
+					<h4>For Copilot</h4>
+					<p>Add <code>.github/copilot-instructions.md</code> for repository-wide instructions. Use path-specific files for different areas of the codebase.</p>
+				</div>
+			</div>
+
+			<h3>Migration checklist</h3>
+			<ul class="migration-checklist">
+				<li><strong>Export your rules:</strong> Copy your existing rules to a temporary file</li>
+				<li><strong>Create AGENTS.md:</strong> Extract universal rules (stack, security, conventions)</li>
+				<li><strong>Create tool-specific configs:</strong> Add activation modes and tool features</li>
+				<li><strong>Test with both tools:</strong> Verify rules work in your new and old tool</li>
+				<li><strong>Commit everything:</strong> Version control enables team sharing</li>
+			</ul>
+		</section>
+
 		<!-- FAQ -->
 		<section>
 			<h2>Frequently asked questions</h2>
@@ -1636,5 +2042,285 @@ Security:
 
 	.external-links a:hover {
 		color: var(--green);
+	}
+
+	/* Verdict Section */
+	.verdict-highlight {
+		background: var(--green-muted);
+		border: 1px solid var(--border);
+		padding: 1.5rem;
+		margin: 1.5rem 0;
+	}
+
+	.verdict-highlight h3 {
+		margin-top: 0;
+		color: var(--green);
+	}
+
+	.verdict-comparison {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
+		margin: 1.5rem 0;
+	}
+
+	.verdict-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.5rem;
+	}
+
+	.verdict-card h4 {
+		margin-top: 0;
+		color: var(--violet);
+	}
+
+	.verdict-card ul {
+		margin: 0;
+		padding-left: 1.25rem;
+	}
+
+	.verdict-card li {
+		margin-bottom: 0.5rem;
+	}
+
+	/* Workflow Steps */
+	.workflow-steps {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		margin: 1.5rem 0;
+	}
+
+	.workflow-step {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+	}
+
+	.step-number {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		background: var(--green);
+		color: var(--bg-primary);
+		font-weight: 700;
+		flex-shrink: 0;
+	}
+
+	.step-content {
+		flex: 1;
+	}
+
+	/* Cost Breakdown */
+	.cost-breakdown {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin: 1.5rem 0;
+	}
+
+	.cost-item {
+		display: flex;
+		justify-content: space-between;
+		padding: 0.75rem 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+	}
+
+	.cost-label {
+		font-weight: 600;
+	}
+
+	.cost-desc {
+		color: var(--text-secondary);
+	}
+
+	.cost-total {
+		display: flex;
+		justify-content: space-between;
+		padding: 1rem;
+		background: var(--green-muted);
+		border: 1px solid var(--border);
+		margin-top: 0.5rem;
+	}
+
+	.total-label {
+		font-weight: 700;
+		color: var(--green);
+		font-size: 1.1rem;
+	}
+
+	.total-desc {
+		color: var(--text-secondary);
+	}
+
+	/* Workflow Profiles */
+	.workflow-profiles {
+		display: grid;
+		gap: 1.5rem;
+		margin: 1.5rem 0;
+	}
+
+	.profile-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.5rem;
+	}
+
+	.profile-card h3 {
+		margin-top: 0;
+		color: var(--violet);
+	}
+
+	.profile-desc {
+		color: var(--text-secondary);
+		margin-bottom: 1rem;
+	}
+
+	.profile-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin-bottom: 1rem;
+		padding: 1rem;
+		background: var(--bg-primary);
+		border: 1px solid var(--border);
+	}
+
+	.stack-primary {
+		font-weight: 600;
+	}
+
+	.stack-secondary {
+		color: var(--text-secondary);
+		font-size: 0.9rem;
+	}
+
+	.profile-workflow {
+		font-size: 0.9rem;
+		line-height: 1.6;
+	}
+
+	/* Trends Grid */
+	.trends-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
+		margin: 1.5rem 0;
+	}
+
+	.trend-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.5rem;
+	}
+
+	.trend-card h3 {
+		margin-top: 0;
+		font-size: 1rem;
+		color: var(--green-dim);
+	}
+
+	.trend-card p {
+		margin-bottom: 0;
+		font-size: 0.9rem;
+	}
+
+	/* Models Table */
+	.models-table-wrapper {
+		overflow-x: auto;
+		margin: 1.5rem 0;
+	}
+
+	.models-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.9rem;
+	}
+
+	.models-table th,
+	.models-table td {
+		padding: 0.75rem 1rem;
+		text-align: left;
+		border: 1px solid var(--border);
+	}
+
+	.models-table th {
+		background: var(--bg-secondary);
+		font-weight: 600;
+	}
+
+	.models-table tr:nth-child(even) {
+		background: var(--bg-secondary);
+	}
+
+	/* Model Guide */
+	.model-guide {
+		display: grid;
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	.model-recommendation {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
+	}
+
+	.model-recommendation h4 {
+		margin-top: 0;
+		color: var(--green-dim);
+	}
+
+	.model-recommendation p {
+		margin-bottom: 0;
+		font-size: 0.9rem;
+	}
+
+	/* Migration Grid */
+	.migration-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	.migration-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
+	}
+
+	.migration-card h4 {
+		margin-top: 0;
+		color: var(--violet);
+	}
+
+	.migration-card p {
+		margin-bottom: 0;
+		font-size: 0.875rem;
+	}
+
+	.migration-checklist {
+		padding-left: 1.5rem;
+	}
+
+	.migration-checklist li {
+		margin-bottom: 0.75rem;
+	}
+
+	/* Responsive adjustments for new sections */
+	@media (max-width: 768px) {
+		.verdict-comparison,
+		.trends-grid,
+		.migration-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

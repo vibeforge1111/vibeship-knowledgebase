@@ -78,7 +78,7 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 51 | ✅ Done | Prompts (P1) | cline-rules |
 | 52 | ✅ Done | Prompts (P1) | copilot-instructions |
 | 53 | ✅ Done | Prompts (P1) | cursor-rules-file |
-| 54 | 📝 Brief Ready | Prompts (P1) | awesome-cursor-rules |
+| 54 | ✅ Done | Prompts (P1) | awesome-cursor-rules |
 | 55 | 📝 Brief Ready | Prompts (P1) | cursor-system-prompt |
 | 56 | 📝 Brief Ready | Prompts (P2) | v0-prompts |
 | 57 | 📝 Brief Ready | Prompts (P2) | bolt-prompts |
@@ -101,11 +101,11 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 72 | 📝 Brief Ready | Prompts (P1) | testing-prompts |
 | 73 | 📝 Brief Ready | Prompts (P1) | documentation-prompts |
 | 74 | 📝 Brief Ready | Prompts (P1) | ai-prompts-founders |
-| 75 | 📝 Brief Ready | Prompts (P0) PILLAR | prompt-engineering-code |
+| 75 | ✅ Done | Prompts (P0) PILLAR | prompt-engineering-code |
 | | | *Batch 4: Comparisons* | |
 | 76 | 📝 Brief Ready | Prompts (P1) | cursor-vs-windsurf-rules |
 | 77 | 📝 Brief Ready | Prompts (P1) | cursor-vs-claude-code-config |
-| 78 | 📝 Brief Ready | Prompts (P0) | best-ai-coding-tools-2025 |
+| 78 | ✅ Done | Prompts (P0) | best-ai-coding-tools-2025 |
 | 79 | 📝 Brief Ready | Prompts (P1) | cline-vs-cursor-config |
 | 80 | 📝 Brief Ready | Prompts (P1) | copilot-vs-cursor-config |
 | 81 | 📝 Brief Ready | Prompts (P1) | ai-tool-config-matrix |
@@ -115,7 +115,7 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 84 | 📝 Brief Ready | Prompts (P1) | cursor-rules-typescript |
 | 85 | 📝 Brief Ready | Prompts (P1) | ai-python-coding |
 | 86 | 📝 Brief Ready | Prompts (P0) | supabase-cursor-rules |
-| 87 | 📝 Brief Ready | Prompts (P0) PILLAR | cursor-rules-fullstack |
+| 87 | ✅ Done | Prompts (P0) PILLAR | cursor-rules-fullstack |
 | | | **--- NEW: 40-Article Vulnerability Expansion ---** | |
 | | | *Category A: Injection Variants* | |
 | 88 | 📝 Brief Ready | Vulnerability (P0) | nosql-injection |
