@@ -848,24 +848,17 @@ Examples:
 				all VS Code shortcuts and adds AI-specific ones. Here are the essential Cursor shortcuts:
 			</p>
 
-			<table class="shortcuts-table">
-				<thead>
-					<tr>
-						<th>Shortcut</th>
-						<th>Action</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					{#each shortcuts as shortcut}
-						<tr>
-							<td><kbd>{shortcut.keys}</kbd></td>
-							<td><strong>{shortcut.action}</strong></td>
-							<td>{shortcut.description}</td>
-						</tr>
-					{/each}
-				</tbody>
-			</table>
+			<div class="shortcuts-list">
+				{#each shortcuts as shortcut}
+					<div class="shortcut-item">
+						<div class="shortcut-key"><kbd>{shortcut.keys}</kbd></div>
+						<div class="shortcut-info">
+							<strong>{shortcut.action}</strong>
+							<span class="shortcut-desc">{shortcut.description}</span>
+						</div>
+					</div>
+				{/each}
+			</div>
 
 			<h3>The "power user" shortcut flow</h3>
 			<div class="code-block">
@@ -1323,31 +1316,49 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		color: var(--red);
 	}
 
-	/* Shortcuts table */
-	.shortcuts-table {
-		width: 100%;
-		border-collapse: collapse;
+	/* Shortcuts list */
+	.shortcuts-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		margin: 1.5rem 0;
 	}
 
-	.shortcuts-table th,
-	.shortcuts-table td {
+	.shortcut-item {
+		display: flex;
+		gap: 1rem;
 		padding: 0.75rem;
-		text-align: left;
-		border-bottom: 1px solid var(--border);
-	}
-
-	.shortcuts-table th {
 		background: var(--bg-secondary);
-		font-weight: 600;
+		border: 1px solid var(--border);
+		align-items: flex-start;
 	}
 
-	.shortcuts-table kbd {
+	.shortcut-key {
+		flex-shrink: 0;
+	}
+
+	.shortcut-key kbd {
 		background: var(--bg-tertiary);
 		border: 1px solid var(--border);
-		padding: 0.2rem 0.5rem;
+		padding: 0.3rem 0.6rem;
 		font-family: monospace;
+		font-size: 0.8rem;
+		white-space: nowrap;
+	}
+
+	.shortcut-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.shortcut-info strong {
+		color: var(--text-primary);
+	}
+
+	.shortcut-desc {
 		font-size: 0.875rem;
+		color: var(--text-secondary);
 	}
 
 	/* Tutorials grid */
