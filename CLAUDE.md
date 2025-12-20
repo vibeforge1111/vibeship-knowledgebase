@@ -1,4 +1,4 @@
-# CLAUDE.md - Vibeship Knowledge Base
+# CLAUDE.md - VibeShip Knowledge Base
 
 ## Memory (Mind)
 
@@ -47,20 +47,26 @@ npm run build  # Production build
 
 ## Critical Rules (Memorize)
 
-### 1. Vibe Coding Terms (SEO)
+### 1. Branding (ALWAYS)
+- **VibeShip** - Capital V, capital S (never "Vibeship", "vibeship", "VIBESHIP")
+- **VibeShip Scanner** - Product name, always capitalized
+- **vibe coding/vibe coders** - lowercase when describing the practice/people
+
+### 2. Vibe Coding Terms (SEO)
 Use "vibe coding", "vibe coders", "vibe coded" 3-5x per article.
 
-### 2. Data Integrity
+### 3. Data Integrity
 NEVER invent stats. Cite real sources with links. Use "Data coming soon" if unavailable.
 
-### 3. Scanning Tools
+### 4. Scanning Tools
 Use **opengrep** (not semgrep), also trivy and gitleaks.
 
-### 4. Design System (NON-NEGOTIABLE)
+### 5. Design System (NON-NEGOTIABLE)
 - **Sharp edges** - No `border-radius: 8px` on containers
 - **CSS variables only** - Never hardcode colors
 - **Use global classes** - Don't recreate `.badge`, `.quick-answer`, `.faq-list`, `.card`
 - **Neutral comparison articles** - No tool brand colors (blue, violet, pink)
+- **No hover underlines** - Links/buttons use color/opacity changes, not `text-decoration: underline`
 - **Under 150 lines** of scoped CSS per article
 
 ---

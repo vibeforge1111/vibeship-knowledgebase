@@ -223,6 +223,110 @@ mcp__ahrefs__keywords-explorer-overview
 
 ---
 
+## Design System Compliance (MANDATORY)
+
+**Reference files:**
+- `docs/KB-UI-DESIGN-STANDARDS.md` - Full design system documentation
+- `static/styles/components.css` - Global component classes
+- `static/styles/theme.css` - CSS variables and base styles
+- `src/routes/kb/security/stacks/nextjs-supabase/+page.svelte` - Reference implementation
+
+### CSS Variables Only
+- [ ] NO hardcoded colors (no `#1a1a1a`, `#f8fafc`, etc.)
+- [ ] Uses `var(--bg-primary)`, `var(--bg-secondary)`, `var(--bg-tertiary)` for backgrounds
+- [ ] Uses `var(--text-primary)`, `var(--text-secondary)`, `var(--text-tertiary)` for text
+- [ ] Uses `var(--border)`, `var(--border-strong)` for borders
+- [ ] Uses `var(--green)`, `var(--green-dim)`, `var(--green-muted)` for accents
+- [ ] Comparison articles: NO tool brand colors (neutral palette only)
+
+### Global Components (Use These, Don't Reinvent)
+- [ ] `.badge` for category/type badges
+- [ ] `.quick-answer` for quick answer boxes with green left border
+- [ ] `.stats-row` for grid of stats cards
+- [ ] `.code-block` for code example containers
+- [ ] `.code-comparison` for before/after code
+- [ ] `.fix-prompt` for AI fix prompt boxes
+- [ ] `.faq-list > .faq-item` for FAQ sections (NOT custom styles)
+- [ ] `.related-grid > .card.card-interactive.related-card` for related content
+
+### Related Content Pattern (Exact Structure)
+```svelte
+<section class="article-section">
+  <h2>Related content</h2>
+  <div class="related-grid">
+    <a href="..." class="card card-interactive related-card">
+      <div class="related-card-category">Category</div>
+      <div class="related-card-title">Title</div>
+      <p class="related-card-description">Description text</p>
+    </a>
+  </div>
+</section>
+```
+- [ ] Uses `<div>` for category and title (NOT `<span>` or `<h3>`)
+- [ ] Has `card card-interactive related-card` classes on anchor
+- [ ] Includes description paragraph
+- [ ] Section uses `article-section` class
+
+### Layout & Spacing
+- [ ] Sharp edges - NO `border-radius: 8px` on containers (0 or 4px max)
+- [ ] Consistent spacing using CSS variables or utility classes
+- [ ] Under 150 lines of scoped CSS per article
+- [ ] No duplicate styles that exist in components.css
+
+### Mobile Responsive
+- [ ] Tested at 768px and 480px widths
+- [ ] Tables use mobile-friendly stacked layouts OR horizontal scroll
+- [ ] No horizontal overflow on mobile
+- [ ] Touch targets at least 44x44px
+- [ ] `@media (max-width: 768px)` queries for responsive adjustments
+
+### Hover States
+- [ ] NO text-decoration: underline on any interactive elements
+- [ ] Cards use `.card-interactive` for border-color transition
+- [ ] Buttons change background/opacity, not underline
+
+### Branding
+- [ ] "VibeShip" always capitalized as "VibeShip" (not "Vibeship", "vibeship", "VIBESHIP")
+- [ ] "VibeShip Scanner" - product name, always capitalized
+- [ ] "vibe coding" - lowercase when describing the practice
+- [ ] "vibe coders" - lowercase when describing people
+- [ ] Brand colors only via CSS variables (never hardcoded brand hex codes)
+
+### Typography
+- [ ] Headings use `font-family: 'Instrument Serif'` (inherited from theme.css)
+- [ ] Body text uses `font-family: 'Inter'` (inherited from theme.css)
+- [ ] Code uses `font-family: 'JetBrains Mono'` (inherited from theme.css)
+- [ ] NO custom font-family declarations in scoped styles
+- [ ] Line heights: headings 1.3, body 1.7 (from theme.css)
+
+### Accessibility
+- [ ] Color contrast meets WCAG AA (4.5:1 for text, 3:1 for large text)
+- [ ] All images have descriptive alt text
+- [ ] Focus states visible on interactive elements
+- [ ] Semantic HTML (proper heading hierarchy, landmarks)
+- [ ] Links are distinguishable from plain text (color, not just underline)
+
+### Animations & Transitions
+- [ ] Transitions use 0.2s-0.3s duration (not too fast, not sluggish)
+- [ ] Prefer `transition: border-color 0.2s` for cards
+- [ ] Prefer `transition: color 0.2s` for links
+- [ ] NO jarring animations (no bouncing, shaking, or excessive movement)
+- [ ] Respect `prefers-reduced-motion` if adding custom animations
+
+### Code Block Standards
+- [ ] Language specified on all fenced code blocks (```javascript, ```svelte)
+- [ ] Uses `.code-block` wrapper for styled code sections
+- [ ] Before/after comparisons use `.code-comparison` with `.code-bad` and `.code-good`
+- [ ] Syntax highlighting works correctly (check for missing language support)
+
+### Image & Media
+- [ ] Images optimized for web (WebP preferred, fallback to PNG/JPG)
+- [ ] Images have explicit width/height to prevent layout shift
+- [ ] Dark mode compatible (no white backgrounds baked into images)
+- [ ] Screenshots use consistent browser chrome or no chrome at all
+
+---
+
 ## Technical Accuracy
 
 ### Security Claims
@@ -297,6 +401,24 @@ mcp__ahrefs__keywords-explorer-overview
 
 ### "Not citable by LLMs"
 → Add "According to VibeShip Scanner (Month Year)..." before key stats
+
+### "Hardcoded colors"
+→ Replace `#hex` with CSS variables: `var(--bg-secondary)`, `var(--text-primary)`, etc.
+
+### "Custom related content styles"
+→ Delete custom CSS, use global `.related-grid > .card.card-interactive.related-card`
+
+### "Wrong element types in related cards"
+→ Use `<div>` for category and title, `<p>` for description - never `<span>` or `<h3>`
+
+### "Hover underlines appearing"
+→ Check for inherited styles, add `text-decoration: none` if needed (shouldn't happen with global styles)
+
+### "VibeShip spelled wrong"
+→ Always "VibeShip" (capital V, capital S) - not "Vibeship" or "vibeship"
+
+### "Too much scoped CSS"
+→ Over 150 lines? Check if global components cover what you need first
 
 ---
 
