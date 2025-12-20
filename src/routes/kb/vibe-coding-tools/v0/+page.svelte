@@ -1,21 +1,24 @@
 <script lang="ts">
 	import { Header } from '$lib/components/layout';
 
-	// Page metadata
-	const meta = {
-		title: 'v0 Security Patterns: When Fast UI Meets Vulnerable Code',
-		description: 'v0 generates beautiful UI fast but often exposes secrets via NEXT_PUBLIC_ and skips server-side validation. Learn 5 patterns to fix before deploying.',
-		url: '/kb/vibe-coding-tools/v0/'
-	};
-
-	// Breadcrumbs
 	const breadcrumbs = [
 		{ label: 'Knowledge Base', href: '/kb' },
 		{ label: 'AI Patterns', href: '/kb/vibe-coding-tools' },
 		{ label: 'v0' }
 	];
 
-	// Tool info
+	const meta = {
+		title: 'v0 Security Patterns: When Fast UI Meets Vulnerable Code',
+		description: 'v0 generates beautiful UI fast but often exposes secrets via NEXT_PUBLIC_ and skips server-side validation. Learn 5 patterns to fix before deploying.',
+		url: '/kb/vibe-coding-tools/v0/'
+	};
+
+	const stats = [
+		{ value: '100,000+', label: 'Insecure deployments blocked', source: 'Vercel Blog' },
+		{ value: '17,000+', label: 'Deployments blocked for exposed secrets (one month)', source: 'Vercel Blog' },
+		{ value: '1,000+', label: 'Developers nearly exposed Supabase credentials', source: 'Vercel Blog' }
+	];
+
 	const toolInfo = {
 		name: 'v0',
 		company: 'Vercel',
@@ -27,14 +30,6 @@
 		topIssue: 'NEXT_PUBLIC_ secret exposure'
 	};
 
-	// Key statistics from Vercel
-	const stats = [
-		{ value: '100,000+', label: 'Insecure deployments blocked', source: 'Vercel Blog' },
-		{ value: '17,000+', label: 'Deployments blocked for exposed secrets (one month)', source: 'Vercel Blog' },
-		{ value: '1,000+', label: 'Developers nearly exposed Supabase credentials', source: 'Vercel Blog' }
-	];
-
-	// Security patterns
 	const patterns = [
 		{
 			name: 'NEXT_PUBLIC_ Secret Exposure',
@@ -283,7 +278,6 @@ export async function POST(request: Request) {
 		}
 	];
 
-	// Tool comparison
 	const toolComparison = [
 		{ tool: 'v0', securityPosture: 'Low-Medium', targetUser: 'Designers, frontend', topIssue: 'NEXT_PUBLIC_ secrets', bestFor: 'UI prototyping' },
 		{ tool: 'Bolt.new', securityPosture: 'Low', targetUser: 'Beginners, founders', topIssue: 'Hardcoded secrets', bestFor: 'Full-stack prototypes' },
@@ -292,7 +286,6 @@ export async function POST(request: Request) {
 		{ tool: 'Replit', securityPosture: 'Low', targetUser: 'Beginners', topIssue: 'Debug mode, DB exposure', bestFor: 'Learning, quick demos' }
 	];
 
-	// AI Fix Prompt
 	const aiFixPrompt = `Review my v0-generated Next.js code for these security issues:
 
 1. **NEXT_PUBLIC_ Secret Exposure**
@@ -335,7 +328,6 @@ For each issue found:
 - Show the secure replacement
 - Explain the risk`;
 
-	// FAQ data
 	const faqs = [
 		{
 			question: 'Is v0 safe to use?',
@@ -377,7 +369,6 @@ For each issue found:
 	<meta property="og:type" content="article" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
 
-	<!-- BreadcrumbList Schema -->
 	{@html `<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
@@ -390,31 +381,19 @@ For each issue found:
 	}
 	</script>`}
 
-	<!-- TechArticle Schema -->
 	{@html `<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
 		"@type": "TechArticle",
 		"headline": "${meta.title}",
 		"description": "${meta.description}",
-		"author": {
-			"@type": "Organization",
-			"name": "Vibeship"
-		},
-		"publisher": {
-			"@type": "Organization",
-			"name": "Vibeship",
-			"logo": {
-				"@type": "ImageObject",
-				"url": "https://vibeship.co/logo.png"
-			}
-		},
+		"author": { "@type": "Organization", "name": "Vibeship" },
+		"publisher": { "@type": "Organization", "name": "Vibeship" },
 		"datePublished": "2024-12-17",
-		"dateModified": "2024-12-17"
+		"dateModified": "2024-12-20"
 	}
 	</script>`}
 
-	<!-- FAQ Schema -->
 	{@html `<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
@@ -422,38 +401,22 @@ For each issue found:
 		"mainEntity": ${JSON.stringify(faqs.map(faq => ({
 			"@type": "Question",
 			"name": faq.question,
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": faq.answer
-			}
+			"acceptedAnswer": { "@type": "Answer", "text": faq.answer }
 		})))}
 	}
 	</script>`}
 </svelte:head>
 
-<Header />
+<Header {breadcrumbs} />
 
-<main class="article-container">
-	<!-- Breadcrumbs -->
-	<nav class="breadcrumbs" aria-label="Breadcrumb">
-		{#each breadcrumbs as crumb, i}
-			{#if i < breadcrumbs.length - 1}
-				<a href={crumb.href}>{crumb.label}</a>
-				<span class="separator">/</span>
-			{:else}
-				<span class="current">{crumb.label}</span>
-			{/if}
-		{/each}
-	</nav>
-
-	<article class="security-article">
+<div class="content-wrapper">
+	<article class="content-main content-wide">
 		<header class="article-header">
-			<div class="tool-badge">AI Tool Analysis</div>
+			<span class="badge">AI Tool Analysis</span>
 			<h1>v0 Security Patterns: When Fast UI Meets Vulnerable Code</h1>
 			<p class="subtitle">v0 generates beautiful UI, but NEXT_PUBLIC_ secrets and missing auth slip through</p>
 		</header>
 
-		<!-- Quick Answer Box -->
 		<section class="quick-answer">
 			<h2>Quick Answer</h2>
 			<p>
@@ -461,55 +424,52 @@ For each issue found:
 			</p>
 		</section>
 
-		<!-- Stats Section -->
-		<section class="stats-section">
+		<section>
 			<h2>v0 Security Statistics</h2>
-			<div class="stats-grid">
+			<div class="stats-row">
 				{#each stats as stat}
-					<div class="stat-card">
-						<div class="stat-value">{stat.value}</div>
-						<div class="stat-label">{stat.label}</div>
-						<div class="stat-source">Source: {stat.source}</div>
+					<div class="stat-box">
+						<span class="stat-value">{stat.value}</span>
+						<span class="stat-label">{stat.label}</span>
+						<span class="stat-source">Source: {stat.source}</span>
 					</div>
 				{/each}
 			</div>
-			<p class="stats-note">
-				Data from <a href="https://vercel.com/blog/v0-vibe-coding-securely">Vercel's official blog post</a> on secure vibe coding. Vercel actively monitors and blocks insecure deployments.
+			<p class="source-note">
+				Data from <a href="https://vercel.com/blog/v0-vibe-coding-securely">Vercel's official blog post</a> on secure vibe coding.
 			</p>
 		</section>
 
-		<!-- Tool Profile -->
-		<section class="content-section">
+		<section>
 			<h2>What is v0?</h2>
 			<p>
 				v0 is Vercel's AI-powered UI generation tool that creates React and Next.js components from text prompts or images. It's designed for rapid prototyping - describe what you want, and v0 generates production-ready components using <a href="https://ui.shadcn.com/">shadcn/ui</a>.
 			</p>
 			<div class="tool-profile">
-				<div class="profile-item">
-					<span class="label">Company</span>
-					<span class="value">{toolInfo.company}</span>
+				<div class="profile-row">
+					<span class="profile-label">Company</span>
+					<span class="profile-value">{toolInfo.company}</span>
 				</div>
-				<div class="profile-item">
-					<span class="label">Type</span>
-					<span class="value">{toolInfo.type}</span>
+				<div class="profile-row">
+					<span class="profile-label">Type</span>
+					<span class="profile-value">{toolInfo.type}</span>
 				</div>
-				<div class="profile-item">
-					<span class="label">Target Users</span>
-					<span class="value">{toolInfo.targetUser}</span>
+				<div class="profile-row">
+					<span class="profile-label">Target Users</span>
+					<span class="profile-value">{toolInfo.targetUser}</span>
 				</div>
-				<div class="profile-item">
-					<span class="label">Security Posture</span>
-					<span class="value">{toolInfo.securityPosture}</span>
+				<div class="profile-row">
+					<span class="profile-label">Security Posture</span>
+					<span class="profile-value">{toolInfo.securityPosture}</span>
 				</div>
-				<div class="profile-item">
-					<span class="label">Top Issue</span>
-					<span class="value">{toolInfo.topIssue}</span>
+				<div class="profile-row">
+					<span class="profile-label">Top Issue</span>
+					<span class="profile-value">{toolInfo.topIssue}</span>
 				</div>
 			</div>
 		</section>
 
-		<!-- Why v0 generates vulnerabilities -->
-		<section class="content-section">
+		<section>
 			<h2>Why Does v0 Generate Vulnerable Code?</h2>
 			<p>
 				v0 optimizes for beautiful, functional UI components. Its strength is generating pixel-perfect React components from prompts or images. However, security features like authentication and server-side validation add complexity that slows down the "prompt to preview" experience.
@@ -522,53 +482,49 @@ For each issue found:
 			</p>
 		</section>
 
-		<!-- Security Patterns -->
-		<section class="content-section">
+		<section>
 			<h2>What Security Issues Does v0 Generate?</h2>
 			<p>
 				Based on <a href="https://vercel.com/blog/v0-vibe-coding-securely">Vercel's security research</a> and our analysis, here are the 5 most common security patterns in v0-generated code:
 			</p>
 
-			<div class="patterns-grid">
-				{#each patterns as pattern}
-					<div class="pattern-card">
-						<div class="pattern-header">
-							<h3>{pattern.name}</h3>
-							<span class="severity-tag {pattern.severity.toLowerCase()}">{pattern.severity}</span>
-						</div>
-						<p class="pattern-description">{pattern.description}</p>
-						<p class="pattern-why"><strong>Why it happens:</strong> {pattern.whyHappens}</p>
-						<p class="pattern-prevalence"><strong>Prevalence:</strong> {pattern.prevalence}</p>
+			{#each patterns as pattern}
+				<div class="pattern-card">
+					<div class="pattern-header">
+						<h3>{pattern.name}</h3>
+						<span class="badge badge-{pattern.severity.toLowerCase()}">{pattern.severity}</span>
+					</div>
+					<p>{pattern.description}</p>
+					<p><strong>Why it happens:</strong> {pattern.whyHappens}</p>
+					<p><strong>Prevalence:</strong> {pattern.prevalence}</p>
 
-						<div class="code-comparison">
-							<div class="code-block vulnerable">
-								<div class="code-label">❌ Vulnerable (v0 generates)</div>
-								<pre><code>{pattern.vulnerableCode}</code></pre>
-							</div>
-							<div class="code-block secure">
-								<div class="code-label">✅ Secure (you should use)</div>
-								<pre><code>{pattern.secureCode}</code></pre>
-							</div>
+					<div class="code-comparison">
+						<div class="code-panel vulnerable">
+							<div class="code-panel-header">Vulnerable (v0 generates)</div>
+							<pre><code>{pattern.vulnerableCode}</code></pre>
 						</div>
-
-						<div class="pattern-links">
-							<a href={pattern.cweLink} target="_blank" rel="noopener">{pattern.cweId} →</a>
-							<a href={pattern.link}>Related vulnerability →</a>
+						<div class="code-panel secure">
+							<div class="code-panel-header">Secure (you should use)</div>
+							<pre><code>{pattern.secureCode}</code></pre>
 						</div>
 					</div>
-				{/each}
-			</div>
+
+					<div class="pattern-links">
+						<a href={pattern.cweLink} target="_blank" rel="noopener">{pattern.cweId}</a>
+						<a href={pattern.link}>Related vulnerability</a>
+					</div>
+				</div>
+			{/each}
 		</section>
 
-		<!-- Tool Comparison -->
-		<section class="content-section">
+		<section>
 			<h2>How Does v0 Compare to Other AI Tools?</h2>
 			<p>
 				Each AI coding tool has different security characteristics. v0's UI-first approach means its vulnerabilities differ from full-stack tools like <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> or code-completion tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>:
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
+			<div class="table-wrapper">
+				<table>
 					<thead>
 						<tr>
 							<th>Tool</th>
@@ -579,13 +535,13 @@ For each issue found:
 						</tr>
 					</thead>
 					<tbody>
-						{#each toolComparison as tool}
-							<tr class:current={tool.tool === 'v0'}>
-								<td class="tool-name">{tool.tool}</td>
-								<td>{tool.securityPosture}</td>
-								<td>{tool.targetUser}</td>
-								<td>{tool.topIssue}</td>
-								<td>{tool.bestFor}</td>
+						{#each toolComparison as row}
+							<tr class:highlight={row.tool === 'v0'}>
+								<td><strong>{row.tool}</strong></td>
+								<td>{row.securityPosture}</td>
+								<td>{row.targetUser}</td>
+								<td>{row.topIssue}</td>
+								<td>{row.bestFor}</td>
 							</tr>
 						{/each}
 					</tbody>
@@ -593,13 +549,12 @@ For each issue found:
 			</div>
 		</section>
 
-		<!-- Vercel's Security Measures -->
-		<section class="content-section">
+		<section>
 			<h2>What Security Measures Has Vercel Implemented?</h2>
 			<p>
 				Credit where due: Vercel has implemented several security measures for v0 and their platform:
 			</p>
-			<ul class="feature-list">
+			<ul>
 				<li><strong>Real-time vulnerability detection</strong> - Scans generated code during creation</li>
 				<li><strong>Deploy blocks</strong> - Blocks deployments with exposed secrets (100,000+ blocked)</li>
 				<li><strong>Automatic CVE patches</strong> - Auto-patched React2Shell vulnerability</li>
@@ -611,310 +566,136 @@ For each issue found:
 			</p>
 		</section>
 
-		<!-- AI Fix Prompt -->
-		<section class="content-section ai-fix-section">
+		<section class="fix-prompt">
 			<h2>AI Fix Prompt for v0 Code</h2>
 			<p>Copy this prompt to audit your v0-generated code for security issues:</p>
 
-			<div class="prompt-container">
-				<button class="copy-button" onclick={copyPrompt}>
-					{copied ? '✓ Copied!' : 'Copy Prompt'}
+			<div class="prompt-box">
+				<button class="copy-btn" onclick={copyPrompt}>
+					{copied ? 'Copied!' : 'Copy'}
 				</button>
-				<pre class="ai-prompt">{aiFixPrompt}</pre>
+				<pre>{aiFixPrompt}</pre>
 			</div>
 		</section>
 
-		<!-- FAQ Section -->
-		<section class="content-section faq-section">
+		<section>
 			<h2>Frequently Asked Questions</h2>
-
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
-		<!-- Related Content -->
-		<section class="content-section related-section">
+		<section>
 			<h2>Related Security Guides</h2>
-
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive">
 					<h3>Bolt.new Security</h3>
 					<p>Full-stack AI tool with similar security patterns</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive">
 					<h3>Cursor Security</h3>
 					<p>Code completion tool for experienced developers</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/claude-code/" class="related-card">
+				<a href="/kb/vibe-coding-tools/claude-code/" class="card card-interactive">
 					<h3>Claude Code Security</h3>
 					<p>Terminal-based AI with higher security awareness</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-card">
+				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="card card-interactive">
 					<h3>Hardcoded Secrets</h3>
 					<p>Deep dive into NEXT_PUBLIC_ and secret exposure</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
+				<a href="/kb/security/vulnerabilities/missing-auth/" class="card card-interactive">
 					<h3>Missing Authentication</h3>
 					<p>Protecting Server Actions and API routes</p>
 				</a>
-				<a href="/kb/security/stacks/nextjs-supabase/" class="related-card">
+				<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive">
 					<h3>Next.js + Supabase Security</h3>
 					<p>Secure patterns for v0's most common stack</p>
 				</a>
 			</div>
 		</section>
 
-		<!-- CTA -->
-		<section class="cta-section">
+		<section class="final-cta">
 			<h2>Scan Your v0 Project for Security Issues</h2>
 			<p>vibeship scanner detects NEXT_PUBLIC_ exposure, missing auth, and other patterns specific to AI-generated Next.js code.</p>
-			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
+			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free</a>
 		</section>
 	</article>
-</main>
+</div>
 
 <style>
-	.article-container {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem 1rem;
-	}
-
-	.breadcrumbs {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.875rem;
-		margin-bottom: 2rem;
-		color: var(--text-secondary);
-	}
-
-	.breadcrumbs a {
-		color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.breadcrumbs a:hover {
-		text-decoration: underline;
-	}
-
-	.breadcrumbs .separator {
-		color: var(--text-muted);
-	}
-
-	.breadcrumbs .current {
-		color: var(--text-primary);
-	}
-
-	.security-article {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border-color);
-		border-radius: 12px;
-		padding: 2rem;
-	}
-
 	.article-header {
 		margin-bottom: 2rem;
 		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border-color);
-	}
-
-	.tool-badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		background: rgba(59, 130, 246, 0.2);
-		color: #3b82f6;
-		margin-bottom: 1rem;
+		border-bottom: 1px solid var(--border);
 	}
 
 	.article-header h1 {
-		font-size: 2rem;
-		font-weight: 700;
-		margin-bottom: 0.5rem;
-		line-height: 1.2;
+		margin: 0.75rem 0 0.5rem;
 	}
 
 	.subtitle {
 		color: var(--text-secondary);
 		font-size: 1.125rem;
-	}
-
-	.quick-answer {
-		background: var(--bg-tertiary);
-		border-left: 4px solid var(--green);
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-		border-radius: 0 8px 8px 0;
-	}
-
-	.quick-answer h2 {
-		font-size: 1rem;
-		color: var(--green);
-		margin-bottom: 0.75rem;
-	}
-
-	.quick-answer p {
 		margin: 0;
-		line-height: 1.6;
 	}
 
-	.quick-answer a {
-		color: var(--green-dim);
-	}
-
-	.stats-section {
-		margin-bottom: 2.5rem;
-	}
-
-	.stats-section h2 {
-		font-size: 1.5rem;
-		font-weight: 600;
-		margin-bottom: 1rem;
-	}
-
-	.stats-grid {
+	.stats-row {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		grid-template-columns: repeat(3, 1fr);
 		gap: 1rem;
 		margin-bottom: 1rem;
-	}
-
-	.stat-card {
-		background: var(--bg-tertiary);
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
-		padding: 1.25rem;
-		text-align: center;
-	}
-
-	.stat-value {
-		font-size: 1.75rem;
-		font-weight: 700;
-		color: var(--green);
-		margin-bottom: 0.25rem;
-	}
-
-	.stat-label {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin-bottom: 0.5rem;
 	}
 
 	.stat-source {
+		display: block;
 		font-size: 0.75rem;
-		color: var(--text-muted);
+		color: var(--text-tertiary);
+		margin-top: 0.25rem;
 	}
 
-	.stats-note {
+	.source-note {
 		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin: 0;
-	}
-
-	.stats-note a {
-		color: var(--green-dim);
-	}
-
-	.content-section {
-		margin-bottom: 2.5rem;
-	}
-
-	.content-section h2 {
-		font-size: 1.5rem;
-		font-weight: 600;
-		margin-bottom: 1rem;
-		color: var(--text-primary);
-	}
-
-	.content-section p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-		color: var(--text-secondary);
-	}
-
-	.content-section a {
-		color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.content-section a:hover {
-		text-decoration: underline;
-	}
-
-	.content-section code {
-		background: var(--bg-tertiary);
-		padding: 0.125rem 0.375rem;
-		border-radius: 3px;
-		font-size: 0.9em;
+		color: var(--text-tertiary);
 	}
 
 	.tool-profile {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-		gap: 1rem;
-		background: var(--bg-tertiary);
-		padding: 1.25rem;
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1rem;
 		margin-top: 1rem;
 	}
 
-	.profile-item {
+	.profile-row {
 		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
+		justify-content: space-between;
+		padding: 0.5rem 0;
+		border-bottom: 1px solid var(--border);
 	}
 
-	.profile-item .label {
-		font-size: 0.75rem;
-		color: var(--text-muted);
-		text-transform: uppercase;
+	.profile-row:last-child {
+		border-bottom: none;
 	}
 
-	.profile-item .value {
+	.profile-label {
+		color: var(--text-tertiary);
+		font-size: 0.875rem;
+	}
+
+	.profile-value {
 		font-weight: 500;
-		color: var(--text-primary);
-	}
-
-	.feature-list {
-		list-style: none;
-		padding: 0;
-		margin: 1rem 0;
-	}
-
-	.feature-list li {
-		padding: 0.5rem 0 0.5rem 1.75rem;
-		position: relative;
-		color: var(--text-secondary);
-		line-height: 1.5;
-	}
-
-	.feature-list li::before {
-		content: '✓';
-		position: absolute;
-		left: 0;
-		color: var(--green);
-		font-weight: 600;
-	}
-
-	.patterns-grid {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		margin-top: 1.5rem;
 	}
 
 	.pattern-card {
-		background: var(--bg-tertiary);
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1.5rem;
+		margin: 1.5rem 0;
 	}
 
 	.pattern-header {
@@ -925,165 +706,98 @@ For each issue found:
 	}
 
 	.pattern-header h3 {
+		margin: 0;
 		font-size: 1.125rem;
-		font-weight: 600;
-		margin: 0;
-	}
-
-	.severity-tag {
-		padding: 0.25rem 0.5rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-	}
-
-	.severity-tag.critical {
-		background: rgba(239, 68, 68, 0.2);
-		color: #ef4444;
-	}
-
-	.severity-tag.high {
-		background: rgba(245, 158, 11, 0.2);
-		color: #f59e0b;
-	}
-
-	.severity-tag.medium {
-		background: rgba(59, 130, 246, 0.2);
-		color: #3b82f6;
-	}
-
-	.pattern-description,
-	.pattern-why,
-	.pattern-prevalence {
-		color: var(--text-secondary);
-		margin-bottom: 0.75rem;
-		line-height: 1.6;
-		font-size: 0.9375rem;
-	}
-
-	.code-comparison {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1rem;
-		margin: 1.5rem 0 1rem;
-	}
-
-	@media (max-width: 768px) {
-		.code-comparison {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	.code-block {
-		background: var(--bg-primary);
-		border-radius: 6px;
-		overflow: hidden;
-	}
-
-	.code-block.vulnerable {
-		border: 1px solid rgba(239, 68, 68, 0.3);
-	}
-
-	.code-block.secure {
-		border: 1px solid rgba(34, 197, 94, 0.3);
-	}
-
-	.code-label {
-		padding: 0.5rem 1rem;
-		font-size: 0.75rem;
-		font-weight: 600;
-		background: var(--bg-tertiary);
-	}
-
-	.vulnerable .code-label {
-		color: #ef4444;
-	}
-
-	.secure .code-label {
-		color: #22c55e;
-	}
-
-	.code-block pre {
-		margin: 0;
-		padding: 1rem;
-		overflow-x: auto;
-		font-size: 0.8125rem;
-		line-height: 1.5;
-	}
-
-	.code-block code {
-		background: none;
-		padding: 0;
 	}
 
 	.pattern-links {
 		display: flex;
 		gap: 1.5rem;
 		font-size: 0.875rem;
-	}
-
-	.pattern-links a {
-		color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.pattern-links a:hover {
-		text-decoration: underline;
-	}
-
-	.comparison-table-wrapper {
-		overflow-x: auto;
 		margin-top: 1rem;
 	}
 
-	.comparison-table {
+	.code-comparison {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin: 1rem 0;
+	}
+
+	.code-panel {
+		background: var(--bg-primary);
+		border: 1px solid var(--border);
+		overflow: hidden;
+	}
+
+	.code-panel.vulnerable {
+		border-color: var(--red);
+	}
+
+	.code-panel.secure {
+		border-color: var(--green);
+	}
+
+	.code-panel-header {
+		padding: 0.5rem 1rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		background: var(--bg-tertiary);
+	}
+
+	.vulnerable .code-panel-header {
+		color: var(--red);
+	}
+
+	.secure .code-panel-header {
+		color: var(--green);
+	}
+
+	.code-panel pre {
+		margin: 0;
+		padding: 1rem;
+		font-size: 0.75rem;
+		line-height: 1.5;
+		overflow-x: auto;
+	}
+
+	.code-panel code {
+		background: none;
+		padding: 0;
+	}
+
+	.table-wrapper {
+		overflow-x: auto;
+		margin: 1rem 0;
+	}
+
+	table {
 		width: 100%;
 		border-collapse: collapse;
 		font-size: 0.875rem;
 	}
 
-	.comparison-table th,
-	.comparison-table td {
+	th, td {
 		padding: 0.75rem 1rem;
 		text-align: left;
-		border-bottom: 1px solid var(--border-color);
+		border-bottom: 1px solid var(--border);
 	}
 
-	.comparison-table th {
-		background: var(--bg-tertiary);
+	th {
+		background: var(--bg-secondary);
 		font-weight: 600;
-		color: var(--text-primary);
 	}
 
-	.comparison-table td {
-		color: var(--text-secondary);
+	tr.highlight {
+		background: var(--green-muted);
 	}
 
-	.comparison-table tr.current {
-		background: rgba(34, 197, 94, 0.1);
-	}
-
-	.comparison-table tr.current td {
-		color: var(--text-primary);
-	}
-
-	.tool-name {
-		font-weight: 600;
-		color: var(--text-primary);
-	}
-
-	.ai-fix-section {
-		background: var(--bg-tertiary);
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-
-	.prompt-container {
+	.prompt-box {
 		position: relative;
 		margin-top: 1rem;
 	}
 
-	.copy-button {
+	.copy-btn {
 		position: absolute;
 		top: 0.5rem;
 		right: 0.5rem;
@@ -1091,130 +805,35 @@ For each issue found:
 		background: var(--green);
 		color: var(--bg-primary);
 		border: none;
-		border-radius: 4px;
 		font-size: 0.875rem;
 		font-weight: 500;
 		cursor: pointer;
-		z-index: 1;
 	}
 
-	.copy-button:hover {
-		opacity: 0.9;
-	}
-
-	.ai-prompt {
+	.prompt-box pre {
 		background: var(--bg-primary);
-		padding: 1.5rem;
+		border: 1px solid var(--border);
+		padding: 1rem;
 		padding-top: 3rem;
-		border-radius: 6px;
-		font-size: 0.8125rem;
+		font-size: 0.8rem;
 		line-height: 1.6;
 		overflow-x: auto;
 		white-space: pre-wrap;
-		border: 1px solid var(--border-color);
 	}
 
-	.faq-section {
-		background: var(--bg-tertiary);
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
+	@media (max-width: 768px) {
+		.stats-row {
+			grid-template-columns: 1fr;
+		}
 
-	.faq-item {
-		padding: 1rem 0;
-		border-bottom: 1px solid var(--border-color);
-	}
+		.code-comparison {
+			grid-template-columns: 1fr;
+		}
 
-	.faq-item:last-child {
-		border-bottom: none;
-	}
-
-	.faq-item h3 {
-		font-size: 1rem;
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-		color: var(--text-primary);
-	}
-
-	.faq-item p {
-		margin: 0;
-		color: var(--text-secondary);
-		line-height: 1.6;
-	}
-
-	.related-section {
-		margin-top: 3rem;
-	}
-
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		gap: 1rem;
-		margin-top: 1rem;
-	}
-
-	.related-card {
-		background: var(--bg-tertiary);
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
-		padding: 1.25rem;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.related-card h3 {
-		font-size: 1rem;
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-		color: var(--text-primary);
-	}
-
-	.related-card p {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin: 0;
-		line-height: 1.5;
-	}
-
-	.cta-section {
-		background: linear-gradient(135deg, var(--green-dim) 0%, var(--green) 100%);
-		padding: 2rem;
-		border-radius: 8px;
-		text-align: center;
-		margin-top: 2rem;
-	}
-
-	.cta-section h2 {
-		color: var(--bg-primary);
-		margin-bottom: 0.75rem;
-	}
-
-	.cta-section p {
-		color: var(--bg-secondary);
-		margin-bottom: 1.5rem;
-		max-width: 500px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.cta-button {
-		display: inline-block;
-		background: var(--bg-primary);
-		color: var(--green);
-		padding: 0.75rem 1.5rem;
-		border-radius: 6px;
-		font-weight: 600;
-		text-decoration: none;
-		transition: opacity 0.2s;
-	}
-
-	.cta-button:hover {
-		opacity: 0.9;
-		text-decoration: none;
+		.pattern-header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
 	}
 </style>

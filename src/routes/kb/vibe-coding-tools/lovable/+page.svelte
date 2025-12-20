@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { Header } from '$lib/components/layout';
 
-	// FAQ accordion state using Svelte 5 runes
-	let openFaq = $state<number | null>(null);
-
-	function toggleFaq(index: number) {
-		openFaq = openFaq === index ? null : index;
-	}
+	const breadcrumbs = [
+		{ label: 'Knowledge Base', href: '/kb' },
+		{ label: 'Vibe Coding Tools', href: '/kb/vibe-coding-tools' },
+		{ label: 'Lovable' }
+	];
 
 	const faqs = [
 		{
@@ -158,24 +158,16 @@
 	/>
 </svelte:head>
 
-<div class="article-container">
-	<!-- Breadcrumb Navigation -->
-	<nav class="breadcrumb" aria-label="Breadcrumb">
-		<ol>
-			<li><a href="/">Home</a></li>
-			<li><a href="/kb/">Knowledge Base</a></li>
-			<li><a href="/kb/vibe-coding-tools/">Vibe Coding Tools</a></li>
-			<li><span aria-current="page">Lovable</span></li>
-		</ol>
-	</nav>
+<Header {breadcrumbs} />
 
-	<article class="tool-article">
+<div class="content-wrapper">
+	<article class="content-main content-wide">
 		<!-- Article Header -->
 		<header class="article-header">
-			<div class="meta-badges">
+			<div class="badge-row">
 				<span class="badge badge-critical">Critical CVE</span>
-				<span class="badge badge-tool">AI Tool</span>
-				<span class="badge badge-warning">Security Risk</span>
+				<span class="badge badge-info">AI Tool</span>
+				<span class="badge badge-high">Security Risk</span>
 			</div>
 
 			<h1>Lovable Security: CVE-2025-48757, RLS Failures, and VibeScamming Risks</h1>
@@ -207,29 +199,29 @@
 		</div>
 
 		<!-- Stats Box -->
-		<div class="stats-box">
-			<div class="stat-item">
+		<div class="stats-row">
+			<div class="stat-box">
 				<span class="stat-value">$1.8B</span>
 				<span class="stat-label">Valuation</span>
 			</div>
-			<div class="stat-item">
-				<span class="stat-value bad">170+</span>
+			<div class="stat-box">
+				<span class="stat-value critical">170+</span>
 				<span class="stat-label">Apps Exposed</span>
 			</div>
-			<div class="stat-item">
-				<span class="stat-value bad">1.8/10</span>
+			<div class="stat-box">
+				<span class="stat-value critical">1.8/10</span>
 				<span class="stat-label">Phishing Resist</span>
 			</div>
-			<div class="stat-item">
-				<span class="stat-value bad">10.3%</span>
+			<div class="stat-box">
+				<span class="stat-value critical">10.3%</span>
 				<span class="stat-label">Vuln Rate</span>
 			</div>
 		</div>
 
 		<!-- Table of Contents -->
 		<nav class="toc">
-			<h2>Contents</h2>
-			<ol>
+			<div class="toc-title">Contents</div>
+			<ol class="toc-list">
 				<li><a href="#what-is-lovable">What is Lovable?</a></li>
 				<li><a href="#cve-2025-48757">The CVE-2025-48757 Disaster</a></li>
 				<li><a href="#vibescamming">VibeScamming: The Phishing Risk</a></li>
@@ -242,7 +234,7 @@
 		</nav>
 
 		<!-- Section 1: What is Lovable? -->
-		<section id="what-is-lovable">
+		<section id="what-is-lovable" class="article-section">
 			<h2>What is Lovable?</h2>
 
 			<p>
@@ -257,13 +249,14 @@
 				The problem? Lovable's speed-first approach means security often comes second. When you don't see the database configuration, you don't think about it - and that's exactly where things go wrong.
 			</p>
 
-			<div class="info-box">
-				<strong>Lovable Stack:</strong> React + TypeScript + Tailwind + Vite + Shadcn UI + Supabase
+			<div class="alert alert-info">
+				<div class="alert-title">Lovable Stack</div>
+				<p>React + TypeScript + Tailwind + Vite + Shadcn UI + Supabase</p>
 			</div>
 		</section>
 
 		<!-- Section 2: CVE-2025-48757 -->
-		<section id="cve-2025-48757">
+		<section id="cve-2025-48757" class="article-section">
 			<h2>The CVE-2025-48757 Disaster</h2>
 
 			<p>
@@ -277,13 +270,13 @@
 			</p>
 
 			<div class="code-block">
-				<div class="code-header">
-					<span class="code-lang">Attack Flow</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">Attack Flow</span>
 				</div>
-				<pre><code>{`1. Attacker finds Lovable-built app (*.lovable.app)
+				<pre><code>1. Attacker finds Lovable-built app (*.lovable.app)
 2. Views page source → finds Supabase URL and anon_key
 3. Connects to Supabase directly with the anon_key
-4. Missing RLS = full read/write access to ALL data`}</code></pre>
+4. Missing RLS = full read/write access to ALL data</code></pre>
 			</div>
 
 			<h3>The Scale of Exposure</h3>
@@ -319,13 +312,14 @@
 				</div>
 			</div>
 
-			<div class="warning-box">
-				<strong>Important:</strong> Lovable's security scanner checks if RLS <em>exists</em>, not if it's <em>correct</em>. A policy that allows all authenticated users to see all data passes the scanner but is still a <a href="/kb/security/vulnerabilities/broken-access-control/">broken access control</a> vulnerability.
+			<div class="alert alert-warning">
+				<div class="alert-title">Important</div>
+				<p>Lovable's security scanner checks if RLS <em>exists</em>, not if it's <em>correct</em>. A policy that allows all authenticated users to see all data passes the scanner but is still a <a href="/kb/security/vulnerabilities/broken-access-control/">broken access control</a> vulnerability.</p>
 			</div>
 		</section>
 
 		<!-- Section 3: VibeScamming -->
-		<section id="vibescamming">
+		<section id="vibescamming" class="article-section">
 			<h2>VibeScamming: The Phishing Risk</h2>
 
 			<p>
@@ -334,33 +328,22 @@
 
 			<h3>Benchmark Results</h3>
 
-			<div class="comparison-table-container">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>AI Tool</th>
-							<th>Score</th>
-							<th>Assessment</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>ChatGPT</td>
-							<td><span class="score-good">8.0/10</span></td>
-							<td>Most cautious, high pushback on malicious requests</td>
-						</tr>
-						<tr>
-							<td>Claude</td>
-							<td><span class="score-medium">4.3/10</span></td>
-							<td>Initial resistance, persuadable with "security research" framing</td>
-						</tr>
-						<tr>
-							<td>Lovable</td>
-							<td><span class="score-bad">1.8/10</span></td>
-							<td>Highest exploitability, minimal guardrails</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="benchmark-stack">
+				<div class="benchmark-row">
+					<span class="benchmark-tool">ChatGPT</span>
+					<span class="benchmark-score score-good">8.0/10</span>
+					<span class="benchmark-assessment">Most cautious, high pushback on malicious requests</span>
+				</div>
+				<div class="benchmark-row">
+					<span class="benchmark-tool">Claude</span>
+					<span class="benchmark-score score-medium">4.3/10</span>
+					<span class="benchmark-assessment">Initial resistance, persuadable with "security research" framing</span>
+				</div>
+				<div class="benchmark-row highlight-bad">
+					<span class="benchmark-tool">Lovable</span>
+					<span class="benchmark-score score-bad">1.8/10</span>
+					<span class="benchmark-assessment">Highest exploitability, minimal guardrails</span>
+				</div>
 			</div>
 
 			<h3>What Attackers Can Build</h3>
@@ -379,37 +362,34 @@
 		</section>
 
 		<!-- Section 4: Common Security Issues -->
-		<section id="security-issues">
+		<section id="security-issues" class="article-section">
 			<h2>Common Security Issues in Lovable Apps</h2>
 
 			<h3>Issue 1: Missing RLS Policies</h3>
 
 			<p>The most critical issue. When RLS is disabled, anyone can query your database.</p>
 
-			<div class="code-block">
-				<div class="code-header">
-					<span class="code-lang">SQL - VULNERABLE</span>
-				</div>
-				<pre><code>{`-- Table created without RLS
+			<div class="code-comparison">
+				<div class="code-block vulnerable">
+					<div class="code-label">Vulnerable</div>
+					<pre><code>-- Table created without RLS
 CREATE TABLE users (
   id UUID PRIMARY KEY,
   email TEXT,
   created_at TIMESTAMPTZ
 );
--- RLS not enabled = anyone can read ALL users`}</code></pre>
-			</div>
-
-			<div class="code-block">
-				<div class="code-header">
-					<span class="code-lang">SQL - SECURE</span>
+-- RLS not enabled = anyone can read ALL users</code></pre>
 				</div>
-				<pre><code>{`-- Enable RLS and create proper policy
+				<div class="code-block secure">
+					<div class="code-label">Secure</div>
+					<pre><code>-- Enable RLS and create proper policy
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Users can only access own data"
 ON users
 FOR ALL
-USING (auth.uid() = id);`}</code></pre>
+USING (auth.uid() = id);</code></pre>
+				</div>
 			</div>
 
 			<h3>Issue 2: Overly Permissive RLS</h3>
@@ -418,16 +398,14 @@ USING (auth.uid() = id);`}</code></pre>
 				Having RLS enabled isn't enough - the policy must actually restrict access. This is a classic <a href="/kb/security/vulnerabilities/idor/">IDOR vulnerability</a>.
 			</p>
 
-			<div class="code-block">
-				<div class="code-header">
-					<span class="code-lang">SQL - VULNERABLE</span>
-				</div>
-				<pre><code>{`-- Policy allows too much access
+			<div class="code-block vulnerable">
+				<div class="code-label">Vulnerable</div>
+				<pre><code>-- Policy allows too much access
 CREATE POLICY "Allow all authenticated"
 ON sensitive_data
 FOR SELECT
 USING (auth.role() = 'authenticated');
--- ANY logged-in user sees ALL data - not just their own`}</code></pre>
+-- ANY logged-in user sees ALL data - not just their own</code></pre>
 			</div>
 
 			<h3>Issue 3: Exposed API Keys</h3>
@@ -437,17 +415,17 @@ USING (auth.role() = 'authenticated');
 			</p>
 
 			<div class="code-block">
-				<div class="code-header">
-					<span class="code-lang">JavaScript - Frontend Code</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">JavaScript - Frontend Code</span>
 				</div>
-				<pre><code>{`// Lovable exposes these (by design - this is expected)
+				<pre><code>// Lovable exposes these (by design - this is expected)
 const supabase = createClient(
   'https://xxx.supabase.co',
   'eyJhbG...' // anon key - ALWAYS public
 )
 
 // Security depends ENTIRELY on RLS policies
-// If RLS is missing or weak, this key = full access`}</code></pre>
+// If RLS is missing or weak, this key = full access</code></pre>
 			</div>
 
 			<h3>Issue 4: Client-Side Validation Only</h3>
@@ -456,21 +434,19 @@ const supabase = createClient(
 				Lovable often generates validation only in the frontend, which attackers bypass by calling the API directly.
 			</p>
 
-			<div class="code-block">
-				<div class="code-header">
-					<span class="code-lang">JavaScript - VULNERABLE</span>
-				</div>
-				<pre><code>{`// Client-side validation only - easily bypassed
-const handleSubmit = (data) => {
-  if (data.amount > 0) {  // Attacker skips this check
+			<div class="code-block vulnerable">
+				<div class="code-label">Vulnerable</div>
+				<pre><code>// Client-side validation only - easily bypassed
+const handleSubmit = (data) => {'{'}
+  if (data.amount > 0) {'{'}  // Attacker skips this check
     await supabase.from('transactions').insert(data)
-  }
-}`}</code></pre>
+  {'}'}
+{'}'}</code></pre>
 			</div>
 		</section>
 
 		<!-- Section 5: How to Secure -->
-		<section id="how-to-secure">
+		<section id="how-to-secure" class="article-section">
 			<h2>How to Secure Your Lovable App</h2>
 
 			<h3>Step 1: Audit Every Table</h3>
@@ -478,38 +454,38 @@ const handleSubmit = (data) => {
 			<p>Go to your Supabase dashboard and check RLS status for all tables:</p>
 
 			<div class="code-block">
-				<div class="code-header">
-					<span class="code-lang">SQL - Audit Query</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">SQL - Audit Query</span>
 				</div>
-				<pre><code>{`-- List all tables and their RLS status
+				<pre><code>-- List all tables and their RLS status
 SELECT
   schemaname,
   tablename,
   rowsecurity as "RLS Enabled"
 FROM pg_tables
-WHERE schemaname = 'public';`}</code></pre>
+WHERE schemaname = 'public';</code></pre>
 			</div>
 
 			<h3>Step 2: Enable RLS on ALL Tables</h3>
 
 			<div class="code-block">
-				<div class="code-header">
-					<span class="code-lang">SQL</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">SQL</span>
 				</div>
-				<pre><code>{`-- Enable RLS on each table
+				<pre><code>-- Enable RLS on each table
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE posts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE transactions ENABLE ROW LEVEL SECURITY;
--- Repeat for EVERY table with user data`}</code></pre>
+-- Repeat for EVERY table with user data</code></pre>
 			</div>
 
 			<h3>Step 3: Create Proper Policies</h3>
 
 			<div class="code-block">
-				<div class="code-header">
-					<span class="code-lang">SQL - Common Policy Patterns</span>
+				<div class="code-block-header">
+					<span class="code-block-lang">SQL - Common Policy Patterns</span>
 				</div>
-				<pre><code>{`-- Users can only see their own data
+				<pre><code>-- Users can only see their own data
 CREATE POLICY "user_isolation" ON your_table
 FOR ALL USING (auth.uid() = user_id);
 
@@ -524,7 +500,7 @@ FOR INSERT WITH CHECK (auth.uid() = author_id);
 CREATE POLICY "admin_only" ON admin_data
 FOR ALL USING (
   auth.uid() IN (SELECT id FROM users WHERE role = 'admin')
-);`}</code></pre>
+);</code></pre>
 			</div>
 
 			<h3>Step 4: Protect Real API Keys</h3>
@@ -541,80 +517,114 @@ FOR ALL USING (
 				In Lovable, you can prompt: <strong>"review my app's security"</strong>. The AI will scan for common issues. But remember: this scanner has limitations. Manual review is still required.
 			</p>
 
-			<div class="checklist">
+			<div class="security-checklist">
 				<h4>Security Checklist for Lovable Apps</h4>
-				<label class="checklist-item">
-					<input type="checkbox" />
-					<span>RLS enabled on ALL tables with user data</span>
-				</label>
-				<label class="checklist-item">
-					<input type="checkbox" />
-					<span>Every policy uses <code>auth.uid()</code> to filter by user</span>
-				</label>
-				<label class="checklist-item">
-					<input type="checkbox" />
-					<span>No "authenticated" policies without user filtering</span>
-				</label>
-				<label class="checklist-item">
-					<input type="checkbox" />
-					<span>No real API keys in frontend code</span>
-				</label>
-				<label class="checklist-item">
-					<input type="checkbox" />
-					<span>Sensitive operations in Edge Functions</span>
-				</label>
-				<label class="checklist-item">
-					<input type="checkbox" />
-					<span>Asked Lovable to "review my app's security"</span>
-				</label>
-				<label class="checklist-item">
-					<input type="checkbox" />
-					<span>Manual verification of all policies in Supabase dashboard</span>
-				</label>
+				<ul class="checklist">
+					<li class="checklist-item">
+						<span class="checklist-checkbox"></span>
+						<span class="checklist-content">RLS enabled on ALL tables with user data</span>
+					</li>
+					<li class="checklist-item">
+						<span class="checklist-checkbox"></span>
+						<span class="checklist-content">Every policy uses <code>auth.uid()</code> to filter by user</span>
+					</li>
+					<li class="checklist-item">
+						<span class="checklist-checkbox"></span>
+						<span class="checklist-content">No "authenticated" policies without user filtering</span>
+					</li>
+					<li class="checklist-item">
+						<span class="checklist-checkbox"></span>
+						<span class="checklist-content">No real API keys in frontend code</span>
+					</li>
+					<li class="checklist-item">
+						<span class="checklist-checkbox"></span>
+						<span class="checklist-content">Sensitive operations in Edge Functions</span>
+					</li>
+					<li class="checklist-item">
+						<span class="checklist-checkbox"></span>
+						<span class="checklist-content">Asked Lovable to "review my app's security"</span>
+					</li>
+					<li class="checklist-item">
+						<span class="checklist-checkbox"></span>
+						<span class="checklist-content">Manual verification of all policies in Supabase dashboard</span>
+					</li>
+				</ul>
 			</div>
 		</section>
 
 		<!-- Section 6: Tool Comparison -->
-		<section id="tool-comparison">
+		<section id="tool-comparison" class="article-section">
 			<h2>Lovable vs Other AI Tools</h2>
 
-			<div class="comparison-table-container">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Tool</th>
-							<th>RLS Handling</th>
-							<th>Security Scanner</th>
-							<th>Deployment</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><strong>Lovable</strong></td>
-							<td><span class="risk-high">Often missing</span></td>
-							<td>Yes (limited)</td>
-							<td>Auto-deploys full apps</td>
-						</tr>
-						<tr>
-							<td><a href="/kb/vibe-coding-tools/bolt/">Bolt</a></td>
-							<td><span class="risk-medium">User responsibility</span></td>
-							<td>No</td>
-							<td>Generates code, you deploy</td>
-						</tr>
-						<tr>
-							<td><a href="/kb/vibe-coding-tools/v0/">v0</a></td>
-							<td><span class="risk-low">N/A (UI only)</span></td>
-							<td>Deployment blocks</td>
-							<td>UI components only</td>
-						</tr>
-						<tr>
-							<td><a href="/kb/vibe-coding-tools/cursor/">Cursor</a></td>
-							<td><span class="risk-medium">User responsibility</span></td>
-							<td>No</td>
-							<td>Generates code, you deploy</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="comparison-stack">
+				<div class="comparison-row highlight-bad">
+					<div class="comparison-tool"><strong>Lovable</strong></div>
+					<div class="comparison-details">
+						<div class="comparison-item">
+							<span class="comparison-label">RLS Handling</span>
+							<span class="risk-high">Often missing</span>
+						</div>
+						<div class="comparison-item">
+							<span class="comparison-label">Scanner</span>
+							<span>Yes (limited)</span>
+						</div>
+						<div class="comparison-item">
+							<span class="comparison-label">Deployment</span>
+							<span>Auto-deploys full apps</span>
+						</div>
+					</div>
+				</div>
+				<div class="comparison-row">
+					<div class="comparison-tool"><a href="/kb/vibe-coding-tools/bolt/">Bolt</a></div>
+					<div class="comparison-details">
+						<div class="comparison-item">
+							<span class="comparison-label">RLS Handling</span>
+							<span class="risk-medium">User responsibility</span>
+						</div>
+						<div class="comparison-item">
+							<span class="comparison-label">Scanner</span>
+							<span>No</span>
+						</div>
+						<div class="comparison-item">
+							<span class="comparison-label">Deployment</span>
+							<span>Generates code, you deploy</span>
+						</div>
+					</div>
+				</div>
+				<div class="comparison-row">
+					<div class="comparison-tool"><a href="/kb/vibe-coding-tools/v0/">v0</a></div>
+					<div class="comparison-details">
+						<div class="comparison-item">
+							<span class="comparison-label">RLS Handling</span>
+							<span class="risk-low">N/A (UI only)</span>
+						</div>
+						<div class="comparison-item">
+							<span class="comparison-label">Scanner</span>
+							<span>Deployment blocks</span>
+						</div>
+						<div class="comparison-item">
+							<span class="comparison-label">Deployment</span>
+							<span>UI components only</span>
+						</div>
+					</div>
+				</div>
+				<div class="comparison-row">
+					<div class="comparison-tool"><a href="/kb/vibe-coding-tools/cursor/">Cursor</a></div>
+					<div class="comparison-details">
+						<div class="comparison-item">
+							<span class="comparison-label">RLS Handling</span>
+							<span class="risk-medium">User responsibility</span>
+						</div>
+						<div class="comparison-item">
+							<span class="comparison-label">Scanner</span>
+							<span>No</span>
+						</div>
+						<div class="comparison-item">
+							<span class="comparison-label">Deployment</span>
+							<span>Generates code, you deploy</span>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<p>
@@ -627,25 +637,27 @@ FOR ALL USING (
 		</section>
 
 		<!-- Section 7: AI Fix Prompt -->
-		<section id="ai-fix-prompt">
+		<section id="ai-fix-prompt" class="article-section">
 			<h2>AI Fix Prompt: Audit Your Lovable App</h2>
 
 			<p>Copy this prompt into Lovable or any AI assistant to audit your app:</p>
 
-			<div class="code-block">
-				<div class="code-header">
-					<span class="code-lang">AI Security Audit Prompt</span>
+			<div class="fix-prompt">
+				<div class="fix-prompt-header">
+					<span class="fix-prompt-label">AI Security Audit Prompt</span>
 					<button
 						class="copy-btn"
-						onclick={(e) =>
-							navigator.clipboard.writeText(
-								e.currentTarget.parentElement?.nextElementSibling?.textContent || ''
-							)}
+						onclick={(e) => {
+							const content = e.currentTarget.closest('.fix-prompt')?.querySelector('.fix-prompt-content')?.textContent || '';
+							navigator.clipboard.writeText(content);
+							e.currentTarget.textContent = 'Copied!';
+							setTimeout(() => e.currentTarget.textContent = 'Copy', 2000);
+						}}
 					>
 						Copy
 					</button>
 				</div>
-				<pre><code>{`Review my Lovable-generated app for security vulnerabilities:
+				<div class="fix-prompt-content">Review my Lovable-generated app for security vulnerabilities:
 
 ## Check 1: Row Level Security
 For every Supabase table:
@@ -688,199 +700,77 @@ For each vulnerability found:
 4. Secure replacement code
 5. Severity: Critical/High/Medium
 
-Prioritize by severity. Provide copy-paste fixes.`}</code></pre>
+Prioritize by severity. Provide copy-paste fixes.</div>
 			</div>
 		</section>
 
 		<!-- FAQ Section -->
-		<section id="faq" class="faq-section">
+		<section id="faq" class="article-section">
 			<h2>Frequently Asked Questions</h2>
 
 			<div class="faq-list">
-				{#each faqs as faq, index}
-					<div class="faq-item" class:open={openFaq === index}>
-						<button
-							class="faq-question"
-							onclick={() => toggleFaq(index)}
-							aria-expanded={openFaq === index}
-						>
-							<span>{faq.question}</span>
-							<svg
-								class="faq-icon"
-								width="20"
-								height="20"
-								viewBox="0 0 20 20"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M5 7.5L10 12.5L15 7.5"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-								/>
-							</svg>
-						</button>
-						{#if openFaq === index}
-							<div class="faq-answer">
-								<p>{@html faq.answer}</p>
-							</div>
-						{/if}
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{@html faq.answer}</p>
 					</div>
 				{/each}
 			</div>
 		</section>
 
 		<!-- Related Content -->
-		<section class="related-content">
+		<section class="article-section">
 			<h2>Related Articles</h2>
 
 			<div class="related-grid">
-				<a href="/kb/security/vulnerabilities/broken-access-control/" class="related-card">
-					<h3>Broken Access Control</h3>
-					<p>The #1 OWASP vulnerability. Missing RLS is a form of broken access control.</p>
+				<a href="/kb/security/vulnerabilities/broken-access-control/" class="card card-interactive">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Broken Access Control</div>
+					<p class="related-card-description">The #1 OWASP vulnerability. Missing RLS is a form of broken access control.</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/idor/" class="related-card">
-					<h3>IDOR Vulnerabilities</h3>
-					<p>When weak RLS policies let users access each other's data.</p>
+				<a href="/kb/security/vulnerabilities/idor/" class="card card-interactive">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">IDOR Vulnerabilities</div>
+					<p class="related-card-description">When weak RLS policies let users access each other's data.</p>
 				</a>
-				<a href="/kb/security/stacks/nextjs-supabase/" class="related-card">
-					<h3>Next.js + Supabase Security</h3>
-					<p>Complete guide to RLS policies and Supabase security configuration.</p>
+				<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive">
+					<div class="related-card-category">Stack Guide</div>
+					<div class="related-card-title">Next.js + Supabase Security</div>
+					<p class="related-card-description">Complete guide to RLS policies and Supabase security configuration.</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
-					<h3>Bolt Security Patterns</h3>
-					<p>How Bolt compares to Lovable for security-conscious vibe coding.</p>
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive">
+					<div class="related-card-category">Tool</div>
+					<div class="related-card-title">Bolt Security Patterns</div>
+					<p class="related-card-description">How Bolt compares to Lovable for security-conscious vibe coding.</p>
 				</a>
 			</div>
 		</section>
 
 		<!-- CTA Section -->
-		<section class="cta-section">
-			<div class="cta-box">
-				<h2>Scan Your Lovable App</h2>
-				<p>
-					vibeship scanner detects missing RLS policies, exposed API keys, and other vulnerabilities in your vibe coded apps - including those built with Lovable.
-				</p>
-				<a href="https://scanner.vibeship.co" class="cta-button">Try vibeship scanner Free →</a>
-			</div>
+		<section class="final-cta">
+			<h2>Scan Your Lovable App</h2>
+			<p>
+				vibeship scanner detects missing RLS policies, exposed API keys, and other vulnerabilities in your vibe coded apps - including those built with Lovable.
+			</p>
+			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">Try vibeship scanner Free →</a>
 		</section>
 	</article>
 </div>
 
 <style>
-	/* Article Container */
-	.article-container {
-		max-width: 800px;
-		margin: 0 auto;
-		padding: 2rem 1rem;
-	}
-
-	/* Breadcrumb */
-	.breadcrumb ol {
-		display: flex;
-		flex-wrap: wrap;
-		list-style: none;
-		padding: 0;
-		margin: 0 0 2rem 0;
-		font-size: 0.875rem;
-	}
-
-	.breadcrumb li:not(:last-child)::after {
-		content: '/';
-		margin: 0 0.5rem;
-		color: #6b7280;
-	}
-
-	.breadcrumb a {
-		color: #3b82f6;
-		text-decoration: none;
-	}
-
-	.breadcrumb a:hover {
-		text-decoration: underline;
-	}
-
-	.breadcrumb span[aria-current] {
-		color: #6b7280;
-	}
-
-	/* Article Header */
-	.article-header {
+	/* Stats Row - Sharp edges */
+	.stats-row {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
 		margin-bottom: 2rem;
 	}
 
-	.meta-badges {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-		margin-bottom: 1rem;
-	}
-
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 9999px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-	}
-
-	.badge-critical {
-		background-color: #fef2f2;
-		color: #dc2626;
-		border: 1px solid #fecaca;
-	}
-
-	.badge-tool {
-		background-color: #f0f9ff;
-		color: #0284c7;
-		border: 1px solid #bae6fd;
-	}
-
-	.badge-warning {
-		background-color: #fefce8;
-		color: #ca8a04;
-		border: 1px solid #fef08a;
-	}
-
-	h1 {
-		font-size: 2.25rem;
-		font-weight: 800;
-		line-height: 1.2;
-		margin: 0 0 1rem 0;
-		color: #111827;
-	}
-
-	.subtitle {
-		font-size: 1.25rem;
-		color: #4b5563;
-		margin: 0 0 1.5rem 0;
-	}
-
-	/* Quick Answer Box */
-	.quick-answer {
-		background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-		border: 1px solid #93c5fd;
-		border-radius: 0.75rem;
-		padding: 1.25rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer strong {
-		color: #1e40af;
-	}
-
-	.quick-answer a {
-		color: #2563eb;
-	}
-
-	/* CVE Alert Box */
+	/* CVE Alert Box - Sharp edges */
 	.cve-alert {
-		background-color: #fef2f2;
-		border: 2px solid #dc2626;
-		border-radius: 0.75rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--red);
+		border-left: 3px solid var(--red);
 		padding: 1.25rem;
 		margin-bottom: 2rem;
 	}
@@ -890,198 +780,34 @@ Prioritize by severity. Provide copy-paste fixes.`}</code></pre>
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 1rem;
+		flex-wrap: wrap;
+		gap: 0.5rem;
 	}
 
 	.cve-id {
-		font-size: 1.25rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 1.125rem;
 		font-weight: 700;
-		color: #991b1b;
+		color: var(--red);
 	}
 
 	.cve-score {
-		background-color: #dc2626;
+		background: var(--red);
 		color: white;
 		padding: 0.25rem 0.75rem;
-		border-radius: 0.375rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.75rem;
 		font-weight: 600;
-		font-size: 0.875rem;
 	}
 
 	.cve-details p {
 		margin: 0.5rem 0;
-		color: #7f1d1d;
+		color: var(--text-secondary);
 	}
 
-	.cve-details strong {
-		color: #991b1b;
-	}
-
-	/* Stats Box */
-	.stats-box {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 1rem;
-		background-color: #f9fafb;
-		border: 1px solid #e5e7eb;
-		border-radius: 0.75rem;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.stat-item {
-		text-align: center;
-	}
-
-	.stat-value {
-		display: block;
-		font-size: 1.5rem;
-		font-weight: 800;
-		color: #111827;
-	}
-
-	.stat-value.bad {
-		color: #dc2626;
-	}
-
-	.stat-label {
-		display: block;
-		font-size: 0.75rem;
-		color: #6b7280;
-		text-transform: uppercase;
-		margin-top: 0.25rem;
-	}
-
-	/* Table of Contents */
-	.toc {
-		background-color: #f9fafb;
-		border: 1px solid #e5e7eb;
-		border-radius: 0.75rem;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.toc h2 {
-		font-size: 1rem;
-		font-weight: 600;
-		margin: 0 0 1rem 0;
-		color: #374151;
-	}
-
-	.toc ol {
-		margin: 0;
-		padding-left: 1.25rem;
-	}
-
-	.toc li {
-		margin-bottom: 0.5rem;
-	}
-
-	.toc a {
-		color: #3b82f6;
-		text-decoration: none;
-	}
-
-	.toc a:hover {
-		text-decoration: underline;
-	}
-
-	/* Sections */
-	section {
-		margin-bottom: 3rem;
-	}
-
-	section h2 {
-		font-size: 1.5rem;
-		font-weight: 700;
-		margin: 0 0 1rem 0;
-		color: #111827;
-		padding-top: 1rem;
-	}
-
-	section h3 {
-		font-size: 1.25rem;
-		font-weight: 600;
-		margin: 1.5rem 0 0.75rem 0;
-		color: #1f2937;
-	}
-
-	section h4 {
-		font-size: 1.1rem;
-		font-weight: 600;
-		margin: 1.25rem 0 0.5rem 0;
-		color: #374151;
-	}
-
-	section p {
-		color: #374151;
-		line-height: 1.75;
-		margin-bottom: 1rem;
-	}
-
-	section ul,
-	section ol {
-		color: #374151;
-		line-height: 1.75;
-		margin-bottom: 1rem;
-		padding-left: 1.5rem;
-	}
-
-	section li {
-		margin-bottom: 0.5rem;
-	}
-
-	section a {
-		color: #2563eb;
-		text-decoration: none;
-	}
-
-	section a:hover {
-		text-decoration: underline;
-	}
-
-	section code {
-		background-color: #f3f4f6;
-		padding: 0.125rem 0.375rem;
-		border-radius: 0.25rem;
-		font-size: 0.875em;
-		font-family: 'Fira Code', 'Consolas', monospace;
-	}
-
-	/* Info Box */
-	.info-box {
-		background-color: #f0f9ff;
-		border: 1px solid #bae6fd;
-		border-left: 4px solid #0284c7;
-		border-radius: 0.5rem;
-		padding: 1rem 1.25rem;
-		margin: 1.5rem 0;
-	}
-
-	.info-box strong {
-		color: #0369a1;
-	}
-
-	/* Warning Box */
-	.warning-box {
-		background-color: #fef3c7;
-		border: 1px solid #f59e0b;
-		border-left: 4px solid #f59e0b;
-		border-radius: 0.5rem;
-		padding: 1rem 1.25rem;
-		margin: 1.5rem 0;
-	}
-
-	.warning-box strong {
-		color: #92400e;
-	}
-
-	.warning-box a {
-		color: #b45309;
-	}
-
-	/* Timeline */
+	/* Timeline - Sharp edges */
 	.timeline {
-		border-left: 2px solid #e5e7eb;
+		border-left: 2px solid var(--border);
 		margin: 1.5rem 0 1.5rem 1rem;
 		padding-left: 1.5rem;
 	}
@@ -1098,71 +824,44 @@ Prioritize by severity. Provide copy-paste fixes.`}</code></pre>
 		top: 0.5rem;
 		width: 0.75rem;
 		height: 0.75rem;
-		background-color: #3b82f6;
-		border-radius: 50%;
+		background: var(--green-dim);
 	}
 
 	.timeline-date {
 		display: block;
-		font-size: 0.875rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.8rem;
 		font-weight: 600;
-		color: #3b82f6;
+		color: var(--green-dim);
 	}
 
 	.timeline-event {
-		color: #374151;
+		color: var(--text-secondary);
 	}
 
-	/* Comparison Table */
-	.comparison-table-container {
-		overflow-x: auto;
-		margin: 1.5rem 0;
-	}
-
-	.comparison-table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 0.9rem;
-	}
-
-	.comparison-table th,
-	.comparison-table td {
-		padding: 0.75rem 1rem;
-		text-align: left;
-		border-bottom: 1px solid #e5e7eb;
-	}
-
-	.comparison-table th {
-		background-color: #f9fafb;
-		font-weight: 600;
-		color: #374151;
-	}
-
-	.comparison-table td a {
-		color: #2563eb;
-	}
-
+	/* Score badges */
 	.score-good {
-		color: #16a34a;
+		color: var(--green);
 		font-weight: 600;
 	}
 
 	.score-medium {
-		color: #ca8a04;
+		color: var(--orange);
 		font-weight: 600;
 	}
 
 	.score-bad {
-		color: #dc2626;
+		color: var(--red);
 		font-weight: 600;
 	}
 
+	/* Risk badges */
 	.risk-low {
 		display: inline-block;
 		padding: 0.125rem 0.5rem;
-		background-color: #dcfce7;
-		color: #166534;
-		border-radius: 0.25rem;
+		background: transparent;
+		border: 1px solid var(--green);
+		color: var(--green);
 		font-size: 0.75rem;
 		font-weight: 600;
 	}
@@ -1170,9 +869,9 @@ Prioritize by severity. Provide copy-paste fixes.`}</code></pre>
 	.risk-medium {
 		display: inline-block;
 		padding: 0.125rem 0.5rem;
-		background-color: #fef3c7;
-		color: #92400e;
-		border-radius: 0.25rem;
+		background: transparent;
+		border: 1px solid var(--orange);
+		color: var(--orange);
 		font-size: 0.75rem;
 		font-weight: 600;
 	}
@@ -1180,305 +879,157 @@ Prioritize by severity. Provide copy-paste fixes.`}</code></pre>
 	.risk-high {
 		display: inline-block;
 		padding: 0.125rem 0.5rem;
-		background-color: #fee2e2;
-		color: #991b1b;
-		border-radius: 0.25rem;
+		background: transparent;
+		border: 1px solid var(--red);
+		color: var(--red);
 		font-size: 0.75rem;
 		font-weight: 600;
 	}
 
-	/* Checklist */
-	.checklist {
-		background-color: #f9fafb;
-		border: 1px solid #e5e7eb;
-		border-radius: 0.75rem;
+	/* Security Checklist */
+	.security-checklist {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1.25rem;
-		margin: 1rem 0;
-	}
-
-	.checklist h4 {
-		margin-top: 0;
-		color: #111827;
-	}
-
-	.checklist-item {
-		display: flex;
-		align-items: flex-start;
-		gap: 0.75rem;
-		padding: 0.5rem 0;
-		cursor: pointer;
-		color: #374151;
-	}
-
-	.checklist-item input[type='checkbox'] {
-		margin-top: 0.25rem;
-		width: 1rem;
-		height: 1rem;
-		cursor: pointer;
-	}
-
-	.checklist-item span {
-		flex: 1;
-		line-height: 1.5;
-	}
-
-	.checklist-item code {
-		background-color: #e5e7eb;
-	}
-
-	/* Code Block */
-	.code-block {
 		margin: 1.5rem 0;
-		border-radius: 0.75rem;
-		overflow: hidden;
-		background-color: #1f2937;
 	}
 
-	.code-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0.75rem 1rem;
-		background-color: #374151;
+	.security-checklist h4 {
+		margin-top: 0;
+		margin-bottom: 1rem;
+		color: var(--text-primary);
 	}
 
-	.code-lang {
-		font-size: 0.75rem;
-		font-weight: 600;
-		color: #9ca3af;
-		text-transform: uppercase;
-	}
-
-	.copy-btn {
-		padding: 0.25rem 0.75rem;
-		font-size: 0.75rem;
-		font-weight: 500;
-		color: #d1d5db;
-		background-color: #4b5563;
-		border: none;
-		border-radius: 0.375rem;
-		cursor: pointer;
-		transition: background-color 0.2s;
-	}
-
-	.copy-btn:hover {
-		background-color: #6b7280;
-	}
-
-	.code-block pre {
-		margin: 0;
-		padding: 1.25rem;
-		overflow-x: auto;
-	}
-
-	.code-block code {
-		font-family: 'Fira Code', 'Consolas', monospace;
-		font-size: 0.875rem;
-		line-height: 1.6;
-		color: #e5e7eb;
-		background: none;
-		padding: 0;
-	}
-
-	/* FAQ Section */
-	.faq-section {
-		margin-top: 3rem;
-	}
-
-	.faq-list {
-		border: 1px solid #e5e7eb;
-		border-radius: 0.75rem;
-		overflow: hidden;
-	}
-
-	.faq-item {
-		border-bottom: 1px solid #e5e7eb;
-	}
-
-	.faq-item:last-child {
-		border-bottom: none;
-	}
-
-	.faq-question {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 1rem 1.25rem;
-		background: none;
-		border: none;
-		cursor: pointer;
-		text-align: left;
-		font-size: 1rem;
-		font-weight: 600;
-		color: #111827;
-		transition: background-color 0.2s;
-	}
-
-	.faq-question:hover {
-		background-color: #f9fafb;
-	}
-
-	.faq-icon {
+	.security-checklist .checklist-checkbox {
+		width: 16px;
+		height: 16px;
+		border: 2px solid var(--border-strong);
 		flex-shrink: 0;
-		transition: transform 0.2s;
-		color: #6b7280;
 	}
 
-	.faq-item.open .faq-icon {
-		transform: rotate(180deg);
-	}
-
-	.faq-answer {
-		padding: 0 1.25rem 1.25rem;
-		color: #4b5563;
-		line-height: 1.75;
-	}
-
-	.faq-answer p {
-		margin: 0;
-	}
-
-	.faq-answer a {
-		color: #2563eb;
-	}
-
-	.faq-answer code {
-		background-color: #f3f4f6;
-		padding: 0.125rem 0.375rem;
-		border-radius: 0.25rem;
-		font-size: 0.875em;
-	}
-
-	/* Related Content */
-	.related-content {
-		margin-top: 3rem;
-		padding-top: 2rem;
-		border-top: 1px solid #e5e7eb;
-	}
-
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 1rem;
-		margin-top: 1rem;
-	}
-
-	.related-card {
-		display: block;
-		padding: 1.25rem;
-		background-color: #f9fafb;
-		border: 1px solid #e5e7eb;
-		border-radius: 0.75rem;
-		text-decoration: none;
-		transition:
-			border-color 0.2s,
-			box-shadow 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: #3b82f6;
-		box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-	}
-
-	.related-card h3 {
-		font-size: 1rem;
-		font-weight: 600;
-		color: #111827;
-		margin: 0 0 0.5rem 0;
-	}
-
-	.related-card p {
-		font-size: 0.875rem;
-		color: #6b7280;
-		margin: 0;
+	.security-checklist .checklist-content {
+		color: var(--text-secondary);
 		line-height: 1.5;
 	}
 
-	/* CTA Section */
-	.cta-section {
-		margin-top: 3rem;
+	/* Benchmark Stack - Mobile Friendly */
+	.benchmark-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin: 1.5rem 0;
 	}
 
-	.cta-box {
-		background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-		border-radius: 1rem;
-		padding: 2rem;
-		text-align: center;
-		color: white;
+	.benchmark-row {
+		display: grid;
+		grid-template-columns: 100px 80px 1fr;
+		gap: 1rem;
+		padding: 0.75rem 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		align-items: center;
 	}
 
-	.cta-box h2 {
-		color: white;
-		margin: 0 0 0.75rem 0;
-		padding-top: 0;
+	.benchmark-row.highlight-bad {
+		border-left: 3px solid var(--red);
 	}
 
-	.cta-box p {
-		color: rgba(255, 255, 255, 0.9);
-		margin-bottom: 1.5rem;
-	}
-
-	.cta-button {
-		display: inline-block;
-		padding: 0.875rem 2rem;
-		background-color: white;
-		color: #1e40af;
+	.benchmark-tool {
 		font-weight: 600;
-		text-decoration: none;
-		border-radius: 0.5rem;
-		transition:
-			transform 0.2s,
-			box-shadow 0.2s;
 	}
 
-	.cta-button:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	.benchmark-score {
+		font-family: 'JetBrains Mono', monospace;
+		font-weight: 600;
+	}
+
+	.benchmark-assessment {
+		font-size: 0.9rem;
+		color: var(--text-secondary);
+	}
+
+	@media (max-width: 600px) {
+		.benchmark-row {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+	}
+
+	/* Comparison Stack - Mobile Friendly */
+	.comparison-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin: 1.5rem 0;
+	}
+
+	.comparison-row {
+		display: grid;
+		grid-template-columns: 100px 1fr;
+		gap: 1rem;
+		padding: 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+	}
+
+	.comparison-row.highlight-bad {
+		border-left: 3px solid var(--red);
+	}
+
+	.comparison-tool {
+		font-weight: 600;
+	}
+
+	.comparison-details {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+	}
+
+	.comparison-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.comparison-label {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		color: var(--text-tertiary);
+		letter-spacing: 0.05em;
+	}
+
+	@media (max-width: 700px) {
+		.comparison-row {
+			grid-template-columns: 1fr;
+			gap: 0.75rem;
+		}
+
+		.comparison-details {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.comparison-details {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	/* Responsive */
-	@media (max-width: 640px) {
-		.article-container {
-			padding: 1rem;
-		}
-
-		h1 {
-			font-size: 1.75rem;
-		}
-
-		.subtitle {
-			font-size: 1.1rem;
-		}
-
-		.meta-badges {
-			gap: 0.375rem;
-		}
-
-		.badge {
-			font-size: 0.7rem;
-			padding: 0.2rem 0.5rem;
-		}
-
-		.stats-box {
+	@media (max-width: 768px) {
+		.stats-row {
 			grid-template-columns: repeat(2, 1fr);
 		}
 
 		.cve-header {
 			flex-direction: column;
 			align-items: flex-start;
-			gap: 0.5rem;
 		}
+	}
 
-		.code-block pre {
-			padding: 1rem;
-		}
-
-		.code-block code {
-			font-size: 0.75rem;
-		}
-
-		.related-grid {
+	@media (max-width: 480px) {
+		.stats-row {
 			grid-template-columns: 1fr;
 		}
 	}

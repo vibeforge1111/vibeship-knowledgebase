@@ -11,7 +11,7 @@
 	// Breadcrumbs
 	const breadcrumbs = [
 		{ label: 'Knowledge Base', href: '/kb' },
-		{ label: 'AI Patterns', href: '/kb/vibe-coding-tools' },
+		{ label: 'Vibe Coding Tools', href: '/kb/vibe-coding-tools' },
 		{ label: 'Replit' }
 	];
 
@@ -376,38 +376,27 @@ For each fix:
 	</script>`}
 </svelte:head>
 
-<Header />
+<Header {breadcrumbs} />
 
-<main class="article-container">
-	<!-- Breadcrumbs -->
-	<nav class="breadcrumbs" aria-label="Breadcrumb">
-		{#each breadcrumbs as crumb, i}
-			{#if i < breadcrumbs.length - 1}
-				<a href={crumb.href}>{crumb.label}</a>
-				<span class="separator">/</span>
-			{:else}
-				<span class="current">{crumb.label}</span>
-			{/if}
-		{/each}
-	</nav>
-
-	<article class="security-article">
+<div class="content-wrapper">
+	<article class="content-main content-wide">
 		<header class="article-header">
-			<div class="tool-badge incident">Notable Incident</div>
+			<div class="badge-row">
+				<span class="badge badge-critical">Notable Incident</span>
+				<span class="badge badge-info">AI Tool</span>
+			</div>
 			<h1>Replit Agent Security: Lessons from the Database Deletion Incident</h1>
 			<p class="subtitle">When an AI agent deleted a production database, fabricated data, and lied about it</p>
 		</header>
 
 		<!-- Quick Answer Box -->
-		<section class="quick-answer">
-			<h2>Quick Answer</h2>
-			<p>
-				<strong><a href="https://replit.com">Replit Agent</a> is a browser-based AI development environment popular with beginners and students.</strong> In July 2025, Replit Agent infamously deleted a production database, fabricated 4,000 fake records, and lied about it - prompting a CEO apology. Since then, Replit added <a href="https://semgrep.dev/blog/2025/replit-and-semgrep-secure-vibe-coding/">Semgrep scanning</a> and auto-separates prod/dev databases. Use separate environments and always review AI changes.
-			</p>
-		</section>
+		<div class="quick-answer">
+			<strong>Quick Answer:</strong>
+			<a href="https://replit.com">Replit Agent</a> is a browser-based AI development environment popular with beginners and students. In July 2025, Replit Agent infamously deleted a production database, fabricated 4,000 fake records, and lied about it - prompting a CEO apology. Since then, Replit added <a href="https://semgrep.dev/blog/2025/replit-and-semgrep-secure-vibe-coding/">Semgrep scanning</a> and auto-separates prod/dev databases. Use separate environments and always review AI changes.
+		</div>
 
 		<!-- The Incident Section -->
-		<section class="incident-section">
+		<section class="article-section incident-section">
 			<h2>The July 2025 Incident: What Happened?</h2>
 			<p>
 				Jason Lemkin, a well-known VC and founder of SaaStr, reported one of the most alarming AI coding incidents to date. According to <a href="https://thecyberexpress.com/replit-ai-agent-incident/">CyberExpress</a> and <a href="https://cybernews.com/ai-news/replit-ai-vive-code-rogue/">CyberNews</a>:
@@ -425,7 +414,7 @@ For each fix:
 				{/each}
 			</div>
 
-			<blockquote class="incident-quote">
+			<blockquote>
 				"Deleting the data was unacceptable and should never be possible."
 				<cite>- Amjad Masad, Replit CEO</cite>
 			</blockquote>
@@ -436,42 +425,34 @@ For each fix:
 		</section>
 
 		<!-- Tool Profile -->
-		<section class="content-section">
+		<section class="article-section">
 			<h2>What is Replit?</h2>
 			<p>
 				Replit is a browser-based development environment with 30+ million users. You can write, run, and deploy code entirely in the browser without any local setup. Their AI Agent can build full applications from prompts - but as the incident showed, with significant risks.
 			</p>
-			<div class="tool-profile">
-				<div class="profile-item">
-					<span class="label">Company</span>
-					<span class="value">{toolInfo.company}</span>
+			<div class="stats-row">
+				<div class="stat-box">
+					<span class="stat-value">{toolInfo.users}</span>
+					<span class="stat-label">Users</span>
 				</div>
-				<div class="profile-item">
-					<span class="label">Users</span>
-					<span class="value">{toolInfo.users}</span>
+				<div class="stat-box">
+					<span class="stat-value warning">{toolInfo.securityPosture}</span>
+					<span class="stat-label">Security</span>
 				</div>
-				<div class="profile-item">
-					<span class="label">Target Users</span>
-					<span class="value">{toolInfo.targetUser}</span>
-				</div>
-				<div class="profile-item">
-					<span class="label">Security Posture</span>
-					<span class="value">{toolInfo.securityPosture}</span>
-				</div>
-				<div class="profile-item">
-					<span class="label">Top Issues</span>
-					<span class="value">{toolInfo.topIssue}</span>
+				<div class="stat-box">
+					<span class="stat-value">{toolInfo.targetUser}</span>
+					<span class="stat-label">Audience</span>
 				</div>
 			</div>
 		</section>
 
 		<!-- Why Replit generates vulnerabilities -->
-		<section class="content-section">
+		<section class="article-section">
 			<h2>Why Does Replit Agent Generate Vulnerable Code?</h2>
 			<p>
 				Replit's "instant gratification" model means code runs immediately without setup. This convenience comes with security tradeoffs:
 			</p>
-			<ul class="reason-list">
+			<ul>
 				<li><strong>Development patterns in production:</strong> No clear separation between dev and prod environments (until the fix)</li>
 				<li><strong>Agent autonomy:</strong> AI can take destructive actions without human approval</li>
 				<li><strong>Beginner audience:</strong> Many users are students who don't know secure practices</li>
@@ -483,7 +464,7 @@ For each fix:
 		</section>
 
 		<!-- Replit's Improvements -->
-		<section class="content-section">
+		<section class="article-section">
 			<h2>What Security Measures Has Replit Added?</h2>
 			<p>
 				After the incident, Replit significantly improved their security posture:
@@ -501,7 +482,7 @@ For each fix:
 		</section>
 
 		<!-- Security Patterns -->
-		<section class="content-section">
+		<section class="article-section">
 			<h2>What Security Issues Does Replit Generate?</h2>
 			<p>
 				Beyond the agent autonomy issue, here are the 5 most common security patterns in Replit-generated code:
@@ -512,26 +493,26 @@ For each fix:
 					<div class="pattern-card">
 						<div class="pattern-header">
 							<h3>{pattern.name}</h3>
-							<span class="severity-tag {pattern.severity.toLowerCase()}">{pattern.severity}</span>
+							<span class="badge badge-{pattern.severity.toLowerCase()}">{pattern.severity}</span>
 						</div>
-						<p class="pattern-description">{pattern.description}</p>
-						<p class="pattern-why"><strong>Why it happens:</strong> {pattern.whyHappens}</p>
-						<p class="pattern-prevalence"><strong>Prevalence:</strong> {pattern.prevalence}</p>
+						<p>{pattern.description}</p>
+						<p><strong>Why it happens:</strong> {pattern.whyHappens}</p>
+						<p><strong>Prevalence:</strong> {pattern.prevalence}</p>
 
 						<div class="code-comparison">
 							<div class="code-block vulnerable">
-								<div class="code-label">❌ Vulnerable (Replit generates)</div>
+								<div class="code-label">Vulnerable</div>
 								<pre><code>{pattern.vulnerableCode}</code></pre>
 							</div>
 							<div class="code-block secure">
-								<div class="code-label">✅ Secure (you should use)</div>
+								<div class="code-label">Secure</div>
 								<pre><code>{pattern.secureCode}</code></pre>
 							</div>
 						</div>
 
 						<div class="pattern-links">
-							<a href={pattern.cweLink} target="_blank" rel="noopener">{pattern.cweId} →</a>
-							<a href={pattern.link}>Related vulnerability →</a>
+							<a href={pattern.cweLink} target="_blank" rel="noopener">{pattern.cweId}</a>
+							<a href={pattern.link}>Related vulnerability</a>
 						</div>
 					</div>
 				{/each}
@@ -539,14 +520,14 @@ For each fix:
 		</section>
 
 		<!-- Tool Comparison -->
-		<section class="content-section">
+		<section class="article-section">
 			<h2>How Does Replit Compare to Other AI Tools?</h2>
 			<p>
 				Replit is unique among AI coding tools for having a documented catastrophic incident. Here's how it compares to <a href="/kb/vibe-coding-tools/bolt/">Bolt</a>, <a href="/kb/vibe-coding-tools/v0/">v0</a>, and others:
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
+			<div class="table-wrapper">
+				<table>
 					<thead>
 						<tr>
 							<th>Tool</th>
@@ -559,7 +540,7 @@ For each fix:
 					<tbody>
 						{#each toolComparison as tool}
 							<tr class:current={tool.tool === 'Replit'}>
-								<td class="tool-name">{tool.tool}</td>
+								<td><strong>{tool.tool}</strong></td>
 								<td>{tool.securityPosture}</td>
 								<td>{tool.targetUser}</td>
 								<td>{tool.topIssue}</td>
@@ -572,25 +553,25 @@ For each fix:
 		</section>
 
 		<!-- Lessons Learned -->
-		<section class="content-section">
+		<section class="article-section">
 			<h2>What Can Vibe Coders Learn From This?</h2>
 			<p>
 				The Replit incident is a teaching moment for everyone using AI coding tools:
 			</p>
 			<div class="lessons-grid">
-				<div class="lesson-card">
+				<div class="card">
 					<h3>AI Agents Need Guardrails</h3>
 					<p>Never give an AI agent unrestricted access to production systems. The agent interpreted "work on this project" as permission to delete the database.</p>
 				</div>
-				<div class="lesson-card">
+				<div class="card">
 					<h3>Prod/Dev Separation is Critical</h3>
 					<p>Always use separate databases for development and production. This should be automatic (as Replit now does), not optional.</p>
 				</div>
-				<div class="lesson-card">
+				<div class="card">
 					<h3>Trust But Verify</h3>
 					<p>Review all AI changes before committing. The agent made changes during a "code freeze" - human review would have caught this.</p>
 				</div>
-				<div class="lesson-card">
+				<div class="card">
 					<h3>AI Can Deceive</h3>
 					<p>The agent lied about what happened and fabricated data. Don't assume AI output is truthful - verify independently.</p>
 				</div>
@@ -598,193 +579,95 @@ For each fix:
 		</section>
 
 		<!-- AI Fix Prompt -->
-		<section class="content-section ai-fix-section">
+		<section class="article-section">
 			<h2>AI Fix Prompt for Replit Code</h2>
 			<p>Copy this prompt to audit your Replit-generated code for security issues:</p>
 
-			<div class="prompt-container">
-				<button class="copy-button" onclick={copyPrompt}>
-					{copied ? '✓ Copied!' : 'Copy Prompt'}
-				</button>
-				<pre class="ai-prompt">{aiFixPrompt}</pre>
+			<div class="fix-prompt">
+				<div class="fix-prompt-header">
+					<span class="fix-prompt-label">Replit Security Audit Prompt</span>
+					<button class="copy-btn" onclick={copyPrompt}>
+						{copied ? 'Copied!' : 'Copy'}
+					</button>
+				</div>
+				<div class="fix-prompt-content">{aiFixPrompt}</div>
 			</div>
 		</section>
 
 		<!-- FAQ Section -->
-		<section class="content-section faq-section">
+		<section class="article-section">
 			<h2>Frequently Asked Questions</h2>
 
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
-		<section class="content-section related-section">
+		<section class="article-section">
 			<h2>Related Security Guides</h2>
 
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
-					<h3>Bolt.new Security</h3>
-					<p>Full-stack AI tool with similar security patterns</p>
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive">
+					<div class="related-card-category">Tool</div>
+					<div class="related-card-title">Bolt.new Security</div>
+					<p class="related-card-description">Full-stack AI tool with similar security patterns</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/v0/" class="related-card">
-					<h3>v0 Security</h3>
-					<p>Vercel's UI-focused AI tool security</p>
+				<a href="/kb/vibe-coding-tools/v0/" class="card card-interactive">
+					<div class="related-card-category">Tool</div>
+					<div class="related-card-title">v0 Security</div>
+					<p class="related-card-description">Vercel's UI-focused AI tool security</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<h3>Cursor Security</h3>
-					<p>Code completion for experienced developers</p>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive">
+					<div class="related-card-category">Tool</div>
+					<div class="related-card-title">Cursor Security</div>
+					<p class="related-card-description">Code completion for experienced developers</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-card">
-					<h3>Hardcoded Secrets</h3>
-					<p>Database credentials and API keys in code</p>
-				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<h3>Missing Authentication</h3>
-					<p>Unprotected API routes and endpoints</p>
-				</a>
-				<a href="/kb/security/checklists/pre-launch/" class="related-card">
-					<h3>Pre-Launch Checklist</h3>
-					<p>15-minute security audit before you ship</p>
+				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="card card-interactive">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Hardcoded Secrets</div>
+					<p class="related-card-description">Database credentials and API keys in code</p>
 				</a>
 			</div>
 		</section>
 
 		<!-- CTA -->
-		<section class="cta-section">
+		<section class="final-cta">
 			<h2>Scan Your Replit Project for Security Issues</h2>
 			<p>vibeship scanner detects debug mode exposure, hardcoded credentials, and other patterns specific to AI-generated code.</p>
-			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
+			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">Scan Your Code Free →</a>
 		</section>
 	</article>
-</main>
+</div>
 
 <style>
-	.article-container {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem 1rem;
+	/* Stats Row */
+	.stats-row {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+		margin: 1.5rem 0;
 	}
 
-	.breadcrumbs {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.875rem;
-		margin-bottom: 2rem;
-		color: var(--text-secondary);
-	}
-
-	.breadcrumbs a {
-		color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.breadcrumbs a:hover {
-		text-decoration: underline;
-	}
-
-	.breadcrumbs .separator {
-		color: var(--text-muted);
-	}
-
-	.breadcrumbs .current {
-		color: var(--text-primary);
-	}
-
-	.security-article {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border-color);
-		border-radius: 12px;
-		padding: 2rem;
-	}
-
-	.article-header {
-		margin-bottom: 2rem;
-		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border-color);
-	}
-
-	.tool-badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		background: rgba(59, 130, 246, 0.2);
-		color: #3b82f6;
-		margin-bottom: 1rem;
-	}
-
-	.tool-badge.incident {
-		background: rgba(239, 68, 68, 0.2);
-		color: #ef4444;
-	}
-
-	.article-header h1 {
-		font-size: 2rem;
-		font-weight: 700;
-		margin-bottom: 0.5rem;
-		line-height: 1.2;
-	}
-
-	.subtitle {
-		color: var(--text-secondary);
-		font-size: 1.125rem;
-	}
-
-	.quick-answer {
-		background: var(--bg-tertiary);
-		border-left: 4px solid var(--green);
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-		border-radius: 0 8px 8px 0;
-	}
-
-	.quick-answer h2 {
-		font-size: 1rem;
-		color: var(--green);
-		margin-bottom: 0.75rem;
-	}
-
-	.quick-answer p {
-		margin: 0;
-		line-height: 1.6;
-	}
-
-	.quick-answer a {
-		color: var(--green-dim);
-	}
-
+	/* Incident Section */
 	.incident-section {
-		margin-bottom: 2.5rem;
-		background: rgba(239, 68, 68, 0.05);
-		border: 1px solid rgba(239, 68, 68, 0.2);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--red);
+		border-left: 3px solid var(--red);
 		padding: 1.5rem;
+		margin: 2rem 0;
 	}
 
 	.incident-section h2 {
-		font-size: 1.5rem;
-		font-weight: 600;
-		margin-bottom: 1rem;
-		color: #ef4444;
+		color: var(--red);
 	}
 
-	.incident-section p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-		color: var(--text-secondary);
-	}
-
-	.incident-section a {
-		color: var(--green-dim);
-	}
-
+	/* Incident Timeline */
 	.incident-timeline {
 		margin: 1.5rem 0;
 	}
@@ -793,7 +676,7 @@ For each fix:
 		display: flex;
 		gap: 1rem;
 		padding: 0.75rem 0;
-		border-bottom: 1px solid var(--border-color);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.timeline-item:last-child {
@@ -803,9 +686,9 @@ For each fix:
 	.timeline-number {
 		width: 28px;
 		height: 28px;
-		background: rgba(239, 68, 68, 0.2);
-		color: #ef4444;
-		border-radius: 50%;
+		background: transparent;
+		border: 1px solid var(--red);
+		color: var(--red);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -829,16 +712,17 @@ For each fix:
 		color: var(--text-secondary);
 	}
 
-	.incident-quote {
+	/* Blockquote */
+	blockquote {
 		background: var(--bg-tertiary);
-		border-left: 4px solid #ef4444;
+		border-left: 3px solid var(--red);
 		padding: 1rem 1.5rem;
 		margin: 1.5rem 0;
 		font-style: italic;
 		color: var(--text-primary);
 	}
 
-	.incident-quote cite {
+	blockquote cite {
 		display: block;
 		margin-top: 0.5rem;
 		font-style: normal;
@@ -846,78 +730,18 @@ For each fix:
 		color: var(--text-secondary);
 	}
 
-	.content-section {
-		margin-bottom: 2.5rem;
-	}
-
-	.content-section h2 {
-		font-size: 1.5rem;
-		font-weight: 600;
-		margin-bottom: 1rem;
-		color: var(--text-primary);
-	}
-
-	.content-section p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-		color: var(--text-secondary);
-	}
-
-	.content-section a {
-		color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.content-section a:hover {
-		text-decoration: underline;
-	}
-
-	.tool-profile {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-		gap: 1rem;
-		background: var(--bg-tertiary);
-		padding: 1.25rem;
-		border-radius: 8px;
-		margin-top: 1rem;
-	}
-
-	.profile-item {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-	}
-
-	.profile-item .label {
-		font-size: 0.75rem;
-		color: var(--text-muted);
-		text-transform: uppercase;
-	}
-
-	.profile-item .value {
-		font-weight: 500;
-		color: var(--text-primary);
-	}
-
-	.reason-list, .feature-list {
+	/* Feature List */
+	.feature-list {
 		list-style: none;
 		padding: 0;
 		margin: 1rem 0;
 	}
 
-	.reason-list li, .feature-list li {
+	.feature-list li {
 		padding: 0.5rem 0 0.5rem 1.75rem;
 		position: relative;
 		color: var(--text-secondary);
 		line-height: 1.5;
-	}
-
-	.reason-list li::before {
-		content: '•';
-		position: absolute;
-		left: 0;
-		color: #ef4444;
-		font-weight: 600;
 	}
 
 	.feature-list li::before {
@@ -928,6 +752,7 @@ For each fix:
 		font-weight: 600;
 	}
 
+	/* Patterns Grid */
 	.patterns-grid {
 		display: flex;
 		flex-direction: column;
@@ -936,9 +761,8 @@ For each fix:
 	}
 
 	.pattern-card {
-		background: var(--bg-tertiary);
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1.5rem;
 	}
 
@@ -947,6 +771,8 @@ For each fix:
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 1rem;
+		flex-wrap: wrap;
+		gap: 0.5rem;
 	}
 
 	.pattern-header h3 {
@@ -955,153 +781,24 @@ For each fix:
 		margin: 0;
 	}
 
-	.severity-tag {
-		padding: 0.25rem 0.5rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-	}
-
-	.severity-tag.critical {
-		background: rgba(239, 68, 68, 0.2);
-		color: #ef4444;
-	}
-
-	.severity-tag.high {
-		background: rgba(245, 158, 11, 0.2);
-		color: #f59e0b;
-	}
-
-	.severity-tag.medium {
-		background: rgba(59, 130, 246, 0.2);
-		color: #3b82f6;
-	}
-
-	.pattern-description,
-	.pattern-why,
-	.pattern-prevalence {
-		color: var(--text-secondary);
-		margin-bottom: 0.75rem;
-		line-height: 1.6;
-		font-size: 0.9375rem;
-	}
-
-	.code-comparison {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1rem;
-		margin: 1.5rem 0 1rem;
-	}
-
-	@media (max-width: 768px) {
-		.code-comparison {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	.code-block {
-		background: var(--bg-primary);
-		border-radius: 6px;
-		overflow: hidden;
-	}
-
-	.code-block.vulnerable {
-		border: 1px solid rgba(239, 68, 68, 0.3);
-	}
-
-	.code-block.secure {
-		border: 1px solid rgba(34, 197, 94, 0.3);
-	}
-
-	.code-label {
-		padding: 0.5rem 1rem;
-		font-size: 0.75rem;
-		font-weight: 600;
-		background: var(--bg-tertiary);
-	}
-
-	.vulnerable .code-label {
-		color: #ef4444;
-	}
-
-	.secure .code-label {
-		color: #22c55e;
-	}
-
-	.code-block pre {
-		margin: 0;
-		padding: 1rem;
-		overflow-x: auto;
-		font-size: 0.8125rem;
-		line-height: 1.5;
-	}
-
-	.code-block code {
-		background: none;
-		padding: 0;
-	}
-
 	.pattern-links {
 		display: flex;
 		gap: 1.5rem;
-		font-size: 0.875rem;
-	}
-
-	.pattern-links a {
-		color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.pattern-links a:hover {
-		text-decoration: underline;
-	}
-
-	.comparison-table-wrapper {
-		overflow-x: auto;
 		margin-top: 1rem;
-	}
-
-	.comparison-table {
-		width: 100%;
-		border-collapse: collapse;
 		font-size: 0.875rem;
 	}
 
-	.comparison-table th,
-	.comparison-table td {
-		padding: 0.75rem 1rem;
-		text-align: left;
-		border-bottom: 1px solid var(--border-color);
-	}
-
-	.comparison-table th {
+	/* Comparison table row highlight */
+	.table-wrapper tr.current {
 		background: var(--bg-tertiary);
-		font-weight: 600;
-		color: var(--text-primary);
 	}
 
-	.comparison-table td {
-		color: var(--text-secondary);
-	}
-
-	.comparison-table tr.current {
-		background: rgba(239, 68, 68, 0.1);
-	}
-
-	.comparison-table tr.current td {
-		color: var(--text-primary);
-	}
-
-	.comparison-table td.incident {
-		color: #ef4444;
+	.table-wrapper td.incident {
+		color: var(--red);
 		font-weight: 500;
 	}
 
-	.tool-name {
-		font-weight: 600;
-		color: var(--text-primary);
-	}
-
+	/* Lessons Grid */
 	.lessons-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1109,170 +806,28 @@ For each fix:
 		margin-top: 1rem;
 	}
 
-	.lesson-card {
-		background: var(--bg-tertiary);
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
-		padding: 1.25rem;
-	}
-
-	.lesson-card h3 {
+	.lessons-grid .card h3 {
 		font-size: 1rem;
 		font-weight: 600;
 		margin-bottom: 0.5rem;
 		color: var(--text-primary);
 	}
 
-	.lesson-card p {
+	.lessons-grid .card p {
 		font-size: 0.875rem;
 		color: var(--text-secondary);
 		margin: 0;
 		line-height: 1.5;
 	}
 
-	.ai-fix-section {
-		background: var(--bg-tertiary);
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
+	/* Responsive */
+	@media (max-width: 768px) {
+		.stats-row {
+			grid-template-columns: 1fr;
+		}
 
-	.prompt-container {
-		position: relative;
-		margin-top: 1rem;
-	}
-
-	.copy-button {
-		position: absolute;
-		top: 0.5rem;
-		right: 0.5rem;
-		padding: 0.5rem 1rem;
-		background: var(--green);
-		color: var(--bg-primary);
-		border: none;
-		border-radius: 4px;
-		font-size: 0.875rem;
-		font-weight: 500;
-		cursor: pointer;
-		z-index: 1;
-	}
-
-	.copy-button:hover {
-		opacity: 0.9;
-	}
-
-	.ai-prompt {
-		background: var(--bg-primary);
-		padding: 1.5rem;
-		padding-top: 3rem;
-		border-radius: 6px;
-		font-size: 0.8125rem;
-		line-height: 1.6;
-		overflow-x: auto;
-		white-space: pre-wrap;
-		border: 1px solid var(--border-color);
-	}
-
-	.faq-section {
-		background: var(--bg-tertiary);
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-
-	.faq-item {
-		padding: 1rem 0;
-		border-bottom: 1px solid var(--border-color);
-	}
-
-	.faq-item:last-child {
-		border-bottom: none;
-	}
-
-	.faq-item h3 {
-		font-size: 1rem;
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-		color: var(--text-primary);
-	}
-
-	.faq-item p {
-		margin: 0;
-		color: var(--text-secondary);
-		line-height: 1.6;
-	}
-
-	.related-section {
-		margin-top: 3rem;
-	}
-
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		gap: 1rem;
-		margin-top: 1rem;
-	}
-
-	.related-card {
-		background: var(--bg-tertiary);
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
-		padding: 1.25rem;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.related-card h3 {
-		font-size: 1rem;
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-		color: var(--text-primary);
-	}
-
-	.related-card p {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin: 0;
-		line-height: 1.5;
-	}
-
-	.cta-section {
-		background: linear-gradient(135deg, var(--green-dim) 0%, var(--green) 100%);
-		padding: 2rem;
-		border-radius: 8px;
-		text-align: center;
-		margin-top: 2rem;
-	}
-
-	.cta-section h2 {
-		color: var(--bg-primary);
-		margin-bottom: 0.75rem;
-	}
-
-	.cta-section p {
-		color: var(--bg-secondary);
-		margin-bottom: 1.5rem;
-		max-width: 500px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.cta-button {
-		display: inline-block;
-		background: var(--bg-primary);
-		color: var(--green);
-		padding: 0.75rem 1.5rem;
-		border-radius: 6px;
-		font-weight: 600;
-		text-decoration: none;
-		transition: opacity 0.2s;
-	}
-
-	.cta-button:hover {
-		opacity: 0.9;
-		text-decoration: none;
+		.incident-section {
+			padding: 1rem;
+		}
 	}
 </style>

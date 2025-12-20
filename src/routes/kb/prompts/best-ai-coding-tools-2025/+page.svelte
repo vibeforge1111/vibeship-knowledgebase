@@ -83,6 +83,64 @@
 		}
 	];
 
+	// Pricing data for mobile-friendly layout
+	const pricingData = [
+		{
+			name: 'Cursor',
+			free: { tier: 'Hobby: $0', details: 'Entry limits' },
+			pro: { tier: 'Pro: $20/mo', details: 'Unlimited Auto, $20 credits' },
+			team: { tier: 'Teams: $40/user/mo', details: 'SSO, admin controls' },
+			enterprise: { tier: 'Custom', details: 'Custom usage' }
+		},
+		{
+			name: 'Claude Code',
+			free: null,
+			pro: { tier: 'Pro: $20/mo', details: '5x free tier usage' },
+			team: { tier: 'Premium: $150/user/mo', details: 'Claude Code access' },
+			enterprise: { tier: 'Custom', details: 'Volume pricing' }
+		},
+		{
+			name: 'GitHub Copilot',
+			free: { tier: 'Free: $0', details: '2k completions, 50 premium/mo' },
+			pro: { tier: 'Pro: $10/mo', details: 'Unlimited completions' },
+			team: { tier: 'Business: $19/user/mo', details: 'IP indemnity, audit logs' },
+			enterprise: { tier: 'Enterprise: $39/user/mo', details: 'Custom models' }
+		},
+		{
+			name: 'Windsurf',
+			free: { tier: 'Free: $0', details: '25 credits/mo' },
+			pro: { tier: 'Pro: $15/mo', details: '500 credits (~$20 value)' },
+			team: { tier: 'Teams: $30/user/mo', details: 'Admin tools' },
+			enterprise: { tier: 'Enterprise: $60+/user/mo', details: '1000 credits at scale' }
+		},
+		{
+			name: 'Cline',
+			isFreeOpenSource: true,
+			freeDetails: 'Pay only API usage: $0-50/mo depending on model choice'
+		},
+		{
+			name: 'Bolt.new',
+			free: { tier: 'Free: $0', details: 'Limited tokens' },
+			pro: { tier: 'Pro: $20/mo', details: '10M tokens' },
+			team: { tier: 'Pro 50: $50/mo', details: '26M tokens' },
+			enterprise: { tier: 'Pro 200: $200/mo', details: '120M tokens' }
+		},
+		{
+			name: 'v0',
+			free: { tier: 'Free: $0', details: '200 credits/mo' },
+			pro: { tier: 'Premium: $20/mo', details: '5,000 credits' },
+			team: { tier: 'Team: $30/user/mo', details: 'SSO, sharing' },
+			enterprise: { tier: 'Custom', details: 'Data controls' }
+		},
+		{
+			name: 'Replit Agent',
+			free: { tier: 'Starter: $0', details: '~10 checkpoints trial' },
+			pro: { tier: 'Core: $20/mo', details: '$25 credits (~100 checkpoints)' },
+			team: { tier: 'Teams: $40/user/mo', details: '$40 credits/user' },
+			enterprise: { tier: 'Custom', details: 'Volume discounts' }
+		}
+	];
+
 	// FAQ data
 	const faqs = [
 		{
@@ -219,29 +277,30 @@
 				This table shows the key differences between the 8 leading AI coding tools in 2025. Configuration files determine how you control behavior and security. All tools except prompt-based ones (Bolt, v0, Replit) support project-specific rules.
 			</p>
 
-			<div class="table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Tool</th>
-							<th>Config File</th>
-							<th>Security Features</th>
-							<th>Best For</th>
-							<th>Price</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each tools as tool}
-							<tr>
-								<td><a href={tool.link}>{tool.name}</a></td>
-								<td><code>{tool.config}</code></td>
-								<td>{tool.security}</td>
-								<td>{tool.bestFor}</td>
-								<td>{tool.price}</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
+			<div class="comparison-stack">
+				{#each tools as tool}
+					<div class="comparison-row">
+						<div class="tool-name"><a href={tool.link}>{tool.name}</a></div>
+						<div class="tool-details">
+							<div class="detail-item">
+								<span class="detail-label">Config</span>
+								<span class="detail-value"><code>{tool.config}</code></span>
+							</div>
+							<div class="detail-item">
+								<span class="detail-label">Security</span>
+								<span class="detail-value">{tool.security}</span>
+							</div>
+							<div class="detail-item">
+								<span class="detail-label">Best For</span>
+								<span class="detail-value">{tool.bestFor}</span>
+							</div>
+							<div class="detail-item">
+								<span class="detail-label">Price</span>
+								<span class="detail-value">{tool.price}</span>
+							</div>
+						</div>
+					</div>
+				{/each}
 			</div>
 
 			<p class="table-note">
@@ -925,73 +984,45 @@ Security:
 				Pricing models range from free (Cline) to $40/user/month (enterprise tiers). Most tools use hybrid pricing: base subscription plus usage credits. Token-based pricing gives cost control but requires monitoring.
 			</p>
 
-			<div class="pricing-table-wrapper">
-				<table class="pricing-table">
-					<thead>
-						<tr>
-							<th>Tool</th>
-							<th>Free Tier</th>
-							<th>Pro/Individual</th>
-							<th>Team</th>
-							<th>Enterprise</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><strong>Cursor</strong></td>
-							<td>Hobby: $0<br/><span class="tier-details">Entry limits</span></td>
-							<td>Pro: $20/mo<br/><span class="tier-details">Unlimited Auto, $20 credits</span></td>
-							<td>Teams: $40/user/mo<br/><span class="tier-details">SSO, admin controls</span></td>
-							<td>Custom<br/><span class="tier-details">Custom usage</span></td>
-						</tr>
-						<tr>
-							<td><strong>Claude Code</strong></td>
-							<td>-</td>
-							<td>Pro: $20/mo<br/><span class="tier-details">5x free tier usage</span></td>
-							<td>Premium: $150/user/mo<br/><span class="tier-details">Claude Code access</span></td>
-							<td>Custom<br/><span class="tier-details">Volume pricing</span></td>
-						</tr>
-						<tr>
-							<td><strong>GitHub Copilot</strong></td>
-							<td>Free: $0<br/><span class="tier-details">2k completions, 50 premium/mo</span></td>
-							<td>Pro: $10/mo<br/><span class="tier-details">Unlimited completions</span></td>
-							<td>Business: $19/user/mo<br/><span class="tier-details">IP indemnity, audit logs</span></td>
-							<td>Enterprise: $39/user/mo<br/><span class="tier-details">Custom models</span></td>
-						</tr>
-						<tr>
-							<td><strong>Windsurf</strong></td>
-							<td>Free: $0<br/><span class="tier-details">25 credits/mo</span></td>
-							<td>Pro: $15/mo<br/><span class="tier-details">500 credits (~$20 value)</span></td>
-							<td>Teams: $30/user/mo<br/><span class="tier-details">Admin tools</span></td>
-							<td>Enterprise: $60+/user/mo<br/><span class="tier-details">1000 credits at scale</span></td>
-						</tr>
-						<tr>
-							<td><strong>Cline</strong></td>
-							<td colspan="4" class="free-tier"><strong>FREE (Open Source)</strong><br/><span class="tier-details">Pay only API usage: $0-50/mo depending on model choice</span></td>
-						</tr>
-						<tr>
-							<td><strong>Bolt.new</strong></td>
-							<td>Free: $0<br/><span class="tier-details">Limited tokens</span></td>
-							<td>Pro: $20/mo<br/><span class="tier-details">10M tokens</span></td>
-							<td>Pro 50: $50/mo<br/><span class="tier-details">26M tokens</span></td>
-							<td>Pro 200: $200/mo<br/><span class="tier-details">120M tokens</span></td>
-						</tr>
-						<tr>
-							<td><strong>v0</strong></td>
-							<td>Free: $0<br/><span class="tier-details">200 credits/mo</span></td>
-							<td>Premium: $20/mo<br/><span class="tier-details">5,000 credits</span></td>
-							<td>Team: $30/user/mo<br/><span class="tier-details">SSO, sharing</span></td>
-							<td>Custom<br/><span class="tier-details">Data controls</span></td>
-						</tr>
-						<tr>
-							<td><strong>Replit Agent</strong></td>
-							<td>Starter: $0<br/><span class="tier-details">~10 checkpoints trial</span></td>
-							<td>Core: $20/mo<br/><span class="tier-details">$25 credits (~100 checkpoints)</span></td>
-							<td>Teams: $40/user/mo<br/><span class="tier-details">$40 credits/user</span></td>
-							<td>Custom<br/><span class="tier-details">Volume discounts</span></td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="pricing-stack">
+				{#each pricingData as item}
+					<div class="pricing-row" class:free-highlight={item.isFreeOpenSource}>
+						<div class="pricing-tool"><strong>{item.name}</strong></div>
+						{#if item.isFreeOpenSource}
+							<div class="pricing-free-banner">
+								<strong>FREE (Open Source)</strong>
+								<span class="tier-details">{item.freeDetails}</span>
+							</div>
+						{:else}
+							<div class="pricing-tiers">
+								<div class="tier-item">
+									<span class="tier-label">Free</span>
+									{#if item.free}
+										<span class="tier-value">{item.free.tier}</span>
+										<span class="tier-details">{item.free.details}</span>
+									{:else}
+										<span class="tier-value">-</span>
+									{/if}
+								</div>
+								<div class="tier-item">
+									<span class="tier-label">Pro</span>
+									<span class="tier-value">{item.pro.tier}</span>
+									<span class="tier-details">{item.pro.details}</span>
+								</div>
+								<div class="tier-item">
+									<span class="tier-label">Team</span>
+									<span class="tier-value">{item.team.tier}</span>
+									<span class="tier-details">{item.team.details}</span>
+								</div>
+								<div class="tier-item">
+									<span class="tier-label">Enterprise</span>
+									<span class="tier-value">{item.enterprise.tier}</span>
+									<span class="tier-details">{item.enterprise.details}</span>
+								</div>
+							</div>
+						{/if}
+					</div>
+				{/each}
 			</div>
 
 			<div class="pricing-notes">
@@ -1269,39 +1300,73 @@ Security:
 		text-decoration: none;
 	}
 
-	/* Tables */
-	.table-wrapper {
-		overflow-x: auto;
+	/* Tool Comparison Stack - Mobile Friendly */
+	.comparison-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		margin: 1.5rem 0;
 	}
 
-	.comparison-table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 0.9rem;
-	}
-
-	.comparison-table th,
-	.comparison-table td {
-		padding: 0.75rem 1rem;
-		text-align: left;
+	.comparison-row {
+		display: grid;
+		grid-template-columns: 120px 1fr;
+		gap: 1rem;
+		padding: 1rem;
+		background: var(--bg-secondary);
 		border: 1px solid var(--border);
 	}
 
-	.comparison-table th {
-		background: var(--bg-secondary);
+	.tool-name {
 		font-weight: 600;
+		color: var(--green-dim);
 	}
 
-	.comparison-table tr:nth-child(even) {
-		background: rgba(255,255,255,0.02);
+	.tool-details {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.75rem;
+	}
+
+	.detail-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.detail-label {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		color: var(--text-tertiary);
+		letter-spacing: 0.05em;
+	}
+
+	.detail-value {
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 700px) {
+		.comparison-row {
+			grid-template-columns: 1fr;
+			gap: 0.75rem;
+		}
+
+		.tool-details {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (max-width: 400px) {
+		.tool-details {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.table-note {
 		margin-top: 1rem;
 		padding: 1rem;
-		background: rgba(0, 196, 154, 0.05);
-		border: 1px solid rgba(0, 196, 154, 0.2);
+		background: var(--green-muted);
+		border: 1px solid var(--border);
 		font-size: 0.9rem;
 	}
 
@@ -1360,8 +1425,8 @@ Security:
 	.migration-note {
 		margin-top: 2rem;
 		padding: 1.5rem;
-		background: rgba(0, 196, 154, 0.05);
-		border: 1px solid rgba(0, 196, 154, 0.2);
+		background: var(--green-muted);
+		border: 1px solid var(--border);
 	}
 
 	.migration-note h4 {
@@ -1396,48 +1461,93 @@ Security:
 	.security-summary {
 		margin-top: 1.5rem;
 		padding: 1rem;
-		background: rgba(239, 68, 68, 0.1);
-		border: 1px solid rgba(239, 68, 68, 0.3);
+		background: var(--red-muted);
+		border: 1px solid var(--border);
 	}
 
-	/* Pricing Table */
-	.pricing-table-wrapper {
-		overflow-x: auto;
+	/* Pricing Stack - Mobile Friendly */
+	.pricing-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		margin: 1.5rem 0;
 	}
 
-	.pricing-table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 0.85rem;
+	.pricing-row {
+		display: grid;
+		grid-template-columns: 120px 1fr;
+		gap: 1rem;
+		padding: 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
-	.pricing-table th,
-	.pricing-table td {
-		padding: 0.75rem 1rem;
-		text-align: left;
-		border: 1px solid var(--border, #333);
+	.pricing-row.free-highlight {
+		background: var(--green-muted);
 	}
 
-	.pricing-table th {
-		background: var(--surface-2, #222);
+	.pricing-tool {
 		font-weight: 600;
 	}
 
-	.pricing-table tr:nth-child(even) {
-		background: rgba(255,255,255,0.02);
+	.pricing-free-banner {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		color: var(--green-dim);
+	}
+
+	.pricing-tiers {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0.75rem;
+	}
+
+	.tier-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.tier-label {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		color: var(--text-tertiary);
+		letter-spacing: 0.05em;
+	}
+
+	.tier-value {
+		font-size: 0.85rem;
+		font-weight: 500;
 	}
 
 	.tier-details {
 		display: block;
 		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
-		margin-top: 0.25rem;
+		color: var(--text-secondary);
 	}
 
-	.free-tier {
-		text-align: center;
-		background: rgba(34, 197, 94, 0.1);
+	@media (max-width: 900px) {
+		.pricing-tiers {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.pricing-row {
+			grid-template-columns: 1fr;
+			gap: 0.75rem;
+		}
+
+		.pricing-tiers {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (max-width: 400px) {
+		.pricing-tiers {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.pricing-notes {
@@ -1505,7 +1615,7 @@ Security:
 	.recommendation {
 		margin-top: 1.5rem;
 		padding: 1rem;
-		background: rgba(139, 92, 246, 0.1);
+		background: var(--violet-muted);
 		border: 1px solid var(--border);
 	}
 

@@ -39,23 +39,11 @@
 	// Keyboard shortcuts
 	const shortcuts = [
 		{ keys: 'Cmd/Ctrl + L', action: 'Open Chat', description: 'Start a new conversation with AI' },
-		{
-			keys: 'Cmd/Ctrl + I',
-			action: 'Open Composer',
-			description: 'Multi-file editing and code generation'
-		},
-		{
-			keys: 'Cmd/Ctrl + K',
-			action: 'Inline Edit',
-			description: 'Edit selected code or generate at cursor'
-		},
+		{ keys: 'Cmd/Ctrl + I', action: 'Open Composer', description: 'Multi-file editing and code generation' },
+		{ keys: 'Cmd/Ctrl + K', action: 'Inline Edit', description: 'Edit selected code or generate at cursor' },
 		{ keys: 'Cmd/Ctrl + Shift + L', action: 'Add to Chat', description: 'Add selected code to chat context' },
 		{ keys: 'Tab', action: 'Accept Suggestion', description: 'Accept the current autocomplete' },
-		{
-			keys: 'Cmd/Ctrl + →',
-			action: 'Accept Word',
-			description: 'Accept one word of the suggestion'
-		},
+		{ keys: 'Cmd/Ctrl + →', action: 'Accept Word', description: 'Accept one word of the suggestion' },
 		{ keys: 'Escape', action: 'Dismiss', description: 'Dismiss suggestion or close panel' },
 		{ keys: 'Cmd/Ctrl + /', action: 'Toggle Comment', description: 'Comment/uncomment selection' },
 		{ keys: 'Cmd/Ctrl + Enter', action: 'Run/Submit', description: 'Submit chat or run command' },
@@ -105,97 +93,76 @@
 	const faqs = [
 		{
 			question: 'Is Cursor free to use?',
-			answer:
-				'Yes, Cursor has a free Hobby tier that includes 2,000 code completions per month and 50 slow premium requests. This is enough for casual use or trying out the editor. For serious development, the Pro tier at $20/month is the sweet spot, offering unlimited completions and 500 fast premium requests.'
+			answer: 'Yes, Cursor has a free Hobby tier that includes 2,000 code completions per month and 50 slow premium requests. This is enough for casual use or trying out the editor. For serious development, the Pro tier at $20/month is the sweet spot, offering unlimited completions and 500 fast premium requests.'
 		},
 		{
 			question: 'What is the difference between Chat, Composer, and Agent mode?',
-			answer:
-				'Chat (Cmd+L) is for asking questions and getting code suggestions you copy manually. Composer (Cmd+I) writes code directly into your files and can edit multiple files at once. Agent mode is Composer with autonomous capabilities - it can run terminal commands, create files, and iterate until your goal is complete.'
+			answer: 'Chat (Cmd+L) is for asking questions and getting code suggestions you copy manually. Composer (Cmd+I) writes code directly into your files and can edit multiple files at once. Agent mode is Composer with autonomous capabilities - it can run terminal commands, create files, and iterate until your goal is complete.'
 		},
 		{
 			question: 'Should I use Cursor or GitHub Copilot?',
-			answer:
-				'Cursor has stronger multi-file editing capabilities through Composer and Agent mode. Copilot has better IDE integration (JetBrains, Neovim) and GitHub ecosystem features like PR reviews. Many developers use Cursor for greenfield projects and Copilot for maintenance work. See our detailed comparison at /kb/vibe-coding-tools/cursor-vs-copilot/'
+			answer: 'Cursor has stronger multi-file editing capabilities through Composer and Agent mode. Copilot has better IDE integration (JetBrains, Neovim) and GitHub ecosystem features like PR reviews. Many developers use Cursor for greenfield projects and Copilot for maintenance work. See our detailed comparison at /kb/vibe-coding-tools/cursor-vs-copilot/'
 		},
 		{
 			question: 'What are .cursorrules files?',
-			answer:
-				'A .cursorrules file in your project root gives Cursor persistent context about your codebase - coding standards, framework choices, and project-specific patterns. Think of it as a system prompt that applies to all AI interactions in that project. The newer .cursor/rules folder allows for more organized, modular rules.'
+			answer: 'A .cursorrules file in your project root gives Cursor persistent context about your codebase - coding standards, framework choices, and project-specific patterns. Think of it as a system prompt that applies to all AI interactions in that project. The newer .cursor/rules folder allows for more organized, modular rules.'
 		},
 		{
 			question: 'Which AI model should I use in Cursor?',
-			answer:
-				'Claude 3.5 Sonnet is the default and best for most coding tasks - fast and accurate. Use GPT-4o for complex reasoning or when Claude struggles. Use cursor-small for simple completions to save premium requests. For very complex problems, o1 provides chain-of-thought reasoning but is slower.'
+			answer: 'Claude 3.5 Sonnet is the default and best for most coding tasks - fast and accurate. Use GPT-4o for complex reasoning or when Claude struggles. Use cursor-small for simple completions to save premium requests. For very complex problems, o1 provides chain-of-thought reasoning but is slower.'
 		},
 		{
 			question: 'Can Cursor access the internet or external documentation?',
-			answer:
-				'Yes. Use @Docs in chat to reference official documentation Cursor has indexed. You can also add custom documentation URLs for frameworks Cursor does not know. For real-time web access, you can set up MCP servers to give Cursor browsing capabilities.'
+			answer: 'Yes. Use @Docs in chat to reference official documentation Cursor has indexed. You can also add custom documentation URLs for frameworks Cursor does not know. For real-time web access, you can set up MCP servers to give Cursor browsing capabilities.'
 		},
 		{
 			question: 'Is my code sent to third parties?',
-			answer:
-				'By default, yes - code is sent to AI providers (Anthropic, OpenAI) for processing. In Cursor Settings, you can enable Privacy Mode which adds end-to-end encryption and prevents your code from being used for training. Enterprise plans offer additional compliance features.'
+			answer: 'By default, yes - code is sent to AI providers (Anthropic, OpenAI) for processing. In Cursor Settings, you can enable Privacy Mode which adds end-to-end encryption and prevents your code from being used for training. Enterprise plans offer additional compliance features.'
 		},
 		{
 			question: 'What are Background Agents?',
-			answer:
-				'Background Agents (Pro+ and above) let Cursor work on tasks asynchronously. You can have up to 8 agents running in parallel, each in its own Git worktree. You can close Cursor and check back later when agents complete their work. Think of it as assigning tasks to AI teammates.'
+			answer: 'Background Agents (Pro+ and above) let Cursor work on tasks asynchronously. You can have up to 8 agents running in parallel, each in its own Git worktree. You can close Cursor and check back later when agents complete their work. Think of it as assigning tasks to AI teammates.'
 		}
 	];
 
 	// Comparison tools
 	const comparisons = [
-		{
-			name: 'GitHub Copilot',
-			href: '/kb/vibe-coding-tools/cursor-vs-copilot/',
-			summary: 'Better IDE support, PR reviews, GitHub integration'
-		},
-		{
-			name: 'Claude Code',
-			href: '/kb/vibe-coding-tools/claude-code-vs-cursor/',
-			summary: 'Terminal-based, better for complex refactoring'
-		},
-		{
-			name: 'Windsurf',
-			href: '/kb/vibe-coding-tools/windsurf-vs-cursor/',
-			summary: 'Cascade flow system, JetBrains support'
-		}
+		{ name: 'GitHub Copilot', href: '/kb/vibe-coding-tools/cursor-vs-copilot/', summary: 'Better IDE support, PR reviews, GitHub integration' },
+		{ name: 'Claude Code', href: '/kb/vibe-coding-tools/claude-code-vs-cursor/', summary: 'Terminal-based, better for complex refactoring' },
+		{ name: 'Windsurf', href: '/kb/vibe-coding-tools/windsurf-vs-cursor/', summary: 'Cascade flow system, JetBrains support' }
 	];
 
 	// Resources
 	const resources = [
-		{
-			name: 'Official Cursor Documentation',
-			url: 'https://docs.cursor.com/',
-			description: 'Complete feature documentation and guides'
-		},
-		{
-			name: 'cursor.directory',
-			url: 'https://cursor.directory/',
-			description: 'Community-curated .cursorrules collection for every framework'
-		},
-		{
-			name: 'awesome-cursorrules',
-			url: 'https://github.com/PatrickJS/awesome-cursorrules',
-			description: 'GitHub repository of best .cursorrules examples'
-		},
-		{
-			name: 'Cursor Changelog',
-			url: 'https://cursor.com/changelog',
-			description: 'Latest updates and new features'
-		},
-		{
-			name: 'Cursor Forum',
-			url: 'https://forum.cursor.com/',
-			description: 'Community discussions and troubleshooting'
-		},
-		{
-			name: 'MCP Servers Directory',
-			url: 'https://github.com/modelcontextprotocol/servers',
-			description: 'Official Model Context Protocol server implementations'
-		}
+		{ name: 'Official Cursor Documentation', url: 'https://docs.cursor.com/', description: 'Complete feature documentation and guides' },
+		{ name: 'cursor.directory', url: 'https://cursor.directory/', description: 'Community-curated .cursorrules collection for every framework' },
+		{ name: 'awesome-cursorrules', url: 'https://github.com/PatrickJS/awesome-cursorrules', description: 'GitHub repository of best .cursorrules examples' },
+		{ name: 'Cursor Changelog', url: 'https://cursor.com/changelog', description: 'Latest updates and new features' },
+		{ name: 'Cursor Forum', url: 'https://forum.cursor.com/', description: 'Community discussions and troubleshooting' },
+		{ name: 'MCP Servers Directory', url: 'https://github.com/modelcontextprotocol/servers', description: 'Official Model Context Protocol server implementations' }
+	];
+
+	// Composer vs Chat comparison
+	const composerVsChat = [
+		{ useCase: 'Implementing new features', composer: true },
+		{ useCase: 'Asking questions about code', composer: false },
+		{ useCase: 'Refactoring across files', composer: true },
+		{ useCase: 'Understanding architecture', composer: false },
+		{ useCase: 'Creating components/modules', composer: true },
+		{ useCase: 'Debugging (discussion mode)', composer: false },
+		{ useCase: 'Writing tests for code', composer: true },
+		{ useCase: 'Learning new concepts', composer: false },
+		{ useCase: 'Adding integrations', composer: true },
+		{ useCase: 'Exploring options before committing', composer: false }
+	];
+
+	// Tool comparison data
+	const toolComparison = [
+		{ feature: 'Multi-file editing', cursor: 'Composer', copilot: 'Limited', claudeCode: 'Full codebase', cursorWin: true, claudeWin: true },
+		{ feature: 'Agent mode', cursor: 'Yes', copilot: 'No', claudeCode: 'Yes', cursorWin: true, claudeWin: true },
+		{ feature: 'IDE support', cursor: 'Cursor only', copilot: 'All IDEs', claudeCode: 'Terminal', copilotWin: true },
+		{ feature: 'Model choice', cursor: 'Multiple', copilot: 'GPT-4 only', claudeCode: 'Claude only', cursorWin: true },
+		{ feature: 'Free tier', cursor: 'Generous', copilot: 'Limited', claudeCode: 'Free', cursorWin: true, claudeWin: true }
 	];
 </script>
 
@@ -280,7 +247,7 @@
 				Master vibe coding with Cursor - from your first autocomplete to Background Agents and MCP
 				servers. Everything beginners and power users need to know.
 			</p>
-			<p class="reading-time">~25 minute read • Last updated December 2025</p>
+			<p class="reading-time">~25 minute read | Last updated December 2025</p>
 		</header>
 
 		<!-- Quick Answer -->
@@ -326,7 +293,7 @@
 				task completion) are first-class citizens, not afterthoughts.
 			</p>
 
-			<div class="info-box">
+			<div class="callout callout-info">
 				<strong>Why "vibe coding"?</strong> The term describes building software by describing what
 				you want to the AI rather than writing every line yourself. Cursor is one of the most popular
 				tools in this new paradigm, letting developers "vibe" their way through coding tasks while
@@ -382,7 +349,7 @@
 				function does." Cursor sees your entire codebase as context.
 			</p>
 
-			<div class="tip-box">
+			<div class="callout callout-tip">
 				<strong>Tip:</strong> Start with Chat mode to get comfortable with AI interactions. Once you
 				understand how Cursor thinks, graduate to Composer for more powerful multi-file editing.
 			</div>
@@ -490,7 +457,7 @@ Examples:
 				<li><strong>Use @Codebase for discovery</strong> - Great for understanding unfamiliar codebases</li>
 			</ul>
 
-			<div class="tip-box">
+			<div class="callout callout-tip">
 				<strong>Pro tip:</strong> If you select code before pressing Cmd+L, that code is automatically
 				added as context. This is faster than typing @Files references manually.
 			</div>
@@ -548,36 +515,23 @@ Examples:
 			</div>
 
 			<h3>When to use Composer vs Chat</h3>
-			<table class="comparison-table">
-				<thead>
-					<tr>
-						<th>Use Composer</th>
-						<th>Use Chat</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Implementing new features</td>
-						<td>Asking questions about code</td>
-					</tr>
-					<tr>
-						<td>Refactoring across files</td>
-						<td>Understanding architecture</td>
-					</tr>
-					<tr>
-						<td>Creating components/modules</td>
-						<td>Debugging (discussion mode)</td>
-					</tr>
-					<tr>
-						<td>Writing tests for code</td>
-						<td>Learning new concepts</td>
-					</tr>
-					<tr>
-						<td>Adding integrations</td>
-						<td>Exploring options before committing</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="comparison-stack">
+				{#each composerVsChat as row}
+					<div class="comparison-row">
+						<div class="comparison-label">{row.useCase}</div>
+						<div class="comparison-values">
+							<div class="comparison-cell" class:highlight-win={row.composer}>
+								<span class="cell-tool">Composer</span>
+								<span class="cell-value">{row.composer ? 'Best choice' : '-'}</span>
+							</div>
+							<div class="comparison-cell" class:highlight-win={!row.composer}>
+								<span class="cell-tool">Chat</span>
+								<span class="cell-value">{!row.composer ? 'Best choice' : '-'}</span>
+							</div>
+						</div>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Agent Mode -->
@@ -604,7 +558,7 @@ Examples:
 				<li><strong>Multi-step planning</strong> - Break complex tasks into subtasks</li>
 			</ul>
 
-			<div class="warning-box">
+			<div class="callout callout-warning">
 				<strong>Caution:</strong> Agent mode runs real commands on your system. Always review what
 				Agent is doing, especially for destructive operations like rm or database modifications.
 				Consider using a Git branch so you can easily revert.
@@ -766,7 +720,7 @@ Examples:
 				<li>Our guide: <a href="/kb/prompts/awesome-cursor-rules/">Awesome Cursor Rules: A Curated Collection</a></li>
 			</ul>
 
-			<div class="tip-box">
+			<div class="callout callout-tip">
 				<strong>Tip:</strong> Start with a rules file from cursor.directory for your stack, then
 				customize based on your team's conventions. A good .cursorrules file saves hours of repeated
 				instructions.
@@ -848,13 +802,13 @@ Examples:
 				all VS Code shortcuts and adds AI-specific ones. Here are the essential Cursor shortcuts:
 			</p>
 
-			<div class="shortcuts-list">
+			<div class="shortcuts-grid">
 				{#each shortcuts as shortcut}
 					<div class="shortcut-item">
-						<div class="shortcut-key"><kbd>{shortcut.keys}</kbd></div>
+						<kbd class="shortcut-key">{shortcut.keys}</kbd>
 						<div class="shortcut-info">
 							<strong>{shortcut.action}</strong>
-							<span class="shortcut-desc">{shortcut.description}</span>
+							<span>{shortcut.description}</span>
 						</div>
 					</div>
 				{/each}
@@ -995,20 +949,18 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 
 			<div class="tutorials-grid">
 				{#each tutorials as tutorial}
-					<div class="tutorial-card">
+					<a href={tutorial.url} target="_blank" rel="noopener" class="card card-interactive tutorial-card">
 						<div class="tutorial-meta">
 							<span class="tutorial-duration">{tutorial.duration}</span>
 							<span class="tutorial-author">{tutorial.author}</span>
 						</div>
-						<h4>
-							<a href={tutorial.url} target="_blank" rel="noopener">{tutorial.title}</a>
-						</h4>
+						<h4>{tutorial.title}</h4>
 						<p>{tutorial.description}</p>
-					</div>
+					</a>
 				{/each}
 			</div>
 
-			<div class="tip-box">
+			<div class="callout callout-tip">
 				<strong>Recommended learning path:</strong> Start with Lee Robinson's 50-minute tutorial for
 				a complete overview, then watch Nat Eliason's full-stack build for practical application.
 				Come back to the Fireship comparison and Agent deep-dive as you advance.
@@ -1022,9 +974,9 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 				Bookmark these resources for when you need help, inspiration, or the latest updates.
 			</p>
 
-			<div class="resources-list">
+			<div class="resources-grid">
 				{#each resources as resource}
-					<a href={resource.url} target="_blank" rel="noopener" class="resource-item">
+					<a href={resource.url} target="_blank" rel="noopener" class="card card-interactive resource-item">
 						<strong>{resource.name}</strong>
 						<span class="resource-url">{resource.url}</span>
 						<p>{resource.description}</p>
@@ -1047,9 +999,9 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 				Cursor is not the only AI coding tool. Here is how it compares to the main alternatives:
 			</p>
 
-			<div class="comparison-grid">
+			<div class="comparison-cards">
 				{#each comparisons as tool}
-					<a href={tool.href} class="comparison-card">
+					<a href={tool.href} class="card card-interactive comparison-link">
 						<h4>Cursor vs {tool.name}</h4>
 						<p>{tool.summary}</p>
 						<span class="read-more">Read full comparison →</span>
@@ -1058,54 +1010,32 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 			</div>
 
 			<h3>Quick comparison summary</h3>
-			<table class="comparison-table">
-				<thead>
-					<tr>
-						<th>Feature</th>
-						<th>Cursor</th>
-						<th>Copilot</th>
-						<th>Claude Code</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Multi-file editing</td>
-						<td class="good">Composer</td>
-						<td class="neutral">Limited</td>
-						<td class="good">Full codebase</td>
-					</tr>
-					<tr>
-						<td>Agent mode</td>
-						<td class="good">Yes</td>
-						<td class="bad">No</td>
-						<td class="good">Yes</td>
-					</tr>
-					<tr>
-						<td>IDE support</td>
-						<td class="neutral">Cursor only</td>
-						<td class="good">All IDEs</td>
-						<td class="neutral">Terminal</td>
-					</tr>
-					<tr>
-						<td>Model choice</td>
-						<td class="good">Multiple</td>
-						<td class="neutral">GPT-4 only</td>
-						<td class="neutral">Claude only</td>
-					</tr>
-					<tr>
-						<td>Free tier</td>
-						<td class="good">Generous</td>
-						<td class="neutral">Limited</td>
-						<td class="good">Free</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="comparison-stack">
+				{#each toolComparison as row}
+					<div class="comparison-row">
+						<div class="comparison-label">{row.feature}</div>
+						<div class="comparison-values triple">
+							<div class="comparison-cell" class:highlight-win={row.cursorWin}>
+								<span class="cell-tool">Cursor</span>
+								<span class="cell-value">{row.cursor}</span>
+							</div>
+							<div class="comparison-cell" class:highlight-win={row.copilotWin}>
+								<span class="cell-tool">Copilot</span>
+								<span class="cell-value">{row.copilot}</span>
+							</div>
+							<div class="comparison-cell" class:highlight-win={row.claudeWin}>
+								<span class="cell-tool">Claude Code</span>
+								<span class="cell-value">{row.claudeCode}</span>
+							</div>
+						</div>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- FAQ -->
 		<section id="faq" class="article-section">
 			<h2>Frequently Asked Questions</h2>
-
 			<div class="faq-list">
 				{#each faqs as faq}
 					<div class="faq-item">
@@ -1136,22 +1066,21 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		<!-- Related -->
 		<section class="article-section">
 			<h2>Related Content</h2>
-
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/cursor-security/" class="card card-interactive related-card">
-					<div class="related-card-category">Security</div>
-					<div class="related-card-title">Cursor Security Patterns</div>
-					<p class="related-card-description">Common vulnerabilities in Cursor-generated code and how to fix them</p>
+				<a href="/kb/vibe-coding-tools/cursor-security/" class="card card-interactive">
+					<span class="related-card-category">Security</span>
+					<h3 class="related-card-title">Cursor Security Patterns</h3>
+					<p class="related-card-desc">Common vulnerabilities in Cursor-generated code and how to fix them</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="card card-interactive related-card">
-					<div class="related-card-category">Comparison</div>
-					<div class="related-card-title">Cursor vs GitHub Copilot</div>
-					<p class="related-card-description">Detailed comparison of features, pricing, and use cases</p>
+				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Cursor vs GitHub Copilot</h3>
+					<p class="related-card-desc">Detailed comparison of features, pricing, and use cases</p>
 				</a>
-				<a href="/kb/prompts/awesome-cursor-rules/" class="card card-interactive related-card">
-					<div class="related-card-category">Resource</div>
-					<div class="related-card-title">Awesome Cursor Rules</div>
-					<p class="related-card-description">Curated collection of .cursorrules files for every stack</p>
+				<a href="/kb/prompts/awesome-cursor-rules/" class="card card-interactive">
+					<span class="related-card-category">Resource</span>
+					<h3 class="related-card-title">Awesome Cursor Rules</h3>
+					<p class="related-card-desc">Curated collection of .cursorrules files for every stack</p>
 				</a>
 			</div>
 		</section>
@@ -1172,7 +1101,6 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		color: var(--bg-primary);
 	}
 
-	/* Subtitle and reading time */
 	.subtitle {
 		font-size: 1.25rem;
 		color: var(--text-secondary);
@@ -1202,7 +1130,7 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 
 	.toc-list {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 		gap: 0.5rem;
 		list-style: none;
 		padding: 0;
@@ -1219,29 +1147,17 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		color: var(--green);
 	}
 
-	/* Info/tip/warning boxes */
-	.info-box,
-	.tip-box,
-	.warning-box {
+	/* Callout boxes */
+	.callout {
 		padding: 1rem 1.25rem;
 		margin: 1.5rem 0;
 		border-left: 3px solid;
+		background: var(--bg-secondary);
 	}
 
-	.info-box {
-		background: var(--bg-secondary);
-		border-color: var(--blue);
-	}
-
-	.tip-box {
-		background: var(--bg-secondary);
-		border-color: var(--green);
-	}
-
-	.warning-box {
-		background: var(--bg-secondary);
-		border-color: var(--orange);
-	}
+	.callout-info { border-color: var(--blue); }
+	.callout-tip { border-color: var(--green); }
+	.callout-warning { border-color: var(--orange); }
 
 	/* Numbered list */
 	.numbered-list {
@@ -1271,7 +1187,6 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		justify-content: center;
 		font-size: 0.875rem;
 		font-weight: 600;
-		color: var(--text-primary);
 	}
 
 	.numbered-list li strong {
@@ -1285,41 +1200,86 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		font-size: 0.9rem;
 	}
 
-	/* Comparison table */
-	.comparison-table {
-		width: 100%;
-		border-collapse: collapse;
+	/* Mobile-friendly comparison stack */
+	.comparison-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		margin: 1.5rem 0;
 	}
 
-	.comparison-table th,
-	.comparison-table td {
+	.comparison-row {
+		display: grid;
+		grid-template-columns: 200px 1fr;
+		gap: 1rem;
 		padding: 0.75rem;
-		text-align: left;
-		border-bottom: 1px solid var(--border);
-	}
-
-	.comparison-table th {
 		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+	}
+
+	@media (max-width: 700px) {
+		.comparison-row {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+	}
+
+	.comparison-label {
 		font-weight: 600;
+		color: var(--text-primary);
+		font-size: 0.9rem;
 	}
 
-	.comparison-table .good {
-		color: var(--green);
+	.comparison-values {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.75rem;
 	}
 
-	.comparison-table .neutral {
+	.comparison-values.triple {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	@media (max-width: 700px) {
+		.comparison-values,
+		.comparison-values.triple {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.comparison-cell {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 0.5rem;
+		background: var(--bg-tertiary);
+	}
+
+	.comparison-cell.highlight-win {
+		border-left: 2px solid var(--green-muted);
+	}
+
+	.comparison-cell.highlight-win .cell-value {
+		color: var(--green-muted);
+		font-weight: 500;
+	}
+
+	.cell-tool {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-tertiary);
+	}
+
+	.cell-value {
+		font-size: 0.875rem;
 		color: var(--text-secondary);
 	}
 
-	.comparison-table .bad {
-		color: var(--red);
-	}
-
-	/* Shortcuts list */
-	.shortcuts-list {
-		display: flex;
-		flex-direction: column;
+	/* Shortcuts grid */
+	.shortcuts-grid {
+		display: grid;
 		gap: 0.5rem;
 		margin: 1.5rem 0;
 	}
@@ -1333,17 +1293,21 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		align-items: flex-start;
 	}
 
-	.shortcut-key {
-		flex-shrink: 0;
+	@media (max-width: 500px) {
+		.shortcut-item {
+			flex-direction: column;
+			gap: 0.5rem;
+		}
 	}
 
-	.shortcut-key kbd {
+	.shortcut-key {
 		background: var(--bg-tertiary);
 		border: 1px solid var(--border);
 		padding: 0.3rem 0.6rem;
 		font-family: monospace;
 		font-size: 0.8rem;
 		white-space: nowrap;
+		flex-shrink: 0;
 	}
 
 	.shortcut-info {
@@ -1356,7 +1320,7 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		color: var(--text-primary);
 	}
 
-	.shortcut-desc {
+	.shortcut-info span {
 		font-size: 0.875rem;
 		color: var(--text-secondary);
 	}
@@ -1364,13 +1328,12 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 	/* Tutorials grid */
 	.tutorials-grid {
 		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}
 
 	.tutorial-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
 		padding: 1.25rem;
 	}
 
@@ -1389,15 +1352,7 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 
 	.tutorial-card h4 {
 		margin: 0 0 0.5rem;
-	}
-
-	.tutorial-card h4 a {
 		color: var(--text-primary);
-		text-decoration: none;
-	}
-
-	.tutorial-card h4 a:hover {
-		color: var(--green);
 	}
 
 	.tutorial-card p {
@@ -1406,24 +1361,16 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		color: var(--text-secondary);
 	}
 
-	/* Resources list */
-	.resources-list {
+	/* Resources grid */
+	.resources-grid {
 		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 		gap: 0.75rem;
 		margin: 1.5rem 0;
 	}
 
 	.resource-item {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
 		padding: 1rem 1.25rem;
-		text-decoration: none;
-		display: block;
-		transition: border-color 0.2s;
-	}
-
-	.resource-item:hover {
-		border-color: var(--green);
 	}
 
 	.resource-item strong {
@@ -1444,32 +1391,24 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		color: var(--text-secondary);
 	}
 
-	/* Comparison grid */
-	.comparison-grid {
+	/* Comparison cards */
+	.comparison-cards {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}
 
-	.comparison-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
+	.comparison-link {
 		padding: 1.25rem;
-		text-decoration: none;
-		transition: border-color 0.2s;
 	}
 
-	.comparison-card:hover {
-		border-color: var(--green);
-	}
-
-	.comparison-card h4 {
+	.comparison-link h4 {
 		margin: 0 0 0.5rem;
 		color: var(--text-primary);
 	}
 
-	.comparison-card p {
+	.comparison-link p {
 		margin: 0 0 0.75rem;
 		font-size: 0.9rem;
 		color: var(--text-secondary);
@@ -1478,35 +1417,6 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 	.read-more {
 		font-size: 0.875rem;
 		color: var(--green-dim);
-	}
-
-	/* FAQ */
-	.faq-list {
-		margin-top: 1rem;
-	}
-
-	.faq-item {
-		padding: 1.5rem 0;
-		border-bottom: 1px solid var(--border);
-	}
-
-	.faq-item:last-child {
-		border-bottom: none;
-	}
-
-	.faq-item h3 {
-		font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-		font-size: 1.0625rem;
-		font-weight: 600;
-		margin: 0 0 0.5rem;
-		color: var(--text-primary);
-	}
-
-	.faq-item p {
-		margin: 0;
-		font-size: 0.9375rem;
-		line-height: 1.7;
-		color: var(--text-secondary);
 	}
 
 	/* CTA Box */
@@ -1546,32 +1456,23 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		border-color: var(--text-secondary);
 	}
 
-	/* Related grid */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		gap: 1rem;
-		margin-top: 1rem;
-	}
-
-	.related-card {
-		padding: 1.25rem;
-	}
-
+	/* Related cards */
 	.related-card-category {
 		font-size: 0.75rem;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		color: var(--green-dim);
+		display: block;
 		margin-bottom: 0.5rem;
 	}
 
 	.related-card-title {
 		font-weight: 600;
-		margin-bottom: 0.5rem;
+		margin: 0 0 0.5rem;
+		font-size: 1rem;
 	}
 
-	.related-card-description {
+	.related-card-desc {
 		font-size: 0.875rem;
 		color: var(--text-secondary);
 		margin: 0;
@@ -1579,15 +1480,17 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 
 	@media (max-width: 768px) {
 		.toc-list {
-			grid-template-columns: 1fr;
-		}
-
-		.pricing-grid {
-			grid-template-columns: 1fr;
+			grid-template-columns: 1fr 1fr;
 		}
 
 		.cta-buttons {
 			flex-direction: column;
+		}
+	}
+
+	@media (max-width: 500px) {
+		.toc-list {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>
