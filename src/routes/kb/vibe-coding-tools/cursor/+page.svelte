@@ -892,19 +892,25 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		<section id="models" class="article-section">
 			<h2>Models and Pricing</h2>
 			<p>
-				Cursor supports multiple AI models, each with different strengths. You can switch models
-				per-request, though premium models count against your monthly quota.
+				Cursor supports multiple AI models from different providers, and you can switch models
+				per-request. Premium models count against your monthly quota, while the built-in cursor
+				models are optimized for speed and cost.
 			</p>
 
 			<h3>Available models</h3>
+			<p>Cursor offers models from multiple providers:</p>
 			<ul>
-				<li><strong>Claude 3.5 Sonnet</strong> - Default, best for most coding tasks. Fast and accurate.</li>
-				<li><strong>Claude 3.5 Opus</strong> - More powerful reasoning, limited to 10 uses/day on Pro.</li>
-				<li><strong>GPT-4o</strong> - OpenAI's latest. Good alternative when Claude struggles.</li>
-				<li><strong>GPT-4</strong> - Original GPT-4, slower but solid reasoning.</li>
-				<li><strong>o1 / o1-mini</strong> - Chain-of-thought reasoning for complex problems. Very slow but powerful.</li>
-				<li><strong>cursor-small</strong> - Fast, cheap model for simple completions. Good for Tab autocomplete.</li>
+				<li><strong>Anthropic Claude models</strong> - Generally the default and best for most coding tasks</li>
+				<li><strong>OpenAI GPT models</strong> - Good alternative when you need different reasoning patterns</li>
+				<li><strong>OpenAI o1 models</strong> - Chain-of-thought reasoning for complex problems, slower but powerful</li>
+				<li><strong>Google Gemini models</strong> - Additional option with different strengths</li>
+				<li><strong>cursor-small</strong> - Cursor's own fast model optimized for Tab autocomplete</li>
 			</ul>
+			<p>
+				Model availability and versions change frequently. Check
+				<a href="https://docs.cursor.com/settings/models" target="_blank" rel="noopener">Cursor's model documentation</a>
+				for the current list of available models and their capabilities.
+			</p>
 
 			<h3>Pricing overview</h3>
 			<p>
