@@ -36,52 +36,6 @@
 		{ id: 'faq', label: 'FAQ' }
 	];
 
-	// Pricing tiers
-	const pricing = [
-		{
-			name: 'Hobby',
-			price: 'Free',
-			features: [
-				'2,000 code completions/month',
-				'50 slow premium requests/month',
-				'Access to cursor-small model',
-				'Basic features'
-			]
-		},
-		{
-			name: 'Pro',
-			price: '$20/month',
-			features: [
-				'Unlimited code completions',
-				'500 fast premium requests/month',
-				'Unlimited slow premium requests',
-				'Claude 3.5 Sonnet, GPT-4o access',
-				'10 uses/day of Claude 3.5 Opus'
-			],
-			popular: true
-		},
-		{
-			name: 'Pro+',
-			price: '$60/month',
-			features: [
-				'Everything in Pro',
-				'Unlimited fast premium requests',
-				'Background Agents',
-				'o1 and o1-mini access'
-			]
-		},
-		{
-			name: 'Ultra',
-			price: '$200/month',
-			features: [
-				'Everything in Pro+',
-				'Unlimited o1-pro requests',
-				'Highest priority access',
-				'For heavy enterprise use'
-			]
-		}
-	];
-
 	// Keyboard shortcuts
 	const shortcuts = [
 		{ keys: 'Cmd/Ctrl + L', action: 'Open Chat', description: 'Start a new conversation with AI' },
@@ -952,36 +906,22 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 				<li><strong>cursor-small</strong> - Fast, cheap model for simple completions. Good for Tab autocomplete.</li>
 			</ul>
 
-			<h3>Pricing tiers</h3>
-			<div class="pricing-grid">
-				{#each pricing as tier}
-					<div class="pricing-card" class:popular={tier.popular}>
-						{#if tier.popular}
-							<div class="popular-badge">Most Popular</div>
-						{/if}
-						<h4>{tier.name}</h4>
-						<div class="price">{tier.price}</div>
-						<ul>
-							{#each tier.features as feature}
-								<li>{feature}</li>
-							{/each}
-						</ul>
-					</div>
-				{/each}
-			</div>
-
-			<h3>Teams pricing</h3>
+			<h3>Pricing overview</h3>
 			<p>
-				Cursor Teams is $40/user/month (billed annually) or $50/user/month (billed monthly).
-				It includes everything in Pro plus:
+				Cursor offers a free tier and three paid plans. The <strong>Hobby tier is free</strong> with
+				2,000 completions/month and 50 slow premium requests - enough to try it out. <strong>Pro
+				at $20/month</strong> is the sweet spot for most developers, with unlimited completions and
+				500 fast premium requests.
 			</p>
-			<ul>
-				<li>Centralized billing and admin controls</li>
-				<li>Usage analytics and reporting</li>
-				<li>Team-wide .cursorrules enforcement</li>
-				<li>Priority support</li>
-				<li>SOC 2 compliance features</li>
-			</ul>
+			<p>
+				Power users can upgrade to <strong>Pro+ at $60/month</strong> for unlimited fast requests
+				and Background Agents, or <strong>Ultra at $200/month</strong> for heavy enterprise use with
+				o1-pro access. Teams pricing starts at $40/user/month with centralized billing and admin
+				controls.
+			</p>
+			<p>
+				Check <a href="https://cursor.com/pricing" target="_blank" rel="noopener">cursor.com/pricing</a> for current pricing and feature details.
+			</p>
 		</section>
 
 		<!-- Advanced Tips -->
@@ -1402,60 +1342,6 @@ Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></p
 		padding: 0.2rem 0.5rem;
 		font-family: monospace;
 		font-size: 0.875rem;
-	}
-
-	/* Pricing grid */
-	.pricing-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
-		margin: 1.5rem 0;
-	}
-
-	.pricing-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		padding: 1.5rem;
-		position: relative;
-	}
-
-	.pricing-card.popular {
-		border-color: var(--green);
-	}
-
-	.popular-badge {
-		position: absolute;
-		top: -0.75rem;
-		left: 1rem;
-		background: var(--green);
-		color: var(--bg-primary);
-		padding: 0.25rem 0.75rem;
-		font-size: 0.75rem;
-		font-weight: 600;
-	}
-
-	.pricing-card h4 {
-		margin: 0 0 0.5rem;
-		font-size: 1.1rem;
-	}
-
-	.pricing-card .price {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--green);
-		margin-bottom: 1rem;
-	}
-
-	.pricing-card ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	.pricing-card li {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		padding: 0.25rem 0;
 	}
 
 	/* Tutorials grid */
