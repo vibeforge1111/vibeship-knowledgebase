@@ -282,12 +282,16 @@
 
 /* ============================================
    COPY BUTTON - Sharp edges
+   Touch target: 44px minimum for WCAG AA
    ============================================ */
 .copy-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.35rem;
-  padding: 0.3rem 0.6rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5rem 0.75rem;
   background: var(--bg-primary);
   border: 1px solid var(--border);
   font-family: 'JetBrains Mono', monospace;
@@ -517,14 +521,19 @@
 }
 
 .checklist-checkbox {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  min-width: 44px;
+  min-height: 44px;
   border: 2px solid var(--border-strong);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 0;
+  /* Touch target padding for WCAG AA */
+  padding: 10px;
+  box-sizing: content-box;
 }
 
 .checklist-checkbox:hover {
@@ -549,6 +558,83 @@
 .checklist-description {
   font-size: 0.875rem;
   color: var(--text-tertiary);
+}
+
+/* ============================================
+   FAQ SECTION - Canonical Pattern
+   ============================================ */
+.faq-list {
+  margin-top: 1rem;
+}
+
+.faq-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-item h3 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.faq-item p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .faq-item {
+    padding: 1rem 0;
+  }
+
+  .faq-item h3 {
+    font-size: 1rem;
+  }
+
+  .faq-item p {
+    font-size: 0.875rem;
+  }
+}
+
+/* ============================================
+   FINAL CTA SECTION - Scanner Promo
+   ============================================ */
+.final-cta {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+.final-cta h2 {
+  margin-bottom: 0.75rem;
+}
+
+.final-cta p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .final-cta {
+    padding: 2rem 1.5rem;
+    margin-top: 2rem;
+  }
 }
 
 /* ============================================
@@ -747,9 +833,11 @@
     font-size: 0.6rem;
   }
 
-  /* Copy button - smaller on mobile */
+  /* Copy button - maintain touch target on mobile */
   .copy-btn {
-    padding: 0.2rem 0.4rem;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.4rem 0.6rem;
     font-size: 0.6rem;
   }
 
@@ -784,8 +872,10 @@
   }
 
   .checklist-checkbox {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .checklist-title {
@@ -852,4 +942,303 @@ tr:nth-child(even) {
   -webkit-overflow-scrolling: touch;
   margin: 1rem 0;
   max-width: 100%;
+}
+
+/* ============================================
+   CODE COMPARISON - Before/After Pattern
+   ============================================ */
+.code-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.code-comparison .code-block {
+  margin-bottom: 0;
+}
+
+.code-comparison .code-block.vulnerable {
+  border-left: 3px solid var(--red);
+}
+
+.code-comparison .code-block.secure {
+  border-left: 3px solid var(--green);
+}
+
+.code-label {
+  padding: 0.5rem 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.vulnerable .code-label {
+  color: var(--red);
+}
+
+.secure .code-label {
+  color: var(--green);
+}
+
+@media (max-width: 768px) {
+  .code-comparison {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   STATS SECTION - Homepage/Hub Pattern
+   ============================================ */
+.stats-section {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stats-section {
+    padding: 2rem 0;
+  }
+}
+
+/* ============================================
+   PERSONA/FEATURE CARDS - Grid Pattern
+   ============================================ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.feature-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  transition: border-color 0.15s;
+}
+
+.feature-card:hover {
+  border-color: var(--green-dim);
+}
+
+.feature-card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.feature-card-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================
+   COMPARISON TABLE - Tool vs Tool Pattern
+   ============================================ */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table th {
+  background: var(--bg-secondary);
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.comparison-table th:first-child {
+  text-align: left;
+}
+
+.comparison-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-table td:not(:first-child) {
+  text-align: center;
+}
+
+.comparison-table .check {
+  color: var(--green);
+}
+
+.comparison-table .cross {
+  color: var(--red);
+}
+
+/* ============================================
+   ARTICLE HEADER - Canonical Pattern
+   ============================================ */
+.article-header {
+  margin-bottom: 2rem;
+}
+
+.article-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.article-header .subtitle {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.badge-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+/* ============================================
+   ARTICLE SECTION - Semantic Wrapper
+   ============================================ */
+.article-section {
+  margin-bottom: 2.5rem;
+}
+
+.article-section h2 {
+  margin-bottom: 1rem;
+}
+
+.article-section h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ============================================
+   SECURITY BOX - Warning/Critical Pattern
+   ============================================ */
+.security-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.security-box-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--red);
+  margin-bottom: 0.75rem;
+}
+
+.security-box p {
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+/* ============================================
+   CTA BOX - In-article Call to Action
+   ============================================ */
+.cta-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green-dim);
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.cta-box p {
+  margin-bottom: 0.75rem;
+}
+
+.cta-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   COLLAPSIBLE FAQ - Details/Summary Pattern
+   ============================================ */
+.faq-collapsible {
+  margin-top: 1rem;
+}
+
+.faq-collapsible details {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-collapsible details:last-child {
+  border-bottom: none;
+}
+
+.faq-collapsible summary {
+  padding: 1.25rem 0;
+  cursor: pointer;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px; /* Touch target */
+}
+
+.faq-collapsible summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-collapsible summary::after {
+  content: '+';
+  font-size: 1.25rem;
+  color: var(--text-tertiary);
+  transition: transform 0.2s;
+}
+
+.faq-collapsible details[open] summary::after {
+  content: '−';
+}
+
+.faq-collapsible .faq-answer {
+  padding: 0 0 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .faq-collapsible summary {
+    font-size: 1rem;
+    padding: 1rem 0;
+  }
 }

@@ -74,7 +74,7 @@ sveltekit, typescript
 (None yet - add to .mind/MEMORY.md Gotchas section)
 <!-- MIND:END -->
 
-# VibeShip Knowledge Base
+# Vibeship Knowledge Base
 
 ## Project Overview
 
@@ -141,7 +141,7 @@ Every article: 3-5 uses of "vibe coding" terms minimum.
 ```markdown
 ❌ WRONG: "Found in 23.4% of 10,847 AI-generated repositories"
 ✅ RIGHT: "Ranked #3 in [OWASP Top 10 (2021)](https://owasp.org/Top10/)"
-✅ RIGHT: "VibeShip Scanner is collecting data. Early patterns suggest..."
+✅ RIGHT: "Vibeship Scanner is collecting data. Early patterns suggest..."
 ```
 
 ### 3. SECURITY SCANNING TOOLS

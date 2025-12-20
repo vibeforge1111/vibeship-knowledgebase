@@ -1,4 +1,4 @@
-# VibeShip Knowledge Base UI/Design Standards
+# Vibeship Knowledge Base UI/Design Standards
 
 > **This is the canonical styling guide for all KB articles.**
 > When in doubt, reference `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte` as the gold standard.
@@ -9,7 +9,7 @@
 
 ### 1. Sharp Edges, Not Rounded
 
-VibeShip uses **sharp, terminal-inspired edges** throughout. This is non-negotiable.
+Vibeship uses **sharp, terminal-inspired edges** throughout. This is non-negotiable.
 
 ```css
 /* WRONG - Never use rounded corners on structural elements */
@@ -281,8 +281,10 @@ Use the global `.code-block` class:
 
 ### 7. FAQ Section
 
+Use the global `.faq-list` and `.faq-item` classes from `components.css`:
+
 ```svelte
-<section class="faq-section">
+<section class="article-section">
   <h2>Frequently Asked Questions</h2>
   <div class="faq-list">
     {#each faqs as faq}
@@ -295,33 +297,27 @@ Use the global `.code-block` class:
 </section>
 ```
 
-**Scoped styles needed:**
-```css
-.faq-list {
-  margin-top: 1rem;
-}
+**No scoped styles needed** - this is now a global component.
 
-.faq-item {
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-}
+**Reference:** See `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte` for the canonical FAQ pattern.
 
-.faq-item:last-child {
-  border-bottom: none;
-}
+### 8. Final CTA / Scanner Promo
 
-.faq-item h3 {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
+Use the global `.final-cta` class from `components.css`:
 
-.faq-item p {
-  margin-bottom: 0;
-  color: var(--text-secondary);
-}
+```svelte
+<div class="final-cta">
+  <h2>Find these before an attacker does</h2>
+  <p>Too many incidents start with "we thought our code was fine."</p>
+  <a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
+    Scan your code now
+  </a>
+</div>
 ```
 
-### 8. Related Content Grid
+**No scoped styles needed** - this is now a global component.
+
+### 9. Related Content Grid
 
 ```svelte
 <section>
@@ -493,9 +489,9 @@ Key breakpoints:
 - `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte`
 - `src/routes/kb/prompts/cursor-rules-examples/+page.svelte`
 
-### Articles Needing Fixes
-- `src/routes/kb/vibe-coding-tools/cursor-vs-copilot/+page.svelte` - Uses rounded corners, gradient backgrounds, hardcoded colors
-- `src/routes/kb/security/stacks/sveltekit-supabase/+page.svelte` - Uses rounded corners, gradient backgrounds, hardcoded colors
+### Previously Fixed (Now Compliant)
+- `src/routes/kb/vibe-coding-tools/cursor-vs-copilot/+page.svelte` - Fixed: removed rounded corners, gradients, hardcoded colors
+- `src/routes/kb/security/stacks/sveltekit-supabase/+page.svelte` - Fixed: removed rounded corners, gradients, hardcoded colors
 
 ---
 
