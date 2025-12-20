@@ -38,6 +38,18 @@
 			answer: 'Cline (formerly Claude Dev) is a free, open-source VS Code extension that provides autonomous AI coding assistance. Its key feature is human-in-the-loop approval - every file edit, terminal command, or browser action requires your explicit approval before execution. It supports Claude, GPT-4, and local models via Ollama.'
 		}
 	];
+
+	// Comparison data
+	const comparisonData = [
+		{ attr: 'Type', cline: 'VS Code Extension', cursor: 'Standalone IDE (VS Code fork)' },
+		{ attr: 'Pricing', cline: 'Free (BYOK)', cursor: '$20/mo Pro' },
+		{ attr: 'Open Source', cline: 'Yes (Apache 2.0)', cursor: 'No', clineHighlight: true },
+		{ attr: 'Models', cline: 'Any (Claude, GPT-4, Ollama)', cursor: 'GPT-4, Claude (built-in)' },
+		{ attr: 'Human-in-the-loop', cline: 'Yes (every action)', cursor: 'No (auto-apply)', clineHighlight: true },
+		{ attr: 'Autocomplete', cline: 'No', cursor: 'Yes (Tab)', cursorHighlight: true },
+		{ attr: 'Known CVEs', cline: 'None', cursor: 'CVE-2025-62352', clineHighlight: true },
+		{ attr: 'Best For', cline: 'Control, auditability', cursor: 'Speed, polish' }
+	];
 </script>
 
 <svelte:head>
@@ -82,7 +94,7 @@
 			}
 		},
 		"datePublished": "2025-12-17",
-		"dateModified": "2025-12-17"
+		"dateModified": "2025-12-20"
 	}
 	</script>`}
 
@@ -106,7 +118,7 @@
 <Header {breadcrumbs} />
 
 <div class="content-wrapper">
-	<article class="content-main">
+	<article class="content-main content-wide">
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
@@ -128,65 +140,29 @@
 			</p>
 		</div>
 
-		<!-- Quick Comparison Table -->
+		<!-- Quick Comparison -->
 		<section>
 			<h2>Cline vs Cursor: Quick Comparison</h2>
 			<p>
-				This comparison represents two different philosophies in AI-assisted development. Cline prioritizes developer control with approval workflows. Cursor prioritizes speed with automatic execution. Both are excellent tools for vibe coding with different tradeoffs.
+				Two different philosophies in AI-assisted development. Cline prioritizes developer control with approval workflows. Cursor prioritizes speed with automatic execution. Both are excellent tools for vibe coding with different tradeoffs.
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Attribute</th>
-							<th>Cline</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Type</td>
-							<td>VS Code Extension</td>
-							<td>Standalone IDE (VS Code fork)</td>
-						</tr>
-						<tr>
-							<td>Pricing</td>
-							<td>Free (BYOK)</td>
-							<td>$20/mo Pro</td>
-						</tr>
-						<tr>
-							<td>Open Source</td>
-							<td class="secure">Yes (Apache 2.0)</td>
-							<td>No</td>
-						</tr>
-						<tr>
-							<td>Models</td>
-							<td>Any (Claude, GPT-4, Ollama)</td>
-							<td>GPT-4, Claude (built-in)</td>
-						</tr>
-						<tr>
-							<td>Human-in-the-loop</td>
-							<td class="secure">Yes (every action)</td>
-							<td>No (auto-apply)</td>
-						</tr>
-						<tr>
-							<td>Autocomplete</td>
-							<td>No</td>
-							<td>Yes (Tab)</td>
-						</tr>
-						<tr>
-							<td>Known CVEs</td>
-							<td class="secure">None</td>
-							<td class="vulnerable">CVE-2025-62352</td>
-						</tr>
-						<tr>
-							<td>Best For</td>
-							<td>Control, auditability</td>
-							<td>Speed, polish</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="comparison-cards">
+				{#each comparisonData as row}
+					<div class="comparison-row">
+						<div class="comparison-attr">{row.attr}</div>
+						<div class="comparison-values">
+							<div class="comparison-tool" class:highlight={row.clineHighlight}>
+								<span class="tool-label">Cline</span>
+								<span class="tool-value">{row.cline}</span>
+							</div>
+							<div class="comparison-tool" class:highlight={row.cursorHighlight}>
+								<span class="tool-label">Cursor</span>
+								<span class="tool-value">{row.cursor}</span>
+							</div>
+						</div>
+					</div>
+				{/each}
 			</div>
 		</section>
 
@@ -234,118 +210,6 @@
 			</p>
 		</section>
 
-		<!-- Feature Comparison -->
-		<section>
-			<h2>Feature Comparison</h2>
-			<p>
-				The fundamental difference is approval workflow: Cline asks before acting; Cursor acts then lets you review. Here's how other features compare:
-			</p>
-
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Feature</th>
-							<th>Cline</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Autocomplete</td>
-							<td>No</td>
-							<td>Yes (Tab)</td>
-						</tr>
-						<tr>
-							<td>Chat</td>
-							<td>Yes</td>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<td>Multi-file Editing</td>
-							<td>Yes (with approval per file)</td>
-							<td>Yes (Composer, auto-apply)</td>
-						</tr>
-						<tr>
-							<td>Terminal Commands</td>
-							<td>Yes (with approval)</td>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<td>File Creation</td>
-							<td>Yes (with approval)</td>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<td>Browser Integration</td>
-							<td>Yes (screenshot analysis)</td>
-							<td>No</td>
-						</tr>
-						<tr>
-							<td>MCP Support</td>
-							<td>Yes</td>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<td>Local Models</td>
-							<td>Yes (Ollama)</td>
-							<td>Limited</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<p>
-				<strong>Key insight:</strong> Cline lacks autocomplete - its strength is agentic tasks where you describe what you want and it plans and executes (with your approval). Cursor excels at both quick autocomplete and longer multi-file edits.
-			</p>
-		</section>
-
-		<!-- Pricing Comparison -->
-		<section>
-			<h2>Pricing: Free vs $20/Month</h2>
-			<p>
-				Cline is free but you pay for API usage. Cursor is $20/month with usage included. The true cost comparison depends on your usage patterns:
-			</p>
-
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Cost Type</th>
-							<th>Cline</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Subscription</td>
-							<td class="secure">$0</td>
-							<td>$20/month</td>
-						</tr>
-						<tr>
-							<td>API Costs</td>
-							<td>Variable (~$10-50/mo typical)</td>
-							<td>Included</td>
-						</tr>
-						<tr>
-							<td>Local Models</td>
-							<td class="secure">$0 (Ollama)</td>
-							<td>N/A</td>
-						</tr>
-						<tr>
-							<td>Predictability</td>
-							<td>Variable</td>
-							<td>Fixed</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<p>
-				<strong>Break-even analysis:</strong> If you spend less than $20/month on API calls, Cline is cheaper. Heavy users may exceed $20/month, making Cursor's fixed pricing more economical. With local models via Ollama, Cline can be truly free (at the cost of some model quality).
-			</p>
-		</section>
-
 		<!-- Security Comparison -->
 		<section>
 			<h2>Security Comparison</h2>
@@ -354,11 +218,9 @@
 			</p>
 
 			<div class="security-comparison">
-				<div class="security-card cline-card">
+				<div class="security-card">
 					<h3>Cline Security</h3>
-					<div class="cve-status secure">
-						No Known CVEs
-					</div>
+					<div class="cve-status secure">No Known CVEs</div>
 					<h4>Strengths</h4>
 					<ul>
 						<li>Human-in-the-loop: Every action requires approval</li>
@@ -375,7 +237,7 @@
 					</ul>
 				</div>
 
-				<div class="security-card cursor-card">
+				<div class="security-card">
 					<h3>Cursor Security</h3>
 					<div class="cve-status vulnerable">
 						<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62352" target="_blank" rel="noopener">CVE-2025-62352</a> (Path Traversal)
@@ -396,56 +258,48 @@
 				</div>
 			</div>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Risk Factor</th>
-							<th>Cline</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>CVE History</td>
-							<td class="secure">0 known</td>
-							<td class="vulnerable">1 known</td>
-						</tr>
-						<tr>
-							<td>Auditability</td>
-							<td class="secure">Full (open source)</td>
-							<td>None (closed)</td>
-						</tr>
-						<tr>
-							<td>Review Before Execute</td>
-							<td class="secure">Mandatory</td>
-							<td>Optional</td>
-						</tr>
-						<tr>
-							<td>API Key Risk</td>
-							<td>User managed</td>
-							<td>Platform managed</td>
-						</tr>
-						<tr>
-							<td>Telemetry</td>
-							<td class="secure">None default</td>
-							<td>Yes</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
 			<p>
 				<strong>Bottom line:</strong> Cline's human-in-the-loop approval is a genuine security feature - malicious code cannot execute without your explicit consent. However, open source does not automatically mean "safer" - it means "auditable." Use <a href="/kb/vibe-coding/secure-vibe-coding-guide/">security best practices</a> with either tool.
 			</p>
 		</section>
 
-		<!-- When to Choose Cline -->
+		<!-- Pricing Comparison -->
+		<section>
+			<h2>Pricing: Free vs $20/Month</h2>
+			<p>
+				Cline is free but you pay for API usage. Cursor is $20/month with usage included. The true cost comparison depends on your usage patterns.
+			</p>
+
+			<div class="pricing-comparison">
+				<div class="price-card">
+					<h3>Cline</h3>
+					<ul>
+						<li><strong>Extension:</strong> Free (open source)</li>
+						<li><strong>API Costs:</strong> $10-50/mo typical</li>
+						<li><strong>Local Models:</strong> $0 (Ollama)</li>
+					</ul>
+					<p class="price-note">Cost varies with usage. Heavy users may exceed $20/mo.</p>
+				</div>
+
+				<div class="price-card">
+					<h3>Cursor</h3>
+					<ul>
+						<li><strong>Free:</strong> 2000 completions</li>
+						<li><strong>Pro:</strong> $20/month</li>
+						<li><strong>Business:</strong> $40/user/month</li>
+					</ul>
+					<p class="price-note">Predictable monthly cost. All features included.</p>
+				</div>
+			</div>
+
+			<p>
+				<strong>Break-even analysis:</strong> If you spend less than $20/month on API calls, Cline is cheaper. With local models via Ollama, Cline can be truly free (at the cost of some model quality).
+			</p>
+		</section>
+
+		<!-- When to Choose -->
 		<section>
 			<h2>When to Choose Cline</h2>
-			<p>
-				Cline is the better choice when you need:
-			</p>
 			<ul>
 				<li><strong>Control:</strong> Approve every file edit, command, and action</li>
 				<li><strong>Auditability:</strong> Open source code you can inspect</li>
@@ -459,12 +313,8 @@
 			</p>
 		</section>
 
-		<!-- When to Choose Cursor -->
 		<section>
 			<h2>When to Choose Cursor</h2>
-			<p>
-				Cursor is the better choice when you need:
-			</p>
 			<ul>
 				<li><strong>Speed:</strong> Auto-apply changes without approval friction</li>
 				<li><strong>Autocomplete:</strong> Tab completions while you type</li>
@@ -495,43 +345,45 @@
 		</section>
 
 		<!-- FAQ Section -->
-		<section class="faq-section">
+		<section class="article-section">
 			<h2>Frequently Asked Questions</h2>
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
 		<section>
 			<h2>Related Comparisons</h2>
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Cursor Security Patterns</span>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">Cursor Security Patterns</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Cursor vs GitHub Copilot</span>
+				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Cursor vs GitHub Copilot</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/claude-code-vs-cursor/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Claude Code vs Cursor</span>
+				<a href="/kb/vibe-coding-tools/claude-code-vs-cursor/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Claude Code vs Cursor</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/windsurf-vs-cursor/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Windsurf vs Cursor</span>
+				<a href="/kb/vibe-coding-tools/windsurf-vs-cursor/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Windsurf vs Cursor</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/" class="related-card">
-					<span class="related-type">Hub</span>
-					<span class="related-title">All Vibe Coding Tools</span>
+				<a href="/kb/vibe-coding-tools/" class="card card-interactive">
+					<span class="related-card-category">Hub</span>
+					<h3 class="related-card-title">All Vibe Coding Tools</h3>
 				</a>
-				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">The Complete Secure Vibe Coding Guide</span>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive">
+					<span class="related-card-category">Pillar Guide</span>
+					<h3 class="related-card-title">The Complete Secure Vibe Coding Guide</h3>
 				</a>
 			</div>
 		</section>
@@ -539,16 +391,7 @@
 </div>
 
 <style>
-	.content-wrapper {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
-
-	.article-header {
-		margin-bottom: 2rem;
-	}
-
+	/* Badge row for article header */
 	.badge-row {
 		display: flex;
 		gap: 0.5rem;
@@ -556,147 +399,91 @@
 		margin-bottom: 1rem;
 	}
 
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		background: var(--surface-2, #333);
-		color: var(--text-secondary, #aaa);
-	}
-
 	.badge-comparison {
-		background: #3b82f6;
-		color: white;
-	}
-
-	h1 {
-		font-size: 2.25rem;
-		margin-bottom: 0.5rem;
-		line-height: 1.2;
+		border-color: var(--text-secondary);
+		color: var(--text-secondary);
+		background: transparent;
 	}
 
 	.subtitle {
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		font-size: 1.1rem;
+		margin-bottom: 0;
 	}
 
-	.quick-answer {
-		background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
-		border: 1px solid rgba(59, 130, 246, 0.3);
-		border-radius: 8px;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer-label {
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		color: #3b82f6;
-		margin-bottom: 0.5rem;
-	}
-
-	.quick-answer-text {
-		margin: 0;
-		line-height: 1.6;
-	}
-
-	section {
-		margin-bottom: 2.5rem;
-	}
-
-	h2 {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
-	}
-
-	h3 {
-		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
-		margin-top: 1rem;
-	}
-
-	h4 {
-		font-size: 0.9rem;
-		margin-bottom: 0.5rem;
-		margin-top: 1rem;
-		color: var(--text-secondary, #888);
-	}
-
-	p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-	}
-
-	ul {
-		margin-bottom: 1rem;
-		padding-left: 1.5rem;
-	}
-
-	li {
-		margin-bottom: 0.5rem;
-		line-height: 1.6;
-	}
-
-	a {
-		color: #22c55e;
-	}
-
-	a:hover {
-		text-decoration: underline;
-	}
-
-	/* Comparison Table */
-	.comparison-table-wrapper {
-		overflow-x: auto;
+	/* Comparison Cards */
+	.comparison-cards {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		margin: 1.5rem 0;
 	}
 
-	.comparison-table {
-		width: 100%;
-		border-collapse: collapse;
+	.comparison-row {
+		display: grid;
+		grid-template-columns: 140px 1fr;
+		gap: 1rem;
+		padding: 0.75rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+	}
+
+	@media (max-width: 600px) {
+		.comparison-row {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+	}
+
+	.comparison-attr {
+		font-weight: 600;
+		color: var(--text-primary);
 		font-size: 0.9rem;
 	}
 
-	.comparison-table th,
-	.comparison-table td {
-		padding: 0.75rem 1rem;
-		text-align: left;
-		border-bottom: 1px solid var(--border, #333);
+	.comparison-values {
+		display: flex;
+		gap: 1rem;
 	}
 
-	.comparison-table th {
-		background: var(--surface-1, #1a1a1a);
-		font-weight: 600;
+	@media (max-width: 600px) {
+		.comparison-values {
+			flex-direction: column;
+			gap: 0.5rem;
+		}
 	}
 
-	.comparison-table th:nth-child(2) {
-		color: #22c55e;
+	.comparison-tool {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 0.5rem;
+		background: var(--bg-tertiary);
 	}
 
-	.comparison-table th:nth-child(3) {
-		color: #3b82f6;
+	.comparison-tool.highlight {
+		border-left: 2px solid var(--green-muted);
 	}
 
-	.comparison-table td.secure {
-		color: #22c55e;
-		font-weight: 600;
+	.tool-label {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-tertiary);
 	}
 
-	.comparison-table td.vulnerable {
-		color: #f59e0b;
+	.tool-value {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
 	}
 
 	/* Security Comparison */
 	.security-comparison {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 1.5rem;
+		gap: 1rem;
 		margin: 1.5rem 0;
 	}
 
@@ -707,58 +494,22 @@
 	}
 
 	.security-card {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
-	}
-
-	.security-card.cline-card {
-		border: 1px solid rgba(34, 197, 94, 0.3);
-	}
-
-	.security-card.cursor-card {
-		border: 1px solid rgba(59, 130, 246, 0.3);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
 	}
 
 	.security-card h3 {
 		margin-top: 0;
 		margin-bottom: 0.75rem;
+		color: var(--text-primary);
 	}
 
-	.security-card.cline-card h3 {
-		color: #22c55e;
-	}
-
-	.security-card.cursor-card h3 {
-		color: #3b82f6;
-	}
-
-	.cve-status {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.8rem;
-		font-weight: 600;
-		margin-bottom: 1rem;
-	}
-
-	.cve-status.secure {
-		background: rgba(34, 197, 94, 0.2);
-		color: #22c55e;
-	}
-
-	.cve-status.vulnerable {
-		background: rgba(245, 158, 11, 0.2);
-		color: #f59e0b;
-	}
-
-	.cve-status a {
-		color: inherit;
-	}
-
-	.security-card p {
-		font-size: 0.875rem;
-		margin-bottom: 0.75rem;
+	.security-card h4 {
+		font-size: 0.85rem;
+		margin-bottom: 0.5rem;
+		margin-top: 1rem;
+		color: var(--text-secondary);
 	}
 
 	.security-card ul {
@@ -771,67 +522,84 @@
 		font-size: 0.875rem;
 	}
 
-	/* FAQ Section */
-	.faq-section {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
+	.cve-status {
+		display: inline-block;
+		padding: 0.25rem 0.75rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
 	}
 
-	.faq-item {
-		padding: 1rem 0;
-		border-bottom: 1px solid var(--border, #333);
+	.cve-status.secure {
+		background: var(--bg-tertiary);
+		color: var(--green-muted);
+		border: 1px solid var(--green-muted);
 	}
 
-	.faq-item:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
+	.cve-status.vulnerable {
+		background: var(--bg-tertiary);
+		color: var(--orange);
+		border: 1px solid var(--orange);
 	}
 
-	.faq-item h3 {
+	.cve-status a {
+		color: inherit;
+	}
+
+	/* Pricing Comparison */
+	.pricing-comparison {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	@media (max-width: 768px) {
+		.pricing-comparison {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.price-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
+	}
+
+	.price-card h3 {
 		margin-top: 0;
-		font-size: 1rem;
+		color: var(--text-primary);
 	}
 
-	.faq-item p {
-		margin-bottom: 0;
-		color: var(--text-secondary, #aaa);
+	.price-card ul {
+		margin-bottom: 1rem;
+		padding-left: 1.25rem;
+	}
+
+	.price-card li {
+		margin-bottom: 0.35rem;
 		font-size: 0.9rem;
 	}
 
-	/* Related Content */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
+	.price-note {
+		font-size: 0.8rem;
+		color: var(--text-tertiary);
+		margin-bottom: 0;
 	}
 
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: #22c55e;
-		text-decoration: none;
-	}
-
-	.related-type {
+	/* Related Cards */
+	.related-card-category {
 		display: block;
 		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-tertiary);
 		text-transform: uppercase;
+		letter-spacing: 0.05em;
 		margin-bottom: 0.25rem;
 	}
 
-	.related-title {
-		display: block;
-		font-weight: 600;
-		color: var(--text-primary, #fff);
+	.related-card-title {
+		font-size: 1rem;
+		margin: 0;
+		color: var(--text-primary);
 	}
 </style>

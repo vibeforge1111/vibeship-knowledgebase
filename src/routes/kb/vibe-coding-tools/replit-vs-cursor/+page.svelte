@@ -38,6 +38,38 @@
 			answer: 'Replit is better for beginners. It works in any browser with no installation, includes built-in deployment, and has a more forgiving learning curve. Cursor requires local setup and deployment knowledge. Replit\'s collaborative features also help beginners learn from others.'
 		}
 	];
+
+	// Comparison data
+	const comparisonData = [
+		{ attr: 'Type', replit: 'Cloud IDE (browser)', cursor: 'Desktop IDE' },
+		{ attr: 'Code Location', replit: 'Replit servers', cursor: 'Your machine', cursorHighlight: true },
+		{ attr: 'Pro Pricing', replit: '$25/mo (Core)', cursor: '$20/mo' },
+		{ attr: 'Free Tier', replit: 'Generous (public repos)', cursor: 'Limited (2000 completions)' },
+		{ attr: 'Instant Deploy', replit: 'Yes (1-click)', cursor: 'No (external hosting)', replitHighlight: true },
+		{ attr: 'Offline Work', replit: 'No', cursor: 'Yes', cursorHighlight: true },
+		{ attr: 'Known CVEs', replit: 'Platform-level', cursor: 'CVE-2025-62352' },
+		{ attr: 'Best For', replit: 'Beginners, prototypes', cursor: 'Professional development' }
+	];
+
+	// Paradigm comparison
+	const paradigmData = {
+		replit: [
+			{ label: 'Code storage', value: 'Replit\'s servers' },
+			{ label: 'Execution', value: 'Replit\'s containers' },
+			{ label: 'Deployment', value: 'One click to .replit.app' },
+			{ label: 'Collaboration', value: 'Real-time multiplayer' },
+			{ label: 'Access', value: 'Any browser, anywhere' },
+			{ label: 'Offline', value: 'Not available' }
+		],
+		cursor: [
+			{ label: 'Code storage', value: 'Your machine' },
+			{ label: 'Execution', value: 'Your machine' },
+			{ label: 'Deployment', value: 'You manage (Vercel, AWS, etc.)' },
+			{ label: 'Collaboration', value: 'Git-based' },
+			{ label: 'Access', value: 'Your computer only' },
+			{ label: 'Offline', value: 'Full editing capability' }
+		]
+	};
 </script>
 
 <svelte:head>
@@ -82,7 +114,7 @@
 			}
 		},
 		"datePublished": "2025-12-17",
-		"dateModified": "2025-12-17"
+		"dateModified": "2025-12-20"
 	}
 	</script>`}
 
@@ -106,7 +138,7 @@
 <Header {breadcrumbs} />
 
 <div class="content-wrapper">
-	<article class="content-main">
+	<article class="content-main content-wide">
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
@@ -129,65 +161,29 @@
 			</p>
 		</div>
 
-		<!-- Quick Comparison Table -->
+		<!-- Quick Comparison -->
 		<section>
 			<h2>Replit vs Cursor: Quick Comparison</h2>
 			<p>
 				This is not just "which AI is better" - it is a comparison of fundamentally different development paradigms. Replit runs everything in the browser with instant deployment. Cursor runs locally with your files on your machine. Both are excellent tools for vibe coding with different tradeoffs.
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Attribute</th>
-							<th>Replit</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Type</td>
-							<td>Cloud IDE (browser)</td>
-							<td>Desktop IDE</td>
-						</tr>
-						<tr>
-							<td>Code Location</td>
-							<td>Replit servers</td>
-							<td class="secure">Your machine</td>
-						</tr>
-						<tr>
-							<td>Pro Pricing</td>
-							<td>$25/mo (Core)</td>
-							<td>$20/mo</td>
-						</tr>
-						<tr>
-							<td>Free Tier</td>
-							<td>Generous (public repos)</td>
-							<td>Limited (2000 completions)</td>
-						</tr>
-						<tr>
-							<td>Instant Deploy</td>
-							<td class="secure">Yes (1-click)</td>
-							<td>No (external hosting)</td>
-						</tr>
-						<tr>
-							<td>Offline Work</td>
-							<td>No</td>
-							<td class="secure">Yes</td>
-						</tr>
-						<tr>
-							<td>Known CVEs</td>
-							<td>Platform-level</td>
-							<td class="vulnerable">CVE-2025-62352</td>
-						</tr>
-						<tr>
-							<td>Best For</td>
-							<td>Beginners, prototypes</td>
-							<td>Professional development</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="comparison-cards">
+				{#each comparisonData as row}
+					<div class="comparison-row">
+						<div class="comparison-attr">{row.attr}</div>
+						<div class="comparison-values">
+							<div class="comparison-tool" class:highlight={row.replitHighlight}>
+								<span class="tool-label">Replit</span>
+								<span class="tool-value">{row.replit}</span>
+							</div>
+							<div class="comparison-tool" class:highlight={row.cursorHighlight}>
+								<span class="tool-label">Cursor</span>
+								<span class="tool-value">{row.cursor}</span>
+							</div>
+						</div>
+					</div>
+				{/each}
 			</div>
 		</section>
 
@@ -245,109 +241,27 @@
 			</p>
 
 			<div class="paradigm-comparison">
-				<div class="paradigm-card cloud">
+				<div class="paradigm-card">
 					<h3>Replit: Cloud Paradigm</h3>
 					<ul>
-						<li><strong>Code storage:</strong> Replit's servers</li>
-						<li><strong>Execution:</strong> Replit's containers</li>
-						<li><strong>Deployment:</strong> One click to .replit.app</li>
-						<li><strong>Collaboration:</strong> Real-time multiplayer</li>
-						<li><strong>Access:</strong> Any browser, anywhere</li>
-						<li><strong>Offline:</strong> Not available</li>
+						{#each paradigmData.replit as item}
+							<li><strong>{item.label}:</strong> {item.value}</li>
+						{/each}
 					</ul>
 				</div>
 
-				<div class="paradigm-card local">
+				<div class="paradigm-card">
 					<h3>Cursor: Local Paradigm</h3>
 					<ul>
-						<li><strong>Code storage:</strong> Your machine</li>
-						<li><strong>Execution:</strong> Your machine</li>
-						<li><strong>Deployment:</strong> You manage (Vercel, AWS, etc.)</li>
-						<li><strong>Collaboration:</strong> Git-based</li>
-						<li><strong>Access:</strong> Your computer only</li>
-						<li><strong>Offline:</strong> Full editing capability</li>
+						{#each paradigmData.cursor as item}
+							<li><strong>{item.label}:</strong> {item.value}</li>
+						{/each}
 					</ul>
 				</div>
 			</div>
 
 			<p>
 				<strong>Key insight:</strong> Replit trades control for convenience. You get instant deployment and collaboration but give up data residency and offline access. Cursor trades convenience for control - more setup required, but you own your workflow entirely.
-			</p>
-		</section>
-
-		<!-- Feature Comparison -->
-		<section>
-			<h2>Feature Comparison</h2>
-			<p>
-				Here's how Replit and Cursor compare across key features for vibe coding:
-			</p>
-
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Feature</th>
-							<th>Replit</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Autocomplete</td>
-							<td>Ghostwriter</td>
-							<td>Tab (multi-line)</td>
-						</tr>
-						<tr>
-							<td>Chat</td>
-							<td>Yes</td>
-							<td>Yes (sidebar + inline)</td>
-						</tr>
-						<tr>
-							<td>Multi-file Editing</td>
-							<td>Limited</td>
-							<td>Yes (Composer)</td>
-						</tr>
-						<tr>
-							<td>Instant Deploy</td>
-							<td class="secure">Yes</td>
-							<td>No</td>
-						</tr>
-						<tr>
-							<td>Multiplayer/Collab</td>
-							<td class="secure">Yes (real-time)</td>
-							<td>No (Git-based)</td>
-						</tr>
-						<tr>
-							<td>Mobile Coding</td>
-							<td class="secure">Yes</td>
-							<td>No</td>
-						</tr>
-						<tr>
-							<td>Offline Work</td>
-							<td>No</td>
-							<td class="secure">Yes</td>
-						</tr>
-						<tr>
-							<td>Local File Access</td>
-							<td>No</td>
-							<td class="secure">Yes</td>
-						</tr>
-						<tr>
-							<td>Built-in Database</td>
-							<td class="secure">Yes (Replit DB)</td>
-							<td>No</td>
-						</tr>
-						<tr>
-							<td>Secrets Management</td>
-							<td class="secure">Built-in</td>
-							<td>Manual (.env)</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<p>
-				<strong>Key insight:</strong> Replit excels at the full development-to-deployment cycle in one place. Cursor excels at powerful AI-assisted editing for complex projects. If you need deployment, Replit has it built in; with Cursor, you configure it yourself.
 			</p>
 		</section>
 
@@ -359,11 +273,9 @@
 			</p>
 
 			<div class="security-comparison">
-				<div class="security-card replit-card">
+				<div class="security-card">
 					<h3>Replit Security</h3>
-					<div class="cve-status neutral">
-						Platform-Level CVEs
-					</div>
+					<div class="cve-status neutral">Platform-Level CVEs</div>
 					<h4>Cloud Security Model</h4>
 					<p>Your code lives on Replit's servers. You trust their security posture.</p>
 					<h4>Strengths</h4>
@@ -382,7 +294,7 @@
 					</ul>
 				</div>
 
-				<div class="security-card cursor-card">
+				<div class="security-card">
 					<h3>Cursor Security</h3>
 					<div class="cve-status vulnerable">
 						<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62352" target="_blank" rel="noopener">CVE-2025-62352</a> (Path Traversal)
@@ -406,56 +318,14 @@
 				</div>
 			</div>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Risk Factor</th>
-							<th>Replit</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Data Residency</td>
-							<td>Cloud (Replit)</td>
-							<td class="secure">Local (your machine)</td>
-						</tr>
-						<tr>
-							<td>Code Exposure Risk</td>
-							<td>Higher (cloud storage)</td>
-							<td class="secure">Lower (local)</td>
-						</tr>
-						<tr>
-							<td>Secret Management</td>
-							<td class="secure">Better (built-in)</td>
-							<td>Manual</td>
-						</tr>
-						<tr>
-							<td>CVE History</td>
-							<td>Platform CVEs</td>
-							<td class="vulnerable">1 IDE CVE</td>
-						</tr>
-						<tr>
-							<td>Compliance</td>
-							<td>SOC 2 available</td>
-							<td>Self-managed</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
 			<p>
 				<strong>Bottom line:</strong> If data residency matters (enterprise, regulated industries, sensitive code), Cursor's local model is more appropriate. If you want built-in security features and compliance certifications, Replit's managed platform provides that. Always use <a href="/kb/vibe-coding/secure-vibe-coding-guide/">security best practices</a> with either tool.
 			</p>
 		</section>
 
-		<!-- When to Choose Replit -->
+		<!-- When to Choose -->
 		<section>
 			<h2>When to Choose Replit</h2>
-			<p>
-				Replit is the better choice when you need:
-			</p>
 			<ul>
 				<li><strong>Zero setup:</strong> Start coding in seconds from any browser</li>
 				<li><strong>Instant deployment:</strong> One-click deploy to a live URL</li>
@@ -469,12 +339,8 @@
 			</p>
 		</section>
 
-		<!-- When to Choose Cursor -->
 		<section>
 			<h2>When to Choose Cursor</h2>
-			<p>
-				Cursor is the better choice when you need:
-			</p>
 			<ul>
 				<li><strong>Professional projects:</strong> Complex, long-term codebases</li>
 				<li><strong>Data privacy:</strong> Code stays on your machine</li>
@@ -506,43 +372,45 @@
 		</section>
 
 		<!-- FAQ Section -->
-		<section class="faq-section">
+		<section class="article-section">
 			<h2>Frequently Asked Questions</h2>
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
 		<section>
 			<h2>Related Comparisons</h2>
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/replit/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Replit Agent Security</span>
+				<a href="/kb/vibe-coding-tools/replit/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">Replit Agent Security</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Cursor Security Patterns</span>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">Cursor Security Patterns</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Cursor vs GitHub Copilot</span>
+				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Cursor vs GitHub Copilot</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/lovable-vs-bolt/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Lovable vs Bolt</span>
+				<a href="/kb/vibe-coding-tools/lovable-vs-bolt/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Lovable vs Bolt</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/" class="related-card">
-					<span class="related-type">Hub</span>
-					<span class="related-title">All Vibe Coding Tools</span>
+				<a href="/kb/vibe-coding-tools/" class="card card-interactive">
+					<span class="related-card-category">Hub</span>
+					<h3 class="related-card-title">All Vibe Coding Tools</h3>
 				</a>
-				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">The Complete Secure Vibe Coding Guide</span>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive">
+					<span class="related-card-category">Pillar Guide</span>
+					<h3 class="related-card-title">The Complete Secure Vibe Coding Guide</h3>
 				</a>
 			</div>
 		</section>
@@ -550,16 +418,7 @@
 </div>
 
 <style>
-	.content-wrapper {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
-
-	.article-header {
-		margin-bottom: 2rem;
-	}
-
+	/* Badge row for article header */
 	.badge-row {
 		display: flex;
 		gap: 0.5rem;
@@ -567,147 +426,91 @@
 		margin-bottom: 1rem;
 	}
 
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		background: var(--surface-2, #333);
-		color: var(--text-secondary, #aaa);
-	}
-
 	.badge-comparison {
-		background: #3b82f6;
-		color: white;
-	}
-
-	h1 {
-		font-size: 2.25rem;
-		margin-bottom: 0.5rem;
-		line-height: 1.2;
+		border-color: var(--text-secondary);
+		color: var(--text-secondary);
+		background: transparent;
 	}
 
 	.subtitle {
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		font-size: 1.1rem;
+		margin-bottom: 0;
 	}
 
-	.quick-answer {
-		background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
-		border: 1px solid rgba(59, 130, 246, 0.3);
-		border-radius: 8px;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer-label {
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		color: #3b82f6;
-		margin-bottom: 0.5rem;
-	}
-
-	.quick-answer-text {
-		margin: 0;
-		line-height: 1.6;
-	}
-
-	section {
-		margin-bottom: 2.5rem;
-	}
-
-	h2 {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
-	}
-
-	h3 {
-		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
-		margin-top: 1rem;
-	}
-
-	h4 {
-		font-size: 0.9rem;
-		margin-bottom: 0.5rem;
-		margin-top: 1rem;
-		color: var(--text-secondary, #888);
-	}
-
-	p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-	}
-
-	ul {
-		margin-bottom: 1rem;
-		padding-left: 1.5rem;
-	}
-
-	li {
-		margin-bottom: 0.5rem;
-		line-height: 1.6;
-	}
-
-	a {
-		color: #22c55e;
-	}
-
-	a:hover {
-		text-decoration: underline;
-	}
-
-	/* Comparison Table */
-	.comparison-table-wrapper {
-		overflow-x: auto;
+	/* Comparison Cards */
+	.comparison-cards {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		margin: 1.5rem 0;
 	}
 
-	.comparison-table {
-		width: 100%;
-		border-collapse: collapse;
+	.comparison-row {
+		display: grid;
+		grid-template-columns: 140px 1fr;
+		gap: 1rem;
+		padding: 0.75rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+	}
+
+	@media (max-width: 600px) {
+		.comparison-row {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+	}
+
+	.comparison-attr {
+		font-weight: 600;
+		color: var(--text-primary);
 		font-size: 0.9rem;
 	}
 
-	.comparison-table th,
-	.comparison-table td {
-		padding: 0.75rem 1rem;
-		text-align: left;
-		border-bottom: 1px solid var(--border, #333);
+	.comparison-values {
+		display: flex;
+		gap: 1rem;
 	}
 
-	.comparison-table th {
-		background: var(--surface-1, #1a1a1a);
-		font-weight: 600;
+	@media (max-width: 600px) {
+		.comparison-values {
+			flex-direction: column;
+			gap: 0.5rem;
+		}
 	}
 
-	.comparison-table th:nth-child(2) {
-		color: #f97316;
+	.comparison-tool {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 0.5rem;
+		background: var(--bg-tertiary);
 	}
 
-	.comparison-table th:nth-child(3) {
-		color: #3b82f6;
+	.comparison-tool.highlight {
+		border-left: 2px solid var(--green-muted);
 	}
 
-	.comparison-table td.secure {
-		color: #22c55e;
-		font-weight: 600;
+	.tool-label {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-tertiary);
 	}
 
-	.comparison-table td.vulnerable {
-		color: #f59e0b;
+	.tool-value {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
 	}
 
 	/* Paradigm Comparison */
 	.paradigm-comparison {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 1.5rem;
+		gap: 1rem;
 		margin: 1.5rem 0;
 	}
 
@@ -718,30 +521,15 @@
 	}
 
 	.paradigm-card {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
-	}
-
-	.paradigm-card.cloud {
-		border: 1px solid rgba(249, 115, 22, 0.3);
-	}
-
-	.paradigm-card.local {
-		border: 1px solid rgba(59, 130, 246, 0.3);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
 	}
 
 	.paradigm-card h3 {
 		margin-top: 0;
 		margin-bottom: 1rem;
-	}
-
-	.paradigm-card.cloud h3 {
-		color: #f97316;
-	}
-
-	.paradigm-card.local h3 {
-		color: #3b82f6;
+		color: var(--text-primary);
 	}
 
 	.paradigm-card ul {
@@ -757,7 +545,7 @@
 	.security-comparison {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 1.5rem;
+		gap: 1rem;
 		margin: 1.5rem 0;
 	}
 
@@ -768,58 +556,22 @@
 	}
 
 	.security-card {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
-	}
-
-	.security-card.replit-card {
-		border: 1px solid rgba(249, 115, 22, 0.3);
-	}
-
-	.security-card.cursor-card {
-		border: 1px solid rgba(59, 130, 246, 0.3);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
 	}
 
 	.security-card h3 {
 		margin-top: 0;
 		margin-bottom: 0.75rem;
+		color: var(--text-primary);
 	}
 
-	.security-card.replit-card h3 {
-		color: #f97316;
-	}
-
-	.security-card.cursor-card h3 {
-		color: #3b82f6;
-	}
-
-	.cve-status {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.8rem;
-		font-weight: 600;
-		margin-bottom: 1rem;
-	}
-
-	.cve-status.secure {
-		background: rgba(34, 197, 94, 0.2);
-		color: #22c55e;
-	}
-
-	.cve-status.vulnerable {
-		background: rgba(245, 158, 11, 0.2);
-		color: #f59e0b;
-	}
-
-	.cve-status.neutral {
-		background: rgba(156, 163, 175, 0.2);
-		color: #9ca3af;
-	}
-
-	.cve-status a {
-		color: inherit;
+	.security-card h4 {
+		font-size: 0.85rem;
+		margin-bottom: 0.5rem;
+		margin-top: 1rem;
+		color: var(--text-secondary);
 	}
 
 	.security-card p {
@@ -837,67 +589,49 @@
 		font-size: 0.875rem;
 	}
 
-	/* FAQ Section */
-	.faq-section {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
+	.cve-status {
+		display: inline-block;
+		padding: 0.25rem 0.75rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
 	}
 
-	.faq-item {
-		padding: 1rem 0;
-		border-bottom: 1px solid var(--border, #333);
+	.cve-status.secure {
+		background: var(--bg-tertiary);
+		color: var(--green-muted);
+		border: 1px solid var(--green-muted);
 	}
 
-	.faq-item:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
+	.cve-status.vulnerable {
+		background: var(--bg-tertiary);
+		color: var(--orange);
+		border: 1px solid var(--orange);
 	}
 
-	.faq-item h3 {
-		margin-top: 0;
-		font-size: 1rem;
+	.cve-status.neutral {
+		background: var(--bg-tertiary);
+		color: var(--text-tertiary);
+		border: 1px solid var(--border);
 	}
 
-	.faq-item p {
-		margin-bottom: 0;
-		color: var(--text-secondary, #aaa);
-		font-size: 0.9rem;
+	.cve-status a {
+		color: inherit;
 	}
 
-	/* Related Content */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
-	}
-
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: #22c55e;
-		text-decoration: none;
-	}
-
-	.related-type {
+	/* Related Cards */
+	.related-card-category {
 		display: block;
 		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-tertiary);
 		text-transform: uppercase;
+		letter-spacing: 0.05em;
 		margin-bottom: 0.25rem;
 	}
 
-	.related-title {
-		display: block;
-		font-weight: 600;
-		color: var(--text-primary, #fff);
+	.related-card-title {
+		font-size: 1rem;
+		margin: 0;
+		color: var(--text-primary);
 	}
 </style>
