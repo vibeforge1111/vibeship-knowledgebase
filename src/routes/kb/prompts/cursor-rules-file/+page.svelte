@@ -634,26 +634,26 @@ Follow Zod schema patterns:
 
 		<!-- Related -->
 		<section class="article-section">
-			<h2>Related resources</h2>
+			<h2>Related content</h2>
 			<div class="related-grid">
 				<a href="/kb/prompts/cursor-rules/" class="card card-interactive related-card">
-					<span class="related-card-category">Guide</span>
-					<h3 class="related-card-title">Cursor Rules</h3>
+					<div class="related-card-category">Guide</div>
+					<div class="related-card-title">Cursor Rules</div>
 					<p class="related-card-description">Complete guide to writing effective cursor rules</p>
 				</a>
 				<a href="/kb/prompts/cursor-rules-examples/" class="card card-interactive related-card">
-					<span class="related-card-category">Examples</span>
-					<h3 class="related-card-title">Cursor Rules Examples</h3>
+					<div class="related-card-category">Examples</div>
+					<div class="related-card-title">Cursor Rules Examples</div>
 					<p class="related-card-description">20+ ready-to-use templates for every stack</p>
 				</a>
 				<a href="/kb/prompts/claude-md/" class="card card-interactive related-card">
-					<span class="related-card-category">Guide</span>
-					<h3 class="related-card-title">CLAUDE.md Guide</h3>
+					<div class="related-card-category">Guide</div>
+					<div class="related-card-title">CLAUDE.md Guide</div>
 					<p class="related-card-description">Claude Code configuration reference</p>
 				</a>
 				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
-					<span class="related-card-category">Tool</span>
-					<h3 class="related-card-title">Cursor</h3>
+					<div class="related-card-category">Tool</div>
+					<div class="related-card-title">Cursor</div>
 					<p class="related-card-description">Security patterns in Cursor AI</p>
 				</a>
 			</div>

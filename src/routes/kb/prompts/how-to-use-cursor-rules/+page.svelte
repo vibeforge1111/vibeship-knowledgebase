@@ -566,32 +566,38 @@ alwaysApply: true
 		</section>
 
 		<!-- Related Content -->
-		<section>
-			<h2>Related resources</h2>
+		<section class="article-section">
+			<h2>Related content</h2>
 			<div class="related-grid">
-				<a href="/kb/prompts/cursor-rules/" class="related-card">
-					<span class="related-card-category">Config Guide</span>
-					<span class="related-card-title">Cursor Rules Complete Guide</span>
+				<a href="/kb/prompts/cursor-rules/" class="card card-interactive related-card">
+					<div class="related-card-category">Config Guide</div>
+					<div class="related-card-title">Cursor Rules Complete Guide</div>
+					<p class="related-card-description">Deep dive into .cursorrules file structure</p>
 				</a>
-				<a href="/kb/prompts/cursor-rules-examples/" class="related-card">
-					<span class="related-card-category">Examples</span>
-					<span class="related-card-title">Cursor Rules Examples</span>
+				<a href="/kb/prompts/cursor-rules-examples/" class="card card-interactive related-card">
+					<div class="related-card-category">Examples</div>
+					<div class="related-card-title">Cursor Rules Examples</div>
+					<p class="related-card-description">20+ copy-paste templates with security patterns</p>
 				</a>
-				<a href="/kb/prompts/claude-md/" class="related-card">
-					<span class="related-card-category">Config Guide</span>
-					<span class="related-card-title">CLAUDE.md Guide</span>
+				<a href="/kb/prompts/claude-md/" class="card card-interactive related-card">
+					<div class="related-card-category">Config Guide</div>
+					<div class="related-card-title">CLAUDE.md Guide</div>
+					<p class="related-card-description">Project instructions for Claude Code CLI</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-card-category">Tool Guide</span>
-					<span class="related-card-title">Cursor Security Patterns</span>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
+					<div class="related-card-category">Tool Guide</div>
+					<div class="related-card-title">Cursor Security Patterns</div>
+					<p class="related-card-description">How to use Cursor safely with AI</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
-					<span class="related-card-category">Vulnerability</span>
-					<span class="related-card-title">SQL Injection</span>
+				<a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">SQL Injection</div>
+					<p class="related-card-description">AI loves string concatenation in queries</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-card">
-					<span class="related-card-category">Vulnerability</span>
-					<span class="related-card-title">Hardcoded Secrets</span>
+				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Hardcoded Secrets</div>
+					<p class="related-card-description">The most common AI code vulnerability</p>
 				</a>
 			</div>
 		</section>
@@ -1179,39 +1185,6 @@ alwaysApply: true
 		font-size: 0.9rem;
 	}
 
-	/* Related Grid */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
-	}
-
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green-dim);
-	}
-
-	.related-type {
-		display: block;
-		font-size: 0.75rem;
-		color: var(--text-secondary);
-		text-transform: uppercase;
-		margin-bottom: 0.25rem;
-	}
-
-	.related-title {
-		display: block;
-		font-weight: 600;
-		color: var(--text-primary);
-	}
 
 	/* External Links */
 	.external-links {

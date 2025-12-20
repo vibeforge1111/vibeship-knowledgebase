@@ -843,32 +843,38 @@ E-commerce platform with Next.js frontend and Supabase backend.
 		</section>
 
 		<!-- Related Content -->
-		<section>
-			<h2>Related resources</h2>
+		<section class="article-section">
+			<h2>Related content</h2>
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/claude-code/" class="related-card">
-					<span class="related-card-category">Tool Guide</span>
-					<span class="related-card-title">Claude Code Security</span>
+				<a href="/kb/vibe-coding-tools/claude-code/" class="card card-interactive related-card">
+					<div class="related-card-category">Tool Guide</div>
+					<div class="related-card-title">Claude Code Security</div>
+					<p class="related-card-description">Security patterns in Claude's CLI tool</p>
 				</a>
-				<a href="/kb/prompts/cursor-rules/" class="related-card">
-					<span class="related-card-category">Config Guide</span>
-					<span class="related-card-title">Cursor Rules Guide</span>
+				<a href="/kb/prompts/cursor-rules/" class="card card-interactive related-card">
+					<div class="related-card-category">Config Guide</div>
+					<div class="related-card-title">Cursor Rules Guide</div>
+					<p class="related-card-description">How to create .cursorrules files</p>
 				</a>
-				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-card-category">Pillar Guide</span>
-					<span class="related-card-title">Secure Vibe Coding Guide</span>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive related-card">
+					<div class="related-card-category">Pillar Guide</div>
+					<div class="related-card-title">Secure Vibe Coding Guide</div>
+					<p class="related-card-description">Ship fast without security nightmares</p>
 				</a>
-				<a href="/kb/security/stacks/nextjs-supabase/" class="related-card">
-					<span class="related-card-category">Stack Guide</span>
-					<span class="related-card-title">Next.js + Supabase Security</span>
+				<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive related-card">
+					<div class="related-card-category">Stack Guide</div>
+					<div class="related-card-title">Next.js + Supabase Security</div>
+					<p class="related-card-description">Common vulnerabilities in this popular stack</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
-					<span class="related-card-category">Vulnerability</span>
-					<span class="related-card-title">SQL Injection</span>
+				<a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">SQL Injection</div>
+					<p class="related-card-description">AI loves string concatenation in queries</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<span class="related-card-category">Vulnerability</span>
-					<span class="related-card-title">Missing Authentication</span>
+				<a href="/kb/security/vulnerabilities/missing-auth/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Missing Authentication</div>
+					<p class="related-card-description">When AI forgets to check who's calling</p>
 				</a>
 			</div>
 		</section>

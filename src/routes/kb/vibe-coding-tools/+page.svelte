@@ -717,24 +717,28 @@
     </div>
   </section>
 
-  <section class="related-content">
-    <h2>Related Resources</h2>
-    <div class="related-links">
-      <a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-link">
-        <h4>Secure Vibe Coding Guide</h4>
-        <p>Complete guide to shipping fast without getting hacked</p>
+  <section class="article-section">
+    <h2>Related content</h2>
+    <div class="related-grid">
+      <a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive related-card">
+        <div class="related-card-category">Guide</div>
+        <div class="related-card-title">Secure Vibe Coding Guide</div>
+        <p class="related-card-description">Complete guide to shipping fast without getting hacked</p>
       </a>
-      <a href="/kb/vibe-coding/what-is-vibe-coding/" class="related-link">
-        <h4>What is Vibe Coding?</h4>
-        <p>Definition and complete introduction</p>
+      <a href="/kb/vibe-coding/what-is-vibe-coding/" class="card card-interactive related-card">
+        <div class="related-card-category">Concept</div>
+        <div class="related-card-title">What is Vibe Coding?</div>
+        <p class="related-card-description">Definition and complete introduction</p>
       </a>
-      <a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-link">
-        <h4>Hardcoded Secrets</h4>
-        <p>The most common AI code vulnerability</p>
+      <a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="card card-interactive related-card">
+        <div class="related-card-category">Vulnerability</div>
+        <div class="related-card-title">Hardcoded Secrets</div>
+        <p class="related-card-description">The most common AI code vulnerability</p>
       </a>
-      <a href="/kb/security/vulnerabilities/sql-injection/" class="related-link">
-        <h4>SQL Injection</h4>
-        <p>AI loves string concatenation in queries</p>
+      <a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive related-card">
+        <div class="related-card-category">Vulnerability</div>
+        <div class="related-card-title">SQL Injection</div>
+        <p class="related-card-description">AI loves string concatenation in queries</p>
       </a>
     </div>
   </section>
@@ -1373,50 +1377,6 @@
     line-height: 1.7;
   }
 
-  /* Related Content */
-  .related-content {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    padding: 2rem;
-  }
-
-  .related-content h2 {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .related-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-
-  .related-link {
-    display: block;
-    padding: 1rem;
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border);
-    text-decoration: none;
-    transition: border-color 0.2s;
-  }
-
-  .related-link:hover {
-    border-color: var(--green-dim);
-    text-decoration: none;
-  }
-
-  .related-link h4 {
-    margin: 0 0 0.25rem 0;
-    color: var(--green-dim);
-    font-size: 0.875rem;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .related-link p {
-    margin: 0;
-    font-size: 0.75rem;
-    color: var(--text-tertiary);
-  }
 
   /* CTA */
   .cta-section {

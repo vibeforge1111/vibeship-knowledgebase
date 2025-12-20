@@ -176,7 +176,6 @@ a {
 
 a:hover {
   color: var(--green);
-  text-decoration: underline;
 }
 
 strong {

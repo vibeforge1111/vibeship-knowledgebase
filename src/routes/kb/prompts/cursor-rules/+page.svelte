@@ -683,32 +683,38 @@ Pattern:
 		</section>
 
 		<!-- Related Content -->
-		<section>
-			<h2>Related resources</h2>
+		<section class="article-section">
+			<h2>Related content</h2>
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-card-category">Tool Guide</span>
-					<span class="related-card-title">Cursor Security Patterns</span>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
+					<div class="related-card-category">Tool Guide</div>
+					<div class="related-card-title">Cursor Security Patterns</div>
+					<p class="related-card-description">How to use Cursor safely with security-focused prompts</p>
 				</a>
-				<a href="/kb/prompts/claude-md/" class="related-card">
-					<span class="related-card-category">Config Guide</span>
-					<span class="related-card-title">CLAUDE.md Guide</span>
+				<a href="/kb/prompts/claude-md/" class="card card-interactive related-card">
+					<div class="related-card-category">Config Guide</div>
+					<div class="related-card-title">CLAUDE.md Guide</div>
+					<p class="related-card-description">Project instructions for Claude Code CLI tool</p>
 				</a>
-				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-card-category">Pillar Guide</span>
-					<span class="related-card-title">Secure Vibe Coding Guide</span>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive related-card">
+					<div class="related-card-category">Pillar Guide</div>
+					<div class="related-card-title">Secure Vibe Coding Guide</div>
+					<p class="related-card-description">Complete guide to shipping fast without getting hacked</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
-					<span class="related-card-category">Vulnerability</span>
-					<span class="related-card-title">SQL Injection</span>
+				<a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">SQL Injection</div>
+					<p class="related-card-description">AI loves string concatenation in queries</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-card">
-					<span class="related-card-category">Vulnerability</span>
-					<span class="related-card-title">Hardcoded Secrets</span>
+				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Hardcoded Secrets</div>
+					<p class="related-card-description">The most common AI code vulnerability</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<span class="related-card-category">Vulnerability</span>
-					<span class="related-card-title">Missing Authentication</span>
+				<a href="/kb/security/vulnerabilities/missing-auth/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Missing Authentication</div>
+					<p class="related-card-description">When AI forgets to check who's calling</p>
 				</a>
 			</div>
 		</section>

@@ -744,36 +744,36 @@ export async function POST(req: Request) &#123;
 
 		<!-- Related Content -->
 		<section class="article-section">
-			<h2>Related resources</h2>
+			<h2>Related content</h2>
 			<div class="related-grid">
 				<a href="/kb/prompts/cursor-rules/" class="card card-interactive related-card">
-					<span class="related-card-category">Config Guide</span>
-					<h3 class="related-card-title">Cursor Rules Complete Guide</h3>
+					<div class="related-card-category">Config Guide</div>
+					<div class="related-card-title">Cursor Rules Complete Guide</div>
 					<p class="related-card-description">Configure Cursor AI with .cursorrules</p>
 				</a>
 				<a href="/kb/prompts/windsurf-rules/" class="card card-interactive related-card">
-					<span class="related-card-category">Config Guide</span>
-					<h3 class="related-card-title">Windsurf Rules Guide</h3>
+					<div class="related-card-category">Config Guide</div>
+					<div class="related-card-title">Windsurf Rules Guide</div>
 					<p class="related-card-description">Set up Windsurf cascades and rules</p>
 				</a>
 				<a href="/kb/prompts/cline-rules/" class="card card-interactive related-card">
-					<span class="related-card-category">Config Guide</span>
-					<h3 class="related-card-title">Cline Rules Guide</h3>
+					<div class="related-card-category">Config Guide</div>
+					<div class="related-card-title">Cline Rules Guide</div>
 					<p class="related-card-description">Configure Cline in VS Code</p>
 				</a>
 				<a href="/kb/prompts/claude-md/" class="card card-interactive related-card">
-					<span class="related-card-category">Config Guide</span>
-					<h3 class="related-card-title">CLAUDE.md Guide</h3>
+					<div class="related-card-category">Config Guide</div>
+					<div class="related-card-title">CLAUDE.md Guide</div>
 					<p class="related-card-description">Configure Claude Code with CLAUDE.md</p>
 				</a>
 				<a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive related-card">
-					<span class="related-card-category">Vulnerability</span>
-					<h3 class="related-card-title">SQL Injection</h3>
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">SQL Injection</div>
 					<p class="related-card-description">Prevent injection in AI-generated code</p>
 				</a>
 				<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive related-card">
-					<span class="related-card-category">Stack Guide</span>
-					<h3 class="related-card-title">Next.js + Supabase Security</h3>
+					<div class="related-card-category">Stack Guide</div>
+					<div class="related-card-title">Next.js + Supabase Security</div>
 					<p class="related-card-description">Secure your vibe coded stack</p>
 				</a>
 			</div>

@@ -376,26 +376,31 @@ Pattern for protected routes:
 		</div>
 
 		<!-- Related Content -->
-		<h2>Related Resources</h2>
-
-		<div class="related-grid">
-			<a href="/kb/prompts/cursor-rules/" class="card">
-				<h3>Cursor Rules: Complete Guide</h3>
-				<p>How to create and structure .cursorrules files</p>
-			</a>
-			<a href="/kb/prompts/cursor-rules-examples/" class="card">
-				<h3>Cursor Rules Examples</h3>
-				<p>20+ copy-paste templates with security patterns</p>
-			</a>
-			<a href="/kb/prompts/claude-md/" class="card">
-				<h3>CLAUDE.md Guide</h3>
-				<p>Configure Claude Code with project instructions</p>
-			</a>
-			<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card">
-				<h3>Secure Vibe Coding Guide</h3>
-				<p>Ship fast without security nightmares</p>
-			</a>
-		</div>
+		<section class="article-section">
+			<h2>Related content</h2>
+			<div class="related-grid">
+				<a href="/kb/prompts/cursor-rules/" class="card card-interactive related-card">
+					<div class="related-card-category">Guide</div>
+					<div class="related-card-title">Cursor Rules: Complete Guide</div>
+					<p class="related-card-description">How to create and structure .cursorrules files</p>
+				</a>
+				<a href="/kb/prompts/cursor-rules-examples/" class="card card-interactive related-card">
+					<div class="related-card-category">Examples</div>
+					<div class="related-card-title">Cursor Rules Examples</div>
+					<p class="related-card-description">20+ copy-paste templates with security patterns</p>
+				</a>
+				<a href="/kb/prompts/claude-md/" class="card card-interactive related-card">
+					<div class="related-card-category">Guide</div>
+					<div class="related-card-title">CLAUDE.md Guide</div>
+					<p class="related-card-description">Configure Claude Code with project instructions</p>
+				</a>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive related-card">
+					<div class="related-card-category">Pillar Guide</div>
+					<div class="related-card-title">Secure Vibe Coding Guide</div>
+					<p class="related-card-description">Ship fast without security nightmares</p>
+				</a>
+			</div>
+		</section>
 	</article>
 </div>
 

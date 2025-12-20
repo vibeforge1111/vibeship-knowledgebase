@@ -593,32 +593,38 @@ export async function createPost(input) &#123;
 		</section>
 
 		<!-- Related Content -->
-		<section>
-			<h2>Related resources</h2>
+		<section class="article-section">
+			<h2>Related content</h2>
 			<div class="related-grid">
-				<a href="/kb/prompts/cursor-rules/" class="related-card">
-					<span class="related-card-category">Config Guide</span>
-					<span class="related-card-title">Cursor Rules Complete Guide</span>
+				<a href="/kb/prompts/cursor-rules/" class="card card-interactive related-card">
+					<div class="related-card-category">Config Guide</div>
+					<div class="related-card-title">Cursor Rules Complete Guide</div>
+					<p class="related-card-description">How to create and structure .cursorrules files</p>
 				</a>
-				<a href="/kb/prompts/claude-md/" class="related-card">
-					<span class="related-card-category">Config Guide</span>
-					<span class="related-card-title">CLAUDE.md Guide</span>
+				<a href="/kb/prompts/claude-md/" class="card card-interactive related-card">
+					<div class="related-card-category">Config Guide</div>
+					<div class="related-card-title">CLAUDE.md Guide</div>
+					<p class="related-card-description">Project instructions for Claude Code CLI</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/windsurf/" class="related-card">
-					<span class="related-card-category">Tool Guide</span>
-					<span class="related-card-title">Windsurf Overview</span>
+				<a href="/kb/vibe-coding-tools/windsurf/" class="card card-interactive related-card">
+					<div class="related-card-category">Tool Guide</div>
+					<div class="related-card-title">Windsurf Overview</div>
+					<p class="related-card-description">Security patterns in Windsurf AI</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
-					<span class="related-card-category">Vulnerability</span>
-					<span class="related-card-title">SQL Injection</span>
+				<a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">SQL Injection</div>
+					<p class="related-card-description">AI loves string concatenation in queries</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<span class="related-card-category">Vulnerability</span>
-					<span class="related-card-title">Missing Authentication</span>
+				<a href="/kb/security/vulnerabilities/missing-auth/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Missing Authentication</div>
+					<p class="related-card-description">When AI forgets to check who's calling</p>
 				</a>
-				<a href="/kb/security/stacks/nextjs-supabase/" class="related-card">
-					<span class="related-card-category">Stack Guide</span>
-					<span class="related-card-title">Next.js + Supabase Security</span>
+				<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive related-card">
+					<div class="related-card-category">Stack Guide</div>
+					<div class="related-card-title">Next.js + Supabase Security</div>
+					<p class="related-card-description">Common vulnerabilities in this popular stack</p>
 				</a>
 			</div>
 		</section>
