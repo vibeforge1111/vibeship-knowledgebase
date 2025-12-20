@@ -138,70 +138,139 @@
 			</p>
 		</section>
 
-		<!-- Quick Comparison Table -->
+		<!-- Quick Comparison - Mobile-friendly stacked layout -->
 		<section>
 			<h2>How do Windsurf and Cursor compare at a glance?</h2>
 			<p>
 				Both are popular choices for vibe coding, but they take different approaches. Here's what matters:
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>What You Care About</th>
-							<th>Windsurf</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Monthly cost</td>
-							<td class="highlight-win">$15/month</td>
-							<td>$20/month</td>
-						</tr>
-						<tr>
-							<td>Parent company</td>
-							<td><a href="https://www.cognition.ai/" target="_blank" rel="noopener">Cognition</a> (acquired Jul 2025)</td>
-							<td><a href="https://anysphere.inc/" target="_blank" rel="noopener">Anysphere</a></td>
-						</tr>
-						<tr>
-							<td>IDE support</td>
-							<td class="highlight-win">40+ IDEs (JetBrains, VS Code)</td>
-							<td>VS Code fork only</td>
-						</tr>
-						<tr>
-							<td>AI agent</td>
-							<td>Cascade (autonomous)</td>
-							<td>Composer (guided)</td>
-						</tr>
-						<tr>
-							<td>Persistent memory</td>
-							<td class="highlight-win">Memories (project context)</td>
-							<td>Notepad (manual)</td>
-						</tr>
-						<tr>
-							<td>Background agents</td>
-							<td>Limited</td>
-							<td class="highlight-win">Yes (runs while you code)</td>
-						</tr>
-						<tr>
-							<td>Free tier</td>
-							<td class="highlight-win">Generous</td>
-							<td>2000 completions</td>
-						</tr>
-						<tr>
-							<td>Community size</td>
-							<td>Growing</td>
-							<td class="highlight-win">Largest</td>
-						</tr>
-						<tr>
-							<td>Proprietary model</td>
-							<td>SWE-1.5</td>
-							<td>None (uses Claude, GPT-4)</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="comparison-stack">
+				<div class="comparison-row">
+					<div class="comparison-label">Monthly cost</div>
+					<div class="comparison-values">
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">$15/month</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">$20/month</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Parent company</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value"><a href="https://www.cognition.ai/" target="_blank" rel="noopener">Cognition</a> (acquired Jul 2025)</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value"><a href="https://anysphere.inc/" target="_blank" rel="noopener">Anysphere</a></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">IDE support</div>
+					<div class="comparison-values">
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">40+ IDEs (JetBrains, VS Code)</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">VS Code fork only</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">AI agent</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">Cascade (autonomous)</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Composer (guided)</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Persistent memory</div>
+					<div class="comparison-values">
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">Memories (project context)</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Notepad (manual)</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Background agents</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">Limited</span>
+						</div>
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Yes (runs while you code)</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Free tier</div>
+					<div class="comparison-values">
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">Generous</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">2000 completions</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Community size</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">Growing</span>
+						</div>
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Largest</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Proprietary model</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">SWE-1.5</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">None (uses Claude, GPT-4)</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -212,7 +281,7 @@
 				This is the real comparison. Both tools have chat and autocomplete - those are table stakes. What separates them is their AI agent approach.
 			</p>
 
-			<div class="agent-comparison">
+			<div class="agent-cards">
 				<div class="agent-card">
 					<h3>Windsurf Cascade</h3>
 					<p class="agent-philosophy">"Let me handle it end-to-end"</p>
@@ -245,6 +314,57 @@
 			</p>
 		</section>
 
+		<!-- Workflow Comparison -->
+		<section>
+			<h2>What does each workflow actually look like?</h2>
+			<p>
+				Same task, different approaches. Here's how each tool handles a typical vibe coding session.
+			</p>
+
+			<div class="workflow-comparison">
+				<div class="workflow-block">
+					<div class="workflow-header">
+						<span class="workflow-task">Task: Add new API endpoint with database integration</span>
+					</div>
+					<div class="workflow-steps">
+						<div class="workflow-tool-section">
+							<h4>Windsurf Cascade</h4>
+							<div class="workflow-metrics">
+								<span class="metric">Time: 8-12 min</span>
+								<span class="metric">Iterations: 1-2</span>
+								<span class="metric">Supervision: Low</span>
+							</div>
+							<ol>
+								<li>Cascade reads Memories for project context</li>
+								<li>Plans multi-step implementation</li>
+								<li>Executes all steps autonomously</li>
+								<li>Auto-fixes any errors it encounters</li>
+								<li>Updates Memories with new context</li>
+							</ol>
+						</div>
+						<div class="workflow-tool-section">
+							<h4>Cursor Composer</h4>
+							<div class="workflow-metrics">
+								<span class="metric">Time: 12-18 min</span>
+								<span class="metric">Iterations: 2-4</span>
+								<span class="metric">Supervision: Medium</span>
+							</div>
+							<ol>
+								<li>Reference codebase context manually</li>
+								<li>Composer generates multi-file changes</li>
+								<li>Review diff for each file</li>
+								<li>Apply changes incrementally</li>
+								<li>Fix issues as they surface</li>
+							</ol>
+						</div>
+					</div>
+					<div class="workflow-verdict">
+						Windsurf faster for autonomous tasks. Cursor safer for production code.
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<!-- Pricing Deep Dive -->
 		<section>
 			<h2>What does each tool actually cost?</h2>
@@ -252,79 +372,62 @@
 				Windsurf is 25% cheaper. But there's nuance in what you get:
 			</p>
 
-			<div class="pricing-grid">
-				<div class="pricing-card">
-					<div class="pricing-header">
-						<h3>Windsurf</h3>
+			<div class="pricing-stack">
+				<div class="pricing-tier">
+					<div class="tier-header">
+						<span class="tier-name">Free Tier</span>
 					</div>
-					<div class="pricing-tier">
-						<span class="tier-name">Free</span>
-						<span class="tier-price">$0</span>
-						<ul>
-							<li>Unlimited basic completions</li>
-							<li>Limited Cascade credits</li>
-							<li>Community support</li>
-						</ul>
-					</div>
-					<div class="pricing-tier featured">
-						<span class="tier-name">Pro</span>
-						<span class="tier-price">$15/mo</span>
-						<ul>
-							<li>Unlimited Cascade flows</li>
-							<li>Memories (persistent context)</li>
-							<li>Priority model access</li>
-							<li>Turbo mode (SWE-1.5)</li>
-						</ul>
-					</div>
-					<div class="pricing-tier">
-						<span class="tier-name">Team</span>
-						<span class="tier-price">$30/user/mo</span>
-						<ul>
-							<li>Everything in Pro</li>
-							<li>Admin controls</li>
-							<li>Usage analytics</li>
-						</ul>
+					<div class="tier-values">
+						<div class="tier-cell highlight-win">
+							<span class="tier-tool">Windsurf</span>
+							<span class="tier-value">Unlimited basic completions + limited Cascade</span>
+						</div>
+						<div class="tier-cell">
+							<span class="tier-tool">Cursor</span>
+							<span class="tier-value">2000 completions + 50 slow requests</span>
+						</div>
 					</div>
 				</div>
 
-				<div class="pricing-card">
-					<div class="pricing-header">
-						<h3>Cursor</h3>
+				<div class="pricing-tier">
+					<div class="tier-header">
+						<span class="tier-name">Pro Tier</span>
 					</div>
-					<div class="pricing-tier">
-						<span class="tier-name">Free</span>
-						<span class="tier-price">$0</span>
-						<ul>
-							<li>2000 completions</li>
-							<li>50 slow premium requests</li>
-							<li>Limited features</li>
-						</ul>
+					<div class="tier-values">
+						<div class="tier-cell highlight-win">
+							<span class="tier-tool">Windsurf</span>
+							<span class="tier-value">$15/mo - Unlimited Cascade, Memories, Turbo</span>
+						</div>
+						<div class="tier-cell">
+							<span class="tier-tool">Cursor</span>
+							<span class="tier-value">$20/mo - Unlimited completions, 500 fast requests</span>
+						</div>
 					</div>
-					<div class="pricing-tier featured">
-						<span class="tier-name">Pro</span>
-						<span class="tier-price">$20/mo</span>
-						<ul>
-							<li>Unlimited completions</li>
-							<li>500 fast premium requests/mo</li>
-							<li>Unlimited slow requests</li>
-							<li>Background agents</li>
-						</ul>
+				</div>
+
+				<div class="pricing-tier">
+					<div class="tier-header">
+						<span class="tier-name">Team/Business</span>
 					</div>
-					<div class="pricing-tier">
-						<span class="tier-name">Business</span>
-						<span class="tier-price">$40/user/mo</span>
-						<ul>
-							<li>Everything in Pro</li>
-							<li>Privacy mode (zero retention)</li>
-							<li>Admin dashboard</li>
-						</ul>
+					<div class="tier-values">
+						<div class="tier-cell">
+							<span class="tier-tool">Windsurf</span>
+							<span class="tier-value">$30/user/mo - Admin controls, analytics</span>
+						</div>
+						<div class="tier-cell">
+							<span class="tier-tool">Cursor</span>
+							<span class="tier-value">$40/user/mo - Privacy mode, admin dashboard</span>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<p>
-				<strong>Annual savings:</strong> Windsurf Pro saves you $60/year vs Cursor Pro. Both offer 2-week free trials.
-			</p>
+			<div class="pricing-callout">
+				<h4>Annual Savings</h4>
+				<p>
+					<strong>Windsurf Pro saves you $60/year vs Cursor Pro.</strong> Both offer 2-week free trials. For vibe coders just starting out, Windsurf's free tier is more generous.
+				</p>
+			</div>
 		</section>
 
 		<!-- JetBrains Section -->
@@ -346,57 +449,35 @@
 			</p>
 		</section>
 
-		<!-- Workflow Comparison -->
+		<!-- Decision Matrix -->
 		<section>
-			<h2>Which matches your vibe coding workflow?</h2>
+			<h2>Quick decision matrix</h2>
+			<p>
+				Pick the right tool for your workflow:
+			</p>
 
-			<div class="workflow-cards">
-				<div class="workflow-card">
-					<h3>You want maximum speed</h3>
-					<div class="recommendation">Windsurf</div>
-					<p>
-						Cascade with Turbo mode (SWE-1.5) completes tasks faster. The Memories feature means less re-explaining context each session. Hand off entire features and let it run.
-					</p>
+			<div class="decision-matrix">
+				<div class="decision-category">
+					<h3>Choose Windsurf when...</h3>
+					<ul>
+						<li><strong>Budget matters:</strong> $15/mo vs $20/mo saves $60/year</li>
+						<li><strong>JetBrains user:</strong> No competition - only option</li>
+						<li><strong>Maximum autonomy:</strong> Cascade handles tasks end-to-end</li>
+						<li><strong>Context persistence:</strong> Memories remember across sessions</li>
+						<li><strong>Speed priority:</strong> Turbo mode with SWE-1.5</li>
+						<li><strong>Government work:</strong> FedRAMP High certified</li>
+					</ul>
 				</div>
-
-				<div class="workflow-card">
-					<h3>You want to stay in control</h3>
-					<div class="recommendation">Cursor</div>
-					<p>
-						Composer's apply workflow lets you review each change. Background agents run tasks without blocking your main thread. More visibility into what's happening.
-					</p>
-				</div>
-
-				<div class="workflow-card">
-					<h3>You use JetBrains IDEs</h3>
-					<div class="recommendation">Windsurf</div>
-					<p>
-						No competition here. Cursor doesn't support JetBrains. Windsurf is your only option for AI agents in IntelliJ, PyCharm, or WebStorm.
-					</p>
-				</div>
-
-				<div class="workflow-card">
-					<h3>You want the biggest community</h3>
-					<div class="recommendation">Cursor</div>
-					<p>
-						More tutorials, more .cursorrules examples, more Stack Overflow answers. When you hit a problem, someone's likely solved it already.
-					</p>
-				</div>
-
-				<div class="workflow-card">
-					<h3>Budget matters</h3>
-					<div class="recommendation">Windsurf</div>
-					<p>
-						$15/mo vs $20/mo. Better free tier. Same core functionality. If you're just starting to vibe code, Windsurf is the cheaper entry point.
-					</p>
-				</div>
-
-				<div class="workflow-card">
-					<h3>You want background processing</h3>
-					<div class="recommendation">Cursor</div>
-					<p>
-						Cursor's background agents can run tasks while you keep coding. Windsurf Cascade requires more active supervision.
-					</p>
+				<div class="decision-category">
+					<h3>Choose Cursor when...</h3>
+					<ul>
+						<li><strong>Community size:</strong> More tutorials, examples, answers</li>
+						<li><strong>Background work:</strong> Agents run while you code</li>
+						<li><strong>Model flexibility:</strong> Switch between Claude, GPT-4, custom</li>
+						<li><strong>Change review:</strong> Review each diff before applying</li>
+						<li><strong>VS Code ecosystem:</strong> Full extension compatibility</li>
+						<li><strong>Stability:</strong> More mature, proven reliability</li>
+					</ul>
 				</div>
 			</div>
 		</section>
@@ -408,43 +489,76 @@
 				Both tools have enterprise offerings, but with different compliance levels:
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Enterprise Need</th>
-							<th>Windsurf</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>SOC 2 Type II</td>
-							<td>Yes</td>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<td>Privacy mode</td>
-							<td>Yes</td>
-							<td>Yes (Business tier)</td>
-						</tr>
-						<tr>
-							<td>FedRAMP High</td>
-							<td class="highlight-win">Yes</td>
-							<td>No</td>
-						</tr>
-						<tr>
-							<td>Self-hosted option</td>
-							<td>Enterprise tier</td>
-							<td>Enterprise tier</td>
-						</tr>
-						<tr>
-							<td>SSO/SAML</td>
-							<td>Enterprise</td>
-							<td>Business+</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="comparison-stack">
+				<div class="comparison-row">
+					<div class="comparison-label">SOC 2 Type II</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">Yes</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Yes</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Privacy mode</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">Yes</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Yes (Business tier)</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">FedRAMP High</div>
+					<div class="comparison-values">
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">Yes</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">No</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Self-hosted option</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">Enterprise tier</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Enterprise tier</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">SSO/SAML</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Windsurf</span>
+							<span class="cell-value">Enterprise</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Business+</span>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<p>
@@ -485,7 +599,7 @@
 		</section>
 
 		<!-- FAQ Section -->
-		<section class="article-section">
+		<section>
 			<h2>Frequently Asked Questions</h2>
 			<div class="faq-list">
 				{#each faqs as faq}
@@ -531,10 +645,16 @@
 </div>
 
 <style>
-	/* Clean, neutral comparison article styles - no tool brand colors */
+	/* Badge row */
+	.badge-row {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		margin-bottom: 1rem;
+	}
 
 	.badge-comparison {
-		border-color: var(--border-strong);
+		border-color: var(--text-tertiary);
 		color: var(--text-secondary);
 		background: transparent;
 	}
@@ -544,53 +664,114 @@
 		font-size: 1.1rem;
 	}
 
-	/* Acquisition Callout - neutral accent */
+	/* Acquisition Callout */
 	.acquisition-callout {
 		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		border-left: 3px solid var(--border-strong);
 		padding: 1.5rem;
 		margin-bottom: 2.5rem;
 	}
 
 	.acquisition-callout h2 {
+		margin-top: 0;
 		color: var(--text-primary);
 		border-bottom: none;
 		padding-bottom: 0;
-		margin-bottom: 1rem;
 	}
 
-	/* Comparison Table - neutral headers, muted green for wins */
-	.comparison-table-wrapper {
-		overflow-x: auto;
+	/* Mobile-friendly stacked comparison rows */
+	.comparison-stack,
+	.pricing-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		margin: 1.5rem 0;
 	}
 
-	.comparison-table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 0.9rem;
+	.comparison-row,
+	.pricing-tier {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
-	.comparison-table th,
-	.comparison-table td {
+	.comparison-label,
+	.tier-header {
 		padding: 0.75rem 1rem;
-		text-align: left;
+		background: var(--bg-tertiary);
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-secondary);
 		border-bottom: 1px solid var(--border);
 	}
 
-	.comparison-table th {
-		background: var(--bg-secondary);
+	.comparison-values,
+	.tier-values {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	@media (max-width: 600px) {
+		.comparison-values,
+		.tier-values {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.comparison-cell,
+	.tier-cell {
+		padding: 0.75rem 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		border-right: 1px solid var(--border);
+	}
+
+	.comparison-cell:last-child,
+	.tier-cell:last-child {
+		border-right: none;
+	}
+
+	@media (max-width: 600px) {
+		.comparison-cell,
+		.tier-cell {
+			border-right: none;
+			border-bottom: 1px solid var(--border);
+		}
+
+		.comparison-cell:last-child,
+		.tier-cell:last-child {
+			border-bottom: none;
+		}
+	}
+
+	.cell-tool,
+	.tier-tool {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
 		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-tertiary);
+	}
+
+	.cell-value,
+	.tier-value {
+		font-size: 0.9rem;
 		color: var(--text-primary);
 	}
 
-	.comparison-table td.highlight-win {
+	.highlight-win .cell-value,
+	.highlight-win .tier-value {
 		color: var(--green-muted);
 		font-weight: 500;
 	}
 
-	/* Agent Comparison - neutral cards */
-	.agent-comparison {
+	/* Agent Cards */
+	.agent-cards {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1.5rem;
@@ -598,7 +779,7 @@
 	}
 
 	@media (max-width: 768px) {
-		.agent-comparison {
+		.agent-cards {
 			grid-template-columns: 1fr;
 		}
 	}
@@ -636,123 +817,154 @@
 		font-size: 0.9rem;
 	}
 
-	/* Pricing Grid - neutral styling */
-	.pricing-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+	/* Workflow Comparison */
+	.workflow-comparison {
+		display: flex;
+		flex-direction: column;
 		gap: 1.5rem;
 		margin: 1.5rem 0;
 	}
 
+	.workflow-block {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+	}
+
+	.workflow-header {
+		padding: 0.75rem 1rem;
+		background: var(--bg-tertiary);
+		border-bottom: 1px solid var(--border);
+	}
+
+	.workflow-task {
+		font-weight: 600;
+		color: var(--text-primary);
+	}
+
+	.workflow-steps {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		padding: 1rem;
+	}
+
 	@media (max-width: 768px) {
-		.pricing-grid {
+		.workflow-steps {
 			grid-template-columns: 1fr;
 		}
 	}
 
-	.pricing-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		overflow: hidden;
-	}
-
-	.pricing-header {
-		padding: 1rem 1.5rem;
-		background: var(--bg-tertiary);
-		border-bottom: 1px solid var(--border);
-	}
-
-	.pricing-header h3 {
-		color: var(--text-primary);
-		margin: 0;
-	}
-
-	.pricing-tier {
-		padding: 1rem 1.5rem;
-		border-bottom: 1px solid var(--border);
-	}
-
-	.pricing-tier:last-child {
-		border-bottom: none;
-	}
-
-	.pricing-tier.featured {
-		background: var(--bg-tertiary);
-	}
-
-	.tier-name {
-		font-weight: 600;
+	.workflow-tool-section h4 {
+		margin: 0 0 0.5rem 0;
 		font-size: 0.9rem;
-	}
-
-	.tier-price {
-		float: right;
-		font-size: 1.1rem;
-		font-weight: 700;
 		color: var(--text-primary);
 	}
 
-	.pricing-tier ul {
-		margin: 0.75rem 0 0;
-		padding-left: 1.25rem;
+	.workflow-metrics {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 0.75rem;
 	}
 
-	.pricing-tier li {
+	.metric {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
+		padding: 0.25rem 0.5rem;
+		background: var(--bg-tertiary);
+		color: var(--text-secondary);
+	}
+
+	.workflow-tool-section ol {
+		margin: 0;
+		padding-left: 1.25rem;
 		font-size: 0.85rem;
+		color: var(--text-secondary);
+	}
+
+	.workflow-tool-section li {
 		margin-bottom: 0.25rem;
 	}
 
-	/* Workflow Cards - neutral with subtle recommendations */
-	.workflow-cards {
+	.workflow-verdict {
+		padding: 0.75rem 1rem;
+		background: var(--bg-tertiary);
+		border-top: 1px solid var(--border);
+		font-size: 0.85rem;
+		color: var(--green-muted);
+		font-weight: 500;
+	}
+
+	/* Pricing Callout */
+	.pricing-callout {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		border-left: 3px solid var(--green-muted);
+		padding: 1.25rem;
+		margin: 1.5rem 0;
+	}
+
+	.pricing-callout h4 {
+		margin: 0 0 0.5rem 0;
+		color: var(--text-primary);
+	}
+
+	.pricing-callout p {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	/* Decision Matrix */
+	.decision-matrix {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		grid-template-columns: 1fr 1fr;
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}
 
-	.workflow-card {
+	@media (max-width: 768px) {
+		.decision-matrix {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.decision-category {
 		background: var(--bg-secondary);
 		border: 1px solid var(--border);
 		padding: 1.25rem;
 	}
 
-	.workflow-card h3 {
+	.decision-category h3 {
 		margin-top: 0;
-		margin-bottom: 0.75rem;
 		font-size: 1rem;
+		color: var(--text-primary);
 	}
 
-	.workflow-card p {
+	.decision-category ul {
+		margin: 0;
+		padding-left: 1.25rem;
+	}
+
+	.decision-category li {
 		font-size: 0.9rem;
-		margin-bottom: 0;
-		color: var(--text-secondary);
+		margin-bottom: 0.5rem;
 	}
 
-	.recommendation {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.03em;
-		margin-bottom: 0.75rem;
-		background: var(--bg-tertiary);
-		color: var(--text-secondary);
-	}
-
-	/* Security Note - keeps orange for warning context */
+	/* Security Note */
 	.security-note {
 		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		border-left: 3px solid var(--orange);
 		padding: 1.5rem;
 	}
 
 	.security-note h2 {
+		margin-top: 0;
 		border-bottom: none;
 		padding-bottom: 0;
 	}
 
-	/* Related card category label */
+	/* Related Content */
 	.related-card-category {
 		display: block;
 		font-size: 0.75rem;
