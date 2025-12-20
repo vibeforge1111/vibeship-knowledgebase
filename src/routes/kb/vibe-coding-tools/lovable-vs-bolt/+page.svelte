@@ -3,8 +3,8 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Lovable vs Bolt: AI App Builder Comparison 2025',
-		description: 'Lovable vs Bolt comparison: UI quality, Supabase integration, security defaults. See which AI app builder creates safer, better-looking apps for your MVP.',
+		title: 'Lovable vs Bolt 2025: Which Ships Your MVP Faster?',
+		description: 'Lovable vs Bolt comparison for vibe coders. Supabase integration, GitHub sync, pricing ($20/mo both), and which tool gets your app to users faster.',
 		url: '/kb/vibe-coding-tools/lovable-vs-bolt/'
 	};
 
@@ -19,23 +19,23 @@
 	const faqs = [
 		{
 			question: 'Is Lovable better than Bolt?',
-			answer: 'Lovable is better for production-quality MVPs with its superior UI defaults (shadcn/ui), built-in Supabase integration, and guided authentication setup. Bolt is better for quick experiments, learning, and multi-framework projects. Neither generates production-ready code without security review.'
+			answer: 'Lovable is better for polished MVPs with built-in Supabase, visual editor, and two-way GitHub sync. Bolt is better for fast prototypes and multi-framework experiments. Both cost $20/month for basic plans. Choose based on whether you need production polish (Lovable) or maximum speed (Bolt).'
 		},
 		{
 			question: 'Is Lovable free?',
-			answer: 'Lovable has a free tier with limited generations per month. The Creator plan costs about $20/month for more generations. Bolt also has a free tier with similar limitations. Both charge based on usage/generations rather than fixed subscriptions.'
+			answer: 'Yes. Lovable Free includes limited credits, public projects, GitHub sync, and one-click deployment. The $20/month Pro tier adds 100 messages/month. Higher tiers scale to $50/month (250 messages) and $900/month (5,000 messages).'
+		},
+		{
+			question: 'How fast did Lovable grow?',
+			answer: 'Lovable went from $0 to $20M ARR in 60 days, making it the fastest-growing European startup in history. This growth rate suggests strong product-market fit with vibe coders and non-technical founders.'
+		},
+		{
+			question: 'What is the difference between Bolt tokens and Lovable messages?',
+			answer: 'Bolt charges per token (code operations). You get 10M tokens for $20/month. Lovable charges per message (each AI interaction). You get 100 messages for $20/month. A complex Lovable message costs the same as a simple one. Complex Bolt operations consume more tokens.'
 		},
 		{
 			question: 'Can I export code from Lovable or Bolt?',
-			answer: 'Yes, both Lovable and Bolt allow you to export your code. You can download the full project or connect to GitHub. This means you are not locked in - you can continue development in Cursor, VS Code, or any other IDE after building the initial prototype.'
-		},
-		{
-			question: 'Which is better for beginners?',
-			answer: 'Both are designed for beginners. Lovable provides more guidance and better defaults (especially for database and auth), making it easier to build something functional. Bolt offers more flexibility but requires more security knowledge. For a first project, Lovable\'s guardrails are helpful.'
-		},
-		{
-			question: 'Are apps built with Lovable or Bolt production-ready?',
-			answer: 'No. Apps from both tools require security review before production. Common issues include incomplete RLS policies, missing input validation, hardcoded credentials, and permissive CORS. Both tools are excellent for MVPs and demos but need security hardening. Use a security scanner before going live.'
+			answer: 'Yes. Lovable has two-way GitHub sync - push changes back and Lovable stays in sync. Bolt allows download and basic export. Both let you continue development in Cursor, VS Code, or any IDE after building your initial prototype.'
 		}
 	];
 </script>
@@ -82,7 +82,7 @@
 			}
 		},
 		"datePublished": "2025-12-17",
-		"dateModified": "2025-12-17"
+		"dateModified": "2025-12-20"
 	}
 	</script>`}
 
@@ -111,134 +111,250 @@
 		<header class="article-header">
 			<div class="badge-row">
 				<span class="badge badge-comparison">Comparison</span>
-				<span class="badge">2025</span>
+				<span class="badge">Updated Dec 2025</span>
 			</div>
-			<h1>Lovable vs Bolt: Which AI App Builder Is Right for You?</h1>
-			<p class="subtitle">Comparing the top tools for non-technical founders and vibe coders</p>
+			<h1>Lovable vs Bolt: Which Ships Your MVP Faster?</h1>
+			<p class="subtitle">Both cost $20/mo. One optimizes for polish, the other for speed.</p>
 		</header>
 
 		<!-- Quick Answer -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Lovable</strong> excels at beautiful UIs with built-in Supabase integration and auth guidance.
-				<strong>Bolt</strong> offers flexible in-browser development with multi-framework support.
-				Lovable generates more secure defaults; Bolt requires more manual security setup.
-				Choose Lovable for production MVPs; Bolt for quick experiments.
+				<strong>Lovable</strong> builds polished apps with built-in Supabase, visual editing, and two-way GitHub sync. Hit $20M ARR in 60 days.
+				<strong>Bolt</strong> ships prototypes faster with WebContainers and multi-framework support.
+				Same price tier ($20/mo). Lovable for investor demos and production. Bolt for quick validation.
 			</p>
 		</div>
 
+		<!-- Growth Callout -->
+		<section class="growth-callout">
+			<h2>Lovable's growth is hard to ignore</h2>
+			<p>
+				<a href="https://lovable.dev" target="_blank" rel="noopener">Lovable</a> (formerly GPT Engineer) went from <strong>$0 to $20M ARR in 60 days</strong> - <a href="https://www.nocode.mba/articles/bolt-vs-lovable-pricing" target="_blank" rel="noopener">the fastest-growing European startup ever</a>. That velocity comes from vibe coders who want apps that look production-ready without hiring designers.
+			</p>
+			<p>
+				This doesn't make Lovable "better" - it means the market wants polished outputs. If you need speed over polish, Bolt still wins.
+			</p>
+		</section>
+
 		<!-- Quick Comparison Table -->
 		<section>
-			<h2>Lovable vs Bolt: Quick Comparison</h2>
+			<h2>How do Lovable and Bolt compare at a glance?</h2>
 			<p>
-				Both tools target the same audience: non-technical founders and vibe coders who want to build apps without deep coding knowledge. They take different approaches to the same goal. Both are excellent for vibe coding but have different strengths.
+				Both tools target vibe coders building MVPs. Both run in the browser. Both use Claude models. The differences are in workflow and output quality:
 			</p>
 
 			<div class="comparison-table-wrapper">
 				<table class="comparison-table">
 					<thead>
 						<tr>
-							<th>Attribute</th>
+							<th>What You Care About</th>
 							<th>Lovable</th>
 							<th>Bolt</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>Company</td>
-							<td><a href="https://lovable.dev" target="_blank" rel="noopener">Lovable</a> (fka GPT Engineer)</td>
-							<td><a href="https://bolt.new" target="_blank" rel="noopener">StackBlitz</a></td>
+							<td>Monthly cost (Pro)</td>
+							<td>$20/mo (100 messages)</td>
+							<td>$20/mo (10M tokens)</td>
 						</tr>
 						<tr>
-							<td>Type</td>
-							<td>Full-stack app builder</td>
-							<td>In-browser app builder</td>
-						</tr>
-						<tr>
-							<td>Tech Stack</td>
-							<td>React, Vite, Tailwind, shadcn/ui</td>
-							<td>Multi-framework support</td>
+							<td>UI quality</td>
+							<td class="highlight-win">shadcn/ui (polished)</td>
+							<td>Varies by prompt</td>
 						</tr>
 						<tr>
 							<td>Database</td>
-							<td class="secure">Supabase (built-in)</td>
+							<td class="highlight-win">Supabase built-in</td>
 							<td>Manual setup</td>
 						</tr>
 						<tr>
-							<td>Auth Setup</td>
-							<td class="secure">Guided (Supabase Auth)</td>
+							<td>Auth</td>
+							<td class="highlight-win">Supabase Auth guided</td>
 							<td>Manual implementation</td>
 						</tr>
 						<tr>
-							<td>UI Quality</td>
-							<td class="secure">Excellent (shadcn/ui)</td>
-							<td>Good (varies)</td>
+							<td>GitHub sync</td>
+							<td class="highlight-win">Two-way sync</td>
+							<td>Export only</td>
 						</tr>
 						<tr>
-							<td>Pricing</td>
-							<td>~$20/mo Creator</td>
-							<td>~$20-30/mo</td>
+							<td>Visual editor</td>
+							<td class="highlight-win">Yes (point-and-click)</td>
+							<td>No (code only)</td>
 						</tr>
 						<tr>
-							<td>Best For</td>
-							<td>Production MVPs</td>
-							<td>Quick prototypes</td>
+							<td>Framework support</td>
+							<td>React only</td>
+							<td class="highlight-win">Multi-framework</td>
+						</tr>
+						<tr>
+							<td>Speed to prototype</td>
+							<td>Fast</td>
+							<td class="highlight-win">Fastest</td>
+						</tr>
+						<tr>
+							<td>Collaboration</td>
+							<td class="highlight-win">SSO on self-serve</td>
+							<td>SSO enterprise only</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</section>
 
-		<!-- What Is Lovable -->
+		<!-- Pricing Deep Dive -->
 		<section>
-			<h2>What is Lovable?</h2>
+			<h2>What does each tool actually cost?</h2>
 			<p>
-				<a href="/kb/vibe-coding-tools/lovable/">Lovable</a> (formerly GPT Engineer) is an AI full-stack app builder that generates beautiful, functional applications with a consistent tech stack. It is designed for building MVPs that look professional from day one.
+				Both start at $20/month but measure usage differently. This matters more than you'd think:
 			</p>
+
+			<div class="pricing-grid">
+				<div class="pricing-card">
+					<div class="pricing-header lovable">
+						<h3>Lovable</h3>
+						<span class="pricing-model">Message-based</span>
+					</div>
+					<div class="pricing-tier">
+						<span class="tier-name">Free</span>
+						<span class="tier-price">$0</span>
+						<ul>
+							<li>Limited credits</li>
+							<li>Public projects</li>
+							<li>GitHub sync</li>
+							<li>One-click deploy</li>
+						</ul>
+					</div>
+					<div class="pricing-tier featured">
+						<span class="tier-name">Pro</span>
+						<span class="tier-price">$20/mo</span>
+						<ul>
+							<li>100 messages/month</li>
+							<li>Private projects</li>
+							<li>Priority support</li>
+						</ul>
+					</div>
+					<div class="pricing-tier">
+						<span class="tier-name">Team</span>
+						<span class="tier-price">$50/mo</span>
+						<ul>
+							<li>250 messages/month</li>
+							<li>Visual editor</li>
+							<li>SSO included</li>
+						</ul>
+					</div>
+					<div class="pricing-tier">
+						<span class="tier-name">Enterprise</span>
+						<span class="tier-price">$900/mo</span>
+						<ul>
+							<li>5,000 messages/month</li>
+							<li>Everything above</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="pricing-card">
+					<div class="pricing-header bolt">
+						<h3>Bolt</h3>
+						<span class="pricing-model">Token-based</span>
+					</div>
+					<div class="pricing-tier">
+						<span class="tier-name">Free</span>
+						<span class="tier-price">$0</span>
+						<ul>
+							<li>1M tokens total</li>
+							<li>~100k/day limit</li>
+							<li>Basic features</li>
+						</ul>
+					</div>
+					<div class="pricing-tier featured">
+						<span class="tier-name">Pro</span>
+						<span class="tier-price">$20/mo</span>
+						<ul>
+							<li>10M tokens/month</li>
+							<li>Priority access</li>
+							<li>All frameworks</li>
+						</ul>
+					</div>
+					<div class="pricing-tier">
+						<span class="tier-name">Team</span>
+						<span class="tier-price">$50/mo</span>
+						<ul>
+							<li>26M tokens/month</li>
+							<li>Team sharing</li>
+						</ul>
+					</div>
+					<div class="pricing-tier">
+						<span class="tier-name">Business</span>
+						<span class="tier-price">$200/mo</span>
+						<ul>
+							<li>120M tokens/month</li>
+							<li>Everything above</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="pricing-note">
+				<h4>How the billing models differ</h4>
+				<p>
+					<strong>Lovable:</strong> Each AI interaction costs one message, regardless of complexity. Simple tweak? One message. Complex refactor? Still one message.
+				</p>
+				<p>
+					<strong>Bolt:</strong> Token consumption varies by operation size. Complex operations use more tokens. Bolt's "diffs" feature edits existing code instead of rewriting files to conserve tokens.
+				</p>
+				<p>
+					<strong>Bottom line:</strong> Lovable's model rewards complex prompts. Bolt's model rewards efficient, incremental changes.
+				</p>
+			</div>
+		</section>
+
+		<!-- Supabase Integration -->
+		<section>
+			<h2>Why does Lovable's Supabase integration matter?</h2>
 			<p>
-				Key features that define Lovable:
+				Most vibe coded apps need auth and a database. Here's where the tools diverge:
 			</p>
-			<ul>
-				<li><strong>Beautiful defaults:</strong> shadcn/ui components look production-ready</li>
-				<li><strong>Supabase integration:</strong> Database and auth built-in with guided setup</li>
-				<li><strong>Consistent stack:</strong> React, Vite, Tailwind - no surprises</li>
-				<li><strong>RLS guidance:</strong> Helps configure Row Level Security policies</li>
-				<li><strong>One-click deploy:</strong> Deploy to Vercel or Netlify</li>
-				<li><strong>GitHub sync:</strong> Export and continue development locally</li>
-			</ul>
+
+			<div class="integration-comparison">
+				<div class="integration-card lovable-card">
+					<h3>Lovable + Supabase</h3>
+					<ul>
+						<li>Database setup is guided (not manual)</li>
+						<li>Auth flows pre-configured with Supabase Auth</li>
+						<li>Row Level Security (RLS) prompts included</li>
+						<li>Storage and functions available</li>
+						<li>One-click connection to existing Supabase project</li>
+					</ul>
+					<p class="integration-verdict">You describe the data model. Lovable wires up the backend.</p>
+				</div>
+
+				<div class="integration-card bolt-card">
+					<h3>Bolt + Backend</h3>
+					<ul>
+						<li>No default database integration</li>
+						<li>You configure Supabase, Firebase, or other</li>
+						<li>Auth requires manual implementation</li>
+						<li>More flexibility, more setup work</li>
+						<li>WebContainers sandbox protects during dev</li>
+					</ul>
+					<p class="integration-verdict">You wire the backend yourself. Bolt focuses on frontend speed.</p>
+				</div>
+			</div>
+
 			<p>
-				Lovable is ideal for vibe coders building MVPs that need to impress users or investors with professional UI from the start.
+				For vibe coders who want working auth in 10 minutes, Lovable's integration saves hours. For developers who prefer custom backends, Bolt's flexibility is the point.
 			</p>
 		</section>
 
-		<!-- What Is Bolt -->
+		<!-- GitHub Sync -->
 		<section>
-			<h2>What is Bolt?</h2>
+			<h2>How does GitHub sync work?</h2>
 			<p>
-				<a href="/kb/vibe-coding-tools/bolt/">Bolt.new</a> is StackBlitz's AI app builder that runs entirely in your browser using WebContainers technology. It offers more flexibility in framework choice and is excellent for rapid experimentation.
-			</p>
-			<p>
-				Key features that define Bolt:
-			</p>
-			<ul>
-				<li><strong>In-browser execution:</strong> WebContainers run Node.js in the browser</li>
-				<li><strong>Multi-framework:</strong> React, Vue, Svelte, and more</li>
-				<li><strong>Instant preview:</strong> See changes immediately as you iterate</li>
-				<li><strong>Clean templates:</strong> Start with minimal, working code</li>
-				<li><strong>StackBlitz hosting:</strong> Deploy to stackblitz.io URLs</li>
-				<li><strong>Code export:</strong> Download and continue locally</li>
-			</ul>
-			<p>
-				Bolt is ideal for vibe coders who want to experiment quickly, try different frameworks, or build throwaway prototypes to test ideas.
-			</p>
-		</section>
-
-		<!-- Feature Comparison -->
-		<section>
-			<h2>Feature Comparison</h2>
-			<p>
-				Here's how Lovable and Bolt compare across key features for vibe coding:
+				This is where Lovable has a clear advantage for ongoing development:
 			</p>
 
 			<div class="comparison-table-wrapper">
@@ -252,208 +368,135 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>UI Quality</td>
-							<td class="secure">Excellent (shadcn/ui default)</td>
-							<td>Good (varies by prompt)</td>
-						</tr>
-						<tr>
-							<td>Database Integration</td>
-							<td class="secure">Supabase (built-in)</td>
-							<td>Manual setup</td>
-						</tr>
-						<tr>
-							<td>Authentication</td>
-							<td class="secure">Supabase Auth (guided)</td>
-							<td>Manual implementation</td>
-						</tr>
-						<tr>
-							<td>Multi-page Apps</td>
+							<td>Push to GitHub</td>
 							<td>Yes</td>
-							<td>Yes</td>
+							<td>Yes (export)</td>
 						</tr>
 						<tr>
-							<td>API Integrations</td>
-							<td>Yes</td>
-							<td>Yes</td>
+							<td>Pull from GitHub</td>
+							<td class="highlight-win">Yes (two-way sync)</td>
+							<td>No</td>
 						</tr>
 						<tr>
-							<td>Framework Choice</td>
-							<td>React only</td>
-							<td class="secure">Multiple frameworks</td>
+							<td>Continue in Cursor/VS Code</td>
+							<td class="highlight-win">Yes, stays synced</td>
+							<td>Yes, but one-way</td>
 						</tr>
 						<tr>
-							<td>Deployment</td>
-							<td>Vercel, Netlify</td>
-							<td>StackBlitz hosting</td>
-						</tr>
-						<tr>
-							<td>Code Export</td>
-							<td>Yes (GitHub)</td>
-							<td>Yes (download)</td>
-						</tr>
-						<tr>
-							<td>Collaboration</td>
-							<td>Limited</td>
-							<td>Limited</td>
+							<td>Team workflow</td>
+							<td class="highlight-win">Full git workflow</td>
+							<td>Basic sharing</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 
 			<p>
-				<strong>Key insight:</strong> Lovable is more opinionated - you get a consistent, polished result but less flexibility. Bolt is more flexible - you choose your stack but need to configure more yourself. For MVPs going to real users, Lovable's polish matters. For experimentation, Bolt's flexibility wins.
+				Lovable's two-way sync means you can edit code locally in <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, push to GitHub, and Lovable picks up your changes. Bolt is export-only - once you leave, you don't come back.
 			</p>
 		</section>
 
-		<!-- Security Comparison -->
+		<!-- Workflow Cards -->
 		<section>
-			<h2>Security Comparison: Which Builds Safer Apps?</h2>
-			<p>
-				Both tools generate code that requires security review before production. Per the <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP Top 10 for LLM Applications</a>, AI-generated code commonly contains security vulnerabilities. Here's how their security defaults compare:
-			</p>
+			<h2>Which matches your vibe coding workflow?</h2>
 
-			<div class="security-comparison">
-				<div class="security-card lovable-card">
-					<h3>Lovable Security</h3>
-					<div class="cve-status neutral">
-						No Published CVEs
-					</div>
-					<h4>Strengths</h4>
-					<ul>
-						<li>Supabase integration encourages proper auth</li>
-						<li>Guided RLS setup for database security</li>
-						<li>Consistent tech stack (fewer unknowns)</li>
-						<li>shadcn/ui components are accessibility-checked</li>
-						<li>Security scanner added (checks RLS existence)</li>
-					</ul>
-					<h4>Common Issues</h4>
-					<ul>
-						<li>RLS policies may be incomplete</li>
-						<li>API routes may lack middleware</li>
-						<li>Error handling often too verbose</li>
-						<li>Secrets sometimes hardcoded in examples</li>
-					</ul>
+			<div class="workflow-cards">
+				<div class="workflow-card">
+					<h3>Investor demo in 2 weeks</h3>
+					<div class="recommendation lovable-rec">Lovable</div>
+					<p>
+						shadcn/ui looks professional out of the box. Supabase handles auth. You'll have something that looks like a real product, not a prototype.
+					</p>
 				</div>
 
-				<div class="security-card bolt-card">
-					<h3>Bolt Security</h3>
-					<div class="cve-status neutral">
-						No Published CVEs
-					</div>
-					<h4>Strengths</h4>
-					<ul>
-						<li>WebContainers sandbox execution</li>
-						<li>Code runs in browser (isolated)</li>
-						<li>Clean starting templates</li>
-						<li>No persistent server to attack</li>
-					</ul>
-					<h4>Common Issues</h4>
-					<ul>
-						<li>No default authentication guidance</li>
-						<li>Database connections often insecure</li>
-						<li>Missing input validation</li>
-						<li><a href="/kb/security/vulnerabilities/insecure-cors/">CORS often misconfigured</a></li>
-						<li><a href="/kb/security/vulnerabilities/hardcoded-secrets/">Hardcoded credentials</a> common</li>
-					</ul>
+				<div class="workflow-card">
+					<h3>Validate idea in 2 hours</h3>
+					<div class="recommendation bolt-rec">Bolt</div>
+					<p>
+						WebContainers spin up instantly. No account needed for free tier. Get a working prototype to test assumptions before investing more time.
+					</p>
+				</div>
+
+				<div class="workflow-card">
+					<h3>Non-technical founder</h3>
+					<div class="recommendation lovable-rec">Lovable</div>
+					<p>
+						Visual editor means less code anxiety. Guided Supabase setup means no database knowledge needed. More guardrails, fewer footguns.
+					</p>
+				</div>
+
+				<div class="workflow-card">
+					<h3>Learning to code</h3>
+					<div class="recommendation bolt-rec">Bolt</div>
+					<p>
+						Multi-framework support lets you experiment. Code-first approach teaches patterns. Export and study the generated code.
+					</p>
+				</div>
+
+				<div class="workflow-card">
+					<h3>Team collaboration</h3>
+					<div class="recommendation lovable-rec">Lovable</div>
+					<p>
+						Two-way GitHub sync enables real team workflows. SSO on self-serve tiers. Multiplayer prototype development.
+					</p>
+				</div>
+
+				<div class="workflow-card">
+					<h3>Hackathon project</h3>
+					<div class="recommendation bolt-rec">Bolt</div>
+					<p>
+						Speed is everything. WebContainers mean zero setup time. Share links instantly. Fastest path from idea to demo.
+					</p>
 				</div>
 			</div>
+		</section>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Risk Factor</th>
-							<th>Lovable</th>
-							<th>Bolt</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Auth Defaults</td>
-							<td class="secure">Better (guided)</td>
-							<td>Weaker (none)</td>
-						</tr>
-						<tr>
-							<td>Database Security</td>
-							<td class="secure">Better (Supabase RLS)</td>
-							<td>Manual</td>
-						</tr>
-						<tr>
-							<td>Code Consistency</td>
-							<td class="secure">Higher</td>
-							<td>Variable</td>
-						</tr>
-						<tr>
-							<td>Security Guidance</td>
-							<td>Some</td>
-							<td>Minimal</td>
-						</tr>
-						<tr>
-							<td>Production Ready</td>
-							<td>No (needs review)</td>
-							<td>No (needs review)</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
+		<!-- The v0 Question -->
+		<section>
+			<h2>What about v0?</h2>
 			<p>
-				<strong>Bottom line:</strong> Lovable generates more secure defaults, especially around authentication and database security. Bolt is faster for experimentation but leaves more security work to you. Neither produces production-ready code without a security review. Use the <a href="/kb/vibe-coding/secure-vibe-coding-guide/">Secure Vibe Coding Guide</a> before deploying.
+				<a href="/kb/vibe-coding-tools/v0/">v0 by Vercel</a> competes in this space but serves a different use case:
+			</p>
+			<ul>
+				<li><strong>v0:</strong> Best for UI components. Generates React/Tailwind components you copy into existing projects.</li>
+				<li><strong>Lovable:</strong> Best for full-stack MVPs. Generates complete apps with backend and deployment.</li>
+				<li><strong>Bolt:</strong> Best for fast prototypes. Generates complete apps but emphasizes speed over polish.</li>
+			</ul>
+			<p>
+				Many vibe coders use v0 for component inspiration, then Lovable or Bolt for the full application.
 			</p>
 		</section>
 
-		<!-- When to Choose Lovable -->
-		<section>
-			<h2>When to Choose Lovable</h2>
+		<!-- Security Note -->
+		<section class="security-note">
+			<h2>A note on security</h2>
 			<p>
-				Lovable is the better choice when you need:
+				Neither tool generates production-ready security out of the box. Common issues:
 			</p>
 			<ul>
-				<li><strong>Professional UI:</strong> shadcn/ui components look polished immediately</li>
-				<li><strong>Database and auth:</strong> Supabase integration with guided setup</li>
-				<li><strong>Real MVP:</strong> Building something for actual users</li>
-				<li><strong>Investor demos:</strong> First impressions matter</li>
-				<li><strong>Consistent output:</strong> Same stack every time, predictable results</li>
-				<li><strong>Security defaults:</strong> Better starting point for production</li>
+				<li>Incomplete Row Level Security policies (even with Lovable's guidance)</li>
+				<li>Missing input validation on API routes</li>
+				<li>Hardcoded credentials in example code</li>
+				<li>Permissive CORS configurations</li>
 			</ul>
 			<p>
-				<strong>Ideal user:</strong> Non-technical founders building an MVP to show users or investors, where UI quality and working auth/database matter.
-			</p>
-		</section>
-
-		<!-- When to Choose Bolt -->
-		<section>
-			<h2>When to Choose Bolt</h2>
-			<p>
-				Bolt is the better choice when you need:
-			</p>
-			<ul>
-				<li><strong>Quick experiments:</strong> Test an idea in minutes</li>
-				<li><strong>Framework flexibility:</strong> Try Vue, Svelte, or other frameworks</li>
-				<li><strong>Learning:</strong> Understand how code works by experimenting</li>
-				<li><strong>Throwaway prototypes:</strong> Validate before investing time</li>
-				<li><strong>In-browser development:</strong> No local setup required</li>
-				<li><strong>Hackathons:</strong> Fastest path to a demo</li>
-			</ul>
-			<p>
-				<strong>Ideal user:</strong> Developers experimenting with ideas, learners exploring frameworks, or anyone who needs the fastest possible prototype without concern for production readiness.
+				Lovable's Supabase integration gives you better defaults, but review everything before launch. See our <a href="/kb/vibe-coding/secure-vibe-coding-guide/">Secure Vibe Coding Guide</a> for the full checklist.
 			</p>
 		</section>
 
 		<!-- Can You Use Both -->
 		<section>
-			<h2>Can you use both?</h2>
+			<h2>Can you use both Lovable and Bolt?</h2>
 			<p>
-				Yes, many vibe coders use both tools at different stages:
+				Yes. A common workflow:
 			</p>
 			<ul>
-				<li><strong>Bolt for validation:</strong> Quick prototype to test if an idea works</li>
-				<li><strong>Lovable for MVP:</strong> Rebuild validated ideas with production quality</li>
-				<li><strong>Bolt for learning:</strong> Understand code patterns before Lovable</li>
-				<li><strong>Export to Cursor:</strong> Both export to continue in a professional IDE</li>
+				<li><strong>Bolt first:</strong> Rapid prototype to validate the idea works</li>
+				<li><strong>Lovable second:</strong> Rebuild with production polish once validated</li>
+				<li><strong>Export to Cursor:</strong> Continue development with full IDE power</li>
 			</ul>
 			<p>
-				Start with Bolt to validate ideas quickly. When you have a winner, use Lovable to build the polished version with proper auth and database integration.
+				Bolt's speed advantage makes it ideal for throwaway prototypes. When you find a winner, Lovable's polish and Supabase integration make the production version faster to build.
 			</p>
 		</section>
 
@@ -474,27 +517,27 @@
 			<div class="related-grid">
 				<a href="/kb/vibe-coding-tools/lovable/" class="related-card">
 					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Lovable Security</span>
+					<span class="related-title">Lovable for Vibe Coders</span>
 				</a>
 				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
 					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Bolt.new Security</span>
+					<span class="related-title">Bolt.new for Vibe Coders</span>
 				</a>
 				<a href="/kb/vibe-coding-tools/v0/" class="related-card">
 					<span class="related-type">Tool Guide</span>
-					<span class="related-title">v0 Security Patterns</span>
+					<span class="related-title">v0 by Vercel</span>
+				</a>
+				<a href="/kb/vibe-coding-tools/replit-vs-cursor/" class="related-card">
+					<span class="related-type">Comparison</span>
+					<span class="related-title">Replit vs Cursor</span>
 				</a>
 				<a href="/kb/security/stacks/nextjs-supabase/" class="related-card">
 					<span class="related-type">Stack Guide</span>
 					<span class="related-title">Next.js + Supabase Security</span>
 				</a>
-				<a href="/kb/vibe-coding-tools/" class="related-card">
-					<span class="related-type">Hub</span>
-					<span class="related-title">All Vibe Coding Tools</span>
-				</a>
 				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
 					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">The Complete Secure Vibe Coding Guide</span>
+					<span class="related-title">Secure Vibe Coding Guide</span>
 				</a>
 			</div>
 		</section>
@@ -526,12 +569,12 @@
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		background: var(--surface-2, #333);
+		background: var(--bg-tertiary, #333);
 		color: var(--text-secondary, #aaa);
 	}
 
 	.badge-comparison {
-		background: #3b82f6;
+		background: var(--blue, #3b82f6);
 		color: white;
 	}
 
@@ -547,9 +590,9 @@
 	}
 
 	.quick-answer {
-		background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
-		border: 1px solid rgba(59, 130, 246, 0.3);
-		border-radius: 8px;
+		background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+		border-left: 4px solid var(--green, #22c55e);
+		border-radius: 0 8px 8px 0;
 		padding: 1.5rem;
 		margin-bottom: 2rem;
 	}
@@ -558,13 +601,29 @@
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		color: #3b82f6;
+		color: var(--green, #22c55e);
 		margin-bottom: 0.5rem;
 	}
 
 	.quick-answer-text {
 		margin: 0;
 		line-height: 1.6;
+	}
+
+	/* Growth Callout */
+	.growth-callout {
+		background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+		border: 1px solid rgba(236, 72, 153, 0.3);
+		border-radius: 8px;
+		padding: 1.5rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.growth-callout h2 {
+		color: #ec4899;
+		border-bottom: none;
+		padding-bottom: 0;
+		margin-bottom: 1rem;
 	}
 
 	section {
@@ -585,10 +644,9 @@
 	}
 
 	h4 {
-		font-size: 0.9rem;
+		font-size: 1rem;
 		margin-bottom: 0.5rem;
-		margin-top: 1rem;
-		color: var(--text-secondary, #888);
+		margin-top: 0;
 	}
 
 	p {
@@ -607,7 +665,7 @@
 	}
 
 	a {
-		color: #22c55e;
+		color: var(--green, #22c55e);
 	}
 
 	a:hover {
@@ -634,7 +692,7 @@
 	}
 
 	.comparison-table th {
-		background: var(--surface-1, #1a1a1a);
+		background: var(--bg-secondary, #1a1a1a);
 		font-weight: 600;
 	}
 
@@ -646,17 +704,13 @@
 		color: #f97316;
 	}
 
-	.comparison-table td.secure {
-		color: #22c55e;
+	.comparison-table td.highlight-win {
+		color: var(--green, #22c55e);
 		font-weight: 600;
 	}
 
-	.comparison-table td.vulnerable {
-		color: #f59e0b;
-	}
-
-	/* Security Comparison */
-	.security-comparison {
+	/* Pricing Grid */
+	.pricing-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1.5rem;
@@ -664,84 +718,208 @@
 	}
 
 	@media (max-width: 768px) {
-		.security-comparison {
+		.pricing-grid {
 			grid-template-columns: 1fr;
 		}
 	}
 
-	.security-card {
-		background: var(--surface-1, #1a1a1a);
+	.pricing-card {
+		background: var(--bg-secondary, #1a1a1a);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.pricing-header {
+		padding: 1rem 1.5rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.pricing-header.lovable {
+		background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(236, 72, 153, 0.1) 100%);
+		border-bottom: 1px solid rgba(236, 72, 153, 0.3);
+	}
+
+	.pricing-header.lovable h3 {
+		color: #ec4899;
+		margin: 0;
+	}
+
+	.pricing-header.bolt {
+		background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(249, 115, 22, 0.1) 100%);
+		border-bottom: 1px solid rgba(249, 115, 22, 0.3);
+	}
+
+	.pricing-header.bolt h3 {
+		color: #f97316;
+		margin: 0;
+	}
+
+	.pricing-model {
+		font-size: 0.75rem;
+		padding: 0.25rem 0.5rem;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 4px;
+		color: var(--text-secondary, #aaa);
+	}
+
+	.pricing-tier {
+		padding: 1rem 1.5rem;
+		border-bottom: 1px solid var(--border, #333);
+	}
+
+	.pricing-tier:last-child {
+		border-bottom: none;
+	}
+
+	.pricing-tier.featured {
+		background: rgba(34, 197, 94, 0.05);
+	}
+
+	.tier-name {
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+
+	.tier-price {
+		float: right;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: var(--green, #22c55e);
+	}
+
+	.pricing-tier ul {
+		margin: 0.75rem 0 0;
+		padding-left: 1.25rem;
+	}
+
+	.pricing-tier li {
+		font-size: 0.85rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.pricing-note {
+		background: var(--bg-secondary, #1a1a1a);
+		border: 1px solid var(--border, #333);
+		border-radius: 8px;
+		padding: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.pricing-note p:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Integration Comparison */
+	.integration-comparison {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+		margin: 1.5rem 0;
+	}
+
+	@media (max-width: 768px) {
+		.integration-comparison {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.integration-card {
+		background: var(--bg-secondary, #1a1a1a);
 		border-radius: 8px;
 		padding: 1.5rem;
 	}
 
-	.security-card.lovable-card {
+	.integration-card.lovable-card {
 		border: 1px solid rgba(236, 72, 153, 0.3);
 	}
 
-	.security-card.bolt-card {
+	.integration-card.lovable-card h3 {
+		color: #ec4899;
+		margin-top: 0;
+	}
+
+	.integration-card.bolt-card {
 		border: 1px solid rgba(249, 115, 22, 0.3);
 	}
 
-	.security-card h3 {
+	.integration-card.bolt-card h3 {
+		color: #f97316;
+		margin-top: 0;
+	}
+
+	.integration-verdict {
+		font-size: 0.9rem;
+		font-style: italic;
+		color: var(--text-secondary, #888);
+		margin-bottom: 0;
+		padding-top: 1rem;
+		border-top: 1px solid var(--border, #333);
+	}
+
+	/* Workflow Cards */
+	.workflow-cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	.workflow-card {
+		background: var(--bg-secondary, #1a1a1a);
+		border: 1px solid var(--border, #333);
+		border-radius: 8px;
+		padding: 1.25rem;
+	}
+
+	.workflow-card h3 {
 		margin-top: 0;
 		margin-bottom: 0.75rem;
+		font-size: 1rem;
 	}
 
-	.security-card.lovable-card h3 {
-		color: #ec4899;
+	.workflow-card p {
+		font-size: 0.9rem;
+		margin-bottom: 0;
+		color: var(--text-secondary, #aaa);
 	}
 
-	.security-card.bolt-card h3 {
-		color: #f97316;
-	}
-
-	.cve-status {
+	.recommendation {
 		display: inline-block;
 		padding: 0.25rem 0.75rem;
 		border-radius: 4px;
 		font-size: 0.8rem;
 		font-weight: 600;
-		margin-bottom: 1rem;
-	}
-
-	.cve-status.secure {
-		background: rgba(34, 197, 94, 0.2);
-		color: #22c55e;
-	}
-
-	.cve-status.vulnerable {
-		background: rgba(245, 158, 11, 0.2);
-		color: #f59e0b;
-	}
-
-	.cve-status.neutral {
-		background: rgba(156, 163, 175, 0.2);
-		color: #9ca3af;
-	}
-
-	.cve-status a {
-		color: inherit;
-	}
-
-	.security-card p {
-		font-size: 0.875rem;
 		margin-bottom: 0.75rem;
 	}
 
-	.security-card ul {
-		margin-bottom: 0.5rem;
-		padding-left: 1.25rem;
+	.recommendation.lovable-rec {
+		background: rgba(236, 72, 153, 0.2);
+		color: #ec4899;
 	}
 
-	.security-card li {
-		margin-bottom: 0.25rem;
-		font-size: 0.875rem;
+	.recommendation.bolt-rec {
+		background: rgba(249, 115, 22, 0.2);
+		color: #f97316;
+	}
+
+	/* Security Note */
+	.security-note {
+		background: var(--bg-secondary, #1a1a1a);
+		border: 1px solid var(--border, #333);
+		border-radius: 8px;
+		padding: 1.5rem;
+	}
+
+	.security-note h2 {
+		border-bottom: none;
+		padding-bottom: 0;
 	}
 
 	/* FAQ Section */
 	.faq-section {
-		background: var(--surface-1, #1a1a1a);
+		background: var(--bg-secondary, #1a1a1a);
 		border-radius: 8px;
 		padding: 1.5rem;
 	}
@@ -777,7 +955,7 @@
 	.related-card {
 		display: block;
 		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
+		background: var(--bg-secondary, #1a1a1a);
 		border: 1px solid var(--border, #333);
 		border-radius: 8px;
 		text-decoration: none;
@@ -785,7 +963,7 @@
 	}
 
 	.related-card:hover {
-		border-color: #22c55e;
+		border-color: var(--green, #22c55e);
 		text-decoration: none;
 	}
 
