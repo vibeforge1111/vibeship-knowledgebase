@@ -763,7 +763,7 @@ export async function POST({ request }) {
 
 	.cve-id:hover {
 		color: var(--green);
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	.cve-card h4 {

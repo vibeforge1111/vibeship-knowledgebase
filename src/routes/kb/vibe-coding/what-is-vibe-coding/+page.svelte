@@ -579,7 +579,7 @@
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	/* Quote Block */

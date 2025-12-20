@@ -687,7 +687,7 @@ alwaysApply: true
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	/* What You'll Learn */
@@ -1202,7 +1202,7 @@ alwaysApply: true
 	}
 
 	.external-links a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	/* Responsive */

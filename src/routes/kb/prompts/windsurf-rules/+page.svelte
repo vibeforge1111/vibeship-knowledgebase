@@ -702,7 +702,7 @@ export async function createPost(input) &#123;
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	/* Resource Grid */

@@ -798,6 +798,6 @@ For each issue:
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 </style>

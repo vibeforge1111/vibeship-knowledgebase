@@ -737,7 +737,7 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 	}
 
 	.breadcrumbs a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	.breadcrumbs .separator {
@@ -858,7 +858,7 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 	}
 
 	.reference-item a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	.content-section {
@@ -884,7 +884,7 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 	}
 
 	.content-section a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	.content-section code {
@@ -1016,7 +1016,7 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 	}
 
 	.pattern-links a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	.checklist {

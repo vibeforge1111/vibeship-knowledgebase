@@ -993,6 +993,6 @@ For each vulnerability:
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 </style>

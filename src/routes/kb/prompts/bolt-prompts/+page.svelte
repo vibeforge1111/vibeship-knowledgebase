@@ -647,7 +647,7 @@ Validate file types properly, not just by extension.`
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	code {
@@ -968,7 +968,7 @@ Validate file types properly, not just by extension.`
 	}
 
 	.external-links a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	/* Mobile adjustments */

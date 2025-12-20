@@ -1,4 +1,4 @@
-# Vibeship Knowledge Base UI/Design Standards
+# VibeShip Knowledge Base UI/Design Standards
 
 > **This is the canonical styling guide for all KB articles.**
 > When in doubt, reference `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte` as the gold standard.
@@ -9,7 +9,7 @@
 
 ### 1. Sharp Edges, Not Rounded
 
-Vibeship uses **sharp, terminal-inspired edges** throughout. This is non-negotiable.
+VibeShip uses **sharp, terminal-inspired edges** throughout. This is non-negotiable.
 
 ```css
 /* WRONG - Never use rounded corners on structural elements */
@@ -44,6 +44,34 @@ background: var(--bg-secondary); /* For tinted backgrounds, use component classe
 ### 3. Use Global Component Classes
 
 Use existing classes from `static/styles/components.css` and `static/styles/layout.css` instead of recreating them.
+
+### 4. No Hover Underlines
+
+Links and interactive elements should NEVER use `text-decoration: underline` on hover. Use color or opacity changes instead.
+
+```css
+/* WRONG - Never underline on hover */
+a:hover {
+  text-decoration: underline;
+}
+
+/* RIGHT - Use color transitions */
+a:hover {
+  color: var(--green);
+}
+
+/* RIGHT - Cards use border transitions */
+.card-interactive:hover {
+  border-color: var(--green-dim);
+}
+```
+
+### 5. Branding Consistency
+
+Always use correct brand capitalization:
+- **VibeShip** - Capital V, capital S (never "Vibeship", "vibeship", "VIBESHIP")
+- **VibeShip Scanner** - Product name, always capitalized
+- **vibe coding** / **vibe coders** - lowercase when describing the practice/people
 
 ---
 
@@ -320,35 +348,29 @@ Use the global `.final-cta` class from `components.css`:
 
 ### 9. Related Content Grid
 
+Use the global `.related-grid` and `.related-card` classes from `components.css`:
+
 ```svelte
-<section>
-  <h2>Related Content</h2>
+<section class="article-section">
+  <h2>Related content</h2>
   <div class="related-grid">
-    <a href="/kb/..." class="card card-interactive">
-      <span class="related-card-category">Category</span>
-      <h3 class="related-card-title">Article Title</h3>
+    <a href="/kb/..." class="card card-interactive related-card">
+      <div class="related-card-category">Category</div>
+      <div class="related-card-title">Article Title</div>
+      <p class="related-card-description">Brief description of the linked content.</p>
     </a>
   </div>
 </section>
 ```
 
-**Scoped styles needed for labels:**
-```css
-.related-card-category {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
-}
+**IMPORTANT structure rules:**
+- Use `<div>` for category and title (NOT `<span>` or `<h3>`)
+- Use `<p>` for description
+- Always include `card card-interactive related-card` classes on the anchor
+- Always include a description paragraph
+- Wrap in `<section class="article-section">`
 
-.related-card-title {
-  font-size: 1rem;
-  margin: 0;
-  color: var(--text-primary);
-}
-```
+**No scoped styles needed** - these are now global components in `components.css`.
 
 ### 10. Comparison Article Pattern
 
@@ -562,18 +584,39 @@ Key breakpoints:
 
 ## Checklist Before Publishing
 
+### Structure
 - [ ] Uses `Header` component with proper breadcrumbs
 - [ ] Uses `.content-wrapper > article.content-main.content-wide` structure
+- [ ] Scoped styles under 150 lines
+- [ ] No recreated component classes
+
+### Branding
+- [ ] "VibeShip" capitalized correctly (capital V, capital S)
+- [ ] No instances of "Vibeship" or "vibeship" for brand name
+
+### Colors & Styling
 - [ ] All colors use CSS variables (no hex codes)
 - [ ] No `border-radius: 8px` or rounded corners on containers
+- [ ] No hover underlines on any interactive elements
+
+### Components
 - [ ] Quick answer uses global `.quick-answer` class
 - [ ] Stats use global `.stat-box` within `.stats-row`
 - [ ] Code blocks use global `.code-block` patterns
 - [ ] Tables wrapped in `.table-wrapper`
-- [ ] Related content uses `.related-grid` with `.card.card-interactive`
-- [ ] Scoped styles under 150 lines
-- [ ] No recreated component classes
+- [ ] FAQs use `.faq-list` and `.faq-item` classes
+- [ ] Related content uses exact structure:
+  - `<section class="article-section">`
+  - `<div class="related-grid">`
+  - `<a class="card card-interactive related-card">`
+  - `<div class="related-card-category">` (not `<span>`)
+  - `<div class="related-card-title">` (not `<h3>`)
+  - `<p class="related-card-description">`
+
+### Responsive
 - [ ] Mobile responsive (test at 768px and 480px)
+- [ ] No horizontal overflow on mobile
+- [ ] Touch targets at least 44x44px
 
 ---
 
@@ -581,6 +624,7 @@ Key breakpoints:
 
 ### Gold Standard (Copy This Pattern)
 - `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte` - Security article template
+- `src/routes/kb/security/stacks/nextjs-supabase/+page.svelte` - **Best example for related content pattern**
 - `src/routes/kb/prompts/cursor-rules-examples/+page.svelte` - Prompts article template
 
 ### Comparison Articles (Copy This Pattern)
@@ -596,6 +640,11 @@ Key breakpoints:
 ## Quick Reference Card
 
 ```
+BRANDING:
+  VibeShip (capital V, capital S) - never "Vibeship"
+  VibeShip Scanner - product name
+  vibe coding / vibe coders - lowercase
+
 COLORS:
   Background: var(--bg-primary), var(--bg-secondary), var(--bg-tertiary)
   Text: var(--text-primary), var(--text-secondary), var(--text-tertiary)
@@ -615,8 +664,26 @@ COMPONENTS:
   .stats-row > .stat-box > .stat-value + .stat-label
   .badge, .badge-critical, .badge-high, etc.
   .code-block > .code-block-header + pre > code
-  .related-grid > a.card.card-interactive
+  .related-grid > a.card.card-interactive.related-card
+  .faq-list > .faq-item
   .table-wrapper > table
+
+RELATED CONTENT (exact structure):
+  <section class="article-section">
+    <h2>Related content</h2>
+    <div class="related-grid">
+      <a href="..." class="card card-interactive related-card">
+        <div class="related-card-category">Category</div>
+        <div class="related-card-title">Title</div>
+        <p class="related-card-description">Description</p>
+      </a>
+    </div>
+  </section>
+
+HOVER STATES:
+  NO text-decoration: underline
+  Links: color transitions only
+  Cards: border-color transitions via .card-interactive
 
 SHARP EDGES:
   border-radius: 0; (or omit property)

@@ -952,7 +952,7 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	code {
@@ -1229,6 +1229,6 @@ E-commerce platform with Next.js frontend and Supabase backend.
 	}
 
 	.external-links a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 </style>

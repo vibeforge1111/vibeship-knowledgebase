@@ -792,7 +792,7 @@ app.get('/goto', (req, res) =&gt; &#123;
 	}
 
 	.breadcrumb a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	.breadcrumb .separator {
@@ -939,7 +939,7 @@ app.get('/goto', (req, res) =&gt; &#123;
 	}
 
 	.content a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	ul, ol {

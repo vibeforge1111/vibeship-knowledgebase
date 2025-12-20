@@ -586,7 +586,7 @@ Review this code for prompt injection risks. Check for:
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	/* Two Column Layout */

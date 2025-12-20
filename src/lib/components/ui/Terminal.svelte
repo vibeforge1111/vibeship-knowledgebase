@@ -183,7 +183,6 @@
 
 	.line-link:hover {
 		color: var(--green);
-		text-decoration: underline;
 	}
 
 	.cursor {

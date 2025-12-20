@@ -775,7 +775,7 @@
 
   .breadcrumb a:hover {
     color: var(--green);
-    text-decoration: underline;
+    color: var(--green);
   }
 
   .article-header {
@@ -1003,7 +1003,7 @@
 
   .quick-answer a:hover {
     color: var(--green);
-    text-decoration: underline;
+    color: var(--green);
   }
 
   .stats-box {
@@ -1067,7 +1067,7 @@
 
   .toc a:hover {
     color: var(--green);
-    text-decoration: underline;
+    color: var(--green);
   }
 
   section {
@@ -1111,7 +1111,7 @@
 
   a:hover {
     color: var(--green);
-    text-decoration: underline;
+    color: var(--green);
   }
 
   ul, ol {

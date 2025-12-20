@@ -780,7 +780,7 @@ Output a summary table:
 
 	.check-link:hover {
 		color: var(--green);
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	/* Fix Prompt Box - shown below item */

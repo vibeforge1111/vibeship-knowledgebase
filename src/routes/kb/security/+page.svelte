@@ -109,6 +109,6 @@
 	}
 
 	.section-card:hover .section-link {
-		text-decoration: underline;
+		color: var(--green);
 	}
 </style>

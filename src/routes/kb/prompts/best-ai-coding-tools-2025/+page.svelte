@@ -1635,6 +1635,6 @@ Security:
 	}
 
 	.external-links a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 </style>

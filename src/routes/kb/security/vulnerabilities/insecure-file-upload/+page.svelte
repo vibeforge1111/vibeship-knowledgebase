@@ -643,7 +643,7 @@ Review this code for insecure file upload patterns. Check for:
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	code {

@@ -792,7 +792,7 @@ Pattern:
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	code {
@@ -1075,6 +1075,6 @@ Pattern:
 	}
 
 	.external-links a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 </style>

@@ -759,7 +759,7 @@ export async function safeRedirect(path: string) &#123;
 	}
 
 	.breadcrumb a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	.breadcrumb .separator {
@@ -906,7 +906,7 @@ export async function safeRedirect(path: string) &#123;
 	}
 
 	.content a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	ul, ol {

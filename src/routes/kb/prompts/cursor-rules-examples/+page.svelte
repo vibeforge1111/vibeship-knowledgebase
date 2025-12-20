@@ -1696,7 +1696,7 @@ globs: ["**/*.ts", "**/*.tsx"]
 	}
 
 	.external-links a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	a {
@@ -1704,7 +1704,7 @@ globs: ["**/*.ts", "**/*.tsx"]
 	}
 
 	a:hover {
-		text-decoration: underline;
+		color: var(--green);
 	}
 
 	@media (max-width: 768px) {
