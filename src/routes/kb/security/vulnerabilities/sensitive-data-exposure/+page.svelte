@@ -60,7 +60,7 @@
 </script>
 
 <svelte:head>
-	<title>{meta.title}</title>
+	<title>{meta.title} | VibeShip</title>
 	<meta name="description" content={meta.description} />
 	<meta property="og:title" content={meta.title} />
 	<meta property="og:description" content={meta.description} />
@@ -91,11 +91,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "Vibeship"
+			"name": "VibeShip"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "Vibeship",
+			"name": "VibeShip",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -131,15 +131,15 @@
 		<header class="article-header">
 			<div class="badge-row">
 				<span class="badge badge-high">High</span>
-				<span class="badge">CWE-200</span>
-				<span class="badge">CWE-209</span>
-				<span class="badge">OWASP A02:2021</span>
+				<a href={owaspData.cweSource} target="_blank" rel="noopener noreferrer" class="badge">CWE-200</a>
+				<a href="https://cwe.mitre.org/data/definitions/209.html" target="_blank" rel="noopener noreferrer" class="badge">CWE-209</a>
+				<a href={owaspData.source} target="_blank" rel="noopener noreferrer" class="badge">OWASP A02:2021</a>
 			</div>
 			<h1>Sensitive Data Exposure in Vibe Coded Apps</h1>
-			<p class="text-secondary">How AI tools accidentally leak secrets through error messages, logs, and API responses</p>
+			<p class="article-subtitle">How AI tools accidentally leak secrets through error messages, logs, and API responses</p>
 		</header>
 
-		<!-- Quick Answer - MUST be under 50 words -->
+		<!-- Quick Answer -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
@@ -148,38 +148,35 @@
 			</p>
 		</div>
 
-		<!-- Stats Box - Real OWASP Data -->
-		<div class="stats-box">
-			<h3>OWASP & CWE Classification</h3>
-			<div class="stats-grid">
-				<div class="stat-item">
-					<span class="stat-value">{owaspData.ranking}</span>
-					<span class="stat-label">OWASP Top 10</span>
-					<span class="stat-source"><a href={owaspData.source} target="_blank" rel="noopener">{owaspData.category}</a></span>
-				</div>
-				<div class="stat-item">
-					<span class="stat-value">CWE-200</span>
-					<span class="stat-label">Information Exposure</span>
-					<span class="stat-source"><a href={owaspData.cweSource} target="_blank" rel="noopener">CWE Top 25</a></span>
-				</div>
-				<div class="stat-item">
-					<span class="stat-value">CWE-209</span>
-					<span class="stat-label">Error Messages</span>
-					<span class="stat-source"><a href="https://cwe.mitre.org/data/definitions/209.html" target="_blank" rel="noopener">Definition</a></span>
-				</div>
-				<div class="stat-item">
-					<span class="stat-value">CWE-532</span>
-					<span class="stat-label">Log Files</span>
-					<span class="stat-source"><a href="https://cwe.mitre.org/data/definitions/532.html" target="_blank" rel="noopener">Definition</a></span>
-				</div>
+		<!-- Stats Box -->
+		<div class="stats-row">
+			<div class="stat-card">
+				<span class="stat-value">{owaspData.ranking}</span>
+				<span class="stat-label">OWASP Top 10</span>
+				<span class="stat-source"><a href={owaspData.source} target="_blank" rel="noopener">{owaspData.category}</a></span>
 			</div>
-			<p class="stats-note">
-				Note: OWASP renamed "Sensitive Data Exposure" to "Cryptographic Failures" in 2021 to focus on root causes rather than symptoms.
-			</p>
+			<div class="stat-card">
+				<span class="stat-value">CWE-200</span>
+				<span class="stat-label">Information Exposure</span>
+				<span class="stat-source"><a href={owaspData.cweSource} target="_blank" rel="noopener">CWE Top 25</a></span>
+			</div>
+			<div class="stat-card">
+				<span class="stat-value">CWE-209</span>
+				<span class="stat-label">Error Messages</span>
+				<span class="stat-source"><a href="https://cwe.mitre.org/data/definitions/209.html" target="_blank" rel="noopener">Definition</a></span>
+			</div>
+			<div class="stat-card">
+				<span class="stat-value">CWE-532</span>
+				<span class="stat-label">Log Files</span>
+				<span class="stat-source"><a href="https://cwe.mitre.org/data/definitions/532.html" target="_blank" rel="noopener">Definition</a></span>
+			</div>
 		</div>
+		<p class="stats-note">
+			Note: OWASP renamed "Sensitive Data Exposure" to "Cryptographic Failures" in 2021 to focus on root causes rather than symptoms.
+		</p>
 
 		<!-- What is it -->
-		<section>
+		<section class="article-section">
 			<h2>What is Sensitive Data Exposure?</h2>
 			<p>
 				Sensitive data exposure is when your application accidentally tells attackers things it shouldn't. This includes user credentials, API keys, database queries, stack traces, internal file paths, and personal information (PII).
@@ -197,7 +194,7 @@
 		</section>
 
 		<!-- Why AI Tools Generate Leaky Code -->
-		<section>
+		<section class="article-section">
 			<h2>Why AI Tools Generate Leaky Code</h2>
 			<p>
 				AI-generated code prioritizes debugging and development convenience over production security. When you ask <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>, or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> to "make it work," they generate code that helps you debug - which also helps attackers.
@@ -212,7 +209,7 @@
 		</section>
 
 		<!-- Pattern 1: Verbose Error Messages -->
-		<section>
+		<section class="article-section">
 			<h2>Pattern 1: Verbose Error Messages</h2>
 			<p>
 				AI tools generate error handlers that expose internal details to help with debugging. These details are goldmines for attackers.
@@ -220,7 +217,9 @@
 
 			<div class="code-comparison">
 				<div class="code-block vulnerable">
-					<div class="code-label">Vulnerable (AI Default)</div>
+					<div class="code-label">
+						<span class="status-icon">&#10060;</span> Vulnerable (AI Default)
+					</div>
 					<pre><code>{`// VULNERABLE: AI generates helpful error messages
 export async function POST(request: Request) {
   try {
@@ -239,7 +238,9 @@ export async function POST(request: Request) {
 }`}</code></pre>
 				</div>
 				<div class="code-block secure">
-					<div class="code-label">Secure Version</div>
+					<div class="code-label">
+						<span class="status-icon">&#9989;</span> Secure Version
+					</div>
 					<pre><code>{`// SECURE: Generic error to client, detailed log server-side
 export async function POST(request: Request) {
   try {
@@ -270,7 +271,7 @@ export async function POST(request: Request) {
 		</section>
 
 		<!-- Pattern 2: Console.log with Sensitive Data -->
-		<section>
+		<section class="article-section">
 			<h2>Pattern 2: Console.log with Sensitive Data</h2>
 			<p>
 				AI tools liberally add console.log to help you understand the code. In production, these logs persist in cloud services like Vercel, AWS CloudWatch, and Datadog - visible to anyone with log access.
@@ -278,7 +279,9 @@ export async function POST(request: Request) {
 
 			<div class="code-comparison">
 				<div class="code-block vulnerable">
-					<div class="code-label">Vulnerable (AI Default)</div>
+					<div class="code-label">
+						<span class="status-icon">&#10060;</span> Vulnerable (AI Default)
+					</div>
 					<pre><code>{`// VULNERABLE: AI adds console.log for debugging
 export async function login(email: string, password: string) {
   console.log('Login attempt:', { email, password }) // PASSWORD IN LOGS!
@@ -293,7 +296,9 @@ export async function login(email: string, password: string) {
 }`}</code></pre>
 				</div>
 				<div class="code-block secure">
-					<div class="code-label">Secure Version</div>
+					<div class="code-label">
+						<span class="status-icon">&#9989;</span> Secure Version
+					</div>
 					<pre><code>{`// SECURE: Never log sensitive data
 export async function login(email: string, password: string) {
   // Log only non-sensitive identifiers
@@ -317,7 +322,7 @@ export async function login(email: string, password: string) {
 		</section>
 
 		<!-- Pattern 3: Over-Exposed API Responses -->
-		<section>
+		<section class="article-section">
 			<h2>Pattern 3: Over-Exposed API Responses</h2>
 			<p>
 				AI tools return full database objects because it's easier and more "flexible." This leaks password hashes, internal flags, and data users shouldn't see.
@@ -325,7 +330,9 @@ export async function login(email: string, password: string) {
 
 			<div class="code-comparison">
 				<div class="code-block vulnerable">
-					<div class="code-label">Vulnerable (AI Default)</div>
+					<div class="code-label">
+						<span class="status-icon">&#10060;</span> Vulnerable (AI Default)
+					</div>
 					<pre><code>{`// VULNERABLE: AI returns full database object
 export async function GET(request: Request) {
   const { userId } = await request.json()
@@ -343,7 +350,9 @@ export async function GET(request: Request) {
 //   stripe_customer_id, phone, address, ... }`}</code></pre>
 				</div>
 				<div class="code-block secure">
-					<div class="code-label">Secure Version</div>
+					<div class="code-label">
+						<span class="status-icon">&#9989;</span> Secure Version
+					</div>
 					<pre><code>{`// SECURE: Return only needed fields
 export async function GET(request: Request) {
   const { userId } = await request.json()
@@ -371,7 +380,7 @@ function toPublicUser(user: User): PublicUser {
 		</section>
 
 		<!-- Pattern 4: Query Strings with Sensitive Data -->
-		<section>
+		<section class="article-section">
 			<h2>Pattern 4: Sensitive Data in URLs</h2>
 			<p>
 				AI tools sometimes put tokens, emails, and other sensitive data in URL query strings. This data ends up in server logs, browser history, proxy logs, and referrer headers.
@@ -379,7 +388,9 @@ function toPublicUser(user: User): PublicUser {
 
 			<div class="code-comparison">
 				<div class="code-block vulnerable">
-					<div class="code-label">Vulnerable</div>
+					<div class="code-label">
+						<span class="status-icon">&#10060;</span> Vulnerable
+					</div>
 					<pre><code>{`// VULNERABLE: Sensitive data in URL
 // GET /api/reset?token=abc123&email=user@example.com
 
@@ -396,7 +407,9 @@ export async function GET(request: Request) {
 }`}</code></pre>
 				</div>
 				<div class="code-block secure">
-					<div class="code-label">Secure Version</div>
+					<div class="code-label">
+						<span class="status-icon">&#9989;</span> Secure Version
+					</div>
 					<pre><code>{`// SECURE: Use POST body for sensitive data
 // POST /api/reset
 // Body: { token: "abc123", email: "user@example.com" }
@@ -418,7 +431,7 @@ export async function POST(request: Request) {
 		</section>
 
 		<!-- Framework Error Configuration -->
-		<section>
+		<section class="article-section">
 			<h2>Framework Error Configuration</h2>
 			<p>
 				Most frameworks have settings to hide detailed errors in production. Make sure these are configured correctly.
@@ -451,15 +464,18 @@ app.use((err, req, res, next) => {
 		</section>
 
 		<!-- AI Fix Prompt -->
-		<section class="fix-section">
+		<section class="article-section">
 			<h2>AI Fix Prompt</h2>
 			<p>Copy this prompt into any AI tool to scan your code for sensitive data exposure:</p>
 
-			<div class="prompt-box">
-				<button class="copy-button" onclick={copyPrompt}>
-					{copied ? 'Copied!' : 'Copy Prompt'}
-				</button>
-				<pre id="ai-fix-prompt">{`Review my code for sensitive data exposure vulnerabilities:
+			<div class="fix-prompt">
+				<div class="fix-prompt-header">
+					<span class="fix-prompt-title">Sensitive Data Exposure Audit Prompt</span>
+					<button class="copy-button" onclick={copyPrompt}>
+						{copied ? 'Copied!' : 'Copy Prompt'}
+					</button>
+				</div>
+				<pre id="ai-fix-prompt" class="fix-prompt-content">{`Review my code for sensitive data exposure vulnerabilities:
 
 1. **Error Messages (CWE-209)**: Find try/catch blocks that return error.message, error.stack, or detailed error info to clients. Replace with generic messages and log details server-side only.
 
@@ -484,35 +500,41 @@ For each issue:
 		</section>
 
 		<!-- FAQs -->
-		<section>
+		<section class="article-section">
 			<h2>Frequently Asked Questions</h2>
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
-		<section>
-			<h2>Related Content</h2>
+		<section class="article-section">
+			<h2>Related content</h2>
 			<div class="related-grid">
-				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Hardcoded Secrets</span>
+				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Hardcoded Secrets</div>
+					<p class="related-card-description">Secrets embedded in code vs exposed at runtime</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Missing Authentication</span>
+				<a href="/kb/security/vulnerabilities/missing-auth/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Missing Authentication</div>
+					<p class="related-card-description">Data exposure is worse without authentication</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/idor/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">IDOR</span>
+				<a href="/kb/security/vulnerabilities/idor/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">IDOR</div>
+					<p class="related-card-description">Accessing other users' data through object references</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">AI Tool</span>
-					<span class="related-title">Cursor Security Patterns</span>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
+					<div class="related-card-category">AI Tool</div>
+					<div class="related-card-title">Cursor Security Patterns</div>
+					<p class="related-card-description">Common data exposure patterns in Cursor-generated code</p>
 				</a>
 			</div>
 		</section>
@@ -520,12 +542,6 @@ For each issue:
 </div>
 
 <style>
-	.content-wrapper {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
-
 	.article-header {
 		margin-bottom: 2rem;
 	}
@@ -540,125 +556,100 @@ For each issue:
 	.badge {
 		display: inline-block;
 		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		background: var(--surface-2, #333);
-		color: var(--text-secondary, #aaa);
+		background: var(--bg-tertiary);
+		color: var(--text-secondary);
+		border: 1px solid var(--border);
+		text-decoration: none;
 	}
 
-	.badge-critical {
-		background: #dc2626;
-		color: white;
+	.badge:hover {
+		color: var(--green);
 	}
 
 	.badge-high {
-		background: #ea580c;
-		color: white;
-	}
-
-	.badge-medium {
-		background: #ca8a04;
-		color: white;
+		background: var(--bg-tertiary);
+		color: var(--orange);
+		border-color: var(--orange);
 	}
 
 	h1 {
 		font-size: 2.5rem;
 		margin-bottom: 0.5rem;
+		color: var(--text-primary);
 	}
 
-	.text-secondary {
-		color: var(--text-secondary, #888);
+	.article-subtitle {
+		color: var(--text-secondary);
 		font-size: 1.1rem;
 	}
 
-	.quick-answer {
-		background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
-		border: 1px solid rgba(34, 197, 94, 0.3);
-		border-radius: 8px;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer-label {
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		color: #22c55e;
-		margin-bottom: 0.5rem;
-	}
-
-	.quick-answer-text {
-		margin: 0;
-		line-height: 1.6;
-	}
-
-	.stats-box {
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.stats-box h3 {
-		margin-top: 0;
-		margin-bottom: 1rem;
-	}
-
-	.stats-grid {
+	/* Stats Row */
+	.stats-row {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 		gap: 1rem;
+		margin-bottom: 1rem;
 	}
 
-	.stat-item {
+	.stat-card {
 		text-align: center;
+		padding: 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
 	.stat-value {
 		display: block;
 		font-size: 1.5rem;
 		font-weight: 700;
-		color: #22c55e;
+		color: var(--green-dim);
 	}
 
 	.stat-label {
 		display: block;
 		font-size: 0.875rem;
-		color: var(--text-primary, #fff);
+		color: var(--text-primary);
 	}
 
 	.stat-source {
 		display: block;
 		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
+	}
+
+	.stat-source a {
+		color: var(--text-tertiary);
+	}
+
+	.stat-source a:hover {
+		color: var(--green);
 	}
 
 	.stats-note {
-		margin-top: 1rem;
 		font-size: 0.875rem;
-		color: var(--text-secondary, #888);
-	}
-
-	section {
-		margin-bottom: 3rem;
+		color: var(--text-secondary);
+		margin-bottom: 2rem;
 	}
 
 	h2 {
 		font-size: 1.5rem;
 		margin-bottom: 1rem;
 		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
+		color: var(--text-primary);
 	}
 
 	h3 {
 		font-size: 1.2rem;
 		margin-top: 1.5rem;
 		margin-bottom: 0.75rem;
+		color: var(--text-primary);
 	}
 
+	/* Code Comparison */
 	.code-comparison {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -673,37 +664,38 @@ For each issue:
 	}
 
 	.code-block {
-		background: #0d0d0d;
-		border: 1px solid var(--border, #333);
-		border-radius: 6px;
+		background: var(--bg-primary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 		margin: 1rem 0;
 	}
 
 	.code-block.vulnerable {
-		border-color: rgba(220, 38, 38, 0.3);
+		border-color: var(--red);
 	}
 
 	.code-block.secure {
-		border-color: rgba(34, 197, 94, 0.3);
+		border-color: var(--green-dim);
 	}
 
 	.code-label {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 		padding: 0.5rem 1rem;
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		background: var(--surface-1, #1a1a1a);
+		background: var(--bg-tertiary);
+		color: var(--text-secondary);
 	}
 
 	.vulnerable .code-label {
-		background: rgba(220, 38, 38, 0.1);
-		color: #f87171;
+		color: var(--red);
 	}
 
 	.secure .code-label {
-		background: rgba(34, 197, 94, 0.1);
-		color: #4ade80;
+		color: var(--green-dim);
 	}
 
 	pre {
@@ -715,86 +707,87 @@ For each issue:
 	}
 
 	code {
-		font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+		font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+		color: var(--text-primary);
 	}
 
-	.fix-section {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
-	}
-
-	.prompt-box {
-		position: relative;
-		background: #0d0d0d;
-		border-radius: 6px;
+	/* Fix Prompt */
+	.fix-prompt {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
+	.fix-prompt-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1rem;
+		background: var(--bg-tertiary);
+		border-bottom: 1px solid var(--border);
+	}
+
+	.fix-prompt-title {
+		color: var(--text-primary);
+		font-weight: 600;
+	}
+
 	.copy-button {
-		position: absolute;
-		top: 0.5rem;
-		right: 0.5rem;
 		padding: 0.5rem 1rem;
-		background: #22c55e;
-		color: black;
+		background: var(--green-dim);
+		color: var(--bg-primary);
 		border: none;
-		border-radius: 4px;
 		font-size: 0.75rem;
 		font-weight: 600;
 		cursor: pointer;
+		transition: background 0.2s;
 	}
 
 	.copy-button:hover {
-		background: #16a34a;
+		background: var(--green);
+	}
+
+	.fix-prompt-content {
+		padding: 1rem;
+		background: var(--bg-primary);
+		color: var(--text-primary);
+		font-size: 0.8rem;
+		line-height: 1.6;
+		white-space: pre-wrap;
+	}
+
+	/* FAQ */
+	.faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
 	}
 
 	.faq-item {
-		margin-bottom: 1.5rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.faq-item:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
 	}
 
 	.faq-item h3 {
 		font-size: 1.1rem;
 		margin-bottom: 0.5rem;
 		margin-top: 0;
+		color: var(--text-primary);
 	}
 
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
+	.faq-item p {
+		margin: 0;
+		color: var(--text-secondary);
 	}
 
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: #22c55e;
-	}
-
-	.related-type {
-		display: block;
-		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
-		text-transform: uppercase;
-		margin-bottom: 0.25rem;
-	}
-
-	.related-title {
-		display: block;
-		font-weight: 600;
-		color: var(--text-primary, #fff);
-	}
-
+	/* Links */
 	a {
-		color: #22c55e;
+		color: var(--green-dim);
 	}
 
 	a:hover {

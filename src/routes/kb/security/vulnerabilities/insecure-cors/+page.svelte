@@ -371,11 +371,11 @@ curl -X OPTIONS -H "Origin: https://your-app.com" \\
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "Vibeship"
+			"name": "VibeShip"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "Vibeship",
+			"name": "VibeShip",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -403,53 +403,42 @@ curl -X OPTIONS -H "Origin: https://your-app.com" \\
 	</script>`}
 </svelte:head>
 
-<Header />
+<Header {breadcrumbs} />
 
-<main class="article-container">
-	<!-- Breadcrumbs -->
-	<nav class="breadcrumbs" aria-label="Breadcrumb">
-		{#each breadcrumbs as crumb, i}
-			{#if i < breadcrumbs.length - 1}
-				<a href={crumb.href}>{crumb.label}</a>
-				<span class="separator">/</span>
-			{:else}
-				<span class="current">{crumb.label}</span>
-			{/if}
-		{/each}
-	</nav>
-
-	<article class="security-article">
+<div class="content-wrapper">
+	<article class="content-main content-wide">
+		<!-- Article Header -->
 		<header class="article-header">
-			<div class="severity-badge high">Medium-High Severity</div>
+			<div class="badge badge-warning">Medium-High Severity</div>
 			<h1>Insecure CORS: When <code>origin: '*'</code> Exposes Your API</h1>
 			<p class="subtitle">The "fix CORS errors" prompt creates the most permissive - and dangerous - configuration</p>
 		</header>
 
 		<!-- Quick Answer Box -->
-		<section class="quick-answer">
+		<div class="quick-answer">
 			<h2>Quick Answer</h2>
 			<p>
 				<strong>CORS controls which websites can access your API.</strong> Setting <code>Access-Control-Allow-Origin: *</code> allows ANY website to read your API responses - including attacker sites. AI tools use this because it "fixes" CORS errors. Always whitelist specific origins instead. Classified as <a href={owaspData.source}>#5 Security Misconfiguration</a> in OWASP Top 10.
 			</p>
-		</section>
+		</div>
 
 		<!-- OWASP/CWE Reference -->
-		<section class="reference-box">
+		<section class="article-section">
 			<h3>Security Classification</h3>
-			<div class="reference-grid">
-				<div class="reference-item">
-					<span class="label">OWASP</span>
+			<div class="stats-row">
+				<div class="stat-card">
+					<span class="stat-label">OWASP</span>
 					<a href={owaspData.source} target="_blank" rel="noopener">{owaspData.category}</a>
 				</div>
-				<div class="reference-item">
-					<span class="label">CWE</span>
+				<div class="stat-card">
+					<span class="stat-label">CWE</span>
 					<a href={owaspData.cweSource} target="_blank" rel="noopener">{owaspData.cweId}</a>
 				</div>
 			</div>
 		</section>
 
 		<!-- What is CORS -->
-		<section class="content-section">
+		<section class="article-section" id="what-is-cors">
 			<h2>What is CORS?</h2>
 			<p>
 				Cross-Origin Resource Sharing (CORS) is browser security that controls which websites can access your API. Think of it like a VIP list for your backend - only websites you approve can read responses from your API endpoints.
@@ -463,7 +452,7 @@ curl -X OPTIONS -H "Origin: https://your-app.com" \\
 		</section>
 
 		<!-- Why AI Tools Generate This -->
-		<section class="content-section">
+		<section class="article-section" id="ai-tools">
 			<h2>How Do AI Tools Generate Insecure CORS?</h2>
 			<p>
 				When vibe coding, the typical pattern is: you build a frontend, try to call your API, and get a CORS error. You ask the AI to "fix CORS" or "enable CORS", and it immediately generates <code>origin: '*'</code> because that makes the error disappear.
@@ -477,35 +466,35 @@ curl -X OPTIONS -H "Origin: https://your-app.com" \\
 		</section>
 
 		<!-- Common Patterns -->
-		<section class="content-section">
+		<section class="article-section" id="patterns">
 			<h2>What Are the Common CORS Misconfigurations?</h2>
 			<p>
 				<a href="https://portswigger.net/web-security/cors">PortSwigger's CORS research</a> documents several misconfiguration patterns, all of which appear in vibe coded applications:
 			</p>
 
-			<div class="patterns-grid">
+			<div class="patterns-list">
 				{#each patterns as pattern}
 					<div class="pattern-card">
 						<div class="pattern-header">
 							<h3>{pattern.name}</h3>
-							<span class="severity-tag {pattern.severity.toLowerCase()}">{pattern.severity}</span>
+							<span class="badge badge-{pattern.severity.toLowerCase()}">{pattern.severity}</span>
 						</div>
 						<p class="pattern-description">{pattern.description}</p>
 
 						<div class="code-comparison">
 							<div class="code-block vulnerable">
-								<div class="code-label">❌ Vulnerable</div>
+								<div class="code-label">Vulnerable</div>
 								<pre><code>{pattern.vulnerableCode}</code></pre>
 							</div>
 							<div class="code-block secure">
-								<div class="code-label">✅ Secure</div>
+								<div class="code-label">Secure</div>
 								<pre><code>{pattern.secureCode}</code></pre>
 							</div>
 						</div>
 
 						<div class="pattern-links">
-							<a href={pattern.cweLink} target="_blank" rel="noopener">Reference →</a>
-							<a href={pattern.link}>Related vulnerability →</a>
+							<a href={pattern.cweLink} target="_blank" rel="noopener">Reference</a>
+							<a href={pattern.link}>Related vulnerability</a>
 						</div>
 					</div>
 				{/each}
@@ -513,7 +502,7 @@ curl -X OPTIONS -H "Origin: https://your-app.com" \\
 		</section>
 
 		<!-- Next.js Specific -->
-		<section class="content-section">
+		<section class="article-section" id="nextjs">
 			<h2>How Do I Configure CORS Securely in Next.js?</h2>
 			<p>
 				Next.js offers two approaches for CORS configuration. For simple cases with a single allowed origin, use <a href="https://nextjs.org/docs/pages/api-reference/config/next-config-js/headers">next.config.js headers</a>:
@@ -599,7 +588,7 @@ export const config = {
 		</section>
 
 		<!-- When Wildcard is OK -->
-		<section class="content-section">
+		<section class="article-section" id="when-ok">
 			<h2>When Is Wildcard CORS Actually OK?</h2>
 			<p>
 				Wildcard (<code>*</code>) IS acceptable in specific situations. Use it only when ALL of these are true:
@@ -616,7 +605,7 @@ export const config = {
 		</section>
 
 		<!-- Testing Section -->
-		<section class="content-section">
+		<section class="article-section" id="testing">
 			<h2>How Do I Test My CORS Configuration?</h2>
 			<p>
 				According to <a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing">OWASP's CORS testing guide</a>, you should test both what's allowed and what's rejected:
@@ -650,251 +639,194 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 		</section>
 
 		<!-- AI Fix Prompt -->
-		<section class="content-section ai-fix-section">
+		<section class="article-section" id="ai-fix">
 			<h2>AI Fix Prompt for CORS Security</h2>
 			<p>Copy this prompt to your AI coding tool to audit and fix CORS misconfigurations:</p>
 
-			<div class="prompt-container">
-				<button class="copy-button" onclick={copyPrompt}>
-					{copied ? '✓ Copied!' : 'Copy Prompt'}
+			<div class="fix-prompt">
+				<button class="copy-btn" onclick={copyPrompt}>
+					{copied ? 'Copied!' : 'Copy Prompt'}
 				</button>
-				<pre class="ai-prompt" id="ai-fix-prompt">{aiFixPrompt}</pre>
+				<pre>{aiFixPrompt}</pre>
 			</div>
 		</section>
 
 		<!-- FAQ Section -->
-		<section class="content-section faq-section">
+		<section class="article-section" id="faq">
 			<h2>Frequently Asked Questions</h2>
 
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
-		<section class="content-section related-section">
+		<section class="article-section" id="related">
 			<h2>Related Security Topics</h2>
 
 			<div class="related-grid">
-				<a href="/kb/security/vulnerabilities/xss/" class="related-card">
-					<h3>Cross-Site Scripting (XSS)</h3>
-					<p>CORS misconfiguration combined with XSS in trusted subdomains enables attacks</p>
+				<a href="/kb/security/vulnerabilities/xss/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Cross-Site Scripting (XSS)</div>
+					<p class="related-card-description">CORS misconfiguration combined with XSS in trusted subdomains enables attacks</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-card">
-					<h3>Hardcoded Secrets</h3>
-					<p>Exposed API keys combined with CORS issues leak to attackers</p>
+				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Hardcoded Secrets</div>
+					<p class="related-card-description">Exposed API keys combined with CORS issues leak to attackers</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<h3>Missing Authentication</h3>
-					<p>CORS without auth means anyone can access your API anyway</p>
+				<a href="/kb/security/vulnerabilities/missing-auth/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Missing Authentication</div>
+					<p class="related-card-description">CORS without auth means anyone can access your API anyway</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<h3>Cursor Security Patterns</h3>
-					<p>How Cursor generates CORS configurations and common pitfalls</p>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
+					<div class="related-card-category">Tool</div>
+					<div class="related-card-title">Cursor Security Patterns</div>
+					<p class="related-card-description">How Cursor generates CORS configurations and common pitfalls</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
-					<h3>Bolt.new Security Patterns</h3>
-					<p>CORS defaults in Bolt-generated full-stack applications</p>
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive related-card">
+					<div class="related-card-category">Tool</div>
+					<div class="related-card-title">Bolt.new Security Patterns</div>
+					<p class="related-card-description">CORS defaults in Bolt-generated full-stack applications</p>
 				</a>
-				<a href="/kb/security/stacks/nextjs-supabase/" class="related-card">
-					<h3>Next.js + Supabase Security</h3>
-					<p>CORS configuration in the context of Supabase APIs</p>
+				<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive related-card">
+					<div class="related-card-category">Stack</div>
+					<div class="related-card-title">Next.js + Supabase Security</div>
+					<p class="related-card-description">CORS configuration in the context of Supabase APIs</p>
 				</a>
 			</div>
 		</section>
 
 		<!-- CTA -->
-		<section class="cta-section">
+		<div class="cta-box">
 			<h2>Scan Your Vibe Coded App for CORS Issues</h2>
-			<p>vibeship scanner detects insecure CORS configurations, origin reflection vulnerabilities, and missing preflight handlers in your codebase.</p>
-			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free →</a>
-		</section>
+			<p>VibeShip Scanner detects insecure CORS configurations, origin reflection vulnerabilities, and missing preflight handlers in your codebase.</p>
+			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free</a>
+		</div>
 	</article>
-</main>
+</div>
 
 <style>
-	.article-container {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem 1rem;
-	}
-
-	.breadcrumbs {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.875rem;
-		margin-bottom: 2rem;
-		color: var(--text-secondary);
-	}
-
-	.breadcrumbs a {
-		color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.breadcrumbs a:hover {
-		color: var(--green);
-	}
-
-	.breadcrumbs .separator {
-		color: var(--text-muted);
-	}
-
-	.breadcrumbs .current {
-		color: var(--text-primary);
-	}
-
-	.security-article {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border-color);
-		border-radius: 12px;
-		padding: 2rem;
-	}
-
 	.article-header {
 		margin-bottom: 2rem;
 		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border-color);
-	}
-
-	.severity-badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		margin-bottom: 1rem;
-	}
-
-	.severity-badge.high {
-		background: rgba(245, 158, 11, 0.2);
-		color: #f59e0b;
+		border-bottom: 1px solid var(--border);
 	}
 
 	.article-header h1 {
 		font-size: 2rem;
 		font-weight: 700;
-		margin-bottom: 0.5rem;
+		margin: 1rem 0 0.5rem 0;
 		line-height: 1.2;
 	}
 
 	.article-header h1 code {
 		background: var(--bg-tertiary);
 		padding: 0.125rem 0.5rem;
-		border-radius: 4px;
 		font-size: 0.9em;
 	}
 
 	.subtitle {
 		color: var(--text-secondary);
 		font-size: 1.125rem;
-	}
-
-	.quick-answer {
-		background: var(--bg-tertiary);
-		border-left: 4px solid var(--green);
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-		border-radius: 0 8px 8px 0;
-	}
-
-	.quick-answer h2 {
-		font-size: 1rem;
-		color: var(--green);
-		margin-bottom: 0.75rem;
-	}
-
-	.quick-answer p {
 		margin: 0;
-		line-height: 1.6;
 	}
 
-	.quick-answer code {
-		background: var(--bg-secondary);
-		padding: 0.125rem 0.375rem;
-		border-radius: 3px;
-		font-size: 0.9em;
-	}
-
-	.reference-box {
+	.badge-warning {
 		background: var(--bg-tertiary);
-		padding: 1rem 1.5rem;
-		border-radius: 8px;
-		margin-bottom: 2rem;
+		color: var(--orange);
+		border: 1px solid var(--orange);
 	}
 
-	.reference-box h3 {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin-bottom: 0.75rem;
+	.badge-critical {
+		background: var(--bg-tertiary);
+		color: var(--red);
+		border: 1px solid var(--red);
 	}
 
-	.reference-grid {
-		display: flex;
-		gap: 2rem;
-		flex-wrap: wrap;
+	.badge-high {
+		background: var(--bg-tertiary);
+		color: var(--orange);
+		border: 1px solid var(--orange);
 	}
 
-	.reference-item {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
+	.badge-medium {
+		background: var(--bg-tertiary);
+		color: var(--blue);
+		border: 1px solid var(--blue);
 	}
 
-	.reference-item .label {
-		font-size: 0.75rem;
-		color: var(--text-muted);
-		text-transform: uppercase;
-	}
-
-	.reference-item a {
-		color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.reference-item a:hover {
-		color: var(--green);
-	}
-
-	.content-section {
+	.article-section {
 		margin-bottom: 2.5rem;
 	}
 
-	.content-section h2 {
+	.article-section h2 {
 		font-size: 1.5rem;
 		font-weight: 600;
 		margin-bottom: 1rem;
 		color: var(--text-primary);
 	}
 
-	.content-section p {
+	.article-section h3 {
+		font-size: 1.125rem;
+		font-weight: 600;
+		margin-bottom: 0.75rem;
+		color: var(--text-primary);
+	}
+
+	.article-section p {
 		line-height: 1.7;
 		margin-bottom: 1rem;
 		color: var(--text-secondary);
 	}
 
-	.content-section a {
+	.article-section a {
 		color: var(--green-dim);
-		text-decoration: none;
 	}
 
-	.content-section a:hover {
+	.article-section a:hover {
 		color: var(--green);
 	}
 
-	.content-section code {
+	.article-section code {
 		background: var(--bg-tertiary);
 		padding: 0.125rem 0.375rem;
-		border-radius: 3px;
 		font-size: 0.9em;
 	}
 
-	.patterns-grid {
+	.stats-row {
+		display: flex;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.stat-card {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.stat-label {
+		font-size: 0.75rem;
+		color: var(--text-tertiary);
+		text-transform: uppercase;
+	}
+
+	.stat-card a {
+		color: var(--green-dim);
+	}
+
+	.stat-card a:hover {
+		color: var(--green);
+	}
+
+	.patterns-list {
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
@@ -902,9 +834,8 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 	}
 
 	.pattern-card {
-		background: var(--bg-tertiary);
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1.5rem;
 	}
 
@@ -921,35 +852,12 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 		margin: 0;
 	}
 
-	.severity-tag {
-		padding: 0.25rem 0.5rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-	}
-
-	.severity-tag.critical {
-		background: rgba(239, 68, 68, 0.2);
-		color: #ef4444;
-	}
-
-	.severity-tag.high {
-		background: rgba(245, 158, 11, 0.2);
-		color: #f59e0b;
-	}
-
-	.severity-tag.medium {
-		background: rgba(59, 130, 246, 0.2);
-		color: #3b82f6;
-	}
-
 	.pattern-description {
 		color: var(--text-secondary);
 		margin-bottom: 1.5rem;
 		line-height: 1.6;
 	}
 
-	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
 		display: flex;
 		flex-direction: column;
@@ -958,32 +866,33 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 	}
 
 	.code-block {
-		background: var(--bg-primary);
-		border-radius: 6px;
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
 	.code-block.vulnerable {
-		border: 1px solid rgba(239, 68, 68, 0.3);
+		border-color: var(--red);
 	}
 
 	.code-block.secure {
-		border: 1px solid rgba(34, 197, 94, 0.3);
+		border-color: var(--green-dim);
 	}
 
 	.code-label {
 		padding: 0.5rem 1rem;
 		font-size: 0.75rem;
 		font-weight: 600;
-		background: var(--bg-tertiary);
+		background: var(--bg-secondary);
+		color: var(--text-secondary);
 	}
 
 	.vulnerable .code-label {
-		color: #ef4444;
+		color: var(--red);
 	}
 
 	.secure .code-label {
-		color: #22c55e;
+		color: var(--green-dim);
 	}
 
 	.code-block pre {
@@ -1007,7 +916,6 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 
 	.pattern-links a {
 		color: var(--green-dim);
-		text-decoration: none;
 	}
 
 	.pattern-links a:hover {
@@ -1027,64 +935,56 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 	}
 
 	.checklist li::before {
-		content: '✓';
+		content: '';
 		position: absolute;
 		left: 0;
-		color: var(--green);
+		color: var(--green-dim);
 		font-weight: 600;
 	}
 
-	.ai-fix-section {
-		background: var(--bg-tertiary);
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-
-	.prompt-container {
+	.fix-prompt {
 		position: relative;
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
 		margin-top: 1rem;
 	}
 
-	.copy-button {
+	.copy-btn {
 		position: absolute;
 		top: 0.5rem;
 		right: 0.5rem;
 		padding: 0.5rem 1rem;
-		background: var(--green);
+		background: var(--green-dim);
 		color: var(--bg-primary);
 		border: none;
-		border-radius: 4px;
 		font-size: 0.875rem;
 		font-weight: 500;
 		cursor: pointer;
 		z-index: 1;
 	}
 
-	.copy-button:hover {
-		opacity: 0.9;
+	.copy-btn:hover {
+		background: var(--green);
 	}
 
-	.ai-prompt {
-		background: var(--bg-primary);
+	.fix-prompt pre {
 		padding: 1.5rem;
 		padding-top: 3rem;
-		border-radius: 6px;
 		font-size: 0.8125rem;
 		line-height: 1.6;
 		overflow-x: auto;
 		white-space: pre-wrap;
-		border: 1px solid var(--border-color);
+		margin: 0;
 	}
 
-	.faq-section {
-		background: var(--bg-tertiary);
-		padding: 1.5rem;
-		border-radius: 8px;
+	.faq-list {
+		display: flex;
+		flex-direction: column;
 	}
 
 	.faq-item {
 		padding: 1rem 0;
-		border-bottom: 1px solid var(--border-color);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.faq-item:last-child {
@@ -1104,60 +1004,22 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 		line-height: 1.6;
 	}
 
-	.related-section {
-		margin-top: 3rem;
-	}
-
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		gap: 1rem;
-		margin-top: 1rem;
-	}
-
-	.related-card {
-		background: var(--bg-tertiary);
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
-		padding: 1.25rem;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.related-card h3 {
-		font-size: 1rem;
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-		color: var(--text-primary);
-	}
-
-	.related-card p {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin: 0;
-		line-height: 1.5;
-	}
-
-	.cta-section {
-		background: linear-gradient(135deg, var(--green-dim) 0%, var(--green) 100%);
+	.cta-box {
+		background: var(--bg-secondary);
+		border: 1px solid var(--green-dim);
 		padding: 2rem;
-		border-radius: 8px;
 		text-align: center;
 		margin-top: 2rem;
 	}
 
-	.cta-section h2 {
-		color: var(--bg-primary);
+	.cta-box h2 {
+		color: var(--text-primary);
 		margin-bottom: 0.75rem;
+		font-size: 1.25rem;
 	}
 
-	.cta-section p {
-		color: var(--bg-secondary);
+	.cta-box p {
+		color: var(--text-secondary);
 		margin-bottom: 1.5rem;
 		max-width: 500px;
 		margin-left: auto;
@@ -1166,17 +1028,31 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 
 	.cta-button {
 		display: inline-block;
-		background: var(--bg-primary);
-		color: var(--green);
+		background: var(--green-dim);
+		color: var(--bg-primary);
 		padding: 0.75rem 1.5rem;
-		border-radius: 6px;
 		font-weight: 600;
-		text-decoration: none;
-		transition: opacity 0.2s;
+		transition: background 0.2s;
 	}
 
 	.cta-button:hover {
-		opacity: 0.9;
-		text-decoration: none;
+		background: var(--green);
+	}
+
+	@media (max-width: 768px) {
+		.article-header h1 {
+			font-size: 1.5rem;
+		}
+
+		.pattern-header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
+
+		.stats-row {
+			flex-direction: column;
+			gap: 1rem;
+		}
 	}
 </style>

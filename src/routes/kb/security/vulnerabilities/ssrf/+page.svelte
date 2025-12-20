@@ -50,9 +50,7 @@
 	];
 
 	// State
-	let showAIPrompt = $state(false);
 	let copySuccess = $state(false);
-	let expandedFaq = $state<string | null>(null);
 
 	// AI Fix prompt
 	const aiFixPrompt = `You are a security auditor. Scan this codebase for SSRF (Server-Side Request Forgery) vulnerabilities (CWE-918).
@@ -157,49 +155,7 @@ For each finding, report:
 4. What validation exists (if any)
 5. What's missing (protocol check, domain allowlist, IP block, DNS check)
 6. Severity (Critical if no validation, High if partial)
-7. Specific fix with code
-
-## Fix Template
-
-\`\`\`javascript
-const dns = require('dns').promises
-
-const ALLOWED_DOMAINS = ['api.example.com', 'cdn.example.com']
-
-async function validateUrl(urlString) {
-  // Parse URL
-  let parsed
-  try {
-    parsed = new URL(urlString)
-  } catch {
-    throw new Error('Invalid URL')
-  }
-
-  // Protocol check
-  if (parsed.protocol !== 'https:') {
-    throw new Error('Only HTTPS allowed')
-  }
-
-  // Domain allowlist
-  if (!ALLOWED_DOMAINS.includes(parsed.hostname)) {
-    throw new Error('Domain not allowed')
-  }
-
-  // Resolve and check IPs
-  const ips = await dns.resolve4(parsed.hostname)
-  const blocked = [/^127\\./, /^10\\./, /^172\\.(1[6-9]|2[0-9]|3[0-1])\\./, /^192\\.168\\./, /^169\\.254\\./]
-
-  for (const ip of ips) {
-    if (blocked.some(p => p.test(ip))) {
-      throw new Error('Internal address not allowed')
-    }
-  }
-
-  return parsed.href
-}
-\`\`\`
-
-Begin your audit. Find all HTTP request patterns with user input, then verify complete URL validation exists.`;
+7. Specific fix with code`;
 
 	async function copyPrompt() {
 		try {
@@ -210,14 +166,10 @@ Begin your audit. Find all HTTP request patterns with user input, then verify co
 			console.error('Failed to copy:', err);
 		}
 	}
-
-	function toggleFaq(id: string) {
-		expandedFaq = expandedFaq === id ? null : id;
-	}
 </script>
 
 <svelte:head>
-	<title>{meta.title} | vibeship</title>
+	<title>{meta.title} | VibeShip</title>
 	<meta name="description" content={meta.description} />
 	<meta name="keywords" content="SSRF vulnerability, server-side request forgery, CWE-918, Next.js SSRF, CVE-2024-34351, cloud metadata attack" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
@@ -236,12 +188,12 @@ Begin your audit. Find all HTTP request patterns with user input, then verify co
 		"description": meta.description,
 		"author": {
 			"@type": "Organization",
-			"name": "vibeship",
+			"name": "VibeShip",
 			"url": "https://vibeship.co"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "vibeship",
+			"name": "VibeShip",
 			"url": "https://vibeship.co"
 		},
 		"datePublished": "2025-01-15",
@@ -282,47 +234,31 @@ Begin your audit. Find all HTTP request patterns with user input, then verify co
 	})}</script>`}
 </svelte:head>
 
-<Header />
+<Header {breadcrumbs} />
 
-<main class="vulnerability-page">
-	<!-- Breadcrumb -->
-	<nav class="breadcrumb" aria-label="Breadcrumb">
-		{#each breadcrumbs as crumb, i}
-			{#if crumb.href}
-				<a href={crumb.href}>{crumb.label}</a>
-			{:else}
-				<span class="current">{crumb.label}</span>
-			{/if}
-			{#if i < breadcrumbs.length - 1}
-				<span class="separator">/</span>
-			{/if}
-		{/each}
-	</nav>
+<div class="content-wrapper">
+	<article class="content-main content-wide">
+		<!-- Header Section -->
+		<header class="article-header">
+			<div class="badge-row">
+				<span class="badge badge-high">High Severity</span>
+				<a href={owaspData.cweSource} target="_blank" rel="noopener noreferrer" class="badge badge-info">{owaspData.cweId}</a>
+				<a href={owaspData.source} target="_blank" rel="noopener noreferrer" class="badge badge-success">OWASP A10:2021</a>
+			</div>
+			<h1>{meta.title}</h1>
+			<p class="subtitle">Attackers use your server to access internal systems they can't reach directly</p>
+		</header>
 
-	<!-- Header Section -->
-	<header class="vuln-header">
-		<div class="vuln-badges">
-			<span class="badge severity-high">High Severity</span>
-			<a href={owaspData.cweSource} target="_blank" rel="noopener noreferrer" class="badge cwe-badge">{owaspData.cweId}</a>
-			<a href={owaspData.source} target="_blank" rel="noopener noreferrer" class="badge owasp-badge">OWASP A10:2021</a>
+		<!-- Quick Answer Box -->
+		<div class="quick-answer">
+			<h2>Quick Answer</h2>
+			<p>
+				<strong>SSRF (Server-Side Request Forgery) lets attackers make your server send requests to internal systems they can't reach directly.</strong> Next.js had critical SSRF vulnerabilities in 2024-2025. Always validate and allowlist URLs before your server fetches them.
+			</p>
 		</div>
-		<h1>{meta.title}</h1>
-		<p class="subtitle">Attackers use your server to access internal systems they can't reach directly</p>
-	</header>
 
-	<!-- Quick Answer Box -->
-	<div class="quick-answer">
-		<div class="quick-answer-icon">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-		</div>
-		<div class="quick-answer-content">
-			<strong>SSRF (Server-Side Request Forgery) lets attackers make your server send requests to internal systems they can't reach directly.</strong> Next.js had critical SSRF vulnerabilities in 2024-2025. Always validate and allowlist URLs before your server fetches them.
-		</div>
-	</div>
-
-	<!-- Main Content -->
-	<article class="content">
-		<section class="section" id="what-is">
+		<!-- What is SSRF -->
+		<section class="article-section" id="what-is">
 			<h2>What is SSRF?</h2>
 			<p>
 				SSRF (Server-Side Request Forgery) happens when attackers trick your server into making HTTP requests on their behalf. Your server has access to internal systems - localhost services, cloud metadata endpoints, private APIs - that attackers can't reach directly from the internet. By controlling a URL your server fetches, they gain access to these protected resources.
@@ -335,14 +271,15 @@ Begin your audit. Find all HTTP request patterns with user input, then verify co
 			</p>
 		</section>
 
-		<section class="section" id="nextjs-cves">
+		<!-- Real CVEs -->
+		<section class="article-section" id="nextjs-cves">
 			<h2>Real Next.js SSRF Vulnerabilities</h2>
 			<p>
 				This isn't theoretical - Next.js had critical SSRF vulnerabilities that affected real applications:
 			</p>
 
 			<div class="cve-list">
-				<div class="cve-item critical">
+				<div class="cve-item cve-critical">
 					<div class="cve-header">
 						<span class="cve-id">CVE-2024-34351</span>
 						<span class="cve-severity">Critical</span>
@@ -356,7 +293,7 @@ Begin your audit. Find all HTTP request patterns with user input, then verify co
 					</div>
 				</div>
 
-				<div class="cve-item high">
+				<div class="cve-item cve-high">
 					<div class="cve-header">
 						<span class="cve-id">CVE-2025-57822</span>
 						<span class="cve-severity">High</span>
@@ -375,40 +312,41 @@ Begin your audit. Find all HTTP request patterns with user input, then verify co
 			</p>
 		</section>
 
-		<section class="section" id="attack-patterns">
+		<!-- Attack Patterns -->
+		<section class="article-section" id="attack-patterns">
 			<h2>Common SSRF Attack Patterns</h2>
 			<p>
 				Attackers have many targets once they can control server-side requests:
 			</p>
 
 			<div class="pattern-list">
-				<div class="pattern">
+				<div class="pattern-item">
 					<h4>Internal Service Access</h4>
-					<code>http://localhost:3000/admin</code>
+					<code class="pattern-code">http://localhost:3000/admin</code>
 					<p>Access admin panels and internal APIs running on the same server.</p>
 				</div>
 
-				<div class="pattern">
+				<div class="pattern-item">
 					<h4>Cloud Metadata Theft</h4>
-					<code>http://169.254.169.254/latest/meta-data/</code>
+					<code class="pattern-code">http://169.254.169.254/latest/meta-data/</code>
 					<p>AWS, GCP, and Azure expose IAM credentials at this endpoint. SSRF can steal them.</p>
 				</div>
 
-				<div class="pattern">
+				<div class="pattern-item">
 					<h4>File Protocol</h4>
-					<code>file:///etc/passwd</code>
+					<code class="pattern-code">file:///etc/passwd</code>
 					<p>Read local files if the HTTP library supports file:// protocol.</p>
 				</div>
 
-				<div class="pattern">
+				<div class="pattern-item">
 					<h4>Internal Network Scanning</h4>
-					<code>http://192.168.1.1:22/</code>
+					<code class="pattern-code">http://192.168.1.1:22/</code>
 					<p>Port scan internal hosts to discover services.</p>
 				</div>
 
-				<div class="pattern">
+				<div class="pattern-item">
 					<h4>DNS Rebinding</h4>
-					<code>http://attacker-domain.com/</code>
+					<code class="pattern-code">http://attacker-domain.com/</code>
 					<p>External domain that resolves to internal IP after initial check.</p>
 				</div>
 			</div>
@@ -418,7 +356,8 @@ Begin your audit. Find all HTTP request patterns with user input, then verify co
 			</p>
 		</section>
 
-		<section class="section" id="ai-patterns">
+		<!-- Why AI Generates This -->
+		<section class="article-section" id="ai-patterns">
 			<h2>Why AI Tools Generate SSRF-Vulnerable Code</h2>
 			<p>
 				When you ask AI tools to add features like "preview a URL" or "fetch data from a webhook," they generate the simplest working code without URL validation. This is classic vibe coding risk - the AI gives you functional code that's insecure by default.
@@ -438,64 +377,55 @@ Begin your audit. Find all HTTP request patterns with user input, then verify co
 			</p>
 		</section>
 
-		<section class="section" id="vulnerable-code">
+		<!-- Vulnerable Code -->
+		<section class="article-section" id="vulnerable-code">
 			<h2>Vulnerable Code Examples</h2>
 
 			<h3>Pattern 1: Vulnerable URL Fetch (AI Default)</h3>
-			<div class="code-comparison">
-				<div class="code-block vulnerable">
-					<div class="code-label">
-						<span class="status-icon">&#10060;</span> VULNERABLE
-					</div>
-					<pre><code>// AI generates this for "fetch URL" features
-app.get('/preview', async (req, res) =&gt; &#123;
+			<div class="code-block vulnerable">
+				<div class="code-label">Vulnerable</div>
+				<pre><code>{`// AI generates this for "fetch URL" features
+app.get('/preview', async (req, res) => {
   const url = req.query.url
   const response = await fetch(url) // DANGEROUS!
   const data = await response.text()
   res.send(data)
-&#125;)
+})
 
 // Attacker uses: /preview?url=http://localhost:3000/admin
-// Or: /preview?url=http://169.254.169.254/latest/meta-data/</code></pre>
-				</div>
+// Or: /preview?url=http://169.254.169.254/latest/meta-data/`}</code></pre>
 			</div>
 			<p class="code-explanation">
 				Any URL accepted, including internal services and cloud metadata endpoints. The attacker steals IAM credentials from AWS.
 			</p>
 
 			<h3>Pattern 2: Vulnerable Image Proxy</h3>
-			<div class="code-comparison">
-				<div class="code-block vulnerable">
-					<div class="code-label">
-						<span class="status-icon">&#10060;</span> VULNERABLE
-					</div>
-					<pre><code>// Image proxy without validation
-app.get('/image-proxy', async (req, res) =&gt; &#123;
+			<div class="code-block vulnerable">
+				<div class="code-label">Vulnerable</div>
+				<pre><code>{`// Image proxy without validation
+app.get('/image-proxy', async (req, res) => {
   const imageUrl = req.query.src
   const response = await fetch(imageUrl)
   const buffer = await response.arrayBuffer()
   res.set('Content-Type', response.headers.get('content-type'))
   res.send(Buffer.from(buffer))
-&#125;)
+})
 
-// Attacker: /image-proxy?src=file:///etc/passwd</code></pre>
-				</div>
+// Attacker: /image-proxy?src=file:///etc/passwd`}</code></pre>
 			</div>
 			<p class="code-explanation">
 				Image proxies are common SSRF vectors. No protocol or domain validation allows file:// and internal URL access.
 			</p>
 		</section>
 
-		<section class="section" id="secure-patterns">
+		<!-- Secure Patterns -->
+		<section class="article-section" id="secure-patterns">
 			<h2>How to Fix SSRF</h2>
 
 			<h3>Secure Pattern: Complete URL Validation</h3>
-			<div class="code-comparison">
-				<div class="code-block secure">
-					<div class="code-label">
-						<span class="status-icon">&#9989;</span> SECURE
-					</div>
-					<pre><code>const dns = require('dns').promises
+			<div class="code-block secure">
+				<div class="code-label">Secure</div>
+				<pre><code>{`const dns = require('dns').promises
 
 const ALLOWED_DOMAINS = ['api.example.com', 'cdn.example.com']
 const ALLOWED_PROTOCOLS = ['https:']
@@ -511,89 +441,84 @@ const BLOCKED_IP_PATTERNS = [
   /^0\\.0\\.0\\.0$/,
 ]
 
-async function validateUrl(urlString) &#123;
+async function validateUrl(urlString) {
   // Parse URL safely
   let parsed
-  try &#123;
+  try {
     parsed = new URL(urlString)
-  &#125; catch &#123;
+  } catch {
     throw new Error('Invalid URL')
-  &#125;
+  }
 
   // Check protocol
-  if (!ALLOWED_PROTOCOLS.includes(parsed.protocol)) &#123;
+  if (!ALLOWED_PROTOCOLS.includes(parsed.protocol)) {
     throw new Error('Only HTTPS allowed')
-  &#125;
+  }
 
   // Check domain allowlist
-  if (!ALLOWED_DOMAINS.includes(parsed.hostname)) &#123;
+  if (!ALLOWED_DOMAINS.includes(parsed.hostname)) {
     throw new Error('Domain not allowed')
-  &#125;
+  }
 
   // Check hostname isn't internal
-  if (BLOCKED_IP_PATTERNS.some(p =&gt; p.test(parsed.hostname))) &#123;
+  if (BLOCKED_IP_PATTERNS.some(p => p.test(parsed.hostname))) {
     throw new Error('Internal address blocked')
-  &#125;
+  }
 
   // DNS resolution check - prevents rebinding
   const ips = await dns.resolve4(parsed.hostname)
-  for (const ip of ips) &#123;
-    if (BLOCKED_IP_PATTERNS.some(p =&gt; p.test(ip))) &#123;
+  for (const ip of ips) {
+    if (BLOCKED_IP_PATTERNS.some(p => p.test(ip))) {
       throw new Error('Internal address blocked')
-    &#125;
-  &#125;
+    }
+  }
 
   return parsed.href
-&#125;
+}
 
-app.get('/preview', async (req, res) =&gt; &#123;
-  try &#123;
+app.get('/preview', async (req, res) => {
+  try {
     const safeUrl = await validateUrl(req.query.url)
     const response = await fetch(safeUrl)
     const data = await response.text()
     res.send(data)
-  &#125; catch (err) &#123;
-    res.status(403).json(&#123; error: err.message &#125;)
-  &#125;
-&#125;)</code></pre>
-				</div>
+  } catch (err) {
+    res.status(403).json({ error: err.message })
+  }
+})`}</code></pre>
 			</div>
 			<p class="code-explanation">
 				Complete validation: protocol allowlist, domain allowlist, IP blocking, and DNS resolution check to catch rebinding attacks.
 			</p>
 
 			<h3>Next.js Server Action Protection</h3>
-			<div class="code-comparison">
-				<div class="code-block secure">
-					<div class="code-label">
-						<span class="status-icon">&#9989;</span> SECURE
-					</div>
-					<pre><code>// Secure Next.js Server Action
+			<div class="code-block secure">
+				<div class="code-label">Secure</div>
+				<pre><code>{`// Secure Next.js Server Action
 'use server'
 
-import &#123; redirect &#125; from 'next/navigation'
+import { redirect } from 'next/navigation'
 
 const ALLOWED_PATHS = ['/dashboard', '/profile', '/settings']
 
-export async function safeRedirect(path: string) &#123;
+export async function safeRedirect(path: string) {
   // Block external redirects
-  if (path.startsWith('http://') || path.startsWith('https://')) &#123;
+  if (path.startsWith('http://') || path.startsWith('https://')) {
     throw new Error('External redirects not allowed')
-  &#125;
+  }
 
   // Block protocol-relative URLs
-  if (path.startsWith('//')) &#123;
+  if (path.startsWith('//')) {
     throw new Error('Protocol-relative URLs not allowed')
-  &#125;
+  }
 
   // Allowlist internal paths
-  if (!ALLOWED_PATHS.some(allowed =&gt; path.startsWith(allowed))) &#123;
+  if (!ALLOWED_PATHS.some(allowed => path.startsWith(allowed))) {
     throw new Error('Invalid redirect path')
-  &#125;
+  }
 
   redirect(path)
-&#125;</code></pre>
-				</div>
+}`}</code></pre>
 			</div>
 			<p class="code-explanation">
 				Server Actions should validate redirect paths strictly. This prevents CVE-2024-34351-style attacks.
@@ -609,98 +534,75 @@ export async function safeRedirect(path: string) &#123;
 			</ul>
 		</section>
 
-		<section class="section" id="ai-fix">
+		<!-- AI Fix Prompt -->
+		<section class="article-section" id="ai-fix">
 			<h2>AI Fix Prompt</h2>
 			<p>
 				Copy this prompt to your AI tool to scan your codebase for SSRF vulnerabilities:
 			</p>
 
-			<div class="ai-prompt-container">
-				<div class="ai-prompt-header">
-					<span class="ai-prompt-title">SSRF Audit Prompt</span>
-					<button
-						class="copy-button"
-						onclick={copyPrompt}
-						disabled={copySuccess}
-					>
-						{#if copySuccess}
-							<span class="copy-success">&#10003; Copied!</span>
-						{:else}
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-							Copy Prompt
-						{/if}
-					</button>
-				</div>
-				<div class="ai-prompt-preview">
-					<button
-						class="expand-button"
-						onclick={() => showAIPrompt = !showAIPrompt}
-					>
-						{showAIPrompt ? 'Hide' : 'Show'} Full Prompt ({aiFixPrompt.length} characters)
-					</button>
-					{#if showAIPrompt}
-						<pre class="ai-prompt-content">{aiFixPrompt}</pre>
-					{/if}
-				</div>
+			<div class="fix-prompt">
+				<button class="copy-btn" onclick={copyPrompt}>
+					{copySuccess ? 'Copied!' : 'Copy Prompt'}
+				</button>
+				<pre>{aiFixPrompt}</pre>
 			</div>
 		</section>
 
-		<section class="section" id="faq">
+		<!-- FAQ Section -->
+		<section class="article-section" id="faq">
 			<h2>Frequently Asked Questions</h2>
 
 			<div class="faq-list">
-				{#each faqs as faq, i}
-					<div class="faq-item" class:expanded={expandedFaq === `faq-${i}`}>
-						<button
-							class="faq-question"
-							onclick={() => toggleFaq(`faq-${i}`)}
-							aria-expanded={expandedFaq === `faq-${i}`}
-						>
-							<span>{faq.question}</span>
-							<span class="faq-icon">{expandedFaq === `faq-${i}` ? '−' : '+'}</span>
-						</button>
-						{#if expandedFaq === `faq-${i}`}
-							<div class="faq-answer">
-								<p>{faq.answer}</p>
-							</div>
-						{/if}
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
 					</div>
 				{/each}
 			</div>
 		</section>
 
-		<section class="section" id="related">
+		<!-- Related Content -->
+		<section class="article-section" id="related">
 			<h2>Related Security Topics</h2>
 
 			<div class="related-grid">
-				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="related-card">
-					<h4>Hardcoded Secrets</h4>
-					<p>SSRF to cloud metadata endpoints steals credentials - don't hardcode them either</p>
+				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Hardcoded Secrets</div>
+					<p class="related-card-description">SSRF to cloud metadata endpoints steals credentials - don't hardcode them either</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<h4>Missing Authentication</h4>
-					<p>SSRF targets unprotected internal APIs - secure them</p>
+				<a href="/kb/security/vulnerabilities/missing-auth/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Missing Authentication</div>
+					<p class="related-card-description">SSRF targets unprotected internal APIs - secure them</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/path-traversal/" class="related-card">
-					<h4>Path Traversal</h4>
-					<p>file:// protocol in SSRF enables similar file access attacks</p>
+				<a href="/kb/security/vulnerabilities/path-traversal/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Path Traversal</div>
+					<p class="related-card-description">file:// protocol in SSRF enables similar file access attacks</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<h4>Cursor Security Patterns</h4>
-					<p>How Cursor generates URL-fetching code</p>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
+					<div class="related-card-category">Tool</div>
+					<div class="related-card-title">Cursor Security Patterns</div>
+					<p class="related-card-description">How Cursor generates URL-fetching code</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
-					<h4>Bolt.new Security</h4>
-					<p>Webhook and API patterns from Bolt</p>
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive related-card">
+					<div class="related-card-category">Tool</div>
+					<div class="related-card-title">Bolt.new Security</div>
+					<p class="related-card-description">Webhook and API patterns from Bolt</p>
 				</a>
-				<a href="/kb/security/stacks/nextjs-supabase/" class="related-card">
-					<h4>Next.js + Supabase Security</h4>
-					<p>Secure patterns for the popular vibe coding stack</p>
+				<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive related-card">
+					<div class="related-card-category">Stack</div>
+					<div class="related-card-title">Next.js + Supabase Security</div>
+					<p class="related-card-description">Secure patterns for the popular vibe coding stack</p>
 				</a>
 			</div>
 		</section>
 
-		<section class="section" id="resources">
+		<!-- External Resources -->
+		<section class="article-section" id="resources">
 			<h2>External Resources</h2>
 			<ul class="resource-list">
 				<li>
@@ -720,211 +622,113 @@ export async function safeRedirect(path: string) &#123;
 				</li>
 			</ul>
 		</section>
-	</article>
 
-	<!-- CTA Section -->
-	<section class="cta-section">
-		<div class="cta-content">
+		<!-- CTA Section -->
+		<div class="cta-box">
 			<h2>Find SSRF Vulnerabilities in Your Code</h2>
-			<p>vibeship scanner automatically detects SSRF patterns in your codebase, including unvalidated URL fetching and missing internal IP blocks.</p>
+			<p>VibeShip Scanner automatically detects SSRF patterns in your codebase, including unvalidated URL fetching and missing internal IP blocks.</p>
 			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free</a>
 		</div>
-	</section>
-</main>
+	</article>
+</div>
 
 <style>
-	.vulnerability-page {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem 1rem;
-		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-		color: #1a1a2e;
-		line-height: 1.7;
-	}
-
-	/* Breadcrumb */
-	.breadcrumb {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.875rem;
-		color: #64748b;
+	.article-header {
 		margin-bottom: 2rem;
-		flex-wrap: wrap;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid var(--border);
 	}
 
-	.breadcrumb a {
-		color: #6366f1;
-		text-decoration: none;
-	}
-
-	.breadcrumb a:hover {
-		color: var(--green);
-	}
-
-	.breadcrumb .separator {
-		color: #cbd5e1;
-	}
-
-	.breadcrumb .current {
-		color: #1a1a2e;
-		font-weight: 500;
-	}
-
-	/* Header */
-	.vuln-header {
-		margin-bottom: 2rem;
-	}
-
-	.vuln-badges {
-		display: flex;
-		gap: 0.5rem;
-		margin-bottom: 1rem;
-		flex-wrap: wrap;
-	}
-
-	.badge {
-		display: inline-flex;
-		align-items: center;
-		padding: 0.25rem 0.75rem;
-		border-radius: 9999px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		text-decoration: none;
-	}
-
-	.severity-high {
-		background: #fef2f2;
-		color: #dc2626;
-		border: 1px solid #fecaca;
-	}
-
-	.cwe-badge {
-		background: #eff6ff;
-		color: #2563eb;
-		border: 1px solid #bfdbfe;
-	}
-
-	.cwe-badge:hover {
-		background: #dbeafe;
-	}
-
-	.owasp-badge {
-		background: #f0fdf4;
-		color: #16a34a;
-		border: 1px solid #bbf7d0;
-	}
-
-	.owasp-badge:hover {
-		background: #dcfce7;
-	}
-
-	h1 {
-		font-size: 2.25rem;
-		font-weight: 800;
-		color: #1a1a2e;
-		margin: 0 0 0.75rem 0;
+	.article-header h1 {
+		font-size: 2rem;
+		font-weight: 700;
+		margin: 1rem 0 0.5rem 0;
 		line-height: 1.2;
 	}
 
 	.subtitle {
+		color: var(--text-secondary);
 		font-size: 1.125rem;
-		color: #64748b;
 		margin: 0;
 	}
 
-	/* Quick Answer Box */
-	.quick-answer {
+	.badge-row {
 		display: flex;
-		gap: 1rem;
-		padding: 1.5rem;
-		background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
-		border-radius: 12px;
-		border-left: 4px solid #6366f1;
-		margin-bottom: 3rem;
+		gap: 0.5rem;
+		flex-wrap: wrap;
 	}
 
-	.quick-answer-icon {
-		flex-shrink: 0;
-		color: #6366f1;
+	.badge-high {
+		background: var(--bg-tertiary);
+		color: var(--red);
+		border: 1px solid var(--red);
 	}
 
-	.quick-answer-content {
-		font-size: 1rem;
-		color: #1e293b;
+	.badge-info {
+		background: var(--bg-tertiary);
+		color: var(--blue);
+		border: 1px solid var(--blue);
 	}
 
-	.quick-answer-content strong {
-		color: #1a1a2e;
+	.badge-success {
+		background: var(--bg-tertiary);
+		color: var(--green-dim);
+		border: 1px solid var(--green-dim);
 	}
 
-	.quick-answer-content code {
-		background: #e2e8f0;
-		padding: 0.125rem 0.375rem;
-		border-radius: 4px;
-		font-size: 0.875rem;
+	.article-section {
+		margin-bottom: 2.5rem;
 	}
 
-	/* Content Sections */
-	.section {
-		margin-bottom: 3rem;
-	}
-
-	h2 {
+	.article-section h2 {
 		font-size: 1.5rem;
-		font-weight: 700;
-		color: #1a1a2e;
-		margin: 0 0 1rem 0;
-		padding-bottom: 0.5rem;
-		border-bottom: 2px solid #e2e8f0;
+		font-weight: 600;
+		margin-bottom: 1rem;
+		color: var(--text-primary);
 	}
 
-	h3 {
+	.article-section h3 {
 		font-size: 1.125rem;
 		font-weight: 600;
-		color: #1a1a2e;
 		margin: 1.5rem 0 0.75rem 0;
+		color: var(--text-primary);
 	}
 
-	h4 {
+	.article-section h4 {
 		font-size: 1rem;
 		font-weight: 600;
-		color: #374151;
 		margin: 0 0 0.5rem 0;
+		color: var(--text-primary);
 	}
 
-	p {
-		margin: 0 0 1rem 0;
-		color: #374151;
+	.article-section p {
+		line-height: 1.7;
+		margin-bottom: 1rem;
+		color: var(--text-secondary);
 	}
 
-	.content a {
-		color: #6366f1;
-		text-decoration: none;
+	.article-section a {
+		color: var(--green-dim);
 	}
 
-	.content a:hover {
+	.article-section a:hover {
 		color: var(--green);
 	}
 
-	ul, ol {
+	.article-section ul {
 		margin: 0 0 1rem 0;
 		padding-left: 1.5rem;
 	}
 
-	li {
+	.article-section li {
 		margin-bottom: 0.5rem;
-		color: #374151;
+		color: var(--text-secondary);
 	}
 
-	code {
-		font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
-		background: #f1f5f9;
+	.article-section code {
+		background: var(--bg-tertiary);
 		padding: 0.125rem 0.375rem;
-		border-radius: 4px;
-		font-size: 0.875em;
+		font-size: 0.9em;
 	}
 
 	/* CVE List */
@@ -936,17 +740,17 @@ export async function safeRedirect(path: string) &#123;
 	}
 
 	.cve-item {
-		background: #f8fafc;
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
-	.cve-item.critical {
-		border: 1px solid #fecaca;
+	.cve-item.cve-critical {
+		border-color: var(--red);
 	}
 
-	.cve-item.high {
-		border: 1px solid #fed7aa;
+	.cve-item.cve-high {
+		border-color: var(--orange);
 	}
 
 	.cve-header {
@@ -954,13 +758,13 @@ export async function safeRedirect(path: string) &#123;
 		justify-content: space-between;
 		align-items: center;
 		padding: 0.75rem 1rem;
-		background: #f1f5f9;
+		background: var(--bg-tertiary);
 	}
 
 	.cve-id {
 		font-weight: 600;
 		font-family: monospace;
-		color: #1a1a2e;
+		color: var(--text-primary);
 	}
 
 	.cve-severity {
@@ -968,17 +772,16 @@ export async function safeRedirect(path: string) &#123;
 		font-weight: 600;
 		text-transform: uppercase;
 		padding: 0.25rem 0.5rem;
-		border-radius: 4px;
 	}
 
-	.cve-item.critical .cve-severity {
-		background: #fef2f2;
-		color: #dc2626;
+	.cve-item.cve-critical .cve-severity {
+		background: var(--bg-primary);
+		color: var(--red);
 	}
 
-	.cve-item.high .cve-severity {
-		background: #fff7ed;
-		color: #ea580c;
+	.cve-item.cve-high .cve-severity {
+		background: var(--bg-primary);
+		color: var(--orange);
 	}
 
 	.cve-details {
@@ -993,7 +796,7 @@ export async function safeRedirect(path: string) &#123;
 	.cve-details a {
 		display: inline-block;
 		margin-top: 0.5rem;
-		color: #6366f1;
+		color: var(--green-dim);
 		font-size: 0.875rem;
 	}
 
@@ -1003,176 +806,122 @@ export async function safeRedirect(path: string) &#123;
 		gap: 1rem;
 	}
 
-	.pattern {
-		background: #f8fafc;
+	.pattern-item {
+		background: var(--bg-secondary);
 		padding: 1rem;
-		border-radius: 8px;
-		border: 1px solid #e2e8f0;
+		border: 1px solid var(--border);
 	}
 
-	.pattern h4 {
-		color: #1a1a2e;
+	.pattern-item h4 {
+		color: var(--text-primary);
 		margin-bottom: 0.25rem;
 	}
 
-	.pattern code {
+	.pattern-code {
 		display: block;
-		background: #1a1a2e;
-		color: #22c55e;
+		background: var(--bg-tertiary);
+		color: var(--green-dim);
 		padding: 0.5rem 0.75rem;
-		border-radius: 4px;
 		margin-bottom: 0.5rem;
 		font-size: 0.875rem;
 	}
 
-	.pattern p {
+	.pattern-item p {
 		font-size: 0.875rem;
-		color: #64748b;
+		color: var(--text-tertiary);
 		margin: 0;
 	}
 
-	/* Code Comparison */
-	.code-comparison {
+	/* Code Blocks */
+	.code-block {
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
+		overflow: hidden;
 		margin: 1rem 0;
 	}
 
-	.code-block {
-		border-radius: 8px;
-		overflow: hidden;
-		margin-bottom: 1rem;
-	}
-
 	.code-block.vulnerable {
-		border: 1px solid #fecaca;
+		border-color: var(--red);
 	}
 
 	.code-block.secure {
-		border: 1px solid #bbf7d0;
+		border-color: var(--green-dim);
 	}
 
 	.code-label {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
 		padding: 0.5rem 1rem;
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: 0.05em;
+		background: var(--bg-secondary);
+		color: var(--text-secondary);
 	}
 
 	.code-block.vulnerable .code-label {
-		background: #fef2f2;
-		color: #dc2626;
+		color: var(--red);
 	}
 
 	.code-block.secure .code-label {
-		background: #f0fdf4;
-		color: #16a34a;
+		color: var(--green-dim);
 	}
 
 	.code-block pre {
 		margin: 0;
 		padding: 1rem;
-		background: #1e1e2e;
 		overflow-x: auto;
+		font-size: 0.8125rem;
+		line-height: 1.5;
 	}
 
 	.code-block code {
 		display: block;
 		background: transparent;
 		padding: 0;
-		color: #e2e8f0;
-		font-size: 0.875rem;
-		line-height: 1.6;
+		color: var(--text-primary);
 		white-space: pre;
 	}
 
 	.code-explanation {
 		font-size: 0.875rem;
-		color: #64748b;
+		color: var(--text-tertiary);
 		font-style: italic;
 		margin-top: 0.5rem;
 	}
 
-	/* AI Prompt */
-	.ai-prompt-container {
-		background: #1e1e2e;
-		border-radius: 12px;
-		overflow: hidden;
-		margin: 1.5rem 0;
+	/* Fix Prompt */
+	.fix-prompt {
+		position: relative;
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
+		margin-top: 1rem;
 	}
 
-	.ai-prompt-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 1rem;
-		background: #2d2d3d;
-		border-bottom: 1px solid #3d3d4d;
-	}
-
-	.ai-prompt-title {
-		color: #e2e8f0;
-		font-weight: 600;
-		font-size: 0.875rem;
-	}
-
-	.copy-button {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
+	.copy-btn {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
 		padding: 0.5rem 1rem;
-		background: #6366f1;
-		color: white;
+		background: var(--green-dim);
+		color: var(--bg-primary);
 		border: none;
-		border-radius: 6px;
 		font-size: 0.875rem;
 		font-weight: 500;
 		cursor: pointer;
-		transition: background 0.2s;
+		z-index: 1;
 	}
 
-	.copy-button:hover:not(:disabled) {
-		background: #4f46e5;
+	.copy-btn:hover {
+		background: var(--green);
 	}
 
-	.copy-button:disabled {
-		background: #22c55e;
-	}
-
-	.ai-prompt-preview {
-		padding: 1rem;
-	}
-
-	.expand-button {
-		display: block;
-		width: 100%;
-		padding: 0.75rem;
-		background: #2d2d3d;
-		color: #94a3b8;
-		border: 1px solid #3d3d4d;
-		border-radius: 6px;
-		font-size: 0.875rem;
-		cursor: pointer;
-		transition: all 0.2s;
-	}
-
-	.expand-button:hover {
-		background: #3d3d4d;
-		color: #e2e8f0;
-	}
-
-	.ai-prompt-content {
-		margin: 1rem 0 0 0;
-		padding: 1rem;
-		background: #2d2d3d;
-		border-radius: 8px;
-		color: #e2e8f0;
+	.fix-prompt pre {
+		padding: 1.5rem;
+		padding-top: 3rem;
 		font-size: 0.8125rem;
 		line-height: 1.6;
-		white-space: pre-wrap;
 		overflow-x: auto;
+		white-space: pre-wrap;
+		margin: 0;
 		max-height: 400px;
 		overflow-y: auto;
 	}
@@ -1181,92 +930,28 @@ export async function safeRedirect(path: string) &#123;
 	.faq-list {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
 	}
 
 	.faq-item {
-		border: 1px solid #e2e8f0;
-		border-radius: 8px;
-		overflow: hidden;
+		padding: 1rem 0;
+		border-bottom: 1px solid var(--border);
 	}
 
-	.faq-item.expanded {
-		border-color: #6366f1;
+	.faq-item:last-child {
+		border-bottom: none;
 	}
 
-	.faq-question {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 100%;
-		padding: 1rem;
-		background: #f8fafc;
-		border: none;
-		cursor: pointer;
-		text-align: left;
+	.faq-item h3 {
 		font-size: 1rem;
-		font-weight: 500;
-		color: #1a1a2e;
-		transition: background 0.2s;
-	}
-
-	.faq-question:hover {
-		background: #f1f5f9;
-	}
-
-	.faq-item.expanded .faq-question {
-		background: #eff6ff;
-	}
-
-	.faq-icon {
-		font-size: 1.25rem;
-		color: #6366f1;
-		font-weight: 300;
-	}
-
-	.faq-answer {
-		padding: 1rem;
-		background: white;
-		border-top: 1px solid #e2e8f0;
-	}
-
-	.faq-answer p {
-		margin: 0;
-		color: #374151;
-	}
-
-	/* Related Grid */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		gap: 1rem;
-	}
-
-	.related-card {
-		display: block;
-		padding: 1.25rem;
-		background: #f8fafc;
-		border: 1px solid #e2e8f0;
-		border-radius: 8px;
-		text-decoration: none;
-		transition: all 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: #6366f1;
-		box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
-		text-decoration: none;
-	}
-
-	.related-card h4 {
-		color: #6366f1;
+		font-weight: 600;
 		margin: 0 0 0.5rem 0;
+		color: var(--text-primary);
 	}
 
-	.related-card p {
-		font-size: 0.875rem;
-		color: #64748b;
+	.faq-item p {
 		margin: 0;
+		color: var(--text-secondary);
+		line-height: 1.6;
 	}
 
 	/* Resource List */
@@ -1277,7 +962,7 @@ export async function safeRedirect(path: string) &#123;
 
 	.resource-list li {
 		padding: 0.75rem 0;
-		border-bottom: 1px solid #e2e8f0;
+		border-bottom: 1px solid var(--border);
 	}
 
 	.resource-list li:last-child {
@@ -1288,73 +973,51 @@ export async function safeRedirect(path: string) &#123;
 		font-weight: 500;
 	}
 
-	/* CTA Section */
-	.cta-section {
-		margin-top: 4rem;
-		padding: 3rem 2rem;
-		background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-		border-radius: 16px;
+	/* CTA Box */
+	.cta-box {
+		background: var(--bg-secondary);
+		border: 1px solid var(--green-dim);
+		padding: 2rem;
 		text-align: center;
+		margin-top: 2rem;
 	}
 
-	.cta-content h2 {
-		color: white;
-		border-bottom: none;
-		margin-bottom: 1rem;
+	.cta-box h2 {
+		color: var(--text-primary);
+		margin-bottom: 0.75rem;
+		font-size: 1.25rem;
 	}
 
-	.cta-content p {
-		color: rgba(255, 255, 255, 0.9);
-		font-size: 1.125rem;
-		max-width: 600px;
-		margin: 0 auto 1.5rem auto;
+	.cta-box p {
+		color: var(--text-secondary);
+		margin-bottom: 1.5rem;
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.cta-button {
 		display: inline-block;
-		padding: 1rem 2rem;
-		background: white;
-		color: #6366f1;
+		background: var(--green-dim);
+		color: var(--bg-primary);
+		padding: 0.75rem 1.5rem;
 		font-weight: 600;
-		font-size: 1.125rem;
-		border-radius: 8px;
-		text-decoration: none;
-		transition: transform 0.2s, box-shadow 0.2s;
+		transition: background 0.2s;
 	}
 
 	.cta-button:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-		text-decoration: none;
+		background: var(--green);
 	}
 
-	/* Responsive */
-	@media (max-width: 640px) {
-		.vulnerability-page {
-			padding: 1rem;
+	@media (max-width: 768px) {
+		.article-header h1 {
+			font-size: 1.5rem;
 		}
 
-		h1 {
-			font-size: 1.75rem;
-		}
-
-		.quick-answer {
+		.cve-header {
 			flex-direction: column;
-			gap: 0.75rem;
-		}
-
-		.ai-prompt-header {
-			flex-direction: column;
-			gap: 1rem;
-		}
-
-		.copy-button {
-			width: 100%;
-			justify-content: center;
-		}
-
-		.cta-section {
-			padding: 2rem 1rem;
+			align-items: flex-start;
+			gap: 0.5rem;
 		}
 	}
 </style>

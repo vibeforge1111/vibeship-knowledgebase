@@ -45,7 +45,7 @@
 		},
 		{
 			question: 'How do I safely update objects in JavaScript?',
-			answer: 'Destructure only allowed fields: const { name, email } = req.body. Or use an explicit allowlist: const allowed = [\"name\", \"email\"]. For TypeScript, define DTOs (Data Transfer Objects) that specify exactly which fields are accepted. Validation libraries like Zod automatically strip unknown fields.'
+			answer: 'Destructure only allowed fields: const { name, email } = req.body. Or use an explicit allowlist: const allowed = ["name", "email"]. For TypeScript, define DTOs (Data Transfer Objects) that specify exactly which fields are accepted. Validation libraries like Zod automatically strip unknown fields.'
 		}
 	];
 
@@ -217,7 +217,7 @@ Begin your audit. Find all database update operations, check what fields exist i
 </script>
 
 <svelte:head>
-	<title>{meta.title} | vibeship</title>
+	<title>{meta.title} | VibeShip</title>
 	<meta name="description" content={meta.description} />
 	<meta name="keywords" content="mass assignment vulnerability, API security, CWE-915, object injection, privilege escalation, Node.js security" />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
@@ -236,12 +236,12 @@ Begin your audit. Find all database update operations, check what fields exist i
 		"description": meta.description,
 		"author": {
 			"@type": "Organization",
-			"name": "vibeship",
+			"name": "VibeShip",
 			"url": "https://vibeship.co"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "vibeship",
+			"name": "VibeShip",
 			"url": "https://vibeship.co"
 		},
 		"datePublished": "2025-01-15",
@@ -282,47 +282,31 @@ Begin your audit. Find all database update operations, check what fields exist i
 	})}</script>`}
 </svelte:head>
 
-<Header />
+<Header {breadcrumbs} />
 
-<main class="vulnerability-page">
-	<!-- Breadcrumb -->
-	<nav class="breadcrumb" aria-label="Breadcrumb">
-		{#each breadcrumbs as crumb, i}
-			{#if crumb.href}
-				<a href={crumb.href}>{crumb.label}</a>
-			{:else}
-				<span class="current">{crumb.label}</span>
-			{/if}
-			{#if i < breadcrumbs.length - 1}
-				<span class="separator">/</span>
-			{/if}
-		{/each}
-	</nav>
+<div class="content-wrapper">
+	<article class="content-main content-wide">
+		<!-- Header Section -->
+		<header class="article-header">
+			<div class="badge-row">
+				<span class="badge badge-high">High Severity</span>
+				<a href={owaspData.cweSource} target="_blank" rel="noopener noreferrer" class="badge">{owaspData.cweId}</a>
+				<a href={owaspData.source} target="_blank" rel="noopener noreferrer" class="badge">OWASP API3:2023</a>
+			</div>
+			<h1>{meta.title}</h1>
+			<p class="article-subtitle">AI tools generate clean-looking code that lets attackers modify any field</p>
+		</header>
 
-	<!-- Header Section -->
-	<header class="vuln-header">
-		<div class="vuln-badges">
-			<span class="badge severity-high">High Severity</span>
-			<a href={owaspData.cweSource} target="_blank" rel="noopener noreferrer" class="badge cwe-badge">{owaspData.cweId}</a>
-			<a href={owaspData.source} target="_blank" rel="noopener noreferrer" class="badge owasp-badge">OWASP API3:2023</a>
+		<!-- Quick Answer Box -->
+		<div class="quick-answer">
+			<div class="quick-answer-label">Quick Answer</div>
+			<p class="quick-answer-text">
+				<strong>Mass assignment happens when your API accepts all fields from a request and updates the database without checking which fields users are allowed to modify.</strong> Attackers add fields like <code>isAdmin: true</code> to gain elevated privileges. Always use allowlists for updateable fields.
+			</p>
 		</div>
-		<h1>{meta.title}</h1>
-		<p class="subtitle">AI tools generate clean-looking code that lets attackers modify any field</p>
-	</header>
 
-	<!-- Quick Answer Box -->
-	<div class="quick-answer">
-		<div class="quick-answer-icon">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-		</div>
-		<div class="quick-answer-content">
-			<strong>Mass assignment happens when your API accepts all fields from a request and updates the database without checking which fields users are allowed to modify.</strong> Attackers add fields like <code>isAdmin: true</code> to gain elevated privileges. Always use allowlists for updateable fields.
-		</div>
-	</div>
-
-	<!-- Main Content -->
-	<article class="content">
-		<section class="section" id="what-is">
+		<!-- Main Content -->
+		<section class="article-section" id="what-is">
 			<h2>What is Mass Assignment?</h2>
 			<p>
 				Mass assignment (<a href="https://cwe.mitre.org/data/definitions/915.html" target="_blank" rel="noopener noreferrer">CWE-915</a>) happens when your server blindly saves all fields from a request to the database. Users send extra fields they shouldn't be able to modify, and your server accepts them.
@@ -335,10 +319,10 @@ Begin your audit. Find all database update operations, check what fields exist i
 			</p>
 		</section>
 
-		<section class="section" id="why-dangerous">
+		<section class="article-section" id="why-dangerous">
 			<h2>Why This Is Devastating</h2>
 
-			<div class="impact-list">
+			<div class="impact-grid">
 				<div class="impact-item">
 					<h4>Privilege Escalation</h4>
 					<p>Attackers add <code>isAdmin: true</code> or <code>role: "superuser"</code> to become administrators.</p>
@@ -365,7 +349,7 @@ Begin your audit. Find all database update operations, check what fields exist i
 			</p>
 		</section>
 
-		<section class="section" id="ai-patterns">
+		<section class="article-section" id="ai-patterns">
 			<h2>Why AI Tools Generate This Pattern</h2>
 			<p>
 				When you ask AI tools to "create a user update endpoint," they generate the cleanest, most readable code. And in JavaScript, that means <code>Object.assign()</code> or the spread operator. The code looks modern and professional - that's the trap.
@@ -401,7 +385,7 @@ app.put('/api/user/:id', async (req, res) =&gt; &#123;
 			</ul>
 		</section>
 
-		<section class="section" id="vulnerable-code">
+		<section class="article-section" id="vulnerable-code">
 			<h2>Vulnerable Code Examples</h2>
 
 			<h3>Pattern 1: Object.assign (AI Default)</h3>
@@ -471,7 +455,7 @@ app.put('/api/user/:id', async (req, res) =&gt; &#123;
 			</p>
 		</section>
 
-		<section class="section" id="secure-patterns">
+		<section class="article-section" id="secure-patterns">
 			<h2>How to Fix Mass Assignment</h2>
 
 			<h3>Secure Pattern: Explicit Allowlist</h3>
@@ -607,15 +591,15 @@ export async function updateProfile(formData: FormData) &#123;
 			</ul>
 		</section>
 
-		<section class="section" id="ai-fix">
+		<section class="article-section" id="ai-fix">
 			<h2>AI Fix Prompt</h2>
 			<p>
 				Copy this prompt to your AI tool to scan your codebase for mass assignment vulnerabilities:
 			</p>
 
-			<div class="ai-prompt-container">
-				<div class="ai-prompt-header">
-					<span class="ai-prompt-title">Mass Assignment Audit Prompt</span>
+			<div class="fix-prompt">
+				<div class="fix-prompt-header">
+					<span class="fix-prompt-title">Mass Assignment Audit Prompt</span>
 					<button
 						class="copy-button"
 						onclick={copyPrompt}
@@ -629,7 +613,7 @@ export async function updateProfile(formData: FormData) &#123;
 						{/if}
 					</button>
 				</div>
-				<div class="ai-prompt-preview">
+				<div class="fix-prompt-preview">
 					<button
 						class="expand-button"
 						onclick={() => showAIPrompt = !showAIPrompt}
@@ -637,13 +621,13 @@ export async function updateProfile(formData: FormData) &#123;
 						{showAIPrompt ? 'Hide' : 'Show'} Full Prompt ({aiFixPrompt.length} characters)
 					</button>
 					{#if showAIPrompt}
-						<pre class="ai-prompt-content">{aiFixPrompt}</pre>
+						<pre class="fix-prompt-content">{aiFixPrompt}</pre>
 					{/if}
 				</div>
 			</div>
 		</section>
 
-		<section class="section" id="faq">
+		<section class="article-section" id="faq">
 			<h2>Frequently Asked Questions</h2>
 
 			<div class="faq-list">
@@ -667,38 +651,44 @@ export async function updateProfile(formData: FormData) &#123;
 			</div>
 		</section>
 
-		<section class="section" id="related">
-			<h2>Related Security Topics</h2>
+		<section class="article-section" id="related">
+			<h2>Related content</h2>
 
 			<div class="related-grid">
-				<a href="/kb/security/vulnerabilities/idor/" class="related-card">
-					<h4>IDOR</h4>
-					<p>Related authorization flaw - accessing wrong records vs wrong fields</p>
+				<a href="/kb/security/vulnerabilities/idor/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">IDOR</div>
+					<p class="related-card-description">Related authorization flaw - accessing wrong records vs wrong fields</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<h4>Missing Authentication</h4>
-					<p>Mass assignment is worse without authentication</p>
+				<a href="/kb/security/vulnerabilities/missing-auth/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Missing Authentication</div>
+					<p class="related-card-description">Mass assignment is worse without authentication</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
-					<h4>SQL Injection</h4>
-					<p>Another input validation vulnerability</p>
+				<a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">SQL Injection</div>
+					<p class="related-card-description">Another input validation vulnerability</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<h4>Cursor Security Patterns</h4>
-					<p>Object.assign patterns in Cursor-generated code</p>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
+					<div class="related-card-category">AI Tool</div>
+					<div class="related-card-title">Cursor Security Patterns</div>
+					<p class="related-card-description">Object.assign patterns in Cursor-generated code</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
-					<h4>Bolt.new Security</h4>
-					<p>API endpoint patterns from Bolt</p>
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive related-card">
+					<div class="related-card-category">AI Tool</div>
+					<div class="related-card-title">Bolt.new Security</div>
+					<p class="related-card-description">API endpoint patterns from Bolt</p>
 				</a>
-				<a href="/kb/security/stacks/nextjs-prisma/" class="related-card">
-					<h4>Next.js + Prisma Security</h4>
-					<p>Secure Prisma update patterns</p>
+				<a href="/kb/security/stacks/nextjs-prisma/" class="card card-interactive related-card">
+					<div class="related-card-category">Stack Guide</div>
+					<div class="related-card-title">Next.js + Prisma Security</div>
+					<p class="related-card-description">Secure Prisma update patterns</p>
 				</a>
 			</div>
 		</section>
 
-		<section class="section" id="resources">
+		<section class="article-section" id="resources">
 			<h2>External Resources</h2>
 			<ul class="resource-list">
 				<li>
@@ -718,215 +708,68 @@ export async function updateProfile(formData: FormData) &#123;
 				</li>
 			</ul>
 		</section>
-	</article>
 
-	<!-- CTA Section -->
-	<section class="cta-section">
-		<div class="cta-content">
+		<!-- CTA Section -->
+		<section class="cta-box">
 			<h2>Find Mass Assignment in Your Code</h2>
-			<p>vibeship scanner automatically detects mass assignment vulnerabilities in your codebase, including Object.assign, spread operators, and direct ORM updates.</p>
+			<p>VibeShip Scanner automatically detects mass assignment vulnerabilities in your codebase, including Object.assign, spread operators, and direct ORM updates.</p>
 			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free</a>
-		</div>
-	</section>
-</main>
+		</section>
+	</article>
+</div>
 
 <style>
-	.vulnerability-page {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem 1rem;
-		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-		color: #1a1a2e;
-		line-height: 1.7;
+	.article-header {
+		margin-bottom: 2rem;
 	}
 
-	/* Breadcrumb */
-	.breadcrumb {
+	.badge-row {
 		display: flex;
-		align-items: center;
 		gap: 0.5rem;
-		font-size: 0.875rem;
-		color: #64748b;
-		margin-bottom: 2rem;
 		flex-wrap: wrap;
-	}
-
-	.breadcrumb a {
-		color: #6366f1;
-		text-decoration: none;
-	}
-
-	.breadcrumb a:hover {
-		color: var(--green);
-	}
-
-	.breadcrumb .separator {
-		color: #cbd5e1;
-	}
-
-	.breadcrumb .current {
-		color: #1a1a2e;
-		font-weight: 500;
-	}
-
-	/* Header */
-	.vuln-header {
-		margin-bottom: 2rem;
-	}
-
-	.vuln-badges {
-		display: flex;
-		gap: 0.5rem;
 		margin-bottom: 1rem;
-		flex-wrap: wrap;
 	}
 
 	.badge {
 		display: inline-flex;
 		align-items: center;
 		padding: 0.25rem 0.75rem;
-		border-radius: 9999px;
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		text-decoration: none;
+		background: var(--bg-tertiary);
+		color: var(--text-secondary);
+		border: 1px solid var(--border);
 	}
 
-	.severity-high {
-		background: #fef2f2;
-		color: #dc2626;
-		border: 1px solid #fecaca;
+	.badge:hover {
+		color: var(--green);
 	}
 
-	.cwe-badge {
-		background: #eff6ff;
-		color: #2563eb;
-		border: 1px solid #bfdbfe;
-	}
-
-	.cwe-badge:hover {
-		background: #dbeafe;
-	}
-
-	.owasp-badge {
-		background: #f0fdf4;
-		color: #16a34a;
-		border: 1px solid #bbf7d0;
-	}
-
-	.owasp-badge:hover {
-		background: #dcfce7;
+	.badge-high {
+		background: var(--bg-tertiary);
+		color: var(--orange);
+		border-color: var(--orange);
 	}
 
 	h1 {
 		font-size: 2.25rem;
 		font-weight: 800;
-		color: #1a1a2e;
+		color: var(--text-primary);
 		margin: 0 0 0.75rem 0;
 		line-height: 1.2;
 	}
 
-	.subtitle {
+	.article-subtitle {
 		font-size: 1.125rem;
-		color: #64748b;
+		color: var(--text-secondary);
 		margin: 0;
 	}
 
-	/* Quick Answer Box */
-	.quick-answer {
-		display: flex;
-		gap: 1rem;
-		padding: 1.5rem;
-		background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
-		border-radius: 12px;
-		border-left: 4px solid #6366f1;
-		margin-bottom: 3rem;
-	}
-
-	.quick-answer-icon {
-		flex-shrink: 0;
-		color: #6366f1;
-	}
-
-	.quick-answer-content {
-		font-size: 1rem;
-		color: #1e293b;
-	}
-
-	.quick-answer-content strong {
-		color: #1a1a2e;
-	}
-
-	.quick-answer-content code {
-		background: #e2e8f0;
-		padding: 0.125rem 0.375rem;
-		border-radius: 4px;
-		font-size: 0.875rem;
-	}
-
-	/* Content Sections */
-	.section {
-		margin-bottom: 3rem;
-	}
-
-	h2 {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: #1a1a2e;
-		margin: 0 0 1rem 0;
-		padding-bottom: 0.5rem;
-		border-bottom: 2px solid #e2e8f0;
-	}
-
-	h3 {
-		font-size: 1.125rem;
-		font-weight: 600;
-		color: #1a1a2e;
-		margin: 1.5rem 0 0.75rem 0;
-	}
-
-	h4 {
-		font-size: 1rem;
-		font-weight: 600;
-		color: #374151;
-		margin: 0 0 0.5rem 0;
-	}
-
-	p {
-		margin: 0 0 1rem 0;
-		color: #374151;
-	}
-
-	.content a {
-		color: #6366f1;
-		text-decoration: none;
-	}
-
-	.content a:hover {
-		color: var(--green);
-	}
-
-	ul, ol {
-		margin: 0 0 1rem 0;
-		padding-left: 1.5rem;
-	}
-
-	li {
-		margin-bottom: 0.5rem;
-		color: #374151;
-	}
-
-	code {
-		font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
-		background: #f1f5f9;
-		padding: 0.125rem 0.375rem;
-		border-radius: 4px;
-		font-size: 0.875em;
-	}
-
-	/* Impact List */
-	.impact-list {
+	/* Impact Grid */
+	.impact-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 		gap: 1rem;
@@ -935,38 +778,40 @@ export async function updateProfile(formData: FormData) &#123;
 
 	.impact-item {
 		padding: 1rem;
-		background: #fef2f2;
-		border-radius: 8px;
-		border-left: 3px solid #ef4444;
+		background: var(--bg-tertiary);
+		border-left: 3px solid var(--red);
 	}
 
 	.impact-item h4 {
-		color: #dc2626;
-		margin-bottom: 0.5rem;
+		color: var(--red);
+		margin: 0 0 0.5rem 0;
+		font-size: 1rem;
+		font-weight: 600;
 	}
 
 	.impact-item p {
 		margin: 0;
 		font-size: 0.875rem;
+		color: var(--text-secondary);
 	}
 
-	/* Code Comparison */
+	/* Code blocks */
 	.code-comparison {
 		margin: 1rem 0;
 	}
 
 	.code-block {
-		border-radius: 8px;
 		overflow: hidden;
 		margin-bottom: 1rem;
+		border: 1px solid var(--border);
 	}
 
 	.code-block.vulnerable {
-		border: 1px solid #fecaca;
+		border-color: var(--red);
 	}
 
 	.code-block.secure {
-		border: 1px solid #bbf7d0;
+		border-color: var(--green-dim);
 	}
 
 	.code-label {
@@ -981,19 +826,19 @@ export async function updateProfile(formData: FormData) &#123;
 	}
 
 	.code-block.vulnerable .code-label {
-		background: #fef2f2;
-		color: #dc2626;
+		background: var(--bg-tertiary);
+		color: var(--red);
 	}
 
 	.code-block.secure .code-label {
-		background: #f0fdf4;
-		color: #16a34a;
+		background: var(--bg-tertiary);
+		color: var(--green-dim);
 	}
 
 	.code-block pre {
 		margin: 0;
 		padding: 1rem;
-		background: #1e1e2e;
+		background: var(--bg-primary);
 		overflow-x: auto;
 	}
 
@@ -1001,38 +846,39 @@ export async function updateProfile(formData: FormData) &#123;
 		display: block;
 		background: transparent;
 		padding: 0;
-		color: #e2e8f0;
+		color: var(--text-primary);
 		font-size: 0.875rem;
 		line-height: 1.6;
 		white-space: pre;
+		font-family: 'JetBrains Mono', 'Fira Code', monospace;
 	}
 
 	.code-explanation {
 		font-size: 0.875rem;
-		color: #64748b;
+		color: var(--text-secondary);
 		font-style: italic;
 		margin-top: 0.5rem;
 	}
 
-	/* AI Prompt */
-	.ai-prompt-container {
-		background: #1e1e2e;
-		border-radius: 12px;
+	/* Fix Prompt */
+	.fix-prompt {
+		background: var(--bg-tertiary);
 		overflow: hidden;
 		margin: 1.5rem 0;
+		border: 1px solid var(--border);
 	}
 
-	.ai-prompt-header {
+	.fix-prompt-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		padding: 1rem;
-		background: #2d2d3d;
-		border-bottom: 1px solid #3d3d4d;
+		background: var(--bg-secondary);
+		border-bottom: 1px solid var(--border);
 	}
 
-	.ai-prompt-title {
-		color: #e2e8f0;
+	.fix-prompt-title {
+		color: var(--text-primary);
 		font-weight: 600;
 		font-size: 0.875rem;
 	}
@@ -1042,10 +888,9 @@ export async function updateProfile(formData: FormData) &#123;
 		align-items: center;
 		gap: 0.5rem;
 		padding: 0.5rem 1rem;
-		background: #6366f1;
-		color: white;
+		background: var(--green-dim);
+		color: var(--bg-primary);
 		border: none;
-		border-radius: 6px;
 		font-size: 0.875rem;
 		font-weight: 500;
 		cursor: pointer;
@@ -1053,14 +898,14 @@ export async function updateProfile(formData: FormData) &#123;
 	}
 
 	.copy-button:hover:not(:disabled) {
-		background: #4f46e5;
+		background: var(--green);
 	}
 
 	.copy-button:disabled {
-		background: #22c55e;
+		background: var(--green);
 	}
 
-	.ai-prompt-preview {
+	.fix-prompt-preview {
 		padding: 1rem;
 	}
 
@@ -1068,32 +913,31 @@ export async function updateProfile(formData: FormData) &#123;
 		display: block;
 		width: 100%;
 		padding: 0.75rem;
-		background: #2d2d3d;
-		color: #94a3b8;
-		border: 1px solid #3d3d4d;
-		border-radius: 6px;
+		background: var(--bg-secondary);
+		color: var(--text-secondary);
+		border: 1px solid var(--border);
 		font-size: 0.875rem;
 		cursor: pointer;
 		transition: all 0.2s;
 	}
 
 	.expand-button:hover {
-		background: #3d3d4d;
-		color: #e2e8f0;
+		background: var(--bg-tertiary);
+		color: var(--text-primary);
 	}
 
-	.ai-prompt-content {
+	.fix-prompt-content {
 		margin: 1rem 0 0 0;
 		padding: 1rem;
-		background: #2d2d3d;
-		border-radius: 8px;
-		color: #e2e8f0;
+		background: var(--bg-secondary);
+		color: var(--text-primary);
 		font-size: 0.8125rem;
 		line-height: 1.6;
 		white-space: pre-wrap;
 		overflow-x: auto;
 		max-height: 400px;
 		overflow-y: auto;
+		font-family: 'JetBrains Mono', 'Fira Code', monospace;
 	}
 
 	/* FAQ */
@@ -1104,13 +948,12 @@ export async function updateProfile(formData: FormData) &#123;
 	}
 
 	.faq-item {
-		border: 1px solid #e2e8f0;
-		border-radius: 8px;
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
 	.faq-item.expanded {
-		border-color: #6366f1;
+		border-color: var(--green-dim);
 	}
 
 	.faq-question {
@@ -1119,73 +962,39 @@ export async function updateProfile(formData: FormData) &#123;
 		align-items: center;
 		width: 100%;
 		padding: 1rem;
-		background: #f8fafc;
+		background: var(--bg-secondary);
 		border: none;
 		cursor: pointer;
 		text-align: left;
 		font-size: 1rem;
 		font-weight: 500;
-		color: #1a1a2e;
+		color: var(--text-primary);
 		transition: background 0.2s;
 	}
 
 	.faq-question:hover {
-		background: #f1f5f9;
+		background: var(--bg-tertiary);
 	}
 
 	.faq-item.expanded .faq-question {
-		background: #eff6ff;
+		background: var(--bg-tertiary);
 	}
 
 	.faq-icon {
 		font-size: 1.25rem;
-		color: #6366f1;
+		color: var(--green-dim);
 		font-weight: 300;
 	}
 
 	.faq-answer {
 		padding: 1rem;
-		background: white;
-		border-top: 1px solid #e2e8f0;
+		background: var(--bg-primary);
+		border-top: 1px solid var(--border);
 	}
 
 	.faq-answer p {
 		margin: 0;
-		color: #374151;
-	}
-
-	/* Related Grid */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		gap: 1rem;
-	}
-
-	.related-card {
-		display: block;
-		padding: 1.25rem;
-		background: #f8fafc;
-		border: 1px solid #e2e8f0;
-		border-radius: 8px;
-		text-decoration: none;
-		transition: all 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: #6366f1;
-		box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
-		text-decoration: none;
-	}
-
-	.related-card h4 {
-		color: #6366f1;
-		margin: 0 0 0.5rem 0;
-	}
-
-	.related-card p {
-		font-size: 0.875rem;
-		color: #64748b;
-		margin: 0;
+		color: var(--text-secondary);
 	}
 
 	/* Resource List */
@@ -1196,7 +1005,7 @@ export async function updateProfile(formData: FormData) &#123;
 
 	.resource-list li {
 		padding: 0.75rem 0;
-		border-bottom: 1px solid #e2e8f0;
+		border-bottom: 1px solid var(--border);
 	}
 
 	.resource-list li:last-child {
@@ -1205,26 +1014,31 @@ export async function updateProfile(formData: FormData) &#123;
 
 	.resource-list a {
 		font-weight: 500;
+		color: var(--green-dim);
 	}
 
-	/* CTA Section */
-	.cta-section {
-		margin-top: 4rem;
-		padding: 3rem 2rem;
-		background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-		border-radius: 16px;
+	.resource-list a:hover {
+		color: var(--green);
+	}
+
+	/* CTA Box */
+	.cta-box {
+		margin-top: 3rem;
+		padding: 2rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--green-dim);
 		text-align: center;
 	}
 
-	.cta-content h2 {
-		color: white;
+	.cta-box h2 {
+		color: var(--text-primary);
 		border-bottom: none;
 		margin-bottom: 1rem;
 	}
 
-	.cta-content p {
-		color: rgba(255, 255, 255, 0.9);
-		font-size: 1.125rem;
+	.cta-box p {
+		color: var(--text-secondary);
+		font-size: 1rem;
 		max-width: 600px;
 		margin: 0 auto 1.5rem auto;
 	}
@@ -1232,37 +1046,25 @@ export async function updateProfile(formData: FormData) &#123;
 	.cta-button {
 		display: inline-block;
 		padding: 1rem 2rem;
-		background: white;
-		color: #6366f1;
+		background: var(--green-dim);
+		color: var(--bg-primary);
 		font-weight: 600;
-		font-size: 1.125rem;
-		border-radius: 8px;
+		font-size: 1rem;
 		text-decoration: none;
-		transition: transform 0.2s, box-shadow 0.2s;
+		transition: background 0.2s;
 	}
 
 	.cta-button:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-		text-decoration: none;
+		background: var(--green);
 	}
 
 	/* Responsive */
 	@media (max-width: 640px) {
-		.vulnerability-page {
-			padding: 1rem;
-		}
-
 		h1 {
 			font-size: 1.75rem;
 		}
 
-		.quick-answer {
-			flex-direction: column;
-			gap: 0.75rem;
-		}
-
-		.ai-prompt-header {
+		.fix-prompt-header {
 			flex-direction: column;
 			gap: 1rem;
 		}
@@ -1272,11 +1074,11 @@ export async function updateProfile(formData: FormData) &#123;
 			justify-content: center;
 		}
 
-		.cta-section {
-			padding: 2rem 1rem;
+		.cta-box {
+			padding: 1.5rem 1rem;
 		}
 
-		.impact-list {
+		.impact-grid {
 			grid-template-columns: 1fr;
 		}
 	}

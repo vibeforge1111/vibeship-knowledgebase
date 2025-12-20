@@ -110,11 +110,11 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 80 | 📝 Brief Ready | Prompts (P1) | copilot-vs-cursor-config |
 | 81 | 📝 Brief Ready | Prompts (P1) | ai-tool-config-matrix |
 | | | *Batch 5: Framework/Language Specific* | |
-| 82 | 📝 Brief Ready | Prompts (P0) | cursor-rules-nextjs |
+| 82 | ✅ Done | Prompts (P0) | cursor-rules-nextjs |
 | 83 | 📝 Brief Ready | Prompts (P1) | cursor-rules-react |
 | 84 | 📝 Brief Ready | Prompts (P1) | cursor-rules-typescript |
 | 85 | 📝 Brief Ready | Prompts (P1) | ai-python-coding |
-| 86 | 📝 Brief Ready | Prompts (P0) | supabase-cursor-rules |
+| 86 | ✅ Done | Prompts (P0) | supabase-cursor-rules |
 | 87 | ✅ Done | Prompts (P0) PILLAR | cursor-rules-fullstack |
 | | | **--- NEW: 40-Article Vulnerability Expansion ---** | |
 | | | *Category A: Injection Variants* | |
