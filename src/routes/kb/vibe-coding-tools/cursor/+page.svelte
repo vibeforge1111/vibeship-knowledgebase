@@ -3,158 +3,246 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Is Cursor Safe? Security Risks & Fixes',
-		description: 'Security patterns in Cursor AI-generated code. Learn about SQL injection, template literals, and other vulnerabilities Cursor commonly generates.',
+		title: 'Cursor AI: The Complete Guide for Beginners & Power Users (2025)',
+		description:
+			'Master Cursor AI in 2025. Learn Tab autocomplete, Composer, Agent mode, .cursorrules, MCP servers, keyboard shortcuts, and advanced workflows. From first install to power user.',
 		url: '/kb/vibe-coding-tools/cursor/'
 	};
 
 	// Breadcrumbs
 	const breadcrumbs = [
 		{ label: 'Knowledge Base', href: '/kb' },
-		{ label: 'AI Patterns', href: '/kb/vibe-coding-tools' },
+		{ label: 'Vibe Coding Tools', href: '/kb/vibe-coding-tools' },
 		{ label: 'Cursor' }
 	];
 
-	// Security patterns specific to Cursor
-	const patterns = [
-		{
-			name: 'SQL Injection via Template Literals',
-			severity: 'Critical',
-			description: 'Cursor generates template literals for database queries because they are readable. This creates SQL injection vulnerabilities.',
-			example: `// Cursor often generates this:
-const getUser = async (userId) => {
-  const result = await db.query(\`
-    SELECT * FROM users WHERE id = \${userId}
-  \`)
-  return result.rows[0]
-}`,
-			fix: `// Secure version:
-const getUser = async (userId) => {
-  const result = await db.query(
-    'SELECT * FROM users WHERE id = $1',
-    [userId]
-  )
-  return result.rows[0]
-}`,
-			link: '/kb/security/vulnerabilities/sql-injection/'
-		},
-		{
-			name: 'Inline Database Credentials',
-			severity: 'Critical',
-			description: 'Cursor sometimes hardcodes database connection strings directly in code for quick setup.',
-			example: `// Cursor might generate:
-const pool = new Pool({
-  connectionString: 'postgresql://admin:password123@localhost:5432/mydb'
-})`,
-			fix: `// Secure version:
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-})`,
-			link: '/kb/security/vulnerabilities/hardcoded-secrets/'
-		},
-		{
-			name: 'Missing Authentication on Routes',
-			severity: 'Critical',
-			description: 'When you ask Cursor for an API endpoint, it builds the functionality without auth checks unless you explicitly request them.',
-			example: `// Cursor generates functional but unprotected routes:
-export async function GET(request, { params }) {
-  const order = await db.order.findUnique({
-    where: { id: params.id }
-  })
-  return Response.json(order)
-}`,
-			fix: `// With auth check:
-export async function GET(request, { params }) {
-  const session = await getServerSession(authOptions)
-  if (!session) {
-    return Response.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-  // ... rest of handler
-}`,
-			link: '/kb/security/vulnerabilities/missing-auth/'
-		},
-		{
-			name: 'IDOR in CRUD Operations',
-			severity: 'High',
-			description: 'Cursor adds authentication but often skips authorization checks, allowing users to access each other\'s resources.',
-			example: `// Auth exists but no ownership check:
-if (!session) return unauthorized()
+	// Table of contents
+	const toc = [
+		{ id: 'what-is-cursor', label: 'What is Cursor?' },
+		{ id: 'getting-started', label: 'Getting Started' },
+		{ id: 'tab-autocomplete', label: 'Tab Autocomplete' },
+		{ id: 'chat-mode', label: 'Chat Mode (Cmd+L)' },
+		{ id: 'composer', label: 'Composer (Cmd+I)' },
+		{ id: 'agent-mode', label: 'Agent Mode' },
+		{ id: 'inline-edit', label: 'Inline Edit (Cmd+K)' },
+		{ id: 'cursorrules', label: '.cursorrules & Rules' },
+		{ id: 'mcp-servers', label: 'MCP Servers' },
+		{ id: 'keyboard-shortcuts', label: 'Keyboard Shortcuts' },
+		{ id: 'models', label: 'Models & Pricing' },
+		{ id: 'advanced-tips', label: 'Advanced Tips' },
+		{ id: 'youtube-tutorials', label: 'Video Tutorials' },
+		{ id: 'resources', label: 'Resources' },
+		{ id: 'vs-alternatives', label: 'vs Alternatives' },
+		{ id: 'faq', label: 'FAQ' }
+	];
 
-const document = await db.document.findUnique({
-  where: { id: params.id }  // Any document, not user's
-})`,
-			fix: `// With ownership check:
-const document = await db.document.findUnique({
-  where: {
-    id: params.id,
-    userId: session.user.id  // Only user's documents
-  }
-})`,
-			link: '/kb/security/vulnerabilities/idor/'
+	// Pricing tiers
+	const pricing = [
+		{
+			name: 'Hobby',
+			price: 'Free',
+			features: [
+				'2,000 code completions/month',
+				'50 slow premium requests/month',
+				'Access to cursor-small model',
+				'Basic features'
+			]
 		},
 		{
-			name: 'Client-Side Only Validation',
-			severity: 'Medium',
-			description: 'Cursor may add form validation only on the client side, which attackers can bypass by calling the API directly.',
-			example: `// Client validation only:
-const handleSubmit = (e) => {
-  if (!email.includes('@')) {
-    setError('Invalid email')
-    return
-  }
-  // Submits to API that has no validation
-  fetch('/api/users', { body: JSON.stringify({ email }) })
-}`,
-			fix: `// Add server-side validation:
-export async function POST(request) {
-  const { email } = await request.json()
+			name: 'Pro',
+			price: '$20/month',
+			features: [
+				'Unlimited code completions',
+				'500 fast premium requests/month',
+				'Unlimited slow premium requests',
+				'Claude 3.5 Sonnet, GPT-4o access',
+				'10 uses/day of Claude 3.5 Opus'
+			],
+			popular: true
+		},
+		{
+			name: 'Pro+',
+			price: '$60/month',
+			features: [
+				'Everything in Pro',
+				'Unlimited fast premium requests',
+				'Background Agents',
+				'o1 and o1-mini access'
+			]
+		},
+		{
+			name: 'Ultra',
+			price: '$200/month',
+			features: [
+				'Everything in Pro+',
+				'Unlimited o1-pro requests',
+				'Highest priority access',
+				'For heavy enterprise use'
+			]
+		}
+	];
 
-  // Server-side validation
-  if (!email || !email.includes('@')) {
-    return Response.json({ error: 'Invalid email' }, { status: 400 })
-  }
-  // ... proceed
-}`,
-			link: '/kb/security/vulnerabilities/xss/'
+	// Keyboard shortcuts
+	const shortcuts = [
+		{ keys: 'Cmd/Ctrl + L', action: 'Open Chat', description: 'Start a new conversation with AI' },
+		{
+			keys: 'Cmd/Ctrl + I',
+			action: 'Open Composer',
+			description: 'Multi-file editing and code generation'
+		},
+		{
+			keys: 'Cmd/Ctrl + K',
+			action: 'Inline Edit',
+			description: 'Edit selected code or generate at cursor'
+		},
+		{ keys: 'Cmd/Ctrl + Shift + L', action: 'Add to Chat', description: 'Add selected code to chat context' },
+		{ keys: 'Tab', action: 'Accept Suggestion', description: 'Accept the current autocomplete' },
+		{
+			keys: 'Cmd/Ctrl + →',
+			action: 'Accept Word',
+			description: 'Accept one word of the suggestion'
+		},
+		{ keys: 'Escape', action: 'Dismiss', description: 'Dismiss suggestion or close panel' },
+		{ keys: 'Cmd/Ctrl + /', action: 'Toggle Comment', description: 'Comment/uncomment selection' },
+		{ keys: 'Cmd/Ctrl + Enter', action: 'Run/Submit', description: 'Submit chat or run command' },
+		{ keys: '@', action: 'Context Menu', description: 'Reference files, docs, or symbols in chat' }
+	];
+
+	// YouTube tutorials
+	const tutorials = [
+		{
+			title: 'Full Cursor AI Tutorial for Beginners',
+			author: 'Lee Robinson (Vercel)',
+			duration: '50 minutes',
+			url: 'https://www.youtube.com/watch?v=gqUQbjsYZLQ',
+			description: 'Comprehensive walkthrough from the Vercel VP of Product. Covers Tab, Chat, Composer, and real-world workflows.'
+		},
+		{
+			title: 'Build a Full Stack App with Cursor',
+			author: 'Nat Eliason',
+			duration: '30 minutes',
+			url: 'https://www.youtube.com/watch?v=Ki_PMLqV4ak',
+			description: 'End-to-end tutorial building a complete application. Great for understanding practical workflows.'
+		},
+		{
+			title: 'Cursor vs Copilot: Which is Better?',
+			author: 'Fireship',
+			duration: '8 minutes',
+			url: 'https://www.youtube.com/watch?v=QC80jAPjeZs',
+			description: 'Quick comparison of the two most popular AI coding tools. Good for understanding trade-offs.'
+		},
+		{
+			title: 'Cursor Agent Mode Deep Dive',
+			author: 'AI Explained',
+			duration: '25 minutes',
+			url: 'https://www.youtube.com/watch?v=yk9lXobJ95E',
+			description: 'Advanced tutorial on Agent mode for autonomous multi-step coding tasks.'
+		},
+		{
+			title: 'Building a SaaS with Cursor in 1 Hour',
+			author: 'Greg Isenberg',
+			duration: '60 minutes',
+			url: 'https://www.youtube.com/watch?v=VzxDHDwmmGc',
+			description: 'Live coding session building a complete SaaS application from scratch.'
 		}
 	];
 
 	// FAQ data
 	const faqs = [
 		{
-			question: 'Is Cursor less secure than other AI coding tools?',
-			answer: 'No. Cursor exhibits the same security patterns as other AI coding tools like Claude Code, Copilot, and Bolt. All AI tools prioritize generating working code over secure code. The specific vulnerabilities vary slightly, but the root cause is the same: AI optimizes for functionality, not security.'
+			question: 'Is Cursor free to use?',
+			answer:
+				'Yes, Cursor has a free Hobby tier that includes 2,000 code completions per month and 50 slow premium requests. This is enough for casual use or trying out the editor. For serious development, the Pro tier at $20/month is the sweet spot, offering unlimited completions and 500 fast premium requests.'
 		},
 		{
-			question: 'How do I make Cursor generate more secure code?',
-			answer: 'Be explicit in your prompts. Instead of "create an API to get user orders," say "create an authenticated API to get orders that belong to the logged-in user only." Mention security requirements explicitly: parameterized queries, authentication, authorization, input validation.'
+			question: 'What is the difference between Chat, Composer, and Agent mode?',
+			answer:
+				'Chat (Cmd+L) is for asking questions and getting code suggestions you copy manually. Composer (Cmd+I) writes code directly into your files and can edit multiple files at once. Agent mode is Composer with autonomous capabilities - it can run terminal commands, create files, and iterate until your goal is complete.'
 		},
 		{
-			question: 'Should I stop using Cursor for security-sensitive code?',
-			answer: 'No. Cursor is a powerful tool that significantly speeds up development. The key is to review generated code for security issues before committing. Use Vibeship Scanner or manual review to catch vulnerabilities. AI-generated code needs the same security review as human-written code.'
+			question: 'Should I use Cursor or GitHub Copilot?',
+			answer:
+				'Cursor has stronger multi-file editing capabilities through Composer and Agent mode. Copilot has better IDE integration (JetBrains, Neovim) and GitHub ecosystem features like PR reviews. Many developers use Cursor for greenfield projects and Copilot for maintenance work. See our detailed comparison at /kb/vibe-coding-tools/cursor-vs-copilot/'
 		},
 		{
-			question: 'Does Cursor\'s model choice affect security?',
-			answer: 'Cursor supports multiple models (Claude, GPT-4, etc.). While some models may have slightly different tendencies, all models exhibit similar security blind spots. The vulnerabilities come from training data patterns and the nature of code generation, not from a specific model.'
+			question: 'What are .cursorrules files?',
+			answer:
+				'A .cursorrules file in your project root gives Cursor persistent context about your codebase - coding standards, framework choices, and project-specific patterns. Think of it as a system prompt that applies to all AI interactions in that project. The newer .cursor/rules folder allows for more organized, modular rules.'
 		},
 		{
-			question: 'Can Cursor fix its own security issues?',
-			answer: 'Yes. You can paste our AI fix prompts directly into Cursor and ask it to fix vulnerabilities. Cursor is good at refactoring code once you tell it what to look for. The challenge is knowing what to ask, which is why this knowledge base exists.'
+			question: 'Which AI model should I use in Cursor?',
+			answer:
+				'Claude 3.5 Sonnet is the default and best for most coding tasks - fast and accurate. Use GPT-4o for complex reasoning or when Claude struggles. Use cursor-small for simple completions to save premium requests. For very complex problems, o1 provides chain-of-thought reasoning but is slower.'
+		},
+		{
+			question: 'Can Cursor access the internet or external documentation?',
+			answer:
+				'Yes. Use @Docs in chat to reference official documentation Cursor has indexed. You can also add custom documentation URLs for frameworks Cursor does not know. For real-time web access, you can set up MCP servers to give Cursor browsing capabilities.'
+		},
+		{
+			question: 'Is my code sent to third parties?',
+			answer:
+				'By default, yes - code is sent to AI providers (Anthropic, OpenAI) for processing. In Cursor Settings, you can enable Privacy Mode which adds end-to-end encryption and prevents your code from being used for training. Enterprise plans offer additional compliance features.'
+		},
+		{
+			question: 'What are Background Agents?',
+			answer:
+				'Background Agents (Pro+ and above) let Cursor work on tasks asynchronously. You can have up to 8 agents running in parallel, each in its own Git worktree. You can close Cursor and check back later when agents complete their work. Think of it as assigning tasks to AI teammates.'
 		}
 	];
 
-	let copied = $state(false);
-	let copiedIndex = $state(-1);
+	// Comparison tools
+	const comparisons = [
+		{
+			name: 'GitHub Copilot',
+			href: '/kb/vibe-coding-tools/cursor-vs-copilot/',
+			summary: 'Better IDE support, PR reviews, GitHub integration'
+		},
+		{
+			name: 'Claude Code',
+			href: '/kb/vibe-coding-tools/claude-code-vs-cursor/',
+			summary: 'Terminal-based, better for complex refactoring'
+		},
+		{
+			name: 'Windsurf',
+			href: '/kb/vibe-coding-tools/windsurf-vs-cursor/',
+			summary: 'Cascade flow system, JetBrains support'
+		}
+	];
 
-	function copyCode(code: string, index: number) {
-		navigator.clipboard.writeText(code);
-		copied = true;
-		copiedIndex = index;
-		setTimeout(() => {
-			copied = false;
-			copiedIndex = -1;
-		}, 2000);
-	}
+	// Resources
+	const resources = [
+		{
+			name: 'Official Cursor Documentation',
+			url: 'https://docs.cursor.com/',
+			description: 'Complete feature documentation and guides'
+		},
+		{
+			name: 'cursor.directory',
+			url: 'https://cursor.directory/',
+			description: 'Community-curated .cursorrules collection for every framework'
+		},
+		{
+			name: 'awesome-cursorrules',
+			url: 'https://github.com/PatrickJS/awesome-cursorrules',
+			description: 'GitHub repository of best .cursorrules examples'
+		},
+		{
+			name: 'Cursor Changelog',
+			url: 'https://cursor.com/changelog',
+			description: 'Latest updates and new features'
+		},
+		{
+			name: 'Cursor Forum',
+			url: 'https://forum.cursor.com/',
+			description: 'Community discussions and troubleshooting'
+		},
+		{
+			name: 'MCP Servers Directory',
+			url: 'https://github.com/modelcontextprotocol/servers',
+			description: 'Official Model Context Protocol server implementations'
+		}
+	];
 </script>
 
 <svelte:head>
@@ -173,13 +261,13 @@ export async function POST(request) {
 		"@type": "BreadcrumbList",
 		"itemListElement": [
 			{"@type": "ListItem", "position": 1, "name": "Knowledge Base", "item": "https://vibeship.co/kb"},
-			{"@type": "ListItem", "position": 2, "name": "AI Patterns", "item": "https://vibeship.co/kb/vibe-coding-tools"},
+			{"@type": "ListItem", "position": 2, "name": "Vibe Coding Tools", "item": "https://vibeship.co/kb/vibe-coding-tools"},
 			{"@type": "ListItem", "position": 3, "name": "Cursor"}
 		]
 	}
 	</script>`}
 
-	<!-- Schema.org structured data -->
+	<!-- TechArticle Schema -->
 	{@html `<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
@@ -198,8 +286,8 @@ export async function POST(request) {
 				"url": "https://vibeship.co/logo.png"
 			}
 		},
-		"datePublished": "2025-12-17",
-		"dateModified": "2025-12-17"
+		"datePublished": "2025-12-20",
+		"dateModified": "2025-12-20"
 	}
 	</script>`}
 
@@ -208,14 +296,16 @@ export async function POST(request) {
 	{
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
-		"mainEntity": ${JSON.stringify(faqs.map(faq => ({
-			"@type": "Question",
-			"name": faq.question,
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": faq.answer
-			}
-		})))}
+		"mainEntity": ${JSON.stringify(
+			faqs.map((faq) => ({
+				'@type': 'Question',
+				name: faq.question,
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: faq.answer
+				}
+			}))
+		)}
 	}
 	</script>`}
 </svelte:head>
@@ -227,147 +317,855 @@ export async function POST(request) {
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
-				<span class="badge">AI Tool</span>
-				<span class="badge">VS Code</span>
+				<span class="badge badge-featured">Complete Guide</span>
+				<span class="badge">AI Code Editor</span>
+				<span class="badge">2025</span>
 			</div>
-			<h1>Cursor Security Patterns</h1>
-			<p class="text-secondary">Common security vulnerabilities in code generated by Cursor AI</p>
+			<h1>Cursor AI: The Complete Guide</h1>
+			<p class="subtitle">
+				Master vibe coding with Cursor - from your first autocomplete to Background Agents and MCP
+				servers. Everything beginners and power users need to know.
+			</p>
+			<p class="reading-time">~25 minute read • Last updated December 2025</p>
 		</header>
 
 		<!-- Quick Answer -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Cursor's top security issue is SQL injection via template literals.</strong>
-				It also commonly generates routes without authentication, CRUD operations without authorization checks, and sometimes hardcodes credentials for quick setup.
+				<strong>Cursor is an AI-powered code editor</strong> built on VS Code that offers Tab
+				autocomplete, multi-file editing via Composer, and autonomous Agent mode. It supports Claude,
+				GPT-4, and other models. Free tier available, Pro is $20/month. Best for: greenfield projects,
+				rapid prototyping, and developers who want AI to write code directly into their files.
 			</p>
 		</div>
 
-		<!-- Stats Box -->
-		<div class="stats-row">
-			<div class="stat-box">
-				<div class="stat-value">SQL Injection</div>
-				<div class="stat-label">Top Issue</div>
-			</div>
-			<div class="stat-box">
-				<div class="stat-value">Template Literals</div>
-				<div class="stat-label">Common Pattern</div>
-			</div>
-			<div class="stat-box">
-				<div class="stat-value">5</div>
-				<div class="stat-label">Key Patterns</div>
-			</div>
-			<div class="stat-box">
-				<div class="stat-value">Fixable</div>
-				<div class="stat-label">With Prompts</div>
-			</div>
-		</div>
+		<!-- Table of Contents -->
+		<nav class="toc">
+			<div class="toc-header">Table of Contents</div>
+			<ul class="toc-list">
+				{#each toc as item}
+					<li><a href="#{item.id}">{item.label}</a></li>
+				{/each}
+			</ul>
+		</nav>
 
-		<!-- About Cursor -->
-		<section class="article-section">
-			<h2>About Cursor</h2>
+		<!-- What is Cursor -->
+		<section id="what-is-cursor" class="article-section">
+			<h2>What is Cursor?</h2>
 			<p>
-				<a href="https://cursor.com" target="_blank" rel="noopener">Cursor</a> is an AI-powered code editor built on VS Code.
-				It is one of the most popular tools for vibe coding, offering composer and chat features that let developers describe what they want and have AI generate the code.
+				Cursor is an AI-first code editor that has quickly become the go-to tool for vibe coding.
+				Built on VS Code, it feels instantly familiar to millions of developers while adding powerful
+				AI capabilities that go far beyond simple autocomplete. Where GitHub Copilot suggests code
+				line by line, Cursor can edit entire files, run terminal commands, and complete multi-step
+				tasks autonomously.
 			</p>
 			<p>
-				Cursor supports multiple AI models including Claude, GPT-4, and others.
-				While it is a powerful productivity tool, like all AI coding assistants, it generates code patterns that prioritize functionality over security. The common vulnerabilities align with categories in the <a href="https://owasp.org/Top10/" target="_blank" rel="noopener">OWASP Top 10</a>, particularly <a href="https://owasp.org/Top10/A03_2021-Injection/" target="_blank" rel="noopener">A03:2021 Injection</a> and <a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/" target="_blank" rel="noopener">A07:2021 Identification and Authentication Failures</a>.
+				The company behind Cursor raised $60 million in 2024 at a $400 million valuation, with backing
+				from OpenAI and Andreessen Horowitz. By late 2024, Cursor reported reaching $100 million ARR -
+				remarkable growth that reflects how many developers have embraced AI-assisted coding.
 			</p>
-		</section>
+			<p>
+				What makes Cursor different from other AI coding tools is its integrated approach. Rather than
+				being a plugin to an existing editor, Cursor was designed from the ground up around AI
+				interaction patterns. Features like Composer (multi-file editing) and Agent mode (autonomous
+				task completion) are first-class citizens, not afterthoughts.
+			</p>
 
-		<!-- Security Patterns -->
-		<section class="article-section">
-			<h2>Security Patterns</h2>
-			<p>These are the most common security issues we see in Cursor-generated code:</p>
+			<div class="info-box">
+				<strong>Why "vibe coding"?</strong> The term describes building software by describing what
+				you want to the AI rather than writing every line yourself. Cursor is one of the most popular
+				tools in this new paradigm, letting developers "vibe" their way through coding tasks while
+				the AI handles implementation details.
+			</div>
 
-			{#each patterns as pattern, i}
-				<div class="pattern-card">
-					<div class="pattern-header">
-						<h3>{pattern.name}</h3>
-						<span class="badge badge-{pattern.severity.toLowerCase()}">{pattern.severity}</span>
-					</div>
-					<p class="pattern-description">{pattern.description}</p>
-
-					<div class="code-comparison">
-						<div class="code-block vulnerable">
-							<div class="code-block-header">
-								<span class="code-block-lang status-bad">VULNERABLE</span>
-							</div>
-							<pre><code>{pattern.example}</code></pre>
-						</div>
-
-						<div class="code-block secure">
-							<div class="code-block-header">
-								<span class="code-block-lang status-good">SECURE</span>
-								<button class="copy-btn small" onclick={() => copyCode(pattern.fix, i)}>
-									{copied && copiedIndex === i ? 'Copied!' : 'Copy'}
-								</button>
-							</div>
-							<pre><code>{pattern.fix}</code></pre>
-						</div>
-					</div>
-
-					<a href={pattern.link} class="pattern-link">
-						Learn more about this vulnerability
-						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M5 12h14M12 5l7 7-7 7"/>
-						</svg>
-					</a>
-				</div>
-			{/each}
-		</section>
-
-		<!-- Why This Happens -->
-		<section class="article-section">
-			<h2>Why Cursor generates these patterns</h2>
-			<p>Cursor generates insecure code patterns for the same reasons all AI coding tools do:</p>
+			<h3>Who is Cursor for?</h3>
 			<ul>
-				<li><strong>Training data:</strong> AI models learn from millions of code examples, many of which contain insecure patterns that are common in tutorials and Stack Overflow answers</li>
-				<li><strong>Readability optimization:</strong> Template literals are more readable than parameterized queries, so AI tends to generate them</li>
-				<li><strong>Prompt interpretation:</strong> "Create an API" does not imply "add authentication" to an AI model</li>
-				<li><strong>Functionality focus:</strong> AI optimizes for code that works, not code that is secure</li>
+				<li><strong>Beginners learning to code</strong> - Cursor explains concepts, suggests solutions, and helps you understand patterns as you build</li>
+				<li><strong>Professional developers</strong> - Accelerate routine tasks like writing boilerplate, tests, and documentation</li>
+				<li><strong>Indie hackers and entrepreneurs</strong> - Ship MVPs and prototypes dramatically faster</li>
+				<li><strong>Teams building new products</strong> - Composer and Agent mode excel at greenfield development</li>
 			</ul>
 		</section>
 
-		<!-- How to Use Cursor Securely -->
-		<section class="article-section">
-			<h2>How to use Cursor securely</h2>
+		<!-- Getting Started -->
+		<section id="getting-started" class="article-section">
+			<h2>Getting Started with Cursor</h2>
+			<p>
+				Setting up Cursor takes about 5 minutes. The experience is nearly identical to VS Code, so
+				if you have used VS Code before, you will feel right at home.
+			</p>
+
+			<h3>Installation</h3>
 			<ol class="numbered-list">
 				<li>
-					<strong>Be explicit about security in prompts:</strong>
-					<p>Instead of "create a user API," say "create an authenticated API endpoint that only returns the logged-in user's data using parameterized queries."</p>
+					<strong>Download Cursor</strong>
+					<p>Visit <a href="https://cursor.com" target="_blank" rel="noopener">cursor.com</a> and download for your platform (Mac, Windows, or Linux).</p>
 				</li>
 				<li>
-					<strong>Review generated code before committing:</strong>
-					<p>Look for template literals in database queries, missing auth checks, and hardcoded values.</p>
+					<strong>Import VS Code settings</strong>
+					<p>On first launch, Cursor offers to import your existing VS Code extensions, themes, and settings. Accept this to maintain your workflow.</p>
 				</li>
 				<li>
-					<strong>Use AI fix prompts to refactor:</strong>
-					<p>Paste our fix prompts into Cursor to have it fix its own security issues.</p>
+					<strong>Create a Cursor account</strong>
+					<p>Sign up for free to get 2,000 completions/month and 50 premium requests. No credit card required.</p>
 				</li>
 				<li>
-					<strong>Scan before shipping:</strong>
-					<p>Run <a href="https://scanner.vibeship.co">Vibeship Scanner</a> on your codebase to catch vulnerabilities.</p>
+					<strong>Open a project</strong>
+					<p>Open any folder or clone a repository. Cursor indexes your codebase automatically for context-aware suggestions.</p>
+				</li>
+			</ol>
+
+			<h3>Your first AI interaction</h3>
+			<p>
+				The fastest way to experience Cursor is to start typing in any file. Within seconds, you will
+				see gray "ghost text" suggesting what comes next. Press <kbd>Tab</kbd> to accept, or keep
+				typing to ignore.
+			</p>
+			<p>
+				For more complex tasks, press <kbd>Cmd+L</kbd> (Mac) or <kbd>Ctrl+L</kbd> (Windows/Linux) to
+				open Chat. Ask questions like "How do I add authentication to this app?" or "Explain what this
+				function does." Cursor sees your entire codebase as context.
+			</p>
+
+			<div class="tip-box">
+				<strong>Tip:</strong> Start with Chat mode to get comfortable with AI interactions. Once you
+				understand how Cursor thinks, graduate to Composer for more powerful multi-file editing.
+			</div>
+		</section>
+
+		<!-- Tab Autocomplete -->
+		<section id="tab-autocomplete" class="article-section">
+			<h2>Tab Autocomplete: The Foundation</h2>
+			<p>
+				Tab autocomplete is Cursor's most basic feature - and the one you will use thousands of times
+				a day. As you type, Cursor predicts what you are trying to write and shows suggestions as
+				gray "ghost text" that you accept with Tab.
+			</p>
+			<p>
+				Unlike traditional autocomplete that only suggests variable names or function signatures,
+				Cursor's Tab completion can suggest entire code blocks, function implementations, or even
+				multiple lines at once. It understands your project's patterns and coding style.
+			</p>
+
+			<h3>How Tab works under the hood</h3>
+			<p>
+				Cursor uses a custom model called "cursor-small" for most Tab completions. This model is
+				optimized for speed - suggestions appear in under 100ms. For more complex completions,
+				Cursor may use Claude or GPT-4, though this counts against your premium request quota.
+			</p>
+			<p>
+				In late 2024, Cursor released its "Tab model" trained specifically for multi-line suggestions.
+				The company claims it produces 21% fewer suggestions but with 28% higher accept rates - meaning
+				it is better at predicting what you actually want.
+			</p>
+
+			<h3>Mastering Tab autocomplete</h3>
+			<div class="code-block">
+				<div class="code-block-header">
+					<span class="code-block-lang">Tab Autocomplete Tips</span>
+				</div>
+				<pre><code>// 1. Write a clear comment, then Tab for implementation
+// Function to validate email format and check domain
+function validateEmail(email) // Press Tab here
+
+// 2. Start a pattern, Tab completes the rest
+const routes = [
+  &#123; path: '/', component: Home &#125;,
+  // Cursor predicts remaining routes from context
+
+// 3. Partial accept with Cmd+Right
+// Accept one word at a time for more control
+
+// 4. Continue typing to refine
+// If suggestion is close but not right, keep typing
+// Cursor will adjust its prediction</code></pre>
+			</div>
+
+			<h3>Tab settings to know</h3>
+			<ul>
+				<li><strong>Cursor Prediction</strong> - Enable to see cursor position after accepting (shows where you will be typing next)</li>
+				<li><strong>Partial Accepts</strong> - Use Cmd/Ctrl+Right to accept word by word</li>
+				<li><strong>Tab in comments</strong> - Cursor can complete comments too, not just code</li>
+			</ul>
+		</section>
+
+		<!-- Chat Mode -->
+		<section id="chat-mode" class="article-section">
+			<h2>Chat Mode (Cmd+L): Your AI Pair Programmer</h2>
+			<p>
+				Chat mode opens a conversational interface where you can ask questions, discuss architecture,
+				and get code suggestions. Unlike Composer, Chat does not edit your files directly - it shows
+				code that you can copy or apply manually. This makes it safer for exploring ideas.
+			</p>
+			<p>
+				Press <kbd>Cmd+L</kbd> (Mac) or <kbd>Ctrl+L</kbd> (Windows) to open Chat. The panel appears
+				on the right side of your editor with a text input at the bottom.
+			</p>
+
+			<h3>Using @ references</h3>
+			<p>
+				The <code>@</code> symbol is how you give Chat specific context. Instead of describing files,
+				reference them directly:
+			</p>
+
+			<div class="code-block">
+				<div class="code-block-header">
+					<span class="code-block-lang">@ References</span>
+				</div>
+				<pre><code>@Files      - Reference specific files in your project
+@Folders    - Include entire folder contents
+@Code       - Reference specific code symbols (functions, classes)
+@Docs       - Search indexed documentation
+@Web        - Search the web for current information
+@Git        - Reference git diff, commits, or history
+@Codebase   - Search your entire codebase semantically
+
+Examples:
+"@schema.prisma add a Post model with title and content"
+"Explain what @utils/auth.ts does"
+"@Docs Next.js how do I add API routes?"
+"@Codebase where is user authentication handled?"</code></pre>
+			</div>
+
+			<h3>Chat best practices</h3>
+			<ul>
+				<li><strong>Add context with Cmd+Shift+L</strong> - Select code and press this shortcut to add it to Chat automatically</li>
+				<li><strong>Be specific about what you want</strong> - "Add error handling to this function" beats "improve this"</li>
+				<li><strong>Ask follow-up questions</strong> - Chat maintains conversation history, so you can iterate</li>
+				<li><strong>Use @Codebase for discovery</strong> - Great for understanding unfamiliar codebases</li>
+			</ul>
+
+			<div class="tip-box">
+				<strong>Pro tip:</strong> If you select code before pressing Cmd+L, that code is automatically
+				added as context. This is faster than typing @Files references manually.
+			</div>
+		</section>
+
+		<!-- Composer -->
+		<section id="composer" class="article-section">
+			<h2>Composer (Cmd+I): Multi-File Editing</h2>
+			<p>
+				Composer is where Cursor truly shines. Press <kbd>Cmd+I</kbd> to open Composer, describe what
+				you want, and Cursor writes code directly into your files. It can create new files, modify
+				existing ones, and coordinate changes across your entire codebase.
+			</p>
+			<p>
+				Think of Composer as Chat with superpowers. Instead of showing you code to copy, it applies
+				changes for you. You see a diff view of proposed edits and can accept or reject each change.
+			</p>
+
+			<h3>Composer 2.0 (October 2024)</h3>
+			<p>
+				The Cursor team released a major Composer update in late 2024. Key improvements include:
+			</p>
+			<ul>
+				<li><strong>4x faster than comparable models</strong> - The new speculative edits system dramatically reduces latency</li>
+				<li><strong>Better multi-file coordination</strong> - Changes across files are more consistent</li>
+				<li><strong>Improved diff interface</strong> - Clearer visualization of what is changing</li>
+				<li><strong>Background processing</strong> - Composer can work while you do other things</li>
+			</ul>
+
+			<h3>Composer workflow</h3>
+			<div class="code-block">
+				<div class="code-block-header">
+					<span class="code-block-lang">Composer Workflow</span>
+				</div>
+				<pre><code>1. Press Cmd+I to open Composer
+
+2. Describe your goal clearly:
+   "Create a user registration form with email/password
+    validation, integrate with the existing auth.ts,
+    and add a new API route at /api/auth/register"
+
+3. Review the diff view:
+   - Green = additions
+   - Red = deletions
+   - Click file tabs to see each change
+
+4. Accept or reject:
+   - Cmd+Enter accepts all changes
+   - Click individual hunks to accept/reject parts
+   - Type follow-up to refine
+
+5. Iterate:
+   "Also add password confirmation field"
+   "Use zod for validation instead"</code></pre>
+			</div>
+
+			<h3>When to use Composer vs Chat</h3>
+			<table class="comparison-table">
+				<thead>
+					<tr>
+						<th>Use Composer</th>
+						<th>Use Chat</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Implementing new features</td>
+						<td>Asking questions about code</td>
+					</tr>
+					<tr>
+						<td>Refactoring across files</td>
+						<td>Understanding architecture</td>
+					</tr>
+					<tr>
+						<td>Creating components/modules</td>
+						<td>Debugging (discussion mode)</td>
+					</tr>
+					<tr>
+						<td>Writing tests for code</td>
+						<td>Learning new concepts</td>
+					</tr>
+					<tr>
+						<td>Adding integrations</td>
+						<td>Exploring options before committing</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<!-- Agent Mode -->
+		<section id="agent-mode" class="article-section">
+			<h2>Agent Mode: Autonomous Coding</h2>
+			<p>
+				Agent mode takes Composer further by giving AI the ability to execute terminal commands,
+				read command output, and iterate until your goal is complete. Instead of just writing code,
+				Agent can run tests, check for errors, and fix problems autonomously.
+			</p>
+			<p>
+				Enable Agent mode by toggling the "Agent" switch in Composer or using the keyboard shortcut.
+				You will see a "thinking" indicator as Agent plans its approach, then watch as it executes
+				commands and edits files.
+			</p>
+
+			<h3>What Agent mode can do</h3>
+			<ul>
+				<li><strong>Run terminal commands</strong> - npm install, git operations, test runners</li>
+				<li><strong>Read command output</strong> - Parse errors and fix them automatically</li>
+				<li><strong>Create and delete files</strong> - Full filesystem access within your project</li>
+				<li><strong>Install dependencies</strong> - Add packages and configure them</li>
+				<li><strong>Run builds and tests</strong> - Verify changes work before completing</li>
+				<li><strong>Multi-step planning</strong> - Break complex tasks into subtasks</li>
+			</ul>
+
+			<div class="warning-box">
+				<strong>Caution:</strong> Agent mode runs real commands on your system. Always review what
+				Agent is doing, especially for destructive operations like rm or database modifications.
+				Consider using a Git branch so you can easily revert.
+			</div>
+
+			<h3>Background Agents (Pro+ feature)</h3>
+			<p>
+				With a Pro+ subscription ($60/month), you get access to Background Agents. These run
+				asynchronously - you can start an agent, close Cursor, and check back later. Key features:
+			</p>
+			<ul>
+				<li><strong>Up to 8 parallel agents</strong> - Work on multiple features simultaneously</li>
+				<li><strong>Git worktree isolation</strong> - Each agent works in its own branch</li>
+				<li><strong>Progress tracking</strong> - See status and logs for each agent</li>
+				<li><strong>Async workflow</strong> - Assign work and come back when complete</li>
+			</ul>
+
+			<h3>Agent mode best practices</h3>
+			<ol class="numbered-list">
+				<li>
+					<strong>Start with a clear goal</strong>
+					<p>"Add user authentication with email/password login, session management, and protected routes"</p>
+				</li>
+				<li>
+					<strong>Provide constraints</strong>
+					<p>"Use the existing database schema, don't install new dependencies unless necessary"</p>
+				</li>
+				<li>
+					<strong>Work on a branch</strong>
+					<p>Agent makes many changes quickly. A dedicated branch lets you review and revert easily.</p>
+				</li>
+				<li>
+					<strong>Monitor progress</strong>
+					<p>Watch the terminal output. If Agent seems stuck or doing something wrong, interrupt early.</p>
 				</li>
 			</ol>
 		</section>
 
-		<!-- CTA Box -->
-		<div class="cta-box">
-			<p><strong>Scan your Cursor-generated code</strong></p>
-			<p class="cta-subtext">Find SQL injection, missing auth, and other issues in your codebase</p>
-			<a href="https://scanner.vibeship.co" class="btn btn-green">
-				Scan your code free
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M5 12h14M12 5l7 7-7 7"/>
-				</svg>
-			</a>
-		</div>
+		<!-- Inline Edit -->
+		<section id="inline-edit" class="article-section">
+			<h2>Inline Edit (Cmd+K): Quick Edits</h2>
+			<p>
+				Inline edit is the fastest way to make small, targeted changes. Select some code, press
+				<kbd>Cmd+K</kbd>, describe your change, and Cursor rewrites the selection in place.
+				No separate panel, no context switching.
+			</p>
+			<p>
+				You can also use Cmd+K without a selection to generate code at your cursor position.
+				This is useful for quickly generating a function, adding a code block, or filling in
+				implementation details.
+			</p>
+
+			<h3>Inline edit examples</h3>
+			<div class="code-block">
+				<div class="code-block-header">
+					<span class="code-block-lang">Cmd+K Examples</span>
+				</div>
+				<pre><code>// Select a function, Cmd+K:
+"Add error handling with try/catch"
+"Convert to async/await"
+"Add TypeScript types"
+"Make this more performant"
+
+// Cursor on empty line, Cmd+K:
+"Write a function to validate email"
+"Create a React component for user cards"
+"Add a test for the above function"
+
+// Select variable, Cmd+K:
+"Rename to camelCase"
+"Convert to const with destructuring"</code></pre>
+			</div>
+
+			<h3>When to use Cmd+K vs Composer</h3>
+			<p>
+				Use Cmd+K for quick, localized changes - a single function, a few lines, a quick refactor.
+				Use Composer when changes span multiple files or require more complex coordination.
+				The mental model: Cmd+K is a surgical tool, Composer is for construction projects.
+			</p>
+		</section>
+
+		<!-- .cursorrules -->
+		<section id="cursorrules" class="article-section">
+			<h2>.cursorrules: Project Context That Persists</h2>
+			<p>
+				A <code>.cursorrules</code> file in your project root gives Cursor persistent context about
+				your codebase. Instead of repeating the same instructions in every prompt, define them once
+				and Cursor applies them to all AI interactions in that project.
+			</p>
+			<p>
+				Think of .cursorrules as a system prompt for your project. It can include coding standards,
+				architectural decisions, common patterns, and things to avoid.
+			</p>
+
+			<h3>Example .cursorrules file</h3>
+			<div class="code-block">
+				<div class="code-block-header">
+					<span class="code-block-lang">.cursorrules</span>
+				</div>
+				<pre><code># Project: E-commerce Platform
+
+## Tech Stack
+- Next.js 14 with App Router
+- TypeScript strict mode
+- Tailwind CSS for styling
+- Prisma with PostgreSQL
+- NextAuth for authentication
+
+## Coding Standards
+- Use functional components with hooks
+- Prefer named exports over default exports
+- Use async/await, never .then() chains
+- Add TypeScript types to all functions
+- Error handling: always use try/catch with specific error types
+
+## File Organization
+- Components in /components with index.ts barrel exports
+- API routes in /app/api following REST conventions
+- Database queries in /lib/db with Prisma
+
+## Security Requirements
+- Always use parameterized queries (never template literals for SQL)
+- Validate all user input with zod
+- Check authentication and authorization on all API routes
+- Never expose sensitive data in client components
+
+## Things to Avoid
+- Don't use 'any' type
+- Don't install new dependencies without asking
+- Don't use inline styles, use Tailwind
+- Don't create new folders without following existing structure</code></pre>
+			</div>
+
+			<h3>The new .cursor/rules folder</h3>
+			<p>
+				Cursor now supports a <code>.cursor/</code> folder with modular rule files using the
+				<code>.mdc</code> extension. This allows for better organization:
+			</p>
+			<div class="code-block">
+				<div class="code-block-header">
+					<span class="code-block-lang">Folder Structure</span>
+				</div>
+				<pre><code>.cursor/
+├── rules/
+│   ├── general.mdc      # Project-wide rules
+│   ├── frontend.mdc     # React/UI rules
+│   ├── backend.mdc      # API/database rules
+│   └── testing.mdc      # Test patterns
+└── settings.json        # Cursor-specific settings</code></pre>
+			</div>
+
+			<h3>Finding good .cursorrules</h3>
+			<p>
+				You do not need to write rules from scratch. The community has created extensive collections:
+			</p>
+			<ul>
+				<li><a href="https://cursor.directory/" target="_blank" rel="noopener">cursor.directory</a> - Searchable database of rules for every framework and language</li>
+				<li><a href="https://github.com/PatrickJS/awesome-cursorrules" target="_blank" rel="noopener">awesome-cursorrules</a> - Curated GitHub collection with quality examples</li>
+				<li>Our guide: <a href="/kb/prompts/awesome-cursor-rules/">Awesome Cursor Rules: A Curated Collection</a></li>
+			</ul>
+
+			<div class="tip-box">
+				<strong>Tip:</strong> Start with a rules file from cursor.directory for your stack, then
+				customize based on your team's conventions. A good .cursorrules file saves hours of repeated
+				instructions.
+			</div>
+		</section>
+
+		<!-- MCP Servers -->
+		<section id="mcp-servers" class="article-section">
+			<h2>MCP Servers: Extending Cursor's Capabilities</h2>
+			<p>
+				Model Context Protocol (MCP) is an open standard that lets AI tools connect to external
+				services. In Cursor, MCP servers extend what AI can access - databases, APIs, file systems,
+				browsers, and more.
+			</p>
+			<p>
+				MCP was developed by Anthropic and adopted by Cursor, Claude Code, and other tools. It
+				provides a standard way for AI to safely interact with external systems without giving
+				unrestricted access.
+			</p>
+
+			<h3>Setting up MCP servers</h3>
+			<ol class="numbered-list">
+				<li>
+					<strong>Open Cursor Settings</strong>
+					<p>Go to Cursor Settings > Features > MCP Servers</p>
+				</li>
+				<li>
+					<strong>Add a server configuration</strong>
+					<p>Click "Add New MCP Server" and configure the server command and arguments</p>
+				</li>
+				<li>
+					<strong>Test the connection</strong>
+					<p>Cursor shows server status. Green means connected and ready.</p>
+				</li>
+			</ol>
+
+			<h3>Popular MCP servers</h3>
+			<ul>
+				<li><strong>Filesystem</strong> - Extended file operations beyond your project</li>
+				<li><strong>PostgreSQL/MySQL</strong> - Direct database access and queries</li>
+				<li><strong>GitHub</strong> - Create issues, PRs, read repositories</li>
+				<li><strong>Slack</strong> - Send messages and read channels</li>
+				<li><strong>Browser</strong> - Web browsing and scraping</li>
+				<li><strong>Puppeteer</strong> - Browser automation for testing</li>
+			</ul>
+
+			<div class="code-block">
+				<div class="code-block-header">
+					<span class="code-block-lang">MCP Configuration Example</span>
+				</div>
+				<pre><code>// In Cursor settings or .cursor/mcp.json
+&#123;
+  "mcpServers": &#123;
+    "filesystem": &#123;
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/dir"]
+    &#125;,
+    "github": &#123;
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": &#123;
+        "GITHUB_TOKEN": "your-github-token"
+      &#125;
+    &#125;
+  &#125;
+&#125;</code></pre>
+			</div>
+
+			<p>
+				For more on MCP, see the <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener">official MCP servers repository</a> with implementations and documentation.
+			</p>
+		</section>
+
+		<!-- Keyboard Shortcuts -->
+		<section id="keyboard-shortcuts" class="article-section">
+			<h2>Keyboard Shortcuts: Speed Up Your Workflow</h2>
+			<p>
+				Mastering shortcuts is the difference between a casual user and a power user. Cursor inherits
+				all VS Code shortcuts and adds AI-specific ones. Here are the essential Cursor shortcuts:
+			</p>
+
+			<table class="shortcuts-table">
+				<thead>
+					<tr>
+						<th>Shortcut</th>
+						<th>Action</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#each shortcuts as shortcut}
+						<tr>
+							<td><kbd>{shortcut.keys}</kbd></td>
+							<td><strong>{shortcut.action}</strong></td>
+							<td>{shortcut.description}</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+
+			<h3>The "power user" shortcut flow</h3>
+			<div class="code-block">
+				<div class="code-block-header">
+					<span class="code-block-lang">Efficient Workflow</span>
+				</div>
+				<pre><code>1. Navigate to file:           Cmd+P (quick open)
+2. Find in file:               Cmd+F
+3. Select code:                Shift+Arrow or Cmd+Shift+L (select line)
+4. Quick edit:                 Cmd+K (inline edit)
+5. Multi-file change:          Cmd+I (Composer)
+6. Ask question:               Cmd+L (Chat)
+7. Add context:                Cmd+Shift+L (add selection to chat)
+8. Accept suggestion:          Tab
+9. Accept word:                Cmd+Right
+10. Navigate back:             Cmd+Alt+Left
+
+Combine for speed:
+Select → Cmd+Shift+L → Ask question → Apply fix → Tab → Done</code></pre>
+			</div>
+		</section>
+
+		<!-- Models & Pricing -->
+		<section id="models" class="article-section">
+			<h2>Models and Pricing</h2>
+			<p>
+				Cursor supports multiple AI models, each with different strengths. You can switch models
+				per-request, though premium models count against your monthly quota.
+			</p>
+
+			<h3>Available models</h3>
+			<ul>
+				<li><strong>Claude 3.5 Sonnet</strong> - Default, best for most coding tasks. Fast and accurate.</li>
+				<li><strong>Claude 3.5 Opus</strong> - More powerful reasoning, limited to 10 uses/day on Pro.</li>
+				<li><strong>GPT-4o</strong> - OpenAI's latest. Good alternative when Claude struggles.</li>
+				<li><strong>GPT-4</strong> - Original GPT-4, slower but solid reasoning.</li>
+				<li><strong>o1 / o1-mini</strong> - Chain-of-thought reasoning for complex problems. Very slow but powerful.</li>
+				<li><strong>cursor-small</strong> - Fast, cheap model for simple completions. Good for Tab autocomplete.</li>
+			</ul>
+
+			<h3>Pricing tiers</h3>
+			<div class="pricing-grid">
+				{#each pricing as tier}
+					<div class="pricing-card" class:popular={tier.popular}>
+						{#if tier.popular}
+							<div class="popular-badge">Most Popular</div>
+						{/if}
+						<h4>{tier.name}</h4>
+						<div class="price">{tier.price}</div>
+						<ul>
+							{#each tier.features as feature}
+								<li>{feature}</li>
+							{/each}
+						</ul>
+					</div>
+				{/each}
+			</div>
+
+			<h3>Teams pricing</h3>
+			<p>
+				Cursor Teams is $40/user/month (billed annually) or $50/user/month (billed monthly).
+				It includes everything in Pro plus:
+			</p>
+			<ul>
+				<li>Centralized billing and admin controls</li>
+				<li>Usage analytics and reporting</li>
+				<li>Team-wide .cursorrules enforcement</li>
+				<li>Priority support</li>
+				<li>SOC 2 compliance features</li>
+			</ul>
+		</section>
+
+		<!-- Advanced Tips -->
+		<section id="advanced-tips" class="article-section">
+			<h2>Advanced Tips for Power Users</h2>
+			<p>
+				Once you are comfortable with the basics, these advanced techniques will take your Cursor
+				workflow to the next level.
+			</p>
+
+			<h3>1. Use @Codebase strategically</h3>
+			<p>
+				The @Codebase reference does a semantic search across your entire project. Use it to find
+				related code, understand patterns, and ensure consistency. But use sparingly - it consumes
+				more tokens and is slower than specific @Files references.
+			</p>
+
+			<h3>2. Create custom documentation indexes</h3>
+			<p>
+				In Cursor Settings > Features > Docs, you can add custom documentation URLs. Cursor indexes
+				these and makes them available via @Docs. Add your framework's docs, internal wikis, or API
+				references.
+			</p>
+
+			<h3>3. Chain Composer tasks</h3>
+			<p>
+				Instead of one massive prompt, break work into steps. First: "Create the data model."
+				Review and accept. Then: "Add API routes for CRUD operations." Review. Then: "Add the
+				frontend components." This gives you control points and better results.
+			</p>
+
+			<h3>4. Use Notepads for context</h3>
+			<p>
+				Cursor Notepads are scratchpads that persist across sessions. Use them to store:
+			</p>
+			<ul>
+				<li>Architecture decisions and rationale</li>
+				<li>API documentation for external services</li>
+				<li>Code snippets you reference often</li>
+				<li>Meeting notes and requirements</li>
+			</ul>
+			<p>Reference notepads in Chat with @Notepads.</p>
+
+			<h3>5. Debug with the terminal</h3>
+			<p>
+				When Agent mode runs commands, watch the terminal output carefully. If you see errors,
+				you can often catch problems before Agent starts fixing the wrong thing. Sometimes
+				interrupting early and refining your prompt is faster than letting Agent struggle.
+			</p>
+
+			<h3>6. Leverage git branches</h3>
+			<p>
+				For any significant Agent task, create a branch first. Agent makes many changes quickly,
+				and having a clean branch means you can easily diff, review, and revert if needed.
+			</p>
+
+			<h3>7. Combine with Claude Code</h3>
+			<p>
+				Some developers use Cursor for visual editing and Claude Code (terminal-based) for
+				complex refactoring or when they need more control. The tools complement each other -
+				Claude Code has unlimited context and better file handling for large changes.
+			</p>
+		</section>
+
+		<!-- YouTube Tutorials -->
+		<section id="youtube-tutorials" class="article-section">
+			<h2>Video Tutorials</h2>
+			<p>
+				Sometimes watching someone use Cursor is more helpful than reading about it. These YouTube
+				tutorials cover everything from getting started to advanced workflows.
+			</p>
+
+			<div class="tutorials-grid">
+				{#each tutorials as tutorial}
+					<div class="tutorial-card">
+						<div class="tutorial-meta">
+							<span class="tutorial-duration">{tutorial.duration}</span>
+							<span class="tutorial-author">{tutorial.author}</span>
+						</div>
+						<h4>
+							<a href={tutorial.url} target="_blank" rel="noopener">{tutorial.title}</a>
+						</h4>
+						<p>{tutorial.description}</p>
+					</div>
+				{/each}
+			</div>
+
+			<div class="tip-box">
+				<strong>Recommended learning path:</strong> Start with Lee Robinson's 50-minute tutorial for
+				a complete overview, then watch Nat Eliason's full-stack build for practical application.
+				Come back to the Fireship comparison and Agent deep-dive as you advance.
+			</div>
+		</section>
+
+		<!-- Resources -->
+		<section id="resources" class="article-section">
+			<h2>Resources</h2>
+			<p>
+				Bookmark these resources for when you need help, inspiration, or the latest updates.
+			</p>
+
+			<div class="resources-list">
+				{#each resources as resource}
+					<a href={resource.url} target="_blank" rel="noopener" class="resource-item">
+						<strong>{resource.name}</strong>
+						<span class="resource-url">{resource.url}</span>
+						<p>{resource.description}</p>
+					</a>
+				{/each}
+			</div>
+
+			<h3>Security considerations</h3>
+			<p>
+				Like all AI coding tools, Cursor can generate code with security vulnerabilities. We maintain
+				a dedicated guide on <a href="/kb/vibe-coding-tools/cursor-security/">Cursor Security Patterns</a>
+				covering common issues like SQL injection, missing authentication, and hardcoded secrets.
+			</p>
+		</section>
+
+		<!-- vs Alternatives -->
+		<section id="vs-alternatives" class="article-section">
+			<h2>Cursor vs Alternatives</h2>
+			<p>
+				Cursor is not the only AI coding tool. Here is how it compares to the main alternatives:
+			</p>
+
+			<div class="comparison-grid">
+				{#each comparisons as tool}
+					<a href={tool.href} class="comparison-card">
+						<h4>Cursor vs {tool.name}</h4>
+						<p>{tool.summary}</p>
+						<span class="read-more">Read full comparison →</span>
+					</a>
+				{/each}
+			</div>
+
+			<h3>Quick comparison summary</h3>
+			<table class="comparison-table">
+				<thead>
+					<tr>
+						<th>Feature</th>
+						<th>Cursor</th>
+						<th>Copilot</th>
+						<th>Claude Code</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Multi-file editing</td>
+						<td class="good">Composer</td>
+						<td class="neutral">Limited</td>
+						<td class="good">Full codebase</td>
+					</tr>
+					<tr>
+						<td>Agent mode</td>
+						<td class="good">Yes</td>
+						<td class="bad">No</td>
+						<td class="good">Yes</td>
+					</tr>
+					<tr>
+						<td>IDE support</td>
+						<td class="neutral">Cursor only</td>
+						<td class="good">All IDEs</td>
+						<td class="neutral">Terminal</td>
+					</tr>
+					<tr>
+						<td>Model choice</td>
+						<td class="good">Multiple</td>
+						<td class="neutral">GPT-4 only</td>
+						<td class="neutral">Claude only</td>
+					</tr>
+					<tr>
+						<td>Free tier</td>
+						<td class="good">Generous</td>
+						<td class="neutral">Limited</td>
+						<td class="good">Free</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
 
 		<!-- FAQ -->
-		<section class="article-section">
-			<h2>Frequently asked questions</h2>
+		<section id="faq" class="article-section">
+			<h2>Frequently Asked Questions</h2>
 
 			<div class="faq-list">
 				{#each faqs as faq}
@@ -379,25 +1177,42 @@ export async function POST(request) {
 			</div>
 		</section>
 
+		<!-- CTA Box -->
+		<div class="cta-box">
+			<p><strong>Ready to start vibe coding with Cursor?</strong></p>
+			<p class="cta-subtext">Download free at cursor.com and follow this guide to get productive fast.</p>
+			<div class="cta-buttons">
+				<a href="https://cursor.com" target="_blank" rel="noopener" class="btn btn-green">
+					Download Cursor
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M7 17L17 7M17 7H7M17 7V17"/>
+					</svg>
+				</a>
+				<a href="/kb/vibe-coding-tools/cursor-security/" class="btn btn-secondary">
+					Security Guide
+				</a>
+			</div>
+		</div>
+
 		<!-- Related -->
 		<section class="article-section">
-			<h2>Related content</h2>
+			<h2>Related Content</h2>
 
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/claude-code/" class="card card-interactive related-card">
-					<div class="related-card-category">AI Tool</div>
-					<div class="related-card-title">Claude Code</div>
-					<p class="related-card-description">Security patterns in Claude Code generated apps</p>
+				<a href="/kb/vibe-coding-tools/cursor-security/" class="card card-interactive related-card">
+					<div class="related-card-category">Security</div>
+					<div class="related-card-title">Cursor Security Patterns</div>
+					<p class="related-card-description">Common vulnerabilities in Cursor-generated code and how to fix them</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive related-card">
-					<div class="related-card-category">AI Tool</div>
-					<div class="related-card-title">Bolt</div>
-					<p class="related-card-description">Security patterns in Bolt generated apps</p>
+				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="card card-interactive related-card">
+					<div class="related-card-category">Comparison</div>
+					<div class="related-card-title">Cursor vs GitHub Copilot</div>
+					<p class="related-card-description">Detailed comparison of features, pricing, and use cases</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive related-card">
-					<div class="related-card-category">Vulnerability</div>
-					<div class="related-card-title">SQL Injection</div>
-					<p class="related-card-description">Cursor's most common security issue</p>
+				<a href="/kb/prompts/awesome-cursor-rules/" class="card card-interactive related-card">
+					<div class="related-card-category">Resource</div>
+					<div class="related-card-title">Awesome Cursor Rules</div>
+					<p class="related-card-description">Curated collection of .cursorrules files for every stack</p>
 				</a>
 			</div>
 		</section>
@@ -413,95 +1228,83 @@ export async function POST(request) {
 		flex-wrap: wrap;
 	}
 
-	/* Pattern Card */
-	.pattern-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		padding: 1.5rem;
-		margin: 1.5rem 0;
+	.badge-featured {
+		background: var(--green);
+		color: var(--bg-primary);
 	}
 
-	.pattern-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		gap: 1rem;
-		margin-bottom: 0.75rem;
-	}
-
-	.pattern-header h3 {
-		margin: 0;
-		font-size: 1.1rem;
-	}
-
-	.pattern-description {
+	/* Subtitle and reading time */
+	.subtitle {
+		font-size: 1.25rem;
 		color: var(--text-secondary);
-		margin-bottom: 1rem;
-	}
-
-	.pattern-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		color: var(--green-dim);
-		font-size: 0.875rem;
-		text-decoration: none;
+		line-height: 1.6;
 		margin-top: 1rem;
 	}
 
-	.pattern-link:hover {
-		color: var(--green);
+	.reading-time {
+		font-size: 0.875rem;
+		color: var(--text-tertiary);
+		margin-top: 0.5rem;
 	}
 
-	/* Code Comparison */
-	.code-comparison {
-		display: grid;
-		gap: 1rem;
-		margin: 1rem 0;
-	}
-
-	.code-block.vulnerable .code-block-header {
-		border-left: 3px solid var(--red);
-	}
-
-	.code-block.secure .code-block-header {
-		border-left: 3px solid var(--green);
-	}
-
-	.status-bad {
-		color: var(--red);
-	}
-
-	.status-good {
-		color: var(--green);
-	}
-
-	.copy-btn.small {
-		font-size: 0.7rem;
-		padding: 0.25rem 0.5rem;
-	}
-
-	/* CTA Box */
-	.cta-box {
+	/* Table of contents */
+	.toc {
 		background: var(--bg-secondary);
-		border: 1px solid var(--green-dim);
-		padding: 2rem;
-		text-align: center;
+		border: 1px solid var(--border);
+		padding: 1.5rem;
 		margin: 2rem 0;
 	}
 
-	.cta-box p {
-		margin: 0 0 0.5rem;
+	.toc-header {
+		font-weight: 600;
+		margin-bottom: 1rem;
 		color: var(--text-primary);
 	}
 
-	.cta-subtext {
-		color: var(--text-secondary) !important;
-		font-size: 0.9rem;
-		margin-bottom: 1.5rem !important;
+	.toc-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: 0.5rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
 	}
 
-	/* Numbered List */
+	.toc-list a {
+		color: var(--text-secondary);
+		text-decoration: none;
+		font-size: 0.9rem;
+	}
+
+	.toc-list a:hover {
+		color: var(--green);
+	}
+
+	/* Info/tip/warning boxes */
+	.info-box,
+	.tip-box,
+	.warning-box {
+		padding: 1rem 1.25rem;
+		margin: 1.5rem 0;
+		border-left: 3px solid;
+	}
+
+	.info-box {
+		background: var(--bg-secondary);
+		border-color: var(--blue);
+	}
+
+	.tip-box {
+		background: var(--bg-secondary);
+		border-color: var(--green);
+	}
+
+	.warning-box {
+		background: var(--bg-secondary);
+		border-color: var(--orange);
+	}
+
+	/* Numbered list */
 	.numbered-list {
 		counter-reset: step;
 		list-style: none;
@@ -543,6 +1346,237 @@ export async function POST(request) {
 		font-size: 0.9rem;
 	}
 
+	/* Comparison table */
+	.comparison-table {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 1.5rem 0;
+	}
+
+	.comparison-table th,
+	.comparison-table td {
+		padding: 0.75rem;
+		text-align: left;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.comparison-table th {
+		background: var(--bg-secondary);
+		font-weight: 600;
+	}
+
+	.comparison-table .good {
+		color: var(--green);
+	}
+
+	.comparison-table .neutral {
+		color: var(--text-secondary);
+	}
+
+	.comparison-table .bad {
+		color: var(--red);
+	}
+
+	/* Shortcuts table */
+	.shortcuts-table {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 1.5rem 0;
+	}
+
+	.shortcuts-table th,
+	.shortcuts-table td {
+		padding: 0.75rem;
+		text-align: left;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.shortcuts-table th {
+		background: var(--bg-secondary);
+		font-weight: 600;
+	}
+
+	.shortcuts-table kbd {
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
+		padding: 0.2rem 0.5rem;
+		font-family: monospace;
+		font-size: 0.875rem;
+	}
+
+	/* Pricing grid */
+	.pricing-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	.pricing-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.5rem;
+		position: relative;
+	}
+
+	.pricing-card.popular {
+		border-color: var(--green);
+	}
+
+	.popular-badge {
+		position: absolute;
+		top: -0.75rem;
+		left: 1rem;
+		background: var(--green);
+		color: var(--bg-primary);
+		padding: 0.25rem 0.75rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+	}
+
+	.pricing-card h4 {
+		margin: 0 0 0.5rem;
+		font-size: 1.1rem;
+	}
+
+	.pricing-card .price {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: var(--green);
+		margin-bottom: 1rem;
+	}
+
+	.pricing-card ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.pricing-card li {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		padding: 0.25rem 0;
+	}
+
+	/* Tutorials grid */
+	.tutorials-grid {
+		display: grid;
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	.tutorial-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
+	}
+
+	.tutorial-meta {
+		display: flex;
+		gap: 1rem;
+		font-size: 0.8rem;
+		color: var(--text-tertiary);
+		margin-bottom: 0.5rem;
+	}
+
+	.tutorial-duration {
+		background: var(--bg-tertiary);
+		padding: 0.2rem 0.5rem;
+	}
+
+	.tutorial-card h4 {
+		margin: 0 0 0.5rem;
+	}
+
+	.tutorial-card h4 a {
+		color: var(--text-primary);
+		text-decoration: none;
+	}
+
+	.tutorial-card h4 a:hover {
+		color: var(--green);
+	}
+
+	.tutorial-card p {
+		margin: 0;
+		font-size: 0.9rem;
+		color: var(--text-secondary);
+	}
+
+	/* Resources list */
+	.resources-list {
+		display: grid;
+		gap: 0.75rem;
+		margin: 1.5rem 0;
+	}
+
+	.resource-item {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1rem 1.25rem;
+		text-decoration: none;
+		display: block;
+		transition: border-color 0.2s;
+	}
+
+	.resource-item:hover {
+		border-color: var(--green);
+	}
+
+	.resource-item strong {
+		color: var(--text-primary);
+		display: block;
+		margin-bottom: 0.25rem;
+	}
+
+	.resource-url {
+		font-size: 0.8rem;
+		color: var(--green-dim);
+		font-family: monospace;
+	}
+
+	.resource-item p {
+		margin: 0.5rem 0 0;
+		font-size: 0.9rem;
+		color: var(--text-secondary);
+	}
+
+	/* Comparison grid */
+	.comparison-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	.comparison-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
+		text-decoration: none;
+		transition: border-color 0.2s;
+	}
+
+	.comparison-card:hover {
+		border-color: var(--green);
+	}
+
+	.comparison-card h4 {
+		margin: 0 0 0.5rem;
+		color: var(--text-primary);
+	}
+
+	.comparison-card p {
+		margin: 0 0 0.75rem;
+		font-size: 0.9rem;
+		color: var(--text-secondary);
+	}
+
+	.read-more {
+		font-size: 0.875rem;
+		color: var(--green-dim);
+	}
+
 	/* FAQ */
 	.faq-list {
 		margin-top: 1rem;
@@ -563,8 +1597,6 @@ export async function POST(request) {
 		font-weight: 600;
 		margin: 0 0 0.5rem;
 		color: var(--text-primary);
-		line-height: 1.5;
-		letter-spacing: -0.01em;
 	}
 
 	.faq-item p {
@@ -574,26 +1606,85 @@ export async function POST(request) {
 		color: var(--text-secondary);
 	}
 
-	/* Severity badges */
-	.badge-critical {
-		background: var(--red);
-		color: white;
+	/* CTA Box */
+	.cta-box {
+		background: var(--bg-secondary);
+		border: 1px solid var(--green-dim);
+		padding: 2rem;
+		text-align: center;
+		margin: 2rem 0;
 	}
 
-	.badge-high {
-		background: var(--orange, #f97316);
-		color: white;
+	.cta-box p {
+		margin: 0 0 0.5rem;
+		color: var(--text-primary);
 	}
 
-	.badge-medium {
-		background: var(--yellow, #eab308);
-		color: black;
+	.cta-subtext {
+		color: var(--text-secondary) !important;
+		font-size: 0.9rem;
+		margin-bottom: 1.5rem !important;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.btn-secondary {
+		background: var(--bg-tertiary);
+		color: var(--text-primary);
+		border: 1px solid var(--border);
+	}
+
+	.btn-secondary:hover {
+		border-color: var(--text-secondary);
+	}
+
+	/* Related grid */
+	.related-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.related-card {
+		padding: 1.25rem;
+	}
+
+	.related-card-category {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--green-dim);
+		margin-bottom: 0.5rem;
+	}
+
+	.related-card-title {
+		font-weight: 600;
+		margin-bottom: 0.5rem;
+	}
+
+	.related-card-description {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		margin: 0;
 	}
 
 	@media (max-width: 768px) {
-		.pattern-header {
+		.toc-list {
+			grid-template-columns: 1fr;
+		}
+
+		.pricing-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.cta-buttons {
 			flex-direction: column;
-			gap: 0.5rem;
 		}
 	}
 </style>
