@@ -523,29 +523,30 @@ For each issue found:
 				Each AI coding tool has different security characteristics. v0's UI-first approach means its vulnerabilities differ from full-stack tools like <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> or code-completion tools like <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>:
 			</p>
 
-			<div class="table-wrapper">
-				<table>
-					<thead>
-						<tr>
-							<th>Tool</th>
-							<th>Security Posture</th>
-							<th>Target User</th>
-							<th>Top Issue</th>
-							<th>Best For</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each toolComparison as row}
-							<tr class:highlight={row.tool === 'v0'}>
-								<td><strong>{row.tool}</strong></td>
-								<td>{row.securityPosture}</td>
-								<td>{row.targetUser}</td>
-								<td>{row.topIssue}</td>
-								<td>{row.bestFor}</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
+			<div class="comparison-stack">
+				{#each toolComparison as row}
+					<div class="comparison-row" class:highlight={row.tool === 'v0'}>
+						<div class="comparison-tool"><strong>{row.tool}</strong></div>
+						<div class="comparison-details">
+							<div class="comparison-item">
+								<span class="comparison-label">Security</span>
+								<span class="comparison-value">{row.securityPosture}</span>
+							</div>
+							<div class="comparison-item">
+								<span class="comparison-label">Target User</span>
+								<span class="comparison-value">{row.targetUser}</span>
+							</div>
+							<div class="comparison-item">
+								<span class="comparison-label">Top Issue</span>
+								<span class="comparison-value">{row.topIssue}</span>
+							</div>
+							<div class="comparison-item">
+								<span class="comparison-label">Best For</span>
+								<span class="comparison-value">{row.bestFor}</span>
+							</div>
+						</div>
+					</div>
+				{/each}
 			</div>
 		</section>
 
@@ -766,30 +767,80 @@ For each issue found:
 		padding: 0;
 	}
 
-	.table-wrapper {
-		overflow-x: auto;
+	/* Comparison Stack - mobile-friendly tool comparison */
+	.comparison-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
 		margin: 1rem 0;
 	}
 
-	table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 0.875rem;
-	}
-
-	th, td {
-		padding: 0.75rem 1rem;
-		text-align: left;
-		border-bottom: 1px solid var(--border);
-	}
-
-	th {
+	.comparison-row {
 		background: var(--bg-secondary);
-		font-weight: 600;
+		border: 1px solid var(--border);
+		padding: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		align-items: center;
 	}
 
-	tr.highlight {
+	.comparison-row.highlight {
 		background: var(--green-muted);
+		border-color: var(--green-dim);
+	}
+
+	.comparison-tool {
+		min-width: 100px;
+		font-size: 1rem;
+	}
+
+	.comparison-details {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem 2rem;
+		flex: 1;
+	}
+
+	.comparison-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.125rem;
+		min-width: 120px;
+	}
+
+	.comparison-label {
+		font-size: 0.7rem;
+		color: var(--text-tertiary);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.comparison-value {
+		font-size: 0.875rem;
+		color: var(--text-primary);
+	}
+
+	@media (max-width: 600px) {
+		.comparison-row {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.comparison-tool {
+			width: 100%;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid var(--border);
+			margin-bottom: 0.25rem;
+		}
+
+		.comparison-details {
+			width: 100%;
+		}
+
+		.comparison-item {
+			min-width: calc(50% - 0.5rem);
+		}
 	}
 
 	.prompt-box {
