@@ -4,7 +4,7 @@
 	// Page metadata
 	const meta = {
 		title: 'Claude Code vs Cursor 2025: Why Top Developers Use Both',
-		description: 'Claude Code vs Cursor: not either/or. The best vibe coders run both. Learn the dual-stack workflow, Claude Max pricing, terminal integration, and when to use each tool.',
+		description: 'Claude Code vs Cursor: not either/or. The best vibe coders run both. Learn the dual-stack workflow, pricing breakdown, and when to use each tool.',
 		url: '/kb/vibe-coding-tools/claude-code-vs-cursor/'
 	};
 
@@ -128,70 +128,139 @@
 			</p>
 		</div>
 
-		<!-- Quick Comparison Table -->
+		<!-- Quantitative Comparison -->
 		<section>
 			<h2>How do Claude Code and Cursor compare?</h2>
 			<p>
 				Different tools, different strengths. Claude Code is a terminal-based autonomous agent that plans and executes complex tasks. Cursor is an AI-powered IDE that augments your typing with fast suggestions. <a href="https://www.sidetool.co/post/combining-cursor-and-claude-code-for-next-level-app-development/" target="_blank" rel="noopener">Together, they form a dual-stack workflow</a> where Claude architects and Cursor implements.
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Attribute</th>
-							<th>Claude Code</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Company</td>
-							<td><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></td>
-							<td>Anysphere</td>
-						</tr>
-						<tr>
-							<td>Interface</td>
-							<td>Terminal (CLI)</td>
-							<td>IDE (VS Code fork)</td>
-						</tr>
-						<tr>
-							<td>Core Strength</td>
-							<td class="highlight-claude">Autonomous complex tasks</td>
-							<td class="highlight-cursor">Fast autocomplete + UI</td>
-						</tr>
-						<tr>
-							<td>Context Window</td>
-							<td class="highlight-claude">200K tokens (reliable)</td>
-							<td>Variable (performance-managed)</td>
-						</tr>
-						<tr>
-							<td>Multi-file Editing</td>
-							<td class="highlight-claude">Excellent (native)</td>
-							<td>Good (Composer)</td>
-						</tr>
-						<tr>
-							<td>Autocomplete</td>
-							<td>No</td>
-							<td class="highlight-cursor">Yes (Tab)</td>
-						</tr>
-						<tr>
-							<td>Background Agents</td>
-							<td class="highlight-claude">Yes (30+ hour tasks)</td>
-							<td class="highlight-cursor">Yes (remote sandboxes)</td>
-						</tr>
-						<tr>
-							<td>Pricing</td>
-							<td>$20-200/mo (usage tiers)</td>
-							<td>$20/mo Pro</td>
-						</tr>
-						<tr>
-							<td>Best For</td>
-							<td>Architecture, refactoring</td>
-							<td>Daily coding, quick edits</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="comparison-stack">
+				<div class="comparison-row">
+					<div class="comparison-label">Company</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value"><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Anysphere</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Interface</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">Terminal (CLI)</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">IDE (VS Code fork)</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Core Strength</div>
+					<div class="comparison-values">
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">Autonomous complex tasks</span>
+						</div>
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Fast autocomplete + UI</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Context Window</div>
+					<div class="comparison-values">
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">200K tokens (reliable)</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Variable (performance-managed)</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Multi-file Editing</div>
+					<div class="comparison-values">
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">Excellent (native)</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Good (Composer)</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Autocomplete</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">No</span>
+						</div>
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Yes (Tab)</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Background Agents</div>
+					<div class="comparison-values">
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">30+ hour sustained tasks</span>
+						</div>
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Remote sandboxes, parallel</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Pricing</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">$20-200/mo (usage tiers)</span>
+						</div>
+						<div class="comparison-cell highlight-win">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">$20/mo Pro (flat)</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="comparison-row">
+					<div class="comparison-label">Best For</div>
+					<div class="comparison-values">
+						<div class="comparison-cell">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">Architecture, refactoring</span>
+						</div>
+						<div class="comparison-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Daily coding, quick edits</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -202,10 +271,10 @@
 				The "Claude Code OR Cursor" framing misses the point. According to <a href="https://darrenredmond.com/blog/2025/08/23/claude-code-vs-cursor-ide-why-developers-need-both-in-2025/" target="_blank" rel="noopener">developers who've tested both extensively</a>, the smart setup is running them together. Claude Code functions as the architect and mentor. Cursor functions as the hands-on coding partner.
 			</p>
 
-			<div class="workflow-cards">
-				<div class="workflow-card claude-card">
+			<div class="role-cards">
+				<div class="role-card">
 					<h3>Claude Code's Role</h3>
-					<p class="workflow-tagline">The explainer. The architect.</p>
+					<p class="role-tagline">The explainer. The architect.</p>
 					<ul>
 						<li>Analyze repos and draft architectural changes</li>
 						<li>Plan complex refactoring before touching files</li>
@@ -214,9 +283,9 @@
 						<li>Write meaningful commit messages that explain intent</li>
 					</ul>
 				</div>
-				<div class="workflow-card cursor-card">
+				<div class="role-card">
 					<h3>Cursor's Role</h3>
-					<p class="workflow-tagline">The scaffolder. The speed demon.</p>
+					<p class="role-tagline">The scaffolder. The speed demon.</p>
 					<ul>
 						<li>Fast Tab autocomplete while you type</li>
 						<li>Quick Cmd+K edits on selected code</li>
@@ -230,6 +299,91 @@
 			<p>
 				One developer <a href="https://medium.com/realworld-ai-use-cases/i-tested-cursor-vs-claude-code-one-took-2-minutes-the-other-took-24-0b0614484f34" target="_blank" rel="noopener">reported stopping their Cursor subscription</a> initially, but most find the combination works better: "Claude Code on average produces 30% fewer code reworks and gets things right in the first or second iteration" for complex tasks, while Cursor excels at the rapid iteration needed for smaller changes.
 			</p>
+		</section>
+
+		<!-- Workflow Comparison -->
+		<section>
+			<h2>What does each workflow actually look like?</h2>
+			<p>
+				Quantitative difference in how each tool approaches the same task. Same codebase, same complexity level - different approaches.
+			</p>
+
+			<div class="workflow-comparison">
+				<div class="workflow-block">
+					<div class="workflow-header">
+						<span class="workflow-task">Task: Add authentication to existing API</span>
+					</div>
+					<div class="workflow-steps">
+						<div class="workflow-tool-section">
+							<h4>Claude Code Approach</h4>
+							<div class="workflow-metrics">
+								<span class="metric">Time: 15-25 min</span>
+								<span class="metric">Iterations: 1-2</span>
+								<span class="metric">Files touched: 12-15</span>
+							</div>
+							<ol>
+								<li>Analyzes existing auth patterns in codebase</li>
+								<li>Creates implementation plan with all files listed</li>
+								<li>Applies changes across all files atomically</li>
+								<li>Generates migration scripts and tests</li>
+								<li>Commits with detailed message explaining changes</li>
+							</ol>
+						</div>
+						<div class="workflow-tool-section">
+							<h4>Cursor Approach</h4>
+							<div class="workflow-metrics">
+								<span class="metric">Time: 30-45 min</span>
+								<span class="metric">Iterations: 3-5</span>
+								<span class="metric">Files touched: 12-15</span>
+							</div>
+							<ol>
+								<li>Cmd+K to generate auth middleware</li>
+								<li>Tab-complete integration in routes</li>
+								<li>Composer for multi-file updates</li>
+								<li>Manual review of each diff</li>
+								<li>Iterative fixes as issues surface</li>
+							</ol>
+						</div>
+					</div>
+					<div class="workflow-verdict">
+						Claude Code wins on complex multi-file tasks. Fewer iterations, better first-attempt accuracy.
+					</div>
+				</div>
+
+				<div class="workflow-block">
+					<div class="workflow-header">
+						<span class="workflow-task">Task: Fix typo and add console.log</span>
+					</div>
+					<div class="workflow-steps">
+						<div class="workflow-tool-section">
+							<h4>Claude Code Approach</h4>
+							<div class="workflow-metrics">
+								<span class="metric">Time: 45-60 sec</span>
+								<span class="metric">Overhead: Terminal context</span>
+							</div>
+							<ol>
+								<li>Type natural language request</li>
+								<li>Wait for tool to analyze file</li>
+								<li>Confirm the edit</li>
+							</ol>
+						</div>
+						<div class="workflow-tool-section">
+							<h4>Cursor Approach</h4>
+							<div class="workflow-metrics">
+								<span class="metric">Time: 10-15 sec</span>
+								<span class="metric">Overhead: None</span>
+							</div>
+							<ol>
+								<li>Select text, Cmd+K, type fix</li>
+								<li>Accept inline change</li>
+							</ol>
+						</div>
+					</div>
+					<div class="workflow-verdict">
+						Cursor wins on quick edits. Less overhead, faster iteration.
+					</div>
+				</div>
+			</div>
 		</section>
 
 		<!-- How to Run Claude Code Inside Cursor -->
@@ -252,14 +406,14 @@
 					<span class="step-number">2</span>
 					<div class="step-content">
 						<h4>Open Cursor's terminal</h4>
-						<p>Use <code>Ctrl+`</code> (or <code>Cmd+`</code> on Mac) to open the integrated terminal in Cursor.</p>
+						<p>Use Ctrl+` (or Cmd+` on Mac) to open the integrated terminal in Cursor.</p>
 					</div>
 				</div>
 				<div class="setup-step">
 					<span class="step-number">3</span>
 					<div class="step-content">
 						<h4>Run Claude Code with IDE integration</h4>
-						<p>The <code>/ide</code> command enables automatic context sharing with Cursor.</p>
+						<p>The /ide command enables automatic context sharing with Cursor.</p>
 						<pre><code>claude
 /ide</code></pre>
 					</div>
@@ -280,7 +434,7 @@
 				<ul>
 					<li><strong>Automatic context sharing:</strong> Claude Code knows about your current file and cursor position</li>
 					<li><strong>Integrated diff viewing:</strong> Changes appear in Cursor's diff viewer, not just terminal output</li>
-					<li><strong>File reference shortcuts:</strong> <code>Cmd+Option+K</code> (Mac) or <code>Alt+Ctrl+K</code> (Windows) to insert file references</li>
+					<li><strong>File reference shortcuts:</strong> Cmd+Option+K (Mac) or Alt+Ctrl+K (Windows) to insert file references</li>
 					<li><strong>Diagnostic integration:</strong> Claude Code sees Cursor's error diagnostics</li>
 				</ul>
 			</div>
@@ -297,43 +451,86 @@
 				Cursor is simple: $20/month flat. Claude Code uses tiered subscriptions with usage limits. <a href="https://techcrunch.com/2025/07/28/anthropic-unveils-new-rate-limits-to-curb-claude-code-power-users/" target="_blank" rel="noopener">Anthropic introduced weekly rate limits</a> to manage heavy usage.
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Plan</th>
-							<th>Claude Code</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Free</td>
-							<td>Limited trial</td>
-							<td>2000 completions + 50 slow requests</td>
-						</tr>
-						<tr>
-							<td>Pro ($20/mo)</td>
-							<td>40-80 hours Sonnet 4/week</td>
-							<td>Unlimited fast completions</td>
-						</tr>
-						<tr>
-							<td>Max $100/mo</td>
-							<td>140-280 hrs Sonnet 4 + 15-35 hrs Opus 4</td>
-							<td>-</td>
-						</tr>
-						<tr>
-							<td>Max $200/mo</td>
-							<td>240-480 hrs Sonnet 4 + 24-40 hrs Opus 4</td>
-							<td>-</td>
-						</tr>
-						<tr>
-							<td>Business/Team</td>
-							<td>API pricing + enterprise features</td>
-							<td>$40/user/month</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="pricing-stack">
+				<div class="pricing-tier">
+					<div class="tier-header">
+						<span class="tier-name">Free Tier</span>
+					</div>
+					<div class="tier-values">
+						<div class="tier-cell">
+							<span class="tier-tool">Claude Code</span>
+							<span class="tier-value">Limited trial</span>
+						</div>
+						<div class="tier-cell">
+							<span class="tier-tool">Cursor</span>
+							<span class="tier-value">2000 completions + 50 slow requests</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="pricing-tier">
+					<div class="tier-header">
+						<span class="tier-name">Pro ($20/mo)</span>
+					</div>
+					<div class="tier-values">
+						<div class="tier-cell">
+							<span class="tier-tool">Claude Code</span>
+							<span class="tier-value">40-80 hours Sonnet 4/week</span>
+						</div>
+						<div class="tier-cell">
+							<span class="tier-tool">Cursor</span>
+							<span class="tier-value">Unlimited fast completions</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="pricing-tier">
+					<div class="tier-header">
+						<span class="tier-name">Max $100/mo</span>
+					</div>
+					<div class="tier-values">
+						<div class="tier-cell">
+							<span class="tier-tool">Claude Code</span>
+							<span class="tier-value">140-280 hrs Sonnet 4 + 15-35 hrs Opus 4</span>
+						</div>
+						<div class="tier-cell tier-cell-empty">
+							<span class="tier-tool">Cursor</span>
+							<span class="tier-value">-</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="pricing-tier">
+					<div class="tier-header">
+						<span class="tier-name">Max $200/mo</span>
+					</div>
+					<div class="tier-values">
+						<div class="tier-cell">
+							<span class="tier-tool">Claude Code</span>
+							<span class="tier-value">240-480 hrs Sonnet 4 + 24-40 hrs Opus 4</span>
+						</div>
+						<div class="tier-cell tier-cell-empty">
+							<span class="tier-tool">Cursor</span>
+							<span class="tier-value">-</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="pricing-tier">
+					<div class="tier-header">
+						<span class="tier-name">Business/Team</span>
+					</div>
+					<div class="tier-values">
+						<div class="tier-cell">
+							<span class="tier-tool">Claude Code</span>
+							<span class="tier-value">API pricing + enterprise features</span>
+						</div>
+						<div class="tier-cell">
+							<span class="tier-tool">Cursor</span>
+							<span class="tier-value">$40/user/month</span>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<div class="pricing-callout">
@@ -356,68 +553,146 @@
 				Both tools have long feature lists. These are the ones that actually affect your daily workflow.
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Feature</th>
-							<th>Claude Code</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Autocomplete</td>
-							<td>No</td>
-							<td class="highlight-cursor">Yes - Tab, multi-line</td>
-						</tr>
-						<tr>
-							<td>Multi-file Refactoring</td>
-							<td class="highlight-claude">Excellent - describes changes, applies all</td>
-							<td>Good - Composer mode</td>
-						</tr>
-						<tr>
-							<td>Plan Before Coding</td>
-							<td class="highlight-claude">Yes - Plan Mode reviews approach first</td>
-							<td>Limited</td>
-						</tr>
-						<tr>
-							<td>Background Tasks</td>
-							<td class="highlight-claude">30+ hours sustained focus</td>
-							<td class="highlight-cursor">Remote sandboxes, parallel agents</td>
-						</tr>
-						<tr>
-							<td>Git Integration</td>
-							<td>Native - commits, PRs, branch management</td>
-							<td>Native - full git support</td>
-						</tr>
-						<tr>
-							<td>GitHub PR Reviews</td>
-							<td class="highlight-claude">Yes - /install-github-app</td>
-							<td class="highlight-cursor">Yes - @Cursor in PRs</td>
-						</tr>
-						<tr>
-							<td>Linear Integration</td>
-							<td>No</td>
-							<td class="highlight-cursor">Yes - start agents from issues</td>
-						</tr>
-						<tr>
-							<td>Custom Instructions</td>
-							<td><a href="/kb/prompts/claude-md/">CLAUDE.md</a></td>
-							<td><a href="/kb/prompts/cursor-rules/">.cursorrules</a></td>
-						</tr>
-						<tr>
-							<td>MCP Tools</td>
-							<td>Yes</td>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<td>Checkpoints/Rollback</td>
-							<td class="highlight-claude">Yes - instant rollback</td>
-							<td>Git-based</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="feature-stack">
+				<div class="feature-row">
+					<div class="feature-label">Autocomplete</div>
+					<div class="feature-values">
+						<div class="feature-cell">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">No</span>
+						</div>
+						<div class="feature-cell highlight-win">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Yes - Tab, multi-line</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="feature-row">
+					<div class="feature-label">Multi-file Refactoring</div>
+					<div class="feature-values">
+						<div class="feature-cell highlight-win">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">Excellent - describes changes, applies all</span>
+						</div>
+						<div class="feature-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Good - Composer mode</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="feature-row">
+					<div class="feature-label">Plan Before Coding</div>
+					<div class="feature-values">
+						<div class="feature-cell highlight-win">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">Yes - Plan Mode reviews approach first</span>
+						</div>
+						<div class="feature-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Limited</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="feature-row">
+					<div class="feature-label">Background Tasks</div>
+					<div class="feature-values">
+						<div class="feature-cell highlight-win">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">30+ hours sustained focus</span>
+						</div>
+						<div class="feature-cell highlight-win">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Remote sandboxes, parallel agents</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="feature-row">
+					<div class="feature-label">Git Integration</div>
+					<div class="feature-values">
+						<div class="feature-cell">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">Native - commits, PRs, branch management</span>
+						</div>
+						<div class="feature-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Native - full git support</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="feature-row">
+					<div class="feature-label">GitHub PR Reviews</div>
+					<div class="feature-values">
+						<div class="feature-cell highlight-win">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">Yes - /install-github-app</span>
+						</div>
+						<div class="feature-cell highlight-win">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Yes - @Cursor in PRs</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="feature-row">
+					<div class="feature-label">Linear Integration</div>
+					<div class="feature-values">
+						<div class="feature-cell">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">No</span>
+						</div>
+						<div class="feature-cell highlight-win">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Yes - start agents from issues</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="feature-row">
+					<div class="feature-label">Custom Instructions</div>
+					<div class="feature-values">
+						<div class="feature-cell">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value"><a href="/kb/prompts/claude-md/">CLAUDE.md</a></span>
+						</div>
+						<div class="feature-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value"><a href="/kb/prompts/cursor-rules/">.cursorrules</a></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="feature-row">
+					<div class="feature-label">MCP Tools</div>
+					<div class="feature-values">
+						<div class="feature-cell">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">Yes</span>
+						</div>
+						<div class="feature-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Yes</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="feature-row">
+					<div class="feature-label">Checkpoints/Rollback</div>
+					<div class="feature-values">
+						<div class="feature-cell highlight-win">
+							<span class="cell-tool">Claude Code</span>
+							<span class="cell-value">Yes - instant rollback</span>
+						</div>
+						<div class="feature-cell">
+							<span class="cell-tool">Cursor</span>
+							<span class="cell-value">Git-based</span>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<p>
@@ -432,8 +707,8 @@
 				Both tools can run AI agents in the background while you work on other things. The implementations differ significantly.
 			</p>
 
-			<div class="agent-comparison">
-				<div class="agent-card claude-agent">
+			<div class="agent-cards">
+				<div class="agent-card">
 					<h3>Claude Code Background Tasks</h3>
 					<ul>
 						<li><a href="https://www.anthropic.com/engineering/claude-code-best-practices" target="_blank" rel="noopener">Sustained focus for 30+ hours</a> on complex multi-step tasks</li>
@@ -443,7 +718,7 @@
 						<li><a href="https://www.anthropic.com/engineering/claude-code-sandboxing" target="_blank" rel="noopener">Sandboxing reduces permission prompts by 84%</a></li>
 					</ul>
 				</div>
-				<div class="agent-card cursor-agent">
+				<div class="agent-card">
 					<h3>Cursor Background Agents</h3>
 					<ul>
 						<li>Run in <a href="https://cursor.com/changelog/0-50" target="_blank" rel="noopener">isolated remote sandboxes</a></li>
@@ -461,12 +736,15 @@
 			</p>
 		</section>
 
-		<!-- When to Use Each -->
+		<!-- Decision Matrix -->
 		<section>
-			<h2>When should you use Claude Code vs Cursor?</h2>
+			<h2>Quick decision matrix</h2>
+			<p>
+				Based on workflow measurements and user reports. Pick the right tool for the job.
+			</p>
 
-			<div class="use-case-grid">
-				<div class="use-case claude-use">
+			<div class="decision-matrix">
+				<div class="decision-category">
 					<h3>Use Claude Code when...</h3>
 					<ul>
 						<li><strong>Complex refactoring:</strong> Changing architecture across 20+ files</li>
@@ -477,7 +755,7 @@
 						<li><strong>First drafts of medium PRs:</strong> Gets things right in 1-2 iterations</li>
 					</ul>
 				</div>
-				<div class="use-case cursor-use">
+				<div class="decision-category">
 					<h3>Use Cursor when...</h3>
 					<ul>
 						<li><strong>Quick edits:</strong> Fast Cmd+K changes on selected code</li>
@@ -493,24 +771,24 @@
 			<div class="workflow-tip">
 				<h4>The Recommended Workflow</h4>
 				<p>
-					<strong>Plan → small diff → tests → review.</strong> Use Claude Code to plan the approach and generate documentation. Use Cursor for the actual implementation with visual feedback. Keep context tight with CLAUDE.md files. Clear context often with <code>/clear</code>. Never skip the review step under pressure.
+					<strong>Plan -> small diff -> tests -> review.</strong> Use Claude Code to plan the approach and generate documentation. Use Cursor for the actual implementation with visual feedback. Keep context tight with CLAUDE.md files. Clear context often with /clear. Never skip the review step under pressure.
 				</p>
 			</div>
 		</section>
 
-		<!-- Security Section (Condensed) -->
+		<!-- Security Section -->
 		<section>
 			<h2>What about security?</h2>
 			<p>
 				Both tools can generate vulnerable code. That's inherent to AI code generation, not specific to either tool. Per the <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP Top 10 for LLM Applications</a>, all AI coding tools require review.
 			</p>
 
-			<div class="security-summary">
-				<div class="security-item">
+			<div class="security-cards">
+				<div class="security-card">
 					<h4>Claude Code</h4>
 					<p>3 CVEs (patched) including <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-52882" target="_blank" rel="noopener">CVE-2025-52882</a> (CVSS 8.8). Built by Anthropic with AI safety focus. Plan Mode allows security review before execution.</p>
 				</div>
-				<div class="security-item">
+				<div class="security-card">
 					<h4>Cursor</h4>
 					<p>1 CVE: <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62352" target="_blank" rel="noopener">CVE-2025-62352</a> (path traversal, patched). Privacy mode available. Can use Claude models for better security reasoning.</p>
 				</div>
@@ -522,43 +800,45 @@
 		</section>
 
 		<!-- FAQ Section -->
-		<section class="faq-section">
+		<section>
 			<h2>Frequently Asked Questions</h2>
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
 		<section>
 			<h2>Keep exploring</h2>
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/claude-code/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Claude Code: Complete Guide</span>
+				<a href="/kb/vibe-coding-tools/claude-code/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">Claude Code: Complete Guide</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Cursor: Complete Guide</span>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">Cursor: Complete Guide</h3>
 				</a>
-				<a href="/kb/prompts/claude-md/" class="related-card">
-					<span class="related-type">Prompts</span>
-					<span class="related-title">Writing Effective CLAUDE.md Files</span>
+				<a href="/kb/prompts/claude-md/" class="card card-interactive">
+					<span class="related-card-category">Prompts</span>
+					<h3 class="related-card-title">Writing Effective CLAUDE.md Files</h3>
 				</a>
-				<a href="/kb/prompts/cursor-rules/" class="related-card">
-					<span class="related-type">Prompts</span>
-					<span class="related-title">Cursor Rules That Work</span>
+				<a href="/kb/prompts/cursor-rules/" class="card card-interactive">
+					<span class="related-card-category">Prompts</span>
+					<h3 class="related-card-title">Cursor Rules That Work</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Cursor vs GitHub Copilot</span>
+				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Cursor vs GitHub Copilot</h3>
 				</a>
-				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Guide</span>
-					<span class="related-title">Secure Vibe Coding Guide</span>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive">
+					<span class="related-card-category">Guide</span>
+					<h3 class="related-card-title">Secure Vibe Coding Guide</h3>
 				</a>
 			</div>
 		</section>
@@ -576,8 +856,8 @@
 
 	/* Custom badge variant for comparisons */
 	.badge-comparison {
-		border-color: var(--blue);
-		color: var(--blue);
+		border-color: var(--text-tertiary);
+		color: var(--text-secondary);
 		background: transparent;
 	}
 
@@ -587,58 +867,113 @@
 		margin-bottom: 0;
 	}
 
-	/* Comparison Table */
-	.comparison-table-wrapper {
-		overflow-x: auto;
+	/* Mobile-friendly stacked comparison rows */
+	.comparison-stack,
+	.pricing-stack,
+	.feature-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		margin: 1.5rem 0;
 	}
 
-	.comparison-table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 0.9rem;
-	}
-
-	.comparison-table th,
-	.comparison-table td {
-		padding: 0.75rem 1rem;
-		text-align: left;
+	.comparison-row,
+	.pricing-tier,
+	.feature-row {
+		background: var(--bg-secondary);
 		border: 1px solid var(--border);
 	}
 
-	.comparison-table th {
-		background: var(--bg-secondary);
+	.comparison-label,
+	.tier-header,
+	.feature-label {
+		padding: 0.75rem 1rem;
+		background: var(--bg-tertiary);
 		font-family: 'JetBrains Mono', monospace;
-		font-size: 0.7rem;
+		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		color: var(--text-secondary);
+		border-bottom: 1px solid var(--border);
 	}
 
-	.comparison-table th:nth-child(2) {
-		color: var(--violet);
+	.comparison-values,
+	.tier-values,
+	.feature-values {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
 	}
 
-	.comparison-table th:nth-child(3) {
-		color: var(--blue);
+	@media (max-width: 600px) {
+		.comparison-values,
+		.tier-values,
+		.feature-values {
+			grid-template-columns: 1fr;
+		}
 	}
 
-	.comparison-table td.highlight-claude {
-		color: var(--violet);
+	.comparison-cell,
+	.tier-cell,
+	.feature-cell {
+		padding: 0.75rem 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		border-right: 1px solid var(--border);
+	}
+
+	.comparison-cell:last-child,
+	.tier-cell:last-child,
+	.feature-cell:last-child {
+		border-right: none;
+	}
+
+	@media (max-width: 600px) {
+		.comparison-cell,
+		.tier-cell,
+		.feature-cell {
+			border-right: none;
+			border-bottom: 1px solid var(--border);
+		}
+
+		.comparison-cell:last-child,
+		.tier-cell:last-child,
+		.feature-cell:last-child {
+			border-bottom: none;
+		}
+	}
+
+	.cell-tool,
+	.tier-tool {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-tertiary);
+	}
+
+	.cell-value,
+	.tier-value {
+		font-size: 0.9rem;
+		color: var(--text-primary);
+	}
+
+	.highlight-win .cell-value {
+		color: var(--green-muted);
 		font-weight: 500;
 	}
 
-	.comparison-table td.highlight-cursor {
-		color: var(--blue);
-		font-weight: 500;
+	.tier-cell-empty .tier-value {
+		color: var(--text-tertiary);
 	}
 
 	/* Highlight Section */
 	.highlight-section {
 		background: var(--bg-secondary);
 		border: 1px solid var(--border);
-		border-left: 3px solid var(--green);
+		border-left: 3px solid var(--border-strong);
 		padding: 1.5rem;
 		margin: 2rem 0;
 	}
@@ -649,8 +984,8 @@
 		padding-bottom: 0;
 	}
 
-	/* Workflow Cards */
-	.workflow-cards {
+	/* Role Cards (neutral) */
+	.role-cards {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1rem;
@@ -658,43 +993,106 @@
 	}
 
 	@media (max-width: 768px) {
-		.workflow-cards {
+		.role-cards {
 			grid-template-columns: 1fr;
 		}
 	}
 
-	.workflow-card {
+	.role-card {
 		background: var(--bg-primary);
 		border: 1px solid var(--border);
 		padding: 1.25rem;
 	}
 
-	.workflow-card h3 {
+	.role-card h3 {
 		margin-top: 0;
 		margin-bottom: 0.25rem;
+		color: var(--text-primary);
 	}
 
-	.workflow-tagline {
+	.role-tagline {
 		font-size: 0.85rem;
 		color: var(--text-secondary);
 		font-style: italic;
 		margin-bottom: 1rem;
 	}
 
-	.claude-card {
-		border-left: 3px solid var(--violet);
+	/* Workflow Comparison */
+	.workflow-comparison {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		margin: 1.5rem 0;
 	}
 
-	.claude-card h3 {
-		color: var(--violet);
+	.workflow-block {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 	}
 
-	.cursor-card {
-		border-left: 3px solid var(--blue);
+	.workflow-header {
+		padding: 0.75rem 1rem;
+		background: var(--bg-tertiary);
+		border-bottom: 1px solid var(--border);
 	}
 
-	.cursor-card h3 {
-		color: var(--blue);
+	.workflow-task {
+		font-weight: 600;
+		color: var(--text-primary);
+	}
+
+	.workflow-steps {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		padding: 1rem;
+	}
+
+	@media (max-width: 768px) {
+		.workflow-steps {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.workflow-tool-section h4 {
+		margin: 0 0 0.5rem 0;
+		font-size: 0.9rem;
+		color: var(--text-primary);
+	}
+
+	.workflow-metrics {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.metric {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
+		padding: 0.25rem 0.5rem;
+		background: var(--bg-tertiary);
+		color: var(--text-secondary);
+	}
+
+	.workflow-tool-section ol {
+		margin: 0;
+		padding-left: 1.25rem;
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+	}
+
+	.workflow-tool-section li {
+		margin-bottom: 0.25rem;
+	}
+
+	.workflow-verdict {
+		padding: 0.75rem 1rem;
+		background: var(--bg-tertiary);
+		border-top: 1px solid var(--border);
+		font-size: 0.85rem;
+		color: var(--green-muted);
+		font-weight: 500;
 	}
 
 	/* Setup Steps */
@@ -717,7 +1115,7 @@
 		justify-content: center;
 		width: 2rem;
 		height: 2rem;
-		background: var(--green);
+		background: var(--text-primary);
 		color: var(--bg-primary);
 		font-weight: 700;
 		font-size: 0.9rem;
@@ -756,14 +1154,14 @@
 	.pro-tip {
 		background: var(--bg-secondary);
 		border: 1px solid var(--border);
-		border-left: 3px solid var(--green);
+		border-left: 3px solid var(--border-strong);
 		padding: 1.25rem;
 		margin: 1.5rem 0;
 	}
 
 	.pro-tip h4 {
 		margin: 0 0 0.75rem 0;
-		color: var(--green);
+		color: var(--text-primary);
 	}
 
 	.pro-tip ul {
@@ -779,14 +1177,15 @@
 	/* Pricing Callout */
 	.pricing-callout {
 		background: var(--bg-secondary);
-		border: 1px solid var(--green-dim);
+		border: 1px solid var(--border);
+		border-left: 3px solid var(--green-muted);
 		padding: 1.25rem;
 		margin: 1.5rem 0;
 	}
 
 	.pricing-callout h4 {
 		margin: 0 0 0.5rem 0;
-		color: var(--green);
+		color: var(--text-primary);
 	}
 
 	.pricing-callout p {
@@ -794,8 +1193,8 @@
 		font-size: 0.95rem;
 	}
 
-	/* Agent Comparison */
-	.agent-comparison {
+	/* Agent Cards (neutral) */
+	.agent-cards {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1rem;
@@ -803,7 +1202,7 @@
 	}
 
 	@media (max-width: 768px) {
-		.agent-comparison {
+		.agent-cards {
 			grid-template-columns: 1fr;
 		}
 	}
@@ -817,22 +1216,7 @@
 	.agent-card h3 {
 		margin-top: 0;
 		font-size: 1rem;
-	}
-
-	.claude-agent {
-		border-left: 3px solid var(--violet);
-	}
-
-	.claude-agent h3 {
-		color: var(--violet);
-	}
-
-	.cursor-agent {
-		border-left: 3px solid var(--blue);
-	}
-
-	.cursor-agent h3 {
-		color: var(--blue);
+		color: var(--text-primary);
 	}
 
 	.agent-card ul {
@@ -845,8 +1229,8 @@
 		margin-bottom: 0.5rem;
 	}
 
-	/* Use Case Grid */
-	.use-case-grid {
+	/* Decision Matrix */
+	.decision-matrix {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1rem;
@@ -854,44 +1238,29 @@
 	}
 
 	@media (max-width: 768px) {
-		.use-case-grid {
+		.decision-matrix {
 			grid-template-columns: 1fr;
 		}
 	}
 
-	.use-case {
+	.decision-category {
 		background: var(--bg-secondary);
 		border: 1px solid var(--border);
 		padding: 1.25rem;
 	}
 
-	.use-case h3 {
+	.decision-category h3 {
 		margin-top: 0;
 		font-size: 1rem;
+		color: var(--text-primary);
 	}
 
-	.claude-use {
-		border-left: 3px solid var(--violet);
-	}
-
-	.claude-use h3 {
-		color: var(--violet);
-	}
-
-	.cursor-use {
-		border-left: 3px solid var(--blue);
-	}
-
-	.cursor-use h3 {
-		color: var(--blue);
-	}
-
-	.use-case ul {
+	.decision-category ul {
 		margin: 0;
 		padding-left: 1.25rem;
 	}
 
-	.use-case li {
+	.decision-category li {
 		font-size: 0.9rem;
 		margin-bottom: 0.5rem;
 	}
@@ -907,7 +1276,7 @@
 
 	.workflow-tip h4 {
 		margin: 0 0 0.5rem 0;
-		color: var(--orange);
+		color: var(--text-primary);
 	}
 
 	.workflow-tip p {
@@ -915,8 +1284,8 @@
 		font-size: 0.95rem;
 	}
 
-	/* Security Summary */
-	.security-summary {
+	/* Security Cards */
+	.security-cards {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1rem;
@@ -924,88 +1293,41 @@
 	}
 
 	@media (max-width: 768px) {
-		.security-summary {
+		.security-cards {
 			grid-template-columns: 1fr;
 		}
 	}
 
-	.security-item {
+	.security-card {
 		background: var(--bg-secondary);
 		border: 1px solid var(--border);
 		padding: 1rem;
 	}
 
-	.security-item h4 {
+	.security-card h4 {
 		margin: 0 0 0.5rem 0;
+		color: var(--text-primary);
 	}
 
-	.security-item p {
+	.security-card p {
 		margin: 0;
 		font-size: 0.9rem;
 		color: var(--text-secondary);
 	}
 
-	/* FAQ Section */
-	.faq-section {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		padding: 1.25rem;
-	}
-
-	.faq-section h2 {
-		margin-top: 0;
-	}
-
-	.faq-item {
-		padding: 1rem 0;
-		border-bottom: 1px solid var(--border);
-	}
-
-	.faq-item:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
-	}
-
-	.faq-item h3 {
-		margin-top: 0;
-		font-size: 1rem;
-	}
-
-	.faq-item p {
-		margin-bottom: 0;
-		color: var(--text-secondary);
-		font-size: 0.9rem;
-	}
-
 	/* Related Content */
-	.related-card {
+	.related-card-category {
 		display: block;
-		padding: 1rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		text-decoration: none;
-		transition: border-color 0.15s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.related-type {
-		display: block;
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 0.65rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
+		font-size: 0.75rem;
 		color: var(--text-tertiary);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
 		margin-bottom: 0.25rem;
 	}
 
-	.related-title {
-		display: block;
-		font-weight: 500;
+	.related-card-title {
+		font-size: 1rem;
+		margin: 0;
 		color: var(--text-primary);
 	}
 </style>
