@@ -214,7 +214,7 @@
 
 			<div class="pricing-grid">
 				<div class="pricing-card">
-					<div class="pricing-header lovable">
+					<div class="pricing-header">
 						<h3>Lovable</h3>
 						<span class="pricing-model">Message-based</span>
 					</div>
@@ -223,9 +223,8 @@
 						<span class="tier-price">$0</span>
 						<ul>
 							<li>Limited credits</li>
-							<li>Public projects</li>
-							<li>GitHub sync</li>
-							<li>One-click deploy</li>
+							<li>Public projects only</li>
+							<li>GitHub sync included</li>
 						</ul>
 					</div>
 					<div class="pricing-tier featured">
@@ -242,8 +241,7 @@
 						<span class="tier-price">$50/mo</span>
 						<ul>
 							<li>250 messages/month</li>
-							<li>Visual editor</li>
-							<li>SSO included</li>
+							<li>Visual editor + SSO</li>
 						</ul>
 					</div>
 					<div class="pricing-tier">
@@ -257,7 +255,7 @@
 				</div>
 
 				<div class="pricing-card">
-					<div class="pricing-header bolt">
+					<div class="pricing-header">
 						<h3>Bolt</h3>
 						<span class="pricing-model">Token-based</span>
 					</div>
@@ -267,7 +265,7 @@
 						<ul>
 							<li>1M tokens total</li>
 							<li>~100k/day limit</li>
-							<li>Basic features</li>
+							<li>Basic features only</li>
 						</ul>
 					</div>
 					<div class="pricing-tier featured">

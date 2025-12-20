@@ -217,6 +217,19 @@ Validate content meets all quality standards before publication.
 □ Opening hook lands in first 50 words
 ```
 
+#### Design System Check (docs/KB-UI-DESIGN-STANDARDS.md) - MANDATORY
+```
+□ Uses CSS variables only (NO hardcoded colors like #1a1a1a)
+□ Sharp edges (NO border-radius: 8px on containers)
+□ Uses global components (.badge, .quick-answer, .faq-list, .card)
+□ FAQs use .faq-list > .faq-item (not custom styles)
+□ Related sections use .related-grid > .card.card-interactive
+□ Under 150 lines of scoped CSS
+□ Mobile responsive (check @media queries)
+□ Comparison articles: NO tool brand colors (neutral palette only)
+□ Table highlights use var(--green-muted), not var(--green)
+```
+
 ### Automated Validation Prompts
 
 #### SEO Check Prompt
@@ -453,6 +466,7 @@ Read("docs/.content-ops/skills/vibe-coding-skill.md")
 - [ ] LLM citation test passed
 - [ ] Technical accuracy verified
 - [ ] Humanizer check passed
+- [ ] Design system check passed (KB-UI-DESIGN-STANDARDS.md)
 
 ### Gate 4: Ready for Publish
 - [ ] Svelte component formatted
@@ -466,6 +480,9 @@ Read("docs/.content-ops/skills/vibe-coding-skill.md")
 
 | Resource | Path |
 |----------|------|
+| **Design System** | `docs/KB-UI-DESIGN-STANDARDS.md` |
+| **CSS Components** | `static/styles/components.css` |
+| **CSS Theme** | `static/styles/theme.css` |
 | **Skills** | `docs/.content-ops/skills/` |
 | **Briefs** | `docs/.content-ops/briefs/` |
 | **Templates** | `docs/.content-ops/templates/` |
@@ -473,6 +490,7 @@ Read("docs/.content-ops/skills/vibe-coding-skill.md")
 | **Checklists** | `docs/.content-ops/checklists/` |
 | **Queue** | `docs/.content-ops/QUEUE.md` |
 | **Original Pipeline** | `docs/.content-ops/PIPELINE.md` |
+| **Reference Article** | `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte` |
 
 ---
 
@@ -491,7 +509,9 @@ Read("docs/.content-ops/skills/vibe-coding-skill.md")
    - Load writing skills
    - Write with persona voice
 4. Run Phase 3:
-   - Run all QA checks
+   - Read KB-UI-DESIGN-STANDARDS.md (MANDATORY)
+   - Check components.css for global classes
+   - Run all QA checks including Design System Check
    - Fix issues found
    - Format as Svelte component
 5. Commit and push
