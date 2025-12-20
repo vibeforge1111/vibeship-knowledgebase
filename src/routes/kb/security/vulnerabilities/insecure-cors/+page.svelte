@@ -949,17 +949,12 @@ curl -i -H "Origin: null" https://your-api.com/api/protected
 		line-height: 1.6;
 	}
 
+	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
 		margin-bottom: 1rem;
-	}
-
-	@media (max-width: 768px) {
-		.code-comparison {
-			grid-template-columns: 1fr;
-		}
 	}
 
 	.code-block {

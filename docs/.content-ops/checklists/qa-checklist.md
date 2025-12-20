@@ -317,6 +317,7 @@ mcp__ahrefs__keywords-explorer-overview
 - [ ] Language specified on all fenced code blocks (```javascript, ```svelte)
 - [ ] Uses `.code-block` wrapper for styled code sections
 - [ ] Before/after comparisons use `.code-comparison` with `.code-bad` and `.code-good`
+- [ ] **Code comparisons are STACKED vertically** (vulnerable on top, secure below) - NOT side-by-side columns
 - [ ] Syntax highlighting works correctly (check for missing language support)
 
 ### Image & Media
@@ -419,6 +420,9 @@ mcp__ahrefs__keywords-explorer-overview
 
 ### "Too much scoped CSS"
 → Over 150 lines? Check if global components cover what you need first
+
+### "Code comparisons side-by-side"
+→ NEVER use side-by-side columns for code comparisons - code becomes hard to read. Use stacked layout: vulnerable on top, secure below. Use `flex-direction: column` not `grid-template-columns: repeat(2, 1fr)`.
 
 ---
 

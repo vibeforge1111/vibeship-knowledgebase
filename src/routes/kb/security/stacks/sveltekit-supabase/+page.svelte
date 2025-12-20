@@ -823,18 +823,12 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 		color: var(--text-secondary);
 	}
 
-	/* Code Comparison */
+	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
 		margin: 1.5rem 0;
-	}
-
-	@media (max-width: 768px) {
-		.code-comparison {
-			grid-template-columns: 1fr;
-		}
 	}
 
 	.code-block {

@@ -1086,9 +1086,10 @@ export async function createPost(input) &#123;
 		color: var(--text-primary);
 	}
 
+	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
 	}
 
@@ -1190,10 +1191,6 @@ export async function createPost(input) &#123;
 		.step-header {
 			flex-direction: column;
 			align-items: flex-start;
-		}
-
-		.code-comparison {
-			grid-template-columns: 1fr;
 		}
 
 		.approval-flow {

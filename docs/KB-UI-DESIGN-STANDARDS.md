@@ -267,17 +267,13 @@ Use the global `.code-block` class:
 
 **Scoped styles needed:**
 ```css
+/* IMPORTANT: Always use stacked layout, NEVER side-by-side columns */
+/* Side-by-side makes code hard to read with scrollbars */
 .code-comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
   margin: 1.5rem 0;
-}
-
-@media (max-width: 768px) {
-  .code-comparison {
-    grid-template-columns: 1fr;
-  }
 }
 
 .code-block.vulnerable {

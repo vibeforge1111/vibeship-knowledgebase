@@ -125,11 +125,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "Vibeship"
+			"name": "VibeShip"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "Vibeship",
+			"name": "VibeShip",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -169,16 +169,16 @@
 				<span class="badge">OWASP A07:2021</span>
 			</div>
 			<h1>Account Takeover (ATO) Prevention</h1>
-			<p class="text-secondary">Stop attackers from hijacking your users' accounts</p>
+			<p class="text-secondary">I've been on these calls. The silence when you realize it's happening to your users.</p>
 		</header>
 
 		<!-- Quick Answer -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Account takeover (ATO) is when attackers gain unauthorized access to user accounts - stealing data, making transactions, or using accounts for further attacks.</strong>
+				<strong>Account takeover is the call at 3am you don't want to get. Attackers inside your users' accounts. Transactions happening. Data leaving. Support flooded with "I didn't do that."</strong>
 				It happens through <a href="/kb/security/vulnerabilities/credential-stuffing/">credential stuffing</a>, session hijacking, password reset exploits, or phishing.
-				Prevention requires multiple layers: strong authentication, session security, anomaly detection, and incident response.
+				Prevention requires multiple layers: strong authentication, session security, anomaly detection, and - trust me - a rehearsed incident response plan.
 			</p>
 		</div>
 
@@ -209,13 +209,13 @@
 		<section class="article-section">
 			<h2>What is account takeover?</h2>
 			<p>
-				Account takeover is the end goal of many attacks. The attacker wants access to a legitimate user's account - not to break your authentication, but to use it as that user. Once inside, they can do anything the real user can do.
+				Account takeover is the end state attackers want. Not to break your authentication - to use it. To become your user. Once inside, they do whatever that user can do. And your logs show it as legitimate activity.
 			</p>
 			<p>
-				For e-commerce apps, that means unauthorized purchases. For SaaS apps, data theft. For social platforms, spam and scams under a trusted identity. For financial apps, direct fraud. The damage isn't just to the user - it's to your platform's reputation.
+				I've worked incidents where attackers had full access for weeks before anyone noticed. For e-commerce: unauthorized purchases. For SaaS: data exfiltration. For financial apps: direct fraud. The damage compounds every hour you don't catch it.
 			</p>
 			<p>
-				ATO is not a single vulnerability but an outcome of multiple weaknesses. Attackers exploit whichever path has the least resistance: weak passwords, missing MFA, session flaws, or vulnerable password reset flows.
+				ATO is not a single vulnerability but an outcome. Attackers find the weakest path in: weak passwords, missing MFA, session flaws, vulnerable password resets. One gap is all they need.
 			</p>
 		</section>
 
@@ -244,7 +244,7 @@
 		<section class="article-section">
 			<h2>Why AI-generated auth is vulnerable to ATO</h2>
 			<p>
-				When you ask <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> to add authentication, you get login and logout. You don't get the defensive layers that prevent account takeover.
+				Here's what I see in incident after incident. When you ask <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> to add authentication, you get login and logout. You don't get the defensive layers that would have caught the attack 6 hours ago.
 			</p>
 
 			<div class="missing-controls">
@@ -275,7 +275,7 @@
 			</div>
 
 			<p>
-				These are the controls that detect and respond to account takeover. AI generates functional auth. You need to add the security layers manually.
+				These are the controls that detect and respond to account takeover. AI generates functional auth. You add the security layers. Don't learn this at 3am.
 			</p>
 		</section>
 
@@ -357,7 +357,7 @@ Use [MY_FRAMEWORK] patterns and session library.`}</code></pre>
 		<!-- Response Checklist -->
 		<section class="article-section">
 			<h2>Account takeover response checklist</h2>
-			<p>When a user reports unauthorized access or you detect a compromise:</p>
+			<p>When that call comes in - and it will - here's what you do. Speed matters. Every minute the attacker has access, they're doing damage.</p>
 
 			<ol class="response-list">
 				<li><strong>Invalidate all sessions</strong> - Force logout everywhere immediately</li>
@@ -577,8 +577,8 @@ Use [MY_FRAMEWORK] patterns and session library.`}</code></pre>
 		gap: 0.75rem;
 		margin: 1.5rem 0;
 		padding: 1rem;
-		background: rgba(239, 68, 68, 0.05);
-		border: 1px solid rgba(239, 68, 68, 0.3);
+		background: color-mix(in srgb, var(--red) 5%, transparent);
+		border: 1px solid color-mix(in srgb, var(--red) 30%, transparent);
 	}
 
 	@media (max-width: 768px) {
@@ -595,7 +595,7 @@ Use [MY_FRAMEWORK] patterns and session library.`}</code></pre>
 	}
 
 	.control-icon {
-		color: #ef4444;
+		color: var(--red);
 		font-weight: bold;
 	}
 
@@ -629,7 +629,7 @@ Use [MY_FRAMEWORK] patterns and session library.`}</code></pre>
 	.fix-prompt pre {
 		margin: 0;
 		padding: 1rem;
-		background: #0d0d0d;
+		background: var(--bg-tertiary);
 		white-space: pre-wrap;
 		word-wrap: break-word;
 	}

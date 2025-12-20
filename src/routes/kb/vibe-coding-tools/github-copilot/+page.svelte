@@ -506,9 +506,10 @@ function UserBio({ bio }) {
 		margin-bottom: 0;
 	}
 
+	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}
@@ -611,10 +612,6 @@ function UserBio({ bio }) {
 	}
 
 	@media (max-width: 768px) {
-		.code-comparison {
-			grid-template-columns: 1fr;
-		}
-
 		.cve-header {
 			flex-direction: column;
 			align-items: flex-start;

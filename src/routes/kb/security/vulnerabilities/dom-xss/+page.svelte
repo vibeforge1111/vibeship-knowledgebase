@@ -109,11 +109,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "Vibeship"
+			"name": "VibeShip"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "Vibeship",
+			"name": "VibeShip",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -153,17 +153,17 @@
 				<span class="badge">OWASP A03:2021</span>
 			</div>
 			<h1>DOM XSS in Vibe Coded Apps</h1>
-			<p class="text-secondary">How to find and fix the client-side vulnerability that lets attackers execute JavaScript in your users' browsers</p>
+			<p class="text-secondary">The exact pattern I reject in every code review - and how to fix it before it ships</p>
 		</header>
 
 		<!-- Quick Answer -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>DOM-based XSS (DOM XSS) executes malicious scripts entirely in the browser by exploiting client-side JavaScript.</strong>
+				<strong>I flag this pattern in every code review: <code>element.innerHTML = urlData</code>. That's DOM XSS waiting to happen.</strong>
 				When your code takes data from the URL (like <code>location.hash</code>) and puts it directly into <code>innerHTML</code>, attackers can inject scripts that steal cookies, hijack sessions, or deface your app.
 				It's classified under <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP A03:2021</a> and <a href="https://cwe.mitre.org/data/definitions/79.html">CWE-79</a>.
-				AI tools generate vulnerable patterns by default because innerHTML is convenient.
+				Never ship code with unsanitized innerHTML from URL data.
 			</p>
 		</div>
 
@@ -212,8 +212,7 @@
 		<section class="article-section">
 			<h2>What are DOM XSS sources and sinks?</h2>
 			<p>
-				DOM XSS requires a "source" (where attacker data enters) and a "sink" (where dangerous operations happen).
-				When data flows from source to sink without sanitization, XSS is possible.
+				Before I review any client-side code, I verify these two things: where data comes from (sources) and where it ends up (sinks). DOM XSS happens when attacker-controlled data flows from source to sink without sanitization.
 			</p>
 
 			<div class="source-sink-grid">
@@ -312,8 +311,7 @@ resultsDiv.innerHTML = '<p>Results for: ' + searchTerm + '</p>'
 		<section class="article-section">
 			<h2>How do I detect DOM XSS?</h2>
 			<p>
-				Search your codebase for patterns where user-controlled data reaches dangerous sinks.
-				Any code path from URL data to innerHTML, document.write, or eval is suspect.
+				Here's my code review checklist. Search your codebase for these patterns - any code path from URL data to innerHTML, document.write, or eval is an automatic flag.
 			</p>
 
 			<div class="code-block">
@@ -369,10 +367,13 @@ setInterval(userInput, 1000)
 		<section class="article-section">
 			<h2>How do I fix DOM XSS?</h2>
 			<p>
-				The fix depends on what you're trying to do. For rendering HTML, use a sanitizer.
-				For displaying text, use textContent instead of innerHTML.
-				For URLs, validate the protocol.
+				The fix is straightforward once you know the pattern. Before you ship, verify these three things:
 			</p>
+			<ol>
+				<li><strong>Text only?</strong> Use <code>textContent</code> instead of <code>innerHTML</code></li>
+				<li><strong>Need HTML?</strong> Always sanitize with DOMPurify first</li>
+				<li><strong>Setting URLs?</strong> Validate the protocol is http: or https:</li>
+			</ol>
 
 			<!-- AI Fix Prompt -->
 			<div class="fix-section">
@@ -844,9 +845,10 @@ computed: {
 		margin-bottom: 0.75rem;
 	}
 
-	/* Code Comparison */
+	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
-		display: grid;
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}

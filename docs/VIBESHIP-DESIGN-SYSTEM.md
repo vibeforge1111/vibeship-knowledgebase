@@ -245,17 +245,12 @@ Based on 4px increments:
   gap: 1rem;
 }
 
-/* Code comparison */
+/* Code comparison - ALWAYS stacked, NEVER side-by-side */
+/* Side-by-side columns make code hard to read with scrollbars */
 .code-comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
-}
-
-@media (max-width: 768px) {
-  .code-comparison {
-    grid-template-columns: 1fr;
-  }
 }
 ```
 
@@ -883,7 +878,7 @@ Structure:
   .main-content { margin-left: 0; }
 
   /* Grids stack */
-  .code-comparison { grid-template-columns: 1fr; }
+  /* Note: .code-comparison uses flex-direction: column always (not grid) */
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .related-grid { grid-template-columns: 1fr; }
 

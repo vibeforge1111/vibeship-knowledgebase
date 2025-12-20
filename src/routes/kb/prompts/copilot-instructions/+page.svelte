@@ -1002,10 +1002,10 @@ export async function POST(req: Request) &#123;
 		margin: 2rem 0;
 	}
 
-	/* Code Comparison */
+	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
 		margin: 1rem 0;
 	}
@@ -1188,10 +1188,6 @@ export async function POST(req: Request) &#123;
 	@media (max-width: 768px) {
 		.step-item {
 			flex-direction: column;
-		}
-
-		.code-comparison {
-			grid-template-columns: 1fr;
 		}
 
 		.security-section {

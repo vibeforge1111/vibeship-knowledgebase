@@ -73,22 +73,50 @@ Use **opengrep** (not semgrep), also trivy and gitleaks.
 
 ## Workflow
 
-### Starting from Zero
+### MANDATORY: Do NOT Skip Steps
+
+**Every article requires these 3 phases. No exceptions.**
+
 ```
-1. Read ENHANCED-PIPELINE.md
-2. Check QUEUE.md for next article
-3. Follow Phase 1 → 2 → 3
-4. Read KB-UI-DESIGN-STANDARDS.md before Phase 3 styling
-5. QA against all checklists
+PHASE 1: RESEARCH (Never skip)
+├── Check QUEUE.md for next article
+├── Create Content Brief OR verify existing brief in briefs/
+├── Get keyword volumes from Ahrefs MCP
+├── Identify competitor gaps
+└── Define unique angle
+
+PHASE 2: PERSONA (Never skip)
+├── Select persona from 14 options (see content-humanizer-guide.md)
+├── Check rotation (avoid same persona twice in category)
+├── Generate opening hook in their voice
+├── Identify 2-3 signature move moments
+└── Create voice notes for Phase 3
+
+PHASE 3: WRITE + QA (Never ship without QA)
+├── Write with persona lens applied
+├── Read KB-UI-DESIGN-STANDARDS.md
+├── Use global CSS classes from components.css
+├── Run QA checklist (qa-checklist.md)
+├── Score Value Assessment (min 20/25 to publish)
+└── Verify persona voice consistency throughout
 ```
 
-### Editing Existing Article
-```
-1. Read KB-UI-DESIGN-STANDARDS.md
-2. Check components.css for global classes
-3. Make changes using CSS variables only
-4. Verify mobile responsive
-```
+### The 14 Personas (Quick Reference)
+
+| Category | Personas |
+|----------|----------|
+| **Vulnerabilities** | @pager_duty (Firefighter), @flaggedthis (Auditor), @eli5sec (Translator), @breachlore (Historian) |
+| **Prompts/Tools** | @keystrokecounts (Optimizer), @tryhard_tk (Tinkerer), @deletedmost (Minimalist) |
+| **Guides/Stacks** | @ninascales (Architect), @pat_ships (Pragmatist), @danawhy (Debugger), @samexplains (Mentor) |
+| **Vibe Coding** | @vibecheckpassed (Evangelist), @waitwhat_ (Skeptic), @buildermagic (Builder) |
+
+Full profiles: `docs/.content-ops/guides/content-humanizer-guide.md`
+
+### If You're About to Write Without Phase 1 + 2, STOP
+
+Going straight to writing = bland, same-voice articles that don't stand out.
+
+**The persona makes the content feel human. The research makes it authoritative. The QA makes it publishable.**
 
 ---
 

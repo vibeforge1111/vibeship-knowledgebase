@@ -91,11 +91,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "Vibeship"
+			"name": "VibeShip"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "Vibeship",
+			"name": "VibeShip",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -135,16 +135,16 @@
 				<span class="badge">OWASP A07:2021</span>
 			</div>
 			<h1>Credential Stuffing in Vibe Coded Apps</h1>
-			<p class="text-secondary">How attackers use stolen passwords to hijack your users' accounts</p>
+			<p class="text-secondary">The 2012 LinkedIn breach is still compromising accounts today - including apps built with AI tools</p>
 		</header>
 
 		<!-- Quick Answer -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Credential stuffing is when attackers use username/password combinations stolen from other data breaches to log into your app.</strong>
-				Since most people reuse passwords, breached credentials from LinkedIn or Facebook often work on your site.
-				It's automated, hard to detect, and leads to mass <a href="/kb/security/vulnerabilities/account-takeover/">account takeover</a>.
+				<strong>In 2012, LinkedIn lost 117 million credentials. By 2016, those passwords were hitting login pages across the internet - including apps that had never been breached.</strong>
+				That's credential stuffing: attackers use stolen credentials from one breach to hijack accounts on your app.
+				Since 65% of people reuse passwords, breached credentials from LinkedIn, Adobe, or Collection #1 often work on your site.
 				Prevention requires rate limiting, CAPTCHA, breach password checking, and MFA.
 			</p>
 		</div>
@@ -176,13 +176,16 @@
 		<section class="article-section">
 			<h2>What is credential stuffing?</h2>
 			<p>
-				Credential stuffing exploits a simple human behavior: password reuse. When a major site gets breached - LinkedIn, Adobe, Dropbox - millions of email/password combinations end up for sale on dark web forums. Attackers buy these lists and run them against other websites.
+				Let me walk you through the timeline. May 2016: a hacker dumps 117 million LinkedIn credentials on the dark web. Within hours, automated tools are testing those passwords against Netflix, PayPal, Dropbox - every site with a login form. Accounts that were never breached start getting hijacked.
 			</p>
 			<p>
-				If your user had the same password on LinkedIn and your app, their account is now compromised on your site - even though you were never breached. The attacker didn't guess the password. They knew it.
+				That's credential stuffing. It exploits a simple human behavior: password reuse. When a major site gets breached, millions of email/password combinations become ammunition for attacking every other site on the internet.
 			</p>
 			<p>
-				This isn't theoretical. Billions of credentials are circulating from past breaches. According to <a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">OWASP</a>, authentication failures including credential stuffing rank #7 in the Top 10 web application security risks.
+				If your user had the same password on LinkedIn and your vibe coded app, their account is now compromised - even though you were never breached. The attacker didn't guess the password. They knew it from a breach that happened years ago, possibly before your app even existed.
+			</p>
+			<p>
+				This isn't theoretical. Collection #1 alone contained 773 million unique emails. Billions of credentials are circulating from past breaches. According to <a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">OWASP</a>, authentication failures including credential stuffing rank #7 in the Top 10 web application security risks.
 			</p>
 		</section>
 
@@ -190,10 +193,13 @@
 		<section class="article-section">
 			<h2>Why AI coding tools don't prevent credential stuffing</h2>
 			<p>
-				When you ask <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> to "build a login page," you get a working login page. What you don't get: rate limiting, account lockout, CAPTCHA integration, breach password checking, or login anomaly detection.
+				Here's the pattern that keeps repeating. When you ask <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> to "build a login page," you get a working login page. What you don't get: rate limiting, account lockout, CAPTCHA integration, breach password checking, or login anomaly detection.
 			</p>
 			<p>
-				AI tools generate the happy path. Authentication that works for legitimate users. They don't generate the defensive layers that stop automated attacks. That's the gap vibe coders need to close manually.
+				The same gap that allowed the 2019 Dunkin' Donuts credential stuffing attack. The same gap that led to Disney+ account hijacks on launch day. AI tools generate the happy path - authentication that works for legitimate users - but not the defensive layers that would have stopped those attacks.
+			</p>
+			<p>
+				That's the gap vibe coders need to close manually.
 			</p>
 
 			<div class="code-comparison">
@@ -251,7 +257,10 @@ async function login(email: string, password: string, ip: string) {
 		<section class="article-section">
 			<h2>How to detect credential stuffing attacks</h2>
 			<p>
-				Credential stuffing is harder to detect than brute force because attackers use real credentials. Look for these patterns:
+				In 2014, the Spotify credential stuffing attack went undetected for weeks. The attackers were careful - low volume, distributed IPs, real credentials. Spotify only noticed when users started complaining about playlist changes they didn't make.
+			</p>
+			<p>
+				Credential stuffing is harder to detect than brute force because attackers use real credentials. Here are the patterns to watch for:
 			</p>
 
 			<div class="detection-list">
@@ -274,7 +283,7 @@ async function login(email: string, password: string, ip: string) {
 			</div>
 
 			<p>
-				Without logging and monitoring, you won't see these patterns. Most vibe coded apps have no visibility into login attempts until users report compromised accounts.
+				Without logging and monitoring, you won't see these patterns. Most vibe coded apps have no visibility into login attempts until users report compromised accounts - just like Spotify learned the hard way.
 			</p>
 		</section>
 
@@ -282,7 +291,7 @@ async function login(email: string, password: string, ip: string) {
 		<section class="article-section">
 			<h2>How to prevent credential stuffing</h2>
 			<p>
-				Defense in depth is the only effective strategy. No single control stops credential stuffing.
+				After the 2016 credential stuffing wave, companies that survived shared a common pattern: defense in depth. No single control stops credential stuffing - but layers of friction make automated attacks uneconomical.
 			</p>
 
 			<h3>1. Rate limiting</h3>
@@ -297,7 +306,7 @@ async function login(email: string, password: string, ip: string) {
 
 			<h3>3. Breach password checking</h3>
 			<p>
-				Check passwords against known breach databases on signup and login. The <a href="https://haveibeenpwned.com/API/v3" target="_blank" rel="noopener">Have I Been Pwned API</a> is free and privacy-preserving (uses k-anonymity).
+				Check passwords against known breach databases on signup and login. The <a href="https://haveibeenpwned.com/API/v3" target="_blank" rel="noopener">Have I Been Pwned API</a> - built by Troy Hunt after years of cataloging breaches - is free and privacy-preserving (uses k-anonymity). If a password appears in HIBP's database, it's already in attackers' lists.
 			</p>
 
 			<h3>4. Multi-factor authentication</h3>
@@ -515,9 +524,10 @@ Do not modify the core authentication logic.`}</code></pre>
 		margin-top: 0.5rem;
 	}
 
-	/* Code Comparison */
+	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
-		display: grid;
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}
@@ -525,6 +535,7 @@ Do not modify the core authentication logic.`}</code></pre>
 	.code-block {
 		border: 1px solid var(--border);
 		overflow: hidden;
+		min-width: 0; /* Prevent grid blowout */
 	}
 
 	.code-block-header {
@@ -544,24 +555,24 @@ Do not modify the core authentication logic.`}</code></pre>
 	}
 
 	.code-label.bad {
-		color: #ef4444;
+		color: var(--red);
 	}
 
 	.code-label.good {
-		color: #22c55e;
+		color: var(--green);
 	}
 
 	.code-block pre {
 		margin: 0;
 		padding: 1rem;
 		overflow-x: auto;
-		background: #0d0d0d;
+		background: var(--bg-tertiary);
 	}
 
 	.code-block code {
 		font-family: 'JetBrains Mono', 'Fira Code', monospace;
-		font-size: 0.8rem;
-		line-height: 1.6;
+		font-size: 0.7rem;
+		line-height: 1.5;
 	}
 
 	/* Detection List */
@@ -602,7 +613,7 @@ Do not modify the core authentication logic.`}</code></pre>
 	.fix-prompt pre {
 		margin: 0;
 		padding: 1rem;
-		background: #0d0d0d;
+		background: var(--bg-tertiary);
 		white-space: pre-wrap;
 		word-wrap: break-word;
 	}

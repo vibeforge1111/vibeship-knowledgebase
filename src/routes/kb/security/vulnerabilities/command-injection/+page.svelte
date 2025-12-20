@@ -820,18 +820,12 @@ For each vulnerability:
 		color: var(--text-secondary, #888);
 	}
 
-	/* Code Blocks */
+	/* Code Blocks - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
 		margin: 1rem 0;
-	}
-
-	@media (max-width: 768px) {
-		.code-comparison {
-			grid-template-columns: 1fr;
-		}
 	}
 
 	.code-block {

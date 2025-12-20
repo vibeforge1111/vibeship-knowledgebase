@@ -718,9 +718,10 @@ For each issue found:
 		margin-top: 1rem;
 	}
 
+	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
 		margin: 1rem 0;
 	}
@@ -874,10 +875,6 @@ For each issue found:
 
 	@media (max-width: 768px) {
 		.stats-row {
-			grid-template-columns: 1fr;
-		}
-
-		.code-comparison {
 			grid-template-columns: 1fr;
 		}
 

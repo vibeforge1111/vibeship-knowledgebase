@@ -114,11 +114,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "Vibeship"
+			"name": "VibeShip"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "Vibeship",
+			"name": "VibeShip",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -165,7 +165,7 @@
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Prototype pollution lets attackers inject properties into JavaScript's Object.prototype, affecting every object in your app.</strong>
+				<strong>Think of JavaScript's Object.prototype as a master DNA template that every object copies from. Prototype pollution is when attackers inject malicious genes into that DNA - and suddenly every object in your app inherits the corruption.</strong>
 				By setting <code>__proto__.isAdmin = true</code>, attackers can bypass authentication, trigger remote code execution, or crash your server.
 				It's classified as <a href="https://cwe.mitre.org/data/definitions/1321.html">CWE-1321</a>.
 				AI coding tools generate vulnerable merge patterns by default, making vibe coded apps especially susceptible.
@@ -199,18 +199,16 @@
 		<section class="article-section">
 			<h2>What is prototype pollution?</h2>
 			<p>
-				Prototype pollution exploits JavaScript's prototypal inheritance model.
-				Every object in JavaScript inherits from <code>Object.prototype</code>.
-				When attackers modify this prototype, their changes cascade to every single object in your application.
+				Let's break this down step by step. JavaScript has a unique inheritance system - every object you create inherits properties from <code>Object.prototype</code>. Picture it like a blueprint that every house in your neighborhood copies from.
 			</p>
 			<p>
-				Think of <code>Object.prototype</code> as the master template for all objects.
-				If someone adds <code>isAdmin: true</code> to that template, every object suddenly has an <code>isAdmin</code> property set to true.
-				Your authentication checks fail because the user object now claims to be an admin - even though you never set that property.
+				Now imagine someone sneaks into the city planning office and adds "has swimming pool: yes" to the master blueprint. Suddenly, every house - past, present, and future - now has a swimming pool according to the records. That's prototype pollution.
 			</p>
 			<p>
-				According to <a href="https://cwe.mitre.org/data/definitions/1321.html">CWE-1321</a>, this vulnerability occurs when applications improperly control modification of object prototype attributes.
-				The attack surface is particularly large in Node.js applications that process untrusted JSON data through recursive object merging.
+				When attackers add <code>isAdmin: true</code> to <code>Object.prototype</code>, your user object suddenly has admin privileges - even though you never set that property. Your security checks pass because they're checking a property that now exists on every object.
+			</p>
+			<p>
+				According to <a href="https://cwe.mitre.org/data/definitions/1321.html">CWE-1321</a>, this vulnerability occurs when applications let untrusted input modify object prototypes. The attack surface is particularly large in vibe coded Node.js apps that process JSON through those convenient-but-dangerous merge functions AI loves to generate.
 			</p>
 		</section>
 
@@ -218,8 +216,10 @@
 		<section class="article-section">
 			<h2>How does prototype pollution happen?</h2>
 			<p>
-				Attackers exploit prototype pollution through any code path that sets object properties based on user input.
-				The most common attack vectors involve object merging, query string parsing, and JSON deserialization.
+				Think of it like this: any time your code takes user input and uses it to set object properties, there's a potential entry point. The attacker's goal is to sneak a special key - <code>__proto__</code> - into your data and have your code process it without realizing what it's doing.
+			</p>
+			<p>
+				Here are the most common ways it happens:
 			</p>
 
 			<div class="vectors-grid">
@@ -237,8 +237,10 @@
 		<section class="article-section">
 			<h2>How do AI tools cause prototype pollution?</h2>
 			<p>
-				AI coding tools love to generate "utility functions" for deep object merging.
-				These functions look clean and useful - they're also the exact pattern attackers exploit.
+				Here's where it gets interesting. When you ask <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> for a "deep merge utility," they give you something that looks helpful. And it is helpful - until someone sends malicious data.
+			</p>
+			<p>
+				The AI learned these patterns from millions of code examples. Most of those examples didn't handle the edge case of malicious keys because they were written for trusted data. Now you understand why the same pattern shows up everywhere.
 			</p>
 
 			<div class="tool-patterns-box">
@@ -276,8 +278,7 @@ function deepMerge(target, source) {
 		<section class="article-section">
 			<h2>What could happen if I have prototype pollution?</h2>
 			<p>
-				The impact ranges from denial of service to full remote code execution.
-				Real-world exploits have compromised major applications.
+				Let me walk you through the possible outcomes. The impact ranges from "your server crashes" to "attackers run any code they want on your server." Neither is good, but understanding the range helps you prioritize fixes.
 			</p>
 			<ul class="consequences-list">
 				<li><strong>Authentication bypass:</strong> Inject <code>isAdmin: true</code> or <code>role: 'admin'</code> into the prototype. Every user object now has admin privileges. Your role checks pass for everyone.</li>
@@ -335,8 +336,10 @@ obj[userControlledKey] = value
 		<section class="article-section">
 			<h2>How do I fix prototype pollution?</h2>
 			<p>
-				The fix requires blocking dangerous keys like <code>__proto__</code>, <code>constructor</code>, and <code>prototype</code> from being processed.
-				There are multiple defense layers you should implement.
+				Now for the good news: once you understand the problem, the fix is straightforward. You need to block three dangerous keys - <code>__proto__</code>, <code>constructor</code>, and <code>prototype</code> - from being processed as normal properties.
+			</p>
+			<p>
+				Think of it like a security checkpoint at an airport. These three "keys" are banned items - you check for them and refuse to let them through.
 			</p>
 
 			<!-- AI Fix Prompt -->
@@ -747,9 +750,10 @@ merge({}, JSON.parse(userInput))
 		margin-bottom: 0.75rem;
 	}
 
-	/* Code Comparison */
+	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
 	.code-comparison {
-		display: grid;
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}
