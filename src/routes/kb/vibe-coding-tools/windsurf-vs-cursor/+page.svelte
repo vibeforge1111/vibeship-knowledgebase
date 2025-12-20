@@ -3,8 +3,8 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Windsurf vs Cursor: AI IDE Comparison 2025',
-		description: 'Windsurf vs Cursor comparison: features, pricing, security. Both have 2025 CVEs. See which AI IDE is right for you and how to use each safely.',
+		title: 'Windsurf vs Cursor 2025: Which AI IDE Ships Faster?',
+		description: 'Windsurf vs Cursor comparison for vibe coders. Cascade vs Composer agents, $15 vs $20 pricing, JetBrains support, and Cognition acquisition. See which tool matches your workflow.',
 		url: '/kb/vibe-coding-tools/windsurf-vs-cursor/'
 	};
 
@@ -19,23 +19,23 @@
 	const faqs = [
 		{
 			question: 'Is Windsurf better than Cursor?',
-			answer: 'It depends on your needs. Windsurf offers more autonomous coding via Cascade at $15/month. Cursor provides proven stability with a larger community at $20/month. Windsurf has a critical CVE (CVSS 9.8) while Cursor\'s CVE is less severe. Choose Windsurf for autonomy, Cursor for reliability.'
+			answer: 'Windsurf offers more autonomous coding via Cascade with Memories that persist context across sessions. Cursor has a larger community and more stability. Windsurf costs $15/month vs Cursor\'s $20/month. Choose Windsurf for autonomy and JetBrains support. Choose Cursor for ecosystem and proven reliability.'
 		},
 		{
 			question: 'Is Windsurf free?',
-			answer: 'Yes, Windsurf has a generous free tier with unlimited basic features. Pro costs $15/month for advanced features like unlimited Cascade flows. Cursor\'s free tier is more limited (2000 completions), making Windsurf the better free option.'
+			answer: 'Yes. Windsurf Free includes unlimited basic completions and limited Cascade credits. Pro costs $15/month for unlimited Cascade flows, priority models, and Memories. The free tier is more generous than Cursor\'s 2000 completion limit.'
 		},
 		{
-			question: 'Is Windsurf safe to use?',
-			answer: 'Windsurf has known security issues: CVE-2025-62353 (path traversal, CVSS 9.8 Critical) and documented prompt injection attacks that can exfiltrate .env files. Keep it updated, avoid opening untrusted projects, and never put secrets in files the AI can access.'
+			question: 'Who owns Windsurf now?',
+			answer: 'Cognition (makers of Devin) acquired Windsurf from Codeium in July 2025. The acquisition valued Cognition at $10.2 billion. This brings Devin\'s autonomous agent technology to Windsurf users and positions it against Cursor more directly.'
 		},
 		{
 			question: 'What is Windsurf Cascade?',
-			answer: 'Cascade is Windsurf\'s autonomous AI agent that can execute multi-step tasks independently. It maintains context through "Flows" and can run terminal commands, edit files, and browse the web. It\'s more autonomous than Cursor\'s Composer but that autonomy increases attack surface.'
+			answer: 'Cascade is Windsurf\'s autonomous AI agent that can execute multi-step tasks independently. Key features include Memories (persistent context), Turbo mode (faster completions), auto-fix on errors, and multi-step planning. It\'s more autonomous than Cursor Composer.'
 		},
 		{
-			question: 'Should I switch from Cursor to Windsurf?',
-			answer: 'Consider switching if you want more autonomous AI assistance, better free tier, or $5/month savings. Stay with Cursor if you value proven stability, larger community support, or prefer less autonomous AI. Both tools have 2025 CVEs, so neither is definitively "safer."'
+			question: 'Does Windsurf work with JetBrains?',
+			answer: 'Yes. Windsurf supports 40+ IDEs including JetBrains products (IntelliJ, PyCharm, WebStorm) and VS Code. Cursor only works as a VS Code fork. This makes Windsurf the only option if you\'re committed to JetBrains.'
 		}
 	];
 </script>
@@ -82,7 +82,7 @@
 			}
 		},
 		"datePublished": "2025-12-17",
-		"dateModified": "2025-12-17"
+		"dateModified": "2025-12-20"
 	}
 	</script>`}
 
@@ -111,362 +111,376 @@
 		<header class="article-header">
 			<div class="badge-row">
 				<span class="badge badge-comparison">Comparison</span>
-				<span class="badge">2025</span>
+				<span class="badge">Updated Dec 2025</span>
 			</div>
-			<h1>Windsurf vs Cursor: Complete AI IDE Comparison Guide</h1>
-			<p class="subtitle">Features, pricing, and security compared for vibe coders</p>
+			<h1>Windsurf vs Cursor: Which AI IDE Ships Faster?</h1>
+			<p class="subtitle">Feature breakdown for vibe coders who want to ship, not configure</p>
 		</header>
 
 		<!-- Quick Answer -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>Windsurf</strong> offers more autonomous coding with Cascade at $15/mo.
-				<strong>Cursor</strong> provides proven reliability at $20/mo.
-				Both have path traversal CVEs in 2025: Windsurf's <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62353" target="_blank" rel="noopener">CVE-2025-62353</a> (CVSS 9.8 Critical) is more severe than Cursor's <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62352" target="_blank" rel="noopener">CVE-2025-62352</a>.
-				Windsurf's autonomy is powerful but increases attack surface.
+				<strong>Windsurf</strong> saves you $60/year ($15 vs $20/mo), works with JetBrains IDEs, and has Cascade - an agent with persistent memory.
+				<strong>Cursor</strong> has a larger community, more stability, and background agents that keep working while you code.
+				Most vibe coders pick based on IDE preference: JetBrains users have no choice but Windsurf. VS Code users often prefer Cursor's ecosystem.
 			</p>
 		</div>
 
+		<!-- Big News: Cognition Acquisition -->
+		<section class="acquisition-callout">
+			<h2>What changed in 2025: Cognition acquired Windsurf</h2>
+			<p>
+				<a href="https://www.cognition.ai/" target="_blank" rel="noopener">Cognition</a>, the company behind <a href="https://www.devin.ai/" target="_blank" rel="noopener">Devin</a> (the autonomous AI developer), acquired Windsurf from Codeium in July 2025. The deal valued Cognition at <a href="https://techcrunch.com/2025/07/14/report-cognition-will-acquire-windsurf-in-10-2b-deal/" target="_blank" rel="noopener">$10.2 billion according to TechCrunch</a>.
+			</p>
+			<p>
+				This matters for vibe coders because Devin's autonomous agent technology is coming to Windsurf. Cascade already feels more autonomous than Cursor's Composer - expect that gap to widen as Cognition integrates their tech.
+			</p>
+		</section>
+
 		<!-- Quick Comparison Table -->
 		<section>
-			<h2>Windsurf vs Cursor: Quick Comparison</h2>
+			<h2>How do Windsurf and Cursor compare at a glance?</h2>
 			<p>
-				Both are VS Code forks with deep AI integration, but they take different approaches. Windsurf emphasizes autonomous agents while Cursor focuses on reliable AI augmentation. Both are popular choices for vibe coding.
+				Both are popular choices for vibe coding, but they take different approaches. Here's what matters:
 			</p>
 
 			<div class="comparison-table-wrapper">
 				<table class="comparison-table">
 					<thead>
 						<tr>
-							<th>Attribute</th>
+							<th>What You Care About</th>
 							<th>Windsurf</th>
 							<th>Cursor</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>Company</td>
-							<td><a href="https://codeium.com" target="_blank" rel="noopener">Codeium</a></td>
-							<td>Anysphere</td>
+							<td>Monthly cost</td>
+							<td class="highlight-win">$15/month</td>
+							<td>$20/month</td>
 						</tr>
 						<tr>
-							<td>Type</td>
-							<td>AI-native IDE</td>
-							<td>VS Code fork</td>
+							<td>Parent company</td>
+							<td><a href="https://www.cognition.ai/" target="_blank" rel="noopener">Cognition</a> (acquired Jul 2025)</td>
+							<td><a href="https://anysphere.inc/" target="_blank" rel="noopener">Anysphere</a></td>
 						</tr>
 						<tr>
-							<td>AI Agent</td>
+							<td>IDE support</td>
+							<td class="highlight-win">40+ IDEs (JetBrains, VS Code)</td>
+							<td>VS Code fork only</td>
+						</tr>
+						<tr>
+							<td>AI agent</td>
 							<td>Cascade (autonomous)</td>
 							<td>Composer (guided)</td>
 						</tr>
 						<tr>
-							<td>Pro Pricing</td>
-							<td>$15/mo</td>
-							<td>$20/mo</td>
+							<td>Persistent memory</td>
+							<td class="highlight-win">Memories (project context)</td>
+							<td>Notepad (manual)</td>
 						</tr>
 						<tr>
-							<td>Free Tier</td>
-							<td>Generous</td>
-							<td>Limited (2000 completions)</td>
-						</tr>
-						<tr>
-							<td>Known CVEs</td>
-							<td class="vulnerable-high">CVE-2025-62353 (CVSS 9.8)</td>
-							<td class="vulnerable">CVE-2025-62352</td>
-						</tr>
-						<tr>
-							<td>Best For</td>
-							<td>Autonomous workflows</td>
-							<td>Controlled AI assistance</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</section>
-
-		<!-- What Is Windsurf -->
-		<section>
-			<h2>What is Windsurf?</h2>
-			<p>
-				<a href="/kb/vibe-coding-tools/windsurf/">Windsurf</a> is <a href="https://codeium.com" target="_blank" rel="noopener">Codeium's</a> AI-native IDE built for autonomous coding. Its standout feature is Cascade, an AI agent that can independently plan and execute complex tasks across your codebase.
-			</p>
-			<p>
-				Key features that define Windsurf:
-			</p>
-			<ul>
-				<li><strong>Cascade:</strong> Autonomous agent that executes multi-step tasks</li>
-				<li><strong>Flows:</strong> Context management system that tracks your work</li>
-				<li><strong>Supercomplete:</strong> Predictive autocomplete with multi-line suggestions</li>
-				<li><strong>MCP support:</strong> Connect to external tools and data sources</li>
-				<li><strong>Generous free tier:</strong> More free usage than most competitors</li>
-			</ul>
-			<p>
-				Windsurf is ideal for vibe coders who want maximum autonomy - describe what you need and let Cascade figure out the implementation across multiple files.
-			</p>
-		</section>
-
-		<!-- What Is Cursor -->
-		<section>
-			<h2>What is Cursor?</h2>
-			<p>
-				<a href="/kb/vibe-coding-tools/cursor/">Cursor</a> is the most popular AI coding IDE, built as a VS Code fork with native AI integration. It's known for reliability, strong community support, and a balance between AI power and developer control.
-			</p>
-			<p>
-				Key features that make Cursor popular:
-			</p>
-			<ul>
-				<li><strong>Tab autocomplete:</strong> Fast, context-aware code suggestions</li>
-				<li><strong>Composer:</strong> Multi-file editing through guided chat</li>
-				<li><strong>Cmd+K:</strong> Inline code editing with natural language</li>
-				<li><strong>Model flexibility:</strong> GPT-4, Claude, or custom models</li>
-				<li><strong>VS Code compatibility:</strong> All your extensions work</li>
-			</ul>
-			<p>
-				Cursor is ideal for vibe coders who want proven AI assistance within a familiar IDE without giving up too much control.
-			</p>
-		</section>
-
-		<!-- Feature Comparison -->
-		<section>
-			<h2>Feature Comparison</h2>
-			<p>
-				Here's how Windsurf and Cursor compare across key features for vibe coding:
-			</p>
-
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Feature</th>
-							<th>Windsurf</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Autocomplete</td>
-							<td>Supercomplete (multi-line)</td>
-							<td>Tab (single/multi-line)</td>
-						</tr>
-						<tr>
-							<td>AI Agent</td>
-							<td>Cascade (highly autonomous)</td>
-							<td>Composer (guided)</td>
-						</tr>
-						<tr>
-							<td>Context System</td>
-							<td>Flows (persistent)</td>
-							<td>Codebase indexing</td>
-						</tr>
-						<tr>
-							<td>Autonomy Level</td>
-							<td>High</td>
-							<td>Medium</td>
-						</tr>
-						<tr>
-							<td>Terminal Integration</td>
-							<td>Yes (Cascade can run commands)</td>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<td>Background Tasks</td>
-							<td>Yes</td>
+							<td>Background agents</td>
 							<td>Limited</td>
+							<td class="highlight-win">Yes (runs while you code)</td>
 						</tr>
 						<tr>
-							<td>Rules Files</td>
-							<td>.windsurfrules</td>
-							<td>.cursorrules</td>
+							<td>Free tier</td>
+							<td class="highlight-win">Generous</td>
+							<td>2000 completions</td>
 						</tr>
 						<tr>
-							<td>MCP Support</td>
-							<td>Yes</td>
-							<td>Yes</td>
+							<td>Community size</td>
+							<td>Growing</td>
+							<td class="highlight-win">Largest</td>
 						</tr>
 						<tr>
-							<td>Privacy Mode</td>
-							<td>Yes</td>
-							<td>Yes</td>
+							<td>Proprietary model</td>
+							<td>SWE-1.5</td>
+							<td>None (uses Claude, GPT-4)</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+		</section>
+
+		<!-- Cascade vs Composer -->
+		<section>
+			<h2>How does Windsurf Cascade compare to Cursor Composer?</h2>
+			<p>
+				This is the real comparison. Both tools have chat and autocomplete - those are table stakes. What separates them is their AI agent approach.
+			</p>
+
+			<div class="agent-comparison">
+				<div class="agent-card windsurf">
+					<h3>Windsurf Cascade</h3>
+					<p class="agent-philosophy">"Let me handle it end-to-end"</p>
+					<ul>
+						<li><strong>Memories:</strong> Remembers project context across sessions</li>
+						<li><strong>Turbo mode:</strong> 13x faster completions with <a href="https://codeium.com/blog/swe-1-5-turbo-model" target="_blank" rel="noopener">SWE-1.5</a></li>
+						<li><strong>Auto-fix:</strong> Detects errors and fixes them automatically</li>
+						<li><strong>Multi-step planning:</strong> Breaks complex tasks into steps</li>
+						<li><strong>Tool use:</strong> Can browse web, run terminal, edit files</li>
+					</ul>
+					<p class="agent-best">Best for: Tasks you want to hand off completely</p>
+				</div>
+
+				<div class="agent-card cursor">
+					<h3>Cursor Composer</h3>
+					<p class="agent-philosophy">"Let's work through this together"</p>
+					<ul>
+						<li><strong>Multi-file editing:</strong> Changes multiple files at once</li>
+						<li><strong>Background agents:</strong> Keep working while you code</li>
+						<li><strong>Model flexibility:</strong> Switch between Claude, GPT-4, custom</li>
+						<li><strong>Apply workflow:</strong> Review each change before applying</li>
+						<li><strong>Codebase indexing:</strong> Understands your full project</li>
+					</ul>
+					<p class="agent-best">Best for: Collaborative coding with oversight</p>
+				</div>
+			</div>
 
 			<p>
-				<strong>Key insight:</strong> Windsurf's Cascade is more autonomous - it can independently browse, research, and execute multi-step plans. Cursor's Composer requires more guidance but gives you more control. The tradeoff is autonomy vs predictability.
+				The pattern: Windsurf gives you more autonomy, Cursor gives you more control. If you're vibe coding a prototype and want speed, Cascade's autonomy helps. If you're working in production code and want to review changes, Composer's workflow is safer.
 			</p>
 		</section>
 
-		<!-- Pricing Comparison -->
+		<!-- Pricing Deep Dive -->
 		<section>
-			<h2>Pricing Comparison</h2>
+			<h2>What does each tool actually cost?</h2>
 			<p>
-				Windsurf offers better value at $15/month vs Cursor's $20/month, with a more generous free tier:
+				Windsurf is 25% cheaper. But there's nuance in what you get:
+			</p>
+
+			<div class="pricing-grid">
+				<div class="pricing-card">
+					<div class="pricing-header windsurf">
+						<h3>Windsurf</h3>
+					</div>
+					<div class="pricing-tier">
+						<span class="tier-name">Free</span>
+						<span class="tier-price">$0</span>
+						<ul>
+							<li>Unlimited basic completions</li>
+							<li>Limited Cascade credits</li>
+							<li>Community support</li>
+						</ul>
+					</div>
+					<div class="pricing-tier featured">
+						<span class="tier-name">Pro</span>
+						<span class="tier-price">$15/mo</span>
+						<ul>
+							<li>Unlimited Cascade flows</li>
+							<li>Memories (persistent context)</li>
+							<li>Priority model access</li>
+							<li>Turbo mode (SWE-1.5)</li>
+						</ul>
+					</div>
+					<div class="pricing-tier">
+						<span class="tier-name">Team</span>
+						<span class="tier-price">$30/user/mo</span>
+						<ul>
+							<li>Everything in Pro</li>
+							<li>Admin controls</li>
+							<li>Usage analytics</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="pricing-card">
+					<div class="pricing-header cursor">
+						<h3>Cursor</h3>
+					</div>
+					<div class="pricing-tier">
+						<span class="tier-name">Free</span>
+						<span class="tier-price">$0</span>
+						<ul>
+							<li>2000 completions</li>
+							<li>50 slow premium requests</li>
+							<li>Limited features</li>
+						</ul>
+					</div>
+					<div class="pricing-tier featured">
+						<span class="tier-name">Pro</span>
+						<span class="tier-price">$20/mo</span>
+						<ul>
+							<li>Unlimited completions</li>
+							<li>500 fast premium requests/mo</li>
+							<li>Unlimited slow requests</li>
+							<li>Background agents</li>
+						</ul>
+					</div>
+					<div class="pricing-tier">
+						<span class="tier-name">Business</span>
+						<span class="tier-price">$40/user/mo</span>
+						<ul>
+							<li>Everything in Pro</li>
+							<li>Privacy mode (zero retention)</li>
+							<li>Admin dashboard</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<p>
+				<strong>Annual savings:</strong> Windsurf Pro saves you $60/year vs Cursor Pro. Both offer 2-week free trials.
+			</p>
+		</section>
+
+		<!-- JetBrains Section -->
+		<section>
+			<h2>What if you use JetBrains (IntelliJ, PyCharm, WebStorm)?</h2>
+			<p>
+				Windsurf wins by default. Cursor is a VS Code fork - it doesn't work with JetBrains at all.
+			</p>
+			<p>
+				<a href="https://codeium.com/windsurf/install" target="_blank" rel="noopener">Windsurf supports 40+ IDEs</a> including:
+			</p>
+			<ul>
+				<li><strong>JetBrains:</strong> IntelliJ IDEA, PyCharm, WebStorm, PHPStorm, GoLand, Rider</li>
+				<li><strong>VS Code family:</strong> VS Code, Cursor, Windsurf IDE</li>
+				<li><strong>Others:</strong> Neovim, Vim, Emacs, Sublime Text, Eclipse</li>
+			</ul>
+			<p>
+				If you're vibe coding in a JetBrains IDE, your only AI agent option with deep integration is Windsurf (or GitHub Copilot, but that's less autonomous).
+			</p>
+		</section>
+
+		<!-- Workflow Comparison -->
+		<section>
+			<h2>Which matches your vibe coding workflow?</h2>
+
+			<div class="workflow-cards">
+				<div class="workflow-card">
+					<h3>You want maximum speed</h3>
+					<div class="recommendation windsurf-rec">Windsurf</div>
+					<p>
+						Cascade with Turbo mode (SWE-1.5) completes tasks faster. The Memories feature means less re-explaining context each session. Hand off entire features and let it run.
+					</p>
+				</div>
+
+				<div class="workflow-card">
+					<h3>You want to stay in control</h3>
+					<div class="recommendation cursor-rec">Cursor</div>
+					<p>
+						Composer's apply workflow lets you review each change. Background agents run tasks without blocking your main thread. More visibility into what's happening.
+					</p>
+				</div>
+
+				<div class="workflow-card">
+					<h3>You use JetBrains IDEs</h3>
+					<div class="recommendation windsurf-rec">Windsurf</div>
+					<p>
+						No competition here. Cursor doesn't support JetBrains. Windsurf is your only option for AI agents in IntelliJ, PyCharm, or WebStorm.
+					</p>
+				</div>
+
+				<div class="workflow-card">
+					<h3>You want the biggest community</h3>
+					<div class="recommendation cursor-rec">Cursor</div>
+					<p>
+						More tutorials, more .cursorrules examples, more Stack Overflow answers. When you hit a problem, someone's likely solved it already.
+					</p>
+				</div>
+
+				<div class="workflow-card">
+					<h3>Budget matters</h3>
+					<div class="recommendation windsurf-rec">Windsurf</div>
+					<p>
+						$15/mo vs $20/mo. Better free tier. Same core functionality. If you're just starting to vibe code, Windsurf is the cheaper entry point.
+					</p>
+				</div>
+
+				<div class="workflow-card">
+					<h3>You want background processing</h3>
+					<div class="recommendation cursor-rec">Cursor</div>
+					<p>
+						Cursor's background agents can run tasks while you keep coding. Windsurf Cascade requires more active supervision.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Enterprise Features -->
+		<section>
+			<h2>What about enterprise features?</h2>
+			<p>
+				Both tools have enterprise offerings, but with different compliance levels:
 			</p>
 
 			<div class="comparison-table-wrapper">
 				<table class="comparison-table">
 					<thead>
 						<tr>
-							<th>Tier</th>
+							<th>Enterprise Need</th>
 							<th>Windsurf</th>
 							<th>Cursor</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>Free</td>
-							<td>Generous limits, basic features</td>
-							<td>2000 completions, limited</td>
+							<td>SOC 2 Type II</td>
+							<td>Yes</td>
+							<td>Yes</td>
 						</tr>
 						<tr>
-							<td>Pro</td>
-							<td>$15/month</td>
-							<td>$20/month</td>
+							<td>Privacy mode</td>
+							<td>Yes</td>
+							<td>Yes (Business tier)</td>
 						</tr>
 						<tr>
-							<td>Team</td>
-							<td>$30/user/month</td>
-							<td>Custom pricing</td>
+							<td>FedRAMP High</td>
+							<td class="highlight-win">Yes</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>Self-hosted option</td>
+							<td>Enterprise tier</td>
+							<td>Enterprise tier</td>
+						</tr>
+						<tr>
+							<td>SSO/SAML</td>
+							<td>Enterprise</td>
+							<td>Business+</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 
 			<p>
-				<strong>Bottom line:</strong> If budget matters, Windsurf saves you $60/year with a better free tier for trying before buying.
+				If you need FedRAMP High compliance for government work, Windsurf is the only option. For most startups, both have sufficient security certifications.
 			</p>
 		</section>
 
-		<!-- Security Comparison -->
-		<section>
-			<h2>Security Comparison: CVEs and Risks</h2>
+		<!-- Security Note -->
+		<section class="security-note">
+			<h2>What about security?</h2>
 			<p>
-				Both tools have path traversal CVEs disclosed in 2025. Here's how their security profiles compare. Per the <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP Top 10 for LLM Applications</a>, all AI coding tools require security review.
-			</p>
-
-			<div class="security-comparison">
-				<div class="security-card windsurf">
-					<h3>Windsurf Security</h3>
-					<div class="cve-status vulnerable-high">
-						<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62353" target="_blank" rel="noopener">CVE-2025-62353</a> (CVSS 9.8 Critical)
-					</div>
-					<h4>The Vulnerability</h4>
-					<p>Path traversal in <code>codebase_search</code> and <code>write_to_file</code> tools allows reading/writing files outside project directory.</p>
-					<h4>Additional Risks</h4>
-					<ul>
-						<li><a href="https://www.pillar.security/blog/new-vulnerability-in-windsurf-editor-enabled-ai-to-exfiltrate-data-and-write-arbitrary-files" target="_blank" rel="noopener">Prompt injection</a> can exfiltrate .env files</li>
-						<li>94+ inherited Electron/Chromium CVEs</li>
-						<li>Higher autonomy = larger attack surface</li>
-						<li>Cascade can run commands without confirmation</li>
-					</ul>
-				</div>
-
-				<div class="security-card cursor">
-					<h3>Cursor Security</h3>
-					<div class="cve-status vulnerable">
-						<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62352" target="_blank" rel="noopener">CVE-2025-62352</a> (Path Traversal)
-					</div>
-					<h4>The Vulnerability</h4>
-					<p>Similar path traversal class affecting file operations. Less severe than Windsurf's CVE.</p>
-					<h4>Additional Risks</h4>
-					<ul>
-						<li>Autocomplete can expose secrets</li>
-						<li><a href="/kb/security/vulnerabilities/sql-injection/">SQL injection</a> via template literals</li>
-						<li>94+ inherited Electron/Chromium CVEs</li>
-						<li>Less autonomous = smaller attack surface</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Risk Factor</th>
-							<th>Windsurf</th>
-							<th>Cursor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>CVE Severity</td>
-							<td class="vulnerable-high">Critical (CVSS 9.8)</td>
-							<td class="vulnerable">Lower</td>
-						</tr>
-						<tr>
-							<td>Attack Surface</td>
-							<td>Larger (Cascade autonomy)</td>
-							<td>Smaller</td>
-						</tr>
-						<tr>
-							<td>Prompt Injection Risk</td>
-							<td>Higher</td>
-							<td>Medium</td>
-						</tr>
-						<tr>
-							<td>Secret Exposure</td>
-							<td>Documented attacks</td>
-							<td>Autocomplete risk</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<p>
-				<strong>Bottom line:</strong> Windsurf's higher autonomy comes with higher risk. Its CVE is more severe and its Cascade agent has documented prompt injection attacks. Cursor is relatively safer but not immune. Use <a href="/kb/vibe-coding/secure-vibe-coding-guide/">security rules files</a> and never put secrets in files the AI can access.
-			</p>
-		</section>
-
-		<!-- When to Choose Windsurf -->
-		<section>
-			<h2>When to Choose Windsurf</h2>
-			<p>
-				Windsurf is the better choice when you need:
+				Both tools have had CVEs in 2025. If you're vibe coding, you should:
 			</p>
 			<ul>
-				<li><strong>Maximum autonomy:</strong> Cascade executes complex tasks independently</li>
-				<li><strong>Budget-conscious:</strong> $15/mo vs $20/mo ($60/year savings)</li>
-				<li><strong>Better free tier:</strong> More generous limits for trying before buying</li>
-				<li><strong>Multi-step workflows:</strong> Tasks requiring research, planning, and execution</li>
-				<li><strong>Early adopter comfort:</strong> Willing to accept higher risk for more power</li>
+				<li>Keep your IDE updated (both auto-update by default)</li>
+				<li>Use <a href="/kb/prompts/how-to-use-cursor-rules/">rules files</a> to guide AI behavior</li>
+				<li>Never put secrets in files the AI can access</li>
+				<li>Review AI-generated code before deploying</li>
 			</ul>
 			<p>
-				<strong>Ideal user:</strong> Developers who want an AI that can work independently and don't mind the security tradeoffs of high autonomy.
-			</p>
-		</section>
-
-		<!-- When to Choose Cursor -->
-		<section>
-			<h2>When to Choose Cursor</h2>
-			<p>
-				Cursor is the better choice when you need:
-			</p>
-			<ul>
-				<li><strong>Proven stability:</strong> Larger community, more battle-tested</li>
-				<li><strong>Lower risk:</strong> Less autonomous = smaller attack surface</li>
-				<li><strong>Model flexibility:</strong> Easily switch between GPT-4, Claude, etc.</li>
-				<li><strong>Controlled assistance:</strong> AI helps but you stay in charge</li>
-				<li><strong>Larger ecosystem:</strong> More tutorials, community support</li>
-			</ul>
-			<p>
-				<strong>Ideal user:</strong> Developers who want reliable AI augmentation within a familiar IDE without giving up control.
+				More autonomous tools have larger attack surfaces. If security is your primary concern, see our <a href="/kb/vibe-coding/secure-vibe-coding-guide/">Secure Vibe Coding Guide</a> for detailed practices.
 			</p>
 		</section>
 
 		<!-- Can You Use Both -->
 		<section>
-			<h2>Can you use both?</h2>
+			<h2>Can you use both Windsurf and Cursor?</h2>
 			<p>
-				Yes. A practical workflow:
+				Yes. They install separately and don't conflict. Some vibe coders use:
 			</p>
 			<ul>
-				<li><strong>Windsurf Cascade</strong> for autonomous tasks: "Research and implement OAuth for this app"</li>
-				<li><strong>Cursor</strong> for controlled editing: Quick fixes, autocomplete, inline edits</li>
+				<li><strong>Windsurf</strong> for JetBrains projects and autonomous prototyping</li>
+				<li><strong>Cursor</strong> for VS Code projects and production work</li>
 			</ul>
 			<p>
-				Many developers keep both installed, using Windsurf when they want hands-off execution and Cursor when they want to stay more involved. Since both are VS Code forks, your extensions and settings transfer easily.
+				For even more power, combine either with <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a> in the terminal. Run Claude Code for complex reasoning tasks while using your IDE's agent for quick edits.
 			</p>
 		</section>
 
@@ -485,29 +499,29 @@
 		<section>
 			<h2>Related Comparisons</h2>
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/windsurf/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Windsurf Security Patterns</span>
-				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Cursor Security Patterns</span>
-				</a>
 				<a href="/kb/vibe-coding-tools/claude-code-vs-cursor/" class="related-card">
 					<span class="related-type">Comparison</span>
 					<span class="related-title">Claude Code vs Cursor</span>
 				</a>
+				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="related-card">
+					<span class="related-type">Comparison</span>
+					<span class="related-title">Cursor vs GitHub Copilot</span>
+				</a>
+				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
+					<span class="related-type">Tool Guide</span>
+					<span class="related-title">Cursor for Vibe Coders</span>
+				</a>
+				<a href="/kb/prompts/how-to-use-cursor-rules/" class="related-card">
+					<span class="related-type">Guide</span>
+					<span class="related-title">How to Use Cursor Rules</span>
+				</a>
 				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
 					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">The Complete Secure Vibe Coding Guide</span>
+					<span class="related-title">Secure Vibe Coding Guide</span>
 				</a>
-				<a href="/kb/vibe-coding-tools/claude-code/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Claude Code Security Patterns</span>
-				</a>
-				<a href="/kb/security/checklists/pre-launch/" class="related-card">
-					<span class="related-type">Checklist</span>
-					<span class="related-title">Pre-Launch Security Checklist</span>
+				<a href="/kb/prompts/best-ai-coding-tools-2025/" class="related-card">
+					<span class="related-type">Guide</span>
+					<span class="related-title">Best AI Coding Tools 2025</span>
 				</a>
 			</div>
 		</section>
@@ -539,12 +553,12 @@
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		background: var(--surface-2, #333);
+		background: var(--bg-tertiary, #333);
 		color: var(--text-secondary, #aaa);
 	}
 
 	.badge-comparison {
-		background: #3b82f6;
+		background: var(--blue, #3b82f6);
 		color: white;
 	}
 
@@ -560,9 +574,9 @@
 	}
 
 	.quick-answer {
-		background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
-		border: 1px solid rgba(59, 130, 246, 0.3);
-		border-radius: 8px;
+		background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+		border-left: 4px solid var(--green, #22c55e);
+		border-radius: 0 8px 8px 0;
 		padding: 1.5rem;
 		margin-bottom: 2rem;
 	}
@@ -571,13 +585,29 @@
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		color: #3b82f6;
+		color: var(--green, #22c55e);
 		margin-bottom: 0.5rem;
 	}
 
 	.quick-answer-text {
 		margin: 0;
 		line-height: 1.6;
+	}
+
+	/* Acquisition Callout */
+	.acquisition-callout {
+		background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 8px;
+		padding: 1.5rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.acquisition-callout h2 {
+		color: var(--violet, #a855f7);
+		border-bottom: none;
+		padding-bottom: 0;
+		margin-bottom: 1rem;
 	}
 
 	section {
@@ -597,13 +627,6 @@
 		margin-top: 1rem;
 	}
 
-	h4 {
-		font-size: 0.9rem;
-		margin-bottom: 0.5rem;
-		margin-top: 1rem;
-		color: var(--text-secondary, #888);
-	}
-
 	p {
 		line-height: 1.7;
 		margin-bottom: 1rem;
@@ -620,18 +643,11 @@
 	}
 
 	a {
-		color: #22c55e;
+		color: var(--green, #22c55e);
 	}
 
 	a:hover {
 		text-decoration: underline;
-	}
-
-	code {
-		background: var(--surface-2, #2a2a2a);
-		padding: 0.15rem 0.4rem;
-		border-radius: 4px;
-		font-size: 0.85em;
 	}
 
 	/* Comparison Table */
@@ -654,7 +670,7 @@
 	}
 
 	.comparison-table th {
-		background: var(--surface-1, #1a1a1a);
+		background: var(--bg-secondary, #1a1a1a);
 		font-weight: 600;
 	}
 
@@ -663,25 +679,16 @@
 	}
 
 	.comparison-table th:nth-child(3) {
-		color: #3b82f6;
+		color: var(--blue, #3b82f6);
 	}
 
-	.comparison-table td.secure {
-		color: #22c55e;
+	.comparison-table td.highlight-win {
+		color: var(--green, #22c55e);
 		font-weight: 600;
 	}
 
-	.comparison-table td.vulnerable {
-		color: #f59e0b;
-	}
-
-	.comparison-table td.vulnerable-high {
-		color: #ef4444;
-		font-weight: 600;
-	}
-
-	/* Security Comparison */
-	.security-comparison {
+	/* Agent Comparison */
+	.agent-comparison {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1.5rem;
@@ -689,84 +696,200 @@
 	}
 
 	@media (max-width: 768px) {
-		.security-comparison {
+		.agent-comparison {
 			grid-template-columns: 1fr;
 		}
 	}
 
-	.security-card {
-		background: var(--surface-1, #1a1a1a);
+	.agent-card {
+		background: var(--bg-secondary, #1a1a1a);
 		border-radius: 8px;
 		padding: 1.5rem;
 	}
 
-	.security-card.windsurf {
+	.agent-card.windsurf {
 		border: 1px solid rgba(6, 182, 212, 0.3);
 	}
 
-	.security-card.cursor {
+	.agent-card.cursor {
 		border: 1px solid rgba(59, 130, 246, 0.3);
 	}
 
-	.security-card h3 {
+	.agent-card h3 {
 		margin-top: 0;
-		margin-bottom: 0.75rem;
+		margin-bottom: 0.5rem;
 	}
 
-	.security-card.windsurf h3 {
+	.agent-card.windsurf h3 {
 		color: #06b6d4;
 	}
 
-	.security-card.cursor h3 {
-		color: #3b82f6;
+	.agent-card.cursor h3 {
+		color: var(--blue, #3b82f6);
 	}
 
-	.cve-status {
+	.agent-philosophy {
+		font-style: italic;
+		color: var(--text-secondary, #888);
+		margin-bottom: 1rem;
+	}
+
+	.agent-best {
+		font-size: 0.875rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--border, #333);
+		margin-bottom: 0;
+	}
+
+	.agent-card ul {
+		margin-bottom: 1rem;
+	}
+
+	.agent-card li {
+		font-size: 0.9rem;
+	}
+
+	/* Pricing Grid */
+	.pricing-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+		margin: 1.5rem 0;
+	}
+
+	@media (max-width: 768px) {
+		.pricing-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.pricing-card {
+		background: var(--bg-secondary, #1a1a1a);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.pricing-header {
+		padding: 1rem 1.5rem;
+	}
+
+	.pricing-header.windsurf {
+		background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(6, 182, 212, 0.1) 100%);
+		border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+	}
+
+	.pricing-header.windsurf h3 {
+		color: #06b6d4;
+		margin: 0;
+	}
+
+	.pricing-header.cursor {
+		background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%);
+		border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+	}
+
+	.pricing-header.cursor h3 {
+		color: var(--blue, #3b82f6);
+		margin: 0;
+	}
+
+	.pricing-tier {
+		padding: 1rem 1.5rem;
+		border-bottom: 1px solid var(--border, #333);
+	}
+
+	.pricing-tier:last-child {
+		border-bottom: none;
+	}
+
+	.pricing-tier.featured {
+		background: rgba(34, 197, 94, 0.05);
+	}
+
+	.tier-name {
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+
+	.tier-price {
+		float: right;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: var(--green, #22c55e);
+	}
+
+	.pricing-tier ul {
+		margin: 0.75rem 0 0;
+		padding-left: 1.25rem;
+	}
+
+	.pricing-tier li {
+		font-size: 0.85rem;
+		margin-bottom: 0.25rem;
+	}
+
+	/* Workflow Cards */
+	.workflow-cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	.workflow-card {
+		background: var(--bg-secondary, #1a1a1a);
+		border: 1px solid var(--border, #333);
+		border-radius: 8px;
+		padding: 1.25rem;
+	}
+
+	.workflow-card h3 {
+		margin-top: 0;
+		margin-bottom: 0.75rem;
+		font-size: 1rem;
+	}
+
+	.workflow-card p {
+		font-size: 0.9rem;
+		margin-bottom: 0;
+		color: var(--text-secondary, #aaa);
+	}
+
+	.recommendation {
 		display: inline-block;
 		padding: 0.25rem 0.75rem;
 		border-radius: 4px;
 		font-size: 0.8rem;
 		font-weight: 600;
-		margin-bottom: 1rem;
-	}
-
-	.cve-status.secure {
-		background: rgba(34, 197, 94, 0.2);
-		color: #22c55e;
-	}
-
-	.cve-status.vulnerable {
-		background: rgba(245, 158, 11, 0.2);
-		color: #f59e0b;
-	}
-
-	.cve-status.vulnerable-high {
-		background: rgba(239, 68, 68, 0.2);
-		color: #ef4444;
-	}
-
-	.cve-status a {
-		color: inherit;
-	}
-
-	.security-card p {
-		font-size: 0.875rem;
 		margin-bottom: 0.75rem;
 	}
 
-	.security-card ul {
-		margin-bottom: 0.5rem;
-		padding-left: 1.25rem;
+	.recommendation.windsurf-rec {
+		background: rgba(6, 182, 212, 0.2);
+		color: #06b6d4;
 	}
 
-	.security-card li {
-		margin-bottom: 0.25rem;
-		font-size: 0.875rem;
+	.recommendation.cursor-rec {
+		background: rgba(59, 130, 246, 0.2);
+		color: var(--blue, #3b82f6);
+	}
+
+	/* Security Note */
+	.security-note {
+		background: var(--bg-secondary, #1a1a1a);
+		border: 1px solid var(--border, #333);
+		border-radius: 8px;
+		padding: 1.5rem;
+	}
+
+	.security-note h2 {
+		border-bottom: none;
+		padding-bottom: 0;
 	}
 
 	/* FAQ Section */
 	.faq-section {
-		background: var(--surface-1, #1a1a1a);
+		background: var(--bg-secondary, #1a1a1a);
 		border-radius: 8px;
 		padding: 1.5rem;
 	}
@@ -802,7 +925,7 @@
 	.related-card {
 		display: block;
 		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
+		background: var(--bg-secondary, #1a1a1a);
 		border: 1px solid var(--border, #333);
 		border-radius: 8px;
 		text-decoration: none;
@@ -810,7 +933,7 @@
 	}
 
 	.related-card:hover {
-		border-color: #22c55e;
+		border-color: var(--green, #22c55e);
 		text-decoration: none;
 	}
 
