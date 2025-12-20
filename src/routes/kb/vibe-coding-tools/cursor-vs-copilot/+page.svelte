@@ -485,43 +485,45 @@
 		</section>
 
 		<!-- FAQ Section -->
-		<section class="faq-section">
+		<section class="article-section">
 			<h2>Frequently Asked Questions</h2>
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
 		<section>
 			<h2>Keep exploring</h2>
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Cursor: Full Security Analysis</span>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">Cursor: Full Security Analysis</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/github-copilot/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">GitHub Copilot: Security Patterns</span>
+				<a href="/kb/vibe-coding-tools/github-copilot/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">GitHub Copilot: Security Patterns</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/claude-code-vs-cursor/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Claude Code vs Cursor</span>
+				<a href="/kb/vibe-coding-tools/claude-code-vs-cursor/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Claude Code vs Cursor</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/windsurf-vs-cursor/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Windsurf vs Cursor</span>
+				<a href="/kb/vibe-coding-tools/windsurf-vs-cursor/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Windsurf vs Cursor</h3>
 				</a>
-				<a href="/kb/prompts/cursor-rules/" class="related-card">
-					<span class="related-type">Prompts</span>
-					<span class="related-title">Cursor Rules That Actually Work</span>
+				<a href="/kb/prompts/cursor-rules/" class="card card-interactive">
+					<span class="related-card-category">Prompts</span>
+					<h3 class="related-card-title">Cursor Rules That Actually Work</h3>
 				</a>
-				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Guide</span>
-					<span class="related-title">Secure Vibe Coding Guide</span>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive">
+					<span class="related-card-category">Guide</span>
+					<h3 class="related-card-title">Secure Vibe Coding Guide</h3>
 				</a>
 			</div>
 		</section>
@@ -689,67 +691,19 @@
 		font-size: 0.875rem;
 	}
 
-	/* FAQ Section */
-	.faq-section {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		padding: 1.25rem;
-	}
-
-	.faq-section h2 {
-		margin-top: 0;
-	}
-
-	.faq-item {
-		padding: 1rem 0;
-		border-bottom: 1px solid var(--border);
-	}
-
-	.faq-item:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
-	}
-
-	.faq-item h3 {
-		margin-top: 0;
-		font-size: 1rem;
-	}
-
-	.faq-item p {
-		margin-bottom: 0;
-		color: var(--text-secondary);
-		font-size: 0.9rem;
-	}
-
-	/* Related Content - uses global .related-grid but with custom cards */
-	.related-card {
+	/* Related card category label */
+	.related-card-category {
 		display: block;
-		padding: 1rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		text-decoration: none;
-		transition: border-color 0.15s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green-dim);
-		text-decoration: none;
-	}
-
-	.related-type {
-		display: block;
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 0.65rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
+		font-size: 0.75rem;
 		color: var(--text-tertiary);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
 		margin-bottom: 0.25rem;
 	}
 
-	.related-title {
-		display: block;
-		font-weight: 500;
+	.related-card-title {
+		font-size: 1rem;
+		margin: 0;
 		color: var(--text-primary);
 	}
 </style>

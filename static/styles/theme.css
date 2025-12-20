@@ -36,6 +36,7 @@
   /* Accent Colors - Vibeship Palette */
   --green: #2ECC71;        /* Terminal Green - success/fixed */
   --green-dim: #0d847a;    /* Darker teal for light mode readability */
+  --green-muted: #5a8a6e;  /* Subtle green for table highlights, not links */
   --orange: #D97757;       /* Claude coral for light mode */
   --orange-dim: #d97706;
   --red: #FF4D4D;          /* Debug Red - error/critical */
@@ -82,6 +83,7 @@
   /* Accent Colors - Same as Light */
   --green: #2ECC71;
   --green-dim: #00C49A;
+  --green-muted: #6b9b7a;  /* Subtle green for table highlights, not links */
   --orange: #FFB020;
   --orange-dim: #d97706;
   --red: #FF4D4D;

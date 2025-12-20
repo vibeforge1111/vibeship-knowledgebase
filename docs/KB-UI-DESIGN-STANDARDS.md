@@ -75,11 +75,12 @@ Use existing classes from `static/styles/components.css` and `static/styles/layo
 |----------|-------|-------|
 | `--green` | #2ECC71 | Success, fixed, terminal green |
 | `--green-dim` | varies | Links, accents (readable on both themes) |
+| `--green-muted` | #5a8a6e / #6b9b7a | Table highlights, non-link green accents |
 | `--orange` | varies | Warnings, pending |
 | `--red` | #FF4D4D | Errors, critical, vulnerabilities |
-| `--blue` | #3399FF | Info, general |
-| `--violet` | #9D8CFF | Analytics, special |
-| `--pink` | #FF66C4 | High priority |
+| `--blue` | #3399FF | Info, general (avoid for tool brand colors) |
+| `--violet` | #9D8CFF | Analytics, special (avoid for tool brand colors) |
+| `--pink` | #FF66C4 | High priority (avoid for tool brand colors) |
 
 ---
 
@@ -326,13 +327,87 @@ Use the global `.final-cta` class from `components.css`:
     <a href="/kb/..." class="card card-interactive">
       <span class="related-card-category">Category</span>
       <h3 class="related-card-title">Article Title</h3>
-      <p class="related-card-description">Brief description</p>
     </a>
   </div>
 </section>
 ```
 
-### 9. Tables
+**Scoped styles needed for labels:**
+```css
+.related-card-category {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.related-card-title {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+```
+
+### 10. Comparison Article Pattern
+
+For tool comparison articles (e.g., "Cursor vs Copilot"), use a **neutral color palette**. Avoid tool brand colors entirely - they create visual noise and can be inaccurate (many tools don't use the colors we assume).
+
+```svelte
+<div class="agent-card">
+  <h3>Tool A</h3>
+  <p>Description...</p>
+</div>
+
+<div class="agent-card">
+  <h3>Tool B</h3>
+  <p>Description...</p>
+</div>
+```
+
+**Scoped styles for comparison cards (NEUTRAL):**
+```css
+.agent-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+}
+
+.agent-card h3 {
+  color: var(--text-primary);  /* NOT tool brand colors */
+}
+
+/* Recommendations - subtle, text only */
+.recommendation {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+/* Winner highlights - use muted green, not link green */
+.comparison-table td.highlight-win {
+  color: var(--green-muted);  /* NOT var(--green) */
+  font-weight: 500;
+}
+```
+
+**Key rules for comparison articles:**
+- **NO tool brand colors** - Most tools use blue anyway, and we were using wrong colors
+- Use `var(--text-primary)` for all headings
+- Use `var(--bg-secondary)` and `var(--bg-tertiary)` for backgrounds
+- Use `var(--border-strong)` for callout left-borders (not colored accents)
+- Use `var(--green-muted)` for table winner highlights (not bright `var(--green)`)
+- Recommendation badges use `var(--bg-tertiary)` background, `var(--text-secondary)` text
+- Keep the focus on content, not color-coding
+
+**Exception: Warning/Security sections may use `var(--orange)` left-border (it's a semantic warning color, not a brand color)**
+
+### 11. Tables
 
 Wrap tables in `.table-wrapper` for mobile scroll:
 
@@ -438,6 +513,25 @@ If components.css has a class, use it. Don't redefine:
 - `.card`
 - `.stat-box`
 - `.related-grid`
+- `.faq-list`, `.faq-item`
+
+### 6. Don't Use Hardcoded Brand Colors
+
+```css
+/* WRONG - Hardcoded hex values */
+color: #06b6d4;  /* cyan */
+color: #ec4899;  /* pink */
+color: #f97316;  /* orange */
+border: 1px solid rgba(236, 72, 153, 0.3);
+
+/* RIGHT - Use CSS variables */
+color: var(--blue);
+color: var(--pink);
+color: var(--orange);
+border-left: 3px solid var(--pink);
+```
+
+Even for tool-specific branding (Lovable pink, Bolt orange), use CSS variables.
 
 ---
 
@@ -486,11 +580,15 @@ Key breakpoints:
 ## Reference Articles
 
 ### Gold Standard (Copy This Pattern)
-- `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte`
-- `src/routes/kb/prompts/cursor-rules-examples/+page.svelte`
+- `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte` - Security article template
+- `src/routes/kb/prompts/cursor-rules-examples/+page.svelte` - Prompts article template
+
+### Comparison Articles (Copy This Pattern)
+- `src/routes/kb/vibe-coding-tools/windsurf-vs-cursor/+page.svelte` - Tool comparison with pricing grids
+- `src/routes/kb/vibe-coding-tools/lovable-vs-bolt/+page.svelte` - Tool comparison with integration cards
+- `src/routes/kb/vibe-coding-tools/cursor-vs-copilot/+page.svelte` - Tool comparison with security focus
 
 ### Previously Fixed (Now Compliant)
-- `src/routes/kb/vibe-coding-tools/cursor-vs-copilot/+page.svelte` - Fixed: removed rounded corners, gradients, hardcoded colors
 - `src/routes/kb/security/stacks/sveltekit-supabase/+page.svelte` - Fixed: removed rounded corners, gradients, hardcoded colors
 
 ---

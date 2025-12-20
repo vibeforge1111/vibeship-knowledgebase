@@ -106,7 +106,7 @@
 <Header {breadcrumbs} />
 
 <div class="content-wrapper">
-	<article class="content-main">
+	<article class="content-main content-wide">
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
@@ -213,7 +213,7 @@
 			</p>
 
 			<div class="agent-comparison">
-				<div class="agent-card windsurf">
+				<div class="agent-card">
 					<h3>Windsurf Cascade</h3>
 					<p class="agent-philosophy">"Let me handle it end-to-end"</p>
 					<ul>
@@ -226,7 +226,7 @@
 					<p class="agent-best">Best for: Tasks you want to hand off completely</p>
 				</div>
 
-				<div class="agent-card cursor">
+				<div class="agent-card">
 					<h3>Cursor Composer</h3>
 					<p class="agent-philosophy">"Let's work through this together"</p>
 					<ul>
@@ -254,7 +254,7 @@
 
 			<div class="pricing-grid">
 				<div class="pricing-card">
-					<div class="pricing-header windsurf">
+					<div class="pricing-header">
 						<h3>Windsurf</h3>
 					</div>
 					<div class="pricing-tier">
@@ -288,7 +288,7 @@
 				</div>
 
 				<div class="pricing-card">
-					<div class="pricing-header cursor">
+					<div class="pricing-header">
 						<h3>Cursor</h3>
 					</div>
 					<div class="pricing-tier">
@@ -353,7 +353,7 @@
 			<div class="workflow-cards">
 				<div class="workflow-card">
 					<h3>You want maximum speed</h3>
-					<div class="recommendation windsurf-rec">Windsurf</div>
+					<div class="recommendation">Windsurf</div>
 					<p>
 						Cascade with Turbo mode (SWE-1.5) completes tasks faster. The Memories feature means less re-explaining context each session. Hand off entire features and let it run.
 					</p>
@@ -361,7 +361,7 @@
 
 				<div class="workflow-card">
 					<h3>You want to stay in control</h3>
-					<div class="recommendation cursor-rec">Cursor</div>
+					<div class="recommendation">Cursor</div>
 					<p>
 						Composer's apply workflow lets you review each change. Background agents run tasks without blocking your main thread. More visibility into what's happening.
 					</p>
@@ -369,7 +369,7 @@
 
 				<div class="workflow-card">
 					<h3>You use JetBrains IDEs</h3>
-					<div class="recommendation windsurf-rec">Windsurf</div>
+					<div class="recommendation">Windsurf</div>
 					<p>
 						No competition here. Cursor doesn't support JetBrains. Windsurf is your only option for AI agents in IntelliJ, PyCharm, or WebStorm.
 					</p>
@@ -377,7 +377,7 @@
 
 				<div class="workflow-card">
 					<h3>You want the biggest community</h3>
-					<div class="recommendation cursor-rec">Cursor</div>
+					<div class="recommendation">Cursor</div>
 					<p>
 						More tutorials, more .cursorrules examples, more Stack Overflow answers. When you hit a problem, someone's likely solved it already.
 					</p>
@@ -385,7 +385,7 @@
 
 				<div class="workflow-card">
 					<h3>Budget matters</h3>
-					<div class="recommendation windsurf-rec">Windsurf</div>
+					<div class="recommendation">Windsurf</div>
 					<p>
 						$15/mo vs $20/mo. Better free tier. Same core functionality. If you're just starting to vibe code, Windsurf is the cheaper entry point.
 					</p>
@@ -393,7 +393,7 @@
 
 				<div class="workflow-card">
 					<h3>You want background processing</h3>
-					<div class="recommendation cursor-rec">Cursor</div>
+					<div class="recommendation">Cursor</div>
 					<p>
 						Cursor's background agents can run tasks while you keep coding. Windsurf Cascade requires more active supervision.
 					</p>
@@ -485,43 +485,45 @@
 		</section>
 
 		<!-- FAQ Section -->
-		<section class="faq-section">
+		<section class="article-section">
 			<h2>Frequently Asked Questions</h2>
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
 		<section>
 			<h2>Related Comparisons</h2>
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/claude-code-vs-cursor/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Claude Code vs Cursor</span>
+				<a href="/kb/vibe-coding-tools/claude-code-vs-cursor/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Claude Code vs Cursor</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Cursor vs GitHub Copilot</span>
+				<a href="/kb/vibe-coding-tools/cursor-vs-copilot/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Cursor vs GitHub Copilot</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Cursor for Vibe Coders</span>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">Cursor for Vibe Coders</h3>
 				</a>
-				<a href="/kb/prompts/how-to-use-cursor-rules/" class="related-card">
-					<span class="related-type">Guide</span>
-					<span class="related-title">How to Use Cursor Rules</span>
+				<a href="/kb/prompts/how-to-use-cursor-rules/" class="card card-interactive">
+					<span class="related-card-category">Guide</span>
+					<h3 class="related-card-title">How to Use Cursor Rules</h3>
 				</a>
-				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">Secure Vibe Coding Guide</span>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive">
+					<span class="related-card-category">Pillar Guide</span>
+					<h3 class="related-card-title">Secure Vibe Coding Guide</h3>
 				</a>
-				<a href="/kb/prompts/best-ai-coding-tools-2025/" class="related-card">
-					<span class="related-type">Guide</span>
-					<span class="related-title">Best AI Coding Tools 2025</span>
+				<a href="/kb/prompts/best-ai-coding-tools-2025/" class="card card-interactive">
+					<span class="related-card-category">Guide</span>
+					<h3 class="related-card-title">Best AI Coding Tools 2025</h3>
 				</a>
 			</div>
 		</section>
@@ -529,128 +531,35 @@
 </div>
 
 <style>
-	.content-wrapper {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
-
-	.article-header {
-		margin-bottom: 2rem;
-	}
-
-	.badge-row {
-		display: flex;
-		gap: 0.5rem;
-		flex-wrap: wrap;
-		margin-bottom: 1rem;
-	}
-
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		background: var(--bg-tertiary, #333);
-		color: var(--text-secondary, #aaa);
-	}
+	/* Clean, neutral comparison article styles - no tool brand colors */
 
 	.badge-comparison {
-		background: var(--blue, #3b82f6);
-		color: white;
-	}
-
-	h1 {
-		font-size: 2.25rem;
-		margin-bottom: 0.5rem;
-		line-height: 1.2;
+		border-color: var(--border-strong);
+		color: var(--text-secondary);
+		background: transparent;
 	}
 
 	.subtitle {
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		font-size: 1.1rem;
 	}
 
-	.quick-answer {
-		background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
-		border-left: 4px solid var(--green, #22c55e);
-		border-radius: 0 8px 8px 0;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer-label {
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		color: var(--green, #22c55e);
-		margin-bottom: 0.5rem;
-	}
-
-	.quick-answer-text {
-		margin: 0;
-		line-height: 1.6;
-	}
-
-	/* Acquisition Callout */
+	/* Acquisition Callout - neutral accent */
 	.acquisition-callout {
-		background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
-		border: 1px solid rgba(168, 85, 247, 0.3);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border-left: 3px solid var(--border-strong);
 		padding: 1.5rem;
 		margin-bottom: 2.5rem;
 	}
 
 	.acquisition-callout h2 {
-		color: var(--violet, #a855f7);
+		color: var(--text-primary);
 		border-bottom: none;
 		padding-bottom: 0;
 		margin-bottom: 1rem;
 	}
 
-	section {
-		margin-bottom: 2.5rem;
-	}
-
-	h2 {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
-	}
-
-	h3 {
-		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
-		margin-top: 1rem;
-	}
-
-	p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-	}
-
-	ul {
-		margin-bottom: 1rem;
-		padding-left: 1.5rem;
-	}
-
-	li {
-		margin-bottom: 0.5rem;
-		line-height: 1.6;
-	}
-
-	a {
-		color: var(--green, #22c55e);
-	}
-
-	a:hover {
-		text-decoration: underline;
-	}
-
-	/* Comparison Table */
+	/* Comparison Table - neutral headers, muted green for wins */
 	.comparison-table-wrapper {
 		overflow-x: auto;
 		margin: 1.5rem 0;
@@ -666,28 +575,21 @@
 	.comparison-table td {
 		padding: 0.75rem 1rem;
 		text-align: left;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.comparison-table th {
-		background: var(--bg-secondary, #1a1a1a);
+		background: var(--bg-secondary);
 		font-weight: 600;
-	}
-
-	.comparison-table th:nth-child(2) {
-		color: #06b6d4;
-	}
-
-	.comparison-table th:nth-child(3) {
-		color: var(--blue, #3b82f6);
+		color: var(--text-primary);
 	}
 
 	.comparison-table td.highlight-win {
-		color: var(--green, #22c55e);
-		font-weight: 600;
+		color: var(--green-muted);
+		font-weight: 500;
 	}
 
-	/* Agent Comparison */
+	/* Agent Comparison - neutral cards */
 	.agent-comparison {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -702,42 +604,27 @@
 	}
 
 	.agent-card {
-		background: var(--bg-secondary, #1a1a1a);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1.5rem;
-	}
-
-	.agent-card.windsurf {
-		border: 1px solid rgba(6, 182, 212, 0.3);
-	}
-
-	.agent-card.cursor {
-		border: 1px solid rgba(59, 130, 246, 0.3);
 	}
 
 	.agent-card h3 {
 		margin-top: 0;
 		margin-bottom: 0.5rem;
-	}
-
-	.agent-card.windsurf h3 {
-		color: #06b6d4;
-	}
-
-	.agent-card.cursor h3 {
-		color: var(--blue, #3b82f6);
+		color: var(--text-primary);
 	}
 
 	.agent-philosophy {
 		font-style: italic;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		margin-bottom: 1rem;
 	}
 
 	.agent-best {
 		font-size: 0.875rem;
 		padding-top: 1rem;
-		border-top: 1px solid var(--border, #333);
+		border-top: 1px solid var(--border);
 		margin-bottom: 0;
 	}
 
@@ -749,7 +636,7 @@
 		font-size: 0.9rem;
 	}
 
-	/* Pricing Grid */
+	/* Pricing Grid - neutral styling */
 	.pricing-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -764,38 +651,25 @@
 	}
 
 	.pricing-card {
-		background: var(--bg-secondary, #1a1a1a);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
 	.pricing-header {
 		padding: 1rem 1.5rem;
+		background: var(--bg-tertiary);
+		border-bottom: 1px solid var(--border);
 	}
 
-	.pricing-header.windsurf {
-		background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(6, 182, 212, 0.1) 100%);
-		border-bottom: 1px solid rgba(6, 182, 212, 0.3);
-	}
-
-	.pricing-header.windsurf h3 {
-		color: #06b6d4;
-		margin: 0;
-	}
-
-	.pricing-header.cursor {
-		background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%);
-		border-bottom: 1px solid rgba(59, 130, 246, 0.3);
-	}
-
-	.pricing-header.cursor h3 {
-		color: var(--blue, #3b82f6);
+	.pricing-header h3 {
+		color: var(--text-primary);
 		margin: 0;
 	}
 
 	.pricing-tier {
 		padding: 1rem 1.5rem;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.pricing-tier:last-child {
@@ -803,7 +677,7 @@
 	}
 
 	.pricing-tier.featured {
-		background: rgba(34, 197, 94, 0.05);
+		background: var(--bg-tertiary);
 	}
 
 	.tier-name {
@@ -815,7 +689,7 @@
 		float: right;
 		font-size: 1.1rem;
 		font-weight: 700;
-		color: var(--green, #22c55e);
+		color: var(--text-primary);
 	}
 
 	.pricing-tier ul {
@@ -828,7 +702,7 @@
 		margin-bottom: 0.25rem;
 	}
 
-	/* Workflow Cards */
+	/* Workflow Cards - neutral with subtle recommendations */
 	.workflow-cards {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -837,9 +711,8 @@
 	}
 
 	.workflow-card {
-		background: var(--bg-secondary, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1.25rem;
 	}
 
@@ -852,33 +725,25 @@
 	.workflow-card p {
 		font-size: 0.9rem;
 		margin-bottom: 0;
-		color: var(--text-secondary, #aaa);
+		color: var(--text-secondary);
 	}
 
 	.recommendation {
 		display: inline-block;
 		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.8rem;
+		font-size: 0.75rem;
 		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
 		margin-bottom: 0.75rem;
+		background: var(--bg-tertiary);
+		color: var(--text-secondary);
 	}
 
-	.recommendation.windsurf-rec {
-		background: rgba(6, 182, 212, 0.2);
-		color: #06b6d4;
-	}
-
-	.recommendation.cursor-rec {
-		background: rgba(59, 130, 246, 0.2);
-		color: var(--blue, #3b82f6);
-	}
-
-	/* Security Note */
+	/* Security Note - keeps orange for warning context */
 	.security-note {
-		background: var(--bg-secondary, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border-left: 3px solid var(--orange);
 		padding: 1.5rem;
 	}
 
@@ -887,67 +752,19 @@
 		padding-bottom: 0;
 	}
 
-	/* FAQ Section */
-	.faq-section {
-		background: var(--bg-secondary, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
-	}
-
-	.faq-item {
-		padding: 1rem 0;
-		border-bottom: 1px solid var(--border, #333);
-	}
-
-	.faq-item:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
-	}
-
-	.faq-item h3 {
-		margin-top: 0;
-		font-size: 1rem;
-	}
-
-	.faq-item p {
-		margin-bottom: 0;
-		color: var(--text-secondary, #aaa);
-		font-size: 0.9rem;
-	}
-
-	/* Related Content */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
-	}
-
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--bg-secondary, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green, #22c55e);
-		text-decoration: none;
-	}
-
-	.related-type {
+	/* Related card category label */
+	.related-card-category {
 		display: block;
 		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-tertiary);
 		text-transform: uppercase;
+		letter-spacing: 0.05em;
 		margin-bottom: 0.25rem;
 	}
 
-	.related-title {
-		display: block;
-		font-weight: 600;
-		color: var(--text-primary, #fff);
+	.related-card-title {
+		font-size: 1rem;
+		margin: 0;
+		color: var(--text-primary);
 	}
 </style>

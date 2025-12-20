@@ -106,7 +106,7 @@
 <Header {breadcrumbs} />
 
 <div class="content-wrapper">
-	<article class="content-main">
+	<article class="content-main content-wide">
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
@@ -501,43 +501,45 @@
 		</section>
 
 		<!-- FAQ Section -->
-		<section class="faq-section">
+		<section class="article-section">
 			<h2>Frequently Asked Questions</h2>
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
 		<section>
 			<h2>Related Comparisons</h2>
 			<div class="related-grid">
-				<a href="/kb/vibe-coding-tools/lovable/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Lovable for Vibe Coders</span>
+				<a href="/kb/vibe-coding-tools/lovable/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">Lovable for Vibe Coders</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/bolt/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">Bolt.new for Vibe Coders</span>
+				<a href="/kb/vibe-coding-tools/bolt/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">Bolt.new for Vibe Coders</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/v0/" class="related-card">
-					<span class="related-type">Tool Guide</span>
-					<span class="related-title">v0 by Vercel</span>
+				<a href="/kb/vibe-coding-tools/v0/" class="card card-interactive">
+					<span class="related-card-category">Tool Guide</span>
+					<h3 class="related-card-title">v0 by Vercel</h3>
 				</a>
-				<a href="/kb/vibe-coding-tools/replit-vs-cursor/" class="related-card">
-					<span class="related-type">Comparison</span>
-					<span class="related-title">Replit vs Cursor</span>
+				<a href="/kb/vibe-coding-tools/replit-vs-cursor/" class="card card-interactive">
+					<span class="related-card-category">Comparison</span>
+					<h3 class="related-card-title">Replit vs Cursor</h3>
 				</a>
-				<a href="/kb/security/stacks/nextjs-supabase/" class="related-card">
-					<span class="related-type">Stack Guide</span>
-					<span class="related-title">Next.js + Supabase Security</span>
+				<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive">
+					<span class="related-card-category">Stack Guide</span>
+					<h3 class="related-card-title">Next.js + Supabase Security</h3>
 				</a>
-				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">Secure Vibe Coding Guide</span>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive">
+					<span class="related-card-category">Pillar Guide</span>
+					<h3 class="related-card-title">Secure Vibe Coding Guide</h3>
 				</a>
 			</div>
 		</section>
@@ -545,134 +547,28 @@
 </div>
 
 <style>
-	.content-wrapper {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
-
-	.article-header {
-		margin-bottom: 2rem;
-	}
-
-	.badge-row {
-		display: flex;
-		gap: 0.5rem;
-		flex-wrap: wrap;
-		margin-bottom: 1rem;
-	}
-
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		background: var(--bg-tertiary, #333);
-		color: var(--text-secondary, #aaa);
-	}
-
-	.badge-comparison {
-		background: var(--blue, #3b82f6);
-		color: white;
-	}
-
-	h1 {
-		font-size: 2.25rem;
-		margin-bottom: 0.5rem;
-		line-height: 1.2;
-	}
+	/* Clean, minimal styles - no tool brand colors */
 
 	.subtitle {
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		font-size: 1.1rem;
 	}
 
-	.quick-answer {
-		background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
-		border-left: 4px solid var(--green, #22c55e);
-		border-radius: 0 8px 8px 0;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer-label {
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		color: var(--green, #22c55e);
-		margin-bottom: 0.5rem;
-	}
-
-	.quick-answer-text {
-		margin: 0;
-		line-height: 1.6;
-	}
-
-	/* Growth Callout */
+	/* Growth Callout - neutral accent */
 	.growth-callout {
-		background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
-		border: 1px solid rgba(236, 72, 153, 0.3);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border-left: 3px solid var(--border-strong);
 		padding: 1.5rem;
 		margin-bottom: 2.5rem;
 	}
 
 	.growth-callout h2 {
-		color: #ec4899;
 		border-bottom: none;
 		padding-bottom: 0;
 		margin-bottom: 1rem;
 	}
 
-	section {
-		margin-bottom: 2.5rem;
-	}
-
-	h2 {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
-	}
-
-	h3 {
-		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
-		margin-top: 1rem;
-	}
-
-	h4 {
-		font-size: 1rem;
-		margin-bottom: 0.5rem;
-		margin-top: 0;
-	}
-
-	p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-	}
-
-	ul {
-		margin-bottom: 1rem;
-		padding-left: 1.5rem;
-	}
-
-	li {
-		margin-bottom: 0.5rem;
-		line-height: 1.6;
-	}
-
-	a {
-		color: var(--green, #22c55e);
-	}
-
-	a:hover {
-		text-decoration: underline;
-	}
-
-	/* Comparison Table */
+	/* Comparison Table - clean and readable */
 	.comparison-table-wrapper {
 		overflow-x: auto;
 		margin: 1.5rem 0;
@@ -688,28 +584,22 @@
 	.comparison-table td {
 		padding: 0.75rem 1rem;
 		text-align: left;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.comparison-table th {
-		background: var(--bg-secondary, #1a1a1a);
+		background: var(--bg-secondary);
 		font-weight: 600;
+		color: var(--text-primary);
 	}
 
-	.comparison-table th:nth-child(2) {
-		color: #ec4899;
-	}
-
-	.comparison-table th:nth-child(3) {
-		color: #f97316;
-	}
-
+	/* Muted green for winner highlights - not distracting */
 	.comparison-table td.highlight-win {
-		color: var(--green, #22c55e);
-		font-weight: 600;
+		color: var(--green-muted);
+		font-weight: 500;
 	}
 
-	/* Pricing Grid */
+	/* Pricing Grid - neutral, no brand colors */
 	.pricing-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -724,8 +614,8 @@
 	}
 
 	.pricing-card {
-		background: var(--bg-secondary, #1a1a1a);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
@@ -734,39 +624,26 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		background: var(--bg-tertiary);
+		border-bottom: 1px solid var(--border);
 	}
 
-	.pricing-header.lovable {
-		background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(236, 72, 153, 0.1) 100%);
-		border-bottom: 1px solid rgba(236, 72, 153, 0.3);
-	}
-
-	.pricing-header.lovable h3 {
-		color: #ec4899;
+	.pricing-header h3 {
 		margin: 0;
-	}
-
-	.pricing-header.bolt {
-		background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(249, 115, 22, 0.1) 100%);
-		border-bottom: 1px solid rgba(249, 115, 22, 0.3);
-	}
-
-	.pricing-header.bolt h3 {
-		color: #f97316;
-		margin: 0;
+		color: var(--text-primary);
 	}
 
 	.pricing-model {
 		font-size: 0.75rem;
 		padding: 0.25rem 0.5rem;
-		background: rgba(255, 255, 255, 0.1);
-		border-radius: 4px;
-		color: var(--text-secondary, #aaa);
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		color: var(--text-tertiary);
 	}
 
 	.pricing-tier {
 		padding: 1rem 1.5rem;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.pricing-tier:last-child {
@@ -774,7 +651,7 @@
 	}
 
 	.pricing-tier.featured {
-		background: rgba(34, 197, 94, 0.05);
+		background: var(--bg-tertiary);
 	}
 
 	.tier-name {
@@ -786,7 +663,7 @@
 		float: right;
 		font-size: 1.1rem;
 		font-weight: 700;
-		color: var(--green, #22c55e);
+		color: var(--text-primary);
 	}
 
 	.pricing-tier ul {
@@ -800,9 +677,8 @@
 	}
 
 	.pricing-note {
-		background: var(--bg-secondary, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1.5rem;
 		margin-top: 1.5rem;
 	}
@@ -811,7 +687,7 @@
 		margin-bottom: 0;
 	}
 
-	/* Integration Comparison */
+	/* Integration Comparison - neutral cards */
 	.integration-comparison {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -826,39 +702,26 @@
 	}
 
 	.integration-card {
-		background: var(--bg-secondary, #1a1a1a);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1.5rem;
 	}
 
-	.integration-card.lovable-card {
-		border: 1px solid rgba(236, 72, 153, 0.3);
-	}
-
-	.integration-card.lovable-card h3 {
-		color: #ec4899;
+	.integration-card h3 {
 		margin-top: 0;
-	}
-
-	.integration-card.bolt-card {
-		border: 1px solid rgba(249, 115, 22, 0.3);
-	}
-
-	.integration-card.bolt-card h3 {
-		color: #f97316;
-		margin-top: 0;
+		color: var(--text-primary);
 	}
 
 	.integration-verdict {
 		font-size: 0.9rem;
 		font-style: italic;
-		color: var(--text-secondary, #888);
+		color: var(--text-tertiary);
 		margin-bottom: 0;
 		padding-top: 1rem;
-		border-top: 1px solid var(--border, #333);
+		border-top: 1px solid var(--border);
 	}
 
-	/* Workflow Cards */
+	/* Workflow Cards - clean and uniform */
 	.workflow-cards {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -867,9 +730,8 @@
 	}
 
 	.workflow-card {
-		background: var(--bg-secondary, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1.25rem;
 	}
 
@@ -882,33 +744,26 @@
 	.workflow-card p {
 		font-size: 0.9rem;
 		margin-bottom: 0;
-		color: var(--text-secondary, #aaa);
+		color: var(--text-secondary);
 	}
 
+	/* Recommendation badges - subtle, text only */
 	.recommendation {
 		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.8rem;
+		padding: 0.25rem 0.5rem;
+		font-size: 0.75rem;
 		font-weight: 600;
 		margin-bottom: 0.75rem;
+		background: var(--bg-tertiary);
+		color: var(--text-secondary);
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
 	}
 
-	.recommendation.lovable-rec {
-		background: rgba(236, 72, 153, 0.2);
-		color: #ec4899;
-	}
-
-	.recommendation.bolt-rec {
-		background: rgba(249, 115, 22, 0.2);
-		color: #f97316;
-	}
-
-	/* Security Note */
+	/* Security Note - neutral */
 	.security-note {
-		background: var(--bg-secondary, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border-left: 3px solid var(--border-strong);
 		padding: 1.5rem;
 	}
 
@@ -917,67 +772,19 @@
 		padding-bottom: 0;
 	}
 
-	/* FAQ Section */
-	.faq-section {
-		background: var(--bg-secondary, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
-	}
-
-	.faq-item {
-		padding: 1rem 0;
-		border-bottom: 1px solid var(--border, #333);
-	}
-
-	.faq-item:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
-	}
-
-	.faq-item h3 {
-		margin-top: 0;
-		font-size: 1rem;
-	}
-
-	.faq-item p {
-		margin-bottom: 0;
-		color: var(--text-secondary, #aaa);
-		font-size: 0.9rem;
-	}
-
-	/* Related Content */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
-	}
-
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--bg-secondary, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: var(--green, #22c55e);
-		text-decoration: none;
-	}
-
-	.related-type {
+	/* Related card labels */
+	.related-card-category {
 		display: block;
 		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-tertiary);
 		text-transform: uppercase;
+		letter-spacing: 0.05em;
 		margin-bottom: 0.25rem;
 	}
 
-	.related-title {
-		display: block;
-		font-weight: 600;
-		color: var(--text-primary, #fff);
+	.related-card-title {
+		font-size: 1rem;
+		margin: 0;
+		color: var(--text-primary);
 	}
 </style>
