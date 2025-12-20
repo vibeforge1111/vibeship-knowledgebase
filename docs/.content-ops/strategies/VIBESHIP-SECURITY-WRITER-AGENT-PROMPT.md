@@ -479,6 +479,79 @@ Sections:
 
 ---
 
+## Design System Compliance (MANDATORY)
+
+**Every article MUST follow VibeShip design standards.** Read `docs/KB-UI-DESIGN-STANDARDS.md` for full details.
+
+### Branding
+- **VibeShip** - Capital V, capital S (NEVER "Vibeship", "vibeship", "VIBESHIP")
+- **VibeShip Scanner** - Product name, always capitalized
+- **vibe coding/vibe coders** - lowercase when describing the practice/people
+
+### CSS Variables Only
+```css
+/* NEVER hardcode colors */
+❌ background: #1a1a1a;
+❌ color: #888;
+
+/* ALWAYS use CSS variables */
+✅ background: var(--bg-secondary);
+✅ color: var(--text-secondary);
+```
+
+Available variables: `--bg-primary`, `--bg-secondary`, `--bg-tertiary`, `--text-primary`, `--text-secondary`, `--text-tertiary`, `--border`, `--border-strong`, `--green`, `--green-dim`, `--red`, `--orange`
+
+### No Hover Underlines
+```css
+/* NEVER use underlines on hover */
+❌ a:hover { text-decoration: underline; }
+
+/* Use color transitions */
+✅ a:hover { color: var(--green); }
+```
+
+### Use Global Component Classes
+Don't recreate these - use them from `components.css`:
+- `.badge` - Category badges
+- `.quick-answer` - Quick answer boxes
+- `.stats-row` - Stats grids
+- `.code-block` - Code containers
+- `.faq-list`, `.faq-item` - FAQ sections
+- `.card`, `.card-interactive` - Cards
+- `.related-grid`, `.related-card` - Related content
+
+### Related Content Pattern (Exact Structure)
+```svelte
+<section class="article-section">
+  <h2>Related content</h2>
+  <div class="related-grid">
+    <a href="..." class="card card-interactive related-card">
+      <div class="related-card-category">Category</div>
+      <div class="related-card-title">Title</div>
+      <p class="related-card-description">Description text</p>
+    </a>
+  </div>
+</section>
+```
+
+**IMPORTANT:**
+- Use `<div>` for category and title (NOT `<span>` or `<h3>`)
+- Always include description paragraph
+- Always include `card card-interactive related-card` classes
+
+### Sharp Edges
+- NO `border-radius: 8px` on containers
+- Only `<code>` elements get `border-radius: 4px`
+
+### Scoped CSS Budget
+- **Under 150 lines** of scoped CSS per article
+- If you're writing more, you're probably recreating global components
+
+### Reference Article
+Copy patterns from: `src/routes/kb/security/stacks/nextjs-supabase/+page.svelte`
+
+---
+
 ## Quality Checklist
 
 Before finalizing ANY content, verify:
