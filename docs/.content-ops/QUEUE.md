@@ -87,15 +87,15 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | | | *Batch 2: Prompt Libraries* | |
 | 60 | 📝 Brief Ready | Prompts (P1) | ai-prompt-library |
 | 61 | 📝 Brief Ready | Prompts (P1) | prompt-templates |
-| 62 | 📝 Brief Ready | Prompts (P0) | ai-coding-prompts |
+| 62 | ✅ Done | Prompts (P0) | ai-coding-prompts |
 | 63 | 📝 Brief Ready | Prompts (P1) | chatgpt-prompt-examples |
 | 64 | 📝 Brief Ready | Prompts (P1) | custom-instructions |
 | 65 | 📝 Brief Ready | Prompts (P1) | system-prompts |
 | 66 | 📝 Brief Ready | Prompts (P1) | prompt-cheat-sheet |
 | 67 | 📝 Brief Ready | Prompts (P1) | claude-system-prompts |
 | | | *Batch 3: Use Case Guides* | |
-| 68 | 📝 Brief Ready | Prompts (P0) | security-prompts |
-| 69 | 📝 Brief Ready | Prompts (P0) | debugging-prompts |
+| 68 | ✅ Done | Prompts (P0) | security-prompts |
+| 69 | ✅ Done | Prompts (P0) | debugging-prompts |
 | 70 | 📝 Brief Ready | Prompts (P1) | refactoring-prompts |
 | 71 | 📝 Brief Ready | Prompts (P1) | code-review-prompts |
 | 72 | 📝 Brief Ready | Prompts (P1) | testing-prompts |
