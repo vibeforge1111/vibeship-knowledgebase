@@ -38,6 +38,27 @@
 			answer: 'Yes. Lovable has two-way GitHub sync - push changes back and Lovable stays in sync. Bolt allows download and basic export. Both let you continue development in Cursor, VS Code, or any IDE after building your initial prototype.'
 		}
 	];
+
+	// Comparison data
+	const comparisonData = [
+		{ attr: 'Monthly cost (Pro)', lovable: '$20/mo (100 messages)', bolt: '$20/mo (10M tokens)' },
+		{ attr: 'UI quality', lovable: 'shadcn/ui (polished)', bolt: 'Varies by prompt', lovableHighlight: true },
+		{ attr: 'Database', lovable: 'Supabase built-in', bolt: 'Manual setup', lovableHighlight: true },
+		{ attr: 'Auth', lovable: 'Supabase Auth guided', bolt: 'Manual implementation', lovableHighlight: true },
+		{ attr: 'GitHub sync', lovable: 'Two-way sync', bolt: 'Export only', lovableHighlight: true },
+		{ attr: 'Visual editor', lovable: 'Yes (point-and-click)', bolt: 'No (code only)', lovableHighlight: true },
+		{ attr: 'Framework support', lovable: 'React only', bolt: 'Multi-framework', boltHighlight: true },
+		{ attr: 'Speed to prototype', lovable: 'Fast', bolt: 'Fastest', boltHighlight: true },
+		{ attr: 'Collaboration', lovable: 'SSO on self-serve', bolt: 'SSO enterprise only', lovableHighlight: true }
+	];
+
+	// GitHub sync comparison
+	const githubData = [
+		{ attr: 'Push to GitHub', lovable: 'Yes', bolt: 'Yes (export)' },
+		{ attr: 'Pull from GitHub', lovable: 'Yes (two-way sync)', bolt: 'No', lovableHighlight: true },
+		{ attr: 'Continue in Cursor/VS Code', lovable: 'Yes, stays synced', bolt: 'Yes, but one-way', lovableHighlight: true },
+		{ attr: 'Team workflow', lovable: 'Full git workflow', bolt: 'Basic sharing', lovableHighlight: true }
+	];
 </script>
 
 <svelte:head>
@@ -138,70 +159,29 @@
 			</p>
 		</section>
 
-		<!-- Quick Comparison Table -->
+		<!-- Quick Comparison -->
 		<section>
 			<h2>How do Lovable and Bolt compare at a glance?</h2>
 			<p>
 				Both tools target vibe coders building MVPs. Both run in the browser. Both use Claude models. The differences are in workflow and output quality:
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>What You Care About</th>
-							<th>Lovable</th>
-							<th>Bolt</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Monthly cost (Pro)</td>
-							<td>$20/mo (100 messages)</td>
-							<td>$20/mo (10M tokens)</td>
-						</tr>
-						<tr>
-							<td>UI quality</td>
-							<td class="highlight-win">shadcn/ui (polished)</td>
-							<td>Varies by prompt</td>
-						</tr>
-						<tr>
-							<td>Database</td>
-							<td class="highlight-win">Supabase built-in</td>
-							<td>Manual setup</td>
-						</tr>
-						<tr>
-							<td>Auth</td>
-							<td class="highlight-win">Supabase Auth guided</td>
-							<td>Manual implementation</td>
-						</tr>
-						<tr>
-							<td>GitHub sync</td>
-							<td class="highlight-win">Two-way sync</td>
-							<td>Export only</td>
-						</tr>
-						<tr>
-							<td>Visual editor</td>
-							<td class="highlight-win">Yes (point-and-click)</td>
-							<td>No (code only)</td>
-						</tr>
-						<tr>
-							<td>Framework support</td>
-							<td>React only</td>
-							<td class="highlight-win">Multi-framework</td>
-						</tr>
-						<tr>
-							<td>Speed to prototype</td>
-							<td>Fast</td>
-							<td class="highlight-win">Fastest</td>
-						</tr>
-						<tr>
-							<td>Collaboration</td>
-							<td class="highlight-win">SSO on self-serve</td>
-							<td>SSO enterprise only</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="comparison-stack">
+				{#each comparisonData as row}
+					<div class="comparison-row">
+						<div class="comparison-label">{row.attr}</div>
+						<div class="comparison-values">
+							<div class="comparison-cell" class:highlight-win={row.lovableHighlight}>
+								<span class="cell-tool">Lovable</span>
+								<span class="cell-value">{row.lovable}</span>
+							</div>
+							<div class="comparison-cell" class:highlight-win={row.boltHighlight}>
+								<span class="cell-tool">Bolt</span>
+								<span class="cell-value">{row.bolt}</span>
+							</div>
+						</div>
+					</div>
+				{/each}
 			</div>
 		</section>
 
@@ -212,86 +192,74 @@
 				Both start at $20/month but measure usage differently. This matters more than you'd think:
 			</p>
 
-			<div class="pricing-grid">
+			<div class="pricing-comparison">
 				<div class="pricing-card">
-					<div class="pricing-header">
-						<h3>Lovable</h3>
-						<span class="pricing-model">Message-based</span>
-					</div>
-					<div class="pricing-tier">
-						<span class="tier-name">Free</span>
-						<span class="tier-price">$0</span>
-						<ul>
-							<li>Limited credits</li>
-							<li>Public projects only</li>
-							<li>GitHub sync included</li>
-						</ul>
-					</div>
-					<div class="pricing-tier featured">
-						<span class="tier-name">Pro</span>
-						<span class="tier-price">$20/mo</span>
-						<ul>
-							<li>100 messages/month</li>
-							<li>Private projects</li>
-							<li>Priority support</li>
-						</ul>
-					</div>
-					<div class="pricing-tier">
-						<span class="tier-name">Team</span>
-						<span class="tier-price">$50/mo</span>
-						<ul>
-							<li>250 messages/month</li>
-							<li>Visual editor + SSO</li>
-						</ul>
-					</div>
-					<div class="pricing-tier">
-						<span class="tier-name">Enterprise</span>
-						<span class="tier-price">$900/mo</span>
-						<ul>
-							<li>5,000 messages/month</li>
-							<li>Everything above</li>
-						</ul>
+					<h3>Lovable</h3>
+					<span class="pricing-model">Message-based</span>
+					<div class="tier-stack">
+						<div class="tier-row">
+							<div class="tier-label">Free</div>
+							<div class="tier-values">
+								<span class="tier-price">$0</span>
+								<span class="tier-features">Limited credits, public projects, GitHub sync</span>
+							</div>
+						</div>
+						<div class="tier-row featured">
+							<div class="tier-label">Pro</div>
+							<div class="tier-values">
+								<span class="tier-price">$20/mo</span>
+								<span class="tier-features">100 messages/month, private projects</span>
+							</div>
+						</div>
+						<div class="tier-row">
+							<div class="tier-label">Team</div>
+							<div class="tier-values">
+								<span class="tier-price">$50/mo</span>
+								<span class="tier-features">250 messages/month, visual editor + SSO</span>
+							</div>
+						</div>
+						<div class="tier-row">
+							<div class="tier-label">Enterprise</div>
+							<div class="tier-values">
+								<span class="tier-price">$900/mo</span>
+								<span class="tier-features">5,000 messages/month</span>
+							</div>
+						</div>
 					</div>
 				</div>
 
 				<div class="pricing-card">
-					<div class="pricing-header">
-						<h3>Bolt</h3>
-						<span class="pricing-model">Token-based</span>
-					</div>
-					<div class="pricing-tier">
-						<span class="tier-name">Free</span>
-						<span class="tier-price">$0</span>
-						<ul>
-							<li>1M tokens total</li>
-							<li>~100k/day limit</li>
-							<li>Basic features only</li>
-						</ul>
-					</div>
-					<div class="pricing-tier featured">
-						<span class="tier-name">Pro</span>
-						<span class="tier-price">$20/mo</span>
-						<ul>
-							<li>10M tokens/month</li>
-							<li>Priority access</li>
-							<li>All frameworks</li>
-						</ul>
-					</div>
-					<div class="pricing-tier">
-						<span class="tier-name">Team</span>
-						<span class="tier-price">$50/mo</span>
-						<ul>
-							<li>26M tokens/month</li>
-							<li>Team sharing</li>
-						</ul>
-					</div>
-					<div class="pricing-tier">
-						<span class="tier-name">Business</span>
-						<span class="tier-price">$200/mo</span>
-						<ul>
-							<li>120M tokens/month</li>
-							<li>Everything above</li>
-						</ul>
+					<h3>Bolt</h3>
+					<span class="pricing-model">Token-based</span>
+					<div class="tier-stack">
+						<div class="tier-row">
+							<div class="tier-label">Free</div>
+							<div class="tier-values">
+								<span class="tier-price">$0</span>
+								<span class="tier-features">1M tokens total, ~100k/day limit</span>
+							</div>
+						</div>
+						<div class="tier-row featured">
+							<div class="tier-label">Pro</div>
+							<div class="tier-values">
+								<span class="tier-price">$20/mo</span>
+								<span class="tier-features">10M tokens/month, all frameworks</span>
+							</div>
+						</div>
+						<div class="tier-row">
+							<div class="tier-label">Team</div>
+							<div class="tier-values">
+								<span class="tier-price">$50/mo</span>
+								<span class="tier-features">26M tokens/month, team sharing</span>
+							</div>
+						</div>
+						<div class="tier-row">
+							<div class="tier-label">Business</div>
+							<div class="tier-values">
+								<span class="tier-price">$200/mo</span>
+								<span class="tier-features">120M tokens/month</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -318,7 +286,7 @@
 			</p>
 
 			<div class="integration-comparison">
-				<div class="integration-card lovable-card">
+				<div class="integration-card">
 					<h3>Lovable + Supabase</h3>
 					<ul>
 						<li>Database setup is guided (not manual)</li>
@@ -330,7 +298,7 @@
 					<p class="integration-verdict">You describe the data model. Lovable wires up the backend.</p>
 				</div>
 
-				<div class="integration-card bolt-card">
+				<div class="integration-card">
 					<h3>Bolt + Backend</h3>
 					<ul>
 						<li>No default database integration</li>
@@ -355,38 +323,22 @@
 				This is where Lovable has a clear advantage for ongoing development:
 			</p>
 
-			<div class="comparison-table-wrapper">
-				<table class="comparison-table">
-					<thead>
-						<tr>
-							<th>Feature</th>
-							<th>Lovable</th>
-							<th>Bolt</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Push to GitHub</td>
-							<td>Yes</td>
-							<td>Yes (export)</td>
-						</tr>
-						<tr>
-							<td>Pull from GitHub</td>
-							<td class="highlight-win">Yes (two-way sync)</td>
-							<td>No</td>
-						</tr>
-						<tr>
-							<td>Continue in Cursor/VS Code</td>
-							<td class="highlight-win">Yes, stays synced</td>
-							<td>Yes, but one-way</td>
-						</tr>
-						<tr>
-							<td>Team workflow</td>
-							<td class="highlight-win">Full git workflow</td>
-							<td>Basic sharing</td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="comparison-stack">
+				{#each githubData as row}
+					<div class="comparison-row">
+						<div class="comparison-label">{row.attr}</div>
+						<div class="comparison-values">
+							<div class="comparison-cell" class:highlight-win={row.lovableHighlight}>
+								<span class="cell-tool">Lovable</span>
+								<span class="cell-value">{row.lovable}</span>
+							</div>
+							<div class="comparison-cell">
+								<span class="cell-tool">Bolt</span>
+								<span class="cell-value">{row.bolt}</span>
+							</div>
+						</div>
+					</div>
+				{/each}
 			</div>
 
 			<p>
@@ -394,14 +346,14 @@
 			</p>
 		</section>
 
-		<!-- Workflow Cards -->
+		<!-- Workflow Recommendations -->
 		<section>
 			<h2>Which matches your vibe coding workflow?</h2>
 
-			<div class="workflow-cards">
+			<div class="workflow-grid">
 				<div class="workflow-card">
 					<h3>Investor demo in 2 weeks</h3>
-					<div class="recommendation lovable-rec">Lovable</div>
+					<div class="recommendation">Lovable</div>
 					<p>
 						shadcn/ui looks professional out of the box. Supabase handles auth. You'll have something that looks like a real product, not a prototype.
 					</p>
@@ -409,7 +361,7 @@
 
 				<div class="workflow-card">
 					<h3>Validate idea in 2 hours</h3>
-					<div class="recommendation bolt-rec">Bolt</div>
+					<div class="recommendation">Bolt</div>
 					<p>
 						WebContainers spin up instantly. No account needed for free tier. Get a working prototype to test assumptions before investing more time.
 					</p>
@@ -417,7 +369,7 @@
 
 				<div class="workflow-card">
 					<h3>Non-technical founder</h3>
-					<div class="recommendation lovable-rec">Lovable</div>
+					<div class="recommendation">Lovable</div>
 					<p>
 						Visual editor means less code anxiety. Guided Supabase setup means no database knowledge needed. More guardrails, fewer footguns.
 					</p>
@@ -425,7 +377,7 @@
 
 				<div class="workflow-card">
 					<h3>Learning to code</h3>
-					<div class="recommendation bolt-rec">Bolt</div>
+					<div class="recommendation">Bolt</div>
 					<p>
 						Multi-framework support lets you experiment. Code-first approach teaches patterns. Export and study the generated code.
 					</p>
@@ -433,7 +385,7 @@
 
 				<div class="workflow-card">
 					<h3>Team collaboration</h3>
-					<div class="recommendation lovable-rec">Lovable</div>
+					<div class="recommendation">Lovable</div>
 					<p>
 						Two-way GitHub sync enables real team workflows. SSO on self-serve tiers. Multiplayer prototype development.
 					</p>
@@ -441,7 +393,7 @@
 
 				<div class="workflow-card">
 					<h3>Hackathon project</h3>
-					<div class="recommendation bolt-rec">Bolt</div>
+					<div class="recommendation">Bolt</div>
 					<p>
 						Speed is everything. WebContainers mean zero setup time. Share links instantly. Fastest path from idea to demo.
 					</p>
@@ -545,14 +497,27 @@
 </div>
 
 <style>
-	/* Clean, minimal styles - no tool brand colors */
+	/* Badge row for article header */
+	.badge-row {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		margin-bottom: 1rem;
+	}
+
+	.badge-comparison {
+		border-color: var(--text-secondary);
+		color: var(--text-secondary);
+		background: transparent;
+	}
 
 	.subtitle {
 		color: var(--text-secondary);
 		font-size: 1.1rem;
+		margin-bottom: 0;
 	}
 
-	/* Growth Callout - neutral accent */
+	/* Growth Callout */
 	.growth-callout {
 		background: var(--bg-secondary);
 		border-left: 3px solid var(--border-strong);
@@ -566,39 +531,80 @@
 		margin-bottom: 1rem;
 	}
 
-	/* Comparison Table - clean and readable */
-	.comparison-table-wrapper {
-		overflow-x: auto;
+	/* Comparison Stack - mobile-friendly stacked layout */
+	.comparison-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		margin: 1.5rem 0;
 	}
 
-	.comparison-table {
-		width: 100%;
-		border-collapse: collapse;
+	.comparison-row {
+		display: grid;
+		grid-template-columns: 160px 1fr;
+		gap: 1rem;
+		padding: 0.75rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+	}
+
+	@media (max-width: 600px) {
+		.comparison-row {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+	}
+
+	.comparison-label {
+		font-weight: 600;
+		color: var(--text-primary);
 		font-size: 0.9rem;
 	}
 
-	.comparison-table th,
-	.comparison-table td {
-		padding: 0.75rem 1rem;
-		text-align: left;
-		border-bottom: 1px solid var(--border);
+	.comparison-values {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.75rem;
 	}
 
-	.comparison-table th {
-		background: var(--bg-secondary);
-		font-weight: 600;
-		color: var(--text-primary);
+	@media (max-width: 600px) {
+		.comparison-values {
+			grid-template-columns: 1fr;
+		}
 	}
 
-	/* Muted green for winner highlights - not distracting */
-	.comparison-table td.highlight-win {
+	.comparison-cell {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 0.5rem;
+		background: var(--bg-tertiary);
+	}
+
+	.comparison-cell.highlight-win {
+		border-left: 2px solid var(--green-muted);
+	}
+
+	.comparison-cell.highlight-win .cell-value {
 		color: var(--green-muted);
 		font-weight: 500;
 	}
 
-	/* Pricing Grid - neutral, no brand colors */
-	.pricing-grid {
+	.cell-tool {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-tertiary);
+	}
+
+	.cell-value {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+	}
+
+	/* Pricing Comparison - stacked layout */
+	.pricing-comparison {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1.5rem;
@@ -606,7 +612,7 @@
 	}
 
 	@media (max-width: 768px) {
-		.pricing-grid {
+		.pricing-comparison {
 			grid-template-columns: 1fr;
 		}
 	}
@@ -614,64 +620,63 @@
 	.pricing-card {
 		background: var(--bg-secondary);
 		border: 1px solid var(--border);
-		overflow: hidden;
+		padding: 1.25rem;
 	}
 
-	.pricing-header {
-		padding: 1rem 1.5rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background: var(--bg-tertiary);
-		border-bottom: 1px solid var(--border);
-	}
-
-	.pricing-header h3 {
-		margin: 0;
+	.pricing-card h3 {
+		margin-top: 0;
+		margin-bottom: 0.5rem;
 		color: var(--text-primary);
 	}
 
 	.pricing-model {
+		display: inline-block;
 		font-size: 0.75rem;
 		padding: 0.25rem 0.5rem;
-		background: var(--bg-secondary);
+		background: var(--bg-tertiary);
 		border: 1px solid var(--border);
 		color: var(--text-tertiary);
+		margin-bottom: 1rem;
 	}
 
-	.pricing-tier {
-		padding: 1rem 1.5rem;
-		border-bottom: 1px solid var(--border);
+	.tier-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 	}
 
-	.pricing-tier:last-child {
-		border-bottom: none;
-	}
-
-	.pricing-tier.featured {
+	.tier-row {
+		display: grid;
+		grid-template-columns: 80px 1fr;
+		gap: 1rem;
+		padding: 0.5rem;
 		background: var(--bg-tertiary);
 	}
 
-	.tier-name {
+	.tier-row.featured {
+		border-left: 2px solid var(--green-muted);
+	}
+
+	.tier-label {
 		font-weight: 600;
-		font-size: 0.9rem;
+		font-size: 0.85rem;
+		color: var(--text-primary);
+	}
+
+	.tier-values {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
 	}
 
 	.tier-price {
-		float: right;
-		font-size: 1.1rem;
 		font-weight: 700;
 		color: var(--text-primary);
 	}
 
-	.pricing-tier ul {
-		margin: 0.75rem 0 0;
-		padding-left: 1.25rem;
-	}
-
-	.pricing-tier li {
-		font-size: 0.85rem;
-		margin-bottom: 0.25rem;
+	.tier-features {
+		font-size: 0.8rem;
+		color: var(--text-secondary);
 	}
 
 	.pricing-note {
@@ -681,11 +686,15 @@
 		margin-top: 1.5rem;
 	}
 
+	.pricing-note h4 {
+		margin-top: 0;
+	}
+
 	.pricing-note p:last-child {
 		margin-bottom: 0;
 	}
 
-	/* Integration Comparison - neutral cards */
+	/* Integration Comparison */
 	.integration-comparison {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -719,8 +728,8 @@
 		border-top: 1px solid var(--border);
 	}
 
-	/* Workflow Cards - clean and uniform */
-	.workflow-cards {
+	/* Workflow Grid */
+	.workflow-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		gap: 1rem;
@@ -745,7 +754,6 @@
 		color: var(--text-secondary);
 	}
 
-	/* Recommendation badges - subtle, text only */
 	.recommendation {
 		display: inline-block;
 		padding: 0.25rem 0.5rem;
@@ -758,7 +766,7 @@
 		letter-spacing: 0.03em;
 	}
 
-	/* Security Note - neutral */
+	/* Security Note */
 	.security-note {
 		background: var(--bg-secondary);
 		border-left: 3px solid var(--border-strong);
