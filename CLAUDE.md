@@ -152,6 +152,16 @@ Use **opengrep** (not semgrep) for rule syntax. Also use **trivy** and **gitleak
 
 **All KB article pages MUST follow the vibeship design system exactly.**
 
+> **Full styling guide:** `docs/KB-UI-DESIGN-STANDARDS.md`
+
+#### Core Design Principles
+
+1. **SHARP EDGES** - No rounded corners on structural elements. Only inline `<code>` elements get `border-radius: 4px`.
+
+2. **CSS VARIABLES ONLY** - Never hardcode colors. Always use theme variables.
+
+3. **USE GLOBAL CLASSES** - Don't recreate component styles. Use existing classes from `static/styles/components.css`.
+
 #### Required Structure
 
 ```svelte
@@ -175,56 +185,74 @@ Use **opengrep** (not semgrep) for rule syntax. Also use **trivy** and **gitleak
 
 <style>
   /* Only page-specific styles using CSS variables */
+  /* Target: Under 150 lines */
 </style>
 ```
 
-#### CSS Rules
+#### CSS Variables (Quick Reference)
 
-**ALWAYS use CSS variables - NEVER hardcode colors:**
 ```css
-/* ✅ CORRECT */
-background: var(--bg-secondary);
-color: var(--text-primary);
-border: 1px solid var(--border);
-color: var(--green-dim);
+/* Backgrounds */
+var(--bg-primary)    /* Page background */
+var(--bg-secondary)  /* Cards, sections */
+var(--bg-tertiary)   /* Elevated elements */
 
-/* ❌ WRONG - Never do this */
-background: #f8fafc;
-color: #1e40af;
-border: 1px solid #e5e7eb;
+/* Text */
+var(--text-primary)   /* Headlines */
+var(--text-secondary) /* Body text */
+var(--text-tertiary)  /* Labels, meta */
+
+/* Borders */
+var(--border)        /* Standard borders */
+var(--border-strong) /* Emphasized borders */
+
+/* Accents */
+var(--green), var(--green-dim)  /* Success, links */
+var(--red)                       /* Errors, critical */
+var(--orange)                    /* Warnings */
+var(--blue)                      /* Info */
+var(--violet)                    /* Analytics, special */
 ```
-
-**Available CSS Variables:**
-- Backgrounds: `--bg-primary`, `--bg-secondary`, `--bg-tertiary`
-- Text: `--text-primary`, `--text-secondary`, `--text-tertiary`
-- Borders: `--border`, `--border-strong`
-- Accents: `--green`, `--green-dim`, `--orange`, `--red`, `--blue`, `--violet`, `--pink`
-- Grays: `--gray-100` through `--gray-900`
 
 #### Global CSS Classes (Use These)
 
-**From components.css - use instead of custom styles:**
-- `.badge` - Category/type badges
-- `.quick-answer` - Quick answer boxes with green left border
-- `.stats-row` - Grid of stats cards
-- `.code-block` - Code example containers
-- `.code-comparison` - Before/after code comparison
+**From components.css - DON'T recreate:**
+- `.badge`, `.badge-critical`, `.badge-high` - Category badges
+- `.quick-answer` - Quick answer boxes (green left border)
+- `.stats-row > .stat-box` - Stats grid
+- `.code-block` - Code containers
 - `.fix-prompt` - AI fix prompt boxes
-- `.faq-list`, `.faq-item` - FAQ sections
 - `.related-grid` - Related content grid
-- `.card` - Content cards with hover effects
-- `.cta-box` - Call-to-action boxes
+- `.card`, `.card-interactive` - Cards
 
-#### Minimal Scoped Styles
+#### What NOT to Do
 
-**Target: Under 150 lines of scoped styles per article.**
+```css
+/* ❌ WRONG - Hardcoded colors */
+background: #1a1a1a;
+color: #888;
+border: 1px solid rgba(59, 130, 246, 0.3);
 
-Only add scoped styles for truly page-specific elements:
-- Custom badge variants (e.g., `.badge-pillar`)
-- Table of contents styles
-- Article-specific warning boxes
+/* ❌ WRONG - Rounded corners on containers */
+border-radius: 8px;
 
-**Reference article:** `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte`
+/* ❌ WRONG - Gradient backgrounds */
+background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, ...);
+
+/* ❌ WRONG - Fallback variables */
+color: var(--text-secondary, #888);
+
+/* ✅ CORRECT */
+background: var(--bg-secondary);
+color: var(--text-secondary);
+border: 1px solid var(--border);
+/* No border-radius on containers */
+```
+
+#### Reference Articles
+
+- **Gold Standard:** `src/routes/kb/security/vulnerabilities/sql-injection/+page.svelte`
+- **Full Guide:** `docs/KB-UI-DESIGN-STANDARDS.md`
 
 ---
 

@@ -731,16 +731,7 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 </div>
 
 <style>
-	.content-wrapper {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
-
-	.article-header {
-		margin-bottom: 2rem;
-	}
-
+	/* Badge row for article header */
 	.badge-row {
 		display: flex;
 		gap: 0.5rem;
@@ -748,58 +739,18 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 		margin-bottom: 1rem;
 	}
 
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		background: var(--surface-2, #333);
-		color: var(--text-secondary, #aaa);
-	}
-
+	/* Custom badge variant for stack guides */
 	.badge-stack {
-		background: #7c3aed;
-		color: white;
+		border-color: var(--violet);
+		color: var(--violet);
+		background: transparent;
 	}
 
-	h1 {
-		font-size: 2.5rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.text-secondary {
-		color: var(--text-secondary, #888);
-		font-size: 1.1rem;
-	}
-
-	.quick-answer {
-		background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
-		border: 1px solid rgba(34, 197, 94, 0.3);
-		border-radius: 8px;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.quick-answer-label {
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		color: #22c55e;
-		margin-bottom: 0.5rem;
-	}
-
-	.quick-answer-text {
-		margin: 0;
-		line-height: 1.6;
-	}
-
+	/* Stack Overview Box */
 	.stats-box {
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		padding: 1.5rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
 		margin-bottom: 2rem;
 	}
 
@@ -816,55 +767,20 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 
 	.stack-item {
 		padding: 1rem;
-		background: var(--surface-2, #222);
-		border-radius: 6px;
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
 	}
 
 	.stack-name {
 		display: block;
 		font-weight: 600;
-		color: #22c55e;
+		color: var(--green-dim);
 		margin-bottom: 0.25rem;
 	}
 
 	.stack-focus {
 		font-size: 0.875rem;
-		color: var(--text-secondary, #888);
-	}
-
-	section {
-		margin-bottom: 3rem;
-	}
-
-	h2 {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
-	}
-
-	h3 {
-		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
-	}
-
-	h4 {
-		font-size: 1rem;
-		margin-bottom: 0.5rem;
-		color: var(--text-secondary, #888);
-	}
-
-	p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-	}
-
-	code {
-		font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
-		background: rgba(0,0,0,0.3);
-		padding: 0.125rem 0.375rem;
-		border-radius: 3px;
-		font-size: 0.9em;
+		color: var(--text-secondary);
 	}
 
 	/* CVE Grid */
@@ -876,9 +792,9 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 	}
 
 	.cve-card {
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		border-left: 3px solid var(--orange);
 		padding: 1rem;
 	}
 
@@ -890,26 +806,29 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 	}
 
 	.cve-id {
+		font-family: 'JetBrains Mono', monospace;
 		font-weight: 600;
-		color: #f59e0b;
+		color: var(--orange);
 	}
 
 	.cve-fixed {
-		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
+		color: var(--text-tertiary);
 	}
 
 	.cve-desc {
 		font-size: 0.875rem;
 		margin-bottom: 0.5rem;
+		color: var(--text-secondary);
 	}
 
-	/* Code Blocks */
+	/* Code Comparison */
 	.code-comparison {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1rem;
-		margin: 1rem 0;
+		margin: 1.5rem 0;
 	}
 
 	@media (max-width: 768px) {
@@ -919,34 +838,36 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 	}
 
 	.code-block {
-		background: #0d0d0d;
-		border-radius: 6px;
+		background: var(--bg-primary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
 	.code-block.vulnerable {
-		border: 1px solid rgba(220, 38, 38, 0.3);
+		border-left: 3px solid var(--red);
 	}
 
 	.code-block.secure {
-		border: 1px solid rgba(34, 197, 94, 0.3);
+		border-left: 3px solid var(--green);
 	}
 
 	.code-label {
 		padding: 0.5rem 1rem;
-		font-size: 0.75rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
 		font-weight: 600;
 		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		background: var(--bg-secondary);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.vulnerable .code-label {
-		background: rgba(220, 38, 38, 0.1);
-		color: #f87171;
+		color: var(--red);
 	}
 
 	.secure .code-label {
-		background: rgba(34, 197, 94, 0.1);
-		color: #4ade80;
+		color: var(--green);
 	}
 
 	pre {
@@ -955,6 +876,8 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 		overflow-x: auto;
 		font-size: 0.8rem;
 		line-height: 1.5;
+		background: transparent;
+		border: none;
 	}
 
 	pre code {
@@ -962,28 +885,36 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 		padding: 0;
 	}
 
-	/* Checklist */
+	/* Checklist Section */
 	.checklist-section {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
+	}
+
+	.checklist-section h2 {
+		margin-top: 0;
 	}
 
 	.checklist-container {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 1.5rem;
+		gap: 1rem;
 	}
 
 	.checklist-category {
-		background: var(--surface-2, #222);
-		border-radius: 6px;
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
 		padding: 1rem;
 	}
 
 	.checklist-category h4 {
 		margin-top: 0;
-		color: #22c55e;
+		color: var(--green-dim);
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
 	}
 
 	.checklist-item {
@@ -996,36 +927,43 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 
 	.checklist-item input {
 		margin-top: 0.25rem;
+		accent-color: var(--green);
 	}
 
 	.checklist-item span {
 		font-size: 0.875rem;
 		line-height: 1.4;
+		color: var(--text-secondary);
 	}
 
 	.checklist-item span.checked {
 		text-decoration: line-through;
-		color: var(--text-secondary, #888);
+		color: var(--text-tertiary);
 	}
 
 	.checklist-progress {
 		text-align: center;
 		margin-top: 1rem;
+		font-family: 'JetBrains Mono', monospace;
 		font-weight: 600;
-		color: #22c55e;
+		color: var(--green-dim);
 	}
 
-	/* Fix Section */
+	/* Fix Prompt Section */
 	.fix-section {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
+	}
+
+	.fix-section h2 {
+		margin-top: 0;
 	}
 
 	.prompt-box {
 		position: relative;
-		background: #0d0d0d;
-		border-radius: 6px;
+		background: var(--bg-primary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
@@ -1033,70 +971,72 @@ For each issue: show file, explain risk, provide fix.`}</pre>
 		position: absolute;
 		top: 0.5rem;
 		right: 0.5rem;
-		padding: 0.5rem 1rem;
-		background: #22c55e;
-		color: black;
-		border: none;
-		border-radius: 4px;
-		font-size: 0.75rem;
+		padding: 0.4rem 0.75rem;
+		background: transparent;
+		color: var(--green-dim);
+		border: 1px solid var(--green-dim);
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
 		font-weight: 600;
+		text-transform: uppercase;
 		cursor: pointer;
+		transition: all 0.15s;
 	}
 
 	.copy-button:hover {
-		background: #16a34a;
+		background: var(--green-dim);
+		color: var(--bg-primary);
 	}
 
 	/* FAQ Section */
 	.faq-item {
-		margin-bottom: 1.5rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.faq-item:last-child {
+		border-bottom: none;
 	}
 
 	.faq-item h3 {
-		font-size: 1.1rem;
+		font-size: 1rem;
 		margin-bottom: 0.5rem;
 	}
 
-	/* Related Content */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
+	.faq-item p {
+		margin-bottom: 0;
+		color: var(--text-secondary);
 	}
 
+	/* Related Content */
 	.related-card {
 		display: block;
 		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		text-decoration: none;
-		transition: border-color 0.2s;
+		transition: border-color 0.15s;
 	}
 
 	.related-card:hover {
-		border-color: #22c55e;
+		border-color: var(--green-dim);
+		text-decoration: none;
 	}
 
 	.related-type {
 		display: block;
-		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
+		font-weight: 600;
 		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--text-tertiary);
 		margin-bottom: 0.25rem;
 	}
 
 	.related-title {
 		display: block;
-		font-weight: 600;
-		color: var(--text-primary, #fff);
-	}
-
-	a {
-		color: #22c55e;
-	}
-
-	a:hover {
-		text-decoration: underline;
+		font-weight: 500;
+		color: var(--text-primary);
 	}
 </style>
