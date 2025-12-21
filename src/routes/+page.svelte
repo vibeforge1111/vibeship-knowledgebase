@@ -689,7 +689,7 @@
 					<div class="why-number">01</div>
 					<div class="why-content">
 						<h3>Vibe Fast, Ship Safe</h3>
-						<p>Catch vulnerabilities before your users do. Security that understands how you actually build.</p>
+						<p>Catch vulnerabilities before your users do. Security scanning that understands AI-generated code patterns.</p>
 					</div>
 				</div>
 
@@ -699,7 +699,7 @@
 					<div class="why-number">02</div>
 					<div class="why-content">
 						<h3>Never Start From Zero</h3>
-						<p>Your context persists. Decisions, learnings, and reminders follow you across sessions.</p>
+						<p>Mind gives your LLM persistent memory. Decisions, learnings, gotchas, and context follow you across sessions.</p>
 					</div>
 				</div>
 
@@ -708,8 +708,8 @@
 				<div class="why-item">
 					<div class="why-number">03</div>
 					<div class="why-content">
-						<h3>Scale With Agents</h3>
-						<p>Spawn parallel agents for complex tasks. Build faster without burning out.</p>
+						<h3>Skills, Not Suggestions</h3>
+						<p>Spawner delivers machine-actionable expertise via structured YAML skills. Claude becomes a specialist in your stack—not just a chatbot with opinions.</p>
 					</div>
 				</div>
 
@@ -717,6 +717,26 @@
 
 				<div class="why-item">
 					<div class="why-number">04</div>
+					<div class="why-content">
+						<h3>Mind + Spawner = Full Stack Claude</h3>
+						<p>Memory meets expertise. Spawner knows what to do, Mind remembers what you've done. Together they orchestrate your entire workflow.</p>
+					</div>
+				</div>
+
+				<div class="why-divider"></div>
+
+				<div class="why-item">
+					<div class="why-number">05</div>
+					<div class="why-content">
+						<h3>MCP-Powered, IDE-Native</h3>
+						<p>Everything runs as MCPs inside your terminal. One command to install, zero context switching. Your tools work where you work.</p>
+					</div>
+				</div>
+
+				<div class="why-divider"></div>
+
+				<div class="why-item">
+					<div class="why-number">06</div>
 					<div class="why-content">
 						<h3>Open Source Core</h3>
 						<p>Every tool on GitHub. See exactly what's running. Full transparency, no surprises.</p>
