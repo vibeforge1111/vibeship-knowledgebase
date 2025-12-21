@@ -719,7 +719,7 @@
 					<div class="why-number">04</div>
 					<div class="why-content">
 						<h3>Mind + Spawner = Full Stack Claude</h3>
-						<p>Memory meets expertise. Spawner brings battle-tested patterns for your stack. Mind remembers your decisions, preferences, and past gotchas. Together, Claude builds with your conventions and catches mistakes before they happen.</p>
+						<p>Memory meets expertise. Spawner brings battle-tested patterns for your stack. Mind remembers your decisions, preferences, and past gotchas. Together, Claude builds with your conventions, catches mistakes early, and gets you out of rabbit hole bugs faster.</p>
 					</div>
 				</div>
 
