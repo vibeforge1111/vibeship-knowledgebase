@@ -689,7 +689,7 @@
 					<div class="why-number">01</div>
 					<div class="why-content">
 						<h3>Vibe Fast, Ship Safe</h3>
-						<p>Scan your code, get a Master AI Fix prompt, paste it to Claude or Cursor—vulnerabilities fixed. Connect the Scanner MCP and get reports directly in your IDE. Security that fits how vibe coders actually work.</p>
+						<p>Scan your code, get a Master AI Fix prompt, paste it to Claude or Cursor and vulnerabilities get fixed. Connect the Scanner MCP and get reports directly in your IDE. Security that fits how vibe coders actually work.</p>
 					</div>
 				</div>
 
@@ -699,7 +699,7 @@
 					<div class="why-number">02</div>
 					<div class="why-content">
 						<h3>Never Start From Zero</h3>
-						<p>Without memory, every session is a blank slate—I forget what we built, what failed, what you prefer. With Mind, context compounds. I remember the decisions, the gotchas, the things that worked. We stop repeating ourselves and start building on what came before.</p>
+						<p>Without memory, every session is a blank slate. I forget what we built, what failed, what you prefer. With Mind, context compounds. I remember the decisions, the gotchas, the things that worked. We stop repeating ourselves and start building on what came before.</p>
 					</div>
 				</div>
 
@@ -709,7 +709,7 @@
 					<div class="why-number">03</div>
 					<div class="why-content">
 						<h3>Skills, Not Suggestions</h3>
-						<p>Each skill packs layers of expertise: proven patterns, sharp-edge warnings, automated validations, and cross-domain knowledge. 50+ skills deep, Claude becomes a real specialist—not surface-level tips, but stacked knowledge that compounds.</p>
+						<p>Each skill packs layers of expertise: proven patterns, sharp-edge warnings, automated validations, and cross-domain knowledge. 50+ skills deep, Claude becomes a real specialist. Not surface-level tips, but stacked knowledge that compounds.</p>
 					</div>
 				</div>
 
