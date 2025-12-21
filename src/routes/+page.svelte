@@ -689,7 +689,7 @@
 					<div class="why-number">01</div>
 					<div class="why-content">
 						<h3>Vibe Fast, Ship Safe</h3>
-						<p>Catch vulnerabilities before your users do. Security scanning that understands AI-generated code patterns.</p>
+						<p>Scan your code, get a Master AI Fix prompt, paste it to Claude or Cursor—vulnerabilities fixed. Connect the Scanner MCP and get reports directly in your IDE. Security that fits how vibe coders actually work.</p>
 					</div>
 				</div>
 
@@ -699,7 +699,7 @@
 					<div class="why-number">02</div>
 					<div class="why-content">
 						<h3>Never Start From Zero</h3>
-						<p>Mind gives your LLM persistent memory. Decisions, learnings, gotchas, and context follow you across sessions.</p>
+						<p>Without memory, every session is a blank slate—I forget what we built, what failed, what you prefer. With Mind, context compounds. I remember the decisions, the gotchas, the things that worked. We stop repeating ourselves and start building on what came before.</p>
 					</div>
 				</div>
 
