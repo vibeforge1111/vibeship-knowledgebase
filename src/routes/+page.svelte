@@ -709,7 +709,7 @@
 					<div class="why-number">03</div>
 					<div class="why-content">
 						<h3>Skills, Not Suggestions</h3>
-						<p>Spawner delivers machine-actionable expertise via structured YAML skills. Claude becomes a specialist in your stack—not just a chatbot with opinions.</p>
+						<p>Spawner delivers machine-actionable expertise via structured YAML skills. Claude becomes a specialist in your stack—with patterns that actually work.</p>
 					</div>
 				</div>
 
