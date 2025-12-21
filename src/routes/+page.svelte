@@ -109,8 +109,8 @@
 			name: 'spawn()',
 			description: 'Claude Skills & agents tailored for you for better outputs',
 			category: 'AGENTS',
-			status: 'coming',
-			url: null,
+			status: 'live',
+			url: 'https://spawner.vibeship.co',
 			github: 'https://github.com/vibeforge1111/vibeship-spawner',
 			terminal: {
 				command: '$ spawner init',
@@ -235,11 +235,11 @@
 			name: 'Spawner',
 			tagline: 'Skills & agents for Claude',
 			description: 'Analyzes your codebase, brainstorms ideas, and generates custom skills that match how you build.',
-			url: null,
+			url: 'https://spawner.vibeship.co',
 			github: 'https://github.com/vibeforge1111/vibeship-spawner',
-			status: 'coming',
+			status: 'live',
 			icon: 'spawn',
-			stats: 'Coming in a few days'
+			stats: '40+ Skills + 14 MCP Tools'
 		},
 		{
 			name: 'Knowledge Base',
@@ -491,6 +491,20 @@
 					<path d="M9 12l2 2 4-4"/>
 				</svg>
 				<span>Scan & Fix Vulnerabilities</span>
+			</a>
+			<a href="https://spawner.vibeship.co" class="btn btn-secondary" target="_blank">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<circle cx="12" cy="12" r="3"/>
+					<circle cx="4" cy="4" r="2"/>
+					<circle cx="20" cy="4" r="2"/>
+					<circle cx="4" cy="20" r="2"/>
+					<circle cx="20" cy="20" r="2"/>
+					<line x1="12" y1="9" x2="12" y2="4"/>
+					<line x1="9" y1="12" x2="4" y2="12"/>
+					<line x1="15" y1="12" x2="20" y2="12"/>
+					<line x1="12" y1="15" x2="12" y2="20"/>
+				</svg>
+				<span>Spawn A Skillful Workflow</span>
 			</a>
 		</div>
 	</section>
@@ -758,6 +772,20 @@
 						<path d="M9 12l2 2 4-4"/>
 					</svg>
 					Scan Your Code
+				</a>
+				<a href="https://spawner.vibeship.co" class="btn btn-secondary btn-lg" target="_blank">
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<circle cx="12" cy="12" r="3"/>
+						<circle cx="4" cy="4" r="2"/>
+						<circle cx="20" cy="4" r="2"/>
+						<circle cx="4" cy="20" r="2"/>
+						<circle cx="20" cy="20" r="2"/>
+						<line x1="12" y1="9" x2="12" y2="4"/>
+						<line x1="9" y1="12" x2="4" y2="12"/>
+						<line x1="15" y1="12" x2="20" y2="12"/>
+						<line x1="12" y1="15" x2="12" y2="20"/>
+					</svg>
+					Spawn Skillful Agents
 				</a>
 			</div>
 		</div>
