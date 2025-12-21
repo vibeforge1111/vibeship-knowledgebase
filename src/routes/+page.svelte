@@ -709,7 +709,7 @@
 					<div class="why-number">03</div>
 					<div class="why-content">
 						<h3>Skills, Not Suggestions</h3>
-						<p>Spawner delivers machine-actionable expertise via structured YAML skills. Claude becomes a specialist in your stack—with patterns that actually work.</p>
+						<p>Each skill packs layers of expertise: proven patterns, sharp-edge warnings, automated validations, and cross-domain knowledge. 50+ skills deep, Claude becomes a real specialist—not surface-level tips, but stacked knowledge that compounds.</p>
 					</div>
 				</div>
 
