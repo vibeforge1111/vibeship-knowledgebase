@@ -8,6 +8,23 @@ Log during work: `decision`, `learning`, `problem`, `progress` → MEMORY.md | `
 
 ---
 
+## ⛔ STOP: PRE-FLIGHT CHECKLIST
+
+**Before writing ANY KB article, complete ALL items. No exceptions.**
+
+```
+☐ 1. Read ENHANCED-PIPELINE.md (3-phase process)
+☐ 2. Check/create brief in docs/.content-ops/briefs/
+☐ 3. Select persona from content-humanizer-guide.md
+☐ 4. Read KB-UI-DESIGN-STANDARDS.md
+☐ 5. Review components.css for global classes
+☐ 6. Open reference article (sql-injection/+page.svelte)
+```
+
+**If you skip ANY step, STOP and go back. Skipping causes rework.**
+
+---
+
 ## MANDATORY: Read Before Writing
 
 **Before creating or editing ANY KB content, you MUST read the relevant docs.**
@@ -41,7 +58,7 @@ npm run dev    # Start dev server
 npm run build  # Production build
 ```
 
-**Stack:** SvelteKit 2.0, TypeScript, Vercel
+**Stack:** SvelteKit 2.0, TypeScript, Railway
 
 ---
 
@@ -62,12 +79,78 @@ NEVER invent stats. Cite real sources with links. Use "Data coming soon" if unav
 Use **opengrep** (not semgrep), also trivy and gitleaks.
 
 ### 5. Design System (NON-NEGOTIABLE)
-- **Sharp edges** - No `border-radius: 8px` on containers
-- **CSS variables only** - Never hardcode colors
-- **Use global classes** - Don't recreate `.badge`, `.quick-answer`, `.faq-list`, `.card`
-- **Neutral comparison articles** - No tool brand colors (blue, violet, pink)
-- **No hover underlines** - Links/buttons use color/opacity changes, not `text-decoration: underline`
-- **Under 150 lines** of scoped CSS per article
+
+**YOU MUST USE GLOBAL CLASSES. DO NOT RECREATE THEM.**
+
+#### Global Classes to USE (from components.css):
+```
+.badge, .badge-critical, .badge-high, .badge-medium, .badge-low, .badge-info
+.stat-box, .stat-value, .stat-label
+.code-block, .code-block-header, .code-block-lang
+.copy-btn, .copy-btn.copied
+.fix-prompt, .fix-prompt-header, .fix-prompt-label, .fix-prompt-content
+.faq-list, .faq-item
+.card, .card-interactive
+.related-grid, .related-card, .related-card-category, .related-card-title
+.alert, .alert-warning, .alert-danger, .alert-success, .alert-info
+.cta-box
+.final-cta
+.btn, .btn-green, .btn-outline
+```
+
+#### ❌ FORBIDDEN (Automatic QA Fail):
+
+| Violation | Example | Why It's Wrong |
+|-----------|---------|----------------|
+| **border-radius: 8px+** | `border-radius: 8px` | Sharp edges only. Max 4px. |
+| **Gradient backgrounds** | `background: linear-gradient(...)` | Never on badges/cards. Flat colors only. |
+| **Hardcoded colors** | `#1a1a1a`, `#f8fafc` | Use `var(--bg-primary)`, `var(--text-secondary)` |
+| **Custom badge styles** | `.badge-library { background: ... }` | Use `.badge` + `.badge-info` or similar |
+| **Custom code blocks** | `.code-header { ... }` | Use `.code-block-header` from components.css |
+| **Missing copy buttons** | Code blocks without copy | Always include `.copy-btn` |
+| **Recreating global classes** | `.my-stat-card { ... }` | Use `.stat-box` instead |
+| **Side-by-side code comparison** | `grid-template-columns: 1fr 1fr` | Stack vertically (vulnerable on top, secure below) |
+
+#### ✅ CORRECT Patterns:
+
+**Badge (use global):**
+```svelte
+<span class="badge badge-info">Category</span>
+```
+
+**Stat Box (use global):**
+```svelte
+<div class="stat-box">
+  <div class="stat-value">50+</div>
+  <div class="stat-label">Prompts</div>
+</div>
+```
+
+**Code Block with Copy (use global):**
+```svelte
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">JavaScript</span>
+    <button class="copy-btn" on:click={() => copyCode('code-id')}>Copy</button>
+  </div>
+  <pre><code>// code here</code></pre>
+</div>
+```
+
+**Fix Prompt (use global):**
+```svelte
+<div class="fix-prompt">
+  <div class="fix-prompt-header">
+    <span class="fix-prompt-label">AI Fix Prompt</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="fix-prompt-content">Prompt text here</div>
+</div>
+```
+
+#### Style Budget:
+- **Under 100 lines** of scoped CSS per article (aim for 50-75)
+- If you need more, you're probably recreating global classes
 
 ---
 
@@ -162,6 +245,30 @@ Going straight to writing = bland, same-voice articles that don't stand out.
 | Pipeline | `docs/.content-ops/ENHANCED-PIPELINE.md` |
 | Design Guide | `docs/KB-UI-DESIGN-STANDARDS.md` |
 | Briefs | `docs/.content-ops/briefs/` |
+
+---
+
+## ⛔ MANDATORY QA BEFORE COMMIT
+
+**NEVER commit an article without running QA. This is non-negotiable.**
+
+### Quick Design Audit (Check Every Article)
+
+```
+☐ NO border-radius: 8px anywhere (search your CSS)
+☐ NO linear-gradient() anywhere (search your CSS)
+☐ NO hardcoded hex colors (#xxx) (search your CSS)
+☐ NO custom badge/stat/code classes (compare to components.css)
+☐ YES copy buttons on all code blocks
+☐ YES uses .code-block, .stat-box, .faq-list from global CSS
+☐ Under 100 lines scoped CSS
+```
+
+### Full QA Checklist
+
+Run `docs/.content-ops/checklists/qa-checklist.md` before publishing.
+
+**Minimum Value Score: 20/25 to publish.**
 
 ---
 
