@@ -3,8 +3,8 @@
 
 	// Page metadata
 	const meta = {
-		title: 'Credential Stuffing: Prevent Automated Account Takeover',
-		description: 'Credential stuffing uses stolen passwords to hijack user accounts. 5,800+ monthly searches. Learn detection and prevention for vibe coded apps.',
+		title: 'Credential Stuffing: Why AI Login Code Gets Breached',
+		description: 'Credential stuffing lets attackers test billions of leaked passwords on your login. Learn why rate limiting fails and how to layer real protection.',
 		url: '/kb/security/vulnerabilities/credential-stuffing/'
 	};
 
@@ -16,46 +16,54 @@
 		{ label: 'Credential Stuffing' }
 	];
 
-	// Real external data sources
-	const owaspData = {
-		ranking: '#7',
-		category: 'A07:2021 - Identification and Authentication Failures',
-		source: 'https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/',
+	// Security references
+	const securityData = {
 		cweId: 'CWE-307',
-		cweSource: 'https://cwe.mitre.org/data/definitions/307.html'
+		cweSource: 'https://cwe.mitre.org/data/definitions/307.html',
+		owaspCategory: 'A07:2021',
+		owaspSource: 'https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/',
+		severity: 'High'
 	};
 
 	// FAQ data for schema
 	const faqs = [
 		{
-			question: 'What is credential stuffing?',
-			answer: 'Credential stuffing is an automated attack where hackers use stolen username/password combinations from data breaches to log into other websites. Since people reuse passwords across sites, attackers can often access accounts on sites that were never breached. It differs from brute force because they use known-valid credentials, not random guesses.'
+			question: 'What is the difference between credential stuffing and password spraying?',
+			answer: 'Credential stuffing uses stolen username/password pairs from data breaches to test across many sites, exploiting password reuse. Password spraying tries common passwords (like "Password123") against many accounts on one site. According to OWASP, credential stuffing has ~1-2% success rate because attackers use real credentials; password spraying has ~1% success rate but targets more accounts. The key difference: credential stuffing knows your password from a breach, password spraying guesses.'
 		},
 		{
-			question: 'How do attackers get the stolen credentials?',
-			answer: 'Credentials come from data breaches at other companies. Major breaches like LinkedIn (700M records), Facebook (533M), and Collection #1 (773M emails) are sold on dark web forums. Attackers buy these lists and run them against login pages. If your users reused their LinkedIn password on your app, attackers can access their account on your site.'
+			question: 'How do you protect against credential stuffing attacks?',
+			answer: 'Protection requires multiple layers according to OWASP Credential Stuffing Prevention Cheat Sheet: (1) Multi-factor authentication is most effective, (2) Check passwords against HaveIBeenPwned database to block breached passwords, (3) Rate limiting per-IP and per-account, (4) Device fingerprinting to detect bots, (5) Progressive CAPTCHA after failed attempts, (6) Anomaly detection for distributed attacks. Rate limiting alone fails because botnets use thousands of IPs.'
 		},
 		{
-			question: 'Why is credential stuffing hard to detect?',
-			answer: 'Each login attempt uses real credentials that might be valid. Unlike brute force with random passwords, credential stuffing looks like legitimate users logging in. Attackers rotate IP addresses, use residential proxies, and space out attempts to avoid detection. Many apps have no visibility into these patterns until accounts are compromised.'
+			question: 'Can rate limiting stop credential stuffing?',
+			answer: 'No, rate limiting alone cannot stop sophisticated credential stuffing attacks. Modern attacks use distributed botnets with thousands of residential proxy IPs. Each IP stays under rate limits while collectively testing millions of credentials. According to OWASP, rate limiting is necessary but must be combined with anomaly detection (tracking attempts per-account across IPs), CAPTCHA, device fingerprinting, and multi-factor authentication for effective protection.'
 		},
 		{
-			question: 'Does rate limiting stop credential stuffing?',
-			answer: 'Basic rate limiting helps but does not stop sophisticated attacks. Attackers distribute attacks across thousands of IP addresses, staying under per-IP limits. You need multiple layers: rate limiting by user, IP, fingerprint, and behavioral analysis. CAPTCHA after failed attempts adds friction that bots cannot easily bypass.'
+			question: 'What is HaveIBeenPwned and how does it help prevent credential stuffing?',
+			answer: 'HaveIBeenPwned (HIBP) is a free service by security researcher Troy Hunt containing over 12 billion breached account records. Its Pwned Passwords API lets you check if a password appears in known data breaches during registration. Using k-Anonymity model, you send only the first 5 characters of the password\'s SHA-1 hash, never exposing the actual password. This prevents users from choosing passwords already in attackers\' credential stuffing combo lists, eliminating the attack vector at signup.'
 		},
 		{
-			question: 'How do I protect my vibe coded app from credential stuffing?',
-			answer: 'Implement defense in depth: rate limiting on login endpoints, CAPTCHA after failed attempts, account lockout with notification, and breach password checking (Have I Been Pwned API). Encourage or require MFA. Monitor for unusual login patterns like multiple failed attempts across different usernames from similar IP ranges.'
+			question: 'How effective is CAPTCHA against credential stuffing?',
+			answer: 'CAPTCHA is highly effective when implemented progressively according to OWASP. Trigger CAPTCHA after 2-3 failed login attempts rather than on every login to balance security and UX. reCAPTCHA v3 invisibly scores requests 0.0-1.0 (1.0 = likely human) without user interaction. Requiring scores >= 0.5 blocks most bots. However, CAPTCHA-solving services exist, so combine with rate limiting, anomaly detection, and multi-factor authentication for comprehensive protection.'
 		}
 	];
 
-	let copied = $state(false);
+	let copiedPrompt = $state(false);
+	let copiedCode = $state<Record<string, boolean>>({});
 
 	function copyPrompt() {
 		const prompt = document.getElementById('ai-fix-prompt')?.textContent || '';
 		navigator.clipboard.writeText(prompt);
-		copied = true;
-		setTimeout(() => copied = false, 2000);
+		copiedPrompt = true;
+		setTimeout(() => copiedPrompt = false, 2000);
+	}
+
+	function copyCode(id: string) {
+		const code = document.getElementById(id)?.textContent || '';
+		navigator.clipboard.writeText(code);
+		copiedCode[id] = true;
+		setTimeout(() => copiedCode[id] = false, 2000);
 	}
 </script>
 
@@ -82,7 +90,7 @@
 	}
 	</script>`}
 
-	<!-- TechArticle Schema -->
+	<!-- Article Schema -->
 	{@html `<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
@@ -101,8 +109,8 @@
 				"url": "https://vibeship.co/logo.png"
 			}
 		},
-		"datePublished": "2025-12-20",
-		"dateModified": "2025-12-20"
+		"datePublished": "2025-12-25",
+		"dateModified": "2025-12-25"
 	}
 	</script>`}
 
@@ -130,236 +138,552 @@
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
-				<span class="badge badge-critical">High</span>
-				<span class="badge">CWE-307</span>
-				<span class="badge">OWASP A07:2021</span>
+				<span class="badge badge-high">High</span>
+				<span class="badge">{securityData.cweId}</span>
+				<span class="badge">OWASP {securityData.owaspCategory}</span>
 			</div>
-			<h1>Credential Stuffing in Vibe Coded Apps</h1>
-			<p class="text-secondary">The 2012 LinkedIn breach is still compromising accounts today - including apps built with AI tools</p>
+			<h1>Credential Stuffing: Why AI Login Code Gets Breached</h1>
+			<p class="text-secondary">Rate limiting stops amateurs. Learn how to layer protections that actually work against distributed botnet attacks.</p>
 		</header>
 
 		<!-- Quick Answer -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>In 2012, LinkedIn lost 117 million credentials. By 2016, those passwords were hitting login pages across the internet - including apps that had never been breached.</strong>
-				That's credential stuffing: attackers use stolen credentials from one breach to hijack accounts on your app.
-				Since 65% of people reuse passwords, breached credentials from LinkedIn, Adobe, or Collection #1 often work on your site.
-				Prevention requires rate limiting, CAPTCHA, breach password checking, and MFA.
+				<strong>Credential stuffing lets attackers test billions of leaked passwords from data breaches against your login system.</strong>
+				They use botnets with thousands of IPs to bypass simple rate limits. According to <a href="https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html">OWASP</a>, these attacks have a 1-2% success rate—meaning 1 million stolen credentials can compromise 10,000-20,000 accounts. AI tools generate vulnerable login code with zero protection layers.
 			</p>
 		</div>
 
 		<!-- Stats Box -->
 		<div class="stats-row">
 			<div class="stat-box">
-				<div class="stat-value">{owaspData.ranking}</div>
-				<div class="stat-label">OWASP Ranking</div>
+				<div class="stat-value">26B</div>
+				<div class="stat-label">Monthly Attempts</div>
 			</div>
 			<div class="stat-box">
-				<div class="stat-value">{owaspData.cweId}</div>
-				<div class="stat-label"><a href={owaspData.cweSource}>CWE ID</a></div>
+				<div class="stat-value">1-2%</div>
+				<div class="stat-label">Success Rate</div>
 			</div>
 			<div class="stat-box">
-				<div class="stat-value">65%</div>
-				<div class="stat-label">Password Reuse Rate</div>
+				<div class="stat-value">12B+</div>
+				<div class="stat-label">Breached Records</div>
 			</div>
 			<div class="stat-box">
-				<div class="stat-value">High</div>
-				<div class="stat-label">Severity</div>
+				<div class="stat-value">64%</div>
+				<div class="stat-label">Reuse Passwords</div>
 			</div>
 		</div>
 		<p class="data-source">
-			Source: <a href={owaspData.source}>OWASP Top 10 (2021)</a>, <a href="https://www.security.org/digital-safety/password-manager-annual-report/">Security.org Password Reuse Study</a>
+			Sources: <a href="https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html">OWASP Credential Stuffing Prevention</a>, <a href="https://haveibeenpwned.com/Passwords">HaveIBeenPwned</a>
 		</p>
 
 		<!-- What Is It -->
 		<section class="article-section">
 			<h2>What is credential stuffing?</h2>
 			<p>
-				Let me walk you through the timeline. May 2016: a hacker dumps 117 million LinkedIn credentials on the dark web. Within hours, automated tools are testing those passwords against Netflix, PayPal, Dropbox - every site with a login form. Accounts that were never breached start getting hijacked.
+				Credential stuffing is what happens when attackers take billions of username/password pairs from data breaches and test them across different websites. It exploits one simple truth: people reuse passwords. Your email and password leaked in the LinkedIn breach? Attackers test that exact combination on your bank, your startup's admin panel, every SaaS tool you've ever built.
 			</p>
 			<p>
-				That's credential stuffing. It exploits a simple human behavior: password reuse. When a major site gets breached, millions of email/password combinations become ammunition for attacking every other site on the internet.
+				Think of it like having a master key from one building and trying it on every other lock in the city. Most won't work. But with a billion keys and automated testing, the 1-2% that do work is catastrophic.
 			</p>
 			<p>
-				If your user had the same password on LinkedIn and your vibe coded app, their account is now compromised - even though you were never breached. The attacker didn't guess the password. They knew it from a breach that happened years ago, possibly before your app even existed.
-			</p>
-			<p>
-				This isn't theoretical. Collection #1 alone contained 773 million unique emails. Billions of credentials are circulating from past breaches. According to <a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">OWASP</a>, authentication failures including credential stuffing rank #7 in the Top 10 web application security risks.
+				This vulnerability is classified as <a href={securityData.cweSource}>{securityData.cweId}: Improper Restriction of Excessive Authentication Attempts</a> and falls under <a href={securityData.owaspSource}>OWASP {securityData.owaspCategory} - Identification and Authentication Failures</a>. According to <a href="https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html">OWASP's Credential Stuffing Prevention Cheat Sheet</a>, security firm Akamai reported approximately 26 billion credential stuffing attempts per month in 2024.
 			</p>
 		</section>
 
-		<!-- Why AI Tools Don't Help -->
+		<!-- Credential Stuffing vs Password Spraying -->
 		<section class="article-section">
-			<h2>Why AI coding tools don't prevent credential stuffing</h2>
+			<h2>Credential Stuffing vs Password Spraying</h2>
 			<p>
-				Here's the pattern that keeps repeating. When you ask <a href="/kb/vibe-coding-tools/cursor/">Cursor</a> or <a href="/kb/vibe-coding-tools/bolt/">Bolt</a> to "build a login page," you get a working login page. What you don't get: rate limiting, account lockout, CAPTCHA integration, breach password checking, or login anomaly detection.
-			</p>
-			<p>
-				The same gap that allowed the 2019 Dunkin' Donuts credential stuffing attack. The same gap that led to Disney+ account hijacks on launch day. AI tools generate the happy path - authentication that works for legitimate users - but not the defensive layers that would have stopped those attacks.
-			</p>
-			<p>
-				That's the gap vibe coders need to close manually.
+				These attacks sound similar but use completely different strategies. Understanding the difference matters for detection and prevention.
 			</p>
 
-			<div class="code-comparison">
-				<div class="code-block">
-					<div class="code-block-header">
-						<span class="code-label bad">What AI generates</span>
-					</div>
-					<pre><code class="language-typescript">{`// Simple login - no protection against stuffing
-async function login(email: string, password: string) {
-  const user = await db.user.findUnique({ where: { email } })
-  if (!user) return { error: 'Invalid credentials' }
-
-  const valid = await bcrypt.compare(password, user.passwordHash)
-  if (!valid) return { error: 'Invalid credentials' }
-
-  return { success: true, user }
-}`}</code></pre>
-				</div>
-				<div class="code-block">
-					<div class="code-block-header">
-						<span class="code-label good">What you need</span>
-					</div>
-					<pre><code class="language-typescript">{`// Login with credential stuffing protection
-async function login(email: string, password: string, ip: string) {
-  // Check rate limits by IP and email
-  const ipAttempts = await rateLimiter.get(\`login:ip:\${ip}\`)
-  const emailAttempts = await rateLimiter.get(\`login:email:\${email}\`)
-
-  if (ipAttempts > 10) return { error: 'Too many attempts', requireCaptcha: true }
-  if (emailAttempts > 5) return { error: 'Account locked', notifyUser: true }
-
-  const user = await db.user.findUnique({ where: { email } })
-  if (!user) {
-    await rateLimiter.increment(\`login:ip:\${ip}\`)
-    return { error: 'Invalid credentials' }
-  }
-
-  const valid = await bcrypt.compare(password, user.passwordHash)
-  if (!valid) {
-    await rateLimiter.increment(\`login:email:\${email}\`)
-    await rateLimiter.increment(\`login:ip:\${ip}\`)
-    await logFailedAttempt(email, ip) // For anomaly detection
-    return { error: 'Invalid credentials' }
-  }
-
-  // Clear rate limits on successful login
-  await rateLimiter.reset(\`login:email:\${email}\`)
-  return { success: true, user }
-}`}</code></pre>
-				</div>
+			<div class="table-wrapper">
+				<table>
+					<thead>
+						<tr>
+							<th>Aspect</th>
+							<th>Credential Stuffing</th>
+							<th>Password Spraying</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Attack Method</strong></td>
+							<td>Test stolen username/password pairs from breaches</td>
+							<td>Try common passwords against many accounts</td>
+						</tr>
+						<tr>
+							<td><strong>Data Source</strong></td>
+							<td>Real credentials from data breaches</td>
+							<td>Common password lists (Password123, Welcome2024)</td>
+						</tr>
+						<tr>
+							<td><strong>Success Rate</strong></td>
+							<td>~1-2% (known credentials)</td>
+							<td>~1% (guessing)</td>
+						</tr>
+						<tr>
+							<td><strong>Attack Pattern</strong></td>
+							<td>One user, many passwords from their breaches</td>
+							<td>Many users, same common password</td>
+						</tr>
+						<tr>
+							<td><strong>Detection Signature</strong></td>
+							<td>Multiple IPs targeting same account</td>
+							<td>Same IP trying many accounts with few passwords</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</section>
 
-		<!-- Detection -->
+		<!-- The Scale of the Problem -->
 		<section class="article-section">
-			<h2>How to detect credential stuffing attacks</h2>
+			<h2>The scale of the credential stuffing problem</h2>
 			<p>
-				In 2014, the Spotify credential stuffing attack went undetected for weeks. The attackers were careful - low volume, distributed IPs, real credentials. Spotify only noticed when users started complaining about playlist changes they didn't make.
+				<a href="https://haveibeenpwned.com/Passwords">HaveIBeenPwned</a> contains over 12 billion breached account records as of 2025. These aren't theoretical. They're real username/password combinations available in underground markets for pennies. Combo lists—files containing millions of credentials—get traded constantly.
 			</p>
 			<p>
-				Credential stuffing is harder to detect than brute force because attackers use real credentials. Here are the patterns to watch for:
+				Attackers use residential proxy networks (thousands of real home IPs) to distribute attacks. Each IP makes just 2-3 login attempts per hour, staying under basic rate limits. Meanwhile, the botnet collectively tests millions of credentials. Your server sees normal traffic patterns from legitimate-looking IPs. The attack is invisible until accounts start getting taken over.
 			</p>
-
-			<div class="detection-list">
-				<div class="detection-item">
-					<h4>High volume of failed logins</h4>
-					<p>Multiple failed attempts across different usernames from similar IP ranges or time windows.</p>
-				</div>
-				<div class="detection-item">
-					<h4>Successful logins from new locations</h4>
-					<p>User suddenly logs in from a different country or IP that doesn't match their history.</p>
-				</div>
-				<div class="detection-item">
-					<h4>Login attempts outside normal hours</h4>
-					<p>Attacks often run during off-hours when they're less likely to be noticed.</p>
-				</div>
-				<div class="detection-item">
-					<h4>Similar user-agent strings</h4>
-					<p>Bot traffic often uses identical or rotating patterns of user-agents.</p>
-				</div>
+			<p>
+				According to <a href="https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html">OWASP</a>, 64% of people reuse passwords across accounts. This is why credential stuffing works. One breach cascades across the entire internet.
+			</p>
+			<div class="alert alert-warning">
+				<div class="alert-title">Why Rate Limiting Alone Fails</div>
+				<p>
+					Basic rate limiting blocks 10 attempts from one IP. A botnet uses 10,000 IPs making 1 attempt each. Every IP stays under your rate limit. The attack succeeds anyway. This is why multi-layered defense is required.
+				</p>
 			</div>
-
-			<p>
-				Without logging and monitoring, you won't see these patterns. Most vibe coded apps have no visibility into login attempts until users report compromised accounts - just like Spotify learned the hard way.
-			</p>
 		</section>
 
-		<!-- Prevention -->
+		<!-- AI Tool Patterns -->
 		<section class="article-section">
-			<h2>How to prevent credential stuffing</h2>
+			<h2>How AI tools generate vulnerable login code</h2>
 			<p>
-				After the 2016 credential stuffing wave, companies that survived shared a common pattern: defense in depth. No single control stops credential stuffing - but layers of friction make automated attacks uneconomical.
+				Ask Cursor, Bolt, or Claude Code to build authentication. You'll get working login code with zero credential stuffing protection. The AI creates functional authentication—username field, password field, database check. Mission complete from the AI's perspective.
+			</p>
+			<p>
+				What's missing? Detection. Blocking. Monitoring. Breach checking. Rate limiting by account. Anomaly detection. Progressive CAPTCHA. Everything that makes login actually secure against automated attacks.
 			</p>
 
-			<h3>1. Rate limiting</h3>
-			<p>
-				Limit login attempts by IP address, email/username, and device fingerprint. Be careful not to lock out legitimate users who forgot their password.
-			</p>
-
-			<h3>2. CAPTCHA on failed attempts</h3>
-			<p>
-				Show CAPTCHA after 2-3 failed login attempts. This adds friction that automated tools can't easily bypass. Use hCaptcha or reCAPTCHA v3 for better UX.
-			</p>
-
-			<h3>3. Breach password checking</h3>
-			<p>
-				Check passwords against known breach databases on signup and login. The <a href="https://haveibeenpwned.com/API/v3" target="_blank" rel="noopener">Have I Been Pwned API</a> - built by Troy Hunt after years of cataloging breaches - is free and privacy-preserving (uses k-anonymity). If a password appears in HIBP's database, it's already in attackers' lists.
-			</p>
-
-			<h3>4. Multi-factor authentication</h3>
-			<p>
-				MFA stops credential stuffing cold. Even with the right password, attackers can't access accounts without the second factor. Strongly encourage or require MFA for sensitive apps.
-			</p>
-
-			<h3>5. Account lockout with notification</h3>
-			<p>
-				Lock accounts after repeated failures and email the user. They'll know something is wrong and can change their password.
-			</p>
-		</section>
-
-		<!-- AI Fix Prompt -->
-		<section class="article-section">
-			<h2>AI fix prompt for credential stuffing protection</h2>
-			<p>
-				Copy this prompt into <a href="/kb/vibe-coding-tools/cursor/">Cursor</a>, <a href="/kb/vibe-coding-tools/claude-code/">Claude Code</a>, or your AI tool:
-			</p>
-
-			<div class="fix-prompt">
-				<div class="fix-prompt-header">
-					<span>Copy this prompt</span>
-					<button class="copy-btn" onclick={copyPrompt}>
-						{copied ? 'Copied!' : 'Copy'}
+			<div class="code-block vulnerable">
+				<div class="code-block-header">
+					<span class="code-block-lang">Vulnerable Pattern - AI Generated</span>
+					<button class="copy-btn" class:copied={copiedCode['vulnerable-login']} onclick={() => copyCode('vulnerable-login')}>
+						{copiedCode['vulnerable-login'] ? 'Copied!' : 'Copy'}
 					</button>
 				</div>
-				<pre id="ai-fix-prompt"><code>{`Add credential stuffing protection to my login endpoint:
+				<pre><code id="vulnerable-login">{`// VULNERABLE: AI generates working login, no credential stuffing protection
+// app/api/auth/login/route.ts
+import { NextResponse } from 'next/server'
+import { verifyPassword } from '@/lib/auth'
 
-REQUIREMENTS:
-1. Rate limiting by IP (10 attempts per 15 minutes)
-2. Rate limiting by email (5 attempts per hour)
-3. Account lockout after 5 failed attempts with email notification
-4. CAPTCHA trigger after 3 failed attempts
-5. Check password against Have I Been Pwned API on signup
-6. Log all failed attempts with IP, user-agent, timestamp
+export async function POST(request: Request) {
+  const { email, password } = await request.json()
 
-IMPLEMENTATION:
-- Use Redis or in-memory store for rate limiting
-- Use upstash/ratelimit or similar library
-- Integrate hCaptcha or reCAPTCHA v3
-- Use k-anonymity for HIBP API calls (privacy-preserving)
-- Send notification email on account lockout
-- Include unlock mechanism via email link
+  // Attackers can test billions of leaked credentials!
+  const user = await verifyPassword(email, password)
 
-Return middleware/function that wraps the login handler.
-Do not modify the core authentication logic.`}</code></pre>
+  if (!user) {
+    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
+  }
+
+  return NextResponse.json({ user })
+}`}</code></pre>
+			</div>
+
+			<p class="pattern-note">
+				<strong>What's wrong here:</strong> This code works perfectly. It also has zero protection against bots testing stolen credentials. No rate limiting, no breach checking, no anomaly detection, no CAPTCHA. An attacker with a combo list can test thousands of credentials per minute across a distributed botnet. The vibe coded app never notices.
+			</p>
+
+			<p>
+				<strong>Why AI does this:</strong> The training data contains working authentication patterns. "It works" is the optimization target. Security layers aren't required for functionality, so they get skipped. The AI gives you what was most common in its training: vulnerable patterns that billions of real apps shipped.
+			</p>
+		</section>
+
+		<!-- Multi-Layered Protection -->
+		<section class="article-section">
+			<h2>Multi-layered credential stuffing protection</h2>
+			<p>
+				Stopping credential stuffing requires stacking multiple defensive layers. Each layer catches what the previous one misses. Here's the architecture that actually works against distributed attacks.
+			</p>
+
+			<!-- Layer 1: Rate Limiting -->
+			<div class="layer-section">
+				<h3>Layer 1: Rate Limiting (Foundation)</h3>
+				<p>
+					Rate limiting is necessary but not sufficient. You need <strong>both per-IP and per-account</strong> limits. Per-IP stops single-source attacks. Per-account stops distributed botnet attacks targeting specific accounts.
+				</p>
+
+				<div class="code-block">
+					<div class="code-block-header">
+						<span class="code-block-lang">TypeScript - Next.js Middleware</span>
+						<button class="copy-btn" class:copied={copiedCode['rate-limit']} onclick={() => copyCode('rate-limit')}>
+							{copiedCode['rate-limit'] ? 'Copied!' : 'Copy'}
+						</button>
+					</div>
+					<pre><code id="rate-limit">{`// middleware.ts
+import { Ratelimit } from '@upstash/ratelimit'
+import { Redis } from '@upstash/redis'
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(5, '15 m'), // 5 attempts per 15 min
+})
+
+export async function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname.startsWith('/api/auth/login')) {
+    const ip = request.ip ?? '127.0.0.1'
+    const { success } = await ratelimit.limit(ip)
+
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Too many attempts' },
+        { status: 429 }
+      )
+    }
+  }
+
+  return NextResponse.next()
+}`}</code></pre>
+				</div>
+				<p class="implementation-note">
+					<strong>Limitation:</strong> This stops single-IP attacks but fails against botnets using thousands of residential proxies. Each IP stays under the limit. You need additional layers.
+				</p>
+			</div>
+
+			<!-- Layer 2: Anomaly Detection -->
+			<div class="layer-section">
+				<h3>Layer 2: Anomaly Detection (Account-Level)</h3>
+				<p>
+					Track failed attempts <strong>per account across all IPs</strong>. Botnet attacks show up as the same account being targeted from many different IPs. This signature is impossible for legitimate users but standard for credential stuffing.
+				</p>
+
+				<div class="code-block">
+					<div class="code-block-header">
+						<span class="code-block-lang">TypeScript - Anomaly Detection</span>
+						<button class="copy-btn" class:copied={copiedCode['anomaly-detection']} onclick={() => copyCode('anomaly-detection')}>
+							{copiedCode['anomaly-detection'] ? 'Copied!' : 'Copy'}
+						</button>
+					</div>
+					<pre><code id="anomaly-detection">{`// app/api/auth/login/route.ts
+import { Redis } from '@upstash/redis'
+
+const redis = Redis.fromEnv()
+
+async function detectAnomalies(email: string, ip: string) {
+  // Track failed attempts per account (across all IPs)
+  const accountKey = \`account_failures:\${email}\`
+  const accountFailures = (await redis.get<number>(accountKey)) ?? 0
+
+  // Track unique IPs attempting this account
+  const ipSetKey = \`account_ips:\${email}\`
+  await redis.sadd(ipSetKey, ip)
+  await redis.expire(ipSetKey, 3600) // 1 hour
+  const uniqueIPs = await redis.scard(ipSetKey)
+
+  // ANOMALY 1: 10+ failed attempts in 1 hour (botnet signature)
+  if (accountFailures >= 10) {
+    return {
+      blocked: true,
+      reason: 'Too many failed attempts on this account'
+    }
+  }
+
+  // ANOMALY 2: 5+ different IPs attempting same account (distributed attack)
+  if (uniqueIPs >= 5) {
+    return {
+      blocked: true,
+      reason: 'Suspicious activity detected on this account'
+    }
+  }
+
+  return { blocked: false }
+}`}</code></pre>
+				</div>
+			</div>
+
+			<!-- Layer 3: Progressive CAPTCHA -->
+			<div class="layer-section">
+				<h3>Layer 3: Progressive CAPTCHA</h3>
+				<p>
+					Don't annoy legitimate users with CAPTCHA on every login. Trigger it <strong>only after suspicious patterns</strong> are detected. Use reCAPTCHA v3 which scores requests invisibly (0.0-1.0, where 1.0 = likely human).
+				</p>
+
+				<div class="code-block">
+					<div class="code-block-header">
+						<span class="code-block-lang">TypeScript - Progressive CAPTCHA</span>
+						<button class="copy-btn" class:copied={copiedCode['captcha']} onclick={() => copyCode('captcha')}>
+							{copiedCode['captcha'] ? 'Copied!' : 'Copy'}
+						</button>
+					</div>
+					<pre><code id="captcha">{`// app/api/auth/login/route.ts
+export async function POST(request: Request) {
+  const { email, password, captchaToken } = await request.json()
+  const ip = request.headers.get('x-forwarded-for') ?? 'unknown'
+
+  // Track failed attempts per IP
+  const failedKey = \`failed:\${ip}\`
+  const failedCount = (await redis.get<number>(failedKey)) ?? 0
+
+  // Require CAPTCHA after 3 failed attempts
+  if (failedCount >= 3) {
+    if (!captchaToken) {
+      return NextResponse.json(
+        { error: 'CAPTCHA required', requireCaptcha: true },
+        { status: 400 }
+      )
+    }
+
+    // Verify CAPTCHA with Google reCAPTCHA v3
+    const captchaResponse = await fetch(
+      'https://www.google.com/recaptcha/api/siteverify',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: \`secret=\${process.env.RECAPTCHA_SECRET}&response=\${captchaToken}\`,
+      }
+    )
+    const captchaData = await captchaResponse.json()
+
+    // reCAPTCHA v3 returns score 0.0-1.0 (1.0 = likely human)
+    if (!captchaData.success || captchaData.score < 0.5) {
+      return NextResponse.json(
+        { error: 'CAPTCHA verification failed' },
+        { status: 400 }
+      )
+    }
+  }
+
+  const user = await verifyPassword(email, password)
+
+  if (!user) {
+    // Increment failed counter, expire after 1 hour
+    await redis.set(failedKey, failedCount + 1, { ex: 3600 })
+    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
+  }
+
+  // Reset on success
+  await redis.del(failedKey)
+  return NextResponse.json({ user })
+}`}</code></pre>
+				</div>
+			</div>
+
+			<!-- Layer 4: Breached Password Checking -->
+			<div class="layer-section">
+				<h3>Layer 4: Breached Password Checking (HaveIBeenPwned)</h3>
+				<p>
+					The most effective layer: prevent users from choosing passwords that already exist in attackers' combo lists. Check every password during registration against the <a href="https://haveibeenpwned.com/Passwords">HaveIBeenPwned Pwned Passwords API</a>. Using k-Anonymity model, you send only the first 5 characters of the password's SHA-1 hash—never the actual password.
+				</p>
+
+				<div class="code-block">
+					<div class="code-block-header">
+						<span class="code-block-lang">TypeScript - Breached Password Check</span>
+						<button class="copy-btn" class:copied={copiedCode['hibp']} onclick={() => copyCode('hibp')}>
+							{copiedCode['hibp'] ? 'Copied!' : 'Copy'}
+						</button>
+					</div>
+					<pre><code id="hibp">{`// lib/check-pwned-password.ts
+import crypto from 'crypto'
+
+export async function isPasswordPwned(password: string): Promise<boolean> {
+  // 1. Hash password with SHA-1
+  const hash = crypto.createHash('sha1').update(password).digest('hex').toUpperCase()
+
+  // 2. Send only first 5 chars (k-Anonymity model)
+  const prefix = hash.substring(0, 5)
+  const suffix = hash.substring(5)
+
+  // 3. Query HIBP API
+  const response = await fetch(
+    \`https://api.pwnedpasswords.com/range/\${prefix}\`
+  )
+  const text = await response.text()
+
+  // 4. Check if our hash suffix appears in results
+  const hashes = text.split('\\n')
+  return hashes.some(line => line.startsWith(suffix))
+}
+
+// Usage in registration endpoint
+export async function POST(request: Request) {
+  const { email, password } = await request.json()
+
+  // Check if password has been breached
+  if (await isPasswordPwned(password)) {
+    return NextResponse.json(
+      {
+        error: 'This password has appeared in a data breach. Please choose a different password.',
+        code: 'PASSWORD_BREACHED'
+      },
+      { status: 400 }
+    )
+  }
+
+  // Continue with registration...
+}`}</code></pre>
+				</div>
+				<p class="implementation-note">
+					<strong>Privacy guarantee:</strong> Only the first 5 characters of the hash are sent. The HaveIBeenPwned API returns all hashes matching that prefix. Your server compares locally. The actual password never leaves your system.
+				</p>
+			</div>
+		</section>
+
+		<!-- Detection Patterns -->
+		<section class="article-section">
+			<h2>Detection patterns to monitor</h2>
+			<p>
+				Even with protections in place, monitor for these credential stuffing signatures:
+			</p>
+			<ul class="detection-list">
+				<li><strong>Multiple failed logins across different accounts from same IP:</strong> Single attacker testing many credentials</li>
+				<li><strong>Same account targeted from many IPs:</strong> Distributed botnet signature—this is the big one</li>
+				<li><strong>Login velocity anomalies:</strong> 100+ login attempts per second is not human behavior</li>
+				<li><strong>Geographic impossibility:</strong> Account logs in from US then China within 5 minutes</li>
+				<li><strong>User-agent patterns:</strong> Headless browsers, automation tools (Selenium, Puppeteer signatures)</li>
+				<li><strong>Time-based patterns:</strong> Attacks often happen off-peak hours (2-6 AM local time)</li>
+			</ul>
+			<p>
+				Set up alerts in your monitoring system (Sentry, Datadog, New Relic) for these patterns. Track metrics: failed login rate, unique IPs per account, CAPTCHA trigger frequency.
+			</p>
+		</section>
+
+		<!-- How to Fix -->
+		<section class="article-section">
+			<h2>How do I fix credential stuffing vulnerabilities?</h2>
+
+			<!-- AI Fix Prompt -->
+			<div class="fix-section">
+				<h3>AI Fix Prompt</h3>
+				<p>Copy this prompt into Cursor, Claude Code, or Bolt to implement multi-layered credential stuffing protection:</p>
+
+				<div class="fix-prompt">
+					<div class="fix-prompt-header">
+						<span class="fix-prompt-label">AI Fix Prompt</span>
+						<button class="copy-btn" class:copied={copiedPrompt} onclick={copyPrompt}>
+							{copiedPrompt ? 'Copied!' : 'Copy'}
+						</button>
+					</div>
+					<div class="fix-prompt-content" id="ai-fix-prompt">{`You are a security expert. Analyze this codebase for credential stuffing vulnerabilities and implement multi-layered protection.
+
+SEARCH FOR:
+1. Authentication endpoints:
+   - Search: "login", "signin", "authenticate", "/api/auth"
+   - Files: app/api/auth/*, pages/api/auth/*, src/routes/auth/*
+
+2. Check current protections:
+   - Rate limiting: Search for "rateLimit", "Ratelimit", "express-rate-limit"
+   - CAPTCHA: Search for "captcha", "recaptcha"
+   - Breach checking: Search for "haveibeenpwned", "pwned"
+
+IMPLEMENT THESE LAYERS:
+
+Layer 1 - Rate Limiting:
+- Add Upstash Rate Limit for serverless (Vercel/Netlify)
+- Per-IP: 10 attempts per 15 minutes
+- Per-account: 5 attempts per 15 minutes
+- Return 429 status with clear error message
+
+Layer 2 - Anomaly Detection:
+- Track failed attempts per account (across all IPs)
+- Track unique IPs attempting each account
+- Alert when 5+ different IPs target same account (botnet signature)
+- Block account temporarily after 10 failures in 1 hour
+
+Layer 3 - Progressive CAPTCHA:
+- Trigger CAPTCHA requirement after 3 failed attempts
+- Use reCAPTCHA v3 (invisible, scores 0.0-1.0)
+- Require score >= 0.5 for login
+- Add "requireCaptcha: true" to error response
+
+Layer 4 - Breached Password Check:
+- Integrate HaveIBeenPwned Pwned Passwords API
+- Check on registration AND password change
+- Use k-Anonymity model (send only first 5 SHA-1 hash chars)
+- Force different password if breached
+
+Layer 5 - Exponential Backoff:
+- Add delay after each failed attempt: min(1000 * 2^failures, 30000)ms
+- Slows automated attacks without hard lockout
+- Clears on successful login
+
+Layer 6 - Security Monitoring:
+- Log suspicious patterns to monitoring service (Sentry, Datadog)
+- Alert on: 10+ failures per account, 5+ IPs per account
+- Track metrics: total attempts, success rate, CAPTCHA triggers
+
+VERIFICATION:
+After implementing, test:
+1. Rapid login attempts from same IP → Should rate limit
+2. Same account from 5+ IPs → Should alert and block
+3. 3 failed attempts → Should require CAPTCHA
+4. Breached password on registration → Should reject
+
+Use Next.js App Router with Upstash Redis for state storage.`}</div>
+				</div>
+			</div>
+
+			<!-- Manual Fix Steps -->
+			<div class="fix-section">
+				<h3>Manual implementation steps</h3>
+				<ol class="fix-steps">
+					<li>
+						<strong>Add rate limiting (per-IP and per-account)</strong>
+						<p>Install Upstash Rate Limit. Add middleware to limit login attempts by IP and track per-account failures.</p>
+					</li>
+					<li>
+						<strong>Integrate HaveIBeenPwned for registration</strong>
+						<p>Create a function to check passwords against HIBP API using k-Anonymity. Reject breached passwords during signup and password changes.</p>
+					</li>
+					<li>
+						<strong>Add CAPTCHA after 3 failed attempts</strong>
+						<p>Set up reCAPTCHA v3. Trigger requirement after detecting suspicious activity. Verify scores server-side.</p>
+					</li>
+					<li>
+						<strong>Implement anomaly monitoring</strong>
+						<p>Track unique IPs per account using Redis sets. Alert when 5+ IPs attempt same account within 1 hour.</p>
+					</li>
+					<li>
+						<strong>Set up alerts for suspicious patterns</strong>
+						<p>Configure monitoring (Sentry, Datadog) to alert on distributed attack signatures. Track failed login rates and CAPTCHA trigger frequency.</p>
+					</li>
+				</ol>
+			</div>
+
+			<!-- Framework-Specific -->
+			<div class="fix-section">
+				<h3>Framework-specific guides</h3>
+				<div class="framework-links">
+					<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive">
+						<span class="framework-name">Next.js + Supabase</span>
+						<span class="framework-desc">Complete stack security guide</span>
+					</a>
+					<a href="/kb/security/stacks/sveltekit-supabase/" class="card card-interactive">
+						<span class="framework-name">SvelteKit + Supabase</span>
+						<span class="framework-desc">Authentication security checklist</span>
+					</a>
+					<a href="/kb/security/vulnerabilities/missing-rate-limiting/" class="card card-interactive">
+						<span class="framework-name">Missing Rate Limiting</span>
+						<span class="framework-desc">Deep dive on rate limiting patterns</span>
+					</a>
+					<a href="/kb/security/vulnerabilities/jwt-vulnerabilities/" class="card card-interactive">
+						<span class="framework-name">JWT Vulnerabilities</span>
+						<span class="framework-desc">Session security best practices</span>
+					</a>
+				</div>
 			</div>
 		</section>
 
 		<!-- FAQ -->
 		<section class="article-section">
 			<h2>Frequently asked questions</h2>
+
 			<div class="faq-list">
 				{#each faqs as faq}
 					<div class="faq-item">
@@ -370,357 +694,232 @@ Do not modify the core authentication logic.`}</code></pre>
 			</div>
 		</section>
 
-		<!-- Scanner CTA -->
-		<section class="cta-box">
-			<h2>Check Your Login Security</h2>
-			<p>
-				<a href="https://scanner.vibeship.co">VibeShip Scanner</a> analyzes your authentication code for missing rate limiting, weak lockout policies, and other credential stuffing vulnerabilities.
-			</p>
-			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">Scan Your Code Free</a>
-		</section>
-
-		<!-- Related Content -->
+		<!-- Related -->
 		<section class="article-section">
-			<h2>Related vulnerabilities</h2>
+			<h2>Related content</h2>
+
 			<div class="related-grid">
-				<a href="/kb/security/vulnerabilities/account-takeover/" class="card card-interactive related-card">
-					<div class="related-card-category">Vulnerability</div>
-					<div class="related-card-title">Account Takeover</div>
-					<p class="related-card-description">The end result of credential stuffing</p>
-				</a>
 				<a href="/kb/security/vulnerabilities/missing-rate-limiting/" class="card card-interactive related-card">
 					<div class="related-card-category">Vulnerability</div>
 					<div class="related-card-title">Missing Rate Limiting</div>
-					<p class="related-card-description">First line of defense against automation</p>
+					<p class="related-card-description">Why your API needs request throttling and how to implement it</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="card card-interactive related-card">
+				<a href="/kb/security/vulnerabilities/jwt-vulnerabilities/" class="card card-interactive related-card">
 					<div class="related-card-category">Vulnerability</div>
-					<div class="related-card-title">Missing Authentication</div>
-					<p class="related-card-description">When auth checks are skipped entirely</p>
+					<div class="related-card-title">JWT Vulnerabilities</div>
+					<p class="related-card-description">Common authentication token security issues</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/hardcoded-secrets/" class="card card-interactive related-card">
+				<a href="/kb/security/vulnerabilities/broken-access-control/" class="card card-interactive related-card">
 					<div class="related-card-category">Vulnerability</div>
-					<div class="related-card-title">Hardcoded Secrets</div>
-					<p class="related-card-description">API keys exposed in source code</p>
+					<div class="related-card-title">Broken Access Control</div>
+					<p class="related-card-description">Authorization failures that let users access others' data</p>
+				</a>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
+					<div class="related-card-category">AI Tool</div>
+					<div class="related-card-title">Cursor Security Patterns</div>
+					<p class="related-card-description">Common vulnerabilities in Cursor-generated code</p>
+				</a>
+				<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive related-card">
+					<div class="related-card-category">Stack Guide</div>
+					<div class="related-card-title">Next.js + Supabase Security</div>
+					<p class="related-card-description">Complete security checklist for this popular vibe coding stack</p>
+				</a>
+				<a href="/kb/security/stacks/sveltekit-supabase/" class="card card-interactive related-card">
+					<div class="related-card-category">Stack Guide</div>
+					<div class="related-card-title">SvelteKit + Supabase Security</div>
+					<p class="related-card-description">Authentication and authorization best practices</p>
 				</a>
 			</div>
 		</section>
 
-		<!-- External Resources -->
-		<section class="article-section">
-			<h2>External resources</h2>
-			<ul class="external-links">
-				<li><a href="https://owasp.org/www-community/attacks/Credential_stuffing" target="_blank" rel="noopener">OWASP Credential Stuffing</a></li>
-				<li><a href="https://cwe.mitre.org/data/definitions/307.html" target="_blank" rel="noopener">CWE-307: Improper Restriction of Excessive Authentication Attempts</a></li>
-				<li><a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">Have I Been Pwned</a> - Check if credentials are in breaches</li>
-				<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html" target="_blank" rel="noopener">OWASP Credential Stuffing Prevention Cheat Sheet</a></li>
-			</ul>
-		</section>
+		<!-- Final CTA -->
+		<div class="final-cta">
+			<h2>Find credential stuffing vulnerabilities before attackers do</h2>
+			<p>VibeShip Scanner detects authentication weaknesses in AI-generated code. Free scan, instant results.</p>
+			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
+				Scan your code now
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M5 12h14M12 5l7 7-7 7"/>
+				</svg>
+			</a>
+		</div>
 	</article>
 </div>
 
 <style>
-	.content-wrapper {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
-
-	.article-header {
-		margin-bottom: 2rem;
-	}
-
+	/* Badge row */
 	.badge-row {
 		display: flex;
 		gap: 0.5rem;
+		margin-bottom: 1rem;
 		flex-wrap: wrap;
-		margin-bottom: 1rem;
 	}
 
-	h1 {
-		font-size: 2.5rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.text-secondary {
-		color: var(--text-secondary);
-		font-size: 1.1rem;
-	}
-
-	h2 {
-		font-size: 1.5rem;
-		margin-top: 2rem;
-		margin-bottom: 1rem;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border);
-	}
-
-	h3 {
-		font-size: 1.2rem;
-		margin-top: 1.5rem;
-		margin-bottom: 0.5rem;
-	}
-
-	h4 {
-		font-size: 1rem;
-		margin-top: 0;
-		margin-bottom: 0.25rem;
-		color: var(--green-dim);
-	}
-
-	p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-	}
-
-	a {
-		color: var(--green-dim);
-	}
-
-	a:hover {
-		color: var(--green);
-	}
-
-	.article-section {
-		margin-bottom: 2.5rem;
-	}
-
-	/* Stats Row */
-	.stats-row {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 1rem;
-		margin: 1.5rem 0;
-	}
-
-	@media (max-width: 768px) {
-		.stats-row {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	.stat-box {
-		background: var(--bg-secondary);
-		padding: 1rem;
-		text-align: center;
-		border: 1px solid var(--border);
-	}
-
-	.stat-value {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--green-dim);
-	}
-
-	.stat-label {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin-top: 0.25rem;
-	}
-
+	/* Data Source Attribution */
 	.data-source {
+		font-size: 0.75rem;
+		color: var(--text-tertiary);
+		margin: 0.5rem 0 1.5rem;
+	}
+
+	.data-source a {
+		color: var(--text-secondary);
+	}
+
+	/* Layer Section */
+	.layer-section {
+		margin: 2rem 0;
+		padding: 1.5rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		border-left: 3px solid var(--green-dim);
+	}
+
+	.layer-section h3 {
+		margin: 0 0 0.75rem;
+		font-size: 1.25rem;
+		color: var(--text-primary);
+	}
+
+	.layer-section p {
+		color: var(--text-secondary);
+		line-height: 1.7;
+		margin: 0.75rem 0;
+	}
+
+	.layer-section .code-block {
+		margin: 1rem 0;
+	}
+
+	.implementation-note {
+		margin: 1rem 0 0;
+		padding: 1rem;
+		background: var(--bg-tertiary);
+		border-left: 3px solid var(--orange);
 		font-size: 0.875rem;
 		color: var(--text-secondary);
-		margin-top: 0.5rem;
 	}
 
-	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
-	.code-comparison {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		margin: 1.5rem 0;
+	.implementation-note strong {
+		color: var(--text-primary);
 	}
 
-	.code-block {
-		border: 1px solid var(--border);
-		overflow: hidden;
-		min-width: 0; /* Prevent grid blowout */
-	}
-
-	.code-block-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0.5rem 1rem;
-		background: var(--bg-secondary);
-		border-bottom: 1px solid var(--border);
-	}
-
-	.code-label {
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-	}
-
-	.code-label.bad {
-		color: var(--red);
-	}
-
-	.code-label.good {
-		color: var(--green);
-	}
-
-	.code-block pre {
-		margin: 0;
+	.pattern-note {
+		margin: 1rem 0 0;
+		font-size: 0.875rem;
+		color: var(--text-secondary);
 		padding: 1rem;
-		overflow-x: auto;
 		background: var(--bg-tertiary);
+		border-left: 3px solid var(--red);
 	}
 
-	.code-block code {
-		font-family: 'JetBrains Mono', 'Fira Code', monospace;
-		font-size: 0.7rem;
-		line-height: 1.5;
+	.pattern-note strong {
+		color: var(--text-primary);
 	}
 
 	/* Detection List */
 	.detection-list {
-		display: grid;
-		gap: 1rem;
+		list-style: none;
+		padding: 0;
 		margin: 1rem 0;
 	}
 
-	.detection-item {
-		background: var(--bg-secondary);
-		padding: 1rem;
-		border: 1px solid var(--border);
-	}
-
-	.detection-item p {
-		margin: 0;
-		font-size: 0.9rem;
+	.detection-list li {
+		padding: 0.75rem 0 0.75rem 1.5rem;
+		border-bottom: 1px solid var(--border);
 		color: var(--text-secondary);
-	}
-
-	/* Fix Prompt */
-	.fix-prompt {
-		background: var(--bg-secondary);
-		border: 1px solid var(--green-dim);
-		margin: 1rem 0;
-	}
-
-	.fix-prompt-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0.75rem 1rem;
-		background: rgba(34, 197, 94, 0.1);
-		border-bottom: 1px solid var(--border);
-	}
-
-	.fix-prompt pre {
-		margin: 0;
-		padding: 1rem;
-		background: var(--bg-tertiary);
-		white-space: pre-wrap;
-		word-wrap: break-word;
-	}
-
-	.fix-prompt code {
-		font-family: 'JetBrains Mono', 'Fira Code', monospace;
-		font-size: 0.8rem;
 		line-height: 1.6;
+		position: relative;
 	}
 
-	/* FAQ */
-	.faq-list {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
+	.detection-list li::before {
+		content: '→';
+		position: absolute;
+		left: 0;
+		color: var(--green-dim);
+		font-weight: bold;
 	}
 
-	.faq-item {
-		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border);
-	}
-
-	.faq-item:last-child {
+	.detection-list li:last-child {
 		border-bottom: none;
 	}
 
-	.faq-item h3 {
-		font-size: 1.1rem;
-		margin-top: 0;
-		margin-bottom: 0.5rem;
+	.detection-list strong {
+		color: var(--text-primary);
 	}
 
-	.faq-item p {
-		margin: 0;
-		color: var(--text-secondary);
-	}
-
-	/* CTA Box */
-	.cta-box {
-		background: rgba(0, 196, 154, 0.05);
-		border: 1px solid rgba(0, 196, 154, 0.3);
-		padding: 2rem;
-		text-align: center;
+	/* Fix Section */
+	.fix-section {
 		margin: 2rem 0;
 	}
 
-	.cta-box h2 {
-		border-bottom: none;
-		padding-bottom: 0;
-		margin-top: 0;
-	}
-
-	/* Related Grid */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
-		margin-top: 1rem;
-	}
-
-	@media (max-width: 768px) {
-		.related-grid {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	.related-card {
-		padding: 1rem;
-	}
-
-	.related-card-category {
-		font-size: 0.75rem;
-		color: var(--green-dim);
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		margin-bottom: 0.25rem;
-	}
-
-	.related-card-title {
-		font-weight: 600;
-		margin-bottom: 0.25rem;
-	}
-
-	.related-card-description {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin: 0;
-	}
-
-	/* External Links */
-	.external-links {
-		list-style: none;
-		padding: 0;
-	}
-
-	.external-links li {
+	.fix-section h3 {
 		margin-bottom: 0.75rem;
 	}
 
-	/* Mobile */
+	/* Fix Steps */
+	.fix-steps {
+		padding-left: 1.5rem;
+		margin: 1rem 0;
+	}
+
+	.fix-steps li {
+		margin-bottom: 1.5rem;
+		color: var(--text-secondary);
+		line-height: 1.7;
+	}
+
+	.fix-steps strong {
+		color: var(--text-primary);
+		display: block;
+		margin-bottom: 0.25rem;
+	}
+
+	.fix-steps p {
+		margin: 0.5rem 0 0;
+	}
+
+	/* Framework Links */
+	.framework-links {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+	}
+
+	.framework-links a {
+		text-decoration: none;
+	}
+
+	.framework-name {
+		display: block;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin-bottom: 0.25rem;
+	}
+
+	.framework-desc {
+		display: block;
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+	}
+
+	/* Vulnerable code block */
+	.code-block.vulnerable {
+		border-left: 3px solid var(--red);
+	}
+
+	/* Responsive */
 	@media (max-width: 768px) {
-		.content-wrapper {
+		.framework-links {
+			grid-template-columns: 1fr;
+		}
+
+		.layer-section {
 			padding: 1rem;
 		}
 
-		h1 {
-			font-size: 1.75rem;
+		.stats-row {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 </style>

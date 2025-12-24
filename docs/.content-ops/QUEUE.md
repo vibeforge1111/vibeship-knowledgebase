@@ -127,20 +127,20 @@ Articles to generate, in priority order. Claude Code processes these one at a ti
 | 94 | 📝 Brief Ready | Vulnerability (P2) | xpath-injection |
 | 95 | 📝 Brief Ready | Vulnerability (P2) | el-injection |
 | | | *Category B: Auth & Session* | |
-| 96 | 📝 Brief Ready | Vulnerability (P0) | credential-stuffing |
+| 96 | ✅ Done | Vulnerability (P0) | credential-stuffing |
 | 97 | 📝 Brief Ready | Vulnerability (P0) | password-reset-vulnerabilities |
 | 98 | 📝 Brief Ready | Vulnerability (P1) | session-fixation |
 | 99 | 📝 Brief Ready | Vulnerability (P1) | insecure-remember-me |
 | 100 | 📝 Brief Ready | Vulnerability (P0) | oauth-vulnerabilities |
 | 101 | 📝 Brief Ready | Vulnerability (P1) | mfa-bypass |
 | | | *Category C: Cryptographic Failures* | |
-| 102 | 📝 Brief Ready | Vulnerability (P0) | weak-password-hashing |
+| 102 | ✅ Done | Vulnerability (P0) | weak-password-hashing |
 | 103 | 📝 Brief Ready | Vulnerability (P0) | insufficient-entropy |
 | 104 | 📝 Brief Ready | Vulnerability (P0) | hardcoded-crypto-keys |
 | 105 | 📝 Brief Ready | Vulnerability (P1) | insecure-tls |
 | 106 | 📝 Brief Ready | Vulnerability (P2) | timing-attacks |
 | | | *Category D: API Security* | |
-| 107 | 📝 Brief Ready | Vulnerability (P0) | bola |
+| 107 | ✅ Done | Vulnerability (P0) | bola |
 | 108 | 📝 Brief Ready | Vulnerability (P1) | bfla |
 | 109 | 📝 Brief Ready | Vulnerability (P0) | excessive-data-exposure |
 | 110 | 📝 Brief Ready | Vulnerability (P1) | unrestricted-resource-consumption |
