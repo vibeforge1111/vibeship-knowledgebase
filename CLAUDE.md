@@ -272,4 +272,89 @@ Run `docs/.content-ops/checklists/qa-checklist.md` before publishing.
 
 ---
 
+## ⚠️ CRITICAL: QA Agent/Skill Requirements
+
+**When running QA on security content, you MUST use the proper skills and checklists. This is NON-NEGOTIABLE.**
+
+### Required QA Resources
+
+| Resource | Path | Purpose |
+|----------|------|---------|
+| **Security Writer Skill** | `docs/vibeship-security-writer/SKILL.md` | Full skill for security content QA |
+| **Writer Agent Prompt** | `docs/.content-ops/strategies/VIBESHIP-SECURITY-WRITER-AGENT-PROMPT.md` | Complete agent prompt with quality checklist |
+| **QA Checklist** | `docs/.content-ops/checklists/qa-checklist.md` | 5-section checklist with Value Score |
+| **Enhanced Pipeline** | `docs/.content-ops/ENHANCED-PIPELINE.md` | Phase 3 QA checklists |
+
+### The 5 QA Checks (Phase 3)
+
+```
+1. SEO Validation (SEO Skill)
+   ├── Title under 60 chars with primary keyword
+   ├── Meta description 150-160 chars with CTA
+   ├── Primary keyword in first 100 words
+   ├── 5-10 internal links with descriptive anchors
+   └── FAQ targets PAA questions
+
+2. LLM Citation Check (Content Strategy Skill)
+   ├── Each section 75-225 words (extractable)
+   ├── Sections are self-contained (can be quoted alone)
+   ├── Facts have attribution + links
+   └── First sentence answers implied question
+
+3. Technical Accuracy (Domain Skill)
+   ├── CWE/OWASP references correct
+   ├── Code examples compile/run
+   ├── Security advice is current best practice
+   └── Statistics have sources
+
+4. Humanizer Check
+   ├── No AI tells (Furthermore, It's important to note)
+   ├── Varied sentence structure
+   ├── Persona voice consistent throughout
+   └── Opening hook lands in first 50 words
+
+5. Design System Check (MANDATORY)
+   ├── Uses CSS variables only (NO hardcoded colors)
+   ├── Sharp edges (NO border-radius: 8px)
+   ├── Uses global components (.badge, .faq-list, .card)
+   ├── Under 150 lines of scoped CSS
+   └── Code comparisons stacked vertically (NOT side-by-side)
+```
+
+### ❌ WRONG: Using Just Code Review for Content QA
+
+```
+# WRONG - code-reviewer doesn't know content requirements
+Task(subagent_type="superpowers:code-reviewer", ...)
+```
+
+### ✅ RIGHT: Using Security Writer Skill + QA Checklist
+
+```
+# RIGHT - references correct skills and checklists
+Task(subagent_type="general-purpose", prompt="""
+  Read these files first:
+  1. docs/vibeship-security-writer/SKILL.md
+  2. docs/.content-ops/checklists/qa-checklist.md
+  3. docs/.content-ops/ENHANCED-PIPELINE.md (Phase 3 section)
+
+  Then run all 5 QA checks...
+""")
+```
+
+### Value Score System (Gate for Publishing)
+
+| Dimension | Score 1-5 | What It Measures |
+|-----------|-----------|------------------|
+| Actionability | /5 | Can they fix this in 10 mins? |
+| Clarity | /5 | Would a non-technical founder get it? |
+| Specificity | /5 | Framework-specific, not generic? |
+| Completeness | /5 | All they need in one place? |
+| Uniqueness | /5 | Better than what's out there? |
+| **TOTAL** | **/25** | **Minimum 20 to publish** |
+
+**If score < 20, DO NOT PUBLISH. Fix weak dimensions first.**
+
+---
+
 **REMEMBER: If you're about to write content without reading ENHANCED-PIPELINE.md and KB-UI-DESIGN-STANDARDS.md first, STOP and read them.**

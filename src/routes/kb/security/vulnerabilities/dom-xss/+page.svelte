@@ -3,8 +3,8 @@
 
 	// Page metadata
 	const meta = {
-		title: 'DOM XSS: Find & Fix in AI-Generated Code',
-		description: 'DOM-based XSS executes malicious scripts through client-side JavaScript. Common in vibe coding. OWASP A03:2021. Fix prompts for Cursor, Bolt & Claude.',
+		title: 'DOM XSS: Client-Side Script Injection in SPAs',
+		description: 'DOM XSS happens entirely in the browser. WAFs can\'t see it. Ranked #3 OWASP Top 10. Fix prompts for React, Vue, Angular & Svelte.',
 		url: '/kb/security/vulnerabilities/dom-xss/'
 	};
 
@@ -17,53 +17,35 @@
 	];
 
 	// Real external data sources
-	const securityData = {
-		ranking: 'A03:2021',
-		category: 'Injection',
-		owaspSource: 'https://owasp.org/Top10/A03_2021-Injection/',
+	const owaspData = {
+		ranking: '#3',
+		category: 'A03:2021 - Injection',
+		source: 'https://owasp.org/Top10/A03_2021-Injection/',
 		cweId: 'CWE-79',
-		cweSource: 'https://cwe.mitre.org/data/definitions/79.html',
-		portswiggerSource: 'https://portswigger.net/web-security/cross-site-scripting/dom-based'
+		cweSource: 'https://cwe.mitre.org/data/definitions/79.html'
 	};
-
-	// Dangerous sources and sinks
-	const sources = [
-		{ name: 'location.hash', example: 'location.hash.slice(1)' },
-		{ name: 'location.search', example: 'new URLSearchParams(location.search)' },
-		{ name: 'document.referrer', example: 'document.referrer' },
-		{ name: 'window.name', example: 'window.name' },
-		{ name: 'postMessage data', example: 'event.data' }
-	];
-
-	const sinks = [
-		{ name: 'innerHTML', danger: 'Critical', example: 'element.innerHTML = userInput' },
-		{ name: 'outerHTML', danger: 'Critical', example: 'element.outerHTML = userInput' },
-		{ name: 'document.write', danger: 'Critical', example: 'document.write(userInput)' },
-		{ name: 'eval()', danger: 'Critical', example: 'eval(userInput)' },
-		{ name: 'location.href', danger: 'High', example: 'location.href = userInput' }
-	];
 
 	// FAQ data for schema
 	const faqs = [
 		{
-			question: 'What is DOM-based XSS and how is it different from other XSS?',
-			answer: 'DOM-based XSS (DOM XSS) executes entirely in the browser without the payload touching the server. Unlike reflected or stored XSS where the server returns malicious content, DOM XSS exploits client-side JavaScript that unsafely processes user-controlled data. The attack happens when dangerous sources like location.hash flow into dangerous sinks like innerHTML without proper sanitization.'
+			question: 'What\'s the difference between DOM XSS and regular XSS?',
+			answer: 'DOM XSS happens entirely in the browser. The malicious payload never touches the server, so server-side security tools like WAFs can\'t see it. Regular reflected/stored XSS involves server-side rendering where the server injects the payload. DOM XSS is Type 0, Reflected is Type 1, Stored is Type 2. Same damage, different attack surface.'
 		},
 		{
-			question: 'Why is DOM XSS harder to detect than server-side XSS?',
-			answer: 'DOM XSS never appears in server logs or responses because the vulnerability exists purely in client-side JavaScript. Server-side security tools and WAFs cannot detect it. The payload flows from URL fragments or other browser-controlled data directly into the DOM through JavaScript, making it invisible to traditional security monitoring.'
+			question: 'Does React protect me from DOM XSS by default?',
+			answer: 'Not if you use dangerouslySetInnerHTML. That\'s the escape hatch that bypasses React\'s built-in XSS protection. The moment you set innerHTML via that property, you\'re vulnerable. Snyk found 3 XSS vulnerabilities in React core itself. The framework helps, but it doesn\'t save you from yourself.'
 		},
 		{
-			question: 'How do AI coding tools introduce DOM XSS vulnerabilities?',
-			answer: 'AI tools generate convenient patterns like element.innerHTML = data without considering the security implications. They use innerHTML for performance and simplicity, parse URL parameters directly, and build dynamic HTML through string concatenation. These patterns work fine for trusted data but become attack vectors when processing anything from the URL, referrer, or postMessage.'
+			question: 'Can Content Security Policy (CSP) block DOM XSS attacks?',
+			answer: 'Yes, but only if configured correctly. CSP can block inline scripts and restrict script sources. The problem is most developers ship weak CSP policies or none at all. A strict CSP with nonces or hashes works. The default unsafe-inline CSP does nothing. Google paid $5,000 for a CSP bypass in one of their properties.'
 		},
 		{
-			question: 'Does React or Vue prevent DOM XSS?',
-			answer: 'Modern frameworks like React, Vue, and Svelte escape content by default, preventing most XSS. However, they all provide escape hatches that re-enable the vulnerability: React\'s dangerouslySetInnerHTML, Vue\'s v-html, and Svelte\'s @html. AI tools frequently suggest these escape hatches when rendering HTML content, reintroducing DOM XSS risks.'
+			question: 'Why is DOM XSS harder to detect than other vulnerabilities?',
+			answer: 'Because it never touches the server. Traditional security scanners look at HTTP traffic. DOM XSS executes entirely in JavaScript after the page loads. You need a browser-based scanner or manual code review. Automated tools miss it unless they can run JavaScript and trace data flow from sources like location.hash to sinks like innerHTML.'
 		},
 		{
-			question: 'What is the best way to sanitize HTML to prevent DOM XSS?',
-			answer: 'Use DOMPurify for sanitizing HTML content. It\'s well-maintained, handles edge cases, and is used by major applications. Call DOMPurify.sanitize(untrustedHTML) before any innerHTML assignment. For URLs, validate the protocol is http: or https: before assignment to href or src attributes. Never roll your own HTML sanitizer - the edge cases are too complex.'
+			question: 'Do single-page applications have more DOM XSS risk?',
+			answer: 'Yes. SPAs rely heavily on client-side routing, URL fragments, and dynamic DOM manipulation. Every framework has a dangerous template directive: React\'s dangerouslySetInnerHTML, Vue\'s v-html, Angular\'s bypassSecurityTrustHtml, Svelte\'s @html. 98% of websites use JavaScript client-side. That\'s 98% of the web exposed to this attack vector.'
 		}
 	];
 
@@ -119,8 +101,8 @@
 				"url": "https://vibeship.co/logo.png"
 			}
 		},
-		"datePublished": "2025-12-20",
-		"dateModified": "2025-12-20"
+		"datePublished": "2025-12-25",
+		"dateModified": "2025-12-25"
 	}
 	</script>`}
 
@@ -148,162 +130,400 @@
 		<!-- Header -->
 		<header class="article-header">
 			<div class="badge-row">
-				<span class="badge badge-critical">Critical</span>
+				<span class="badge badge-high">High</span>
 				<span class="badge">CWE-79</span>
 				<span class="badge">OWASP A03:2021</span>
 			</div>
-			<h1>DOM XSS in Vibe Coded Apps</h1>
-			<p class="text-secondary">The exact pattern I reject in every code review - and how to fix it before it ships</p>
+			<h1>DOM XSS in Vibe Coded SPAs</h1>
+			<p class="text-secondary">How to find and fix client-side script injection that bypasses server security</p>
 		</header>
 
 		<!-- Quick Answer -->
 		<div class="quick-answer">
 			<div class="quick-answer-label">Quick Answer</div>
 			<p class="quick-answer-text">
-				<strong>I flag this pattern in every code review: <code>element.innerHTML = urlData</code>. That's DOM XSS waiting to happen.</strong>
-				When your code takes data from the URL (like <code>location.hash</code>) and puts it directly into <code>innerHTML</code>, attackers can inject scripts that steal cookies, hijack sessions, or deface your app.
-				It's classified under <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP A03:2021</a> and <a href="https://cwe.mitre.org/data/definitions/79.html">CWE-79</a>.
-				Never ship code with unsanitized innerHTML from URL data.
+				<strong>DOM XSS lets attackers inject malicious JavaScript that runs entirely in the victim's browser, never touching your server.</strong>
+				It exploits dangerous JavaScript APIs like innerHTML, document.write, and eval. WAFs can't detect it. Server logs won't show it.
+				Ranked <a href="https://owasp.org/Top10/A03_2021-Injection/">#3 on OWASP Top 10</a> as part of injection attacks.
+				Every major JavaScript framework has a dangerous escape hatch that vibe coders use without understanding the risk.
 			</p>
 		</div>
 
-		<!-- Stats Box -->
+		<!-- Stats Box - Real OWASP Data -->
 		<div class="stats-row">
 			<div class="stat-box">
-				<div class="stat-value">{securityData.ranking}</div>
-				<div class="stat-label"><a href={securityData.owaspSource}>OWASP Category</a></div>
+				<div class="stat-value">{owaspData.ranking}</div>
+				<div class="stat-label">OWASP Ranking</div>
 			</div>
 			<div class="stat-box">
-				<div class="stat-value">{securityData.cweId}</div>
-				<div class="stat-label"><a href={securityData.cweSource}>CWE ID</a></div>
+				<div class="stat-value">98%</div>
+				<div class="stat-label">Sites Use JS</div>
 			</div>
 			<div class="stat-box">
-				<div class="stat-value">Client-Side</div>
-				<div class="stat-label">Attack Vector</div>
+				<div class="stat-value">22,254</div>
+				<div class="stat-label">CVEs (2024)</div>
 			</div>
 			<div class="stat-box">
-				<div class="stat-value">Critical</div>
+				<div class="stat-value">High</div>
 				<div class="stat-label">Severity</div>
 			</div>
 		</div>
 		<p class="data-source">
-			Learn more: <a href={securityData.portswiggerSource}>PortSwigger Web Security - DOM-based XSS</a>
+			Sources: <a href={owaspData.source}>OWASP Top 10 (2021)</a>, <a href="https://w3techs.com/technologies/details/cp-javascript">W3Techs JavaScript Usage (2025)</a>, <a href="https://www.cvedetails.com/vulnerability-list/year-2024/opxss-1/xss.html">CVE Details XSS Stats</a>
 		</p>
 
 		<!-- What Is It -->
 		<section class="article-section">
-			<h2>What is DOM-based XSS?</h2>
+			<h2>What is DOM XSS?</h2>
 			<p>
-				DOM-based XSS is a type of cross-site scripting where the attack payload is executed as a result of modifying the DOM environment in the victim's browser.
-				Unlike reflected or stored XSS, the malicious script never touches the server.
-				Everything happens in client-side JavaScript.
+				DOM-based Cross-Site Scripting (DOM XSS) is client-side code injection that happens entirely in the browser.
+				An attacker crafts a malicious URL with JavaScript in it. When a victim clicks the link, your JavaScript code takes data from the URL and inserts it directly into the page DOM without sanitization.
+				The malicious script executes. Session cookies get stolen. User accounts get compromised.
 			</p>
 			<p>
-				The vulnerability exists when user-controlled data flows from a "source" (like <code>location.hash</code>) to a dangerous "sink" (like <code>innerHTML</code>) without sanitization.
-				An attacker crafts a URL containing JavaScript, shares it with a victim, and when the victim clicks, their browser executes the attacker's code in the context of your application.
+				Unlike reflected or stored XSS where the payload goes through your server, DOM XSS never touches server-side code.
+				The vulnerability exists purely in your JavaScript. Your WAF won't see it. Your server logs won't catch it. Traditional security tools are blind to DOM XSS.
 			</p>
 			<p>
-				According to <a href="https://portswigger.net/web-security/cross-site-scripting/dom-based">PortSwigger</a>, DOM XSS is particularly dangerous because it's invisible to server-side security controls.
-				WAFs, CSP headers, and server logs won't detect it because the attack happens entirely in the browser.
+				According to <a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP Top 10 (2021)</a>, injection attacks (including XSS) rank #3 in web application risks.
+				DOM XSS is classified as <a href={owaspData.cweSource}>CWE-79</a> and represents Type 0 XSS in the traditional classification.
+				The <a href="https://cwe.mitre.org/top25/archive/2024/2024_cwe_top25.html">CWE Top 25 (2024)</a> lists Cross-site Scripting at #2 with 22,254 CVEs by mid-2024, a 30% increase year-over-year.
+			</p>
+			<p>
+				<a href="https://w3techs.com/technologies/details/cp-javascript">98% of all websites use JavaScript client-side</a>.
+				That's 98% of the web potentially vulnerable to DOM XSS if developers don't understand sources and sinks.
 			</p>
 		</section>
 
-		<!-- Sources and Sinks -->
+		<!-- How It Works - Sources and Sinks -->
 		<section class="article-section">
-			<h2>What are DOM XSS sources and sinks?</h2>
+			<h2>Sources and sinks: how DOM XSS works</h2>
 			<p>
-				Before I review any client-side code, I verify these two things: where data comes from (sources) and where it ends up (sinks). DOM XSS happens when attacker-controlled data flows from source to sink without sanitization.
+				DOM XSS happens when untrusted data flows from a <strong>source</strong> to a dangerous <strong>sink</strong> without sanitization.
+				Understanding these two concepts is how you audit code for DOM XSS.
 			</p>
 
-			<div class="source-sink-grid">
-				<div class="source-sink-box">
-					<h3>Dangerous Sources</h3>
-					<p>Where attacker-controlled data enters your JavaScript:</p>
-					<ul>
-						{#each sources as source}
-							<li>
-								<code>{source.name}</code>
-								<span class="source-example">{source.example}</span>
-							</li>
-						{/each}
-					</ul>
-				</div>
+			<h3>Common sources (attacker-controlled input)</h3>
+			<ul>
+				<li><code>location.hash</code> - The URL fragment after #</li>
+				<li><code>location.search</code> - Query parameters like ?id=123</li>
+				<li><code>document.referrer</code> - The previous page URL</li>
+				<li><code>window.name</code> - Window name property</li>
+				<li><code>postMessage</code> events - Cross-origin messages</li>
+				<li><code>document.cookie</code> - Cookie data (if attacker-influenced)</li>
+			</ul>
 
-				<div class="source-sink-box">
-					<h3>Dangerous Sinks</h3>
-					<p>Where data becomes executable or renders HTML:</p>
-					<ul>
-						{#each sinks as sink}
-							<li>
-								<code>{sink.name}</code>
-								<span class="sink-danger badge-{sink.danger.toLowerCase()}">{sink.danger}</span>
-							</li>
-						{/each}
-					</ul>
+			<h3>Dangerous sinks (code execution points)</h3>
+			<ul>
+				<li><code>innerHTML</code> - Parses HTML and executes scripts</li>
+				<li><code>outerHTML</code> - Same as innerHTML but replaces element</li>
+				<li><code>document.write()</code> - Writes HTML directly to page</li>
+				<li><code>eval()</code> - Executes arbitrary JavaScript</li>
+				<li><code>setTimeout(string)</code> - Executes string as code</li>
+				<li><code>setInterval(string)</code> - Repeatedly executes string</li>
+				<li><code>Function()</code> constructor - Creates function from string</li>
+				<li>jQuery <code>.html()</code> - Sets innerHTML via jQuery</li>
+			</ul>
+
+			<div class="code-block">
+				<div class="code-block-header">
+					<span class="code-block-lang">Classic DOM XSS Example</span>
 				</div>
+				<pre><code>{`// Vulnerable code - source to sink with no sanitization
+const urlParams = new URLSearchParams(window.location.search);
+const userName = urlParams.get('name');
+document.getElementById('greeting').innerHTML = 'Hello ' + userName;
+
+// Attack URL:
+// https://example.com/page?name=<img src=x onerror=alert(document.cookie)>
+
+// Result: Script executes, cookie stolen`}</code></pre>
 			</div>
+
+			<p>
+				When source data flows to a sink without validation, you have DOM XSS.
+				The attacker controls the source (URL parameters), your code puts it in a sink (innerHTML), game over.
+			</p>
 		</section>
 
-		<!-- AI Tool Patterns -->
+		<!-- Framework Patterns -->
 		<section class="article-section">
-			<h2>How do AI tools cause DOM XSS?</h2>
+			<h2>Framework-specific DOM XSS patterns</h2>
 			<p>
-				AI coding tools generate innerHTML assignments because they're fast and simple.
-				They parse URL parameters with naive string operations.
-				The resulting code works perfectly - until an attacker sends a malicious URL.
+				Every major JavaScript framework has a dangerous escape hatch that bypasses built-in XSS protection.
+				AI coding tools generate these patterns constantly because they make the code "work."
+				Understanding each framework's vulnerability is critical for vibe coders.
 			</p>
 
-			<div class="tool-patterns-box">
-				<h3>The pattern behind DOM XSS</h3>
-				<p>Ask an AI to display URL content or build dynamic HTML. This is what you get:</p>
-				<div class="code-block">
-					<pre><code>{`// AI generates this when you ask for URL-based routing or tabs
-const hash = location.hash.slice(1)
-document.getElementById('content').innerHTML = decodeURIComponent(hash)
+			<!-- React -->
+			<h3>React: dangerouslySetInnerHTML</h3>
+			<p>
+				React escapes user content by default. The moment you use <code>dangerouslySetInnerHTML</code>, you bypass that protection.
+				<a href="https://snyk.io/blog/5-react-security-vulnerabilities/">Snyk found 3 XSS vulnerabilities in React core</a>, proving even battle-tested frameworks have edge cases.
+			</p>
 
-// Or when rendering user-generated content
-function renderPost(postHtml) {
-  document.querySelector('.post-body').innerHTML = postHtml
+			<div class="code-comparison">
+				<div class="code-block vulnerable">
+					<div class="code-block-header">
+						<span class="code-block-lang status-bad">VULNERABLE - React</span>
+					</div>
+					<pre><code>{`function UserProfile() {
+  const params = new URLSearchParams(window.location.search);
+  const bio = params.get('bio');
+
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: bio }}
+    />
+  );
 }
 
-// Or when building dynamic elements
-const searchTerm = new URLSearchParams(location.search).get('q')
-resultsDiv.innerHTML = '<p>Results for: ' + searchTerm + '</p>'
-
-// Attacker URL: yoursite.com#<img src=x onerror=alert(document.cookie)>
-// Result: Cookie stolen, session hijacked`}</code></pre>
+// Attack URL: ?bio=<img src=x onerror=alert(1)>
+// Result: Script executes`}</code></pre>
 				</div>
-				<p class="pattern-note">
-					In each case, untrusted data flows directly into innerHTML without sanitization.
-					The browser parses the HTML and executes any embedded scripts.
-				</p>
+
+				<div class="code-block secure">
+					<div class="code-block-header">
+						<span class="code-block-lang status-good">SECURE - React</span>
+					</div>
+					<pre><code>{`import DOMPurify from 'dompurify';
+
+function UserProfile() {
+  const params = new URLSearchParams(window.location.search);
+  const bio = params.get('bio');
+  const clean = DOMPurify.sanitize(bio);
+
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: clean }}
+    />
+  );
+}
+
+// Attack URL: ?bio=<img src=x onerror=alert(1)>
+// Result: DOMPurify strips malicious code`}</code></pre>
+				</div>
 			</div>
 
+			<!-- Vue -->
+			<h3>Vue: v-html directive</h3>
 			<p>
-				<strong>Why AI does this:</strong> innerHTML is the most common way to render dynamic content in training data.
-				It's concise and works. The security implications aren't represented in code comments or variable names, so AI has no signal that this pattern is dangerous.
+				Vue escapes template content by default using mustache syntax.
+				The <code>v-html</code> directive renders raw HTML and is the primary DOM XSS vector in Vue apps.
 			</p>
 
+			<div class="code-comparison">
+				<div class="code-block vulnerable">
+					<div class="code-block-header">
+						<span class="code-block-lang status-bad">VULNERABLE - Vue</span>
+					</div>
+					<pre><code>{`<template>
+  <div v-html="userContent"></div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      userContent: new URLSearchParams(location.search).get('content')
+    }
+  }
+}
+</script>
+
+<!-- Attack URL: ?content=<img src=x onerror=alert(1)> -->
+<!-- Result: Script executes -->`}</code></pre>
+				</div>
+
+				<div class="code-block secure">
+					<div class="code-block-header">
+						<span class="code-block-lang status-good">SECURE - Vue</span>
+					</div>
+					<pre><code>{`<template>
+  <div v-html="sanitizedContent"></div>
+</template>
+
+<script>
+import DOMPurify from 'dompurify';
+
+export default {
+  data() {
+    return {
+      userContent: new URLSearchParams(location.search).get('content')
+    }
+  },
+  computed: {
+    sanitizedContent() {
+      return DOMPurify.sanitize(this.userContent);
+    }
+  }
+}
+</script>
+
+<!-- Attack URL: ?content=<img src=x onerror=alert(1)> -->
+<!-- Result: DOMPurify strips malicious code -->`}</code></pre>
+				</div>
+			</div>
+
+			<!-- Angular -->
+			<h3>Angular: bypassSecurityTrustHtml</h3>
 			<p>
-				<strong>Framework escape hatches make it worse:</strong> When using React, Vue, or Svelte, AI tools suggest <code>dangerouslySetInnerHTML</code>, <code>v-html</code>, or <code>@html</code> whenever you need to render HTML content.
-				These intentionally bypass the framework's built-in XSS protection.
+				Angular sanitizes templates by default. The <code>bypassSecurityTrustHtml</code> method tells Angular to skip sanitization.
+				Use it with untrusted input and you have DOM XSS.
 			</p>
+
+			<div class="code-comparison">
+				<div class="code-block vulnerable">
+					<div class="code-block-header">
+						<span class="code-block-lang status-bad">VULNERABLE - Angular</span>
+					</div>
+					<pre><code>{`import { Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+
+@Component({
+  selector: 'app-content',
+  template: '<div [innerHTML]="trustedHtml"></div>'
+})
+export class ContentComponent {
+  trustedHtml: any;
+
+  constructor(private sanitizer: DomSanitizer) {
+    const params = new URLSearchParams(window.location.search);
+    const html = params.get('html');
+    this.trustedHtml = this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+}
+
+// Attack URL: ?html=<img src=x onerror=alert(1)>
+// Result: Script executes`}</code></pre>
+				</div>
+
+				<div class="code-block secure">
+					<div class="code-block-header">
+						<span class="code-block-lang status-good">SECURE - Angular</span>
+					</div>
+					<pre><code>{`import { Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import DOMPurify from 'dompurify';
+
+@Component({
+  selector: 'app-content',
+  template: '<div [innerHTML]="trustedHtml"></div>'
+})
+export class ContentComponent {
+  trustedHtml: any;
+
+  constructor(private sanitizer: DomSanitizer) {
+    const params = new URLSearchParams(window.location.search);
+    const html = params.get('html');
+    const clean = DOMPurify.sanitize(html);
+    this.trustedHtml = this.sanitizer.bypassSecurityTrustHtml(clean);
+  }
+}
+
+// Attack URL: ?html=<img src=x onerror=alert(1)>
+// Result: DOMPurify strips malicious code before bypass`}</code></pre>
+				</div>
+			</div>
+
+			<!-- Svelte -->
+			<h3>Svelte: @html tag</h3>
+			<p>
+				Svelte escapes content in curly braces by default. The <code>@html</code> tag renders raw HTML and is the DOM XSS vector.
+			</p>
+
+			<div class="code-comparison">
+				<div class="code-block vulnerable">
+					<div class="code-block-header">
+						<span class="code-block-lang status-bad">VULNERABLE - Svelte</span>
+					</div>
+					<pre><code>{`<script>
+  const params = new URLSearchParams(window.location.search);
+  const content = params.get('content');
+</script>
+
+{@html content}
+
+<!-- Attack URL: ?content=<img src=x onerror=alert(1)> -->
+<!-- Result: Script executes -->`}</code></pre>
+				</div>
+
+				<div class="code-block secure">
+					<div class="code-block-header">
+						<span class="code-block-lang status-good">SECURE - Svelte</span>
+					</div>
+					<pre><code>{`<script>
+  import DOMPurify from 'dompurify';
+
+  const params = new URLSearchParams(window.location.search);
+  const content = params.get('content');
+  const clean = DOMPurify.sanitize(content);
+</script>
+
+{@html clean}
+
+<!-- Attack URL: ?content=<img src=x onerror=alert(1)> -->
+<!-- Result: DOMPurify strips malicious code -->`}</code></pre>
+				</div>
+			</div>
+
+			<!-- jQuery -->
+			<h3>jQuery: .html() and .append()</h3>
+			<p>
+				jQuery's <code>.html()</code> and <code>.append()</code> methods are direct innerHTML wrappers.
+				<a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11023">CVE-2020-11023</a> was a DOM XSS in jQuery itself.
+				Even security-focused libraries have vulnerabilities.
+			</p>
+
+			<div class="code-comparison">
+				<div class="code-block vulnerable">
+					<div class="code-block-header">
+						<span class="code-block-lang status-bad">VULNERABLE - jQuery</span>
+					</div>
+					<pre><code>{`const params = new URLSearchParams(window.location.search);
+const message = params.get('msg');
+
+$('#message').html(message);
+// or
+$('#message').append(message);
+
+// Attack URL: ?msg=<img src=x onerror=alert(1)>
+// Result: Script executes`}</code></pre>
+				</div>
+
+				<div class="code-block secure">
+					<div class="code-block-header">
+						<span class="code-block-lang status-good">SECURE - jQuery</span>
+					</div>
+					<pre><code>{`import DOMPurify from 'dompurify';
+
+const params = new URLSearchParams(window.location.search);
+const message = params.get('msg');
+const clean = DOMPurify.sanitize(message);
+
+$('#message').html(clean);
+// or better - use .text() for plain text
+$('#message').text(message);
+
+// Attack URL: ?msg=<img src=x onerror=alert(1)>
+// Result: Either sanitized or rendered as plain text`}</code></pre>
+				</div>
+			</div>
 		</section>
 
-		<!-- What Could Happen -->
+		<!-- Real-World Impact -->
 		<section class="article-section">
 			<h2>What could happen if I have DOM XSS?</h2>
 			<p>
-				DOM XSS gives attackers the ability to execute arbitrary JavaScript in your users' browsers.
-				The impact is severe and immediate.
+				DOM XSS has the same impact as any XSS attack. The difference is detection and prevention are harder because server-side tools can't see it.
 			</p>
 			<ul class="consequences-list">
-				<li><strong>Session hijacking:</strong> Attacker's script reads <code>document.cookie</code> and sends it to their server. They now have your user's session and can act as that user on your platform.</li>
-				<li><strong>Credential theft:</strong> Inject a fake login form that overlays your real one. Users type their passwords directly into the attacker's phishing form, believing it's legitimate.</li>
-				<li><strong>Keylogging:</strong> The injected script captures every keystroke on the page. Passwords, credit card numbers, personal messages - all exfiltrated in real-time.</li>
-				<li><strong>Account takeover:</strong> Script triggers password reset flow, changes email address, or modifies account settings. User loses control of their account permanently.</li>
-				<li><strong>Malware distribution:</strong> Redirect users to malicious download pages or trigger drive-by downloads. Your trusted domain becomes a malware vector.</li>
-				<li><strong>Cryptomining:</strong> Inject cryptomining scripts that run in your users' browsers. They experience slowdowns and battery drain while attackers profit.</li>
+				<li><strong>Session hijacking:</strong> Attacker steals session cookies via document.cookie and impersonates the victim. No password needed. Full account access.</li>
+				<li><strong>Credential theft:</strong> Inject a fake login form that sends credentials to attacker's server. Users type their password into what looks like your login page. It's not.</li>
+				<li><strong>Keylogging:</strong> Install an event listener that captures every keystroke. Credit cards, passwords, private messages. All recorded and exfiltrated.</li>
+				<li><strong>Defacement:</strong> Replace page content with malicious messaging. Make it look like your site was hacked. Damage brand reputation instantly.</li>
+				<li><strong>Cryptocurrency mining:</strong> Inject a script that mines cryptocurrency using victim's CPU. Browser slows to a crawl. They blame your site for poor performance.</li>
+				<li><strong>Phishing redirects:</strong> Redirect users to fake pages that look identical to your site. Harvest credentials at scale. Google paid $5,000 for a DOM XSS vulnerability in their bug bounty program.</li>
 			</ul>
 		</section>
 
@@ -311,49 +531,56 @@ resultsDiv.innerHTML = '<p>Results for: ' + searchTerm + '</p>'
 		<section class="article-section">
 			<h2>How do I detect DOM XSS?</h2>
 			<p>
-				Here's my code review checklist. Search your codebase for these patterns - any code path from URL data to innerHTML, document.write, or eval is an automatic flag.
+				Traditional security scanners struggle with DOM XSS because it requires JavaScript execution and data flow analysis.
+				Manual code review is the gold standard. Look for data flowing from sources to sinks.
 			</p>
 
+			<h3>Manual detection patterns</h3>
 			<div class="code-block">
 				<div class="code-block-header">
-					<span class="code-block-lang">Patterns to search for</span>
+					<span class="code-block-lang">Search patterns</span>
 				</div>
-				<pre><code>{`// Direct innerHTML with URL data (DANGEROUS)
-element.innerHTML = location.hash
-element.innerHTML = location.search
-element.innerHTML = document.referrer
+				<pre><code>{`// Search for dangerous sinks
+innerHTML
+outerHTML
+document.write
+eval(
+setTimeout(
+setInterval(
+Function(
 
-// String concatenation into innerHTML (DANGEROUS)
-innerHTML = '<div>' + userInput + '</div>'
-innerHTML = \`<span>\${userData}</span>\`
+// Search for source access
+location.hash
+location.search
+document.referrer
+window.name
+postMessage
 
-// Framework escape hatches (DANGEROUS without sanitization)
-dangerouslySetInnerHTML={{ __html: userContent }}  // React
-v-html="userContent"  // Vue
-{@html userContent}  // Svelte
+// Framework-specific
+dangerouslySetInnerHTML  // React
+v-html                   // Vue
+bypassSecurityTrustHtml  // Angular
+@html                    // Svelte
+.html(                   // jQuery
+.append(                 // jQuery
 
-// URL manipulation sinks (DANGEROUS)
-location.href = userInput
-location.replace(userInput)
-window.open(userInput)
-
-// eval-like sinks (CRITICAL)
-eval(userInput)
-new Function(userInput)
-setTimeout(userInput, 0)
-setInterval(userInput, 1000)
-
-// Regex patterns to find these:
-// \\.innerHTML\\s*=
-// dangerouslySetInnerHTML
-// v-html=
-// \\{@html
-// eval\\s*\\(
-// location\\.(href|replace)\\s*=`}</code></pre>
+// Regex patterns
+\\.innerHTML\\s*=
+dangerouslySetInnerHTML.*:
+v-html=
+bypassSecurityTrustHtml\\(
+@html\\s
+\\.html\\(`}</code></pre>
 			</div>
 
+			<h3>Automated scanning</h3>
+			<p>
+				Browser-based scanners can detect DOM XSS by executing JavaScript and tracing data flow.
+				<a href="https://scanner.vibeship.co">VibeShip Scanner</a> uses opengrep rules that detect source-to-sink patterns in React, Vue, Angular, and Svelte code.
+			</p>
+
 			<div class="cta-box">
-				<p><strong>Scan for DOM XSS automatically</strong></p>
+				<p><strong>Don't want to search manually?</strong></p>
 				<a href="https://scanner.vibeship.co" class="btn btn-green">
 					Scan your code free
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -367,18 +594,14 @@ setInterval(userInput, 1000)
 		<section class="article-section">
 			<h2>How do I fix DOM XSS?</h2>
 			<p>
-				The fix is straightforward once you know the pattern. Before you ship, verify these three things:
+				Three defense strategies work: avoid dangerous sinks entirely, sanitize before using sinks, or deploy Content Security Policy.
+				The best approach is defense in depth - use all three.
 			</p>
-			<ol>
-				<li><strong>Text only?</strong> Use <code>textContent</code> instead of <code>innerHTML</code></li>
-				<li><strong>Need HTML?</strong> Always sanitize with DOMPurify first</li>
-				<li><strong>Setting URLs?</strong> Validate the protocol is http: or https:</li>
-			</ol>
 
 			<!-- AI Fix Prompt -->
 			<div class="fix-section">
 				<h3>AI Fix Prompt</h3>
-				<p>Copy this prompt into Cursor, Claude Code, or Bolt to find and fix DOM XSS vulnerabilities:</p>
+				<p>This prompt finds and fixes DOM XSS across all major frameworks. Copy it into Cursor, Claude Code, or Bolt:</p>
 
 				<div class="fix-prompt">
 					<div class="fix-prompt-header">
@@ -391,239 +614,260 @@ setInterval(userInput, 1000)
 
 ## What to look for
 
-Search for these dangerous patterns:
+Search for data flowing from sources to dangerous sinks:
 
-1. innerHTML with user-controlled data:
-   - element.innerHTML = location.hash
-   - element.innerHTML = location.search
-   - innerHTML = '<div>' + userInput + '</div>'
-   - innerHTML = \`<span>\${userData}</span>\`
+### Sources (attacker-controlled input):
+- location.hash
+- location.search
+- document.referrer
+- window.name
+- postMessage events
 
-2. Framework escape hatches without sanitization:
-   - dangerouslySetInnerHTML={{ __html: data }}
-   - v-html="data"
-   - {@html data}
+### Dangerous sinks (code execution):
+- innerHTML
+- outerHTML
+- document.write()
+- eval()
+- setTimeout(string)
+- setInterval(string)
+- jQuery .html() / .append()
 
-3. URL manipulation with user input:
-   - location.href = userInput
-   - location.replace(userInput)
-   - window.open(userInput)
-   - anchor.href = userInput
-
-4. eval-like functions:
-   - eval(userInput)
-   - new Function(userInput)
-   - setTimeout(userInput, delay)
+### Framework escape hatches:
+- React: dangerouslySetInnerHTML
+- Vue: v-html directive
+- Angular: bypassSecurityTrustHtml
+- Svelte: @html tag
 
 ## How to fix
 
-### For text content (no HTML needed):
+### Option 1: Avoid dangerous sinks (best)
+
+Use safe alternatives that don't execute scripts:
+
 \`\`\`javascript
-// Before (vulnerable)
-element.innerHTML = userName
+// AVOID: innerHTML
+element.innerHTML = userInput;
 
-// After (secure)
-element.textContent = userName
+// USE: textContent (safe - renders as plain text)
+element.textContent = userInput;
+
+// AVOID: jQuery .html()
+$('#div').html(userInput);
+
+// USE: jQuery .text()
+$('#div').text(userInput);
 \`\`\`
 
-### For HTML content (requires sanitization):
-First, install DOMPurify:
-\`\`\`bash
-npm install dompurify
-\`\`\`
+### Option 2: Sanitize with DOMPurify (when HTML needed)
 
-Then sanitize before rendering:
+Install DOMPurify: npm install dompurify
+
 \`\`\`javascript
-import DOMPurify from 'dompurify'
+import DOMPurify from 'dompurify';
 
-// Before (vulnerable)
-element.innerHTML = userHtml
+// React
+<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
 
-// After (secure)
-element.innerHTML = DOMPurify.sanitize(userHtml)
+// Vue
+<div v-html="DOMPurify.sanitize(html)"></div>
 
-// For React
-<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(userHtml) }} />
+// Angular
+import DOMPurify from 'dompurify';
+this.trustedHtml = this.sanitizer.bypassSecurityTrustHtml(
+  DOMPurify.sanitize(html)
+);
 
-// For Vue
-<div v-html="DOMPurify.sanitize(userHtml)"></div>
+// Svelte
+{@html DOMPurify.sanitize(content)}
 
-// For Svelte
-{@html DOMPurify.sanitize(userHtml)}
+// Vanilla JS
+element.innerHTML = DOMPurify.sanitize(userInput);
 \`\`\`
 
-### For URL assignments:
+### Option 3: Content Security Policy (defense in depth)
+
+Add CSP headers to block inline scripts:
+
+\`\`\`
+Content-Security-Policy:
+  default-src 'self';
+  script-src 'self' 'nonce-{random}';
+  object-src 'none';
+\`\`\`
+
+Use nonces or hashes for inline scripts. Never use 'unsafe-inline'.
+
+### Trusted Types API (Chrome 83+)
+
+Enable Trusted Types to enforce safe DOM manipulation:
+
 \`\`\`javascript
-// Before (vulnerable)
-location.href = userUrl
+// In HTML
+<meta http-equiv="Content-Security-Policy"
+      content="require-trusted-types-for 'script'">
 
-// After (secure)
-function isValidUrl(url) {
-  try {
-    const parsed = new URL(url, window.location.origin)
-    return ['http:', 'https:'].includes(parsed.protocol)
-  } catch {
-    return false
-  }
-}
+// In code
+const policy = trustedTypes.createPolicy('default', {
+  createHTML: (string) => DOMPurify.sanitize(string)
+});
 
-if (isValidUrl(userUrl)) {
-  location.href = userUrl
-}
+element.innerHTML = policy.createHTML(userInput);
 \`\`\`
 
-### For anchor href attributes:
-\`\`\`javascript
-// Before (vulnerable - allows javascript: URLs)
-link.href = userInput
+## Framework-specific notes
 
-// After (secure)
-const url = new URL(userInput, window.location.origin)
-if (['http:', 'https:'].includes(url.protocol)) {
-  link.href = url.href
-}
-\`\`\`
-
-### Remove eval-like patterns entirely:
-\`\`\`javascript
-// Before (vulnerable)
-eval(userCode)
-new Function('return ' + userExpression)()
-setTimeout(userCallback, 1000)
-
-// After (secure - restructure to avoid eval)
-// Use a proper parser, a sandboxed iframe, or redesign the feature
-\`\`\`
-
-## Additional defenses
-
-Add Content Security Policy headers:
-\`\`\`javascript
-// In your server response headers or meta tag
-Content-Security-Policy: default-src 'self'; script-src 'self'
-\`\`\`
+- React: Avoid dangerouslySetInnerHTML unless absolutely necessary
+- Vue: Prefer mustache syntax over v-html
+- Angular: Let Angular's sanitizer work; only bypass with sanitized input
+- Svelte: Avoid @html tag for user content
+- jQuery: Use .text() instead of .html() for plain text
 
 ## After fixing
 
-1. Search for remaining innerHTML, dangerouslySetInnerHTML, v-html, @html
-2. Verify all URL assignments validate protocol
-3. Remove or sandbox any eval() usage
-4. Add CSP headers to block inline script execution
-5. List all files you modified with before/after snippets
+1. Search for remaining dangerous patterns
+2. Add CSP headers to your server config
+3. Consider Trusted Types API for modern browsers
+4. Test with payloads: <img src=x onerror=alert(1)>
+5. List all files modified with before/after snippets
 
 Please proceed systematically through my codebase.`}</div>
 				</div>
 			</div>
 
-			<!-- Manual Fix -->
+			<!-- Defense in Depth -->
 			<div class="fix-section">
-				<h3>Manual Fix</h3>
-				<p>The core fix is either using textContent instead of innerHTML, or sanitizing with DOMPurify:</p>
+				<h3>Defense in depth strategy</h3>
+				<p>The most secure approach uses multiple layers:</p>
 
-				<div class="code-comparison">
-					<div class="code-block vulnerable">
-						<div class="code-block-header">
-							<span class="code-block-lang status-bad">VULNERABLE</span>
-						</div>
-						<pre><code>{`// Reading from URL and rendering as HTML
-const tab = location.hash.slice(1)
-document.getElementById('tab-content').innerHTML = tab
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Layer</th>
+								<th>Defense</th>
+								<th>Effectiveness</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1. Avoid sinks</td>
+								<td>Use textContent instead of innerHTML</td>
+								<td>100% - no vulnerability if sink not used</td>
+							</tr>
+							<tr>
+								<td>2. Sanitize input</td>
+								<td>DOMPurify before rendering</td>
+								<td>99% - strips malicious payloads</td>
+							</tr>
+							<tr>
+								<td>3. CSP headers</td>
+								<td>Block inline scripts with nonces</td>
+								<td>90% - stops most XSS attempts</td>
+							</tr>
+							<tr>
+								<td>4. Trusted Types</td>
+								<td>Enforce safe DOM APIs (Chrome only)</td>
+								<td>95% - catches violations at runtime</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 
-// Rendering user-provided HTML content
-function renderMarkdown(html) {
-  preview.innerHTML = html
+			<!-- DOMPurify Configuration -->
+			<div class="fix-section">
+				<h3>DOMPurify configuration</h3>
+				<p>DOMPurify works out of the box, but you can customize it for stricter security:</p>
+
+				<div class="code-block">
+					<div class="code-block-header">
+						<span class="code-block-lang">javascript</span>
+					</div>
+					<pre><code>{`import DOMPurify from 'dompurify';
+
+// Strict configuration - removes all attributes
+const clean = DOMPurify.sanitize(dirty, {
+  ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'p'],
+  ALLOWED_ATTR: ['href']
+});
+
+// Allow custom tags but sanitize attributes
+const clean = DOMPurify.sanitize(dirty, {
+  ADD_TAGS: ['custom-element'],
+  FORBID_ATTR: ['onerror', 'onclick']
+});
+
+// Return plain text only
+const clean = DOMPurify.sanitize(dirty, {
+  ALLOWED_TAGS: []
+});
+
+// Use hooks for custom logic
+DOMPurify.addHook('afterSanitizeAttributes', function(node) {
+  // Force all links to open in new tab
+  if (node.tagName === 'A') {
+    node.setAttribute('target', '_blank');
+    node.setAttribute('rel', 'noopener noreferrer');
+  }
+});`}</code></pre>
+				</div>
+			</div>
+
+			<!-- CSP Implementation -->
+			<div class="fix-section">
+				<h3>Content Security Policy implementation</h3>
+				<p>CSP blocks XSS attacks by restricting where scripts can come from. Here's how to deploy it:</p>
+
+				<div class="code-block">
+					<div class="code-block-header">
+						<span class="code-block-lang">CSP Header Examples</span>
+					</div>
+					<pre><code>{`# Strict CSP (recommended)
+Content-Security-Policy:
+  default-src 'self';
+  script-src 'self' 'nonce-{random}';
+  style-src 'self' 'nonce-{random}';
+  img-src 'self' https:;
+  object-src 'none';
+  base-uri 'self';
+
+# Next.js middleware
+// middleware.ts
+export function middleware(request: NextRequest) {
+  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+  const cspHeader = \`
+    default-src 'self';
+    script-src 'self' 'nonce-\${nonce}' 'strict-dynamic';
+    style-src 'self' 'nonce-\${nonce}';
+    object-src 'none';
+  \`;
+
+  const response = NextResponse.next();
+  response.headers.set('Content-Security-Policy', cspHeader);
+  return response;
 }
 
-// Building HTML with string concatenation
-const search = new URLSearchParams(location.search).get('q')
-results.innerHTML = '<p>Searching for: ' + search + '</p>'
+# Express server
+app.use((req, res, next) => {
+  const nonce = crypto.randomBytes(16).toString('base64');
+  res.locals.nonce = nonce;
+  res.setHeader(
+    'Content-Security-Policy',
+    \`default-src 'self'; script-src 'self' 'nonce-\${nonce}';\`
+  );
+  next();
+});
 
-// Attacker crafts: site.com#<img src=x onerror=steal(cookie)>
-// Result: Arbitrary JavaScript execution`}</code></pre>
-					</div>
-
-					<div class="code-block secure">
-						<div class="code-block-header">
-							<span class="code-block-lang status-good">SECURE</span>
-						</div>
-						<pre><code>{`import DOMPurify from 'dompurify'
-
-// For text only - use textContent
-const tab = location.hash.slice(1)
-document.getElementById('tab-content').textContent = tab
-
-// For HTML content - sanitize first
-function renderMarkdown(html) {
-  preview.innerHTML = DOMPurify.sanitize(html)
-}
-
-// For dynamic HTML - build with DOM methods
-const search = new URLSearchParams(location.search).get('q')
-const p = document.createElement('p')
-p.textContent = 'Searching for: ' + search
-results.appendChild(p)
-
-// Attacker's payload is now escaped or stripped
-// No JavaScript execution possible`}</code></pre>
-					</div>
+# HTML with nonce
+<script nonce="<%= nonce %>">
+  // Your inline script
+</script>`}</code></pre>
 				</div>
 
 				<p>
-					<strong>Key changes:</strong> Use <code>textContent</code> when you only need text.
-					Use <code>DOMPurify.sanitize()</code> when you need HTML rendering.
-					Build dynamic elements with DOM APIs instead of string concatenation.
+					<strong>Important:</strong> Never use <code>'unsafe-inline'</code> or <code>'unsafe-eval'</code> in CSP.
+					They defeat the entire purpose of CSP and leave you vulnerable.
 				</p>
-			</div>
-
-			<!-- Framework Fixes -->
-			<div class="fix-section">
-				<h3>Framework-specific fixes</h3>
-				<div class="framework-fixes">
-					<div class="framework-fix">
-						<h4>React</h4>
-						<div class="code-block">
-							<pre><code>{`import DOMPurify from 'dompurify'
-
-// Before (vulnerable)
-<div dangerouslySetInnerHTML={{ __html: userHtml }} />
-
-// After (secure)
-<div dangerouslySetInnerHTML={{
-  __html: DOMPurify.sanitize(userHtml)
-}} />`}</code></pre>
-						</div>
-					</div>
-					<div class="framework-fix">
-						<h4>Vue</h4>
-						<div class="code-block">
-							<pre><code>{`import DOMPurify from 'dompurify'
-
-// Before (vulnerable)
-<div v-html="userHtml"></div>
-
-// After (secure)
-<div v-html="sanitizedHtml"></div>
-
-computed: {
-  sanitizedHtml() {
-    return DOMPurify.sanitize(this.userHtml)
-  }
-}`}</code></pre>
-						</div>
-					</div>
-					<div class="framework-fix">
-						<h4>Svelte</h4>
-						<div class="code-block">
-							<pre><code>{`import DOMPurify from 'dompurify'
-
-// Before (vulnerable)
-{@html userHtml}
-
-// After (secure)
-{@html DOMPurify.sanitize(userHtml)}`}</code></pre>
-						</div>
-					</div>
-				</div>
 			</div>
 		</section>
 
@@ -646,15 +890,15 @@ computed: {
 			<h2>Related content</h2>
 
 			<div class="related-grid">
+				<a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">SQL Injection</div>
+					<p class="related-card-description">Database injection via unsanitized queries</p>
+				</a>
 				<a href="/kb/security/vulnerabilities/xss/" class="card card-interactive related-card">
 					<div class="related-card-category">Vulnerability</div>
 					<div class="related-card-title">Cross-Site Scripting (XSS)</div>
-					<p class="related-card-description">The complete guide to XSS types and prevention</p>
-				</a>
-				<a href="/kb/security/vulnerabilities/prototype-pollution/" class="card card-interactive related-card">
-					<div class="related-card-category">Vulnerability</div>
-					<div class="related-card-title">Prototype Pollution</div>
-					<p class="related-card-description">JavaScript prototype attacks in AI code</p>
+					<p class="related-card-description">Reflected and stored XSS attacks</p>
 				</a>
 				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
 					<div class="related-card-category">AI Tool</div>
@@ -667,7 +911,7 @@ computed: {
 		<!-- Final CTA -->
 		<div class="final-cta">
 			<h2>Find DOM XSS before attackers do</h2>
-			<p>One vulnerable innerHTML can compromise every user who clicks a malicious link.</p>
+			<p>Client-side vulnerabilities hide in plain sight. Server tools can't see them.</p>
 			<a href="https://scanner.vibeship.co" class="btn btn-green btn-lg">
 				Scan your code now
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -696,108 +940,6 @@ computed: {
 
 	.data-source a {
 		color: var(--text-secondary);
-	}
-
-	/* Source/Sink Grid */
-	.source-sink-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1.5rem;
-		margin: 1.5rem 0;
-	}
-
-	.source-sink-box {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		padding: 1.25rem;
-	}
-
-	.source-sink-box h3 {
-		margin: 0 0 0.5rem;
-		font-size: 1rem;
-		color: var(--text-primary);
-	}
-
-	.source-sink-box > p {
-		margin: 0 0 1rem;
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-	}
-
-	.source-sink-box ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	.source-sink-box li {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0.5rem 0;
-		border-bottom: 1px solid var(--border);
-		font-size: 0.875rem;
-	}
-
-	.source-sink-box li:last-child {
-		border-bottom: none;
-	}
-
-	.source-sink-box code {
-		background: var(--bg-tertiary);
-		padding: 0.125rem 0.375rem;
-		font-size: 0.8125rem;
-	}
-
-	.source-example {
-		font-size: 0.75rem;
-		color: var(--text-tertiary);
-	}
-
-	.sink-danger {
-		font-size: 0.6875rem;
-		padding: 0.125rem 0.375rem;
-		font-weight: 500;
-	}
-
-	.badge-critical {
-		background: var(--red);
-		color: var(--bg-primary);
-	}
-
-	.badge-high {
-		background: var(--orange);
-		color: var(--bg-primary);
-	}
-
-	/* Tool Patterns Box */
-	.tool-patterns-box {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		padding: 1.5rem;
-		margin: 1.5rem 0;
-	}
-
-	.tool-patterns-box h3 {
-		margin: 0 0 0.75rem;
-		font-size: 1rem;
-	}
-
-	.tool-patterns-box > p {
-		margin: 0 0 1rem;
-		color: var(--text-secondary);
-	}
-
-	.pattern-note {
-		margin: 1rem 0 0 !important;
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-	}
-
-	.pattern-note code {
-		background: var(--bg-tertiary);
-		padding: 0.125rem 0.375rem;
-		font-size: 0.8125rem;
 	}
 
 	/* Consequences List */
@@ -845,10 +987,9 @@ computed: {
 		margin-bottom: 0.75rem;
 	}
 
-	/* Code Comparison - stacked layout (vulnerable on top, secure below) */
+	/* Code Comparison */
 	.code-comparison {
-		display: flex;
-		flex-direction: column;
+		display: grid;
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}
@@ -869,79 +1010,10 @@ computed: {
 		color: var(--green);
 	}
 
-	/* Framework Fixes */
-	.framework-fixes {
-		display: grid;
-		gap: 1.5rem;
-		margin-top: 1rem;
-	}
-
-	.framework-fix h4 {
-		margin: 0 0 0.5rem;
-		font-size: 0.9375rem;
-		color: var(--text-primary);
-	}
-
-	/* FAQ */
-	.faq-list {
-		margin-top: 1rem;
-	}
-
-	.faq-item {
-		padding: 1.5rem 0;
-		border-bottom: 1px solid var(--border);
-	}
-
-	.faq-item:last-child {
-		border-bottom: none;
-	}
-
-	.faq-item h3 {
-		font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-		font-size: 1.0625rem;
-		font-weight: 600;
-		margin: 0 0 0.5rem;
-		color: var(--text-primary);
-		line-height: 1.5;
-		letter-spacing: -0.01em;
-	}
-
-	.faq-item p {
-		margin: 0;
-		font-size: 0.9375rem;
-		line-height: 1.7;
-		color: var(--text-secondary);
-	}
-
-	/* Final CTA */
-	.final-cta {
-		text-align: center;
-		padding: 3rem 2rem;
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		margin-top: 3rem;
-	}
-
-	.final-cta h2 {
-		margin-bottom: 0.75rem;
-	}
-
-	.final-cta p {
-		color: var(--text-secondary);
-		margin-bottom: 1.5rem;
-		max-width: 500px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
 	/* Responsive */
 	@media (max-width: 768px) {
-		.source-sink-grid {
-			grid-template-columns: 1fr;
-		}
-
-		.faq-item h3 {
-			font-size: 1rem;
+		.stats-row {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 </style>
