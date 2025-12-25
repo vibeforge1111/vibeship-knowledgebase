@@ -270,7 +270,7 @@
 						Backend sees <code>price: 0.01</code> in the POST body and processes it. They just bought a $50 product for a penny.
 					</p>
 					<p class="attack-example">
-						<strong>Example payload:</strong> <code>POST /checkout { "productId": "abc123", "price": 0.01, "quantity": 1 }</code>
+						<strong>Example payload:</strong> <code>POST /checkout &#123; "productId": "abc123", "price": 0.01, "quantity": 1 &#125;</code>
 					</p>
 				</div>
 
@@ -281,7 +281,7 @@
 						Add a cheap item for +$5. Cart total: -$495. Some payment gateways process this. The attacker gets paid to shop.
 					</p>
 					<p class="attack-example">
-						<strong>Example payload:</strong> <code>POST /cart { "productId": "expensive", "quantity": -5 }</code>
+						<strong>Example payload:</strong> <code>POST /cart &#123; "productId": "expensive", "quantity": -5 &#125;</code>
 					</p>
 				</div>
 
@@ -292,7 +292,7 @@
 						The cart total becomes $0. Checkout succeeds. This depends on your stack (JavaScript handles big numbers differently than older systems), but it's real.
 					</p>
 					<p class="attack-example">
-						<strong>Example payload:</strong> <code>POST /cart { "productId": "abc", "quantity": 2147483647 }</code>
+						<strong>Example payload:</strong> <code>POST /cart &#123; "productId": "abc", "quantity": 2147483647 &#125;</code>
 					</p>
 				</div>
 
@@ -303,7 +303,7 @@
 						Backend sees <code>price: 100, currency: "INR"</code> and charges 100 rupees ($1.20 USD). Product was supposed to cost $100. You just lost $98.80 per order.
 					</p>
 					<p class="attack-example">
-						<strong>Example payload:</strong> <code>POST /checkout { "total": 100, "currency": "INR" }</code>
+						<strong>Example payload:</strong> <code>POST /checkout &#123; "total": 100, "currency": "INR" &#125;</code>
 					</p>
 				</div>
 
@@ -314,7 +314,7 @@
 						If your backend doesn't enforce "one coupon per order" or validate the final total is positive, attackers drive the price to zero or negative.
 					</p>
 					<p class="attack-example">
-						<strong>Example payload:</strong> <code>POST /checkout { "coupons": ["SAVE50", "EXTRA20", "FREESHIP"] }</code>
+						<strong>Example payload:</strong> <code>POST /checkout &#123; "coupons": ["SAVE50", "EXTRA20", "FREESHIP"] &#125;</code>
 					</p>
 				</div>
 
