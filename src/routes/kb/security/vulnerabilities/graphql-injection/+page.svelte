@@ -102,11 +102,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "Vibeship"
+			"name": "VibeShip"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "Vibeship",
+			"name": "VibeShip",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"

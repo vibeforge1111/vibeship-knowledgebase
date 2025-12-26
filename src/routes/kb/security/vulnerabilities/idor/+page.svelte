@@ -501,28 +501,6 @@ export async function GET(
 				</p>
 			</div>
 
-			<!-- Framework-Specific -->
-			<div class="fix-section">
-				<h3>Framework-specific fixes</h3>
-				<div class="framework-links">
-					<a href="/kb/security/fixes/idor/nextjs/" class="card card-interactive">
-						<span class="framework-name">Next.js</span>
-						<span class="framework-desc">App Router patterns</span>
-					</a>
-					<a href="/kb/security/fixes/idor/express/" class="card card-interactive">
-						<span class="framework-name">Express</span>
-						<span class="framework-desc">Middleware approach</span>
-					</a>
-					<a href="/kb/security/fixes/idor/prisma/" class="card card-interactive">
-						<span class="framework-name">Prisma</span>
-						<span class="framework-desc">Query patterns</span>
-					</a>
-					<a href="/kb/security/fixes/idor/supabase/" class="card card-interactive">
-						<span class="framework-name">Supabase</span>
-						<span class="framework-desc">RLS policies</span>
-					</a>
-				</div>
-			</div>
 		</section>
 
 		<!-- FAQ -->

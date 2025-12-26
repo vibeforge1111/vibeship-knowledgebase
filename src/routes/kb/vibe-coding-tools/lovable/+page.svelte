@@ -129,7 +129,7 @@
 </script>
 
 <svelte:head>
-	<title>Lovable Security: CVE-2025-48757, RLS Failures, and VibeScamming Risks | vibeship</title>
+	<title>Lovable Security: CVE & RLS Risks | VibeShip</title>
 	<meta
 		name="description"
 		content="Lovable's CVE-2025-48757 exposed 170+ apps due to missing RLS policies. Learn why Lovable scored 1.8/10 on security benchmarks and how to protect your vibe coded apps."

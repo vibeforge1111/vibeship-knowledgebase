@@ -258,9 +258,16 @@
 </script>
 
 <svelte:head>
-  <title>Best Vibe Coding Tools 2025: Security Comparison | vibeship</title>
+  <title>Best Vibe Coding Tools 2025: Security Comparison | VibeShip</title>
   <meta name="description" content="Compare 9 AI coding tools with real CVE data: Cursor, Claude Code, Windsurf, Bolt & more. Security comparison using NVD data. See how to vibe code safely." />
   <meta name="keywords" content="vibe coding tools, best vibe coding tools, AI coding tools, Cursor, Claude Code, Windsurf, Bolt, vibe coding, AI IDE security, CVE" />
+  <meta property="og:title" content="Best Vibe Coding Tools 2025: Security Comparison | VibeShip" />
+  <meta property="og:description" content="Compare 9 AI coding tools with real CVE data: Cursor, Claude Code, Windsurf, Bolt & more. Security comparison using NVD data. See how to vibe code safely." />
+  <meta property="og:url" content="/kb/vibe-coding-tools/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best Vibe Coding Tools 2025: Security Comparison | VibeShip" />
+  <meta name="twitter:description" content="Compare 9 AI coding tools with real CVE data: Cursor, Claude Code, Windsurf, Bolt & more. See how to vibe code safely." />
   <link rel="canonical" href="https://vibeship.co/kb/vibe-coding-tools/" />
 </svelte:head>
 

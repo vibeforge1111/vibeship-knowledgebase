@@ -165,7 +165,7 @@ Format your response as a security report with risk ratings (Critical/High/Mediu
 </script>
 
 <svelte:head>
-	<title>MCP Server Security: The Hidden Risks in AI Tool Integrations | vibeship</title>
+	<title>MCP Server Security Guide | VibeShip</title>
 	<meta name="description" content="MCP servers connect AI tools to your data but expose you to tool poisoning, credential theft, and RCE. Learn attack vectors and secure your Claude Code, Cursor, and Windsurf setup." />
 	<meta name="keywords" content="MCP security, model context protocol, MCP server vulnerabilities, claude code MCP, cursor MCP security, tool poisoning, AI agent security" />
 	<link rel="canonical" href="https://vibeship.co/kb/agents/security/mcp-servers/" />

@@ -40,8 +40,16 @@
 </script>
 
 <svelte:head>
-	<title>Knowledge Base | Vibeship</title>
-	<meta name="description" content="The definitive knowledge base for AI-generated code security. Learn about vulnerabilities, AI coding patterns, and how to fix security issues.">
+	<title>Knowledge Base | VibeShip</title>
+	<meta name="description" content="The definitive knowledge base for AI-generated code security. Learn about vulnerabilities, AI coding patterns, and how to fix security issues." />
+	<meta property="og:title" content="Knowledge Base | VibeShip" />
+	<meta property="og:description" content="The definitive knowledge base for AI-generated code security. Learn about vulnerabilities, AI coding patterns, and how to fix security issues." />
+	<meta property="og:url" content="/kb/" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Knowledge Base | VibeShip" />
+	<meta name="twitter:description" content="The definitive knowledge base for AI-generated code security. Learn about vulnerabilities, AI coding patterns, and how to fix security issues." />
+	<link rel="canonical" href="https://vibeship.co/kb/" />
 </svelte:head>
 
 <Header breadcrumbs={[{ label: 'Knowledge Base' }]} />

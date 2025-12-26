@@ -142,7 +142,7 @@
 </script>
 
 <svelte:head>
-	<title>Insecure Deserialization: When AI Code Lets Attackers Execute Commands | vibeship</title>
+	<title>Insecure Deserialization in AI Code | VibeShip</title>
 	<meta
 		name="description"
 		content="AI tools generate unsafe eval(), yaml.load(), and deserialize patterns that lead to RCE. Learn CWE-502 patterns and safe alternatives for Node.js and Python."

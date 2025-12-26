@@ -433,29 +433,6 @@ const pool = new Pool({
 					<li>Set up secrets in your deployment platform (Vercel, Railway, AWS, etc.)</li>
 				</ol>
 			</div>
-
-			<!-- Framework-Specific -->
-			<div class="fix-section">
-				<h3>Framework-specific guides</h3>
-				<div class="framework-links">
-					<a href="/kb/security/fixes/hardcoded-secrets/nextjs/" class="card card-interactive">
-						<span class="framework-name">Next.js</span>
-						<span class="framework-desc">NEXT_PUBLIC_ vs server-only</span>
-					</a>
-					<a href="/kb/security/fixes/hardcoded-secrets/express/" class="card card-interactive">
-						<span class="framework-name">Express</span>
-						<span class="framework-desc">dotenv setup</span>
-					</a>
-					<a href="/kb/security/fixes/hardcoded-secrets/sveltekit/" class="card card-interactive">
-						<span class="framework-name">SvelteKit</span>
-						<span class="framework-desc">$env modules</span>
-					</a>
-					<a href="/kb/security/fixes/hardcoded-secrets/supabase/" class="card card-interactive">
-						<span class="framework-name">Supabase</span>
-						<span class="framework-desc">Anon vs Service keys</span>
-					</a>
-				</div>
-			</div>
 		</section>
 
 		<!-- FAQ -->

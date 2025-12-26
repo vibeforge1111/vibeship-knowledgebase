@@ -155,8 +155,16 @@
 </script>
 
 <svelte:head>
-	<title>Security Vulnerabilities in AI-Generated Code | Vibeship KB</title>
-	<meta name="description" content="Complete guide to security vulnerabilities found in vibe coded projects. SQL injection, XSS, hardcoded secrets, and more with AI fix prompts.">
+	<title>Security Vulnerabilities in AI Code | VibeShip</title>
+	<meta name="description" content="Complete guide to security vulnerabilities found in vibe coded projects. SQL injection, XSS, hardcoded secrets, and more with AI fix prompts." />
+	<meta property="og:title" content="Security Vulnerabilities in AI Code | VibeShip" />
+	<meta property="og:description" content="Complete guide to security vulnerabilities found in vibe coded projects. SQL injection, XSS, hardcoded secrets, and more with AI fix prompts." />
+	<meta property="og:url" content="/kb/security/vulnerabilities/" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Security Vulnerabilities in AI Code | VibeShip" />
+	<meta name="twitter:description" content="Complete guide to security vulnerabilities found in vibe coded projects. SQL injection, XSS, hardcoded secrets, and more with AI fix prompts." />
+	<link rel="canonical" href="https://vibeship.co/kb/security/vulnerabilities/" />
 </svelte:head>
 
 <Header breadcrumbs={[

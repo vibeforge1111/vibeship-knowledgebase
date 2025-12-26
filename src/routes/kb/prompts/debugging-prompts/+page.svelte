@@ -1,6 +1,23 @@
 <script lang="ts">
 	import { Header } from '$lib/components/layout';
 
+	// Copy to clipboard function
+	let copiedId: string | null = $state(null);
+
+	function copyPrompt(event: MouseEvent, id: string) {
+		const button = event.currentTarget as HTMLButtonElement;
+		const codeBlock = button.closest('.code-block');
+		const pre = codeBlock?.querySelector('pre');
+		if (pre) {
+			navigator.clipboard.writeText(pre.textContent || '').then(() => {
+				copiedId = id;
+				setTimeout(() => {
+					copiedId = null;
+				}, 2000);
+			});
+		}
+	}
+
 	// Page metadata
 	const meta = {
 		title: 'Debugging Prompts: 35+ Templates for Fixing Bugs with AI',
@@ -72,7 +89,7 @@
 		</div>
 
 		<!-- Badge -->
-		<span class="badge badge-debug">Debug Library</span>
+		<span class="badge badge-high">Debug Library</span>
 
 		<h1>Debugging Prompts: 35+ Templates for Fixing Bugs with AI</h1>
 
@@ -81,21 +98,21 @@
 		</p>
 
 		<!-- Stats Row -->
-		<div class="stats-row">
-			<div class="stat-card">
-				<div class="stat-number">35+</div>
+		<div class="stats-grid-4">
+			<div class="stat-box">
+				<div class="stat-value success">35+</div>
 				<div class="stat-label">Prompts</div>
 			</div>
-			<div class="stat-card">
-				<div class="stat-number">6</div>
+			<div class="stat-box">
+				<div class="stat-value">6</div>
 				<div class="stat-label">Categories</div>
 			</div>
-			<div class="stat-card">
-				<div class="stat-number">Fix-First</div>
+			<div class="stat-box">
+				<div class="stat-value">Fix-First</div>
 				<div class="stat-label">Approach</div>
 			</div>
-			<div class="stat-card">
-				<div class="stat-number">100%</div>
+			<div class="stat-box">
+				<div class="stat-value">100%</div>
 				<div class="stat-label">Copy-Paste Ready</div>
 			</div>
 		</div>
@@ -103,7 +120,7 @@
 		<!-- Categories Grid -->
 		<div class="categories-grid">
 			{#each categories as category}
-				<div class="category-card">
+				<div class="card category-card">
 					<span class="category-icon">{category.icon}</span>
 					<span class="category-name">{category.name}</span>
 					<span class="category-count">{category.count} prompts</span>
@@ -117,16 +134,18 @@
 
 			<p>Prompts for understanding and fixing error messages.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Quick Error Fix</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag urgent">Fast Fix</span>
-					<span class="prompt-tag">Any Error</span>
+					<span class="badge badge-high">Fast Fix</span>
+					<span class="badge">Any Error</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'quick-error-fix')}>
+							{copiedId === 'quick-error-fix' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Fix this error:
 
@@ -150,16 +169,18 @@
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Comprehensive Error Analysis</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Deep Analysis</span>
-					<span class="prompt-tag">Complex Bugs</span>
+					<span class="badge">Deep Analysis</span>
+					<span class="badge">Complex Bugs</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'comprehensive-analysis')}>
+							{copiedId === 'comprehensive-analysis' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Analyze and fix this error comprehensively:
 
@@ -197,16 +218,18 @@ Provide the fixed code with comments explaining the changes.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Cryptic Error Message</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Unclear Errors</span>
-					<span class="prompt-tag">Interpretation</span>
+					<span class="badge">Unclear Errors</span>
+					<span class="badge">Interpretation</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'cryptic-error')}>
+							{copiedId === 'cryptic-error' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Help me understand this cryptic error message:
 
@@ -234,16 +257,18 @@ Be specific to my code, not generic documentation.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Build/Compile Error</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Build</span>
-					<span class="prompt-tag">Compile</span>
+					<span class="badge">Build</span>
+					<span class="badge">Compile</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'build-error')}>
+							{copiedId === 'build-error' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Fix this build/compile error:
 
@@ -277,16 +302,18 @@ Provide:
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Multiple Errors Cascade</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Multiple Errors</span>
-					<span class="prompt-tag">Root Cause</span>
+					<span class="badge">Multiple Errors</span>
+					<span class="badge">Root Cause</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'cascade-errors')}>
+							{copiedId === 'cascade-errors' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`I'm getting multiple errors. Help me find and fix the root cause.
 
@@ -319,16 +346,18 @@ Focus on the root cause - don't fix symptoms.`}</code></pre>
 
 			<p>Prompts for analyzing stack traces and call chains.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Stack Trace Analysis</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Stack Trace</span>
-					<span class="prompt-tag">Deep Dive</span>
+					<span class="badge">Stack Trace</span>
+					<span class="badge">Deep Dive</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'stack-trace')}>
+							{copiedId === 'stack-trace' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Analyze this stack trace and help me fix the bug:
 
@@ -359,16 +388,18 @@ Show me exactly which function to change and how.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Async Stack Trace</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Async</span>
-					<span class="prompt-tag">Promises</span>
+					<span class="badge">Async</span>
+					<span class="badge">Promises</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'async-stack')}>
+							{copiedId === 'async-stack' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Debug this async error - the stack trace is incomplete:
 
@@ -399,16 +430,18 @@ Show me exactly which function to change and how.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>React/Next.js Component Stack</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">React</span>
-					<span class="prompt-tag">Component Tree</span>
+					<span class="badge">React</span>
+					<span class="badge">Component Tree</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'react-component')}>
+							{copiedId === 'react-component' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Debug this React component error:
 
@@ -449,16 +482,18 @@ Identify which component in the tree has the bug and provide the fix.`}</code></
 
 			<p>Prompts for diagnosing and fixing performance issues.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Slow Function/Query</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag urgent">Performance</span>
-					<span class="prompt-tag">Optimization</span>
+					<span class="badge badge-high">Performance</span>
+					<span class="badge">Optimization</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'slow-function')}>
+							{copiedId === 'slow-function' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`This code is slow. Help me optimize it:
 
@@ -485,16 +520,18 @@ Prioritize fixes by impact. Show before/after code.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Memory Leak Investigation</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Memory</span>
-					<span class="prompt-tag">Leak</span>
+					<span class="badge badge-critical">Memory</span>
+					<span class="badge">Leak</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'memory-leak')}>
+							{copiedId === 'memory-leak' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`I suspect a memory leak in this code:
 
@@ -527,16 +564,18 @@ Prioritize fixes by impact. Show before/after code.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>React Re-render Debugging</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">React</span>
-					<span class="prompt-tag">Re-renders</span>
+					<span class="badge">React</span>
+					<span class="badge">Re-renders</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'react-rerenders')}>
+							{copiedId === 'react-rerenders' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`This React component re-renders too often:
 
@@ -569,16 +608,18 @@ Don't over-optimize - focus on the actual performance problem.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Database Query Performance</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Database</span>
-					<span class="prompt-tag">Query</span>
+					<span class="badge">Database</span>
+					<span class="badge">Query</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'slow-query')}>
+							{copiedId === 'slow-query' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`This database query is slow:
 
@@ -619,16 +660,18 @@ Provide optimized query AND any schema changes (indexes).`}</code></pre>
 
 			<p>Prompts for fixing TypeScript and type-related errors.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Type Mismatch Error</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">TypeScript</span>
-					<span class="prompt-tag">Types</span>
+					<span class="badge">TypeScript</span>
+					<span class="badge">Types</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'type-mismatch')}>
+							{copiedId === 'type-mismatch' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Fix this TypeScript type error:
 
@@ -658,16 +701,18 @@ Provide optimized query AND any schema changes (indexes).`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Generic Type Error</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Generics</span>
-					<span class="prompt-tag">Advanced</span>
+					<span class="badge">Generics</span>
+					<span class="badge">Advanced</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'generic-type')}>
+							{copiedId === 'generic-type' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Fix this generic type error:
 
@@ -697,16 +742,18 @@ I want this generic to: [describe desired behavior]
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Third-Party Library Types</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Library</span>
-					<span class="prompt-tag">@types</span>
+					<span class="badge">Library</span>
+					<span class="badge">@types</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'third-party-types')}>
+							{copiedId === 'third-party-types' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Fix this type error with a third-party library:
 
@@ -745,16 +792,18 @@ Provide the least hacky solution first.`}</code></pre>
 
 			<p>Prompts for debugging runtime behavior issues.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Undefined/Null Error</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag urgent">Common</span>
-					<span class="prompt-tag">Null Safety</span>
+					<span class="badge badge-high">Common</span>
+					<span class="badge">Null Safety</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'undefined-null')}>
+							{copiedId === 'undefined-null' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Fix this undefined/null error:
 
@@ -786,11 +835,11 @@ Provide defensive code that handles the edge case properly.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Race Condition / Timing Bug</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Async</span>
-					<span class="prompt-tag">Race Condition</span>
+					<span class="badge badge-critical">Async</span>
+					<span class="badge">Race Condition</span>
 				</div>
 				<div class="code-block">
 					<div class="code-header">
@@ -827,11 +876,11 @@ Consider: locks, queues, state machines, or restructuring.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Infinite Loop / Recursion</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Loop</span>
-					<span class="prompt-tag">Hang</span>
+					<span class="badge badge-critical">Loop</span>
+					<span class="badge">Hang</span>
 				</div>
 				<div class="code-block">
 					<div class="code-header">
@@ -864,11 +913,11 @@ Consider: locks, queues, state machines, or restructuring.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Unexpected Behavior (No Error)</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Logic Bug</span>
-					<span class="prompt-tag">Silent Failure</span>
+					<span class="badge">Logic Bug</span>
+					<span class="badge">Silent Failure</span>
 				</div>
 				<div class="code-block">
 					<div class="code-header">
@@ -916,11 +965,11 @@ Consider: locks, queues, state machines, or restructuring.`}</code></pre>
 
 			<p>Prompts for fixing failing tests.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Failing Unit Test</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Unit Test</span>
-					<span class="prompt-tag">Jest/Vitest</span>
+					<span class="badge">Unit Test</span>
+					<span class="badge">Jest/Vitest</span>
 				</div>
 				<div class="code-block">
 					<div class="code-header">
@@ -955,11 +1004,11 @@ Is the test wrong or the implementation wrong?
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Flaky Test</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Flaky</span>
-					<span class="prompt-tag">Intermittent</span>
+					<span class="badge badge-critical">Flaky</span>
+					<span class="badge">Intermittent</span>
 				</div>
 				<div class="code-block">
 					<div class="code-header">
@@ -997,11 +1046,11 @@ Passes: [X%] of runs
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Mock Not Working</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Mocking</span>
-					<span class="prompt-tag">Jest</span>
+					<span class="badge">Mocking</span>
+					<span class="badge">Jest</span>
 				</div>
 				<div class="code-block">
 					<div class="code-header">
@@ -1103,10 +1152,10 @@ Passes: [X%] of runs
 					<div class="related-card-title">Security Prompts</div>
 					<p class="related-card-description">Security-focused code generation</p>
 				</a>
-				<a href="/kb/prompts/prompt-engineering-code/" class="card card-interactive related-card">
-					<div class="related-card-category">Pillar Guide</div>
-					<div class="related-card-title">Prompt Engineering for Code</div>
-					<p class="related-card-description">Master prompting techniques</p>
+				<a href="/kb/prompts/ai-prompt-library/" class="card card-interactive related-card">
+					<div class="related-card-category">Prompt Library</div>
+					<div class="related-card-title">AI Prompt Library</div>
+					<p class="related-card-description">Complete prompt collection</p>
 				</a>
 				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
 					<div class="related-card-category">Tool</div>

@@ -66,11 +66,7 @@ const staticRoutes = [
 	{ path: '/kb/prompts/best-ai-coding-tools-2025', priority: '0.8', changefreq: 'monthly' },
 	{ path: '/kb/prompts/ai-coding-prompts', priority: '0.7', changefreq: 'monthly' },
 	{ path: '/kb/prompts/ai-prompt-library', priority: '0.7', changefreq: 'monthly' },
-	{ path: '/kb/prompts/chatgpt-prompt-examples', priority: '0.7', changefreq: 'monthly' },
-	{ path: '/kb/prompts/custom-instructions', priority: '0.7', changefreq: 'monthly' },
 	{ path: '/kb/prompts/debugging-prompts', priority: '0.7', changefreq: 'monthly' },
-	{ path: '/kb/prompts/prompt-engineering-code', priority: '0.7', changefreq: 'monthly' },
-	{ path: '/kb/prompts/prompt-templates', priority: '0.7', changefreq: 'monthly' },
 	{ path: '/kb/prompts/replit-prompts', priority: '0.7', changefreq: 'monthly' },
 	{ path: '/kb/prompts/security-prompts', priority: '0.7', changefreq: 'monthly' },
 

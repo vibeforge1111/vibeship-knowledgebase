@@ -12,8 +12,16 @@
 </script>
 
 <svelte:head>
-	<title>Security Checklists | Vibeship Knowledge Base</title>
-	<meta name="description" content="Security checklists for vibe coders. Pre-launch checks, API security, authentication, and more.">
+	<title>Security Checklists | VibeShip</title>
+	<meta name="description" content="Security checklists for vibe coders. Pre-launch checks, API security, authentication, and more." />
+	<meta property="og:title" content="Security Checklists | VibeShip" />
+	<meta property="og:description" content="Security checklists for vibe coders. Pre-launch checks, API security, authentication, and more." />
+	<meta property="og:url" content="/kb/security/checklists/" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Security Checklists | VibeShip" />
+	<meta name="twitter:description" content="Security checklists for vibe coders. Pre-launch checks, API security, authentication, and more." />
+	<link rel="canonical" href="https://vibeship.co/kb/security/checklists/" />
 </svelte:head>
 
 <Header breadcrumbs={[

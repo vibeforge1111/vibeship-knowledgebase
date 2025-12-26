@@ -69,8 +69,16 @@
 </script>
 
 <svelte:head>
-	<title>AI Fix Prompts for Security Vulnerabilities | Vibeship Knowledge Base</title>
-	<meta name="description" content="Copy-paste prompts to fix security vulnerabilities with AI coding tools. SQL injection, XSS, authentication, and more.">
+	<title>AI Fix Prompts for Security | VibeShip</title>
+	<meta name="description" content="Copy-paste prompts to fix security vulnerabilities with AI coding tools. SQL injection, XSS, authentication, and more." />
+	<meta property="og:title" content="AI Fix Prompts for Security | VibeShip" />
+	<meta property="og:description" content="Copy-paste prompts to fix security vulnerabilities with AI coding tools. SQL injection, XSS, authentication, and more." />
+	<meta property="og:url" content="/kb/fixes/" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="AI Fix Prompts for Security | VibeShip" />
+	<meta name="twitter:description" content="Copy-paste prompts to fix security vulnerabilities with AI coding tools. SQL injection, XSS, authentication, and more." />
+	<link rel="canonical" href="https://vibeship.co/kb/fixes/" />
 </svelte:head>
 
 <Header breadcrumbs={[

@@ -423,29 +423,6 @@ const getUser = async (userId) => {
 					Same code structure, completely different security posture.
 				</p>
 			</div>
-
-			<!-- Framework-Specific -->
-			<div class="fix-section">
-				<h3>Framework-specific fixes</h3>
-				<div class="framework-links">
-					<a href="/kb/security/fixes/sql-injection/nextjs/" class="card card-interactive">
-						<span class="framework-name">Next.js</span>
-						<span class="framework-desc">API routes & server actions</span>
-					</a>
-					<a href="/kb/security/fixes/sql-injection/express/" class="card card-interactive">
-						<span class="framework-name">Express</span>
-						<span class="framework-desc">Route handlers & middleware</span>
-					</a>
-					<a href="/kb/security/fixes/sql-injection/prisma/" class="card card-interactive">
-						<span class="framework-name">Prisma</span>
-						<span class="framework-desc">$queryRaw & $executeRaw</span>
-					</a>
-					<a href="/kb/security/fixes/sql-injection/supabase/" class="card card-interactive">
-						<span class="framework-name">Supabase</span>
-						<span class="framework-desc">RPC & custom SQL</span>
-					</a>
-				</div>
-			</div>
 		</section>
 
 		<!-- FAQ -->

@@ -472,29 +472,6 @@ const cleanHTML = DOMPurify.sanitize(untrustedHTML);
 {@html cleanHTML}`}</code></pre>
 				</div>
 			</div>
-
-			<!-- Framework-Specific -->
-			<div class="fix-section">
-				<h3>Framework-specific guides</h3>
-				<div class="framework-links">
-					<a href="/kb/security/fixes/xss/react/" class="card card-interactive">
-						<span class="framework-name">React</span>
-						<span class="framework-desc">dangerouslySetInnerHTML alternatives</span>
-					</a>
-					<a href="/kb/security/fixes/xss/vue/" class="card card-interactive">
-						<span class="framework-name">Vue</span>
-						<span class="framework-desc">v-html and v-text</span>
-					</a>
-					<a href="/kb/security/fixes/xss/svelte/" class="card card-interactive">
-						<span class="framework-name">Svelte</span>
-						<span class="framework-desc">@html directive safety</span>
-					</a>
-					<a href="/kb/security/fixes/xss/nextjs/" class="card card-interactive">
-						<span class="framework-name">Next.js</span>
-						<span class="framework-desc">SSR considerations</span>
-					</a>
-				</div>
-			</div>
 		</section>
 
 		<!-- FAQ -->

@@ -1,6 +1,23 @@
 <script lang="ts">
 	import { Header } from '$lib/components/layout';
 
+	// Copy to clipboard function
+	let copiedId: string | null = $state(null);
+
+	function copyPrompt(event: MouseEvent, id: string) {
+		const button = event.currentTarget as HTMLButtonElement;
+		const codeBlock = button.closest('.code-block');
+		const pre = codeBlock?.querySelector('pre');
+		if (pre) {
+			navigator.clipboard.writeText(pre.textContent || '').then(() => {
+				copiedId = id;
+				setTimeout(() => {
+					copiedId = null;
+				}, 2000);
+			});
+		}
+	}
+
 	// Page metadata
 	const meta = {
 		title: 'Security Prompts: 40+ Templates for Writing Secure Code with AI',
@@ -57,6 +74,13 @@
 <svelte:head>
 	<title>{meta.title} | VibeShip</title>
 	<meta name="description" content={meta.description} />
+	<meta property="og:title" content="{meta.title} | VibeShip" />
+	<meta property="og:description" content={meta.description} />
+	<meta property="og:url" content={meta.url} />
+	<meta property="og:type" content="article" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="{meta.title} | VibeShip" />
+	<meta name="twitter:description" content={meta.description} />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
 </svelte:head>
 
@@ -72,7 +96,7 @@
 		</div>
 
 		<!-- Badge -->
-		<span class="badge badge-security">Security Library</span>
+		<span class="badge badge-critical">Security Library</span>
 
 		<h1>Security Prompts: 40+ Templates for Writing Secure Code with AI</h1>
 
@@ -81,21 +105,21 @@
 		</p>
 
 		<!-- Stats Row -->
-		<div class="stats-row">
-			<div class="stat-card">
-				<div class="stat-number">40+</div>
+		<div class="stats-grid-4">
+			<div class="stat-box">
+				<div class="stat-value success">40+</div>
 				<div class="stat-label">Prompts</div>
 			</div>
-			<div class="stat-card">
-				<div class="stat-number">6</div>
+			<div class="stat-box">
+				<div class="stat-value">6</div>
 				<div class="stat-label">Categories</div>
 			</div>
-			<div class="stat-card stat-card-critical">
-				<div class="stat-number">OWASP</div>
+			<div class="stat-box">
+				<div class="stat-value critical">OWASP</div>
 				<div class="stat-label">Top 10 Covered</div>
 			</div>
-			<div class="stat-card">
-				<div class="stat-number">100%</div>
+			<div class="stat-box">
+				<div class="stat-value">100%</div>
 				<div class="stat-label">Copy-Paste Ready</div>
 			</div>
 		</div>
@@ -103,7 +127,7 @@
 		<!-- Categories Grid -->
 		<div class="categories-grid">
 			{#each categories as category}
-				<div class="category-card">
+				<div class="card category-card">
 					<span class="category-icon">{category.icon}</span>
 					<span class="category-name">{category.name}</span>
 					<span class="category-count">{category.count} prompts</span>
@@ -117,16 +141,18 @@
 
 			<p>Prompts for generating new code with security built in from the start.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Security-First Feature Implementation</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Foundation</span>
-					<span class="prompt-tag">Any Stack</span>
+					<span class="badge badge-critical">Foundation</span>
+					<span class="badge">Any Stack</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'security-feature')}>
+							{copiedId === 'security-feature' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Implement [FEATURE_NAME] with security as the top priority.
 
@@ -161,16 +187,18 @@ Provide complete implementation with:
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Secure API Endpoint</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Critical</span>
-					<span class="prompt-tag">Backend</span>
+					<span class="badge badge-critical">Critical</span>
+					<span class="badge">Backend</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'secure-api')}>
+							{copiedId === 'secure-api' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Create a secure API endpoint for [RESOURCE/ACTION].
 
@@ -223,16 +251,18 @@ Provide complete endpoint following this exact pattern.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Secure Form Handler</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Frontend + Backend</span>
-					<span class="prompt-tag">Forms</span>
+					<span class="badge">Frontend + Backend</span>
+					<span class="badge">Forms</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'secure-form')}>
+							{copiedId === 'secure-form' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Create a secure form for [FORM_PURPOSE].
 
@@ -271,16 +301,18 @@ Provide:
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Secure File Upload Handler</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">High Risk</span>
-					<span class="prompt-tag">Files</span>
+					<span class="badge badge-critical">High Risk</span>
+					<span class="badge">Files</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'file-upload')}>
+							{copiedId === 'file-upload' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Implement secure file upload for [PURPOSE].
 
@@ -323,16 +355,18 @@ Provide complete upload handler with all security checks.`}</code></pre>
 
 			<p>Prompts for implementing secure authentication and session management.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Protected Route/Page</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Critical</span>
-					<span class="prompt-tag">Auth</span>
+					<span class="badge badge-critical">Critical</span>
+					<span class="badge">Auth</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'protected-route')}>
+							{copiedId === 'protected-route' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Create a protected [page/route] that requires authentication.
 
@@ -382,16 +416,18 @@ Provide complete protected page with proper auth flow.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Role-Based Access Control</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Authorization</span>
-					<span class="prompt-tag">RBAC</span>
+					<span class="badge">Authorization</span>
+					<span class="badge">RBAC</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'rbac')}>
+							{copiedId === 'rbac' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Implement role-based access control for [FEATURE/RESOURCE].
 
@@ -435,16 +471,18 @@ Provide complete RBAC implementation with middleware/helper.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Secure Password Reset Flow</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Critical</span>
-					<span class="prompt-tag">Auth Flow</span>
+					<span class="badge badge-critical">Critical</span>
+					<span class="badge">Auth Flow</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'password-reset')}>
+							{copiedId === 'password-reset' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Implement a secure password reset flow.
 
@@ -500,16 +538,18 @@ Provide complete password reset implementation.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Session Management</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Sessions</span>
-					<span class="prompt-tag">Security</span>
+					<span class="badge">Sessions</span>
+					<span class="badge">Security</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'session-mgmt')}>
+							{copiedId === 'session-mgmt' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Implement secure session management for [APPLICATION TYPE].
 
@@ -566,16 +606,18 @@ Provide complete session management implementation.`}</code></pre>
 
 			<p>Prompts for implementing comprehensive input validation.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Zod Validation Schema</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Validation</span>
-					<span class="prompt-tag">Zod</span>
+					<span class="badge">Validation</span>
+					<span class="badge">Zod</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'zod-schema')}>
+							{copiedId === 'zod-schema' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Create a comprehensive Zod validation schema for [DATA TYPE/FORM].
 
@@ -637,16 +679,18 @@ Generate complete schema with all security constraints.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Sanitize User Content for Display</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">XSS Prevention</span>
-					<span class="prompt-tag">Output</span>
+					<span class="badge badge-critical">XSS Prevention</span>
+					<span class="badge">Output</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'sanitize-ugc')}>
+							{copiedId === 'sanitize-ugc' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Implement secure rendering of user-generated content.
 
@@ -710,16 +754,18 @@ Provide implementation for my specific use case.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>API Request Validation Middleware</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Middleware</span>
-					<span class="prompt-tag">API</span>
+					<span class="badge">Middleware</span>
+					<span class="badge">API</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'api-validation')}>
+							{copiedId === 'api-validation' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Create validation middleware for API requests.
 
@@ -792,16 +838,18 @@ Provide complete middleware implementation.`}</code></pre>
 
 			<p>Prompts for reviewing existing code for security vulnerabilities.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Comprehensive Security Audit</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Full Audit</span>
-					<span class="prompt-tag">Review</span>
+					<span class="badge badge-critical">Full Audit</span>
+					<span class="badge">Review</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'security-audit')}>
+							{copiedId === 'security-audit' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Perform a comprehensive security audit of this code:
 
@@ -854,16 +902,18 @@ Also list: "Areas reviewed with no issues found"`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>SQL/NoSQL Injection Audit</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Injection</span>
-					<span class="prompt-tag">Database</span>
+					<span class="badge badge-critical">Injection</span>
+					<span class="badge">Database</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'injection-audit')}>
+							{copiedId === 'injection-audit' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Audit this code for SQL and NoSQL injection vulnerabilities:
 
@@ -908,16 +958,18 @@ For each vulnerability:
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Authentication/Authorization Audit</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Auth</span>
-					<span class="prompt-tag">Access Control</span>
+					<span class="badge badge-critical">Auth</span>
+					<span class="badge">Access Control</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'auth-audit')}>
+							{copiedId === 'auth-audit' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Audit this code for authentication and authorization issues:
 
@@ -976,16 +1028,18 @@ List all authentication/authorization issues found with fixes.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Secrets and Environment Variables Audit</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag critical">Secrets</span>
-					<span class="prompt-tag">Config</span>
+					<span class="badge badge-critical">Secrets</span>
+					<span class="badge">Config</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'secrets-audit')}>
+							{copiedId === 'secrets-audit' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Audit this code for hardcoded secrets and configuration issues:
 
@@ -1045,16 +1099,18 @@ For each issue:
 
 			<p>Prompts for secure database operations.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Secure Database Query Helper</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Database</span>
-					<span class="prompt-tag">Query Builder</span>
+					<span class="badge">Database</span>
+					<span class="badge">Query Builder</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'db-query-helpers')}>
+							{copiedId === 'db-query-helpers' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Create secure database query helpers for [ORM/Database].
 
@@ -1107,16 +1163,18 @@ Provide complete secure query helper implementations.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Database Migration Security Review</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Migrations</span>
-					<span class="prompt-tag">Schema</span>
+					<span class="badge">Migrations</span>
+					<span class="badge">Schema</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'migration-review')}>
+							{copiedId === 'migration-review' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Review this database migration for security issues:
 
@@ -1172,16 +1230,18 @@ Provide security review with recommendations.`}</code></pre>
 
 			<p>Prompts for securing API endpoints and external integrations.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Rate Limiting Implementation</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">API</span>
-					<span class="prompt-tag">Rate Limit</span>
+					<span class="badge">API</span>
+					<span class="badge">Rate Limit</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'rate-limiting')}>
+							{copiedId === 'rate-limiting' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Implement rate limiting for [API/Feature].
 
@@ -1239,16 +1299,18 @@ Provide complete rate limiting implementation.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Webhook Security</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Webhooks</span>
-					<span class="prompt-tag">Verification</span>
+					<span class="badge">Webhooks</span>
+					<span class="badge">Verification</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'webhook-security')}>
+							{copiedId === 'webhook-security' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Implement secure webhook handler for [SERVICE].
 
@@ -1309,16 +1371,18 @@ Provide complete webhook handler for my service.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>CORS Configuration</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">API</span>
-					<span class="prompt-tag">CORS</span>
+					<span class="badge">API</span>
+					<span class="badge">CORS</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, 'cors-config')}>
+							{copiedId === 'cors-config' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`Configure secure CORS for my API.
 
@@ -1474,6 +1538,7 @@ Provide complete CORS middleware.`}</code></pre>
 </div>
 
 <style>
+	/* Intro paragraph */
 	.intro {
 		font-size: 1.125rem;
 		color: var(--text-secondary);
@@ -1481,48 +1546,15 @@ Provide complete CORS middleware.`}</code></pre>
 		line-height: 1.7;
 	}
 
-	.badge-security {
-		background: linear-gradient(135deg, var(--red), var(--orange));
-		color: white;
-		font-weight: 600;
-	}
-
-	.stats-row {
+	/* Stats Grid - uses global .stat-box */
+	.stats-grid-4 {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}
 
-	.stat-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		border-radius: 8px;
-		padding: 1.25rem;
-		text-align: center;
-	}
-
-	.stat-card-critical {
-		border-color: var(--red);
-	}
-
-	.stat-number {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--green);
-	}
-
-	.stat-card-critical .stat-number {
-		color: var(--red);
-	}
-
-	.stat-label {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin-top: 0.25rem;
-	}
-
-	/* Categories Grid */
+	/* Categories Grid - uses global .card */
 	.categories-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -1531,14 +1563,11 @@ Provide complete CORS middleware.`}</code></pre>
 	}
 
 	.category-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		border-radius: 8px;
-		padding: 1rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 0.5rem;
+		padding: 1rem;
 	}
 
 	.category-icon {
@@ -1560,12 +1589,10 @@ Provide complete CORS middleware.`}</code></pre>
 		margin: 3rem 0;
 	}
 
+	/* Prompt Card - extends global .card */
 	.prompt-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		border-radius: 8px;
-		padding: 1.5rem;
 		margin: 1.5rem 0;
+		padding: 1.5rem;
 	}
 
 	.prompt-card h3 {
@@ -1580,26 +1607,11 @@ Provide complete CORS middleware.`}</code></pre>
 		flex-wrap: wrap;
 	}
 
-	.prompt-tag {
-		font-size: 0.7rem;
-		padding: 0.25rem 0.5rem;
-		background: var(--bg-tertiary);
-		border-radius: 4px;
-		color: var(--text-secondary);
-	}
-
-	.prompt-tag.critical {
-		background: rgba(239, 68, 68, 0.1);
-		color: var(--red);
-		border: 1px solid var(--red);
-	}
-
-	/* Warning Box */
+	/* Warning Box - sharp edges */
 	.warning-box {
-		background: rgba(239, 68, 68, 0.05);
+		background: var(--bg-secondary);
 		border: 1px solid var(--red);
 		border-left: 4px solid var(--red);
-		border-radius: 8px;
 		padding: 1.25rem;
 		margin: 1.5rem 0;
 	}
@@ -1631,9 +1643,9 @@ Provide complete CORS middleware.`}</code></pre>
 	.step-number {
 		width: 32px;
 		height: 32px;
+		min-width: 32px;
 		background: var(--red);
-		color: white;
-		border-radius: 50%;
+		color: var(--bg-primary);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -1652,7 +1664,7 @@ Provide complete CORS middleware.`}</code></pre>
 
 	/* Responsive */
 	@media (max-width: 768px) {
-		.stats-row {
+		.stats-grid-4 {
 			grid-template-columns: repeat(2, 1fr);
 		}
 

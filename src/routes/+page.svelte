@@ -154,12 +154,12 @@
 					'    /kb/security/vulnerabilities/sql-injection',
 					'    └─ What it is, why AI generates it, how to fix',
 					'',
-					'[2] Parameterized Queries Guide',
-					'    /kb/security/fixes/parameterized-queries',
-					'    └─ Copy-paste fix for any framework',
+					'[2] NoSQL Injection Prevention',
+					'    /kb/security/vulnerabilities/nosql-injection',
+					'    └─ Common patterns and secure queries',
 					'',
-					'[3] Database Security Checklist',
-					'    /kb/security/checklists/database',
+					'[3] Pre-Launch Security Checklist',
+					'    /kb/security/checklists/pre-launch',
 					'    └─ 12-point pre-deploy checklist',
 					'',
 					'50+ articles. Written for vibe coders.',
@@ -257,8 +257,16 @@
 </script>
 
 <svelte:head>
-	<title>Vibeship - Tools for Vibe Coders</title>
+	<title>VibeShip - Tools for Vibe Coders</title>
 	<meta name="description" content="The ecosystem for building with AI. Security scanning, persistent memory, agent orchestration, and education for vibe-coded applications." />
+	<meta property="og:title" content="VibeShip - Tools for Vibe Coders" />
+	<meta property="og:description" content="The ecosystem for building with AI. Security scanning, persistent memory, agent orchestration, and education for vibe-coded applications." />
+	<meta property="og:url" content="/" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="VibeShip - Tools for Vibe Coders" />
+	<meta name="twitter:description" content="The ecosystem for building with AI. Security scanning, persistent memory, agent orchestration, and education for vibe-coded applications." />
+	<link rel="canonical" href="https://vibeship.co/" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">

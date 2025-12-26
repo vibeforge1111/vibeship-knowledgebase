@@ -593,29 +593,6 @@ export async function DELETE(request, { params }) {
 					Regular users get a 403 Forbidden error. Admins proceed as normal.
 				</p>
 			</div>
-
-			<!-- Framework-Specific -->
-			<div class="fix-section">
-				<h3>Framework-specific authorization patterns</h3>
-				<div class="framework-links">
-					<a href="/kb/security/fixes/bfla/nextjs/" class="card card-interactive">
-						<span class="framework-name">Next.js</span>
-						<span class="framework-desc">Middleware & route protection</span>
-					</a>
-					<a href="/kb/security/fixes/bfla/express/" class="card card-interactive">
-						<span class="framework-name">Express</span>
-						<span class="framework-desc">Authorization middleware</span>
-					</a>
-					<a href="/kb/security/fixes/bfla/fastapi/" class="card card-interactive">
-						<span class="framework-name">FastAPI</span>
-						<span class="framework-desc">Dependency injection auth</span>
-					</a>
-					<a href="/kb/security/stacks/nextjs-supabase/" class="card card-interactive">
-						<span class="framework-name">Next.js + Supabase</span>
-						<span class="framework-desc">Row Level Security + API auth</span>
-					</a>
-				</div>
-			</div>
 		</section>
 
 		<!-- Prevention -->

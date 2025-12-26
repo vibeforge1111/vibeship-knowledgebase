@@ -1158,10 +1158,10 @@ Tech: FastAPI BackgroundTasks
 
 **Master AI coding with these comprehensive guides:**
 
-- **[Prompt Engineering for Code](/kb/prompts/prompt-engineering-code/)** - Write better prompts that generate secure, production-ready code
+- **[AI Prompt Library](/kb/prompts/ai-prompt-library/)** - A collection of prompts for secure, production-ready code generation
 - **[AI Security Review Prompts](/kb/prompts/security-prompts/)** - 50+ prompts for scanning and fixing vulnerabilities in AI-generated code
 - **[Debugging Prompts for AI Tools](/kb/prompts/debugging-prompts/)** - Systematic debugging strategies for Cursor, Claude Code, and ChatGPT
-- **[Cursor Rules Library](/kb/vibe-coding-tools/cursor/cursor-rules/)** - Pre-configured rules for secure AI code generation in Cursor
+- **[Cursor Rules Guide](/kb/prompts/cursor-rules/)** - Pre-configured rules for secure AI code generation in Cursor
 
 **Security scanning tools:**
 

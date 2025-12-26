@@ -68,6 +68,9 @@
 	<meta property="og:description" content={meta.description} />
 	<meta property="og:url" content={meta.url} />
 	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={meta.title} />
+	<meta name="twitter:description" content={meta.description} />
 	<link rel="canonical" href="https://vibeship.co{meta.url}" />
 </svelte:head>
 

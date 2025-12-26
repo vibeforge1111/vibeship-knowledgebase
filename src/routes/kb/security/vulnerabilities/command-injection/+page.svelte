@@ -73,9 +73,37 @@
 
 	let copied = $state(false);
 
+	const aiFixPrompt = `Review my code for command injection vulnerabilities (CWE-78):
+
+1. **Find exec() with user input**: Search for child_process.exec,
+   execSync, or require('child_process').exec that includes:
+   - req.query, req.body, req.params values
+   - Template literals with variables
+   - String concatenation with user data
+
+2. **Replace with safe alternatives**:
+   - Use execFile() or spawn() instead of exec()
+   - Pass arguments as array, not string
+   - Never use shell: true with user input
+
+3. **Validate all input**:
+   - Use allowlists for command names
+   - Validate/sanitize arguments (alphanumeric only)
+   - Use path.basename() for filenames
+   - Verify paths stay within allowed directories
+
+4. **Check for indirect injection**:
+   - Arrays that get joined into commands
+   - Config values that come from user input
+   - Environment variables set from requests
+
+For each vulnerability:
+- Show the dangerous code
+- Show the secure replacement using execFile/spawn
+- Note if allowlist validation is also needed`;
+
 	function copyPrompt() {
-		const prompt = document.getElementById('ai-fix-prompt')?.textContent || '';
-		navigator.clipboard.writeText(prompt);
+		navigator.clipboard.writeText(aiFixPrompt);
 		copied = true;
 		setTimeout(() => copied = false, 2000);
 	}
@@ -113,11 +141,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "Vibeship"
+			"name": "VibeShip"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "Vibeship",
+			"name": "VibeShip",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -153,17 +181,17 @@
 		<header class="article-header">
 			<div class="badge-row">
 				<span class="badge badge-critical">Critical</span>
-				<span class="badge">CWE-78</span>
-				<span class="badge">OWASP A03:2021</span>
+				<a href={owaspData.cweSource} target="_blank" rel="noopener" class="badge badge-info">CWE-78</a>
+				<a href={owaspData.source} target="_blank" rel="noopener" class="badge badge-success">OWASP A03:2021</a>
 			</div>
 			<h1>Command Injection</h1>
-			<p class="text-secondary">When AI-generated code gives attackers shell access to your server</p>
+			<p class="subtitle">When AI-generated code gives attackers shell access to your server</p>
 		</header>
 
 		<!-- Quick Answer -->
 		<div class="quick-answer">
-			<div class="quick-answer-label">Quick Answer</div>
-			<p class="quick-answer-text">
+			<h2>Quick Answer</h2>
+			<p>
 				<strong>Command injection lets attackers run arbitrary system commands when your app passes user input to shell functions like exec().</strong>
 				AI tools often generate <code>exec(`command $&#123;userInput&#125;`)</code> patterns.
 				Replace exec() with execFile() or spawn() using array arguments.
@@ -172,28 +200,24 @@
 		</div>
 
 		<!-- Stats Box -->
-		<div class="stats-box">
+		<section class="article-section">
 			<h3>Command Injection Severity</h3>
-			<div class="stats-grid">
-				<div class="stat-item">
+			<div class="stats-row">
+				<div class="stat-card">
 					<span class="stat-value">8.8-9.9</span>
 					<span class="stat-label">CVSS Score</span>
-					<span class="stat-source">Critical Range</span>
 				</div>
-				<div class="stat-item">
+				<div class="stat-card">
 					<span class="stat-value">6.21%</span>
 					<span class="stat-label">Copilot Code</span>
-					<span class="stat-source">Academic Study</span>
 				</div>
-				<div class="stat-item">
+				<div class="stat-card">
 					<span class="stat-value">#3</span>
 					<span class="stat-label">OWASP Top 10</span>
-					<span class="stat-source">Injection Category</span>
 				</div>
-				<div class="stat-item">
+				<div class="stat-card">
 					<span class="stat-value">RCE</span>
 					<span class="stat-label">Impact</span>
-					<span class="stat-source">Remote Code Execution</span>
 				</div>
 			</div>
 			<p class="stats-note">
@@ -201,10 +225,10 @@
 				<a href="https://www.cisa.gov/resources-tools/resources/secure-design-alert-eliminating-os-command-injection-vulnerabilities" target="_blank" rel="noopener">CISA</a>,
 				<a href="/kb/vibe-coding-tools/github-copilot/">GitHub Copilot Research</a>
 			</p>
-		</div>
+		</section>
 
 		<!-- What is Command Injection -->
-		<section>
+		<section class="article-section">
 			<h2>What is command injection?</h2>
 			<p>
 				Command injection happens when attackers hijack your shell commands to run their own code on your server. By inserting shell metacharacters like <code>;</code>, <code>|</code>, or <code>&&</code>, they break out of your intended command and execute arbitrary programs.
@@ -218,7 +242,7 @@
 		</section>
 
 		<!-- How Shell Commands Get Exploited -->
-		<section>
+		<section class="article-section">
 			<h2>How do shell metacharacters enable attacks?</h2>
 			<p>
 				Shell metacharacters are special symbols that shells (bash, sh) interpret as commands rather than text. When user input contains these characters, the shell executes unintended commands:
@@ -263,7 +287,7 @@
 		</section>
 
 		<!-- Why AI Tools Generate Vulnerable Code -->
-		<section>
+		<section class="article-section">
 			<h2>Why do AI tools generate vulnerable shell commands?</h2>
 			<p>
 				Vibe coding with AI tools often produces command injection vulnerabilities because AI generates what's common in training data. When you prompt "run a shell command" or "ping a server", AI naturally reaches for <code>exec()</code> with template literals.
@@ -277,7 +301,7 @@
 		</section>
 
 		<!-- The exec() Trap -->
-		<section>
+		<section class="article-section">
 			<h2>How does exec() become a security trap?</h2>
 			<p>
 				<code>child_process.exec()</code> is a bash interpreter, not a program launcher. Every character in the command string passes through shell interpretation. Here's the vulnerable pattern AI tools generate:
@@ -310,7 +334,7 @@ app.get('/ping', (req, res) => {
 		</section>
 
 		<!-- Function Comparison -->
-		<section>
+		<section class="article-section">
 			<h2>What's the difference between exec, execFile, and spawn?</h2>
 
 			<div class="comparison-table-wrapper">
@@ -328,7 +352,7 @@ app.get('/ping', (req, res) => {
 							<tr class:highlight={!row.safe}>
 								<td><code>{row.function}</code></td>
 								<td>{row.usesShell}</td>
-								<td>{row.safe ? '✅ Yes' : '❌ No'}</td>
+								<td>{row.safe ? 'Yes' : 'No'}</td>
 								<td>{row.useWhen}</td>
 							</tr>
 						{/each}
@@ -357,7 +381,7 @@ execFile('ls', ['-la', userPath])`}</code></pre>
 		</section>
 
 		<!-- Pattern 1: Safe execFile -->
-		<section>
+		<section class="article-section">
 			<h2>Pattern 1: Safe alternative with execFile()</h2>
 
 			<div class="code-comparison">
@@ -411,7 +435,7 @@ app.get('/fileinfo', (req, res) => {
 		</section>
 
 		<!-- Pattern 2: Safe spawn -->
-		<section>
+		<section class="article-section">
 			<h2>Pattern 2: Safe spawn() with streaming</h2>
 
 			<div class="code-comparison">
@@ -459,48 +483,8 @@ app.get('/backup', (req, res) => {
 			</p>
 		</section>
 
-		<!-- Pattern 3: When You Need Shell Features -->
-		<section>
-			<h2>Pattern 3: When you must use shell features</h2>
-			<p>
-				Sometimes you need shell features like pipes or redirects. The safe approach is to use a strict allowlist of predefined commands - never construct commands from user input.
-			</p>
-
-			<div class="code-block secure">
-				<div class="code-label">Secure - Command from allowlist only</div>
-				<pre><code>{`const { exec } = require('child_process')
-
-// Strict allowlist - commands are predefined
-const ALLOWED_COMMANDS = {
-  'disk-usage': 'df -h',
-  'memory': 'free -m',
-  'uptime': 'uptime'
-}
-
-app.get('/system/:command', (req, res) => {
-  const cmd = ALLOWED_COMMANDS[req.params.command]
-
-  if (!cmd) {
-    return res.status(400).send('Invalid command')
-  }
-
-  // Safe: command comes from allowlist, not user
-  exec(cmd, (err, stdout) => {
-    if (err) {
-      return res.status(500).send('Command failed')
-    }
-    res.send(stdout)
-  })
-})`}</code></pre>
-			</div>
-
-			<p>
-				The user selects from a predefined list - they never provide the actual command text. This is the only safe way to use <code>exec()</code> in production.
-			</p>
-		</section>
-
 		<!-- Dangerous Patterns to Find -->
-		<section>
+		<section class="article-section">
 			<h2>What dangerous patterns should I search for?</h2>
 			<p>
 				Search your vibe coded projects for these patterns. Each one is a potential command injection vulnerability:
@@ -531,193 +515,185 @@ exec(\`tool \${options.join(' ')}\`)  // Array could contain ;`}</code></pre>
 			</p>
 		</section>
 
-		<!-- Recent CVE -->
-		<section>
-			<h2>Recent Node.js vulnerability: CVE-2024-27980</h2>
-			<p>
-				Even <code>spawn()</code> had a vulnerability on Windows. <a href="https://nodejs.org/en/blog/vulnerability/april-2024-security-releases-2" target="_blank" rel="noopener">CVE-2024-27980</a> allowed command injection when executing .bat or .cmd files, even without <code>shell: true</code>.
-			</p>
-			<p>
-				Node.js now returns EINVAL for batch file execution without the shell option. This demonstrates that staying updated is essential - even "safe" functions can have vulnerabilities.
-			</p>
-		</section>
-
 		<!-- AI Fix Prompt -->
-		<section class="fix-section">
+		<section class="article-section">
 			<h2>AI Fix Prompt for Command Injection</h2>
 			<p>Copy this prompt to scan your vibe coded project for command injection vulnerabilities:</p>
 
-			<div class="prompt-box">
-				<button class="copy-button" onclick={copyPrompt}>
+			<div class="fix-prompt">
+				<button class="copy-btn" onclick={copyPrompt}>
 					{copied ? 'Copied!' : 'Copy Prompt'}
 				</button>
-				<pre id="ai-fix-prompt">{`Review my code for command injection vulnerabilities (CWE-78):
-
-1. **Find exec() with user input**: Search for child_process.exec,
-   execSync, or require('child_process').exec that includes:
-   - req.query, req.body, req.params values
-   - Template literals with variables
-   - String concatenation with user data
-
-2. **Replace with safe alternatives**:
-   - Use execFile() or spawn() instead of exec()
-   - Pass arguments as array, not string
-   - Never use shell: true with user input
-
-3. **Validate all input**:
-   - Use allowlists for command names
-   - Validate/sanitize arguments (alphanumeric only)
-   - Use path.basename() for filenames
-   - Verify paths stay within allowed directories
-
-4. **Check for indirect injection**:
-   - Arrays that get joined into commands
-   - Config values that come from user input
-   - Environment variables set from requests
-
-For each vulnerability:
-- Show the dangerous code
-- Show the secure replacement using execFile/spawn
-- Note if allowlist validation is also needed`}</pre>
+				<pre>{aiFixPrompt}</pre>
 			</div>
 		</section>
 
 		<!-- FAQs -->
-		<section>
+		<section class="article-section" id="faq">
 			<h2>Frequently Asked Questions</h2>
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
-		<section>
+		<section class="article-section" id="related">
 			<h2>Related Content</h2>
 			<div class="related-grid">
-				<a href="/kb/security/vulnerabilities/sql-injection/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">SQL Injection</span>
+				<a href="/kb/security/vulnerabilities/sql-injection/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">SQL Injection</div>
+					<p class="related-card-description">Similar injection pattern - data interpreted as code</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/path-traversal/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Path Traversal</span>
+				<a href="/kb/security/vulnerabilities/path-traversal/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Path Traversal</div>
+					<p class="related-card-description">Often combined with command injection for file access</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/xss/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">XSS</span>
+				<a href="/kb/security/vulnerabilities/xss/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">XSS</div>
+					<p class="related-card-description">Client-side injection variant</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/sensitive-data-exposure/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Sensitive Data Exposure</span>
+				<a href="/kb/security/vulnerabilities/sensitive-data-exposure/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Sensitive Data Exposure</div>
+					<p class="related-card-description">Command injection often leads to data theft</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/github-copilot/" class="related-card">
-					<span class="related-type">AI Tool</span>
-					<span class="related-title">GitHub Copilot Security</span>
+				<a href="/kb/vibe-coding-tools/github-copilot/" class="card card-interactive related-card">
+					<div class="related-card-category">AI Tool</div>
+					<div class="related-card-title">GitHub Copilot Security</div>
+					<p class="related-card-description">Research on Copilot's command injection patterns</p>
 				</a>
-				<a href="/kb/vibe-coding-tools/cursor/" class="related-card">
-					<span class="related-type">AI Tool</span>
-					<span class="related-title">Cursor Security Patterns</span>
+				<a href="/kb/vibe-coding-tools/cursor/" class="card card-interactive related-card">
+					<div class="related-card-category">AI Tool</div>
+					<div class="related-card-title">Cursor Security Patterns</div>
+					<p class="related-card-description">How Cursor generates shell commands</p>
 				</a>
 			</div>
 		</section>
+
+		<!-- CTA -->
+		<div class="cta-box">
+			<h2>Find Command Injection in Your Code</h2>
+			<p>VibeShip Scanner detects exec() with user input, missing validation, and other shell command vulnerabilities.</p>
+			<a href="https://scanner.vibeship.co" class="cta-button">Scan Your Code Free</a>
+		</div>
 	</article>
 </div>
 
 <style>
-	.content-wrapper {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 2rem;
-	}
-
 	.article-header {
 		margin-bottom: 2rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.article-header h1 {
+		font-size: 2rem;
+		font-weight: 700;
+		margin: 1rem 0 0.5rem 0;
+		line-height: 1.2;
+	}
+
+	.subtitle {
+		color: var(--text-secondary);
+		font-size: 1.125rem;
+		margin: 0;
 	}
 
 	.badge-row {
 		display: flex;
 		gap: 0.5rem;
 		flex-wrap: wrap;
-		margin-bottom: 1rem;
-	}
-
-	.badge {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		background: var(--surface-2, #333);
-		color: var(--text-secondary, #aaa);
 	}
 
 	.badge-critical {
-		background: #dc2626;
-		color: white;
+		background: var(--bg-tertiary);
+		color: var(--red);
+		border: 1px solid var(--red);
 	}
 
-	h1 {
-		font-size: 2.5rem;
-		margin-bottom: 0.5rem;
+	.badge-info {
+		background: var(--bg-tertiary);
+		color: var(--blue);
+		border: 1px solid var(--blue);
 	}
 
-	.text-secondary {
-		color: var(--text-secondary, #888);
-		font-size: 1.1rem;
+	.badge-success {
+		background: var(--bg-tertiary);
+		color: var(--green-dim);
+		border: 1px solid var(--green-dim);
 	}
 
-	.quick-answer {
-		background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
-		border: 1px solid rgba(34, 197, 94, 0.3);
-		border-radius: 8px;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
+	.article-section {
+		margin-bottom: 2.5rem;
 	}
 
-	.quick-answer-label {
-		font-size: 0.75rem;
+	.article-section h2 {
+		font-size: 1.5rem;
 		font-weight: 600;
-		text-transform: uppercase;
-		color: #22c55e;
-		margin-bottom: 0.5rem;
+		margin-bottom: 1rem;
+		color: var(--text-primary);
 	}
 
-	.quick-answer-text {
-		margin: 0;
+	.article-section h3 {
+		font-size: 1.125rem;
+		font-weight: 600;
+		margin-bottom: 0.75rem;
+		color: var(--text-primary);
+	}
+
+	.article-section p {
+		line-height: 1.7;
+		margin-bottom: 1rem;
+		color: var(--text-secondary);
+	}
+
+	.article-section a {
+		color: var(--green-dim);
+	}
+
+	.article-section a:hover {
+		color: var(--green);
+	}
+
+	.article-section ol,
+	.article-section ul {
+		margin: 0 0 1rem 0;
+		padding-left: 1.5rem;
+	}
+
+	.article-section li {
+		margin-bottom: 0.5rem;
+		color: var(--text-secondary);
 		line-height: 1.6;
 	}
 
-	.quick-answer-text code {
-		background: rgba(0,0,0,0.2);
+	.article-section code {
+		background: var(--bg-tertiary);
 		padding: 0.125rem 0.375rem;
-		border-radius: 3px;
 		font-size: 0.9em;
 	}
 
-	.stats-box {
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		padding: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.stats-box h3 {
-		margin-top: 0;
-		margin-bottom: 1rem;
-	}
-
-	.stats-grid {
+	/* Stats Row */
+	.stats-row {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 		gap: 1rem;
+		margin-bottom: 1rem;
 	}
 
-	.stat-item {
+	.stat-card {
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
+		padding: 1rem;
 		text-align: center;
 	}
 
@@ -725,78 +701,31 @@ For each vulnerability:
 		display: block;
 		font-size: 1.75rem;
 		font-weight: 700;
-		color: #dc2626;
+		color: var(--red);
 	}
 
 	.stat-label {
 		display: block;
 		font-size: 0.875rem;
-		color: var(--text-primary, #fff);
-	}
-
-	.stat-source {
-		display: block;
-		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 	}
 
 	.stats-note {
-		margin-top: 1rem;
 		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
-	}
-
-	section {
-		margin-bottom: 3rem;
-	}
-
-	h2 {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
-	}
-
-	h3 {
-		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
-	}
-
-	p {
-		line-height: 1.7;
-		margin-bottom: 1rem;
-	}
-
-	ol, ul {
-		margin: 0 0 1rem 0;
-		padding-left: 1.5rem;
-	}
-
-	li {
-		margin-bottom: 0.5rem;
-		line-height: 1.6;
-	}
-
-	code {
-		font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
-		background: rgba(0,0,0,0.3);
-		padding: 0.125rem 0.375rem;
-		border-radius: 3px;
-		font-size: 0.9em;
+		color: var(--text-tertiary);
 	}
 
 	/* Metacharacter Grid */
 	.metachar-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}
 
 	.metachar-card {
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		padding: 1rem;
 		display: flex;
 		flex-direction: column;
@@ -805,71 +734,20 @@ For each vulnerability:
 
 	.metachar {
 		font-size: 1.5rem;
-		color: #dc2626;
+		color: var(--red);
 		background: transparent;
 	}
 
 	.metachar-name {
 		font-weight: 600;
 		font-size: 0.875rem;
+		color: var(--text-primary);
 	}
 
 	.metachar-example {
-		font-family: 'Fira Code', monospace;
+		font-family: 'JetBrains Mono', monospace;
 		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
-	}
-
-	/* Code Blocks - stacked layout (vulnerable on top, secure below) */
-	.code-comparison {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		margin: 1rem 0;
-	}
-
-	.code-block {
-		background: #0d0d0d;
-		border-radius: 6px;
-		overflow: hidden;
-	}
-
-	.code-block.vulnerable {
-		border: 1px solid rgba(220, 38, 38, 0.3);
-	}
-
-	.code-block.secure {
-		border: 1px solid rgba(34, 197, 94, 0.3);
-	}
-
-	.code-label {
-		padding: 0.5rem 1rem;
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-	}
-
-	.vulnerable .code-label {
-		background: rgba(220, 38, 38, 0.1);
-		color: #f87171;
-	}
-
-	.secure .code-label {
-		background: rgba(34, 197, 94, 0.1);
-		color: #4ade80;
-	}
-
-	pre {
-		margin: 0;
-		padding: 1rem;
-		overflow-x: auto;
-		font-size: 0.8rem;
-		line-height: 1.5;
-	}
-
-	pre code {
-		background: transparent;
-		padding: 0;
+		color: var(--text-tertiary);
 	}
 
 	/* Comparison Table */
@@ -887,106 +765,191 @@ For each vulnerability:
 	.comparison-table td {
 		padding: 0.75rem;
 		text-align: left;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.comparison-table th {
 		font-weight: 600;
-		background: var(--surface-1, #1a1a1a);
+		background: var(--bg-secondary);
+		color: var(--text-primary);
+	}
+
+	.comparison-table td {
+		color: var(--text-secondary);
 	}
 
 	.comparison-table tr.highlight {
-		background: rgba(220, 38, 38, 0.1);
+		background: var(--bg-tertiary);
 	}
 
 	.table-note {
 		font-size: 0.875rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-tertiary);
 		margin-top: 0.5rem;
 	}
 
-	/* Fix Section */
-	.fix-section {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
-		padding: 1.5rem;
+	/* Code Blocks */
+	.code-comparison {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin: 1rem 0;
 	}
 
-	.prompt-box {
-		position: relative;
-		background: #0d0d0d;
-		border-radius: 6px;
+	.code-block {
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
 		overflow: hidden;
 	}
 
-	.copy-button {
+	.code-block.vulnerable {
+		border-color: var(--red);
+	}
+
+	.code-block.secure {
+		border-color: var(--green-dim);
+	}
+
+	.code-label {
+		padding: 0.5rem 1rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		background: var(--bg-secondary);
+		color: var(--text-secondary);
+	}
+
+	.code-block.vulnerable .code-label {
+		color: var(--red);
+	}
+
+	.code-block.secure .code-label {
+		color: var(--green-dim);
+	}
+
+	.code-block pre {
+		margin: 0;
+		padding: 1rem;
+		overflow-x: auto;
+		font-size: 0.8rem;
+		line-height: 1.5;
+	}
+
+	.code-block code {
+		display: block;
+		background: transparent;
+		padding: 0;
+		color: var(--text-primary);
+		white-space: pre;
+	}
+
+	/* Fix Prompt */
+	.fix-prompt {
+		position: relative;
+		background: var(--bg-tertiary);
+		border: 1px solid var(--border);
+		margin-top: 1rem;
+	}
+
+	.copy-btn {
 		position: absolute;
 		top: 0.5rem;
 		right: 0.5rem;
 		padding: 0.5rem 1rem;
-		background: #22c55e;
-		color: black;
+		background: var(--green-dim);
+		color: var(--bg-primary);
 		border: none;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		font-weight: 600;
+		font-size: 0.875rem;
+		font-weight: 500;
 		cursor: pointer;
+		z-index: 1;
 	}
 
-	.copy-button:hover {
-		background: #16a34a;
+	.copy-btn:hover {
+		background: var(--green);
 	}
 
-	/* FAQ Section */
+	.fix-prompt pre {
+		padding: 1.5rem;
+		padding-top: 3rem;
+		font-size: 0.8125rem;
+		line-height: 1.6;
+		overflow-x: auto;
+		white-space: pre-wrap;
+		margin: 0;
+	}
+
+	/* FAQ */
+	.faq-list {
+		display: flex;
+		flex-direction: column;
+	}
+
 	.faq-item {
-		margin-bottom: 1.5rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.faq-item:last-child {
+		border-bottom: none;
 	}
 
 	.faq-item h3 {
-		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
-	}
-
-	/* Related Content */
-	.related-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1rem;
-	}
-
-	.related-card {
-		display: block;
-		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
-		text-decoration: none;
-		transition: border-color 0.2s;
-	}
-
-	.related-card:hover {
-		border-color: #22c55e;
-	}
-
-	.related-type {
-		display: block;
-		font-size: 0.75rem;
-		color: var(--text-secondary, #888);
-		text-transform: uppercase;
-		margin-bottom: 0.25rem;
-	}
-
-	.related-title {
-		display: block;
+		font-size: 1rem;
 		font-weight: 600;
-		color: var(--text-primary, #fff);
+		margin: 0 0 0.5rem 0;
+		color: var(--text-primary);
 	}
 
-	a {
-		color: #22c55e;
+	.faq-item p {
+		margin: 0;
+		color: var(--text-secondary);
+		line-height: 1.6;
 	}
 
-	a:hover {
-		color: var(--green);
+	/* CTA Box */
+	.cta-box {
+		background: var(--bg-secondary);
+		border: 1px solid var(--green-dim);
+		padding: 2rem;
+		text-align: center;
+		margin-top: 2rem;
+	}
+
+	.cta-box h2 {
+		color: var(--text-primary);
+		margin-bottom: 0.75rem;
+		font-size: 1.25rem;
+	}
+
+	.cta-box p {
+		color: var(--text-secondary);
+		margin-bottom: 1.5rem;
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.cta-button {
+		display: inline-block;
+		background: var(--green-dim);
+		color: var(--bg-primary);
+		padding: 0.75rem 1.5rem;
+		font-weight: 600;
+		transition: background 0.2s;
+	}
+
+	.cta-button:hover {
+		background: var(--green);
+	}
+
+	@media (max-width: 768px) {
+		.article-header h1 {
+			font-size: 1.5rem;
+		}
+
+		.stats-row {
+			grid-template-columns: repeat(2, 1fr);
+		}
 	}
 </style>

@@ -211,7 +211,7 @@ Code to review:
 </script>
 
 <svelte:head>
-	<title>The Complete Secure Vibe Coding Guide: Ship Fast Without Getting Hacked | vibeship</title>
+	<title>Secure Vibe Coding Guide | VibeShip</title>
 	<meta name="description" content="45% of AI-generated code fails security tests (Veracode 2025). Learn secure prompting, rules files, and code review to vibe code safely with Cursor, Copilot, and Claude Code." />
 	<meta name="keywords" content="vibe coding security, secure vibe coding, AI code security, cursor security, copilot security, AI generated code vulnerabilities, secure AI coding prompts" />
 	<link rel="canonical" href="https://vibeship.co/kb/vibe-coding/secure-vibe-coding-guide/" />

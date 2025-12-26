@@ -48,7 +48,7 @@
 </script>
 
 <svelte:head>
-	<title>{meta.title} | vibeship</title>
+	<title>{meta.title} | VibeShip</title>
 	<meta name="description" content={meta.description} />
 	<meta property="og:title" content={meta.title} />
 	<meta property="og:description" content={meta.description} />
@@ -79,11 +79,11 @@
 		"description": "${meta.description}",
 		"author": {
 			"@type": "Organization",
-			"name": "vibeship"
+			"name": "VibeShip"
 		},
 		"publisher": {
 			"@type": "Organization",
-			"name": "vibeship",
+			"name": "VibeShip",
 			"logo": {
 				"@type": "ImageObject",
 				"url": "https://vibeship.co/logo.png"
@@ -160,19 +160,19 @@
 			</p>
 
 			<div class="pattern-grid">
-				<div class="pattern-card vulnerable">
+				<div class="pattern-card">
 					<h3>Trusting User Filenames</h3>
 					<p>AI uses <code>req.file.originalname</code> directly, enabling path traversal attacks like <code>../../../etc/passwd</code></p>
 				</div>
-				<div class="pattern-card vulnerable">
+				<div class="pattern-card">
 					<h3>Extension Blacklists</h3>
 					<p>Blocking .php, .exe misses .php5, .phtml, .php.jpg and dozens of other dangerous extensions</p>
 				</div>
-				<div class="pattern-card vulnerable">
+				<div class="pattern-card">
 					<h3>Trusting Content-Type</h3>
 					<p>Checking <code>req.file.mimetype</code> is useless - attackers control this header completely</p>
 				</div>
-				<div class="pattern-card vulnerable">
+				<div class="pattern-card">
 					<h3>Storing in Webroot</h3>
 					<p>Saving to <code>/public/uploads</code> makes uploaded files directly executable</p>
 				</div>
@@ -186,22 +186,22 @@
 				Here's typical AI-generated upload code with multiple vulnerabilities:
 			</p>
 
-			<div class="code-block">
-				<div class="code-label vulnerable">Vulnerable - Multiple issues</div>
+			<div class="code-block vulnerable">
+				<div class="code-label">Vulnerable - Multiple issues</div>
 				<pre><code>{`// Express + Multer - AI-generated vulnerable upload
 const multer = require('multer');
 
 const storage = multer.diskStorage({
-  destination: './public/uploads',  // ❌ Stored in webroot
+  destination: './public/uploads',  // Stored in webroot
   filename: (req, file, cb) => {
-    cb(null, file.originalname);    // ❌ User-controlled filename
+    cb(null, file.originalname);    // User-controlled filename
   }
 });
 
 const upload = multer({
   storage,
   fileFilter: (req, file, cb) => {
-    // ❌ Blacklist approach - easily bypassed
+    // Blacklist approach - easily bypassed
     const blocked = ['.php', '.exe', '.sh', '.bat'];
     const ext = path.extname(file.originalname).toLowerCase();
     if (blocked.includes(ext)) {
@@ -212,7 +212,7 @@ const upload = multer({
 });
 
 app.post('/upload', upload.single('file'), (req, res) => {
-  // ❌ No content validation
+  // No content validation
   res.json({ url: '/uploads/' + req.file.filename });
 });`}</code></pre>
 			</div>
@@ -290,17 +290,17 @@ app.post('/upload', upload.single('file'), (req, res) => {
 				Here's how to implement file uploads securely in Node.js:
 			</p>
 
-			<div class="code-block">
-				<div class="code-label secure">Secure - Defense in depth</div>
+			<div class="code-block secure">
+				<div class="code-label">Secure - Defense in depth</div>
 				<pre><code>{`import multer from 'multer';
 import { fileTypeFromBuffer } from 'file-type';
 import crypto from 'crypto';
 import path from 'path';
 
-// ✅ Store OUTSIDE webroot
+// Store OUTSIDE webroot
 const UPLOAD_DIR = '/var/uploads';  // Not in /public
 
-// ✅ Allowlist of permitted MIME types
+// Allowlist of permitted MIME types
 const ALLOWED_TYPES = new Map([
   ['image/jpeg', '.jpg'],
   ['image/png', '.png'],
@@ -308,11 +308,11 @@ const ALLOWED_TYPES = new Map([
   ['application/pdf', '.pdf'],
 ]);
 
-// ✅ Memory storage for content inspection
+// Memory storage for content inspection
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 5 * 1024 * 1024,  // ✅ 5MB limit
+    fileSize: 5 * 1024 * 1024,  // 5MB limit
     files: 1,
   },
 });
@@ -323,7 +323,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
       return res.status(400).json({ error: 'No file provided' });
     }
 
-    // ✅ Validate actual content using magic bytes
+    // Validate actual content using magic bytes
     const fileType = await fileTypeFromBuffer(req.file.buffer);
 
     if (!fileType || !ALLOWED_TYPES.has(fileType.mime)) {
@@ -332,21 +332,21 @@ app.post('/upload', upload.single('file'), async (req, res) => {
       });
     }
 
-    // ✅ Generate random filename - NEVER use user input
+    // Generate random filename - NEVER use user input
     const randomName = crypto.randomBytes(16).toString('hex');
     const safeExt = ALLOWED_TYPES.get(fileType.mime);
     const filename = \`\${randomName}\${safeExt}\`;
 
-    // ✅ Ensure path stays within upload directory
+    // Ensure path stays within upload directory
     const filepath = path.join(UPLOAD_DIR, filename);
     if (!filepath.startsWith(UPLOAD_DIR)) {
       return res.status(400).json({ error: 'Invalid path' });
     }
 
-    // ✅ Write file with restrictive permissions
+    // Write file with restrictive permissions
     await fs.writeFile(filepath, req.file.buffer, { mode: 0o644 });
 
-    // ✅ Return ID, not direct path - serve through controller
+    // Return ID, not direct path - serve through controller
     res.json({ fileId: randomName });
 
   } catch (error) {
@@ -355,7 +355,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
   }
 });
 
-// ✅ Serve files through controller, not static directory
+// Serve files through controller, not static directory
 app.get('/files/:id', async (req, res) => {
   const id = req.params.id.replace(/[^a-f0-9]/gi, '');  // Sanitize
   const files = await fs.readdir(UPLOAD_DIR);
@@ -388,8 +388,8 @@ app.get('/files/:id', async (req, res) => {
 				For most vibe coded apps, cloud storage eliminates server-side risks entirely:
 			</p>
 
-			<div class="code-block">
-				<div class="code-label secure">Secure - S3 presigned URLs</div>
+			<div class="code-block secure">
+				<div class="code-label">Secure - S3 presigned URLs</div>
 				<pre><code>{`import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
@@ -399,20 +399,20 @@ const s3 = new S3Client({ region: process.env.AWS_REGION });
 app.post('/upload-url', authenticateUser, async (req, res) => {
   const { filename, contentType } = req.body;
 
-  // ✅ Validate content type
+  // Validate content type
   const allowed = ['image/jpeg', 'image/png', 'application/pdf'];
   if (!allowed.includes(contentType)) {
     return res.status(400).json({ error: 'Invalid file type' });
   }
 
-  // ✅ Generate safe key with user isolation
+  // Generate safe key with user isolation
   const key = \`uploads/\${req.user.id}/\${crypto.randomUUID()}\`;
 
   const command = new PutObjectCommand({
     Bucket: process.env.S3_BUCKET,
     Key: key,
     ContentType: contentType,
-    // ✅ Limit size
+    // Limit size
     ContentLength: 5 * 1024 * 1024,
   });
 
@@ -482,47 +482,49 @@ Review this code for insecure file upload patterns. Check for:
 		<!-- FAQ Section -->
 		<section class="faq-section">
 			<h2>Frequently Asked Questions</h2>
-			{#each faqs as faq}
-				<div class="faq-item">
-					<h3>{faq.question}</h3>
-					<p>{faq.answer}</p>
-				</div>
-			{/each}
+			<div class="faq-list">
+				{#each faqs as faq}
+					<div class="faq-item">
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
 		</section>
 
 		<!-- Related Content -->
 		<section>
 			<h2>Related Vulnerabilities</h2>
 			<div class="related-grid">
-				<a href="/kb/security/vulnerabilities/path-traversal/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Path Traversal</span>
-					<span class="related-desc">Often combined with file upload attacks</span>
+				<a href="/kb/security/vulnerabilities/path-traversal/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Path Traversal</div>
+					<p class="related-card-description">Often combined with file upload attacks</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/command-injection/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Command Injection</span>
-					<span class="related-desc">What happens after web shell upload</span>
+				<a href="/kb/security/vulnerabilities/command-injection/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Command Injection</div>
+					<p class="related-card-description">What happens after web shell upload</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/broken-access-control/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Broken Access Control</span>
-					<span class="related-desc">Missing auth on upload endpoints</span>
+				<a href="/kb/security/vulnerabilities/broken-access-control/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Broken Access Control</div>
+					<p class="related-card-description">Missing auth on upload endpoints</p>
 				</a>
-				<a href="/kb/security/vulnerabilities/missing-auth/" class="related-card">
-					<span class="related-type">Vulnerability</span>
-					<span class="related-title">Missing Authentication</span>
-					<span class="related-desc">Unprotected upload routes</span>
+				<a href="/kb/security/vulnerabilities/missing-auth/" class="card card-interactive related-card">
+					<div class="related-card-category">Vulnerability</div>
+					<div class="related-card-title">Missing Authentication</div>
+					<p class="related-card-description">Unprotected upload routes</p>
 				</a>
-				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="related-card">
-					<span class="related-type">Pillar Guide</span>
-					<span class="related-title">Secure Vibe Coding Guide</span>
-					<span class="related-desc">Complete security for AI-generated code</span>
+				<a href="/kb/vibe-coding/secure-vibe-coding-guide/" class="card card-interactive related-card">
+					<div class="related-card-category">Pillar Guide</div>
+					<div class="related-card-title">Secure Vibe Coding Guide</div>
+					<p class="related-card-description">Complete security for AI-generated code</p>
 				</a>
-				<a href="/kb/security/checklists/pre-launch/" class="related-card">
-					<span class="related-type">Checklist</span>
-					<span class="related-title">Pre-Launch Security</span>
-					<span class="related-desc">Verify before deploying</span>
+				<a href="/kb/security/checklists/pre-launch/" class="card card-interactive related-card">
+					<div class="related-card-category">Checklist</div>
+					<div class="related-card-title">Pre-Launch Security</div>
+					<p class="related-card-description">Verify before deploying</p>
 				</a>
 			</div>
 		</section>
@@ -550,27 +552,30 @@ Review this code for insecure file upload patterns. Check for:
 	.badge {
 		display: inline-block;
 		padding: 0.25rem 0.75rem;
-		border-radius: 4px;
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		background: var(--surface-2, #333);
-		color: var(--text-secondary, #aaa);
+		background: var(--bg-tertiary);
+		color: var(--text-secondary);
+		border: 1px solid var(--border);
 	}
 
 	.badge-critical {
-		background: rgba(239, 68, 68, 0.2);
-		color: #ef4444;
+		background: var(--bg-tertiary);
+		color: var(--red);
+		border-color: var(--red);
 	}
 
 	.badge-cwe {
-		background: rgba(168, 85, 247, 0.2);
-		color: #a855f7;
+		background: var(--bg-tertiary);
+		color: var(--violet);
+		border-color: var(--violet);
 	}
 
 	.badge-owasp {
-		background: rgba(249, 115, 22, 0.2);
-		color: #f97316;
+		background: var(--bg-tertiary);
+		color: var(--orange);
+		border-color: var(--orange);
 	}
 
 	h1 {
@@ -580,14 +585,14 @@ Review this code for insecure file upload patterns. Check for:
 	}
 
 	.subtitle {
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
 		font-size: 1.1rem;
 	}
 
 	.quick-answer {
-		background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
-		border: 1px solid rgba(239, 68, 68, 0.3);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--red);
+		border-left-width: 4px;
 		padding: 1.5rem;
 		margin-bottom: 2rem;
 	}
@@ -596,7 +601,7 @@ Review this code for insecure file upload patterns. Check for:
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		color: #ef4444;
+		color: var(--red);
 		margin-bottom: 0.5rem;
 	}
 
@@ -613,7 +618,7 @@ Review this code for insecure file upload patterns. Check for:
 		font-size: 1.5rem;
 		margin-bottom: 1rem;
 		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	h3 {
@@ -639,7 +644,7 @@ Review this code for insecure file upload patterns. Check for:
 	}
 
 	a {
-		color: #22c55e;
+		color: var(--green-dim);
 	}
 
 	a:hover {
@@ -647,9 +652,8 @@ Review this code for insecure file upload patterns. Check for:
 	}
 
 	code {
-		background: var(--surface-2, #2a2a2a);
+		background: var(--bg-tertiary);
 		padding: 0.15rem 0.4rem;
-		border-radius: 4px;
 		font-size: 0.85em;
 		font-family: 'Monaco', 'Menlo', monospace;
 	}
@@ -663,55 +667,56 @@ Review this code for insecure file upload patterns. Check for:
 	}
 
 	.pattern-card {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
+		background: var(--bg-secondary);
 		padding: 1.25rem;
-		border: 1px solid var(--border, #333);
-	}
-
-	.pattern-card.vulnerable {
-		border-color: rgba(239, 68, 68, 0.3);
+		border: 1px solid var(--red);
+		border-left-width: 3px;
 	}
 
 	.pattern-card h3 {
 		margin-top: 0;
 		font-size: 1rem;
-		color: #ef4444;
+		color: var(--red);
 	}
 
 	.pattern-card p {
 		margin: 0;
 		font-size: 0.9rem;
-		color: var(--text-secondary, #aaa);
+		color: var(--text-secondary);
 	}
 
 	/* Code Blocks */
 	.code-block {
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border);
 		margin: 1rem 0;
 		overflow: hidden;
 	}
 
+	.code-block.vulnerable {
+		border-color: var(--red);
+	}
+
+	.code-block.secure {
+		border-color: var(--green-dim);
+	}
+
 	.code-label {
-		background: var(--surface-2, #252525);
+		background: var(--bg-tertiary);
 		padding: 0.5rem 1rem;
 		font-size: 0.75rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		color: var(--text-secondary, #888);
-		border-bottom: 1px solid var(--border, #333);
+		color: var(--text-secondary);
+		border-bottom: 1px solid var(--border);
 	}
 
-	.code-label.vulnerable {
-		background: rgba(239, 68, 68, 0.1);
-		color: #ef4444;
+	.code-block.vulnerable .code-label {
+		color: var(--red);
 	}
 
-	.code-label.secure {
-		background: rgba(34, 197, 94, 0.1);
-		color: #22c55e;
+	.code-block.secure .code-label {
+		color: var(--green-dim);
 	}
 
 	.code-block pre {
@@ -744,11 +749,11 @@ Review this code for insecure file upload patterns. Check for:
 	.data-table td {
 		padding: 0.75rem 1rem;
 		text-align: left;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.data-table th {
-		background: var(--surface-1, #1a1a1a);
+		background: var(--bg-secondary);
 		font-weight: 600;
 	}
 
@@ -758,9 +763,9 @@ Review this code for insecure file upload patterns. Check for:
 
 	/* AI Fix Section */
 	.ai-fix-section {
-		background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 100%);
-		border: 1px solid rgba(34, 197, 94, 0.2);
-		border-radius: 12px;
+		background: var(--bg-secondary);
+		border: 1px solid var(--green-dim);
+		border-left-width: 4px;
 		padding: 1.5rem;
 		margin: 2rem 0;
 	}
@@ -768,24 +773,27 @@ Review this code for insecure file upload patterns. Check for:
 	.ai-fix-section h2 {
 		border-bottom: none;
 		padding-bottom: 0;
-		color: #22c55e;
+		color: var(--green-dim);
 	}
 
 	.ai-prompt .code-label {
-		background: rgba(34, 197, 94, 0.15);
-		color: #22c55e;
+		color: var(--green-dim);
 	}
 
 	/* FAQ Section */
 	.faq-section {
-		background: var(--surface-1, #1a1a1a);
-		border-radius: 8px;
+		background: var(--bg-secondary);
 		padding: 1.5rem;
+		border: 1px solid var(--border);
+	}
+
+	.faq-list {
+		margin-top: 1rem;
 	}
 
 	.faq-item {
 		padding: 1rem 0;
-		border-bottom: 1px solid var(--border, #333);
+		border-bottom: 1px solid var(--border);
 	}
 
 	.faq-item:last-child {
@@ -800,7 +808,7 @@ Review this code for insecure file upload patterns. Check for:
 
 	.faq-item p {
 		margin-bottom: 0;
-		color: var(--text-secondary, #aaa);
+		color: var(--text-secondary);
 		font-size: 0.9rem;
 	}
 
@@ -814,36 +822,40 @@ Review this code for insecure file upload patterns. Check for:
 	.related-card {
 		display: block;
 		padding: 1rem;
-		background: var(--surface-1, #1a1a1a);
-		border: 1px solid var(--border, #333);
-		border-radius: 8px;
 		text-decoration: none;
-		transition: border-color 0.2s;
 	}
 
 	.related-card:hover {
-		border-color: #22c55e;
 		text-decoration: none;
 	}
 
-	.related-type {
-		display: block;
+	.related-card-category {
 		font-size: 0.7rem;
-		color: var(--text-secondary, #666);
+		color: var(--text-tertiary);
 		text-transform: uppercase;
 		margin-bottom: 0.25rem;
 	}
 
-	.related-title {
-		display: block;
+	.related-card-title {
 		font-weight: 600;
-		color: var(--text-primary, #fff);
+		color: var(--text-primary);
 		margin-bottom: 0.25rem;
 	}
 
-	.related-desc {
-		display: block;
+	.related-card-description {
 		font-size: 0.8rem;
-		color: var(--text-secondary, #888);
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.content-wrapper {
+			padding: 1rem;
+		}
+
+		h1 {
+			font-size: 1.75rem;
+		}
 	}
 </style>

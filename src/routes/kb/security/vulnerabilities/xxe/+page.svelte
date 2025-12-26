@@ -137,7 +137,7 @@
 </script>
 
 <svelte:head>
-	<title>XXE: How AI Code Lets Attackers Read Your Server Files | vibeship</title>
+	<title>XXE in AI-Generated Code | VibeShip</title>
 	<meta
 		name="description"
 		content="XML External Entity (XXE) attacks let attackers read /etc/passwd and internal files. AI generates vulnerable XML parsers by default. Learn secure patterns for Node.js, Python, and Java."

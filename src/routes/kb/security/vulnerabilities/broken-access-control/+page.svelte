@@ -142,7 +142,7 @@
 </script>
 
 <svelte:head>
-	<title>Broken Access Control: The #1 Web Vulnerability AI Tools Get Wrong | vibeship</title>
+	<title>Broken Access Control in AI Code | VibeShip</title>
 	<meta
 		name="description"
 		content="Broken Access Control is OWASP's #1 vulnerability. AI tools generate code that checks authentication but forgets authorization. Learn patterns and fixes for Node.js, Python, and React."

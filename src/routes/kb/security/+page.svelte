@@ -3,8 +3,16 @@
 </script>
 
 <svelte:head>
-	<title>Security Knowledge Base | Vibeship</title>
-	<meta name="description" content="Security guides for vibe coders. Vulnerabilities, stack guides, checklists, and AI fix prompts for AI-generated code.">
+	<title>Security Knowledge Base | VibeShip</title>
+	<meta name="description" content="Security guides for vibe coders. Vulnerabilities, stack guides, checklists, and AI fix prompts for AI-generated code." />
+	<meta property="og:title" content="Security Knowledge Base | VibeShip" />
+	<meta property="og:description" content="Security guides for vibe coders. Vulnerabilities, stack guides, checklists, and AI fix prompts for AI-generated code." />
+	<meta property="og:url" content="/kb/security/" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Security Knowledge Base | VibeShip" />
+	<meta name="twitter:description" content="Security guides for vibe coders. Vulnerabilities, stack guides, checklists, and AI fix prompts for AI-generated code." />
+	<link rel="canonical" href="https://vibeship.co/kb/security/" />
 </svelte:head>
 
 <Header breadcrumbs={[

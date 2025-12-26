@@ -24,8 +24,16 @@
 </script>
 
 <svelte:head>
-	<title>Stack Security Guides | Vibeship Knowledge Base</title>
-	<meta name="description" content="Security guides for popular tech stacks. Next.js + Supabase, Next.js + Prisma, SvelteKit + Supabase with security checklists and fixes.">
+	<title>Stack Security Guides | VibeShip</title>
+	<meta name="description" content="Security guides for popular tech stacks. Next.js + Supabase, Next.js + Prisma, SvelteKit + Supabase with security checklists and fixes." />
+	<meta property="og:title" content="Stack Security Guides | VibeShip" />
+	<meta property="og:description" content="Security guides for popular tech stacks. Next.js + Supabase, Next.js + Prisma, SvelteKit + Supabase with security checklists and fixes." />
+	<meta property="og:url" content="/kb/security/stacks/" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Stack Security Guides | VibeShip" />
+	<meta name="twitter:description" content="Security guides for popular tech stacks. Next.js + Supabase, Next.js + Prisma, SvelteKit + Supabase." />
+	<link rel="canonical" href="https://vibeship.co/kb/security/stacks/" />
 </svelte:head>
 
 <Header breadcrumbs={[

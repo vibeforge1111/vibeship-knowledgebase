@@ -503,28 +503,6 @@ export async function GET(
 				</p>
 			</div>
 
-			<!-- Framework-Specific -->
-			<div class="fix-section">
-				<h3>Framework-specific fixes</h3>
-				<div class="framework-links">
-					<a href="/kb/security/fixes/missing-auth/nextjs/" class="card card-interactive">
-						<span class="framework-name">Next.js</span>
-						<span class="framework-desc">App Router & Pages Router</span>
-					</a>
-					<a href="/kb/security/fixes/missing-auth/express/" class="card card-interactive">
-						<span class="framework-name">Express</span>
-						<span class="framework-desc">Middleware patterns</span>
-					</a>
-					<a href="/kb/security/fixes/missing-auth/sveltekit/" class="card card-interactive">
-						<span class="framework-name">SvelteKit</span>
-						<span class="framework-desc">Hooks & locals</span>
-					</a>
-					<a href="/kb/security/fixes/missing-auth/supabase/" class="card card-interactive">
-						<span class="framework-name">Supabase</span>
-						<span class="framework-desc">RLS & auth helpers</span>
-					</a>
-				</div>
-			</div>
 		</section>
 
 		<!-- FAQ -->

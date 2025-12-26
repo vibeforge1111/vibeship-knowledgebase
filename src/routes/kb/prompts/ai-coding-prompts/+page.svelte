@@ -15,6 +15,23 @@
 		{ label: 'AI Coding Prompts' }
 	];
 
+	// Copy to clipboard function
+	let copiedId: string | null = $state(null);
+
+	function copyPrompt(event: MouseEvent, id: string) {
+		const button = event.currentTarget as HTMLButtonElement;
+		const codeBlock = button.closest('.code-block');
+		const pre = codeBlock?.querySelector('pre');
+		if (pre) {
+			navigator.clipboard.writeText(pre.textContent || '').then(() => {
+				copiedId = id;
+				setTimeout(() => {
+					copiedId = null;
+				}, 2000);
+			});
+		}
+	}
+
 	// FAQ data
 	const faqs = [
 		{
@@ -73,7 +90,7 @@
 		</div>
 
 		<!-- Badge -->
-		<span class="badge badge-library">Prompt Library</span>
+		<span class="badge badge-info">Prompt Library</span>
 
 		<h1>AI Coding Prompts: 50+ Copy-Paste Templates for Developers</h1>
 
@@ -82,21 +99,21 @@
 		</p>
 
 		<!-- Stats Row -->
-		<div class="stats-row">
-			<div class="stat-card">
-				<div class="stat-number">50+</div>
+		<div class="stats-grid-4">
+			<div class="stat-box">
+				<div class="stat-value success">50+</div>
 				<div class="stat-label">Prompts</div>
 			</div>
-			<div class="stat-card">
-				<div class="stat-number">7</div>
+			<div class="stat-box">
+				<div class="stat-value">7</div>
 				<div class="stat-label">Categories</div>
 			</div>
-			<div class="stat-card">
-				<div class="stat-number">100%</div>
+			<div class="stat-box">
+				<div class="stat-value">100%</div>
 				<div class="stat-label">Copy-Paste Ready</div>
 			</div>
-			<div class="stat-card">
-				<div class="stat-number">All</div>
+			<div class="stat-box">
+				<div class="stat-value">All</div>
 				<div class="stat-label">AI Models</div>
 			</div>
 		</div>
@@ -104,7 +121,7 @@
 		<!-- Categories Grid -->
 		<div class="categories-grid">
 			{#each categories as category}
-				<div class="category-card">
+				<div class="card category-card">
 					<span class="category-icon">{category.icon}</span>
 					<span class="category-name">{category.name}</span>
 					<span class="category-count">{category.count} prompts</span>
@@ -118,16 +135,22 @@
 
 			<p>Prompts for building new features from scratch or extending existing functionality.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>New Feature Implementation</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Foundation</span>
-					<span class="prompt-tag">Any Stack</span>
+					<span class="badge">Foundation</span>
+					<span class="badge">Any Stack</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button
+							class="copy-btn"
+							class:copied={copiedId === 'feature-impl'}
+							onclick={(e) => copyPrompt(e, 'feature-impl')}
+						>
+							{copiedId === 'feature-impl' ? 'Copied!' : 'Copy'}
+						</button>
 					</div>
 					<pre><code>{`I need to implement [FEATURE_NAME] in my [FRAMEWORK] application.
 
@@ -159,16 +182,16 @@ Provide the implementation with:
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>API Endpoint Creation</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Backend</span>
-					<span class="prompt-tag">REST/GraphQL</span>
+					<span class="badge">Backend</span>
+					<span class="badge">REST/GraphQL</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Create a [REST/GraphQL] API endpoint for [RESOURCE_NAME].
 
@@ -198,16 +221,16 @@ Provide complete implementation with error handling and types.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>React Component with State</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Frontend</span>
-					<span class="prompt-tag">React</span>
+					<span class="badge">Frontend</span>
+					<span class="badge">React</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Create a React component for [COMPONENT_PURPOSE].
 
@@ -239,16 +262,16 @@ Provide:
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Form with Validation</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Frontend</span>
-					<span class="prompt-tag">Forms</span>
+					<span class="badge">Frontend</span>
+					<span class="badge">Forms</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Create a form for [FORM_PURPOSE] with client and server validation.
 
@@ -278,16 +301,16 @@ Provide complete form component with validation schema.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Database Schema Design</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Backend</span>
-					<span class="prompt-tag">Database</span>
+					<span class="badge">Backend</span>
+					<span class="badge">Database</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Design a database schema for [FEATURE/DOMAIN].
 
@@ -326,16 +349,16 @@ Provide:
 
 			<p>Prompts for improving existing code without changing functionality.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Extract Reusable Function</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">DRY</span>
-					<span class="prompt-tag">Any Language</span>
+					<span class="badge">DRY</span>
+					<span class="badge">Any Language</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Refactor this code to extract reusable functions:
 
@@ -361,16 +384,16 @@ Provide:
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Improve Code Readability</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Clean Code</span>
-					<span class="prompt-tag">Maintainability</span>
+					<span class="badge">Clean Code</span>
+					<span class="badge">Maintainability</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Improve the readability of this code without changing functionality:
 
@@ -397,16 +420,16 @@ Show before/after for each change with explanation.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Convert to TypeScript</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">TypeScript</span>
-					<span class="prompt-tag">Migration</span>
+					<span class="badge">TypeScript</span>
+					<span class="badge">Migration</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Convert this JavaScript code to TypeScript with strict types:
 
@@ -428,16 +451,16 @@ Show before/after for each change with explanation.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Modernize Legacy Code</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Modernization</span>
-					<span class="prompt-tag">Best Practices</span>
+					<span class="badge">Modernization</span>
+					<span class="badge">Best Practices</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Modernize this code using current best practices:
 
@@ -468,18 +491,18 @@ Provide modernized code with comments explaining major changes.`}</code></pre>
 		<section class="prompt-section">
 			<h2 id="testing">Testing Prompts</h2>
 
-			<p>Prompts for writing comprehensive tests. See also: <a href="/kb/prompts/testing-prompts/">Testing Prompts Library</a></p>
+			<p>Prompts for writing comprehensive tests.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Unit Tests for Function</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Unit Testing</span>
-					<span class="prompt-tag">Jest/Vitest</span>
+					<span class="badge">Unit Testing</span>
+					<span class="badge">Jest/Vitest</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Write comprehensive unit tests for this function:
 
@@ -513,16 +536,16 @@ describe('[FunctionName]', () => {
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Integration Test for API</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Integration</span>
-					<span class="prompt-tag">API Testing</span>
+					<span class="badge">Integration</span>
+					<span class="badge">API Testing</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Write integration tests for this API endpoint:
 
@@ -554,16 +577,16 @@ Provide complete test file with setup and teardown.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>E2E Test for User Flow</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">E2E</span>
-					<span class="prompt-tag">Playwright</span>
+					<span class="badge">E2E</span>
+					<span class="badge">Playwright</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Write E2E tests for this user flow:
 
@@ -601,16 +624,16 @@ Provide complete test file with page objects if complex.`}</code></pre>
 
 			<p>Prompts for generating documentation, comments, and README files.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Function Documentation</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">JSDoc/Docstring</span>
-					<span class="prompt-tag">API Docs</span>
+					<span class="badge">JSDoc/Docstring</span>
+					<span class="badge">API Docs</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Add comprehensive documentation to this code:
 
@@ -634,16 +657,16 @@ Code with inline documentation added.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>README Generator</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">README</span>
-					<span class="prompt-tag">Project Docs</span>
+					<span class="badge">README</span>
+					<span class="badge">Project Docs</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Generate a README.md for this project:
 
@@ -673,16 +696,16 @@ Generate complete README in markdown format.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>API Documentation</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">API Docs</span>
-					<span class="prompt-tag">OpenAPI</span>
+					<span class="badge">API Docs</span>
+					<span class="badge">OpenAPI</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Generate API documentation for these endpoints:
 
@@ -713,16 +736,16 @@ Complete API documentation in specified format.`}</code></pre>
 
 			<p>Prompts for reviewing code quality, security, and best practices.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Security Review</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Security</span>
-					<span class="prompt-tag">Critical</span>
+					<span class="badge">Security</span>
+					<span class="badge">Critical</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Review this code for security vulnerabilities:
 
@@ -752,16 +775,16 @@ Also note: "No issues found" for categories that pass.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Performance Review</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Performance</span>
-					<span class="prompt-tag">Optimization</span>
+					<span class="badge">Performance</span>
+					<span class="badge">Optimization</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Review this code for performance issues:
 
@@ -791,16 +814,16 @@ For each issue:
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>General Code Review</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Quality</span>
-					<span class="prompt-tag">Best Practices</span>
+					<span class="badge">Quality</span>
+					<span class="badge">Best Practices</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Review this code as a senior developer would:
 
@@ -837,16 +860,16 @@ Structured review with:
 
 			<p>Prompts for diagnosing and fixing bugs. See also: <a href="/kb/prompts/debugging-prompts/">Debugging Prompts Library</a></p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Debug Error Message</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Error Analysis</span>
-					<span class="prompt-tag">Quick Fix</span>
+					<span class="badge">Error Analysis</span>
+					<span class="badge">Quick Fix</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Help me debug this error:
 
@@ -873,16 +896,16 @@ Explain the root cause and provide a fix.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Fix Failing Test</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Testing</span>
-					<span class="prompt-tag">Debug</span>
+					<span class="badge">Testing</span>
+					<span class="badge">Debug</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Help me fix this failing test:
 
@@ -914,16 +937,16 @@ Provide the fix for whichever needs to change.`}</code></pre>
 
 			<p>Prompts for optimizing code performance.</p>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Optimize Database Query</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Database</span>
-					<span class="prompt-tag">SQL</span>
+					<span class="badge">Database</span>
+					<span class="badge">SQL</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Optimize this database query:
 
@@ -952,16 +975,16 @@ Provide the fix for whichever needs to change.`}</code></pre>
 				</div>
 			</div>
 
-			<div class="prompt-card">
+			<div class="card prompt-card">
 				<h3>Reduce Bundle Size</h3>
 				<div class="prompt-meta">
-					<span class="prompt-tag">Frontend</span>
-					<span class="prompt-tag">Build</span>
+					<span class="badge">Frontend</span>
+					<span class="badge">Build</span>
 				</div>
 				<div class="code-block">
-					<div class="code-header">
-						<span class="code-title">Prompt Template</span>
-						<span class="code-lang">text</span>
+					<div class="code-block-header">
+						<span class="code-block-lang">Prompt</span>
+						<button class="copy-btn" onclick={(e) => copyPrompt(e, crypto.randomUUID())}>Copy</button>
 					</div>
 					<pre><code>{`Help reduce the bundle size of this component/page:
 
@@ -1053,10 +1076,10 @@ Provide the fix for whichever needs to change.`}</code></pre>
 					<div class="related-card-title">Debugging Prompts</div>
 					<p class="related-card-description">Advanced debugging templates</p>
 				</a>
-				<a href="/kb/prompts/prompt-engineering-code/" class="card card-interactive related-card">
-					<div class="related-card-category">Pillar Guide</div>
-					<div class="related-card-title">Prompt Engineering for Code</div>
-					<p class="related-card-description">Master the techniques behind great prompts</p>
+				<a href="/kb/prompts/ai-prompt-library/" class="card card-interactive related-card">
+					<div class="related-card-category">Prompt Library</div>
+					<div class="related-card-title">AI Prompt Library</div>
+					<p class="related-card-description">Complete prompt collection</p>
 				</a>
 				<a href="/kb/prompts/cursor-rules/" class="card card-interactive related-card">
 					<div class="related-card-category">Guide</div>
@@ -1079,6 +1102,7 @@ Provide the fix for whichever needs to change.`}</code></pre>
 </div>
 
 <style>
+	/* Intro */
 	.intro {
 		font-size: 1.125rem;
 		color: var(--text-secondary);
@@ -1086,40 +1110,15 @@ Provide the fix for whichever needs to change.`}</code></pre>
 		line-height: 1.7;
 	}
 
-	.badge-library {
-		background: linear-gradient(135deg, var(--violet), var(--pink));
-		color: white;
-		font-weight: 600;
-	}
-
-	.stats-row {
+	/* Stats Grid - uses global .stat-box */
+	.stats-grid-4 {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 1rem;
 		margin: 1.5rem 0;
 	}
 
-	.stat-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		border-radius: 8px;
-		padding: 1.25rem;
-		text-align: center;
-	}
-
-	.stat-number {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--green);
-	}
-
-	.stat-label {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin-top: 0.25rem;
-	}
-
-	/* Categories Grid */
+	/* Categories Grid - uses global .card */
 	.categories-grid {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
@@ -1128,10 +1127,6 @@ Provide the fix for whichever needs to change.`}</code></pre>
 	}
 
 	.category-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		border-radius: 8px;
-		padding: 1rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -1157,11 +1152,8 @@ Provide the fix for whichever needs to change.`}</code></pre>
 		margin: 3rem 0;
 	}
 
+	/* Prompt Card - extends global .card */
 	.prompt-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border);
-		border-radius: 8px;
-		padding: 1.5rem;
 		margin: 1.5rem 0;
 	}
 
@@ -1174,14 +1166,7 @@ Provide the fix for whichever needs to change.`}</code></pre>
 		display: flex;
 		gap: 0.5rem;
 		margin-bottom: 1rem;
-	}
-
-	.prompt-tag {
-		font-size: 0.7rem;
-		padding: 0.25rem 0.5rem;
-		background: var(--bg-tertiary);
-		border-radius: 4px;
-		color: var(--text-secondary);
+		flex-wrap: wrap;
 	}
 
 	/* Usage Steps */
@@ -1200,9 +1185,9 @@ Provide the fix for whichever needs to change.`}</code></pre>
 	.step-number {
 		width: 32px;
 		height: 32px;
+		min-width: 32px;
 		background: var(--green);
-		color: white;
-		border-radius: 50%;
+		color: var(--bg-primary);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -1221,7 +1206,7 @@ Provide the fix for whichever needs to change.`}</code></pre>
 
 	/* Responsive */
 	@media (max-width: 768px) {
-		.stats-row {
+		.stats-grid-4 {
 			grid-template-columns: repeat(2, 1fr);
 		}
 
@@ -1231,6 +1216,10 @@ Provide the fix for whichever needs to change.`}</code></pre>
 	}
 
 	@media (max-width: 480px) {
+		.stats-grid-4 {
+			grid-template-columns: 1fr;
+		}
+
 		.categories-grid {
 			grid-template-columns: 1fr;
 		}
