@@ -426,10 +426,10 @@ location / {
 
     # Reject requests with both CL and TE
     if ($http_transfer_encoding ~* "chunked" ) {
-        set $ambiguous "${ambiguous}TE";
+        set $ambiguous "${"$"}{ambiguous}TE";
     }
     if ($content_length) {
-        set $ambiguous "${ambiguous}CL";
+        set $ambiguous "${"$"}{ambiguous}CL";
     }
     if ($ambiguous = "TECL") {
         return 400;

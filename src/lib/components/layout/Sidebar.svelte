@@ -3,12 +3,21 @@
 	import { browser } from '$app/environment';
 	import SearchModal from './SearchModal.svelte';
 
+	interface Counts {
+		vulnerabilities: number;
+		vibeTools: number;
+		stacks: number;
+		checklists: number;
+		prompts: number;
+	}
+
 	interface Props {
 		isOpen?: boolean;
 		onClose?: () => void;
+		counts?: Counts;
 	}
 
-	let { isOpen = false, onClose }: Props = $props();
+	let { isOpen = false, onClose, counts }: Props = $props();
 	let searchOpen = $state(false);
 
 	// Global keyboard shortcut for Cmd+K / Ctrl+K
@@ -26,16 +35,16 @@
 		return () => document.removeEventListener('keydown', handleKeydown);
 	});
 
-	const navSections = [
+	const navSections = $derived([
 		{
 			title: 'Knowledge Base',
 			items: [
 				{ href: '/kb', label: 'Overview' },
-				{ href: '/kb/security/vulnerabilities', label: 'Vulnerabilities', badge: '26' },
-				{ href: '/kb/vibe-coding-tools', label: 'Vibe Coding Tools', badge: '14' },
-				{ href: '/kb/security/stacks', label: 'Stack Guides', badge: '3' },
-				{ href: '/kb/security/checklists', label: 'Checklists', badge: '1' },
-				{ href: '/kb/prompts', label: 'Prompts', badge: '5' }
+				{ href: '/kb/security/vulnerabilities', label: 'Vulnerabilities', badge: counts?.vulnerabilities?.toString() || '0' },
+				{ href: '/kb/vibe-coding-tools', label: 'Vibe Coding Tools', badge: counts?.vibeTools?.toString() || '0' },
+				{ href: '/kb/security/stacks', label: 'Stack Guides', badge: counts?.stacks?.toString() || '0' },
+				{ href: '/kb/security/checklists', label: 'Checklists', badge: counts?.checklists?.toString() || '0' },
+				{ href: '/kb/prompts', label: 'Prompts', badge: counts?.prompts?.toString() || '0' }
 			]
 		},
 		{
@@ -45,7 +54,7 @@
 				{ href: '/kb/agents/security/mcp-servers', label: 'MCP Server Security' }
 			]
 		}
-	];
+	]);
 
 	function isActive(href: string, currentPath: string): boolean {
 		if (href === '/kb') {

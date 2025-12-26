@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Sidebar, Footer, MobileMenuButton } from '$lib/components/layout';
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	let mobileMenuOpen = $state(false);
 
@@ -22,7 +22,7 @@
 </script>
 
 <div class="app-layout">
-	<Sidebar isOpen={mobileMenuOpen} onClose={closeMobileMenu} />
+	<Sidebar isOpen={mobileMenuOpen} onClose={closeMobileMenu} counts={data.counts} />
 
 	<!-- Mobile overlay -->
 	<button
