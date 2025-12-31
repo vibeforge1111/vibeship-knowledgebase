@@ -26,3 +26,7 @@ vite.config.ts.timestamp-*
 /docs/.content-ops/briefs/*-brief.md
 /docs/scripts
 nul
+
+# SEO Research (private/competitive intelligence)
+/docs/SEO-KEYWORD-RESEARCH-2025.md
+/docs/SEO-*.md
